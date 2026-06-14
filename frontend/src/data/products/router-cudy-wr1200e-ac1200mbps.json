@@ -1,0 +1,29 @@
+{
+  "id": "elit_18623",
+  "title": "Router Cudy WR1200E AC1200Mbps",
+  "price": 29009.7,
+  "originalPrice": 14.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18623/i/ZsuN7_l.webp",
+  "slug": "router-cudy-wr1200e-ac1200mbps",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Routers",
+  "brand": "CUDY",
+  "sku": "WR1200E",
+  "ean": "6971690793371",
+  "warranty": "12",
+  "description": "Router Cudy WR1200E AC1200Mbps - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4835
+  },
+  "stock": 1350,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18630",
+  "title": "Extensor Cudy AC1200",
+  "price": 29206.77,
+  "originalPrice": 14.82,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18630/i/tB9n8_l.webp",
+  "slug": "extensor-cudy-ac1200",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Extensores",
+  "brand": "CUDY",
+  "sku": "RE1200",
+  "ean": "6971690790165",
+  "warranty": "12",
+  "description": "Extensor Cudy AC1200 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4868
+  },
+  "stock": 594,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

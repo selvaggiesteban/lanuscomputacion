@@ -1,0 +1,29 @@
+{
+  "id": "elit_6928",
+  "title": "Mouse c/cable XTECH XTM-165 Negro",
+  "price": 4513.06,
+  "originalPrice": 2.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6928/i/YL5aR_l.webp",
+  "slug": "mouse-c-cable-xtech-xtm-165-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "XTECH",
+  "sku": "XTM-165",
+  "ean": "798302162204",
+  "warranty": "12",
+  "description": "Mouse c/cable XTECH XTM-165 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 752
+  },
+  "stock": 180,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

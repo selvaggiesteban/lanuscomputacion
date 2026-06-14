@@ -1,0 +1,29 @@
+{
+  "id": "elit_20200",
+  "title": "Mouse Redragon Centrophorus RGB M601",
+  "price": 22959.44,
+  "originalPrice": 11.65,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20200/i/Xat4g_l.webp",
+  "slug": "mouse-redragon-centrophorus-rgb-m601",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "REDRAGON",
+  "sku": "M601-RGB",
+  "ean": "6950376707635",
+  "warranty": "12",
+  "description": "Mouse Redragon Centrophorus RGB M601 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3827
+  },
+  "stock": 138,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

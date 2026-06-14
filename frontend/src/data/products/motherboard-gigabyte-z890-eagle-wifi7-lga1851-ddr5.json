@@ -1,0 +1,29 @@
+{
+  "id": "elit_18037",
+  "title": "Motherboard GIGABYTE Z890 EAGLE WIFI7 LGA1851 DDR5",
+  "price": 457888.12,
+  "originalPrice": 232.34,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18037/i/4tNiH_l.webp",
+  "slug": "motherboard-gigabyte-z890-eagle-wifi7-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "Z890 EAGLE WIFI7",
+  "ean": "4719331864927",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE Z890 EAGLE WIFI7 LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 76315
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

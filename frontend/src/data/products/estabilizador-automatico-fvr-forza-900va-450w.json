@@ -1,0 +1,29 @@
+{
+  "id": "elit_9838",
+  "title": "Estabilizador Automatico FVR FORZA 900VA 450W",
+  "price": 29802.46,
+  "originalPrice": 13.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9838/i/jA4cO_l.webp",
+  "slug": "estabilizador-automatico-fvr-forza-900va-450w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Estabilizadores",
+  "brand": "FORZA",
+  "sku": "FVR-902A",
+  "ean": "798302108486",
+  "warranty": "24",
+  "description": "Estabilizador Automatico FVR FORZA 900VA 450W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4967
+  },
+  "stock": 1157,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

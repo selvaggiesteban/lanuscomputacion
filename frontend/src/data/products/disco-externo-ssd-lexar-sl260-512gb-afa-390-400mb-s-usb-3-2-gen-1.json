@@ -1,0 +1,29 @@
+{
+  "id": "elit_20283",
+  "title": "Disco Externo SSD LEXAR SL260 512GB AFA 390/400MB/s USB 3.2 Gen 1",
+  "price": 305081.41,
+  "originalPrice": 141.37,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "disco-externo-ssd-lexar-sl260-512gb-afa-390-400mb-s-usb-3-2-gen-1",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos SSD",
+  "brand": "LEXAR",
+  "sku": "LSL260X512G-BNXNU",
+  "ean": "843367145287",
+  "warranty": "60",
+  "description": "Disco Externo SSD LEXAR SL260 512GB AFA 390/400MB/s USB 3.2 Gen 1 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 50847
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

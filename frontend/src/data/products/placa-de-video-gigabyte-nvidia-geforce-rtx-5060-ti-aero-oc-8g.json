@@ -1,0 +1,29 @@
+{
+  "id": "elit_19546",
+  "title": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti AERO OC 8G",
+  "price": 1006057.1,
+  "originalPrice": 510.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19546/i/ROMmk_l.webp",
+  "slug": "placa-de-video-gigabyte-nvidia-geforce-rtx-5060-ti-aero-oc-8g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-N506TAERO OC-8GD",
+  "ean": "4719331356040",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti AERO OC 8G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 167676
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_7090",
+  "title": "UPS NT FORZA Interactiva 750VA 375W",
+  "price": 81570.07,
+  "originalPrice": 41.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7090/i/gqJAw_l.webp",
+  "slug": "ups-nt-forza-interactiva-750va-375w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "NT-752A",
+  "ean": "798302107793",
+  "warranty": "36",
+  "description": "UPS NT FORZA Interactiva 750VA 375W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13595
+  },
+  "stock": 624,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

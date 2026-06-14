@@ -1,0 +1,29 @@
+{
+  "id": "elit_17399",
+  "title": "Motherboard MSI PRO B760M-P LGA1700 DDR5",
+  "price": 176639.89,
+  "originalPrice": 89.63,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17399/i/i5IBa_l.webp",
+  "slug": "motherboard-msi-pro-b760m-p-lga1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO B760M-P",
+  "ean": "824142319802",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO B760M-P LGA1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29440
+  },
+  "stock": 82,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

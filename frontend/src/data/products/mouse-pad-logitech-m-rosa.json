@@ -1,0 +1,29 @@
+{
+  "id": "elit_15395",
+  "title": "Mouse Pad LOGITECH M Rosa",
+  "price": 13897.75,
+  "originalPrice": 6.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15395/i/PN4Fs_l.webp",
+  "slug": "mouse-pad-logitech-m-rosa",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouse Pads",
+  "brand": "LOGITECH",
+  "sku": "956-000037",
+  "ean": "97855169433",
+  "warranty": "12",
+  "description": "Mouse Pad LOGITECH M Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2316
+  },
+  "stock": 118,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

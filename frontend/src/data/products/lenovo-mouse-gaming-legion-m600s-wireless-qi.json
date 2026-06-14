@@ -1,0 +1,29 @@
+{
+  "id": "elit_18270",
+  "title": "Lenovo Mouse Gaming Legion M600S Wireless Qi",
+  "price": 116058.5,
+  "originalPrice": 58.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18270/i/UrWLR_l.webp",
+  "slug": "lenovo-mouse-gaming-legion-m600s-wireless-qi",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LENOVO",
+  "sku": "GY51H47355",
+  "ean": "195892041276",
+  "warranty": "12 MESES",
+  "description": "Lenovo Mouse Gaming Legion M600S Wireless Qi - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19343
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

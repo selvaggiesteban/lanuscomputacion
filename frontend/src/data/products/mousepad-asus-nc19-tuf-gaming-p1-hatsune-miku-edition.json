@@ -1,0 +1,29 @@
+{
+  "id": "elit_19725",
+  "title": "MousePad ASUS NC19 TUF GAMING P1 HATSUNE MIKU EDITION",
+  "price": 48188.92,
+  "originalPrice": 22.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19725/i/2OTsz_l.webp",
+  "slug": "mousepad-asus-nc19-tuf-gaming-p1-hatsune-miku-edition",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouse Pads",
+  "brand": "ASUS",
+  "sku": "NC19 TUF GAMING P1 HATSUNE MIKU EDITION",
+  "ean": "4711387925096",
+  "warranty": "24",
+  "description": "MousePad ASUS NC19 TUF GAMING P1 HATSUNE MIKU EDITION - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8031
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

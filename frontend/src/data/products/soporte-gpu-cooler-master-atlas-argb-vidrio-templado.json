@@ -1,0 +1,29 @@
+{
+  "id": "elit_17927",
+  "title": "Soporte GPU Cooler Master Atlas ARGB Vidrio Templado",
+  "price": 107642.79,
+  "originalPrice": 49.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17927/i/09Rf8_l.webp",
+  "slug": "soporte-gpu-cooler-master-atlas-argb-vidrio-templado",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "COOLER MASTER",
+  "sku": "MCA-U000R-AGSBTG-00",
+  "ean": "4719512142059",
+  "warranty": "24",
+  "description": "Soporte GPU Cooler Master Atlas ARGB Vidrio Templado - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 17940
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

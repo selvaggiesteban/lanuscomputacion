@@ -1,0 +1,29 @@
+{
+  "id": "elit_14827",
+  "title": "Pen Drive KINGSTON DataTraveler Kyson 128GB USB 3.2 Gen 1 Tipo A Gris",
+  "price": 63252.01,
+  "originalPrice": 29.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14827/i/NwxVr_l.webp",
+  "slug": "pen-drive-kingston-datatraveler-kyson-128gb-usb-3-2-gen-1-tipo-a-gris",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTKN/128GB",
+  "ean": "740617309119",
+  "warranty": "60",
+  "description": "Pen Drive KINGSTON DataTraveler Kyson 128GB USB 3.2 Gen 1 Tipo A Gris - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10542
+  },
+  "stock": 23,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

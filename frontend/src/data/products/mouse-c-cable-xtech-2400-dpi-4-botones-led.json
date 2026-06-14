@@ -1,0 +1,29 @@
+{
+  "id": "elit_19597",
+  "title": "Mouse c/cable Xtech 2400 dpi , 4 botones , Led",
+  "price": 5360.49,
+  "originalPrice": 2.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19597/i/gPHBP_l.webp",
+  "slug": "mouse-c-cable-xtech-2400-dpi-4-botones-led",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "XTECH",
+  "sku": "XTM-218",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mouse c/cable Xtech 2400 dpi , 4 botones , Led - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 893
+  },
+  "stock": 182,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19029",
+  "title": "Pen Drive KINGSTON Exodia S 128GB USB 3.2 Gen 1",
+  "price": 31701.53,
+  "originalPrice": 14.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19029/i/omU2y_l.webp",
+  "slug": "pen-drive-kingston-exodia-s-128gb-usb-3-2-gen-1",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTXS/128GB",
+  "ean": "740617348699",
+  "warranty": "99",
+  "description": "Pen Drive KINGSTON Exodia S 128GB USB 3.2 Gen 1 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5284
+  },
+  "stock": 879,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

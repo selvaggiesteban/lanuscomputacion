@@ -1,0 +1,29 @@
+{
+  "id": "elit_17179",
+  "title": "Procesador Core i5-14400F 2.5GHz 20MB LGA 1700",
+  "price": 400755.57,
+  "originalPrice": 203.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17179/i/MZ2xv_l.webp",
+  "slug": "procesador-core-i5-14400f-2-5ghz-20mb-lga-1700",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071514400F",
+  "ean": "5032037279147",
+  "warranty": "36",
+  "description": "Procesador Core i5-14400F 2.5GHz 20MB LGA 1700 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 66793
+  },
+  "stock": 125,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

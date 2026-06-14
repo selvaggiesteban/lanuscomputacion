@@ -1,0 +1,29 @@
+{
+  "id": "elit_17064",
+  "title": "Disco duro int 1TB SATA 6 Gb/s 256MB Skyhawk",
+  "price": 222499.65,
+  "originalPrice": 112.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17064/i/MobGZ_l.webp",
+  "slug": "disco-duro-int-1tb-sata-6-gb-s-256mb-skyhawk",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "SEAGATE",
+  "sku": "ST1000VX013",
+  "ean": "8719706028226",
+  "warranty": "24",
+  "description": "Disco duro int 1TB SATA 6 Gb/s 256MB Skyhawk - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37083
+  },
+  "stock": 199,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

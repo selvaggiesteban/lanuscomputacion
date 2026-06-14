@@ -1,0 +1,29 @@
+{
+  "id": "elit_19471",
+  "title": "Motherboard ASUS PRIME A620M-K AM5 DDR5",
+  "price": 131942.88,
+  "originalPrice": 66.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19471/i/bF4T9_l.webp",
+  "slug": "motherboard-asus-prime-a620m-k-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME A620M-K",
+  "ean": "4711387242087",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME A620M-K AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21990
+  },
+  "stock": 208,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

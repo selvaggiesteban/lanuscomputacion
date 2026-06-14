@@ -1,0 +1,29 @@
+{
+  "id": "elit_19874",
+  "title": "Fuente ASUS ROG-STRIX 1000W PLATINUM GAMING WHITE",
+  "price": 432448.63,
+  "originalPrice": 200.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19874/i/Isobh_l.webp",
+  "slug": "fuente-asus-rog-strix-1000w-platinum-gaming-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "ASUS",
+  "sku": "ROG-STRIX-1000P-GAMING-WHITE",
+  "ean": "4711636074513",
+  "warranty": "36",
+  "description": "Fuente ASUS ROG-STRIX 1000W PLATINUM GAMING WHITE - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 72075
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

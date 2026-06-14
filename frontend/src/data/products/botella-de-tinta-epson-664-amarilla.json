@@ -1,0 +1,29 @@
+{
+  "id": "elit_3884",
+  "title": "Botella de Tinta Epson 664 Amarilla",
+  "price": 21062.42,
+  "originalPrice": 9.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3884/i/rCGQv_l.webp",
+  "slug": "botella-de-tinta-epson-664-amarilla",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T664420-AL",
+  "ean": "10343885325",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 664 Amarilla - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3510
+  },
+  "stock": 332,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

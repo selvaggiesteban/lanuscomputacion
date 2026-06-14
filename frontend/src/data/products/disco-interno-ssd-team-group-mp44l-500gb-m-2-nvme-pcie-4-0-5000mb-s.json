@@ -1,0 +1,29 @@
+{
+  "id": "elit_19752",
+  "title": "Disco Interno SSD TEAM GROUP MP44L 500GB M.2 NVMe PCIe 4.0 5000MB/s",
+  "price": 228333.12,
+  "originalPrice": 115.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19752/i/3oWZ0_l.webp",
+  "slug": "disco-interno-ssd-team-group-mp44l-500gb-m-2-nvme-pcie-4-0-5000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "TEAM GROUP",
+  "sku": "TM8FPK500G0C101",
+  "ean": "765441062054",
+  "warranty": "60",
+  "description": "Disco Interno SSD TEAM GROUP MP44L 500GB M.2 NVMe PCIe 4.0 5000MB/s - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 38056
+  },
+  "stock": 232,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

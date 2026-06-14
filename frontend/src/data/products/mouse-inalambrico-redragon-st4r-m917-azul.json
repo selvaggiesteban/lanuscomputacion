@@ -1,0 +1,29 @@
+{
+  "id": "elit_20206",
+  "title": "Mouse Inalámbrico Redragon St4r M917 Azul",
+  "price": 51318.79,
+  "originalPrice": 26.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20206/i/01RsE_l.webp",
+  "slug": "mouse-inalambrico-redragon-st4r-m917-azul",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "REDRAGON",
+  "sku": "M917B-PRO",
+  "ean": "6950376722676",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico Redragon St4r M917 Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8553
+  },
+  "stock": 87,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

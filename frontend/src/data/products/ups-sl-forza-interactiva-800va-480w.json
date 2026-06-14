@@ -1,0 +1,29 @@
+{
+  "id": "elit_7092",
+  "title": "UPS SL FORZA Interactiva 800VA 480W",
+  "price": 136298.28,
+  "originalPrice": 69.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7092/i/Kfs4N_l.webp",
+  "slug": "ups-sl-forza-interactiva-800va-480w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "SL-802UL-A",
+  "ean": "798302107816",
+  "warranty": "36",
+  "description": "UPS SL FORZA Interactiva 800VA 480W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22716
+  },
+  "stock": 92,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

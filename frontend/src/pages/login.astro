@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Iniciar sesión | Lanús Computación">
+  <div class="ml-container py-8">
+    <div class="max-w-md mx-auto">
+      <div class="bg-white rounded shadow-card p-8">
+        <div class="text-center mb-6">
+          <h1 class="text-xl font-semibold text-ml-text">¡Hola!</h1>
+          <p class="text-sm text-ml-text-secondary mt-1">Ingresá tu email o teléfono</p>
+        </div>
+
+        <form class="space-y-4">
+          <div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="ml-input w-full h-12"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="ml-input w-full h-12"
+              required
+            />
+          </div>
+
+          <button type="submit" class="ml-btn-primary w-full h-12 text-base">
+            Continuar
+          </button>
+        </form>
+
+        <div class="my-6 flex items-center gap-3 text-sm text-ml-text-muted">
+          <div class="flex-1 h-px bg-ml-border" />
+          <span>o</span>
+          <div class="flex-1 h-px bg-ml-border" />
+        </div>
+
+        <!-- Social Login -->
+        <div class="space-y-3">
+          <button class="w-full h-12 flex items-center justify-center gap-3 border border-ml-border rounded hover:bg-gray-50 transition-colors text-sm font-medium">
+            <svg width="20" height="20" viewBox="0 0 48 48">
+              <path fill="#4285F4" d="M23.49 12.3c3.68 0 6.45 1.6 7.93 2.97l5.85-5.83C33.78 5.7 29.25 4 23.49 4 15.3 4 8.27 8.82 5 15.78l6.72 5.24c1.9-4.15 5.9-6.72 11.77-6.72z"/>
+              <path fill="#34A853" d="M4 24c0 1.82.27 3.58.78 5.24L11.27 24c-.32-1.03-.5-2.13-.5-3.3s.18-2.27.5-3.3L4.78 12.3C4.27 13.96 4 15.82 4 24z"/>
+              <path fill="#FBBC05" d="M23.49 36.3c-5.87 0-9.87-2.57-11.77-6.72L5.27 34.7C8.27 41.18 15.3 46 23.49 46c5.7 0 11.44-2.2 15.5-6.36l-6.7-5.3c-2.16 1.66-5.08 2.96-8.8 2.96z"/>
+              <path fill="#EA4335" d="M46 24c0-1.84-.3-3.62-.88-5.28H23.5v9.56h12.87c-.55 2.98-2.17 5.42-4.58 7.02l6.7 5.3C43.05 38.6 46 32 46 24z"/>
+            </svg>
+            Continuar con Google
+          </button>
+
+          <button class="w-full h-12 flex items-center justify-center gap-3 border border-ml-border rounded hover:bg-gray-50 transition-colors text-sm font-medium">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="#1877F2">
+              <path d="M48 24C48 10.75 37.25 0 24 0S0 10.75 0 24c0 11.98 8.78 21.91 20.25 23.7v-16.77H14.1V24h6.15v-5.35c0-6.08 3.62-9.44 9.16-9.44 2.65 0 5.43.47 5.43.47v5.96h-3.06c-3.01 0-3.95 1.87-3.95 3.78V24h6.72l-1.07 6.93H28.1v16.77C39.22 45.91 48 35.98 48 24z"/>
+            </svg>
+            Continuar con Facebook
+          </button>
+        </div>
+
+        <p class="text-center mt-6 text-xs text-ml-text-muted">
+          Al continuar, aceptás los
+          <a href="#" class="ml-link"> Términos y Condiciones</a> y la
+          <a href="#" class="ml-link"> Política de Privacidad</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

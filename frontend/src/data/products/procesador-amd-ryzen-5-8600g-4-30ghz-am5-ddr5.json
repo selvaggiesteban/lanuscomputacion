@@ -1,0 +1,29 @@
+{
+  "id": "elit_17189",
+  "title": "Procesador AMD Ryzen 5 8600G 4.30GHz AM5 DDR5",
+  "price": 329354.66,
+  "originalPrice": 167.12,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17189/i/1dYCS_l.webp",
+  "slug": "procesador-amd-ryzen-5-8600g-4-30ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001237BOX",
+  "ean": "730143316163",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 8600G 4.30GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54892
+  },
+  "stock": 168,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

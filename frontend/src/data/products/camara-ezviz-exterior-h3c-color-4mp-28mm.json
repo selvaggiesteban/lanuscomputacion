@@ -1,0 +1,29 @@
+{
+  "id": "elit_16854",
+  "title": "Camara Ezviz Exterior - H3C Color 4mp (2,8mm)",
+  "price": 97068.41,
+  "originalPrice": 44.98,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16854/i/0uVQ9_l.webp",
+  "slug": "camara-ezviz-exterior-h3c-color-4mp-28mm",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-H3c-R100-1J4WKFL(2.8mm)",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Camara Ezviz Exterior - H3C Color 4mp (2,8mm) - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 16178
+  },
+  "stock": 46,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

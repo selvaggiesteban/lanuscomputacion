@@ -1,0 +1,29 @@
+{
+  "id": "elit_17662",
+  "title": "Motherboard GIGABYTE H610M K V2 LGA1700 DDR5",
+  "price": 132652.36,
+  "originalPrice": 67.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17662/i/3I6mB_l.webp",
+  "slug": "motherboard-gigabyte-h610m-k-v2-lga1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "H610M K V2",
+  "ean": "4719331860134",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE H610M K V2 LGA1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22109
+  },
+  "stock": 502,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

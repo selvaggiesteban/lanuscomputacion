@@ -1,0 +1,29 @@
+{
+  "id": "elit_19338",
+  "title": "Gabinete CORSAIR 9000D RGB AIRFLOW Negro",
+  "price": 743511.45,
+  "originalPrice": 377.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19338/i/KST3m_l.webp",
+  "slug": "gabinete-corsair-9000d-rgb-airflow-negro",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011273-WW",
+  "ean": "840006682172",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR 9000D RGB AIRFLOW Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 123919
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

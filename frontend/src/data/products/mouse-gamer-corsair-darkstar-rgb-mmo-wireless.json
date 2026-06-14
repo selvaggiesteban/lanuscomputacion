@@ -1,0 +1,29 @@
+{
+  "id": "elit_19411",
+  "title": "Mouse gamer CORSAIR DARKSTAR RGB MMO Wireless",
+  "price": 140476.31,
+  "originalPrice": 71.28,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19411/i/GIU6n_l.webp",
+  "slug": "mouse-gamer-corsair-darkstar-rgb-mmo-wireless",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "CORSAIR",
+  "sku": "CH-931A011-NA",
+  "ean": "840006649489",
+  "warranty": "24",
+  "description": "Mouse gamer CORSAIR DARKSTAR RGB MMO Wireless - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23413
+  },
+  "stock": 82,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

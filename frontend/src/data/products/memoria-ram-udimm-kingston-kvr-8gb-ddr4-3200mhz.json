@@ -1,0 +1,29 @@
+{
+  "id": "elit_19048",
+  "title": "Memoria Ram UDIMM KINGSTON KVR 8GB DDR4 3200MHz",
+  "price": 240611.0,
+  "originalPrice": 122.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19048/i/Vulyq_l.webp",
+  "slug": "memoria-ram-udimm-kingston-kvr-8gb-ddr4-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KVR32N22S8/8WP",
+  "ean": "740617351934",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM KINGSTON KVR 8GB DDR4 3200MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 40102
+  },
+  "stock": 240,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

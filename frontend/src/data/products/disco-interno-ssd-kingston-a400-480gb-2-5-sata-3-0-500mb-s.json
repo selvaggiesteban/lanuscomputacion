@@ -1,0 +1,29 @@
+{
+  "id": "elit_7187",
+  "title": "Disco Interno SSD KINGSTON A400 480GB 2.5\" SATA 3.0  500MB/s",
+  "price": 206674.39,
+  "originalPrice": 104.87,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7187/i/wZyQj_l.webp",
+  "slug": "disco-interno-ssd-kingston-a400-480gb-2-5-sata-3-0-500mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SA400S37/480G",
+  "ean": "740617263442",
+  "warranty": "36",
+  "description": "Disco Interno SSD KINGSTON A400 480GB 2.5\" SATA 3.0  500MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 34446
+  },
+  "stock": 224,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

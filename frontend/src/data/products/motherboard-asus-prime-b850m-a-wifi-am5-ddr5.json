@@ -1,0 +1,29 @@
+{
+  "id": "elit_19676",
+  "title": "Motherboard ASUS PRIME B850M-A WIFI AM5 DDR5",
+  "price": 313608.23,
+  "originalPrice": 159.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19676/i/733SC_l.webp",
+  "slug": "motherboard-asus-prime-b850m-a-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B850M-A WIFI",
+  "ean": "4711636051125",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B850M-A WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 52268
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

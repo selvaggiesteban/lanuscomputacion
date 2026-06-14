@@ -1,0 +1,29 @@
+{
+  "id": "elit_19810",
+  "title": "Maleta Klip Xtreme Viajes negocios",
+  "price": 256763.0,
+  "originalPrice": 118.98,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19810/i/SkrUz_l.webp",
+  "slug": "maleta-klip-xtreme-viajes-negocios",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Maletines",
+  "brand": "KLIP XTREME",
+  "sku": "KNL-500",
+  "ean": "0",
+  "warranty": "24 meses",
+  "description": "Maleta Klip Xtreme Viajes negocios - 24 meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 42794
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

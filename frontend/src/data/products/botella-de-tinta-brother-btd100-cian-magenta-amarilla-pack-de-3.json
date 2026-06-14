@@ -1,0 +1,29 @@
+{
+  "id": "elit_19831",
+  "title": "Botella de tinta Brother BTD100 Cian Magenta Amarilla Pack de 3",
+  "price": 49246.36,
+  "originalPrice": 22.82,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19831/i/v9VAf_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-cian-magenta-amarilla-pack-de-3",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100CL3PKMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD100 Cian Magenta Amarilla Pack de 3 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8208
+  },
+  "stock": 74,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

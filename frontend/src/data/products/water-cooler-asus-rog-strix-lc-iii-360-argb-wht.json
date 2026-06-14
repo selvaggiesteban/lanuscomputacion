@@ -1,0 +1,29 @@
+{
+  "id": "elit_19697",
+  "title": "Water Cooler ASUS ROG STRIX LC III 360 ARGB WHT",
+  "price": 445866.44,
+  "originalPrice": 226.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19697/i/sMv9d_l.webp",
+  "slug": "water-cooler-asus-rog-strix-lc-iii-360-argb-wht",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "ASUS",
+  "sku": "ROG STRIX LC III 360 ARGB WHT",
+  "ean": "4711387453162",
+  "warranty": "36",
+  "description": "Water Cooler ASUS ROG STRIX LC III 360 ARGB WHT - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 74311
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

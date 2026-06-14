@@ -1,0 +1,29 @@
+{
+  "id": "elit_19844",
+  "title": "Monitor MSI PRO MP251 E14L  24,5\" FullHD 144Hz IPS  Ficha USA",
+  "price": 207105.0,
+  "originalPrice": 86.85,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19844/i/lyICw_l.webp",
+  "slug": "monitor-msi-pro-mp251-e14l-245-fullhd-144hz-ips-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "MSI",
+  "sku": "PRO MP251 E14L",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Monitor MSI PRO MP251 E14L  24,5\" FullHD 144Hz IPS  Ficha USA - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 34518
+  },
+  "stock": 53,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

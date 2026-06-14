@@ -1,0 +1,29 @@
+{
+  "id": "elit_20340",
+  "title": "Disco Externo SSD LEXAR D500 128GB AFA 400/360MB/s Dual Drive USB 3.2 A-C Gen 1",
+  "price": 111268.28,
+  "originalPrice": 51.56,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "disco-externo-ssd-lexar-d500-128gb-afa-400-360mb-s-dual-drive-usb-3-2-a-c-gen-1",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos SSD",
+  "brand": "LEXAR",
+  "sku": "LJDD500128G-BNXNU",
+  "ean": "843367145362",
+  "warranty": "60",
+  "description": "Disco Externo SSD LEXAR D500 128GB AFA 400/360MB/s Dual Drive USB 3.2 A-C Gen 1 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 18545
+  },
+  "stock": 30,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

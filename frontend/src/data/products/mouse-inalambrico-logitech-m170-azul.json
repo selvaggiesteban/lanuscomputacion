@@ -1,0 +1,29 @@
+{
+  "id": "elit_6306",
+  "title": "Mouse Inalámbrico LOGITECH M170 Azul",
+  "price": 11765.48,
+  "originalPrice": 5.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6306/i/CDUrO_l.webp",
+  "slug": "mouse-inalambrico-logitech-m170-azul",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-004800",
+  "ean": "97855121936",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico LOGITECH M170 Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1961
+  },
+  "stock": 167,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

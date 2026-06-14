@@ -1,0 +1,29 @@
+{
+  "id": "elit_7204",
+  "title": "Mouse Inalámbrico LOGITECH M170 Negro",
+  "price": 11804.9,
+  "originalPrice": 5.99,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7204/i/pnnjU_l.webp",
+  "slug": "mouse-inalambrico-logitech-m170-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-004940",
+  "ean": "97855124180",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico LOGITECH M170 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1967
+  },
+  "stock": 376,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

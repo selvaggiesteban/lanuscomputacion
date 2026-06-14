@@ -1,0 +1,29 @@
+{
+  "id": "elit_18507",
+  "title": "Asustor NAS Mini Desk Flashstor 6 FS6706T 6X NVMe",
+  "price": 1023537.81,
+  "originalPrice": 519.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18507/i/mB9Vy_l.webp",
+  "slug": "asustor-nas-mini-desk-flashstor-6-fs6706t-6x-nvme",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Nas",
+  "brand": "ASUSTOR",
+  "sku": "FS6706T",
+  "ean": "4710474831470",
+  "warranty": "36",
+  "description": "Asustor NAS Mini Desk Flashstor 6 FS6706T 6X NVMe - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 170590
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

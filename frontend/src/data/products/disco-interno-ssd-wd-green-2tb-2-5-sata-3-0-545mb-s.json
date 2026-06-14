@@ -1,0 +1,29 @@
+{
+  "id": "elit_17791",
+  "title": "Disco Interno SSD WD Green 2TB 2.5\" SATA 3.0 545Mb/s",
+  "price": 494032.0,
+  "originalPrice": 250.68,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17791/i/MZXQ0_l.webp",
+  "slug": "disco-interno-ssd-wd-green-2tb-2-5-sata-3-0-545mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS200T2G0A-00CMW0",
+  "ean": "718037877747",
+  "warranty": "36",
+  "description": "Disco Interno SSD WD Green 2TB 2.5\" SATA 3.0 545Mb/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 82339
+  },
+  "stock": 62,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18097",
+  "title": "Monitor AOC 24B30H2 23,8\" IPS FHD (1920 x 1080) 100Hz 4ms Ficha USA",
+  "price": 177869.45,
+  "originalPrice": 74.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18097/i/C1Vms_l.webp",
+  "slug": "monitor-aoc-24b30h2-238-ips-fhd-1920-x-1080-100hz-4ms-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "AOC",
+  "sku": "24B30H2",
+  "ean": "685417734283",
+  "warranty": "36",
+  "description": "Monitor AOC 24B30H2 23,8\" IPS FHD (1920 x 1080) 100Hz 4ms Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29645
+  },
+  "stock": 83,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

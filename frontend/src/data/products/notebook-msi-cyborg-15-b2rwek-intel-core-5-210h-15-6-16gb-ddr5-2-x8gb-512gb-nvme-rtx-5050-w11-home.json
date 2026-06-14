@@ -1,0 +1,29 @@
+{
+  "id": "elit_18739",
+  "title": "Notebook MSI Cyborg 15 B2RWEK Intel Core 5 210H 15.6\" 16GB DDR5 (2 x8GB), 512GB NVMe RTX 5050 W11 Home",
+  "price": 3525722.77,
+  "originalPrice": 1789.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18739/i/jM0ZU_l.webp",
+  "slug": "notebook-msi-cyborg-15-b2rwek-intel-core-5-210h-15-6-16gb-ddr5-2-x8gb-512gb-nvme-rtx-5050-w11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "MSI",
+  "sku": "9S7-15Q342-234",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Notebook MSI Cyborg 15 B2RWEK Intel Core 5 210H 15.6\" 16GB DDR5 (2 x8GB), 512GB NVMe RTX 5050 W11 Home - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 587620
+  },
+  "stock": 27,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_8278",
+  "title": "Bateria FUB FORZA sellada plomo acido 12v 9Ah",
+  "price": 56001.01,
+  "originalPrice": 25.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8278/i/AcYWX_l.webp",
+  "slug": "bateria-fub-forza-sellada-plomo-acido-12v-9ah",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Baterias",
+  "brand": "FORZA",
+  "sku": "FUB-1290",
+  "ean": "798302201835",
+  "warranty": "12",
+  "description": "Bateria FUB FORZA sellada plomo acido 12v 9Ah - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9334
+  },
+  "stock": 78,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

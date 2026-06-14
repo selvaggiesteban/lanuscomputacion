@@ -1,0 +1,29 @@
+{
+  "id": "elit_17908",
+  "title": "Soporte Ezviz Bateria",
+  "price": 10207.51,
+  "originalPrice": 4.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17908/i/RlqMB_l.webp",
+  "slug": "soporte-ezviz-bateria",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-CMT-Battery Camera Mount",
+  "ean": "6941545631684",
+  "warranty": "12",
+  "description": "Soporte Ezviz Bateria - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1701
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

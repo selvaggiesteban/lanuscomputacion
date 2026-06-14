@@ -1,0 +1,29 @@
+{
+  "id": "elit_19083",
+  "title": "Tóner Brother TN219XL Negro",
+  "price": 153565.77,
+  "originalPrice": 71.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19083/i/yrvCt_l.webp",
+  "slug": "toner-brother-tn219xl-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN219XLBK",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tóner Brother TN219XL Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 25594
+  },
+  "stock": 17,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

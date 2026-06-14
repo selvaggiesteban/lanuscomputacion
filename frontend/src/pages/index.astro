@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductGrid from '../components/catalog/ProductGrid.astro';
+
+// Datos de ejemplo para desarrollo (reemplazar con export JSON)
+const featuredProducts = [
+  { id: '1', title: 'Notebook Lenovo ThinkPad X1 Carbon Gen 11 Intel i7 16GB 512GB SSD 14"', price: 1899999, originalPrice: 2399999, discount: 21, image: 'https://via.placeholder.com/200', slug: 'notebook-lenovo-thinkpad-x1-carbon', rating: 4.5, reviewsCount: 23, freeShipping: true, installments: { count: 6, value: 316666 } },
+  { id: '2', title: 'MacBook Air M3 15" 8GB 256GB SSD', price: 2399999, originalPrice: 2699999, discount: 11, image: 'https://via.placeholder.com/200', slug: 'macbook-air-m3-15', rating: 4.8, reviewsCount: 45, freeShipping: true, installments: { count: 6, value: 399999 } },
+  { id: '3', title: 'Samsung Galaxy S24 Ultra 512GB 12GB RAM', price: 1799999, originalPrice: 1999999, discount: 10, image: 'https://via.placeholder.com/200', slug: 'samsung-galaxy-s24-ultra', rating: 4.6, reviewsCount: 67, freeShipping: true, installments: { count: 6, value: 299999 } },
+  { id: '4', title: 'Monitor LG UltraGear 27" 1440p 165Hz IPS', price: 589999, originalPrice: 699999, discount: 16, image: 'https://via.placeholder.com/200', slug: 'monitor-lg-ultragear-27-1440p', rating: 4.3, reviewsCount: 12, freeShipping: true, installments: { count: 6, value: 98333 } },
+  { id: '5', title: 'Teclado Mecánico Keychron Q1 Pro QMK/VIA', price: 189999, originalPrice: 219999, discount: 14, image: 'https://via.placeholder.com/200', slug: 'teclado-mecanico-keychron-q1-pro', rating: 4.7, reviewsCount: 8, installments: { count: 6, value: 31666 } },
+];
+
+const categories = [
+  { name: 'Celulares y Smartphones', slug: 'celulares-smartphones', image: 'https://via.placeholder.com/150', count: 1250 },
+  { name: 'Notebooks y Accesorios', slug: 'notebooks-accesorios', image: 'https://via.placeholder.com/150', count: 890 },
+  { name: 'Componentes de PC', slug: 'componentes-pc', image: 'https://via.placeholder.com/150', count: 2340 },
+  { name: 'Periféricos de PC', slug: 'perifericos-pc', image: 'https://via.placeholder.com/150', count: 1560 },
+  { name: 'Audio', slug: 'audio', image: 'https://via.placeholder.com/150', count: 980 },
+  { name: 'Televisores', slug: 'televisores', image: 'https://via.placeholder.com/150', count: 340 },
+  { name: 'Videojuegos', slug: 'videojuegos', image: 'https://via.placeholder.com/150', count: 2100 },
+  { name: 'Cámaras Digitales', slug: 'camaras-digitales', image: 'https://via.placeholder.com/150', count: 420 },
+];
+---
+
+<BaseLayout title="Lanús Computación - Tecnología al mejor precio">
+  <!-- Hero Banner -->
+  <section class="bg-gradient-to-r from-ml-yellow to-yellow-200">
+    <div class="ml-container py-8 md:py-12">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl md:text-4xl font-bold text-ml-text mb-3">
+          Tecnología al mejor precio
+        </h1>
+        <p class="text-lg text-ml-text-secondary mb-6">
+          Encontrá todo en celulares, computación, audio, gaming y más. 
+          <span class="text-b2b-purple font-semibold">Precios especiales para empresas.</span>
+        </p>
+        <div class="flex gap-3">
+          <a href="/categoria/todas" class="ml-btn-primary">
+            Ver catálogo
+          </a>
+          <a href="/ofertas" class="ml-btn-secondary">
+            Ofertas
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Grid -->
+  <section class="ml-container py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold text-ml-text">Categorías</h2>
+      <a href="/categoria/todas" class="text-sm ml-link">Ver todas</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {categories.map((cat) => (
+        <a
+          href={`/categoria/${cat.slug}`}
+          class="ml-card p-4 flex items-center gap-3 hover:border-ml-blue hover:shadow-card-hover transition-all"
+        >
+          <div class="w-14 h-14 bg-ml-bg rounded flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">📦</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-ml-text">{cat.name}</h3>
+            <p class="text-xs text-ml-text-muted">{cat.count} productos</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="ml-container py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold text-ml-text">Productos destacados</h2>
+      <a href="/categoria/todas" class="text-sm ml-link">Ver más</a>
+    </div>
+    <ProductGrid products={featuredProducts} columns={5} />
+  </section>
+
+  <!-- B2B Banner -->
+  <section class="ml-container py-8">
+    <div class="bg-b2b-purple text-white rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h2 class="text-xl md:text-2xl font-bold mb-1">Comprá al por mayor</h2>
+        <p class="opacity-90 text-sm">Descuentos exclusivos para empresas. Registrate sin costo.</p>
+      </div>
+      <a href="/b2b" class="bg-white text-b2b-purple font-bold px-6 py-3 rounded hover:bg-purple-50 transition-colors whitespace-nowrap">
+        Quiero ser mayorista
+      </a>
+    </div>
+  </section>
+</BaseLayout>

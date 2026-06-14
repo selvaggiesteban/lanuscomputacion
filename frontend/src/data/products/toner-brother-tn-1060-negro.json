@@ -1,0 +1,29 @@
+{
+  "id": "elit_5983",
+  "title": "Tóner Brother TN-1060 Negro",
+  "price": 75272.26,
+  "originalPrice": 34.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/5983/i/lcfuW_l.webp",
+  "slug": "toner-brother-tn-1060-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN1060",
+  "ean": "12502635642",
+  "warranty": "12",
+  "description": "Tóner Brother TN-1060 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12545
+  },
+  "stock": 94,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

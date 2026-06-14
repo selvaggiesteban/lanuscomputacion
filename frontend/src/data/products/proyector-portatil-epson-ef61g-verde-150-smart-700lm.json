@@ -1,0 +1,29 @@
+{
+  "id": "elit_20001",
+  "title": "Proyector Portátil Epson EF61G Verde 150\" Smart 700lm",
+  "price": 1194990.3,
+  "originalPrice": 553.74,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20001/i/0KJKU_l.webp",
+  "slug": "proyector-portatil-epson-ef61g-verde-150-smart-700lm",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11HB72321",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Proyector Portátil Epson EF61G Verde 150\" Smart 700lm - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 199165
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19808",
+  "title": "Camara Nexxt int Wifi PTZ 2k",
+  "price": 38413.02,
+  "originalPrice": 17.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19808/i/ogYYV_l.webp",
+  "slug": "camara-nexxt-int-wifi-ptz-2k",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "NEXXT",
+  "sku": "NHC-IP11",
+  "ean": "0",
+  "warranty": "24 MESES",
+  "description": "Camara Nexxt int Wifi PTZ 2k - 24 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 6402
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

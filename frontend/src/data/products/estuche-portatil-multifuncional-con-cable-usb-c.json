@@ -1,0 +1,29 @@
+{
+  "id": "elit_14879",
+  "title": "Estuche portátil multifuncional con cable USB C",
+  "price": 12861.89,
+  "originalPrice": 5.96,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14879/i/Hf9vt_l.webp",
+  "slug": "estuche-portatil-multifuncional-con-cable-usb-c",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "XTECH",
+  "sku": "XTC-570",
+  "ean": "798302230187",
+  "warranty": "12 meses",
+  "description": "Estuche portátil multifuncional con cable USB C - 12 meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2144
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

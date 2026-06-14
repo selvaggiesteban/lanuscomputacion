@@ -1,0 +1,29 @@
+{
+  "id": "elit_18586",
+  "title": "Disco Interno HDD WESTERN DIGITAL Purple PRO 8TB 3.5\" SATA 3.0 7200rpm",
+  "price": 645603.73,
+  "originalPrice": 327.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18586/i/FUnEU_l.webp",
+  "slug": "disco-interno-hdd-western-digital-purple-pro-8tb-3-5-sata-3-0-7200rpm",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "WD",
+  "sku": "WD8002PURP",
+  "ean": "718037893976",
+  "warranty": "60",
+  "description": "Disco Interno HDD WESTERN DIGITAL Purple PRO 8TB 3.5\" SATA 3.0 7200rpm - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 107601
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

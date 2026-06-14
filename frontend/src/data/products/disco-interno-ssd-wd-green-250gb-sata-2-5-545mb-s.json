@@ -1,0 +1,29 @@
+{
+  "id": "elit_19272",
+  "title": "Disco Interno SSD WD Green 250GB Sata 2.5\" 545Mb/s",
+  "price": 132238.5,
+  "originalPrice": 67.1,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19272/i/mLl8V_l.webp",
+  "slug": "disco-interno-ssd-wd-green-250gb-sata-2-5-545mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS250G5G0A-00CPT0",
+  "ean": "619659219246",
+  "warranty": "36",
+  "description": "Disco Interno SSD WD Green 250GB Sata 2.5\" 545Mb/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22040
+  },
+  "stock": 298,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

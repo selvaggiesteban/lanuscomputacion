@@ -1,0 +1,29 @@
+{
+  "id": "elit_18676",
+  "title": "Notebook Lenovo LOQ 15IAX9E FHD I5 8GB 512GB RTX3050 NI",
+  "price": 2021672.42,
+  "originalPrice": 1025.83,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "notebook-lenovo-loq-15iax9e-fhd-i5-8gb-512gb-rtx3050-ni",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "LENOVO",
+  "sku": "83LK00BDAR",
+  "ean": "198158656467",
+  "warranty": "12 MESES",
+  "description": "Notebook Lenovo LOQ 15IAX9E FHD I5 8GB 512GB RTX3050 NI - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 336945
+  },
+  "stock": 183,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

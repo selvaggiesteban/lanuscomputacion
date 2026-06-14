@@ -1,0 +1,29 @@
+{
+  "id": "elit_17341",
+  "title": "Memoria PC Fury DDR5 32GB 5600 Beast RGB Negra",
+  "price": 994981.39,
+  "originalPrice": 504.87,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17341/i/0zvw9_l.webp",
+  "slug": "memoria-pc-fury-ddr5-32gb-5600-beast-rgb-negra",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF556C40BBA-32",
+  "ean": "740617328592",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR5 32GB 5600 Beast RGB Negra - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 165830
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

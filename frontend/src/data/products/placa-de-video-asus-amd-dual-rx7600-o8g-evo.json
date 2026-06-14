@@ -1,0 +1,29 @@
+{
+  "id": "elit_19468",
+  "title": "Placa de Video ASUS AMD DUAL RX7600 O8G EVO",
+  "price": 759691.46,
+  "originalPrice": 385.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19468/i/QXxdy_l.webp",
+  "slug": "placa-de-video-asus-amd-dual-rx7600-o8g-evo",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "DUAL-RX7600-O8GEVO",
+  "ean": "4711387779408",
+  "warranty": "36",
+  "description": "Placa de Video ASUS AMD DUAL RX7600 O8G EVO - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 126615
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

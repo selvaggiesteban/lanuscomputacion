@@ -1,0 +1,29 @@
+{
+  "id": "elit_19690",
+  "title": "Teclado ASUS  M701 ROG AZOTH/NXSW/ES",
+  "price": 333532.69,
+  "originalPrice": 169.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19690/i/Budii_l.webp",
+  "slug": "teclado-asus-m701-rog-azoth-nxsw-es",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "ASUS",
+  "sku": "M701 ROG AZOTH/NXSW/ES",
+  "ean": "4711387253281",
+  "warranty": "12",
+  "description": "Teclado ASUS  M701 ROG AZOTH/NXSW/ES - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 55589
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

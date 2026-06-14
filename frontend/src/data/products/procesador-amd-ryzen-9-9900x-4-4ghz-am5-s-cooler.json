@@ -1,0 +1,29 @@
+{
+  "id": "elit_17730",
+  "title": "Procesador AMD Ryzen 9 9900X 4.4GHz AM5 S/Cooler",
+  "price": 862526.1,
+  "originalPrice": 437.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17730/i/XDwE4_l.webp",
+  "slug": "procesador-amd-ryzen-9-9900x-4-4ghz-am5-s-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000662WOF",
+  "ean": "730143315296",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 9 9900X 4.4GHz AM5 S/Cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 143754
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

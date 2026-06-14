@@ -1,0 +1,50 @@
+---
+// Footer component
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-white border-t mt-8">
+  <div class="ml-container py-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-ml-text-secondary">
+      <div>
+        <h4 class="font-semibold text-ml-text mb-3">Lanús Computación</h4>
+        <ul class="space-y-2">
+          <li><a href="/" class="hover:text-ml-blue">Inicio</a></li>
+          <li><a href="/categoria/todas" class="hover:text-ml-blue">Catálogo</a></li>
+          <li><a href="/ofertas" class="hover:text-ml-blue">Ofertas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ml-text mb-3">Ayuda</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-ml-blue">Como comprar</a></li>
+          <li><a href="#" class="hover:text-ml-blue">Preguntas frecuentes</a></li>
+          <li><a href="#" class="hover:text-ml-blue">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ml-text mb-3">Medios de pago</h4>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="text-ml-blue font-bold text-xs">MP</span>
+            Mercado Pago
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-b2b-purple font-bold text-xs">BT</span>
+            Transferencia bancaria
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ml-text mb-3">B2B Mayorista</h4>
+        <p class="text-xs">
+          Precios especiales para empresas.
+          <span class="block mt-1 text-b2b-purple font-semibold">Registrate y obtene descuentos</span>
+        </p>
+      </div>
+    </div>
+    <div class="border-t mt-8 pt-4 text-center text-xs text-ml-text-muted">
+      &copy; {year} Lanús Computación. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

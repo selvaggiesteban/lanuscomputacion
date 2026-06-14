@@ -1,0 +1,29 @@
+{
+  "id": "elit_15168",
+  "title": "Impresora HP SM750 Multifunción Smart Tank",
+  "price": 596977.22,
+  "originalPrice": 276.63,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15168/i/NUuI0_l.webp",
+  "slug": "impresora-hp-sm750-multifuncion-smart-tank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "HP",
+  "sku": "6UU47A",
+  "ean": "195908303138",
+  "warranty": "12",
+  "description": "Impresora HP SM750 Multifunción Smart Tank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 99496
+  },
+  "stock": 128,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

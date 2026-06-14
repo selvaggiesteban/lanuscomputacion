@@ -1,0 +1,29 @@
+{
+  "id": "elit_19085",
+  "title": "Cartucho Toner Brother TN219XL Cian",
+  "price": 195798.52,
+  "originalPrice": 90.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19085/i/PDd67_l.webp",
+  "slug": "cartucho-toner-brother-tn219xl-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN219XLC",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho Toner Brother TN219XL Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32633
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

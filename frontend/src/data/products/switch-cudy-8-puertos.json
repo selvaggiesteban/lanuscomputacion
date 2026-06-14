@@ -1,0 +1,29 @@
+{
+  "id": "elit_18648",
+  "title": "Switch Cudy 8 puertos",
+  "price": 10110.04,
+  "originalPrice": 5.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18648/i/xMvvG_l.webp",
+  "slug": "switch-cudy-8-puertos",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Switches",
+  "brand": "CUDY",
+  "sku": "FS108D",
+  "ean": "6971690790042",
+  "warranty": "12",
+  "description": "Switch Cudy 8 puertos - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1685
+  },
+  "stock": 173,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

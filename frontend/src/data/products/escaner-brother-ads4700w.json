@@ -1,0 +1,29 @@
+{
+  "id": "elit_19056",
+  "title": "Escaner Brother ADS4700W",
+  "price": 1489407.54,
+  "originalPrice": 755.75,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19056/i/CLdy5_l.webp",
+  "slug": "escaner-brother-ads4700w",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Escaner",
+  "brand": "BROTHER",
+  "sku": "ADS4700W",
+  "ean": "12502666356",
+  "warranty": "12",
+  "description": "Escaner Brother ADS4700W - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 248235
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

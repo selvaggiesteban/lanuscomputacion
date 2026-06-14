@@ -1,0 +1,29 @@
+{
+  "id": "elit_19685",
+  "title": "Placa de Video ASUS NVIDIA GeForce DUAL RTX5050 O8GB GDDR6",
+  "price": 680998.71,
+  "originalPrice": 345.55,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19685/i/DVZBu_l.webp",
+  "slug": "placa-de-video-asus-nvidia-geforce-dual-rtx5050-o8gb-gddr6",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "DUAL-RTX5050-O8G",
+  "ean": "4711636178525",
+  "warranty": "36",
+  "description": "Placa de Video ASUS NVIDIA GeForce DUAL RTX5050 O8GB GDDR6 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 113500
+  },
+  "stock": 39,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

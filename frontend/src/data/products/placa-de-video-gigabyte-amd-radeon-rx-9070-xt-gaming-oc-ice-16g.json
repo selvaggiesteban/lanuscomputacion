@@ -1,0 +1,29 @@
+{
+  "id": "elit_19542",
+  "title": "Placa de Video GIGABYTE AMD Radeon RX 9070 XT GAMING OC ICE 16G",
+  "price": 1574997.97,
+  "originalPrice": 799.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19542/i/iNHdl_l.webp",
+  "slug": "placa-de-video-gigabyte-amd-radeon-rx-9070-xt-gaming-oc-ice-16g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-R907XGAMINGOCICE-16GD",
+  "ean": "4719331357030",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE AMD Radeon RX 9070 XT GAMING OC ICE 16G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 262500
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

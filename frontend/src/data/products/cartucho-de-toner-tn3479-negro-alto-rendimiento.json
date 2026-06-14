@@ -1,0 +1,29 @@
+{
+  "id": "elit_8196",
+  "title": "Cartucho de Toner  TN3479 Negro Alto rendimiento",
+  "price": 185720.49,
+  "originalPrice": 86.06,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8196/i/SQpX3_l.webp",
+  "slug": "cartucho-de-toner-tn3479-negro-alto-rendimiento",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN3479",
+  "ean": "12502642619",
+  "warranty": "12",
+  "description": "Cartucho de Toner  TN3479 Negro Alto rendimiento - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 30953
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

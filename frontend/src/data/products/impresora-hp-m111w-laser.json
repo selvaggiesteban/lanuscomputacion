@@ -1,0 +1,29 @@
+{
+  "id": "elit_17156",
+  "title": "Impresora HP M111w Láser",
+  "price": 214596.87,
+  "originalPrice": 108.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17156/i/myVrr_l.webp",
+  "slug": "impresora-hp-m111w-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "HP",
+  "sku": "7MD68A",
+  "ean": "197029688194",
+  "warranty": "12",
+  "description": "Impresora HP M111w Láser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 35766
+  },
+  "stock": 333,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

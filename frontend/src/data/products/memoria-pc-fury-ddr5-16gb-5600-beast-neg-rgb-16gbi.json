@@ -1,0 +1,29 @@
+{
+  "id": "elit_16701",
+  "title": "Memoria PC Fury DDR5 16GB 5600 Beast Neg RGB 16Gbi",
+  "price": 518016.24,
+  "originalPrice": 262.85,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16701/i/niLNj_l.webp",
+  "slug": "memoria-pc-fury-ddr5-16gb-5600-beast-neg-rgb-16gbi",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF556C40BBA-16",
+  "ean": "740617328585",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR5 16GB 5600 Beast Neg RGB 16Gbi - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 86336
+  },
+  "stock": 27,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

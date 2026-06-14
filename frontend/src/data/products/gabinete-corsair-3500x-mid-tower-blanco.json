@@ -1,0 +1,29 @@
+{
+  "id": "elit_19341",
+  "title": "Gabinete CORSAIR 3500X Mid Tower blanco",
+  "price": 136988.05,
+  "originalPrice": 69.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19341/i/eY8XM_l.webp",
+  "slug": "gabinete-corsair-3500x-mid-tower-blanco",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011277-WW",
+  "ean": "840006686040",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR 3500X Mid Tower blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22831
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19280",
+  "title": "Soporte Monitor Teros TE-7113 Brazo articulado 22\" a 35\"",
+  "price": 90918.01,
+  "originalPrice": 42.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19280/i/xT6EE_l.webp",
+  "slug": "soporte-monitor-teros-te-7113-brazo-articulado-22-a-35",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Soportes",
+  "brand": "TEROS",
+  "sku": "TE-7113",
+  "ean": "782752507241",
+  "warranty": "12",
+  "description": "Soporte Monitor Teros TE-7113 Brazo articulado 22\" a 35\" - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15153
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

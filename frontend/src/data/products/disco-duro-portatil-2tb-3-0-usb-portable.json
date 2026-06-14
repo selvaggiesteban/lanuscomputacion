@@ -1,0 +1,29 @@
+{
+  "id": "elit_17471",
+  "title": "Disco duro portatil 2TB 3.0 USB Portable",
+  "price": 266230.98,
+  "originalPrice": 135.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17471/i/3tnGP_l.webp",
+  "slug": "disco-duro-portatil-2tb-3-0-usb-portable",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "SEAGATE",
+  "sku": "STGX2000400",
+  "ean": "763649127308",
+  "warranty": "24",
+  "description": "Disco duro portatil 2TB 3.0 USB Portable - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 44372
+  },
+  "stock": 123,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

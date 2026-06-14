@@ -1,0 +1,29 @@
+{
+  "id": "elit_18427",
+  "title": "Asustor NAS Tower Drivestor 2 Lite AS1102TL 2 x3.5",
+  "price": 401878.91,
+  "originalPrice": 203.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18427/i/JBknm_l.webp",
+  "slug": "asustor-nas-tower-drivestor-2-lite-as1102tl-2-x3-5",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Nas",
+  "brand": "ASUSTOR",
+  "sku": "AS1102TL",
+  "ean": "4710474831531",
+  "warranty": "36",
+  "description": "Asustor NAS Tower Drivestor 2 Lite AS1102TL 2 x3.5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 66980
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

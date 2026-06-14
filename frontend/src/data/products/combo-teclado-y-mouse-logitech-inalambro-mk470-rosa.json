@@ -1,0 +1,29 @@
+{
+  "id": "elit_17103",
+  "title": "Combo Teclado y Mouse Logitech  Inalámbro MK470 Rosa",
+  "price": 56915.77,
+  "originalPrice": 28.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17103/i/tGq7Q_l.webp",
+  "slug": "combo-teclado-y-mouse-logitech-inalambro-mk470-rosa",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-011312",
+  "ean": "97855182470",
+  "warranty": "12",
+  "description": "Combo Teclado y Mouse Logitech  Inalámbro MK470 Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9486
+  },
+  "stock": 52,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

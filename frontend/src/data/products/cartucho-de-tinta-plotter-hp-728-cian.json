@@ -1,0 +1,29 @@
+{
+  "id": "elit_7952",
+  "title": "Cartucho de Tinta Plotter HP   728  Cian",
+  "price": 189016.31,
+  "originalPrice": 95.91,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7952/i/RF2Um_l.webp",
+  "slug": "cartucho-de-tinta-plotter-hp-728-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Plotters",
+  "brand": "HP",
+  "sku": "F9J67A",
+  "ean": "888793397862",
+  "warranty": "HP",
+  "description": "Cartucho de Tinta Plotter HP   728  Cian - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31503
+  },
+  "stock": 39,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

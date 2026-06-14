@@ -1,0 +1,29 @@
+{
+  "id": "elit_9829",
+  "title": "UPS HT FORZA Interactiva 1000VA 600W",
+  "price": 192031.59,
+  "originalPrice": 97.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9829/i/Xc2nK_l.webp",
+  "slug": "ups-ht-forza-interactiva-1000va-600w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "HT-1002LCD-A",
+  "ean": "798302108684",
+  "warranty": "36",
+  "description": "UPS HT FORZA Interactiva 1000VA 600W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32005
+  },
+  "stock": 71,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

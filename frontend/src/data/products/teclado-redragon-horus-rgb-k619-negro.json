@@ -1,0 +1,29 @@
+{
+  "id": "elit_20196",
+  "title": "Teclado Redragon Horus RGB K619 Negro",
+  "price": 92507.83,
+  "originalPrice": 46.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20196/i/xAqx7_l.webp",
+  "slug": "teclado-redragon-horus-rgb-k619-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "K619-RGB-SP-RD",
+  "ean": "6950376710796",
+  "warranty": "12",
+  "description": "Teclado Redragon Horus RGB K619 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15418
+  },
+  "stock": 75,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

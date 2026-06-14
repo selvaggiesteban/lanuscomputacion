@@ -1,0 +1,29 @@
+{
+  "id": "elit_18271",
+  "title": "Lenovo Funda Notebook 14,5 Yoga Gris",
+  "price": 45189.25,
+  "originalPrice": 20.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18271/i/KQ7Kb_l.webp",
+  "slug": "lenovo-funda-notebook-145-yoga-gris",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Fundas",
+  "brand": "LENOVO",
+  "sku": "GX41K68624",
+  "ean": "195892078500",
+  "warranty": "12 MESES",
+  "description": "Lenovo Funda Notebook 14,5 Yoga Gris - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7532
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

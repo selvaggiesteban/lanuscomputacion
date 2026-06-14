@@ -1,0 +1,29 @@
+{
+  "id": "elit_18150",
+  "title": "Notebook HP Pavilion Plus U5-125H 14\" 16GB/512 W11h",
+  "price": 2525814.46,
+  "originalPrice": 1281.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18150/i/KHQry_l.webp",
+  "slug": "notebook-hp-pavilion-plus-u5-125h-14-16gb-512-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "A1UC7LA",
+  "ean": "198122843725",
+  "warranty": "12",
+  "description": "Notebook HP Pavilion Plus U5-125H 14\" 16GB/512 W11h - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 420969
+  },
+  "stock": 40,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

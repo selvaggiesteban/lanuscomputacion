@@ -1,0 +1,29 @@
+{
+  "id": "elit_11959",
+  "title": "Proyector PL X49 XGA 3600ANSI",
+  "price": 1142787.43,
+  "originalPrice": 529.55,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/11959/i/KrBy4_l.webp",
+  "slug": "proyector-pl-x49-xga-3600ansi",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11H982020",
+  "ean": "10343954137",
+  "warranty": "24 meses",
+  "description": "Proyector PL X49 XGA 3600ANSI - 24 meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 190465
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

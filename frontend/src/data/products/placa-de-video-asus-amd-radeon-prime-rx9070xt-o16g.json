@@ -1,0 +1,29 @@
+{
+  "id": "elit_20020",
+  "title": "Placa de Video ASUS AMD Radeon PRIME RX9070XT O16G",
+  "price": 1725071.92,
+  "originalPrice": 875.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20020/i/xoHdF_l.webp",
+  "slug": "placa-de-video-asus-amd-radeon-prime-rx9070xt-o16g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "PRIME-RX9070XT-O16G",
+  "ean": "4711387860816",
+  "warranty": "36",
+  "description": "Placa de Video ASUS AMD Radeon PRIME RX9070XT O16G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 287512
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

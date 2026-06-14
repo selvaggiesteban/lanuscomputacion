@@ -1,0 +1,29 @@
+{
+  "id": "elit_16632",
+  "title": "Pen Drive SANDISK Ultra Shift 32GB USB-A 3.2 Gen 1 Black",
+  "price": 20156.05,
+  "originalPrice": 9.34,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16632/i/xDlm3_l.webp",
+  "slug": "pen-drive-sandisk-ultra-shift-32gb-usb-a-3-2-gen-1-black",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ410-032G-G46",
+  "ean": "619659182274",
+  "warranty": "12",
+  "description": "Pen Drive SANDISK Ultra Shift 32GB USB-A 3.2 Gen 1 Black - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3359
+  },
+  "stock": 1795,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

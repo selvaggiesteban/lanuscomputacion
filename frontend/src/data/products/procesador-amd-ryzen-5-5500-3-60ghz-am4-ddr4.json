@@ -1,0 +1,29 @@
+{
+  "id": "elit_15769",
+  "title": "Procesador AMD Ryzen 5 5500 3.60GHz AM4 DDR4",
+  "price": 193411.12,
+  "originalPrice": 98.14,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15769/i/aQGdV_l.webp",
+  "slug": "procesador-amd-ryzen-5-5500-3-60ghz-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000457BOX",
+  "ean": "730143314121",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 5500 3.60GHz AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32235
+  },
+  "stock": 186,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

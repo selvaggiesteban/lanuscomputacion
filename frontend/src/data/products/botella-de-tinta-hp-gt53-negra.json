@@ -1,0 +1,29 @@
+{
+  "id": "elit_8723",
+  "title": "Botella de Tinta HP GT53 Negra",
+  "price": 20069.73,
+  "originalPrice": 9.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8723/i/IYtY6_l.webp",
+  "slug": "botella-de-tinta-hp-gt53-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "HP",
+  "sku": "1VV22AL",
+  "ean": "192545527583",
+  "warranty": "HP",
+  "description": "Botella de Tinta HP GT53 Negra - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3345
+  },
+  "stock": 813,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

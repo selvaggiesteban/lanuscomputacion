@@ -1,0 +1,29 @@
+{
+  "id": "elit_18605",
+  "title": "Impresora HP 790 Multifunción Smart Tank",
+  "price": 692642.91,
+  "originalPrice": 320.96,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18605/i/8zfOR_l.webp",
+  "slug": "impresora-hp-790-multifuncion-smart-tank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "HP",
+  "sku": "4WF66A",
+  "ean": "195908302872",
+  "warranty": "12",
+  "description": "Impresora HP 790 Multifunción Smart Tank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 115440
+  },
+  "stock": 230,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

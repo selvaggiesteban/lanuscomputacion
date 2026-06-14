@@ -1,0 +1,29 @@
+{
+  "id": "elit_18870",
+  "title": "Motherboard GIGABYTE Z890M AORUS ELITE WIFI ICE LGA1851 DDR5",
+  "price": 469909.8,
+  "originalPrice": 238.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18870/i/QRCgn_l.webp",
+  "slug": "motherboard-gigabyte-z890m-aorus-elite-wifi-ice-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "Z890M A ELITE WF7 ICE",
+  "ean": "4719331865269",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE Z890M AORUS ELITE WIFI ICE LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 78318
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19600",
+  "title": "Mochila Xtech, UrbanPro, 15,6\", 15 kg, Impermeable",
+  "price": 29349.28,
+  "originalPrice": 13.6,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19600/i/2x52o_l.webp",
+  "slug": "mochila-xtech-urbanpro-156-15-kg-impermeable",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "XTECH",
+  "sku": "XTB-224",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Xtech, UrbanPro, 15,6\", 15 kg, Impermeable - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4892
+  },
+  "stock": 37,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

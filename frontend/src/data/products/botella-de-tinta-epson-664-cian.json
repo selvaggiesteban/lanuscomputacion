@@ -1,0 +1,29 @@
+{
+  "id": "elit_3882",
+  "title": "Botella de Tinta Epson 664 Cian",
+  "price": 21062.42,
+  "originalPrice": 9.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3882/i/mWb2K_l.webp",
+  "slug": "botella-de-tinta-epson-664-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T664220-AL",
+  "ean": "10343885301",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 664 Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3510
+  },
+  "stock": 195,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

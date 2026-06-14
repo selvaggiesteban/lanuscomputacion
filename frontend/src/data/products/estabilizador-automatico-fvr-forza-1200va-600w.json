@@ -1,0 +1,29 @@
+{
+  "id": "elit_9835",
+  "title": "Estabilizador Automatico FVR FORZA 1200VA 600W",
+  "price": 47174.65,
+  "originalPrice": 21.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9835/i/ni8Uh_l.webp",
+  "slug": "estabilizador-automatico-fvr-forza-1200va-600w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Estabilizadores",
+  "brand": "FORZA",
+  "sku": "FVR-1202USB-A",
+  "ean": "798302108479",
+  "warranty": "24",
+  "description": "Estabilizador Automatico FVR FORZA 1200VA 600W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7862
+  },
+  "stock": 826,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

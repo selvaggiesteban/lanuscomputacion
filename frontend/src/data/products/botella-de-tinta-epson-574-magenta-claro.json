@@ -1,0 +1,29 @@
+{
+  "id": "elit_17444",
+  "title": "Botella de  Tinta Epson 574 Magenta  claro",
+  "price": 24148.41,
+  "originalPrice": 11.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17444/i/yXQJp_l.webp",
+  "slug": "botella-de-tinta-epson-574-magenta-claro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T574620-AL",
+  "ean": "10343973657",
+  "warranty": "EPSON",
+  "description": "Botella de  Tinta Epson 574 Magenta  claro - EPSON",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4025
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

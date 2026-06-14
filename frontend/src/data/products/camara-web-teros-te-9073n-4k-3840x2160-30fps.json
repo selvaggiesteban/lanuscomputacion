@@ -1,0 +1,29 @@
+{
+  "id": "elit_19282",
+  "title": "Cámara Web Teros TE-9073N 4K (3840×2160) 30Fps",
+  "price": 73373.19,
+  "originalPrice": 34.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19282/i/b9xsD_l.webp",
+  "slug": "camara-web-teros-te-9073n-4k-3840x2160-30fps",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Cámaras Web",
+  "brand": "TEROS",
+  "sku": "TE-9073N",
+  "ean": "782752508569",
+  "warranty": "12",
+  "description": "Cámara Web Teros TE-9073N 4K (3840×2160) 30Fps - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12229
+  },
+  "stock": 24,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

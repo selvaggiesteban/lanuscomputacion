@@ -1,0 +1,87 @@
+---
+import Price from '../ui/Price.astro';
+import Badge from '../ui/Badge.astro';
+import Rating from '../ui/Rating.astro';
+
+export interface Product {
+  id: string;
+  title: string;
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  image: string;
+  slug: string;
+  rating?: number;
+  reviewsCount?: number;
+  freeShipping?: boolean;
+  isNew?: boolean;
+  installments?: { count: number; value: number };
+  b2bPrice?: number;
+}
+
+export interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<article class="ml-card p-3 flex flex-col relative">
+  <a href={`/producto/${product.slug}`} class="block">
+    <div class="aspect-square bg-white mb-2 flex items-center justify-center overflow-hidden">
+      <img
+        src={product.image}
+        alt={product.title}
+        width="200"
+        height="200"
+        class="object-contain w-full h-full hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+
+    <h3 class="text-sm text-ml-text leading-tight line-clamp-2 mb-1 min-h-[2.5em]">
+      {product.title}
+    </h3>
+
+    <Price
+      price={product.b2bPrice ?? product.price}
+      originalPrice={product.originalPrice}
+      discount={product.discount}
+      installments={product.installments}
+      size="md"
+      b2b={!!product.b2bPrice}
+    />
+
+    <div class="flex items-center gap-2 mt-1">
+      {product.freeShipping && <Badge variant="free_shipping" />}
+      {product.isNew && <Badge variant="new" />}
+      {product.b2bPrice && <Badge variant="b2b" />}
+    </div>
+
+    {product.rating && (
+      <div class="mt-1">
+        <Rating rating={product.rating} count={product.reviewsCount} />
+      </div>
+    )}
+  </a>
+
+  <!-- Action buttons -->
+  <div class="mt-auto pt-2 flex items-center justify-between">
+    <button
+      class="ml-btn-outline text-xs px-3 py-1.5"
+      data-add-to-cart={product.id}
+      aria-label="Agregar al carrito"
+    >
+      Agregar al carrito
+    </button>
+    <button
+      class="p-1.5 text-ml-text-muted hover:text-red-500 transition-colors"
+      data-fav={product.id}
+      aria-label="Agregar a favoritos"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+    </button>
+  </div>
+</article>

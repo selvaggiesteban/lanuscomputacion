@@ -1,0 +1,29 @@
+{
+  "id": "elit_4064",
+  "title": "Botella de Tinta Epson 673 Magenta",
+  "price": 24407.38,
+  "originalPrice": 11.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/4064/i/FfqDl_l.webp",
+  "slug": "botella-de-tinta-epson-673-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T673320-AL",
+  "ean": "10343888289",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 673 Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4068
+  },
+  "stock": 26,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

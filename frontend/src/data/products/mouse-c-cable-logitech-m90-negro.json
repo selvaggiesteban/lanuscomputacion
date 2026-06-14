@@ -1,0 +1,29 @@
+{
+  "id": "elit_4805",
+  "title": "Mouse c/Cable LOGITECH M90 Negro",
+  "price": 5932.01,
+  "originalPrice": 3.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/4805/i/8Xpr9_l.webp",
+  "slug": "mouse-c-cable-logitech-m90-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-004053",
+  "ean": "97855102355",
+  "warranty": "12",
+  "description": "Mouse c/Cable LOGITECH M90 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 989
+  },
+  "stock": 268,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

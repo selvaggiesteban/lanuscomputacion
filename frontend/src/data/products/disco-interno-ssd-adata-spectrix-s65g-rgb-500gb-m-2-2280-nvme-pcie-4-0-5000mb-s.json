@@ -1,0 +1,29 @@
+{
+  "id": "elit_19634",
+  "title": "Disco Interno SSD ADATA SPECTRIX S65G RGB 500GB M.2 2280 NVMe PCIe 4.0 5000MB/s",
+  "price": 227012.71,
+  "originalPrice": 115.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19634/i/1uUko_l.webp",
+  "slug": "disco-interno-ssd-adata-spectrix-s65g-rgb-500gb-m-2-2280-nvme-pcie-4-0-5000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "ADATA",
+  "sku": "SSPECTRIXS65G-500G-CI",
+  "ean": "4711658152541",
+  "warranty": "60",
+  "description": "Disco Interno SSD ADATA SPECTRIX S65G RGB 500GB M.2 2280 NVMe PCIe 4.0 5000MB/s - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37835
+  },
+  "stock": 42,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

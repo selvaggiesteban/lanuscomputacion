@@ -1,0 +1,29 @@
+{
+  "id": "elit_16172",
+  "title": "Camara BM1 Ezviz 2MP Interior Otro",
+  "price": 118044.51,
+  "originalPrice": 54.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16172/i/ZjteI_l.webp",
+  "slug": "camara-bm1-ezviz-2mp-interior-otro",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-BM1 (1080P,Be)",
+  "ean": "6941545611754",
+  "warranty": "12",
+  "description": "Camara BM1 Ezviz 2MP Interior Otro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19674
+  },
+  "stock": 51,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

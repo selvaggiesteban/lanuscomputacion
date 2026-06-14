@@ -1,0 +1,29 @@
+{
+  "id": "elit_18449",
+  "title": "Procesador AMD RYZEN 9 9950X3D AM5,  sin cooler",
+  "price": 1464970.02,
+  "originalPrice": 743.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18449/i/3aMHg_l.webp",
+  "slug": "procesador-amd-ryzen-9-9950x3d-am5-sin-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000719WOF",
+  "ean": "730143315555",
+  "warranty": "36",
+  "description": "Procesador AMD RYZEN 9 9950X3D AM5,  sin cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 244162
+  },
+  "stock": 23,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18591",
+  "title": "Cable Riser Cooler Master PCIe 4.0 x16 300mm V2 White",
+  "price": 117181.3,
+  "originalPrice": 54.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18591/i/Sv02Y_l.webp",
+  "slug": "cable-riser-cooler-master-pcie-4-0-x16-300mm-v2-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "COOLER MASTER",
+  "sku": "MCA-U002R-WPCI40-300",
+  "ean": "4719512137741",
+  "warranty": "12",
+  "description": "Cable Riser Cooler Master PCIe 4.0 x16 300mm V2 White - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19530
+  },
+  "stock": 58,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

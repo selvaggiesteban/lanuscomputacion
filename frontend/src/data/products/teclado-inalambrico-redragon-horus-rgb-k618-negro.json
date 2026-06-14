@@ -1,0 +1,29 @@
+{
+  "id": "elit_20195",
+  "title": "Teclado Inalámbrico Redragon Horus RGB K618 Negro",
+  "price": 115033.7,
+  "originalPrice": 58.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20195/i/3lo6D_l.webp",
+  "slug": "teclado-inalambrico-redragon-horus-rgb-k618-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "K618-RGB-SP-RD",
+  "ean": "6950376709714",
+  "warranty": "12",
+  "description": "Teclado Inalámbrico Redragon Horus RGB K618 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19172
+  },
+  "stock": 71,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19611",
+  "title": "Auricular Inalámbrico Logitech G325 Lila",
+  "price": 194590.02,
+  "originalPrice": 90.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19611/i/Iu6nl_l.webp",
+  "slug": "auricular-inalambrico-logitech-g325-lila",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001537",
+  "ean": "97855202673",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech G325 Lila - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32432
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

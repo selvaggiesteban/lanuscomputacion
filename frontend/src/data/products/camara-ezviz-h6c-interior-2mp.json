@@ -1,0 +1,29 @@
+{
+  "id": "elit_17526",
+  "title": "Camara Ezviz H6C interior 2MP",
+  "price": 48253.66,
+  "originalPrice": 22.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17526/i/TQV1i_l.webp",
+  "slug": "camara-ezviz-h6c-interior-2mp",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-H6c-R105-1L2WF",
+  "ean": "6941545614298",
+  "warranty": "36",
+  "description": "Camara Ezviz H6C interior 2MP - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8042
+  },
+  "stock": 658,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

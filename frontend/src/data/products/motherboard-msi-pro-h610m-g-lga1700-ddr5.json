@@ -1,0 +1,29 @@
+{
+  "id": "elit_17264",
+  "title": "Motherboard MSI PRO H610M-G LGA1700 DDR5",
+  "price": 109003.15,
+  "originalPrice": 55.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17264/i/iqz6K_l.webp",
+  "slug": "motherboard-msi-pro-h610m-g-lga1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO H610M-G",
+  "ean": "4719072942663",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO H610M-G LGA1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 18167
+  },
+  "stock": 262,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

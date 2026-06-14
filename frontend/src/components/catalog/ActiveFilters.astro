@@ -1,0 +1,40 @@
+---
+export interface ActiveFilter {
+  label: string;
+  value: string;
+  param: string;
+}
+
+export interface Props {
+  filters: ActiveFilter[];
+  baseUrl: string;
+}
+
+const { filters, baseUrl } = Astro.props;
+---
+
+{filters.length > 0 && (
+  <div class="flex flex-wrap items-center gap-2 mb-4">
+    <span class="text-xs text-ml-text-muted">Filtros activos:</span>
+    {filters.map((f) => (
+      <a
+        href={`${baseUrl}?${removeParam(f.param)}`}
+        class="inline-flex items-center gap-1 px-2.5 py-1 bg-ml-blue-light text-ml-blue text-xs font-medium rounded-full hover:bg-blue-200 transition-colors"
+      >
+        {f.label}: {f.value}
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </a>
+    ))}
+  </div>
+)}
+
+<script>
+  function removeParam(param) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(param);
+    return url.search;
+  }
+</script>

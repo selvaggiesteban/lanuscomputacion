@@ -1,0 +1,29 @@
+{
+  "id": "elit_17479",
+  "title": "Monitor Cooler Master GA241 23.8\" FHD (1920 x 1080) VGA   HDMI 100Hz 1ms",
+  "price": 175174.82,
+  "originalPrice": 73.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17479/i/0W15U_l.webp",
+  "slug": "monitor-cooler-master-ga241-23-8-fhd-1920-x-1080-vga-hdmi-100hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "COOLER MASTER",
+  "sku": "CMI-GA241-AR",
+  "ean": "4719512143766",
+  "warranty": "36",
+  "description": "Monitor Cooler Master GA241 23.8\" FHD (1920 x 1080) VGA   HDMI 100Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29196
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,21 @@
+---
+export type BadgeVariant = 'off' | 'free_shipping' | 'new' | 'b2b' | 'international';
+
+export interface Props {
+  variant: BadgeVariant;
+  text?: string;
+}
+
+const badges: Record<BadgeVariant, { class: string; defaultText: string }> = {
+  off: { class: 'ml-badge-off', defaultText: 'OFF' },
+  free_shipping: { class: 'ml-badge-shipping', defaultText: 'Envío gratis' },
+  new: { class: 'ml-badge-new', defaultText: 'Nuevo' },
+  b2b: { class: 'ml-badge-b2b', defaultText: 'B2B' },
+  international: { class: 'ml-badge-off', defaultText: 'Internacional' },
+};
+
+const { variant, text } = Astro.props;
+const badge = badges[variant];
+---
+
+<span class={badge.class}>{text || badge.defaultText}</span>

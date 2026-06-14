@@ -1,0 +1,29 @@
+{
+  "id": "elit_20156",
+  "title": "Combo Teclado Y Mouse Redragon S146",
+  "price": 81412.41,
+  "originalPrice": 41.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20156/i/84DOx_l.webp",
+  "slug": "combo-teclado-y-mouse-redragon-s146",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "S146-SP",
+  "ean": "6950376728722",
+  "warranty": "12",
+  "description": "Combo Teclado Y Mouse Redragon S146 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13569
+  },
+  "stock": 119,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

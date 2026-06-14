@@ -1,0 +1,29 @@
+{
+  "id": "elit_10589",
+  "title": "Impresora HP T250 Plotter",
+  "price": 1598548.64,
+  "originalPrice": 811.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10589/i/HJX13_l.webp",
+  "slug": "impresora-hp-t250-plotter",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Plotters",
+  "brand": "HP",
+  "sku": "5HB06D",
+  "ean": "194850019852",
+  "warranty": "HP",
+  "description": "Impresora HP T250 Plotter - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 266425
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

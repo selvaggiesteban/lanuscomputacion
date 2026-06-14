@@ -1,0 +1,29 @@
+{
+  "id": "elit_19119",
+  "title": "Placa de Video Powercolor Hellhound AMD Radeon RX 9070 XT 16GB GDDR6",
+  "price": 1599711.4,
+  "originalPrice": 811.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19119/i/Ec1CX_l.webp",
+  "slug": "placa-de-video-powercolor-hellhound-amd-radeon-rx-9070-xt-16gb-gddr6",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "POWERCOLOR",
+  "sku": "RX9070XT 16G-L/OC",
+  "ean": "4713436175742",
+  "warranty": "24",
+  "description": "Placa de Video Powercolor Hellhound AMD Radeon RX 9070 XT 16GB GDDR6 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 266619
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

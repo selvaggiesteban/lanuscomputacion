@@ -1,0 +1,88 @@
+---
+// Categorías principales de Tecnología
+const categories = [
+  { id: 'MLA1051', name: 'Celulares y Teléfonos', slug: 'celulares-telefonos', subcategories: [
+    { name: 'Celulares y Smartphones', slug: 'celulares-smartphones' },
+    { name: 'Accesorios para Celulares', slug: 'accesorios-celulares' },
+    { name: 'Smartwatches y Accesorios', slug: 'smartwatches-accesorios' },
+    { name: 'Repuestos de Celulares', slug: 'repuestos-celulares' },
+  ]},
+  { id: 'MLA1648', name: 'Computación', slug: 'computacion', subcategories: [
+    { name: 'Componentes de PC', slug: 'componentes-pc' },
+    { name: 'Notebooks y Accesorios', slug: 'notebooks-accesorios' },
+    { name: 'Periféricos de PC', slug: 'perifericos-pc' },
+    { name: 'Almacenamiento', slug: 'almacenamiento' },
+    { name: 'Monitores y Accesorios', slug: 'monitores-accesorios' },
+    { name: 'Impresión', slug: 'impresion' },
+  ]},
+  { id: 'MLA1000', name: 'Electrónica, Audio y Video', slug: 'electronica-audio-video', subcategories: [
+    { name: 'Audio', slug: 'audio' },
+    { name: 'Televisores', slug: 'televisores' },
+    { name: 'Accesorios para Audio y Video', slug: 'accesorios-audio-video' },
+    { name: 'Drones y Accesorios', slug: 'drones-accesorios' },
+  ]},
+  { id: 'MLA1144', name: 'Consolas y Videojuegos', slug: 'consolas-videojuegos', subcategories: [
+    { name: 'Videojuegos', slug: 'videojuegos' },
+    { name: 'Consolas', slug: 'consolas' },
+    { name: 'Accesorios para Consolas', slug: 'accesorios-consolas' },
+  ]},
+  { id: 'MLA1039', name: 'Cámaras y Accesorios', slug: 'camaras-accesorios', subcategories: [
+    { name: 'Cámaras Digitales', slug: 'camaras-digitales' },
+    { name: 'Accesorios para Cámaras', slug: 'accesorios-camaras' },
+    { name: 'Filmadoras', slug: 'filmadoras' },
+  ]},
+];
+---
+
+<nav class="hidden lg:block bg-white border-t" aria-label="Categorías principales">
+  <div class="ml-container">
+    <ul class="flex items-center h-megamenu -ml-4">
+      <li class="relative group">
+        <a href="/categoria/todas" class="flex items-center gap-1 px-3 py-2 text-sm text-ml-text-secondary hover:text-ml-blue transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          Categorías
+        </a>
+      </li>
+      {categories.map((cat) => (
+        <li class="relative group">
+          <a
+            href={`/categoria/${cat.slug}`}
+            class="block px-3 py-2 text-sm text-ml-text-secondary hover:text-ml-blue transition-colors whitespace-nowrap"
+          >
+            {cat.name}
+          </a>
+          <!-- Dropdown -->
+          <div class="absolute top-full left-0 hidden group-hover:block bg-white shadow-megamenu border-t-2 border-ml-yellow rounded-b min-w-[600px] p-4 animate-fade-in z-50">
+            <div class="grid grid-cols-3 gap-6">
+              {cat.subcategories.map((sub) => (
+                <a
+                  href={`/categoria/${sub.slug}`}
+                  class="block text-sm text-ml-text hover:text-ml-blue transition-colors py-1"
+                >
+                  {sub.name}
+                </a>
+              ))}
+            </div>
+            <a
+              href={`/categoria/${cat.slug}`}
+              class="block mt-3 pt-3 border-t text-xs text-ml-blue font-medium hover:text-ml-blue-hover"
+            >
+              Ver todos los productos de {cat.name} →
+            </a>
+          </div>
+        </li>
+      ))}
+
+      <!-- Ofertas -->
+      <li>
+        <a href="/ofertas" class="block px-3 py-2 text-sm text-ml-green font-semibold hover:text-green-700 transition-colors whitespace-nowrap">
+          Ofertas
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

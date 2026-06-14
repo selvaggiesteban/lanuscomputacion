@@ -1,0 +1,29 @@
+{
+  "id": "elit_19515",
+  "title": "Memoria Ram SODIMM ADATA 16GB DDR5 5600MHz CL46 1.1V",
+  "price": 454242.2,
+  "originalPrice": 230.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19515/i/Kn3ZA_l.webp",
+  "slug": "memoria-ram-sodimm-adata-16gb-ddr5-5600mhz-cl46-1-1v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "ADATA",
+  "sku": "AD5S560016G-S",
+  "ean": "4711085941107",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM ADATA 16GB DDR5 5600MHz CL46 1.1V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 75707
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19786",
+  "title": "Disco Interno SSD TEAM GROUP CX1 240GB SATA 3.0",
+  "price": 128789.66,
+  "originalPrice": 65.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19786/i/z0UUT_l.webp",
+  "slug": "disco-interno-ssd-team-group-cx1-240gb-sata-3-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "TEAM GROUP",
+  "sku": "T253X5240G0C101",
+  "ean": "765441051898",
+  "warranty": "36",
+  "description": "Disco Interno SSD TEAM GROUP CX1 240GB SATA 3.0 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21465
+  },
+  "stock": 85,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

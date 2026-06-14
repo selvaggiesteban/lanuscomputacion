@@ -1,0 +1,29 @@
+{
+  "id": "elit_16822",
+  "title": "Auricular Inalámbrico Gaming Logitech G735",
+  "price": 490801.9,
+  "originalPrice": 227.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16822/i/L7fMU_l.webp",
+  "slug": "auricular-inalambrico-gaming-logitech-g735",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001082",
+  "ean": "97855168351",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Gaming Logitech G735 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 81800
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

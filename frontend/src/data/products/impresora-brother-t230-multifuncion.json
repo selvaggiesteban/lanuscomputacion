@@ -1,0 +1,29 @@
+{
+  "id": "elit_19057",
+  "title": "Impresora Brother T230 Multifunción",
+  "price": 416781.3,
+  "originalPrice": 193.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19057/i/1QAgw_l.webp",
+  "slug": "impresora-brother-t230-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "BROTHER",
+  "sku": "DCPT230",
+  "ean": "12502676836",
+  "warranty": "24",
+  "description": "Impresora Brother T230 Multifunción - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 69464
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

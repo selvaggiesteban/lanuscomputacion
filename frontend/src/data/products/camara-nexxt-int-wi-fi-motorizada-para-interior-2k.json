@@ -1,0 +1,29 @@
+{
+  "id": "elit_19668",
+  "title": "Camara Nexxt int Wi-Fi motorizada para interior 2K",
+  "price": 32370.52,
+  "originalPrice": 15.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19668/i/4OW5l_l.webp",
+  "slug": "camara-nexxt-int-wi-fi-motorizada-para-interior-2k",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "NEXXT",
+  "sku": "NHC-I710",
+  "ean": "0",
+  "warranty": "24 MESES",
+  "description": "Camara Nexxt int Wi-Fi motorizada para interior 2K - 24 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5395
+  },
+  "stock": 34,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

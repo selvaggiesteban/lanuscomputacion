@@ -1,0 +1,29 @@
+{
+  "id": "elit_15118",
+  "title": "Auricular LOGITECH G335 Blanco",
+  "price": 95320.41,
+  "originalPrice": 44.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15118/i/Iaxlu_l.webp",
+  "slug": "auricular-logitech-g335-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001017",
+  "ean": "97855165480",
+  "warranty": "24",
+  "description": "Auricular LOGITECH G335 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15887
+  },
+  "stock": 25,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

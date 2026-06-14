@@ -1,0 +1,29 @@
+{
+  "id": "elit_17307",
+  "title": "Disco duro int 8TB SATA 6 Gb/s 256MB SkyHawk",
+  "price": 768855.52,
+  "originalPrice": 390.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17307/i/tYu3z_l.webp",
+  "slug": "disco-duro-int-8tb-sata-6-gb-s-256mb-skyhawk",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "SEAGATE",
+  "sku": "ST8000VE001",
+  "ean": "8719706022934",
+  "warranty": "24",
+  "description": "Disco duro int 8TB SATA 6 Gb/s 256MB SkyHawk - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 128143
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

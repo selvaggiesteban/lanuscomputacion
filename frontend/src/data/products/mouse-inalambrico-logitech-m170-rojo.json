@@ -1,0 +1,29 @@
+{
+  "id": "elit_6307",
+  "title": "Mouse Inalámbrico LOGITECH M170 Rojo",
+  "price": 11765.48,
+  "originalPrice": 5.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6307/i/jeLzf_l.webp",
+  "slug": "mouse-inalambrico-logitech-m170-rojo",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-004941",
+  "ean": "97855124197",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico LOGITECH M170 Rojo - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1961
+  },
+  "stock": 679,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

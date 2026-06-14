@@ -1,0 +1,42 @@
+---
+export interface Props {
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  installments?: {
+    count: number;
+    value: number;
+    hasInterest?: boolean;
+  };
+  size?: 'sm' | 'md' | 'lg';
+  b2b?: boolean;
+}
+
+const { price, originalPrice, discount, installments, size = 'md', b2b } = Astro.props;
+
+const priceClass = size === 'lg' ? 'ml-price' : size === 'md' ? 'text-price-md' : 'text-price-md text-lg';
+---
+
+<div class="flex flex-col gap-1">
+  {originalPrice && (
+    <span class="ml-price-strikethrough">
+      ${originalPrice.toLocaleString('es-AR')}
+    </span>
+  )}
+  <div class="flex items-center gap-2">
+    <span class={`${priceClass} ${b2b ? 'text-b2b-purple' : ''}`}>
+      ${price.toLocaleString('es-AR')}
+    </span>
+    {discount && discount > 0 && (
+      <span class="ml-badge-off">{discount}% OFF</span>
+    )}
+    {b2b && (
+      <span class="ml-badge-b2b">B2B</span>
+    )}
+  </div>
+  {installments && (
+    <span class="ml-installments">
+      en {installments.count}x ${installments.value.toLocaleString('es-AR')} {installments.hasInterest ? 'con interés' : 'sin interés'}
+    </span>
+  )}
+</div>

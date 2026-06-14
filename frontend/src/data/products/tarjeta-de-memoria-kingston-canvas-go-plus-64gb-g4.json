@@ -1,0 +1,29 @@
+{
+  "id": "elit_19254",
+  "title": "Tarjeta de Memoria KINGSTON Canvas Go Plus 64GB G4",
+  "price": 52205.63,
+  "originalPrice": 26.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19254/i/P1oJV_l.webp",
+  "slug": "tarjeta-de-memoria-kingston-canvas-go-plus-64gb-g4",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "KINGSTON",
+  "sku": "SDG4/64GB",
+  "ean": "740617347678",
+  "warranty": "99",
+  "description": "Tarjeta de Memoria KINGSTON Canvas Go Plus 64GB G4 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8701
+  },
+  "stock": 233,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

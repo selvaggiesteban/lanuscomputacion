@@ -1,0 +1,29 @@
+{
+  "id": "elit_14652",
+  "title": "Motherboard GIGABYTE A520M S2H Ultra Durable AM4 DDR4",
+  "price": 121734.31,
+  "originalPrice": 61.77,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14652/i/taSIw_l.webp",
+  "slug": "motherboard-gigabyte-a520m-s2h-ultra-durable-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "A520M S2H",
+  "ean": "4719331809720",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE A520M S2H Ultra Durable AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20289
+  },
+  "stock": 161,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

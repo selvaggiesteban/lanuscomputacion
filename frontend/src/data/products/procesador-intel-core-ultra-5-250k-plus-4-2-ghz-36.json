@@ -1,0 +1,29 @@
+{
+  "id": "elit_19925",
+  "title": "Procesador Intel Core Ultra 5 250K PLUS 4.2 GHz 36",
+  "price": 468589.39,
+  "originalPrice": 237.77,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19925/i/N14Za_l.webp",
+  "slug": "procesador-intel-core-ultra-5-250k-plus-4-2-ghz-36",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768250K",
+  "ean": "5032037284738",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 5 250K PLUS 4.2 GHz 36 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 78098
+  },
+  "stock": 88,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

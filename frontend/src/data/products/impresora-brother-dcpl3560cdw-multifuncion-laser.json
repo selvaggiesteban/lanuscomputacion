@@ -1,0 +1,29 @@
+{
+  "id": "elit_19064",
+  "title": "Impresora Brother DCPL3560CDW Multifunción Laser",
+  "price": 1331615.5,
+  "originalPrice": 617.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19064/i/sJKXw_l.webp",
+  "slug": "impresora-brother-dcpl3560cdw-multifuncion-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "DCPL3560CDW",
+  "ean": "12502670223",
+  "warranty": "12",
+  "description": "Impresora Brother DCPL3560CDW Multifunción Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 221936
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

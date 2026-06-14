@@ -1,0 +1,29 @@
+{
+  "id": "elit_18216",
+  "title": "Fuente GIGABYTE P650SS 650W 80 PLUS Silver Blanca",
+  "price": 90335.35,
+  "originalPrice": 41.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18216/i/KhO1R_l.webp",
+  "slug": "fuente-gigabyte-p650ss-650w-80-plus-silver-blanca",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "GIGABYTE",
+  "sku": "GP-P650SS ICE",
+  "ean": "4719331555108",
+  "warranty": "36",
+  "description": "Fuente GIGABYTE P650SS 650W 80 PLUS Silver Blanca - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15056
+  },
+  "stock": 30,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

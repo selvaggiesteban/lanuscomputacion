@@ -1,0 +1,29 @@
+{
+  "id": "elit_17332",
+  "title": "Memoria PC Fury DDR4 32GB 3200MHz Beast RGB Negra",
+  "price": 669095.27,
+  "originalPrice": 339.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17332/i/tYJT1_l.webp",
+  "slug": "memoria-pc-fury-ddr4-32gb-3200mhz-beast-rgb-negra",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF432C16BB2A/32",
+  "ean": "740617337488",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR4 32GB 3200MHz Beast RGB Negra - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 111516
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

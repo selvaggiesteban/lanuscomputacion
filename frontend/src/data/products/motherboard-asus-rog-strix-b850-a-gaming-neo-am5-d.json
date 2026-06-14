@@ -1,0 +1,29 @@
+{
+  "id": "elit_20219",
+  "title": "Motherboard ASUS ROG STRIX B850-A GAMING NEO AM5 D",
+  "price": 581612.9,
+  "originalPrice": 295.12,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20219/i/Fn45j_l.webp",
+  "slug": "motherboard-asus-rog-strix-b850-a-gaming-neo-am5-d",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "ROG STRIX B850-A GAMING NEO",
+  "ean": "4711636446518",
+  "warranty": "36",
+  "description": "Motherboard ASUS ROG STRIX B850-A GAMING NEO AM5 D - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 96935
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

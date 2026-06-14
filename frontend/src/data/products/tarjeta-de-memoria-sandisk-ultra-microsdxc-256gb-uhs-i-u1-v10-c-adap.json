@@ -1,0 +1,29 @@
+{
+  "id": "elit_17352",
+  "title": "Tarjeta de Memoria SANDISK Ultra MicroSDXC 256GB UHS-I U1 V10 c/adap",
+  "price": 73923.49,
+  "originalPrice": 37.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17352/i/p06C0_l.webp",
+  "slug": "tarjeta-de-memoria-sandisk-ultra-microsdxc-256gb-uhs-i-u1-v10-c-adap",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "SANDISK",
+  "sku": "SDSQUNR-256G-GN6TA",
+  "ean": "619659185855",
+  "warranty": "12",
+  "description": "Tarjeta de Memoria SANDISK Ultra MicroSDXC 256GB UHS-I U1 V10 c/adap - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12321
+  },
+  "stock": 849,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19689",
+  "title": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti EAGLE MAX OC 8G",
+  "price": 964631.57,
+  "originalPrice": 489.47,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19689/i/4xjA4_l.webp",
+  "slug": "placa-de-video-gigabyte-nvidia-geforce-rtx-5060-ti-eagle-max-oc-8g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-N506TEAGLEMAX OC-8GD",
+  "ean": "4719331356637",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti EAGLE MAX OC 8G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 160772
+  },
+  "stock": 46,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

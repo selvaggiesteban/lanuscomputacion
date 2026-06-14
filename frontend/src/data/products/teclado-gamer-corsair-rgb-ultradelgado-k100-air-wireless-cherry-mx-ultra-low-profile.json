@@ -1,0 +1,29 @@
+{
+  "id": "elit_19387",
+  "title": "Teclado gamer CORSAIR RGB ultradelgado K100 AIR WIRELESS CHERRY MX Ultra Low Profile",
+  "price": 295063.31,
+  "originalPrice": 149.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19387/i/Lwouu_l.webp",
+  "slug": "teclado-gamer-corsair-rgb-ultradelgado-k100-air-wireless-cherry-mx-ultra-low-profile",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "CORSAIR",
+  "sku": "CH-913A01U-NA",
+  "ean": "840006655176",
+  "warranty": "24",
+  "description": "Teclado gamer CORSAIR RGB ultradelgado K100 AIR WIRELESS CHERRY MX Ultra Low Profile - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 49177
+  },
+  "stock": 30,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_20025",
+  "title": "Mouses ASUS P521 TG MINI WL MOUSE MIKU EDITION",
+  "price": 138663.2,
+  "originalPrice": 70.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20025/i/gL041_l.webp",
+  "slug": "mouses-asus-p521-tg-mini-wl-mouse-miku-edition",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "ASUS",
+  "sku": "P521 TG MINI WL MOUSE MIKU EDITION",
+  "ean": "4711387881361",
+  "warranty": "12",
+  "description": "Mouses ASUS P521 TG MINI WL MOUSE MIKU EDITION - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23111
+  },
+  "stock": 34,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_3471",
+  "title": "Cartucho de Tinta Epson  133 Amarillo",
+  "price": 20594.52,
+  "originalPrice": 10.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3471/i/9ltir_l.webp",
+  "slug": "cartucho-de-tinta-epson-133-amarillo",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "EPSON",
+  "sku": "T133420-AL",
+  "ean": "10343876965",
+  "warranty": "12",
+  "description": "Cartucho de Tinta Epson  133 Amarillo - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3432
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

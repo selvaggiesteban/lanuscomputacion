@@ -1,0 +1,29 @@
+{
+  "id": "elit_17979",
+  "title": "Teclado Logitech PRO X60 Blanco",
+  "price": 296068.4,
+  "originalPrice": 150.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17979/i/x7I4X_l.webp",
+  "slug": "teclado-logitech-pro-x60-blanco",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-011921",
+  "ean": "97855188335",
+  "warranty": "24",
+  "description": "Teclado Logitech PRO X60 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 49345
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

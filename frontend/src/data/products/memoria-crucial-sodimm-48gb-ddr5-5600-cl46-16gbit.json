@@ -1,0 +1,29 @@
+{
+  "id": "elit_18254",
+  "title": "Memoria Crucial SODIMM 48GB DDR5-5600 CL46 (16Gbit",
+  "price": 877957.21,
+  "originalPrice": 445.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18254/i/kYjML_l.webp",
+  "slug": "memoria-crucial-sodimm-48gb-ddr5-5600-cl46-16gbit",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "CRUCIAL",
+  "sku": "CT48G56C46S5",
+  "ean": "649528929969",
+  "warranty": "99",
+  "description": "Memoria Crucial SODIMM 48GB DDR5-5600 CL46 (16Gbit - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 146326
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

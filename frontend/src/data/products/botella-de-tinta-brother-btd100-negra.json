@@ -1,0 +1,29 @@
+{
+  "id": "elit_19071",
+  "title": "Botella de tinta Brother BTD100 Negra",
+  "price": 23522.58,
+  "originalPrice": 10.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19071/i/jTLZF_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100BKMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD100 Negra - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3920
+  },
+  "stock": 147,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

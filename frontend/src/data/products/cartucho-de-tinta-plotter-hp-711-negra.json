@@ -1,0 +1,29 @@
+{
+  "id": "elit_6161",
+  "title": "Cartucho de  Tinta  Plotter HP 711  Negra",
+  "price": 80959.13,
+  "originalPrice": 41.08,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6161/i/jjSZ6_l.webp",
+  "slug": "cartucho-de-tinta-plotter-hp-711-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Plotters",
+  "brand": "HP",
+  "sku": "CZ129A",
+  "ean": "886112890667",
+  "warranty": "HP",
+  "description": "Cartucho de  Tinta  Plotter HP 711  Negra - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13493
+  },
+  "stock": 445,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

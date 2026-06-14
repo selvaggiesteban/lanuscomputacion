@@ -1,0 +1,29 @@
+{
+  "id": "elit_17567",
+  "title": "Memoria LEXAR UDIMM DDR4 32GB 3200MHz",
+  "price": 583071.27,
+  "originalPrice": 295.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17567/i/47A28_l.webp",
+  "slug": "memoria-lexar-udimm-ddr4-32gb-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "LEXAR",
+  "sku": "LD4AU032G-B3200GSST",
+  "ean": "843367123810",
+  "warranty": "99",
+  "description": "Memoria LEXAR UDIMM DDR4 32GB 3200MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 97179
+  },
+  "stock": 32,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

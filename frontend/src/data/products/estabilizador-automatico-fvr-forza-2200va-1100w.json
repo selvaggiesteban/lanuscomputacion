@@ -1,0 +1,29 @@
+{
+  "id": "elit_9837",
+  "title": "Estabilizador Automatico FVR FORZA 2200VA 1100W",
+  "price": 63014.62,
+  "originalPrice": 29.2,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9837/i/ooTCJ_l.webp",
+  "slug": "estabilizador-automatico-fvr-forza-2200va-1100w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Estabilizadores",
+  "brand": "FORZA",
+  "sku": "FVR-2202A",
+  "ean": "798302108547",
+  "warranty": "24",
+  "description": "Estabilizador Automatico FVR FORZA 2200VA 1100W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10502
+  },
+  "stock": 1821,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

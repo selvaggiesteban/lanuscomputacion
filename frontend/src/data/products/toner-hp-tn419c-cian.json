@@ -1,0 +1,29 @@
+{
+  "id": "elit_7289",
+  "title": "Tóner HP TN419C Cian",
+  "price": 286133.86,
+  "originalPrice": 132.59,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "toner-hp-tn419c-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN419C",
+  "ean": "12502647669",
+  "warranty": "12",
+  "description": "Tóner HP TN419C Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47689
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

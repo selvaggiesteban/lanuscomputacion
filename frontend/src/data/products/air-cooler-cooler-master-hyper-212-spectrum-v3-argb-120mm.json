@@ -1,0 +1,29 @@
+{
+  "id": "elit_16782",
+  "title": "Air Cooler Cooler Master Hyper 212 Spectrum V3 ARGB 120mm",
+  "price": 32953.19,
+  "originalPrice": 15.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16782/i/bUm9v_l.webp",
+  "slug": "air-cooler-cooler-master-hyper-212-spectrum-v3-argb-120mm",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "RR-S4NA-17PA-R1",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Air Cooler Cooler Master Hyper 212 Spectrum V3 ARGB 120mm - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5492
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

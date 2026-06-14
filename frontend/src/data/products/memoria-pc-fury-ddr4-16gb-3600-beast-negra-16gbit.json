@@ -1,0 +1,29 @@
+{
+  "id": "elit_16699",
+  "title": "Memoria PC Fury DDR4 16GB 3600 Beast Negra 16Gbit",
+  "price": 417822.42,
+  "originalPrice": 212.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16699/i/EG5lI_l.webp",
+  "slug": "memoria-pc-fury-ddr4-16gb-3600-beast-negra-16gbit",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF436C18BB/16",
+  "ean": "740617319767",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR4 16GB 3600 Beast Negra 16Gbit - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 69637
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

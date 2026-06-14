@@ -1,0 +1,29 @@
+{
+  "id": "elit_19068",
+  "title": "Botella de Tinta Brother BTD100 Cian",
+  "price": 17544.82,
+  "originalPrice": 8.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19068/i/m8DpG_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100CMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de Tinta Brother BTD100 Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2924
+  },
+  "stock": 60,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

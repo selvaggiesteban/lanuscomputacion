@@ -1,0 +1,29 @@
+{
+  "id": "elit_19473",
+  "title": "Motherboard ASUS PRIME H610M-F D4 R2.0 LGA 1700 DDR4",
+  "price": 120335.06,
+  "originalPrice": 61.06,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19473/i/eIU7C_l.webp",
+  "slug": "motherboard-asus-prime-h610m-f-d4-r2-0-lga-1700-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME H610M-F D4 R2.0",
+  "ean": "4711387443361",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME H610M-F D4 R2.0 LGA 1700 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20056
+  },
+  "stock": 151,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

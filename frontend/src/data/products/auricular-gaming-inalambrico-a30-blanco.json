@@ -1,0 +1,29 @@
+{
+  "id": "elit_16666",
+  "title": "Auricular Gaming Inalámbrico A30 Blanco",
+  "price": 521942.35,
+  "originalPrice": 241.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16666/i/pCzMJ_l.webp",
+  "slug": "auricular-gaming-inalambrico-a30-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "939-001993",
+  "ean": "97855168085",
+  "warranty": "24",
+  "description": "Auricular Gaming Inalámbrico A30 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 86990
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

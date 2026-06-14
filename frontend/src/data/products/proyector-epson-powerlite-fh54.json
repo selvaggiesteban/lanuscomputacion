@@ -1,0 +1,29 @@
+{
+  "id": "elit_19997",
+  "title": "Proyector Epson PowerLite FH54",
+  "price": 2484286.73,
+  "originalPrice": 1151.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19997/i/5LUoH_l.webp",
+  "slug": "proyector-epson-powerlite-fh54",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11HB59021",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Proyector Epson PowerLite FH54 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 414048
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

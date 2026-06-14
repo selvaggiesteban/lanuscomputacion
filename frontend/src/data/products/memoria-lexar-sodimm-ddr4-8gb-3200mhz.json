@@ -1,0 +1,29 @@
+{
+  "id": "elit_18034",
+  "title": "Memoria LEXAR SODIMM DDR4 8GB 3200MHz",
+  "price": 168855.36,
+  "originalPrice": 85.68,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18034/i/8q5m2_l.webp",
+  "slug": "memoria-lexar-sodimm-ddr4-8gb-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "LEXAR",
+  "sku": "LD4AS008G-B3200GSST",
+  "ean": "843367123766",
+  "warranty": "99",
+  "description": "Memoria LEXAR SODIMM DDR4 8GB 3200MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 28143
+  },
+  "stock": 175,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

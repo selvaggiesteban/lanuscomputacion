@@ -1,0 +1,29 @@
+{
+  "id": "elit_19596",
+  "title": "Mouse c/cable Xtech 1200 Dpi, 3 botones",
+  "price": 4631.3,
+  "originalPrice": 2.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19596/i/I8Xpa_l.webp",
+  "slug": "mouse-c-cable-xtech-1200-dpi-3-botones",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "XTECH",
+  "sku": "XTM-206",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mouse c/cable Xtech 1200 Dpi, 3 botones - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 772
+  },
+  "stock": 171,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

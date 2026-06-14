@@ -1,0 +1,29 @@
+{
+  "id": "elit_19163",
+  "title": "Proyector ViewSonic LX60HD LED intelig 1080p con Google TV",
+  "price": 525567.84,
+  "originalPrice": 243.54,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19163/i/u1gvR_l.webp",
+  "slug": "proyector-viewsonic-lx60hd-led-intelig-1080p-con-google-tv",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "VIEWSONIC",
+  "sku": "LX60HD",
+  "ean": "766907028386",
+  "warranty": "12",
+  "description": "Proyector ViewSonic LX60HD LED intelig 1080p con Google TV - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 87595
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

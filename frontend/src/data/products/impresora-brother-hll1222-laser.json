@@ -1,0 +1,29 @@
+{
+  "id": "elit_20006",
+  "title": "Impresora Brother HLL1222 Laser",
+  "price": 263885.77,
+  "originalPrice": 133.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20006/i/hYQvc_l.webp",
+  "slug": "impresora-brother-hll1222-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "HLL1222",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Impresora Brother HLL1222 Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 43981
+  },
+  "stock": 168,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

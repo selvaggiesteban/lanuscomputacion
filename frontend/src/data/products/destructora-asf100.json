@@ -1,0 +1,29 @@
+{
+  "id": "elit_18486",
+  "title": "DESTRUCTORA ASF100",
+  "price": 238088.42,
+  "originalPrice": 120.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18486/i/wFHfr_l.webp",
+  "slug": "destructora-asf100",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Trituradora",
+  "brand": "ROYAL",
+  "sku": "89209Q",
+  "ean": "22447892093",
+  "warranty": "12",
+  "description": "DESTRUCTORA ASF100 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 39681
+  },
+  "stock": 32,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

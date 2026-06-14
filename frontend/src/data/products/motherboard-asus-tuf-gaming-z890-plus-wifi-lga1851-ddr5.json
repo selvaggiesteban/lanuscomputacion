@@ -1,0 +1,29 @@
+{
+  "id": "elit_19498",
+  "title": "Motherboard ASUS TUF GAMING Z890-PLUS WIFI LGA1851 DDR5",
+  "price": 609972.25,
+  "originalPrice": 309.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19498/i/jq79B_l.webp",
+  "slug": "motherboard-asus-tuf-gaming-z890-plus-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "TUF GAMING Z890-PLUS WIFI",
+  "ean": "4711387763926",
+  "warranty": "36",
+  "description": "Motherboard ASUS TUF GAMING Z890-PLUS WIFI LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 101662
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,35 @@
+---
+import ProductCard from './ProductCard.astro';
+import type { Product } from './ProductCard.astro';
+
+export interface Props {
+  products: Product[];
+  columns?: 2 | 3 | 4 | 5;
+}
+
+const { products, columns = 4 } = Astro.props;
+
+const gridCols = {
+  2: 'grid-cols-2 md:grid-cols-2',
+  3: 'grid-cols-2 md:grid-cols-3',
+  4: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+  5: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+};
+---
+
+{products.length > 0 ? (
+  <div class={`grid ${gridCols[columns]} gap-4`}>
+    {products.map(product => (
+      <ProductCard product={product} />
+    ))}
+  </div>
+) : (
+  <div class="col-span-full text-center py-16 text-ml-text-muted">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 opacity-30">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+    <p class="text-lg">No encontramos productos</p>
+    <p class="text-sm mt-1">Intentá con otros filtros o categorías</p>
+  </div>
+)}

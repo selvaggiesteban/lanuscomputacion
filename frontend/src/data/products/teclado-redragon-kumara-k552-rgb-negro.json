@@ -1,0 +1,29 @@
+{
+  "id": "elit_20192",
+  "title": "Teclado Redragon Kumara K552 RGB Negro",
+  "price": 62000.35,
+  "originalPrice": 31.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20192/i/SibdT_l.webp",
+  "slug": "teclado-redragon-kumara-k552-rgb-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "K552RGB-1R-SP",
+  "ean": "6950376778925",
+  "warranty": "12",
+  "description": "Teclado Redragon Kumara K552 RGB Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10333
+  },
+  "stock": 252,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

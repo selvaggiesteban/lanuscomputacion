@@ -1,0 +1,29 @@
+{
+  "id": "elit_15007",
+  "title": "Escaner Brother Portátil DS-640 600dpi 16ppm",
+  "price": 379885.14,
+  "originalPrice": 192.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15007/i/hXdWB_l.webp",
+  "slug": "escaner-brother-portatil-ds-640-600dpi-16ppm",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Escaner",
+  "brand": "BROTHER",
+  "sku": "DS640",
+  "ean": "12502657477",
+  "warranty": "12",
+  "description": "Escaner Brother Portátil DS-640 600dpi 16ppm - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 63314
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

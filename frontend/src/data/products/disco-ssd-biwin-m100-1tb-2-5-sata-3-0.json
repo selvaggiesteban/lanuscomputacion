@@ -1,0 +1,29 @@
+{
+  "id": "elit_19223",
+  "title": "Disco SSD Biwin M100 1TB 2.5\" SATA 3.0",
+  "price": 288855.39,
+  "originalPrice": 146.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19223/i/NDR8L_l.webp",
+  "slug": "disco-ssd-biwin-m100-1tb-2-5-sata-3-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "BIWIN",
+  "sku": "BM100NN01TB-RGX",
+  "ean": "6955914627352",
+  "warranty": "30",
+  "description": "Disco SSD Biwin M100 1TB 2.5\" SATA 3.0 - 30",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 48143
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18585",
+  "title": "Disco Interno HDD WESTERN DIGITAL Purple PRO 10TB 3.5\" SATA 3.0 7200rpm",
+  "price": 871591.63,
+  "originalPrice": 442.26,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18585/i/5sOcf_l.webp",
+  "slug": "disco-interno-hdd-western-digital-purple-pro-10tb-3-5-sata-3-0-7200rpm",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "WD",
+  "sku": "WD102PURP",
+  "ean": "718037901275",
+  "warranty": "60",
+  "description": "Disco Interno HDD WESTERN DIGITAL Purple PRO 10TB 3.5\" SATA 3.0 7200rpm - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 145265
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_15747",
+  "title": "Controladora Cooler Master ARGB Gen2 A1 3 Puertos 5V ARGB",
+  "price": 35801.8,
+  "originalPrice": 16.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15747/i/5rLUK_l.webp",
+  "slug": "controladora-cooler-master-argb-gen2-a1-3-puertos-5v-argb",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MFY-ACBN-NNUNN-R2",
+  "ean": "4719512116661",
+  "warranty": "24",
+  "description": "Controladora Cooler Master ARGB Gen2 A1 3 Puertos 5V ARGB - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5967
+  },
+  "stock": 237,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

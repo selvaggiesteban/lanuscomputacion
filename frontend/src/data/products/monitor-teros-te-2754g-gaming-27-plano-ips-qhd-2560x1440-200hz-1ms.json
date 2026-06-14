@@ -1,0 +1,29 @@
+{
+  "id": "elit_19007",
+  "title": "Monitor Teros TE-2754G Gaming 27\" Plano IPS QHD (2560x1440) 200Hz 1ms",
+  "price": 434670.11,
+  "originalPrice": 182.28,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19007/i/7Xrb1_l.webp",
+  "slug": "monitor-teros-te-2754g-gaming-27-plano-ips-qhd-2560x1440-200hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "TEROS",
+  "sku": "TE-2754G",
+  "ean": "782752509085",
+  "warranty": "36",
+  "description": "Monitor Teros TE-2754G Gaming 27\" Plano IPS QHD (2560x1440) 200Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 72445
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

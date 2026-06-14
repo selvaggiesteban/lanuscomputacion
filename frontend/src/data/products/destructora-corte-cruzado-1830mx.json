@@ -1,0 +1,29 @@
+{
+  "id": "elit_18488",
+  "title": "DESTRUCTORA CORTE CRUZADO 1830MX",
+  "price": 301606.26,
+  "originalPrice": 153.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18488/i/dIfg6_l.webp",
+  "slug": "destructora-corte-cruzado-1830mx",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Trituradora",
+  "brand": "ROYAL",
+  "sku": "89140X",
+  "ean": "22447891409",
+  "warranty": "12",
+  "description": "DESTRUCTORA CORTE CRUZADO 1830MX - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 50268
+  },
+  "stock": 29,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

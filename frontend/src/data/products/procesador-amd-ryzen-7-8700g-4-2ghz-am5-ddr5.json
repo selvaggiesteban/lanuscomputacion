@@ -1,0 +1,29 @@
+{
+  "id": "elit_18819",
+  "title": "Procesador AMD Ryzen 7 8700G 4.2Ghz AM5 DDR5",
+  "price": 463544.22,
+  "originalPrice": 235.21,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18819/i/LXD9x_l.webp",
+  "slug": "procesador-amd-ryzen-7-8700g-4-2ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001236SBX",
+  "ean": "730143317696",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 8700G 4.2Ghz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 77257
+  },
+  "stock": 115,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

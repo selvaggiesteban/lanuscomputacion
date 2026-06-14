@@ -1,0 +1,29 @@
+{
+  "id": "elit_19629",
+  "title": "Disco Interno SSD ADATA LEGEND 710  512GB M.2 2280",
+  "price": 188602.45,
+  "originalPrice": 95.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19629/i/VviXs_l.webp",
+  "slug": "disco-interno-ssd-adata-legend-710-512gb-m-2-2280",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "ADATA",
+  "sku": "ALEG-710-512GCS",
+  "ean": "4711085937834",
+  "warranty": "36",
+  "description": "Disco Interno SSD ADATA LEGEND 710  512GB M.2 2280 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31434
+  },
+  "stock": 22,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

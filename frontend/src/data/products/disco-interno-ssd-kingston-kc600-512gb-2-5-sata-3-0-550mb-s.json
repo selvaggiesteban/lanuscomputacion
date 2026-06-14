@@ -1,0 +1,29 @@
+{
+  "id": "elit_9123",
+  "title": "Disco Interno SSD KINGSTON KC600 512GB 2.5\" SATA 3.0  550MB/s",
+  "price": 328388.99,
+  "originalPrice": 166.63,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9123/i/Shxv4_l.webp",
+  "slug": "disco-interno-ssd-kingston-kc600-512gb-2-5-sata-3-0-550mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SKC600/512G",
+  "ean": "740617300253",
+  "warranty": "36",
+  "description": "Disco Interno SSD KINGSTON KC600 512GB 2.5\" SATA 3.0  550MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54731
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

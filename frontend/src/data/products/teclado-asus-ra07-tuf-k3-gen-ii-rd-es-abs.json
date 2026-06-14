@@ -1,0 +1,29 @@
+{
+  "id": "elit_19693",
+  "title": "Teclado ASUS RA07 TUF K3 GEN II/RD/ES/ABS",
+  "price": 116314.7,
+  "originalPrice": 59.02,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19693/i/FJjun_l.webp",
+  "slug": "teclado-asus-ra07-tuf-k3-gen-ii-rd-es-abs",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "ASUS",
+  "sku": "RA07 TUF K3 GEN II/RD/ES/ABS",
+  "ean": "4711387335949",
+  "warranty": "12",
+  "description": "Teclado ASUS RA07 TUF K3 GEN II/RD/ES/ABS - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19386
+  },
+  "stock": 22,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

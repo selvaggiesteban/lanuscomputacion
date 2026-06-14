@@ -1,0 +1,29 @@
+{
+  "id": "elit_17394",
+  "title": "Switch Hikvision 24 puertos Gig  POE 1 RJ45 1 Opt",
+  "price": 283140.17,
+  "originalPrice": 143.67,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17394/i/RguRR_l.webp",
+  "slug": "switch-hikvision-24-puertos-gig-poe-1-rj45-1-opt",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Switches",
+  "brand": "HIKVISION",
+  "sku": "DS-3E1526P-EI/M",
+  "ean": "6942160430904",
+  "warranty": "24",
+  "description": "Switch Hikvision 24 puertos Gig  POE 1 RJ45 1 Opt - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47190
+  },
+  "stock": 47,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_15639",
+  "title": "Teclado c/Cable HYPERX Alloy Origins Core Red US Negro",
+  "price": 163179.55,
+  "originalPrice": 82.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15639/i/jQmQt_l.webp",
+  "slug": "teclado-c-cable-hyperx-alloy-origins-core-red-us-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "HYPERX",
+  "sku": "4P5P3AA#ABA",
+  "ean": "196188049273",
+  "warranty": "0",
+  "description": "Teclado c/Cable HYPERX Alloy Origins Core Red US Negro - 0",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27197
+  },
+  "stock": 223,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

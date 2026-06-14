@@ -1,0 +1,29 @@
+{
+  "id": "elit_15323",
+  "title": "Tarjeta de Memoria KINGSTON High Endurance MicroSDXC 64GB UHS-I U1 V10 A1 95MB/s",
+  "price": 53664.0,
+  "originalPrice": 27.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15323/i/mNpQJ_l.webp",
+  "slug": "tarjeta-de-memoria-kingston-high-endurance-microsdxc-64gb-uhs-i-u1-v10-a1-95mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "KINGSTON",
+  "sku": "SDCE/64GB",
+  "ean": "740617290226",
+  "warranty": "99",
+  "description": "Tarjeta de Memoria KINGSTON High Endurance MicroSDXC 64GB UHS-I U1 V10 A1 95MB/s - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8944
+  },
+  "stock": 158,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

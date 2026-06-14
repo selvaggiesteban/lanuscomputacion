@@ -1,0 +1,29 @@
+{
+  "id": "elit_18161",
+  "title": "Parlante Bluetooth UE Wonderboom 4 Gris",
+  "price": 179160.07,
+  "originalPrice": 83.02,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18161/i/pEQS2_l.webp",
+  "slug": "parlante-bluetooth-ue-wonderboom-4-gris",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "LOGITECH",
+  "sku": "984-001891",
+  "ean": "978551900062",
+  "warranty": "12",
+  "description": "Parlante Bluetooth UE Wonderboom 4 Gris - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29860
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

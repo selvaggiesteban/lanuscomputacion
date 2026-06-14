@@ -1,0 +1,29 @@
+{
+  "id": "elit_19714",
+  "title": "Camara Ezviz CB2 3MP 4G BK",
+  "price": 123525.92,
+  "originalPrice": 57.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19714/i/6rtW3_l.webp",
+  "slug": "camara-ezviz-cb2-3mp-4g-bk",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-CB2-R105-1K3F4GA-BK",
+  "ean": "6941545635415",
+  "warranty": "12",
+  "description": "Camara Ezviz CB2 3MP 4G BK - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20588
+  },
+  "stock": 24,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

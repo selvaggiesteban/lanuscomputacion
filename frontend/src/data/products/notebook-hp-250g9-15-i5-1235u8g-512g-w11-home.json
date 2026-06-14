@@ -1,0 +1,29 @@
+{
+  "id": "elit_17145",
+  "title": "Notebook HP 250G9 15\" i5-1235U8G/512G W11 Home",
+  "price": 1916827.59,
+  "originalPrice": 972.63,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17145/i/FDoVy_l.webp",
+  "slug": "notebook-hp-250g9-15-i5-1235u8g-512g-w11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "HP",
+  "sku": "9S7D7AT",
+  "ean": "198122070480",
+  "warranty": "12",
+  "description": "Notebook HP 250G9 15\" i5-1235U8G/512G W11 Home - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 319471
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18106",
+  "title": "Monitor AOC C32G3E 31,5\" VA FHD (1920 x 1080) 165Hz 4ms Curved Gaming Ficha USA",
+  "price": 579870.15,
+  "originalPrice": 243.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18106/i/1vkU1_l.webp",
+  "slug": "monitor-aoc-c32g3e-315-va-fhd-1920-x-1080-165hz-4ms-curved-gaming-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "AOC",
+  "sku": "C32G3E",
+  "ean": "685417133888",
+  "warranty": "36",
+  "description": "Monitor AOC C32G3E 31,5\" VA FHD (1920 x 1080) 165Hz 4ms Curved Gaming Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 96645
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

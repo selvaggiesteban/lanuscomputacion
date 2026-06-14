@@ -1,0 +1,29 @@
+{
+  "id": "elit_19482",
+  "title": "Motherboard ASUS PRIME B850M-A AM5 DDR5",
+  "price": 288540.07,
+  "originalPrice": 146.41,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19482/i/SVqgC_l.webp",
+  "slug": "motherboard-asus-prime-b850m-a-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B850M-A",
+  "ean": "4711636054706",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B850M-A AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 48090
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

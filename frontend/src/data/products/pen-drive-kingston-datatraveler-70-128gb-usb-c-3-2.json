@@ -1,0 +1,29 @@
+{
+  "id": "elit_19105",
+  "title": "Pen Drive KINGSTON DataTraveler 70 128GB USB-C 3.2",
+  "price": 31701.53,
+  "originalPrice": 14.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19105/i/SJ4qS_l.webp",
+  "slug": "pen-drive-kingston-datatraveler-70-128gb-usb-c-3-2",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DT70/128GB",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Pen Drive KINGSTON DataTraveler 70 128GB USB-C 3.2 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5284
+  },
+  "stock": 61,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

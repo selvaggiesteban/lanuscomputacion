@@ -1,0 +1,29 @@
+{
+  "id": "elit_10735",
+  "title": "Combo Teclado y Mouse Inalámbrico LOGITECH MK295 Negro",
+  "price": 38272.3,
+  "originalPrice": 19.42,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10735/i/TuhWM_l.webp",
+  "slug": "combo-teclado-y-mouse-inalambrico-logitech-mk295-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-009792",
+  "ean": "97855161055",
+  "warranty": "12",
+  "description": "Combo Teclado y Mouse Inalámbrico LOGITECH MK295 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 6379
+  },
+  "stock": 243,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

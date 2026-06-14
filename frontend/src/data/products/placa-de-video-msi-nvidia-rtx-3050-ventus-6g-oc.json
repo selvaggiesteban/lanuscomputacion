@@ -1,0 +1,29 @@
+{
+  "id": "elit_17401",
+  "title": "Placa de Video MSI NVIDIA  RTX 3050 VENTUS 6G OC",
+  "price": 575089.66,
+  "originalPrice": 291.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17401/i/U5WcI_l.webp",
+  "slug": "placa-de-video-msi-nvidia-rtx-3050-ventus-6g-oc",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "MSI",
+  "sku": "RTX 3050 VENTUS 2X 6G OC",
+  "ean": "824142348710",
+  "warranty": "36",
+  "description": "Placa de Video MSI NVIDIA  RTX 3050 VENTUS 6G OC - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 95848
+  },
+  "stock": 303,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

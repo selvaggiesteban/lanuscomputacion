@@ -1,0 +1,29 @@
+{
+  "id": "elit_7186",
+  "title": "Disco Interno SSD KINGSTON A400 240GB 2.5\" SATA 3.0  500MB/s",
+  "price": 147019.26,
+  "originalPrice": 74.6,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7186/i/kGCCh_l.webp",
+  "slug": "disco-interno-ssd-kingston-a400-240gb-2-5-sata-3-0-500mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SA400S37/240G",
+  "ean": "740617261219",
+  "warranty": "36",
+  "description": "Disco Interno SSD KINGSTON A400 240GB 2.5\" SATA 3.0  500MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 24503
+  },
+  "stock": 406,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19472",
+  "title": "Motherboard ASUS PRIME B550M-K ARGB AM4 DDR4",
+  "price": 143728.07,
+  "originalPrice": 72.93,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19472/i/R6ypy_l.webp",
+  "slug": "motherboard-asus-prime-b550m-k-argb-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B550M-K ARGB",
+  "ean": "4711387316030",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B550M-K ARGB AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23955
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

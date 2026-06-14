@@ -1,0 +1,29 @@
+{
+  "id": "elit_18390",
+  "title": "Placa de Video GIGABYTE AMD Radeon RX 9070 GAMING OC 16GB",
+  "price": 1582664.26,
+  "originalPrice": 803.07,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18390/i/JU7cd_l.webp",
+  "slug": "placa-de-video-gigabyte-amd-radeon-rx-9070-gaming-oc-16gb",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-R9070GAMING OC-16GD",
+  "ean": "4719331355531",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE AMD Radeon RX 9070 GAMING OC 16GB - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 263777
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

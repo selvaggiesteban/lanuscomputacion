@@ -1,0 +1,24 @@
+# Backend
+requests>=2.31.0
+pandas>=2.0.0
+Pillow>=10.0.0
+pytesseract>=0.3.10
+paddleocr>=2.7.0
+paddlepaddle>=2.5.0
+playwright>=1.40.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+mercadopago>=2.2.0
+schedule>=1.2.0
+rich>=13.7.0
+python-slugify>=8.0.0
+Pillow>=10.0.0
+webp>=0.2.0
+sqlite3
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+httpx>=0.25.0

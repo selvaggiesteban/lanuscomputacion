@@ -1,0 +1,29 @@
+{
+  "id": "elit_18477",
+  "title": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5070 EAGLE OC SFF 12G",
+  "price": 1451962.96,
+  "originalPrice": 736.75,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18477/i/AC8Op_l.webp",
+  "slug": "placa-de-video-gigabyte-nvidia-geforce-rtx-5070-eagle-oc-sff-12g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-N5070EAGLE OC-12GD",
+  "ean": "4719331355760",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5070 EAGLE OC SFF 12G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 241994
+  },
+  "stock": 55,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

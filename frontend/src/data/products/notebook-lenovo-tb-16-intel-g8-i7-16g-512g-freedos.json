@@ -1,0 +1,29 @@
+{
+  "id": "elit_19916",
+  "title": "Notebook LENOVO TB 16 INTEL G8  I7 16G 512G FREEDOS",
+  "price": 2375168.99,
+  "originalPrice": 1205.2,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19916/i/fBoJb_l.webp",
+  "slug": "notebook-lenovo-tb-16-intel-g8-i7-16g-512g-freedos",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21SH0021AC",
+  "ean": "198155963322",
+  "warranty": "12 MESES",
+  "description": "Notebook LENOVO TB 16 INTEL G8  I7 16G 512G FREEDOS - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 395861
+  },
+  "stock": 41,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

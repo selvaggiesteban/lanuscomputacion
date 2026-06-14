@@ -1,0 +1,29 @@
+{
+  "id": "elit_18177",
+  "title": "Motherboard MSI PRO Z890-S WIFI LGA1851 DDR5",
+  "price": 447975.16,
+  "originalPrice": 227.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18177/i/HsT1I_l.webp",
+  "slug": "motherboard-msi-pro-z890-s-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO Z890-S WIFI",
+  "ean": "4711377269995",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO Z890-S WIFI LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 74663
+  },
+  "stock": 49,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

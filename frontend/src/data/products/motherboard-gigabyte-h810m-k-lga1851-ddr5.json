@@ -1,0 +1,29 @@
+{
+  "id": "elit_18869",
+  "title": "Motherboard GIGABYTE H810M K LGA1851 DDR5",
+  "price": 167396.99,
+  "originalPrice": 84.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18869/i/Ol5YQ_l.webp",
+  "slug": "motherboard-gigabyte-h810m-k-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "H810M K",
+  "ean": "4719331868697",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE H810M K LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27899
+  },
+  "stock": 87,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

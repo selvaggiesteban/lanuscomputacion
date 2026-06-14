@@ -1,0 +1,29 @@
+{
+  "id": "elit_18650",
+  "title": "Switch Cudy 5 puertos Gigabit - Split USB-C sin trafo",
+  "price": 12317.3,
+  "originalPrice": 6.25,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18650/i/UdxYf_l.webp",
+  "slug": "switch-cudy-5-puertos-gigabit-split-usb-c-sin-trafo",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Switches",
+  "brand": "CUDY",
+  "sku": "GS105U",
+  "ean": "6971690794262",
+  "warranty": "12",
+  "description": "Switch Cudy 5 puertos Gigabit - Split USB-C sin trafo - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2053
+  },
+  "stock": 892,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

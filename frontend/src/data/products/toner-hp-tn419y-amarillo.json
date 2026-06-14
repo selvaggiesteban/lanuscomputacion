@@ -1,0 +1,29 @@
+{
+  "id": "elit_7288",
+  "title": "Tóner HP TN419Y Amarillo",
+  "price": 286133.86,
+  "originalPrice": 132.59,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "toner-hp-tn419y-amarillo",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN419Y",
+  "ean": "12502647683",
+  "warranty": "12",
+  "description": "Tóner HP TN419Y Amarillo - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47689
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

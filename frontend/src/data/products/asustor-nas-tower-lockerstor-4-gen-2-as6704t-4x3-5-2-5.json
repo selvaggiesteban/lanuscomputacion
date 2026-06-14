@@ -1,0 +1,29 @@
+{
+  "id": "elit_18434",
+  "title": "Asustor NAS Tower Lockerstor 4 Gen 2 AS6704T 4X3.5/2.5",
+  "price": 1531660.79,
+  "originalPrice": 777.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18434/i/muirj_l.webp",
+  "slug": "asustor-nas-tower-lockerstor-4-gen-2-as6704t-4x3-5-2-5",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Nas",
+  "brand": "ASUSTOR",
+  "sku": "AS6704T",
+  "ean": "4710474831432",
+  "warranty": "36",
+  "description": "Asustor NAS Tower Lockerstor 4 Gen 2 AS6704T 4X3.5/2.5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 255277
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

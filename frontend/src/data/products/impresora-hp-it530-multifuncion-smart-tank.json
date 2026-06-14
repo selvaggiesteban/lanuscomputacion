@@ -1,0 +1,29 @@
+{
+  "id": "elit_9625",
+  "title": "Impresora HP IT530 Multifunción Smart Tank",
+  "price": 533703.64,
+  "originalPrice": 247.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9625/i/5Fo1e_l.webp",
+  "slug": "impresora-hp-it530-multifuncion-smart-tank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "HP",
+  "sku": "4SB24A",
+  "ean": "193424413492",
+  "warranty": "HP",
+  "description": "Impresora HP IT530 Multifunción Smart Tank - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 88951
+  },
+  "stock": 158,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

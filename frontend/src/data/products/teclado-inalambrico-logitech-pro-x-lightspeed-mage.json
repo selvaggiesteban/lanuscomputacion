@@ -1,0 +1,29 @@
+{
+  "id": "elit_17106",
+  "title": "Teclado Inalámbrico Logitech PRO X Lightspeed Mage",
+  "price": 316564.38,
+  "originalPrice": 160.63,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17106/i/WZsHB_l.webp",
+  "slug": "teclado-inalambrico-logitech-pro-x-lightspeed-mage",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-012154",
+  "ean": "97855188977",
+  "warranty": "24",
+  "description": "Teclado Inalámbrico Logitech PRO X Lightspeed Mage - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 52761
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

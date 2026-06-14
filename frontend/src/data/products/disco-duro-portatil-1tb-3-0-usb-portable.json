@@ -1,0 +1,29 @@
+{
+  "id": "elit_17470",
+  "title": "Disco duro portatil 1TB 3.0 USB Portable",
+  "price": 226638.26,
+  "originalPrice": 115.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17470/i/IXjYi_l.webp",
+  "slug": "disco-duro-portatil-1tb-3-0-usb-portable",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "SEAGATE",
+  "sku": "STGX1000400",
+  "ean": "763649127292",
+  "warranty": "24",
+  "description": "Disco duro portatil 1TB 3.0 USB Portable - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37773
+  },
+  "stock": 186,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

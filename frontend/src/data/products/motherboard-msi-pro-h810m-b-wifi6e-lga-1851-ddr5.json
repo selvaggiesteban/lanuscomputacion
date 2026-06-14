@@ -1,0 +1,29 @@
+{
+  "id": "elit_19438",
+  "title": "Motherboard MSI PRO H810M-B WIFI6E LGA 1851 DDR5",
+  "price": 249775.07,
+  "originalPrice": 126.74,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19438/i/W69F4_l.webp",
+  "slug": "motherboard-msi-pro-h810m-b-wifi6e-lga-1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO H810M-B WIFI6E",
+  "ean": "824142420355",
+  "warranty": "24",
+  "description": "Motherboard MSI PRO H810M-B WIFI6E LGA 1851 DDR5 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 41629
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

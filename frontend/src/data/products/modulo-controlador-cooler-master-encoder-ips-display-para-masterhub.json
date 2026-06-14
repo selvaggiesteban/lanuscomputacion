@@ -1,0 +1,29 @@
+{
+  "id": "elit_19097",
+  "title": "Módulo Controlador Cooler Master Encoder IPS Display para MasterHUB",
+  "price": 182828.73,
+  "originalPrice": 84.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19097/i/ifb2j_l.webp",
+  "slug": "modulo-controlador-cooler-master-encoder-ips-display-para-masterhub",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "COOLER MASTER",
+  "sku": "MHDD01AA22",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Módulo Controlador Cooler Master Encoder IPS Display para MasterHUB - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 30471
+  },
+  "stock": 29,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

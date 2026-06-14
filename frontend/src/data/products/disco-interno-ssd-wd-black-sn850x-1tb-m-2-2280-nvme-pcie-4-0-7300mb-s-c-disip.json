@@ -1,0 +1,29 @@
+{
+  "id": "elit_16454",
+  "title": "Disco Interno SSD WD Black SN850X 1TB M.2 2280 NVMe PCIe 4.0 7300MB/S C/DISIP",
+  "price": 622979.31,
+  "originalPrice": 316.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16454/i/UMKkb_l.webp",
+  "slug": "disco-interno-ssd-wd-black-sn850x-1tb-m-2-2280-nvme-pcie-4-0-7300mb-s-c-disip",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS100T2XHE-00BCA0",
+  "ean": "718037891385",
+  "warranty": "60",
+  "description": "Disco Interno SSD WD Black SN850X 1TB M.2 2280 NVMe PCIe 4.0 7300MB/S C/DISIP - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 103830
+  },
+  "stock": 195,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

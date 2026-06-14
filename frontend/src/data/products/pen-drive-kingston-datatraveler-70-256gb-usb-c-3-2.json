@@ -1,0 +1,29 @@
+{
+  "id": "elit_19106",
+  "title": "Pen Drive KINGSTON DataTraveler 70 256GB USB-C 3.2",
+  "price": 70222.46,
+  "originalPrice": 32.54,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19106/i/F9mha_l.webp",
+  "slug": "pen-drive-kingston-datatraveler-70-256gb-usb-c-3-2",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DT70/256GB",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Pen Drive KINGSTON DataTraveler 70 256GB USB-C 3.2 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11704
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

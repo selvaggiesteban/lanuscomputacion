@@ -1,0 +1,29 @@
+{
+  "id": "elit_19648",
+  "title": "Auricular Inalámbrico Logitech Zone 2 Blanco",
+  "price": 371074.12,
+  "originalPrice": 171.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19648/i/Tv0M5_l.webp",
+  "slug": "auricular-inalambrico-logitech-zone-2-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001596",
+  "ean": "97855207708",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech Zone 2 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 61846
+  },
+  "stock": 44,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

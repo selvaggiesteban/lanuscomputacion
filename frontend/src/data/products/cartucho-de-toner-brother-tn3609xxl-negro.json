@@ -1,0 +1,29 @@
+{
+  "id": "elit_19088",
+  "title": "Cartucho de Tóner Brother TN3609XXL Negro",
+  "price": 191288.22,
+  "originalPrice": 88.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19088/i/hE2Uu_l.webp",
+  "slug": "cartucho-de-toner-brother-tn3609xxl-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN3609XXL",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho de Tóner Brother TN3609XXL Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31881
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

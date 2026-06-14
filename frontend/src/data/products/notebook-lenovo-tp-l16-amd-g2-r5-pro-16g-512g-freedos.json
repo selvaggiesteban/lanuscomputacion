@@ -1,0 +1,29 @@
+{
+  "id": "elit_19918",
+  "title": "Notebook LENOVO TP L16 AMD G2 R5_PRO 16G 512G FREEDOS",
+  "price": 2184457.82,
+  "originalPrice": 1108.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19918/i/FniKu_l.webp",
+  "slug": "notebook-lenovo-tp-l16-amd-g2-r5-pro-16g-512g-freedos",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21SD000HAC",
+  "ean": "199272123156",
+  "warranty": "36 MESES",
+  "description": "Notebook LENOVO TP L16 AMD G2 R5_PRO 16G 512G FREEDOS - 36 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 364076
+  },
+  "stock": 49,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

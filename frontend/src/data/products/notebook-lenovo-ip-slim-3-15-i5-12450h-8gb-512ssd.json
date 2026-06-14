@@ -1,0 +1,29 @@
+{
+  "id": "elit_17801",
+  "title": "Notebook Lenovo IP Slim 3 15\" I5-12450H 8GB 512SSD",
+  "price": 1418952.6,
+  "originalPrice": 720.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17801/i/yboH8_l.webp",
+  "slug": "notebook-lenovo-ip-slim-3-15-i5-12450h-8gb-512ssd",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "LENOVO",
+  "sku": "83ER00DQAR",
+  "ean": "198153414871",
+  "warranty": "12",
+  "description": "Notebook Lenovo IP Slim 3 15\" I5-12450H 8GB 512SSD - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 236492
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

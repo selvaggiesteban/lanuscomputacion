@@ -1,0 +1,29 @@
+{
+  "id": "elit_16457",
+  "title": "Disco Interno SSD WD Black SN850X 2TB M.2 2280 NVMe PCIe 4.0 7300Mb/s C/Disipador",
+  "price": 1186402.03,
+  "originalPrice": 602.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16457/i/JTU9k_l.webp",
+  "slug": "disco-interno-ssd-wd-black-sn850x-2tb-m-2-2280-nvme-pcie-4-0-7300mb-s-c-disipador",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS200T2XHE-00BCA0",
+  "ean": "718037891309",
+  "warranty": "60",
+  "description": "Disco Interno SSD WD Black SN850X 2TB M.2 2280 NVMe PCIe 4.0 7300Mb/s C/Disipador - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 197734
+  },
+  "stock": 94,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

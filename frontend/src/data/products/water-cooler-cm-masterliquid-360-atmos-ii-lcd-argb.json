@@ -1,0 +1,29 @@
+{
+  "id": "elit_18776",
+  "title": "Water Cooler CM Masterliquid 360 Atmos II LCD ARGB",
+  "price": 405347.46,
+  "originalPrice": 205.68,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18776/i/K3LSz_l.webp",
+  "slug": "water-cooler-cm-masterliquid-360-atmos-ii-lcd-argb",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MLX-D36M-A25SZ-L1",
+  "ean": "4719512159705",
+  "warranty": "24",
+  "description": "Water Cooler CM Masterliquid 360 Atmos II LCD ARGB - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 67558
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

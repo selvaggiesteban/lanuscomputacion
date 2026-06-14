@@ -1,0 +1,29 @@
+{
+  "id": "elit_19350",
+  "title": "Gabinete CORSAIR FRAME 5000D RS Mid Tower Aire Elevado Blanco",
+  "price": 283573.74,
+  "originalPrice": 143.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19350/i/7ClCM_l.webp",
+  "slug": "gabinete-corsair-frame-5000d-rs-mid-tower-aire-elevado-blanco",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011308-WW",
+  "ean": "840440491286",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR FRAME 5000D RS Mid Tower Aire Elevado Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47262
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

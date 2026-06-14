@@ -1,0 +1,40 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="ml-breadcrumb" aria-label="Breadcrumb">
+  {items.map((item, i) => (
+    <>
+      {i > 0 && (
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      )}
+      {item.href ? (
+        <a href={item.href}>{item.label}</a>
+      ) : (
+        <span class="text-ml-text">{item.label}</span>
+      )}
+    </>
+  ))}
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `https://lanuscomputacion.com${item.href}` } : {}),
+  })),
+})} />

@@ -1,0 +1,29 @@
+{
+  "id": "elit_15363",
+  "title": "Pen Drive SANDISK Cruzer Blade 32GB USB 2.0 Tipo A Azul",
+  "price": 16444.23,
+  "originalPrice": 7.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15363/i/wiNdn_l.webp",
+  "slug": "pen-drive-sandisk-cruzer-blade-32gb-usb-2-0-tipo-a-azul",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ50C-032G-B35BE",
+  "ean": "619659146924",
+  "warranty": "38",
+  "description": "Pen Drive SANDISK Cruzer Blade 32GB USB 2.0 Tipo A Azul - 38",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2741
+  },
+  "stock": 217,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

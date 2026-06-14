@@ -1,0 +1,29 @@
+{
+  "id": "elit_17311",
+  "title": "Pen Drive 3.2 DT SE9 G3 64GB Data Trav. Metálico",
+  "price": 44433.94,
+  "originalPrice": 20.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17311/i/xZL0Q_l.webp",
+  "slug": "pen-drive-3-2-dt-se9-g3-64gb-data-trav-metalico",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTSE9G3/64GB",
+  "ean": "740617341270",
+  "warranty": "60",
+  "description": "Pen Drive 3.2 DT SE9 G3 64GB Data Trav. Metálico - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7406
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

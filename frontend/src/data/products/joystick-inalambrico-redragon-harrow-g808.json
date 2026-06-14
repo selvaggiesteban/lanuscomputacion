@@ -1,0 +1,29 @@
+{
+  "id": "elit_20159",
+  "title": "Joystick Inalámbrico Redragon Harrow G808",
+  "price": 57921.66,
+  "originalPrice": 26.84,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20159/i/S2NJX_l.webp",
+  "slug": "joystick-inalambrico-redragon-harrow-g808",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "REDRAGON",
+  "sku": "G808-PRO V1",
+  "ean": "6950376729392",
+  "warranty": "12",
+  "description": "Joystick Inalámbrico Redragon Harrow G808 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9654
+  },
+  "stock": 214,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

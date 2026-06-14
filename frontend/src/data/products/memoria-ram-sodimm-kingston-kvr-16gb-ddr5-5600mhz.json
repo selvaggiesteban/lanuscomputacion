@@ -1,0 +1,29 @@
+{
+  "id": "elit_20033",
+  "title": "Memoria Ram SODIMM KINGSTON KVR 16GB DDR5 5600MHz",
+  "price": 516203.13,
+  "originalPrice": 261.93,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20033/i/YrUjH_l.webp",
+  "slug": "memoria-ram-sodimm-kingston-kvr-16gb-ddr5-5600mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "KINGSTON",
+  "sku": "KVR56S46BS8-16",
+  "ean": "740617334050",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM KINGSTON KVR 16GB DDR5 5600MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 86034
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

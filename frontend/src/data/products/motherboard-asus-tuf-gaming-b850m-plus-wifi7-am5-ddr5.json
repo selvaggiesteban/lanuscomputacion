@@ -1,0 +1,29 @@
+{
+  "id": "elit_19851",
+  "title": "Motherboard ASUS TUF GAMING B850M-PLUS WIFI7 AM5 DDR5",
+  "price": 446477.38,
+  "originalPrice": 226.55,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19851/i/2zRno_l.webp",
+  "slug": "motherboard-asus-tuf-gaming-b850m-plus-wifi7-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "TUF GAMING B850M-PLUS WIFI7",
+  "ean": "4711636179027",
+  "warranty": "36",
+  "description": "Motherboard ASUS TUF GAMING B850M-PLUS WIFI7 AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 74413
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

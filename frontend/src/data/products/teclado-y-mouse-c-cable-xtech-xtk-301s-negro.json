@@ -1,0 +1,29 @@
+{
+  "id": "elit_9659",
+  "title": "Teclado y Mouse c/Cable XTECH XTK-301S Negro",
+  "price": 16712.11,
+  "originalPrice": 8.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9659/i/odxJe_l.webp",
+  "slug": "teclado-y-mouse-c-cable-xtech-xtk-301s-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "XTECH",
+  "sku": "XTK-301S",
+  "ean": "798302164451",
+  "warranty": "12",
+  "description": "Teclado y Mouse c/Cable XTECH XTK-301S Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2785
+  },
+  "stock": 64,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

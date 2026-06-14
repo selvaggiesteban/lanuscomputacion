@@ -1,0 +1,29 @@
+{
+  "id": "elit_19113",
+  "title": "Mochila Teros TE-9038 15.6\" Travel Backpack Brown",
+  "price": 69790.85,
+  "originalPrice": 32.34,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19113/i/cgJzr_l.webp",
+  "slug": "mochila-teros-te-9038-15-6-travel-backpack-brown",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "TEROS",
+  "sku": "TE-9038",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Mochila Teros TE-9038 15.6\" Travel Backpack Brown - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11632
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

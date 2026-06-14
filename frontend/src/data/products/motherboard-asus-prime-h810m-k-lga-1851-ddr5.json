@@ -1,0 +1,29 @@
+{
+  "id": "elit_20217",
+  "title": "Motherboard ASUS PRIME H810M-K LGA 1851 DDR5",
+  "price": 179142.77,
+  "originalPrice": 90.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20217/i/2Flhv_l.webp",
+  "slug": "motherboard-asus-prime-h810m-k-lga-1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME H810M-K",
+  "ean": "4711636292290",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME H810M-K LGA 1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29857
+  },
+  "stock": 76,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

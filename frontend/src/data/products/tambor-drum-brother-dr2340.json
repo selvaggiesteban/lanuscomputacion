@@ -1,0 +1,29 @@
+{
+  "id": "elit_19081",
+  "title": "Tambor Drum Brother DR2340",
+  "price": 179958.54,
+  "originalPrice": 83.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19081/i/W506Y_l.webp",
+  "slug": "tambor-drum-brother-dr2340",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cilindros",
+  "brand": "BROTHER",
+  "sku": "DR2340",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tambor Drum Brother DR2340 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29993
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

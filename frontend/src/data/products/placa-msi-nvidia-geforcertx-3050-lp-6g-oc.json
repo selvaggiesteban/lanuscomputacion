@@ -1,0 +1,29 @@
+{
+  "id": "elit_18231",
+  "title": "Placa MSI NVIDIA GeForceRTX 3050 LP 6G OC",
+  "price": 471624.37,
+  "originalPrice": 239.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18231/i/o7P5K_l.webp",
+  "slug": "placa-msi-nvidia-geforcertx-3050-lp-6g-oc",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "MSI",
+  "sku": "RTX 3050 LP 6G OC",
+  "ean": "4711377176828",
+  "warranty": "36",
+  "description": "Placa MSI NVIDIA GeForceRTX 3050 LP 6G OC - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 78604
+  },
+  "stock": 450,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

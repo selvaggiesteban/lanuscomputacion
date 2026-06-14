@@ -1,0 +1,29 @@
+{
+  "id": "elit_18145",
+  "title": "Notebook HP Victus R5-8645 15\" 16GB/1TB RTX3050 W11h",
+  "price": 2304241.07,
+  "originalPrice": 1169.21,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18145/i/tkXVJ_l.webp",
+  "slug": "notebook-hp-victus-r5-8645-15-16gb-1tb-rtx3050-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "A14LMLA",
+  "ean": "198122718320",
+  "warranty": "12",
+  "description": "Notebook HP Victus R5-8645 15\" 16GB/1TB RTX3050 W11h - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 384040
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

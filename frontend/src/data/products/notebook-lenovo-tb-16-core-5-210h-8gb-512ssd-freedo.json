@@ -1,0 +1,29 @@
+{
+  "id": "elit_18361",
+  "title": "Notebook Lenovo TB 16, CORE 5_210H, 8GB, 512SSD, FREEDO",
+  "price": 1831907.22,
+  "originalPrice": 929.54,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18361/i/bbyRG_l.webp",
+  "slug": "notebook-lenovo-tb-16-core-5-210h-8gb-512ssd-freedo",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21SH0022AC",
+  "ean": "198155963377",
+  "warranty": "1Y PREMIER SUPPORT",
+  "description": "Notebook Lenovo TB 16, CORE 5_210H, 8GB, 512SSD, FREEDO - 1Y PREMIER SUPPORT",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 305318
+  },
+  "stock": 67,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

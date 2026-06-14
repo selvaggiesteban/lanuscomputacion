@@ -1,0 +1,11 @@
+- Productos de API Elit solo tienen que mostrarse en tienda minorista y productos de APIs Distecta/Solutionbox en tienda mayorista.
+
+- Todos los productos tienen que actualizarse todos los días cada 1 h ejecutando sincronización (cron job) correspondiente para cada API (Elit, Solutionbox, Distecna).
+
+- Si el precio base es en USD (dólar U.S.A.) convertir a ARS (pesos argentinos) tomando cotización del Banco Nación. (https://api.bcra.gob.ar/estadisticas/v3.0/monetarias).
+
+- Aplicar al precio original: impuesto IVA del 10.5%, impuesto interno del X% y margen de ganancia del 23% a todos los productos.
+
+- Si el stock del proveedor es 0 no publicar en la tienda.
+
+https://www.air-computers.com/ , https://www.irion.com.ar/ , https://www.pcarts.com/ , https://www.newtree.com.ar/ , https://ashir.com.ar/ , https://nb.com.ar/ , https://astrohard.com.ar/ , https://www.microglobal.com.ar/ , https://www.licenciasonline.com/ , https://www.ceven.com/ , https://seytechla.com/

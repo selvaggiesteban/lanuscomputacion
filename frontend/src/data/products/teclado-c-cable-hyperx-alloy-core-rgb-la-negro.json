@@ -1,0 +1,29 @@
+{
+  "id": "elit_15632",
+  "title": "Teclado c/Cable HYPERX Alloy Core RGB LA Negro",
+  "price": 60541.98,
+  "originalPrice": 30.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15632/i/r3Y32_l.webp",
+  "slug": "teclado-c-cable-hyperx-alloy-core-rgb-la-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "HYPERX",
+  "sku": "4P4F5AI#AC8",
+  "ean": "196188486696",
+  "warranty": "0",
+  "description": "Teclado c/Cable HYPERX Alloy Core RGB LA Negro - 0",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10090
+  },
+  "stock": 837,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

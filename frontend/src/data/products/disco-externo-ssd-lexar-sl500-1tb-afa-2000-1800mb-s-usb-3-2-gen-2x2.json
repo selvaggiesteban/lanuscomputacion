@@ -1,0 +1,29 @@
+{
+  "id": "elit_20284",
+  "title": "Disco Externo SSD LEXAR SL500 1TB AFA 2000/1800MB/s USB 3.2 Gen 2x2",
+  "price": 610162.82,
+  "originalPrice": 282.74,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "disco-externo-ssd-lexar-sl500-1tb-afa-2000-1800mb-s-usb-3-2-gen-2x2",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos SSD",
+  "brand": "LEXAR",
+  "sku": "LSL500X001T-RNXNU",
+  "ean": "0",
+  "warranty": "60",
+  "description": "Disco Externo SSD LEXAR SL500 1TB AFA 2000/1800MB/s USB 3.2 Gen 2x2 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 101694
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

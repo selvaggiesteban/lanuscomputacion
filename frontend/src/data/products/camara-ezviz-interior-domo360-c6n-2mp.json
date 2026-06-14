@@ -1,0 +1,29 @@
+{
+  "id": "elit_16859",
+  "title": "Camara Ezviz interior Domo360 - C6N 2mp",
+  "price": 61288.19,
+  "originalPrice": 28.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16859/i/ilFt2_l.webp",
+  "slug": "camara-ezviz-interior-domo360-c6n-2mp",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-C6N-R101-1G2WF",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Camara Ezviz interior Domo360 - C6N 2mp - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10215
+  },
+  "stock": 652,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

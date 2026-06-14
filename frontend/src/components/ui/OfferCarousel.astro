@@ -1,0 +1,35 @@
+---
+export interface Props {
+  title?: string;
+  linkText?: string;
+  linkHref?: string;
+}
+
+const { title = 'Ofertas', linkText = 'Ver más', linkHref = '/ofertas' } = Astro.props;
+---
+
+<section class="ml-container py-8">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-xl font-semibold text-ml-text">{title}</h2>
+    <a href={linkHref} class="text-sm ml-link font-medium">{linkText} →</a>
+  </div>
+  <div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+    {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+      <div class="flex-shrink-0 w-40 snap-start">
+        <div class="ml-card p-2">
+          <div class="aspect-square bg-ml-bg rounded mb-2 flex items-center justify-center text-ml-text-muted text-xs">
+            200x200
+          </div>
+          <div class="h-8 bg-gray-100 rounded mb-1" />
+          <div class="h-5 bg-ml-yellow rounded w-16 mb-1" />
+          <div class="h-4 bg-gray-50 rounded w-24" />
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

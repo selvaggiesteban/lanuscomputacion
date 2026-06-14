@@ -1,0 +1,29 @@
+{
+  "id": "elit_18319",
+  "title": "Disco Interno SSD Sandisk Plus 2TB SATA III 2.5´ 545MB/s",
+  "price": 503905.54,
+  "originalPrice": 255.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18319/i/BLDQd_l.webp",
+  "slug": "disco-interno-ssd-sandisk-plus-2tb-sata-iii-2-5-545mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "SANDISK",
+  "sku": "SDSSDA-2T00-G26",
+  "ean": "619659177836",
+  "warranty": "36",
+  "description": "Disco Interno SSD Sandisk Plus 2TB SATA III 2.5´ 545MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 83984
+  },
+  "stock": 66,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

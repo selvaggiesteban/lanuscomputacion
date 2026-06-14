@@ -1,0 +1,29 @@
+{
+  "id": "elit_7980",
+  "title": "Cartucho de Tinta Plotter HP   728 Magenta",
+  "price": 193450.54,
+  "originalPrice": 98.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7980/i/cpX8h_l.webp",
+  "slug": "cartucho-de-tinta-plotter-hp-728-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Plotters",
+  "brand": "HP",
+  "sku": "F9J66A",
+  "ean": "888793397855",
+  "warranty": "HP",
+  "description": "Cartucho de Tinta Plotter HP   728 Magenta - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32242
+  },
+  "stock": 60,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

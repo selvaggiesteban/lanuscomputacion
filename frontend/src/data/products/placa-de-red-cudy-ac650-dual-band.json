@@ -1,0 +1,29 @@
+{
+  "id": "elit_19673",
+  "title": "Placa de Red Cudy AC650 Dual Band",
+  "price": 18958.78,
+  "originalPrice": 9.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19673/i/sjRCw_l.webp",
+  "slug": "placa-de-red-cudy-ac650-dual-band",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Placas de Red",
+  "brand": "CUDY",
+  "sku": "WE650",
+  "ean": "6971690794880",
+  "warranty": "12",
+  "description": "Placa de Red Cudy AC650 Dual Band - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3160
+  },
+  "stock": 27,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

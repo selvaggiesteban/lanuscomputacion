@@ -1,0 +1,29 @@
+{
+  "id": "elit_18636",
+  "title": "Acces Point Cudy AC1200 Gigabit",
+  "price": 58452.96,
+  "originalPrice": 29.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18636/i/1MIVk_l.webp",
+  "slug": "acces-point-cudy-ac1200-gigabit",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Extensores",
+  "brand": "CUDY",
+  "sku": "AP1300",
+  "ean": "6971690792022",
+  "warranty": "12",
+  "description": "Acces Point Cudy AC1200 Gigabit - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9742
+  },
+  "stock": 411,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

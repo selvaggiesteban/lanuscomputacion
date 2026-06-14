@@ -1,0 +1,29 @@
+{
+  "id": "elit_17566",
+  "title": "Memoria LEXAR UDIMM DDR4 16GB 3200MHz",
+  "price": 396656.37,
+  "originalPrice": 201.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17566/i/Qn4Yt_l.webp",
+  "slug": "memoria-lexar-udimm-ddr4-16gb-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "LEXAR",
+  "sku": "LD4AU016G-B3200GSST",
+  "ean": "843367123803",
+  "warranty": "99",
+  "description": "Memoria LEXAR UDIMM DDR4 16GB 3200MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 66109
+  },
+  "stock": 190,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

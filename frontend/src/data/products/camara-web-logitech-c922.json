@@ -1,0 +1,29 @@
+{
+  "id": "elit_7307",
+  "title": "Cámara Web LOGITECH C922",
+  "price": 153004.68,
+  "originalPrice": 70.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7307/i/cltDE_l.webp",
+  "slug": "camara-web-logitech-c922",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Cámaras Web",
+  "brand": "LOGITECH",
+  "sku": "960-001087",
+  "ean": "97855124296",
+  "warranty": "24",
+  "description": "Cámara Web LOGITECH C922 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 25501
+  },
+  "stock": 108,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

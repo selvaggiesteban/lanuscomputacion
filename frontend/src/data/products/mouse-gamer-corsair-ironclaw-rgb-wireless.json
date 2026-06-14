@@ -1,0 +1,29 @@
+{
+  "id": "elit_19407",
+  "title": "Mouse gamer CORSAIR IRONCLAW RGB Wireless",
+  "price": 120630.68,
+  "originalPrice": 61.21,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19407/i/x4iud_l.webp",
+  "slug": "mouse-gamer-corsair-ironclaw-rgb-wireless",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "CORSAIR",
+  "sku": "CH-9317011-NA",
+  "ean": "843591075961",
+  "warranty": "24",
+  "description": "Mouse gamer CORSAIR IRONCLAW RGB Wireless - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20105
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

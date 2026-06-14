@@ -1,0 +1,29 @@
+{
+  "id": "elit_19864",
+  "title": "Monitor ASUS VA27EHF-J 27\" IPS Full HD (1920x1080) 100Hz 1ms",
+  "price": 239011.33,
+  "originalPrice": 100.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19864/i/WcPPg_l.webp",
+  "slug": "monitor-asus-va27ehf-j-27-ips-full-hd-1920x1080-100hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "ASUS",
+  "sku": "VA27EHF-J",
+  "ean": "4711387717547",
+  "warranty": "36",
+  "description": "Monitor ASUS VA27EHF-J 27\" IPS Full HD (1920x1080) 100Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 39835
+  },
+  "stock": 205,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

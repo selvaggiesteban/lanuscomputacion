@@ -1,0 +1,29 @@
+{
+  "id": "elit_19861",
+  "title": "Mini PC ASUS PN41-S1-BBN4000XFV Intel Celeron N4505 BAREBONE (S/RAM - S/SSD)",
+  "price": 269955.73,
+  "originalPrice": 136.98,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19861/i/mGAG9_l.webp",
+  "slug": "mini-pc-asus-pn41-s1-bbn4000xfv-intel-celeron-n4505-barebone-s-ram-s-ssd",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Mini PC",
+  "brand": "ASUS",
+  "sku": "PN41-S1-BBN4000XFV",
+  "ean": "0",
+  "warranty": "36",
+  "description": "Mini PC ASUS PN41-S1-BBN4000XFV Intel Celeron N4505 BAREBONE (S/RAM - S/SSD) - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 44993
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

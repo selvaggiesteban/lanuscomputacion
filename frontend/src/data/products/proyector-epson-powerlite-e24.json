@@ -1,0 +1,29 @@
+{
+  "id": "elit_19252",
+  "title": "PROYECTOR EPSON POWERLITE E24",
+  "price": 990149.62,
+  "originalPrice": 458.82,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19252/i/uYLBv_l.webp",
+  "slug": "proyector-epson-powerlite-e24",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11HB51021",
+  "ean": "0",
+  "warranty": "24",
+  "description": "PROYECTOR EPSON POWERLITE E24 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 165025
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

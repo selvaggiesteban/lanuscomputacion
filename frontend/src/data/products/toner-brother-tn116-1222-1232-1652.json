@@ -1,0 +1,29 @@
+{
+  "id": "elit_20008",
+  "title": "Tóner Brother TN116 (1222-1232-1652)",
+  "price": 41844.3,
+  "originalPrice": 19.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20008/i/a5wwF_l.webp",
+  "slug": "toner-brother-tn116-1222-1232-1652",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN116",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tóner Brother TN116 (1222-1232-1652) - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 6974
+  },
+  "stock": 309,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

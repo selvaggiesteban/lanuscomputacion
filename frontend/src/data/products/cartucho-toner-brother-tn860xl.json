@@ -1,0 +1,29 @@
+{
+  "id": "elit_19076",
+  "title": "Cartucho Toner Brother TN860XL",
+  "price": 139128.52,
+  "originalPrice": 64.47,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19076/i/a7orK_l.webp",
+  "slug": "cartucho-toner-brother-tn860xl",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cilindros",
+  "brand": "BROTHER",
+  "sku": "TN860XL",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho Toner Brother TN860XL - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23188
+  },
+  "stock": 25,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19926",
+  "title": "Procesador Intel Core Ultra 5 250KF PLUS 4.2 GHz 3",
+  "price": 441629.29,
+  "originalPrice": 224.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19926/i/GDVXk_l.webp",
+  "slug": "procesador-intel-core-ultra-5-250kf-plus-4-2-ghz-3",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768250KF",
+  "ean": "5032037284745",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 5 250KF PLUS 4.2 GHz 3 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 73605
+  },
+  "stock": 30,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

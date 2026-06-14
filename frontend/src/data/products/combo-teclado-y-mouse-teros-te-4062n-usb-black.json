@@ -1,0 +1,29 @@
+{
+  "id": "elit_18937",
+  "title": "Combo Teclado y Mouse Teros TE-4062N USB Black",
+  "price": 9696.18,
+  "originalPrice": 4.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18937/i/wefNb_l.webp",
+  "slug": "combo-teclado-y-mouse-teros-te-4062n-usb-black",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "TEROS",
+  "sku": "TE-4062N",
+  "ean": "782752504004",
+  "warranty": "12",
+  "description": "Combo Teclado y Mouse Teros TE-4062N USB Black - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1616
+  },
+  "stock": 479,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

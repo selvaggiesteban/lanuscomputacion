@@ -1,0 +1,29 @@
+{
+  "id": "elit_10031",
+  "title": "Impresora Epson L14150 multifunción Ecotank",
+  "price": 1484253.31,
+  "originalPrice": 687.78,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10031/i/ss8P5_l.webp",
+  "slug": "impresora-epson-l14150-multifuncion-ecotank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CH96303",
+  "ean": "10343951327",
+  "warranty": "12",
+  "description": "Impresora Epson L14150 multifunción Ecotank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 247376
+  },
+  "stock": 80,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

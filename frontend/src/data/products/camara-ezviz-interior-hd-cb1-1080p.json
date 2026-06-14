@@ -1,0 +1,29 @@
+{
+  "id": "elit_16862",
+  "title": "Camara Ezviz interior HD CB1 1080p",
+  "price": 89709.51,
+  "originalPrice": 41.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16862/i/zDPgP_l.webp",
+  "slug": "camara-ezviz-interior-hd-cb1-1080p",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-CB1-R100-1K2WF(AM-STD)",
+  "ean": "6941545619170",
+  "warranty": "12",
+  "description": "Camara Ezviz interior HD CB1 1080p - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 14952
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

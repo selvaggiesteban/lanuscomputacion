@@ -1,0 +1,29 @@
+{
+  "id": "elit_3988",
+  "title": "Combo Teclado y Mouse Logitech  MK120 Español",
+  "price": 20200.37,
+  "originalPrice": 10.25,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3988/i/LgifL_l.webp",
+  "slug": "combo-teclado-y-mouse-logitech-mk120-espanol",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-004428",
+  "ean": "97855088802",
+  "warranty": "12",
+  "description": "Combo Teclado y Mouse Logitech  MK120 Español - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3367
+  },
+  "stock": 732,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

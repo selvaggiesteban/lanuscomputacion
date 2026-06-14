@@ -1,0 +1,29 @@
+{
+  "id": "elit_19717",
+  "title": "Camara Ezviz H6c 3MP",
+  "price": 62259.31,
+  "originalPrice": 28.85,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19717/i/mTo8c_l.webp",
+  "slug": "camara-ezviz-h6c-3mp",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-H6c-R105-1L3WF(AM-STD)(Mul)",
+  "ean": "6941545632711",
+  "warranty": "12",
+  "description": "Camara Ezviz H6c 3MP - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10377
+  },
+  "stock": 267,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

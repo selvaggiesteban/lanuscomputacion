@@ -1,0 +1,29 @@
+{
+  "id": "elit_8663",
+  "title": "Impresora Epson M3170 Multifunción",
+  "price": 853459.68,
+  "originalPrice": 395.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8663/i/cJAaJ_l.webp",
+  "slug": "impresora-epson-m3170-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CG92303",
+  "ean": "10343945869",
+  "warranty": "24",
+  "description": "Impresora Epson M3170 Multifunción - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 142243
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19447",
+  "title": "Motherboard MSI PRO A620AM-B EVO AM5 DDR5",
+  "price": 125005.78,
+  "originalPrice": 63.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19447/i/puPLp_l.webp",
+  "slug": "motherboard-msi-pro-a620am-b-evo-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO A620AM-B EVO",
+  "ean": "824142446072",
+  "warranty": "24",
+  "description": "Motherboard MSI PRO A620AM-B EVO AM5 DDR5 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20834
+  },
+  "stock": 665,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_17442",
+  "title": "Disco duro int 4TB SATA 6 Gb/s 64MB SkyHawk",
+  "price": 376968.41,
+  "originalPrice": 191.28,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17442/i/QxZgx_l.webp",
+  "slug": "disco-duro-int-4tb-sata-6-gb-s-64mb-skyhawk",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "SEAGATE",
+  "sku": "ST4000VX016",
+  "ean": "8719706028288",
+  "warranty": "24",
+  "description": "Disco duro int 4TB SATA 6 Gb/s 64MB SkyHawk - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 62828
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

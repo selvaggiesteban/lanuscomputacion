@@ -1,0 +1,29 @@
+{
+  "id": "elit_17563",
+  "title": "Memoria LEXAR SODIMM DDR4 16GB 3200MHz",
+  "price": 300049.35,
+  "originalPrice": 152.25,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17563/i/EhWSZ_l.webp",
+  "slug": "memoria-lexar-sodimm-ddr4-16gb-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "LEXAR",
+  "sku": "LD4AS016G-B3200GSST",
+  "ean": "843367123773",
+  "warranty": "99",
+  "description": "Memoria LEXAR SODIMM DDR4 16GB 3200MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 50008
+  },
+  "stock": 177,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18051",
+  "title": "Procesador Intel Core Ultra 9 285K 3.7 GHz 36 LGA1851",
+  "price": 1265232.73,
+  "originalPrice": 642.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18051/i/BnFJ0_l.webp",
+  "slug": "procesador-intel-core-ultra-9-285k-3-7-ghz-36-lga1851",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768285K",
+  "ean": "5032037281928",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 9 285K 3.7 GHz 36 LGA1851 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 210872
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

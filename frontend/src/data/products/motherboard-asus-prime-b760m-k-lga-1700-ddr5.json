@@ -1,0 +1,29 @@
+{
+  "id": "elit_19492",
+  "title": "Motherboard ASUS PRIME B760M-K LGA 1700 DDR5",
+  "price": 173486.66,
+  "originalPrice": 88.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19492/i/9Wzty_l.webp",
+  "slug": "motherboard-asus-prime-b760m-k-lga-1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B760M-K",
+  "ean": "4711387198506",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B760M-K LGA 1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 28914
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

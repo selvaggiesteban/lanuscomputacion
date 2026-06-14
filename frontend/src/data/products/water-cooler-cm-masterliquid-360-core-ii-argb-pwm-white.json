@@ -1,0 +1,29 @@
+{
+  "id": "elit_18699",
+  "title": "Water Cooler CM MasterLiquid 360 Core II ARGB PWM White",
+  "price": 158035.85,
+  "originalPrice": 80.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18699/i/T0kn0_l.webp",
+  "slug": "water-cooler-cm-masterliquid-360-core-ii-argb-pwm-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MLW-D36M-A18PA-RW",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Water Cooler CM MasterLiquid 360 Core II ARGB PWM White - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 26339
+  },
+  "stock": 166,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

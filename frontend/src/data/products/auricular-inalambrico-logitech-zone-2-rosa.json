@@ -1,0 +1,29 @@
+{
+  "id": "elit_19649",
+  "title": "Auricular Inalámbrico Logitech Zone 2 Rosa",
+  "price": 371074.12,
+  "originalPrice": 171.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19649/i/2l8G6_l.webp",
+  "slug": "auricular-inalambrico-logitech-zone-2-rosa",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001597",
+  "ean": "97855207715",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech Zone 2 Rosa - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 61846
+  },
+  "stock": 45,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

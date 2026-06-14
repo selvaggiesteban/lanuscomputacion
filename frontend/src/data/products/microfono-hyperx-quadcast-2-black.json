@@ -1,0 +1,29 @@
+{
+  "id": "elit_17845",
+  "title": "Microfono HyperX QuadCast 2 Black",
+  "price": 244052.18,
+  "originalPrice": 113.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17845/i/KzL8c_l.webp",
+  "slug": "microfono-hyperx-quadcast-2-black",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Micrófonos",
+  "brand": "HYPERX",
+  "sku": "872V1AA",
+  "ean": "197497651058",
+  "warranty": "24",
+  "description": "Microfono HyperX QuadCast 2 Black - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 40675
+  },
+  "stock": 109,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

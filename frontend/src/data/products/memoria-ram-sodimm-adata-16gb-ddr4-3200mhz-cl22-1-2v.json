@@ -1,0 +1,29 @@
+{
+  "id": "elit_20071",
+  "title": "Memoria Ram SODIMM ADATA 16GB DDR4 3200MHz CL22  1.2V",
+  "price": 298472.74,
+  "originalPrice": 151.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20071/i/DEQND_l.webp",
+  "slug": "memoria-ram-sodimm-adata-16gb-ddr4-3200mhz-cl22-1-2v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "ADATA",
+  "sku": "AD4S320016G22-SGN",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM ADATA 16GB DDR4 3200MHz CL22  1.2V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 49745
+  },
+  "stock": 38,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

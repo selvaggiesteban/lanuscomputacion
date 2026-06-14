@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Mi perfil | Lanús Computación">
+  <div class="ml-container py-6">
+    <h1 class="text-xl font-semibold text-ml-text mb-6">Mi perfil</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <!-- Sidebar -->
+      <nav class="md:col-span-1">
+        <div class="bg-white rounded shadow-card p-4 space-y-1">
+          {[
+            { label: 'Datos personales', href: '/perfil', active: true },
+            { label: 'Mis compras', href: '/compras' },
+            { label: 'Favoritos', href: '/favoritos' },
+            { label: 'Notificaciones', href: '/notificaciones' },
+            { label: 'Direcciones', href: '#' },
+            { label: 'Configuración', href: '#' },
+          ].map(item => (
+            <a
+              href={item.href}
+              class={`block px-3 py-2 text-sm rounded transition-colors ${
+                item.active ? 'bg-ml-blue-light text-ml-blue font-medium' : 'text-ml-text-secondary hover:bg-gray-50 hover:text-ml-text'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <!-- Content -->
+      <div class="md:col-span-3">
+        <div class="bg-white rounded shadow-card p-6">
+          <h2 class="text-lg font-medium text-ml-text mb-4">Datos personales</h2>
+          <p class="text-sm text-ml-text-muted">Completá tus datos para una mejor experiencia de compra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

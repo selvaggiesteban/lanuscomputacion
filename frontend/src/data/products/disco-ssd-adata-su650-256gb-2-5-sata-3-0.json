@@ -1,0 +1,29 @@
+{
+  "id": "elit_19631",
+  "title": "Disco SSD ADATA SU650 256GB 2.5\" SATA 3.0",
+  "price": 109298.77,
+  "originalPrice": 55.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19631/i/3DNTQ_l.webp",
+  "slug": "disco-ssd-adata-su650-256gb-2-5-sata-3-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "ADATA",
+  "sku": "ASU650SS-256GT-R",
+  "ean": "4711085931511",
+  "warranty": "36",
+  "description": "Disco SSD ADATA SU650 256GB 2.5\" SATA 3.0 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 18216
+  },
+  "stock": 177,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

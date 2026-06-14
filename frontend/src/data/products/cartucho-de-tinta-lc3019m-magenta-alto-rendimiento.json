@@ -1,0 +1,29 @@
+{
+  "id": "elit_8660",
+  "title": "Cartucho de tinta LC3019M Magenta Alto Rendimiento",
+  "price": 45682.39,
+  "originalPrice": 23.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8660/i/2cP91_l.webp",
+  "slug": "cartucho-de-tinta-lc3019m-magenta-alto-rendimiento",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC3019M",
+  "ean": "12502645979",
+  "warranty": "12",
+  "description": "Cartucho de tinta LC3019M Magenta Alto Rendimiento - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7614
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

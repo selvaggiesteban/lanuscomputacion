@@ -1,0 +1,29 @@
+{
+  "id": "elit_19520",
+  "title": "Memoria Ram UDIMM ADATA XPG LANCER BLADE 16GB DDR5 5600 WHITE CL46 1.1V",
+  "price": 483626.34,
+  "originalPrice": 245.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19520/i/lJzSt_l.webp",
+  "slug": "memoria-ram-udimm-adata-xpg-lancer-blade-16gb-ddr5-5600-white-cl46-1-1v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AX5U5600C4616G-SLABWH",
+  "ean": "4711085945426",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA XPG LANCER BLADE 16GB DDR5 5600 WHITE CL46 1.1V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 80604
+  },
+  "stock": 58,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

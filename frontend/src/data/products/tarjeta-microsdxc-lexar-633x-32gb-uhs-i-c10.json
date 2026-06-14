@@ -1,0 +1,29 @@
+{
+  "id": "elit_18331",
+  "title": "Tarjeta microSDXC Lexar  633x 32GB UHS-I C10",
+  "price": 19924.46,
+  "originalPrice": 10.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18331/i/yrf5u_l.webp",
+  "slug": "tarjeta-microsdxc-lexar-633x-32gb-uhs-i-c10",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "LEXAR",
+  "sku": "LMS0633032G-BNNNG",
+  "ean": "843367128884",
+  "warranty": "120",
+  "description": "Tarjeta microSDXC Lexar  633x 32GB UHS-I C10 - 120",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3321
+  },
+  "stock": 830,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

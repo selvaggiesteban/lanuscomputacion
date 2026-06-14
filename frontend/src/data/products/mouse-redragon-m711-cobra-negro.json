@@ -1,0 +1,29 @@
+{
+  "id": "elit_20203",
+  "title": "Mouse Redragon M711 Cobra Negro",
+  "price": 26743.31,
+  "originalPrice": 13.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20203/i/lIPZs_l.webp",
+  "slug": "mouse-redragon-m711-cobra-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "REDRAGON",
+  "sku": "M711",
+  "ean": "6950376750549",
+  "warranty": "12",
+  "description": "Mouse Redragon M711 Cobra Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4457
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

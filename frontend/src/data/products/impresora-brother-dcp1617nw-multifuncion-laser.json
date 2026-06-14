@@ -1,0 +1,29 @@
+{
+  "id": "elit_5980",
+  "title": "Impresora Brother DCP1617NW Multifuncion Laser",
+  "price": 473300.24,
+  "originalPrice": 219.32,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/5980/i/zjCzH_l.webp",
+  "slug": "impresora-brother-dcp1617nw-multifuncion-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "DCP-1617NW",
+  "ean": "12502639800",
+  "warranty": "12",
+  "description": "Impresora Brother DCP1617NW Multifuncion Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 78883
+  },
+  "stock": 286,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

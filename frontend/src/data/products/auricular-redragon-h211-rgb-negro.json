@@ -1,0 +1,29 @@
+{
+  "id": "elit_20172",
+  "title": "Auricular Redragon H211 RGB Negro",
+  "price": 33579.02,
+  "originalPrice": 15.56,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20172/i/bdS6C_l.webp",
+  "slug": "auricular-redragon-h211-rgb-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "REDRAGON",
+  "sku": "H211-RGB",
+  "ean": "6950376718815",
+  "warranty": "12",
+  "description": "Auricular Redragon H211 RGB Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5597
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

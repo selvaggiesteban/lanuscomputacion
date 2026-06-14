@@ -1,0 +1,29 @@
+{
+  "id": "elit_20037",
+  "title": "Teclado gamer mecánico CORSAIR K70 CORE RGB USB Gris EN",
+  "price": 141560.23,
+  "originalPrice": 71.83,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20037/i/fRXUy_l.webp",
+  "slug": "teclado-gamer-mecanico-corsair-k70-core-rgb-usb-gris-en",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "CORSAIR",
+  "sku": "CH-9109B1E-NA",
+  "ean": "840006666790",
+  "warranty": "24",
+  "description": "Teclado gamer mecánico CORSAIR K70 CORE RGB USB Gris EN - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23593
+  },
+  "stock": 138,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

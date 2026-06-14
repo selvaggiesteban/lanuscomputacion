@@ -1,0 +1,29 @@
+{
+  "id": "elit_18607",
+  "title": "Placa de Video GIGABYTE AORUS GeForce RTX 5070 MASTER 12G",
+  "price": 1704300.03,
+  "originalPrice": 864.79,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18607/i/I8m3h_l.webp",
+  "slug": "placa-de-video-gigabyte-aorus-geforce-rtx-5070-master-12g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-N5070AORUS M-12GD",
+  "ean": "4719331355753",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE AORUS GeForce RTX 5070 MASTER 12G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 284050
+  },
+  "stock": 47,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

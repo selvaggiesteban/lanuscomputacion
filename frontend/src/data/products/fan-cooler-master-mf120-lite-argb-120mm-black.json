@@ -1,0 +1,29 @@
+{
+  "id": "elit_18592",
+  "title": "Fan Cooler Master MF120 Lite ARGB 120mm Black",
+  "price": 11502.33,
+  "originalPrice": 5.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18592/i/npqWu_l.webp",
+  "slug": "fan-cooler-master-mf120-lite-argb-120mm-black",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MFW-B2DN-17NPA-R1",
+  "ean": "4719512154908",
+  "warranty": "24",
+  "description": "Fan Cooler Master MF120 Lite ARGB 120mm Black - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1917
+  },
+  "stock": 213,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

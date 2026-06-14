@@ -1,0 +1,29 @@
+{
+  "id": "elit_17422",
+  "title": "Pen Drive 3.2 DTX 64GB Exodia Rojo",
+  "price": 19292.83,
+  "originalPrice": 8.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17422/i/viICt_l.webp",
+  "slug": "pen-drive-3-2-dtx-64gb-exodia-rojo",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "KC-U2G64-7GR",
+  "ean": "740617331400",
+  "warranty": "60",
+  "description": "Pen Drive 3.2 DTX 64GB Exodia Rojo - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3215
+  },
+  "stock": 227,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_17315",
+  "title": "Memoria SODIMM Fury DDR4 16GB 3200MHz Impact Negra",
+  "price": 359743.9,
+  "originalPrice": 182.54,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17315/i/XbG6v_l.webp",
+  "slug": "memoria-sodimm-fury-ddr4-16gb-3200mhz-impact-negra",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "KINGSTON",
+  "sku": "KF432S20IB/16",
+  "ean": "740617318395",
+  "warranty": "99",
+  "description": "Memoria SODIMM Fury DDR4 16GB 3200MHz Impact Negra - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 59957
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

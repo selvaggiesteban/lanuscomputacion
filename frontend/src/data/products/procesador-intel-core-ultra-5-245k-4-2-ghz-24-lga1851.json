@@ -1,0 +1,29 @@
+{
+  "id": "elit_18047",
+  "title": "Procesador Intel Core Ultra 5 245K 4.2 GHz 24 LGA1851",
+  "price": 439500.86,
+  "originalPrice": 223.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18047/i/ZuTOL_l.webp",
+  "slug": "procesador-intel-core-ultra-5-245k-4-2-ghz-24-lga1851",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768245K",
+  "ean": "675902153941",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 5 245K 4.2 GHz 24 LGA1851 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 73250
+  },
+  "stock": 25,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18215",
+  "title": "Fuente GIGABYTE P550S 550W 80 PLUS Silver",
+  "price": 79631.49,
+  "originalPrice": 36.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18215/i/UqG7H_l.webp",
+  "slug": "fuente-gigabyte-p550s-550w-80-plus-silver",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "GIGABYTE",
+  "sku": "GP-P550SS",
+  "ean": "4719331555160",
+  "warranty": "36",
+  "description": "Fuente GIGABYTE P550S 550W 80 PLUS Silver - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13272
+  },
+  "stock": 545,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

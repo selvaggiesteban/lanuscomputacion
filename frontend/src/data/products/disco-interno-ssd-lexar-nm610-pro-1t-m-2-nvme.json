@@ -1,0 +1,29 @@
+{
+  "id": "elit_18539",
+  "title": "Disco Interno SSD LEXAR NM610 PRO 1T M.2 NVMe",
+  "price": 340233.3,
+  "originalPrice": 172.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18539/i/fj7NB_l.webp",
+  "slug": "disco-interno-ssd-lexar-nm610-pro-1t-m-2-nvme",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "LEXAR",
+  "sku": "LNM610P001T-RNNNG",
+  "ean": "843367128723",
+  "warranty": "36",
+  "description": "Disco Interno SSD LEXAR NM610 PRO 1T M.2 NVMe - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 56706
+  },
+  "stock": 506,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

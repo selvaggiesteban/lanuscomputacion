@@ -1,0 +1,37 @@
+---
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'b2b';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const { variant = 'primary', size = 'md', href, disabled, type = 'button', class: className = '' } = Astro.props;
+
+const base = "inline-flex items-center justify-center font-bold rounded transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+const variants = {
+  primary: "bg-ml-blue text-white hover:bg-ml-blue-hover",
+  secondary: "bg-ml-blue-light text-ml-blue hover:bg-blue-100",
+  outline: "border border-ml-border text-ml-text hover:border-ml-blue hover:text-ml-blue bg-white",
+  b2b: "bg-b2b-purple text-white hover:bg-purple-700",
+};
+const sizes = {
+  sm: "text-xs px-3 py-1.5 rounded",
+  md: "text-sm px-6 py-3",
+  lg: "text-base px-8 py-4",
+};
+---
+
+{
+  href ? (
+    <a href={href} class={`${base} ${variants[variant]} ${sizes[size]} ${className}`}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} disabled={disabled} class={`${base} ${variants[variant]} ${sizes[size]} ${className}`}>
+      <slot />
+    </button>
+  )
+}

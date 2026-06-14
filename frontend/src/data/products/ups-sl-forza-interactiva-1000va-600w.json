@@ -1,0 +1,29 @@
+{
+  "id": "elit_7093",
+  "title": "UPS SL FORZA Interactiva 1000VA 600W",
+  "price": 209827.62,
+  "originalPrice": 106.47,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7093/i/dtGf5_l.webp",
+  "slug": "ups-sl-forza-interactiva-1000va-600w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "SL-1012UL-A",
+  "ean": "798302107823",
+  "warranty": "36",
+  "description": "UPS SL FORZA Interactiva 1000VA 600W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 34971
+  },
+  "stock": 206,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

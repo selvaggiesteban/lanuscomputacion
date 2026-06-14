@@ -1,0 +1,29 @@
+{
+  "id": "elit_18444",
+  "title": "Disco Interno HDD WESTERN DIGITAL Red 8TB 3.5\" SATA 3.0 5400rpm",
+  "price": 587840.53,
+  "originalPrice": 298.28,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18444/i/5uOBH_l.webp",
+  "slug": "disco-interno-hdd-western-digital-red-8tb-3-5-sata-3-0-5400rpm",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "WD",
+  "sku": "WD80EFPX",
+  "ean": "718037899817",
+  "warranty": "36",
+  "description": "Disco Interno HDD WESTERN DIGITAL Red 8TB 3.5\" SATA 3.0 5400rpm - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 97973
+  },
+  "stock": 29,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

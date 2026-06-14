@@ -1,0 +1,29 @@
+{
+  "id": "elit_19107",
+  "title": "Pen Drive KINGSTON Exodia S 256GB USB 3.2 Gen1 Neg",
+  "price": 71193.57,
+  "originalPrice": 32.99,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19107/i/rnCAX_l.webp",
+  "slug": "pen-drive-kingston-exodia-s-256gb-usb-3-2-gen1-neg",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTXS/256GB",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Pen Drive KINGSTON Exodia S 256GB USB 3.2 Gen1 Neg - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11866
+  },
+  "stock": 106,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

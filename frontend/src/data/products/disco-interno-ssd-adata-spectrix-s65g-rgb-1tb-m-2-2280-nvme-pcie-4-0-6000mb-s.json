@@ -1,0 +1,29 @@
+{
+  "id": "elit_19635",
+  "title": "Disco Interno SSD ADATA SPECTRIX S65G RGB 1TB M.2 2280 NVMe PCIe 4.0 6000MB/s",
+  "price": 351683.46,
+  "originalPrice": 178.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19635/i/mnFp1_l.webp",
+  "slug": "disco-interno-ssd-adata-spectrix-s65g-rgb-1tb-m-2-2280-nvme-pcie-4-0-6000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "ADATA",
+  "sku": "SSPECTRIXS65G-1000G-CI",
+  "ean": "4711658152558",
+  "warranty": "60",
+  "description": "Disco Interno SSD ADATA SPECTRIX S65G RGB 1TB M.2 2280 NVMe PCIe 4.0 6000MB/s - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 58614
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19222",
+  "title": "Disco SSD Biwin M100 512GB 2.5\" SATA 3.0",
+  "price": 168717.41,
+  "originalPrice": 85.61,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19222/i/WpQrA_l.webp",
+  "slug": "disco-ssd-biwin-m100-512gb-2-5-sata-3-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "BIWIN",
+  "sku": "BM100NN512G-RGX",
+  "ean": "6955914627345",
+  "warranty": "30",
+  "description": "Disco SSD Biwin M100 512GB 2.5\" SATA 3.0 - 30",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 28120
+  },
+  "stock": 222,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

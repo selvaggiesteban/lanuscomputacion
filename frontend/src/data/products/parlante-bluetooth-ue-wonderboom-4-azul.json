@@ -1,0 +1,29 @@
+{
+  "id": "elit_18159",
+  "title": "Parlante Bluetooth UE Wonderboom 4 Azul",
+  "price": 174930.32,
+  "originalPrice": 81.06,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18159/i/nmXiW_l.webp",
+  "slug": "parlante-bluetooth-ue-wonderboom-4-azul",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "LOGITECH",
+  "sku": "984-001889",
+  "ean": "97855190086",
+  "warranty": "12",
+  "description": "Parlante Bluetooth UE Wonderboom 4 Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29155
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

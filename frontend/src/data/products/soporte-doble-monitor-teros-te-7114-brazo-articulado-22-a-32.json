@@ -1,0 +1,29 @@
+{
+  "id": "elit_19109",
+  "title": "Soporte Doble Monitor Teros TE-7114 Brazo Articulado 22\" a 32\"",
+  "price": 133474.46,
+  "originalPrice": 61.85,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19109/i/hCbIJ_l.webp",
+  "slug": "soporte-doble-monitor-teros-te-7114-brazo-articulado-22-a-32",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Soportes",
+  "brand": "TEROS",
+  "sku": "TE-7114",
+  "ean": "782752507258",
+  "warranty": "12",
+  "description": "Soporte Doble Monitor Teros TE-7114 Brazo Articulado 22\" a 32\" - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22246
+  },
+  "stock": 147,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18286",
+  "title": "Procesador Intel Core Ultra 5 225 4.2 GHz 22 LGA1851",
+  "price": 413802.05,
+  "originalPrice": 209.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18286/i/xZoVm_l.webp",
+  "slug": "procesador-intel-core-ultra-5-225-4-2-ghz-22-lga1851",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768225",
+  "ean": "5032037282352",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 5 225 4.2 GHz 22 LGA1851 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 68967
+  },
+  "stock": 79,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

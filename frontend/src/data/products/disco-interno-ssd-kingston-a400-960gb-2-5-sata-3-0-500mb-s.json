@@ -1,0 +1,29 @@
+{
+  "id": "elit_7869",
+  "title": "Disco Interno SSD KINGSTON A400 960GB 2.5\" SATA 3.0  500MB/s",
+  "price": 368139.37,
+  "originalPrice": 186.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7869/i/BLYWb_l.webp",
+  "slug": "disco-interno-ssd-kingston-a400-960gb-2-5-sata-3-0-500mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SA400S37/960G",
+  "ean": "740617277357",
+  "warranty": "36",
+  "description": "Disco Interno SSD KINGSTON A400 960GB 2.5\" SATA 3.0  500MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 61357
+  },
+  "stock": 187,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_17084",
+  "title": "Procesador Core i5-14600KF 3.5GHz 24MB LGA 1700",
+  "price": 547814.24,
+  "originalPrice": 277.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17084/i/niUUx_l.webp",
+  "slug": "procesador-core-i5-14600kf-3-5ghz-24mb-lga-1700",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071514600KF",
+  "ean": "5032037278461",
+  "warranty": "60",
+  "description": "Procesador Core i5-14600KF 3.5GHz 24MB LGA 1700 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 91302
+  },
+  "stock": 37,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_15944",
+  "title": "Impresora Pantum M6509NW Multifunción Laser",
+  "price": 265610.95,
+  "originalPrice": 123.08,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15944/i/nHhet_l.webp",
+  "slug": "impresora-pantum-m6509nw-multifuncion-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "PANTUM",
+  "sku": "M6509NW",
+  "ean": "6936358033596",
+  "warranty": "12",
+  "description": "Impresora Pantum M6509NW Multifunción Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 44268
+  },
+  "stock": 120,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

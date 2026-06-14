@@ -1,0 +1,29 @@
+{
+  "id": "elit_19292",
+  "title": "Cable Teros USB-A a USB-C Grey",
+  "price": 4941.9,
+  "originalPrice": 2.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19292/i/joO2J_l.webp",
+  "slug": "cable-teros-usb-a-a-usb-c-grey",
+  "categorySlug": "cables",
+  "category": "Cables",
+  "subcategory": "Cables",
+  "brand": "TEROS",
+  "sku": "TE-70211W",
+  "ean": "782752505940",
+  "warranty": "12",
+  "description": "Cable Teros USB-A a USB-C Grey - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 824
+  },
+  "stock": 1369,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

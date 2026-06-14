@@ -1,0 +1,29 @@
+{
+  "id": "elit_20076",
+  "title": "Memoria Ram UDIMM ADATA 8GB DDR3L 1600MHz CL11 1.35V",
+  "price": 96193.16,
+  "originalPrice": 48.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20076/i/0jQSd_l.webp",
+  "slug": "memoria-ram-udimm-adata-8gb-ddr3l-1600mhz-cl11-1-35v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "ADDU1600W8G11-S",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA 8GB DDR3L 1600MHz CL11 1.35V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 16032
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

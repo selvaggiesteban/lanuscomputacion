@@ -1,0 +1,29 @@
+{
+  "id": "elit_15031",
+  "title": "Botella de Tinta Epson 555 Gris",
+  "price": 46743.04,
+  "originalPrice": 21.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15031/i/Hy9Z4_l.webp",
+  "slug": "botella-de-tinta-epson-555-gris",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T555520-AL",
+  "ean": "10343959149",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 555 Gris - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7791
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19682",
+  "title": "Motherboard ASUS TUF GAMING B860-PLUS WIFI  LGA1851 DDR5",
+  "price": 414156.79,
+  "originalPrice": 210.15,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19682/i/KA8yk_l.webp",
+  "slug": "motherboard-asus-tuf-gaming-b860-plus-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "TUF GAMING B860-PLUS WIFI",
+  "ean": "4711387815144",
+  "warranty": "36",
+  "description": "Motherboard ASUS TUF GAMING B860-PLUS WIFI  LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 69026
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

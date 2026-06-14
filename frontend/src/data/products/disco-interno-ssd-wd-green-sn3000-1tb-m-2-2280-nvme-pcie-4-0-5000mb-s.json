@@ -1,0 +1,29 @@
+{
+  "id": "elit_19179",
+  "title": "Disco Interno SSD WD Green SN3000 1TB M.2 2280 NVMe PCIe 4.0 5000MB/s",
+  "price": 360611.04,
+  "originalPrice": 182.98,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19179/i/VBFwJ_l.webp",
+  "slug": "disco-interno-ssd-wd-green-sn3000-1tb-m-2-2280-nvme-pcie-4-0-5000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS100T4G0E-00CPS0",
+  "ean": "718037904603",
+  "warranty": "36",
+  "description": "Disco Interno SSD WD Green SN3000 1TB M.2 2280 NVMe PCIe 4.0 5000MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 60102
+  },
+  "stock": 290,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

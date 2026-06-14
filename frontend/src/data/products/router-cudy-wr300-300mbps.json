@@ -1,0 +1,29 @@
+{
+  "id": "elit_18622",
+  "title": "Router Cudy WR300 300Mbps",
+  "price": 18012.81,
+  "originalPrice": 9.14,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18622/i/W47wK_l.webp",
+  "slug": "router-cudy-wr300-300mbps",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Routers",
+  "brand": "CUDY",
+  "sku": "WR300",
+  "ean": "6971690790028",
+  "warranty": "12",
+  "description": "Router Cudy WR300 300Mbps - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3002
+  },
+  "stock": 2008,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

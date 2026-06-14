@@ -1,0 +1,29 @@
+{
+  "id": "elit_15950",
+  "title": "Tóner Pantum CTL-1100XY Amarillo",
+  "price": 117656.07,
+  "originalPrice": 54.52,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15950/i/63z8N_l.webp",
+  "slug": "toner-pantum-ctl-1100xy-amarillo",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "PANTUM",
+  "sku": "CTL-1100XY",
+  "ean": "6936358021463",
+  "warranty": "12",
+  "description": "Tóner Pantum CTL-1100XY Amarillo - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19609
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18766",
+  "title": "Procesador AMD Ryzen 5 9600 3.8GHZ RADEON GRAPHICS AM5 DDR5 C/Cooler",
+  "price": 461474.92,
+  "originalPrice": 234.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18766/i/4XXfZ_l.webp",
+  "slug": "procesador-amd-ryzen-5-9600-3-8ghz-radeon-graphics-am5-ddr5-c-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000718BOX",
+  "ean": "730143316934",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 9600 3.8GHZ RADEON GRAPHICS AM5 DDR5 C/Cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 76912
+  },
+  "stock": 38,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

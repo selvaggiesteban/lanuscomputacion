@@ -1,0 +1,29 @@
+{
+  "id": "elit_18673",
+  "title": "Notebook Lenovo Legion Pro 7 16IAX10H Ultra 9 32GB 1TB",
+  "price": 7179033.02,
+  "originalPrice": 3642.76,
+  "discount": null,
+  "image": "https://via.placeholder.com/200",
+  "slug": "notebook-lenovo-legion-pro-7-16iax10h-ultra-9-32gb-1tb",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "LENOVO",
+  "sku": "83F5000BAR",
+  "ean": "198155890093",
+  "warranty": "12 MESES",
+  "description": "Notebook Lenovo Legion Pro 7 16IAX10H Ultra 9 32GB 1TB - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1196506
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

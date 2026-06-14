@@ -1,0 +1,29 @@
+{
+  "id": "elit_19284",
+  "title": "Mouse Teros TE-1229S c/cable Black",
+  "price": 4138.61,
+  "originalPrice": 2.1,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19284/i/zwJIt_l.webp",
+  "slug": "mouse-teros-te-1229s-c-cable-black",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "TEROS",
+  "sku": "TE-1229S",
+  "ean": "782752509573",
+  "warranty": "12",
+  "description": "Mouse Teros TE-1229S c/cable Black - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 690
+  },
+  "stock": 643,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}
