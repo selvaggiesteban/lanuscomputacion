@@ -1,0 +1,17 @@
+name = "sync-elit"
+main = "src/index.ts"
+compatibility_date = "2026-06-14"
+
+# Cron: every hour
+triggers = { crons = ["0 * * * *"] }
+
+[[d1_databases]]
+binding = "lanus_catalog"
+database_name = "lanus-catalog"
+database_id = "c0a53831-2932-4dc5-94d9-b37be72e8219"
+
+[env]
+ELIT_API_URL = "https://clientes.elit.com.ar/v1/api/productos"
+ELIT_USER_ID = "31341"
+ELIT_TOKEN = "7tmmibk2olt"
+ELIT_PAGE_LIMIT = "100"

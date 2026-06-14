@@ -7,9 +7,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "astro build && wrangler pages deploy dist/ --project-name lanuscomputacion",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.13",
     "@astrojs/react": "^4.0.0",
     "@astrojs/tailwind": "^6.0.0",
     "@esbuild/win32-x64": "^0.28.1",

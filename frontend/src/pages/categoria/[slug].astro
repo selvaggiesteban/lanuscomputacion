@@ -5,44 +5,23 @@ import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 import ActiveFilters from '../../components/catalog/ActiveFilters.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
-
-export async function getStaticPaths() {
-  const slugs = [
-    'celulares-telefonos', 'computacion', 'electronica-audio-video',
-    'consolas-videojuegos', 'camaras-accesorios', 'todas',
-  ];
-  return slugs.map(slug => ({ params: { slug } }));
-}
+import { getProducts, getProductCount } from '../../lib/d1';
 
 const { slug } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
 
-const categoryNames: Record<string, string> = {
-  'celulares-telefonos': 'Celulares y Teléfonos',
-  'computacion': 'Computación',
-  'electronica-audio-video': 'Electrónica, Audio y Video',
-  'consolas-videojuegos': 'Consolas y Videojuegos',
-  'camaras-accesorios': 'Cámaras y Accesorios',
-  'todas': 'Todas las categorías',
-};
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const limit = 20;
+const offset = (page - 1) * limit;
 
-const categoryName = categoryNames[slug] || slug;
+const [products, total] = await Promise.all([
+  getProducts(db, { category: slug, limit, offset }),
+  getProductCount(db, slug),
+]);
 
-// Datos de ejemplo para desarrollo
-const products = [
-  { id: '1', title: 'iPhone 15 Pro Max 256GB Titanio Natural', price: 2199999, originalPrice: 2499999, discount: 12, image: 'https://via.placeholder.com/200', slug: 'iphone-15-pro-max', rating: 4.7, reviewsCount: 89, freeShipping: true, installments: { count: 6, value: 366666 } },
-  { id: '2', title: 'Samsung Galaxy S24 Ultra 512GB', price: 1799999, originalPrice: 1999999, discount: 10, image: 'https://via.placeholder.com/200', slug: 'samsung-galaxy-s24-ultra', rating: 4.6, reviewsCount: 67, freeShipping: true, installments: { count: 6, value: 299999 } },
-  { id: '3', title: 'Motorola Edge 50 Pro 256GB', price: 699999, image: 'https://via.placeholder.com/200', slug: 'motorola-edge-50-pro', rating: 4.3, reviewsCount: 34, freeShipping: true, installments: { count: 6, value: 116666 } },
-  { id: '4', title: 'Xiaomi Redmi Note 13 Pro 256GB', price: 459999, originalPrice: 499999, discount: 8, image: 'https://via.placeholder.com/200', slug: 'xiaomi-redmi-note-13-pro', rating: 4.4, reviewsCount: 56, installments: { count: 6, value: 76666 } },
-  { id: '5', title: 'Google Pixel 8 Pro 128GB', price: 1399999, image: 'https://via.placeholder.com/200', slug: 'google-pixel-8-pro', rating: 4.5, reviewsCount: 23, freeShipping: true, installments: { count: 6, value: 233333 } },
-  { id: '6', title: 'iPhone 14 128GB', price: 1299999, originalPrice: 1599999, discount: 19, image: 'https://via.placeholder.com/200', slug: 'iphone-14', rating: 4.5, reviewsCount: 156, freeShipping: true, installments: { count: 6, value: 216666 } },
-  { id: '7', title: 'Samsung Galaxy A54 5G 256GB', price: 389999, image: 'https://via.placeholder.com/200', slug: 'samsung-galaxy-a54', rating: 4.2, reviewsCount: 48, installments: { count: 6, value: 65000 } },
-  { id: '8', title: 'Xiaomi POCO X6 Pro 512GB', price: 529999, image: 'https://via.placeholder.com/200', slug: 'xiaomi-poco-x6-pro', rating: 4.3, reviewsCount: 31, installments: { count: 6, value: 88333 } },
-];
+const totalPages = Math.ceil(total / limit);
 
-const currentPage = 1;
-const totalPages = 5;
-
-const activeFilters = []; // sería poblado desde query params
+const categoryName = slug === 'todas' ? 'Todas las categorías' : (products[0]?.category_name || slug);
 ---
 
 <BaseLayout title={`${categoryName} | Lanús Computación`}>
@@ -54,104 +33,33 @@ const activeFilters = []; // sería poblado desde query params
   </div>
 
   <div class="ml-container flex gap-6">
-    <!-- Sidebar Filters -->
     <aside class="hidden lg:block w-64 flex-shrink-0">
-      <!-- Category title -->
       <div class="mb-4">
         <h1 class="text-lg font-semibold text-ml-text">{categoryName}</h1>
-        <p class="text-xs text-ml-text-muted mt-1">8 resultados</p>
-      </div>
-
-      <!-- Brand filter -->
-      <div class="border-b pb-4 mb-4">
-        <h4 class="text-sm font-semibold text-ml-text mb-2">Marca</h4>
-        <div class="space-y-1.5">
-          {['Samsung', 'Apple', 'Xiaomi', 'Motorola', 'Google'].map(brand => (
-            <label class="flex items-center gap-2 text-sm text-ml-text-secondary cursor-pointer hover:text-ml-text">
-              <input type="checkbox" class="rounded border-ml-border text-ml-blue focus:ring-ml-blue" />
-              {brand}
-              <span class="text-xs text-ml-text-muted ml-auto">({Math.floor(Math.random() * 50)})</span>
-            </label>
-          ))}
-          <button class="text-xs ml-link mt-1">Ver todas</button>
-        </div>
-      </div>
-
-      <!-- Price range -->
-      <div class="border-b pb-4 mb-4">
-        <h4 class="text-sm font-semibold text-ml-text mb-2">Precio</h4>
-        <div class="flex gap-2 items-center">
-          <input type="text" placeholder="$ Mín" class="ml-input w-24 text-xs" />
-          <span class="text-ml-text-muted">-</span>
-          <input type="text" placeholder="$ Máx" class="ml-input w-24 text-xs" />
-        </div>
-        <button class="w-full mt-2 ml-btn-primary text-xs py-2">Aplicar</button>
-      </div>
-
-      <!-- Condition -->
-      <div class="border-b pb-4 mb-4">
-        <h4 class="text-sm font-semibold text-ml-text mb-2">Condición</h4>
-        <div class="space-y-1.5">
-          {['Nuevo', 'Usado'].map(cond => (
-            <label class="flex items-center gap-2 text-sm text-ml-text-secondary cursor-pointer hover:text-ml-text">
-              <input type="radio" name="condition" class="border-ml-border text-ml-blue focus:ring-ml-blue" />
-              {cond}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <!-- Free shipping -->
-      <div class="border-b pb-4 mb-4">
-        <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-ml-text">
-          <input type="checkbox" class="rounded border-ml-border text-ml-blue focus:ring-ml-blue" />
-          <span>Envío gratis</span>
-        </label>
-      </div>
-
-      <!-- Discount -->
-      <div class="border-b pb-4 mb-4">
-        <h4 class="text-sm font-semibold text-ml-text mb-2">Descuentos</h4>
-        <div class="space-y-1.5">
-          {['10% OFF o más', '20% OFF o más', '30% OFF o más'].map(d => (
-            <label class="flex items-center gap-2 text-sm text-ml-text-secondary cursor-pointer hover:text-ml-text">
-              <input type="checkbox" class="rounded border-ml-border text-ml-blue focus:ring-ml-blue" />
-              {d}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <!-- B2B Toggle -->
-      <div class="mt-4 p-3 bg-b2b-purple-light rounded-lg">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" class="rounded border-b2b-purple text-b2b-purple focus:ring-b2b-purple" />
-          <div>
-            <span class="text-sm font-medium text-b2b-purple">Precios mayoristas</span>
-            <p class="text-xs text-b2b-purple/70">Mostrar precios B2B</p>
-          </div>
-        </label>
+        <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
       </div>
     </aside>
 
-    <!-- Main content -->
     <div class="flex-1 min-w-0">
-      <!-- Sort + result count -->
       <div class="flex items-center justify-between mb-4 bg-white p-3 rounded shadow-card">
         <p class="text-sm text-ml-text-secondary">
-          8 resultados en <span class="font-medium text-ml-text">{categoryName}</span>
+          {total} resultados en <span class="font-medium text-ml-text">{categoryName}</span>
         </p>
         <SortSelector client:load />
       </div>
 
-      <!-- Active filters -->
-      <ActiveFilters filters={activeFilters} baseUrl={`/categoria/${slug}`} />
+      <ActiveFilters filters={[]} baseUrl={`/categoria/${slug}`} />
 
-      <!-- Product Grid -->
-      <ProductGrid products={products} columns={4} />
+      <ProductGrid products={products.map(p => ({
+        id: p.id,
+        title: p.title,
+        price: p.price,
+        image: p.thumbnail,
+        slug: p.slug,
+        freeShipping: false,
+      }))} columns={4} />
 
-      <!-- Pagination -->
-      <Pagination current={currentPage} total={totalPages} baseUrl={`/categoria/${slug}`} />
+      <Pagination current={page} total={totalPages} baseUrl={`/categoria/${slug}`} />
     </div>
   </div>
 </BaseLayout>

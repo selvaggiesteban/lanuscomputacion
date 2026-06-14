@@ -1,0 +1,13 @@
+{
+  "pages_build_output_dir": "dist/",
+  "name": "lanuscomputacion",
+  "compatibility_date": "2026-06-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lanus-catalog",
+      "database_id": "c0a53831-2932-4dc5-94d9-b37be72e8219"
+    }
+  ]
+}
