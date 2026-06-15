@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import Price from '../../components/ui/Price.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Rating from '../../components/ui/Rating.astro';
-import Button from '../../components/ui/Button.astro';
+import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import { getProductBySlug, getProducts } from '../../lib/d1';
 
@@ -89,22 +89,24 @@ const relatedProducts = (await getProducts(db, { limit: 5 }))
             Stock disponible: {product.available_qty} unidades
           </p>
 
-          <div class="flex flex-col gap-3">
-            <button class="ml-btn-primary w-full text-base py-4 flex items-center justify-center gap-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              Comprar ahora
-            </button>
-            <button class="ml-btn-secondary w-full text-base py-4 flex items-center justify-center gap-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-              Agregar al carrito
-            </button>
-          </div>
+          <AddToCartButton
+            client:load
+            productId={product.id}
+            title={product.title}
+            price={product.price}
+            thumbnail={product.thumbnail}
+            slug={product.slug}
+            availableQty={product.available_qty}
+          />
+
+          <a href={`/producto/${product.slug}`} class="ml-btn-primary w-full text-base py-4 flex items-center justify-center gap-2 mt-3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            Comprar ahora
+          </a>
 
           <div class="border-t mt-6 pt-4">
             <h3 class="text-sm font-medium text-ml-text mb-2">Medios de pago</h3>
