@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const db = Astro.locals.runtime.env.DB;
+
+// Get sync stats
+const productStats = await db.prepare(`
+  SELECT
+    COUNT(*) as total,
+    SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published,
+    SUM(CASE WHEN status = 'archived' THEN 1 ELSE 0 END) as archived,
+    SUM(CASE WHEN category_id != 'uncategorized' THEN 1 ELSE 0 END) as categorized,
+    SUM(CASE WHEN category_id = 'uncategorized' THEN 1 ELSE 0 END) as uncategorized
+  FROM products
+  WHERE provider = 'elit'
+`).first();
+
+// Get category distribution
+const categoryDistribution = await db.prepare(`
+  SELECT category_name, COUNT(*) as count
+  FROM products
+  WHERE status = 'published' AND provider = 'elit'
+  GROUP BY category_name
+  ORDER BY count DESC
+`).all();
+
+// Get last sync time
+const lastProduct = await db.prepare(
+  "SELECT last_api_update FROM products WHERE provider = 'elit' ORDER BY last_api_update DESC LIMIT 1"
+).first();
+---
+
+<BaseLayout title="Sync Monitor | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Monitor de Sync</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Sync Status -->
+    <div class="bg-white rounded shadow-card p-6 mb-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+        <h2 class="font-medium text-ml-text">Sync ELIT Activo</h2>
+      </div>
+      <p class="text-sm text-ml-text-secondary mb-4">
+        Cron: cada hora (0 * * * *). Worker: <code class="bg-gray-100 px-1 rounded">sync-elit</code>
+      </p>
+      {lastProduct?.last_api_update && (
+        <p class="text-xs text-ml-text-muted">
+          Última actualización: {new Date(lastProduct.last_api_update).toLocaleString('es-AR')}
+        </p>
+      )}
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-2xl font-bold text-ml-text">{productStats?.total ?? 0}</p>
+        <p class="text-xs text-ml-text-muted">Total productos</p>
+      </div>
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-2xl font-bold text-green-600">{productStats?.published ?? 0}</p>
+        <p class="text-xs text-ml-text-muted">Publicados</p>
+      </div>
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-2xl font-bold text-ml-blue">{productStats?.categorized ?? 0}</p>
+        <p class="text-xs text-ml-text-muted">Categorizados</p>
+      </div>
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-2xl font-bold text-yellow-600">{productStats?.uncategorized ?? 0}</p>
+        <p class="text-xs text-ml-text-muted">Sin categorizar</p>
+      </div>
+    </div>
+
+    <!-- Category Distribution -->
+    <div class="bg-white rounded shadow-card">
+      <div class="p-4 border-b">
+        <h2 class="font-medium text-ml-text">Distribución por categoría</h2>
+      </div>
+      <div class="p-4">
+        <div class="space-y-3">
+          {categoryDistribution.results.map((cat: any) => (
+            <div class="flex items-center gap-3">
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm text-ml-text">{cat.category_name || 'Sin categoría'}</span>
+                  <span class="text-sm text-ml-text-muted">{cat.count}</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-ml-blue h-2 rounded-full"
+                    style={`width: ${Math.round((cat.count / (productStats?.total ?? 1)) * 100)}%`}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

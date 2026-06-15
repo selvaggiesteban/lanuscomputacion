@@ -1,15 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
+import { getProducts } from '../lib/d1';
 
-const offers = [
-  { id: '1', title: 'iPhone 15 Pro Max 256GB Titanio Natural', price: 2199999, originalPrice: 2499999, discount: 12, image: 'https://via.placeholder.com/200', slug: 'iphone-15-pro-max', rating: 4.7, reviewsCount: 89, freeShipping: true, installments: { count: 6, value: 366666 } },
-  { id: '2', title: 'Notebook Lenovo ThinkPad X1 Carbon Gen 11', price: 1899999, originalPrice: 2399999, discount: 21, image: 'https://via.placeholder.com/200', slug: 'notebook-lenovo-thinkpad-x1-carbon', rating: 4.5, reviewsCount: 23, freeShipping: true, installments: { count: 6, value: 316666 } },
-  { id: '3', title: 'MacBook Air M3 15" 8GB 256GB SSD', price: 2399999, originalPrice: 2699999, discount: 11, image: 'https://via.placeholder.com/200', slug: 'macbook-air-m3-15', rating: 4.8, reviewsCount: 45, freeShipping: true, installments: { count: 6, value: 399999 } },
-  { id: '4', title: 'Monitor LG UltraGear 27" 1440p 165Hz IPS', price: 589999, originalPrice: 699999, discount: 16, image: 'https://via.placeholder.com/200', slug: 'monitor-lg-ultragear-27-1440p', rating: 4.3, reviewsCount: 12, freeShipping: true, installments: { count: 6, value: 98333 } },
-  { id: '5', title: 'Samsung Galaxy S24 Ultra 512GB', price: 1799999, originalPrice: 1999999, discount: 10, image: 'https://via.placeholder.com/200', slug: 'samsung-galaxy-s24-ultra', rating: 4.6, reviewsCount: 67, freeShipping: true, installments: { count: 6, value: 299999 } },
-  { id: '6', title: 'Auriculares Sony WH-1000XM5', price: 289999, originalPrice: 349999, discount: 17, image: 'https://via.placeholder.com/200', slug: 'sony-wh-1000xm5', rating: 4.7, reviewsCount: 178, freeShipping: true, installments: { count: 6, value: 48333 } },
-];
+const db = Astro.locals.runtime.env.DB;
+
+// Get products sorted by discount (cost_price vs price ratio) as proxy for "ofertas"
+const { results: offerProducts } = await db.prepare(`
+  SELECT * FROM products
+  WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
+  ORDER BY (price - cost_price) / cost_price DESC
+  LIMIT 20
+`).all();
 ---
 
 <BaseLayout title="Ofertas | Lanús Computación">
@@ -18,6 +20,22 @@ const offers = [
       <h1 class="text-2xl font-bold text-ml-text mb-1">Ofertas</h1>
       <p class="text-sm text-ml-text-secondary">Los mejores descuentos en tecnología</p>
     </div>
-    <ProductGrid products={offers} columns={5} />
+
+    {offerProducts.length > 0 ? (
+      <ProductGrid products={offerProducts.map(p => ({
+        id: p.id,
+        title: p.title,
+        price: p.price,
+        originalPrice: p.cost_price,
+        image: p.thumbnail,
+        slug: p.slug,
+        freeShipping: false,
+      }))} columns={5} />
+    ) : (
+      <div class="text-center py-16 text-ml-text-muted">
+        <p class="text-lg">No hay ofertas disponibles</p>
+        <p class="text-sm mt-1">Volvé pronto para ver los mejores descuentos</p>
+      </div>
+    )}
   </div>
 </BaseLayout>

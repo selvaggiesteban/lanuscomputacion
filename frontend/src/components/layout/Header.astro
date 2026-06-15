@@ -53,14 +53,32 @@ import CartIcon from '../../components/cart/CartIcon.tsx';
         <span class="hidden lg:inline">PC / Info</span>
       </a>
 
-      <!-- Perfil -->
-      <a href="/perfil" class="flex items-center gap-1 hover:text-ml-blue transition-colors" title="Mi perfil">
+      <!-- Perfil (shown when logged out) -->
+      <a href="/login" id="login-link" class="flex items-center gap-1 hover:text-ml-blue transition-colors" title="Mi perfil">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />
         </svg>
-        <span class="hidden lg:inline">Perfil</span>
+        <span class="hidden lg:inline">Iniciar sesión</span>
       </a>
+
+      <!-- User menu (shown when logged in) -->
+      <div id="user-menu" class="hidden relative">
+        <button id="user-menu-btn" class="flex items-center gap-1 hover:text-ml-blue transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span id="user-name" class="hidden lg:inline"></span>
+        </button>
+        <div id="user-dropdown" class="hidden absolute right-0 top-full mt-2 bg-white border rounded shadow-lg py-2 min-w-[160px] z-50">
+          <a href="/perfil" class="block px-4 py-2 text-sm hover:bg-gray-50">Mi perfil</a>
+          <a href="/compras" class="block px-4 py-2 text-sm hover:bg-gray-50">Mis compras</a>
+          <a href="/favoritos" class="block px-4 py-2 text-sm hover:bg-gray-50">Favoritos</a>
+          <hr class="my-1">
+          <button id="logout-btn" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 text-red-600">Cerrar sesión</button>
+        </div>
+      </div>
 
       <!-- Compras -->
       <a href="/compras" class="flex items-center gap-1 hover:text-ml-blue transition-colors" title="Mis compras">
@@ -95,3 +113,53 @@ import CartIcon from '../../components/cart/CartIcon.tsx';
   <!-- Mega Menu -->
   <MegaMenu />
 </header>
+
+<script>
+  // Check auth state and update header
+  async function checkAuth() {
+    try {
+      const res = await fetch('/api/auth/me');
+      const data = await res.json();
+
+      const loginLink = document.getElementById('login-link');
+      const userMenu = document.getElementById('user-menu');
+      const userName = document.getElementById('user-name');
+      const userDropdown = document.getElementById('user-dropdown');
+      const userMenuBtn = document.getElementById('user-menu-btn');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      if (data.user) {
+        // Logged in
+        loginLink?.classList.add('hidden');
+        userMenu?.classList.remove('hidden');
+        if (userName) userName.textContent = data.user.name;
+
+        // Toggle dropdown
+        userMenuBtn?.addEventListener('click', () => {
+          userDropdown?.classList.toggle('hidden');
+        });
+
+        // Logout
+        logoutBtn?.addEventListener('click', async () => {
+          await fetch('/api/auth/logout', { method: 'POST' });
+          window.location.href = '/';
+        });
+
+        // Close dropdown on outside click
+        document.addEventListener('click', (e) => {
+          if (!userMenuBtn?.contains(e.target as Node) && !userDropdown?.contains(e.target as Node)) {
+            userDropdown?.classList.add('hidden');
+          }
+        });
+      } else {
+        // Logged out
+        loginLink?.classList.remove('hidden');
+        userMenu?.classList.add('hidden');
+      }
+    } catch (err) {
+      console.error('Auth check failed:', err);
+    }
+  }
+
+  checkAuth();
+</script>

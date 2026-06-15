@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCategories, getSubcategories } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+const categories = await getCategories(db);
+
+// Get subcategories for each category
+const categoriesWithSubs = await Promise.all(
+  categories.map(async (cat) => {
+    const subs = await getSubcategories(db, cat.id);
+    return { ...cat, subcategories: subs };
+  })
+);
+---
+
+<BaseLayout title="Categorías | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Categorías</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {categoriesWithSubs.map(category => (
+        <div class="bg-white rounded shadow-card p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-2xl">{category.picture || '📦'}</span>
+            <div>
+              <h2 class="font-medium text-ml-text">{category.name}</h2>
+              <p class="text-xs text-ml-text-muted">{category.total_items} productos</p>
+            </div>
+          </div>
+
+          {category.subcategories.length > 0 && (
+            <div class="border-t pt-3">
+              <p class="text-xs text-ml-text-muted mb-2">Subcategorías:</p>
+              <div class="space-y-1">
+                {category.subcategories.map(sub => (
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-ml-text-secondary">{sub.picture} {sub.name}</span>
+                    <span class="text-xs text-ml-text-muted">{sub.total_items}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

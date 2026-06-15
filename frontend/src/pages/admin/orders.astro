@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getOrders } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const status = Astro.url.searchParams.get('status') || '';
+const limit = 20;
+const offset = (page - 1) * limit;
+
+let orders;
+let total;
+
+if (status) {
+  const { results } = await db.prepare(
+    "SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC LIMIT ? OFFSET ?"
+  ).bind(status, limit, offset).all();
+  orders = results;
+
+  const countResult = await db.prepare(
+    "SELECT COUNT(*) as count FROM orders WHERE status = ?"
+  ).bind(status).first<{ count: number }>();
+  total = countResult?.count ?? 0;
+} else {
+  orders = await getOrders(db, { limit, offset });
+  const countResult = await db.prepare(
+    "SELECT COUNT(*) as count FROM orders"
+  ).first<{ count: number }>();
+  total = countResult?.count ?? 0;
+}
+
+const totalPages = Math.ceil(total / limit);
+
+const statusLabels: Record<string, string> = {
+  pending: 'Pendiente',
+  paid: 'Pagado',
+  processing: 'Procesando',
+  shipped: 'Enviado',
+  delivered: 'Entregado',
+  cancelled: 'Cancelado',
+  refunded: 'Reembolsado',
+  authorized: 'Autorizado',
+  unknown: 'Desconocido',
+};
+---
+
+<BaseLayout title="Órdenes | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Órdenes</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-white rounded shadow-card p-4 mb-6">
+      <div class="flex gap-3 flex-wrap">
+        <a href="/admin/orders" class={`px-3 py-1 rounded text-sm ${!status ? 'bg-ml-blue text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+          Todas ({total})
+        </a>
+        {Object.entries(statusLabels).map(([key, label]) => (
+          <a href={`/admin/orders?status=${key}`} class={`px-3 py-1 rounded text-sm ${status === key ? 'bg-ml-blue text-white' : 'bg-gray-100 hover:bg-gray-200'}`}>
+            {label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b">
+            <tr>
+              <th class="text-left p-3 font-medium text-ml-text">Pedido</th>
+              <th class="text-left p-3 font-medium text-ml-text">Cliente</th>
+              <th class="text-left p-3 font-medium text-ml-text">Email</th>
+              <th class="text-right p-3 font-medium text-ml-text">Total</th>
+              <th class="text-center p-3 font-medium text-ml-text">Estado</th>
+              <th class="text-left p-3 font-medium text-ml-text">Fecha</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            {orders.map((order: any) => (
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-mono text-xs text-ml-text">#{order.id.slice(0, 8)}...</td>
+                <td class="p-3 text-ml-text">{order.customer_name}</td>
+                <td class="p-3 text-ml-text-secondary">{order.customer_email}</td>
+                <td class="p-3 text-right font-medium text-ml-text">${order.total?.toLocaleString('es-AR')}</td>
+                <td class="p-3 text-center">
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${
+                    order.status === 'paid' ? 'bg-green-100 text-green-800' :
+                    order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                    order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {statusLabels[order.status] || order.status}
+                  </span>
+                </td>
+                <td class="p-3 text-ml-text-muted text-xs">
+                  {new Date(order.created_at).toLocaleDateString('es-AR')}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <div class="p-4 border-t flex items-center justify-between">
+          <p class="text-sm text-ml-text-muted">
+            Mostrando {offset + 1}-{Math.min(offset + limit, total)} de {total}
+          </p>
+          <div class="flex gap-2">
+            {page > 1 && (
+              <a href={`/admin/orders?page=${page - 1}${status ? `&status=${status}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
+                Anterior
+              </a>
+            )}
+            {page < totalPages && (
+              <a href={`/admin/orders?page=${page + 1}${status ? `&status=${status}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
+                Siguiente
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

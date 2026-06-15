@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProducts, getProductCount } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const limit = 20;
+const offset = (page - 1) * limit;
+const search = Astro.url.searchParams.get('q') || '';
+
+let products;
+let total;
+
+if (search) {
+  const { results } = await db.prepare(
+    "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
+  ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
+  products = results;
+
+  const countResult = await db.prepare(
+    "SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
+  ).bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
+  total = countResult?.count ?? 0;
+} else {
+  products = await getProducts(db, { limit, offset });
+  total = await getProductCount(db);
+}
+
+const totalPages = Math.ceil(total / limit);
+---
+
+<BaseLayout title="Productos | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Productos</h1>
+      <div class="flex gap-3">
+        <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="bg-white rounded shadow-card p-4 mb-6">
+      <form method="GET" class="flex gap-3">
+        <input
+          type="text"
+          name="q"
+          value={search}
+          placeholder="Buscar por título, marca o EAN..."
+          class="ml-input flex-1"
+        />
+        <button type="submit" class="ml-btn-primary px-6">Buscar</button>
+        {search && (
+          <a href="/admin/products" class="ml-btn-secondary px-4">Limpiar</a>
+        )}
+      </form>
+    </div>
+
+    <!-- Products Table -->
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b">
+            <tr>
+              <th class="text-left p-3 font-medium text-ml-text">Producto</th>
+              <th class="text-left p-3 font-medium text-ml-text">Marca</th>
+              <th class="text-left p-3 font-medium text-ml-text">Categoría</th>
+              <th class="text-right p-3 font-medium text-ml-text">Precio</th>
+              <th class="text-right p-3 font-medium text-ml-text">Stock</th>
+              <th class="text-center p-3 font-medium text-ml-text">Estado</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            {products.map((product: any) => (
+              <tr class="hover:bg-gray-50">
+                <td class="p-3">
+                  <div class="flex items-center gap-3">
+                    {product.thumbnail && (
+                      <img src={product.thumbnail} alt="" class="w-10 h-10 object-cover rounded" />
+                    )}
+                    <div>
+                      <p class="font-medium text-ml-text truncate max-w-[300px]">{product.title}</p>
+                      <p class="text-xs text-ml-text-muted">SKU: {product.sku || product.external_id}</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-3 text-ml-text-secondary">{product.brand || '-'}</td>
+                <td class="p-3 text-ml-text-secondary">{product.category_name || '-'}</td>
+                <td class="p-3 text-right font-medium text-ml-text">${product.price?.toLocaleString('es-AR')}</td>
+                <td class="p-3 text-right">
+                  <span class={`font-medium ${product.available_qty <= 2 ? 'text-red-600' : product.available_qty <= 5 ? 'text-yellow-600' : 'text-green-600'}`}>
+                    {product.available_qty}
+                  </span>
+                </td>
+                <td class="p-3 text-center">
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${
+                    product.status === 'published' ? 'bg-green-100 text-green-800' :
+                    product.status === 'archived' ? 'bg-gray-100 text-gray-800' :
+                    'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {product.status}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <div class="p-4 border-t flex items-center justify-between">
+          <p class="text-sm text-ml-text-muted">
+            Mostrando {offset + 1}-{Math.min(offset + limit, total)} de {total}
+          </p>
+          <div class="flex gap-2">
+            {page > 1 && (
+              <a href={`/admin/products?page=${page - 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
+                Anterior
+              </a>
+            )}
+            {page < totalPages && (
+              <a href={`/admin/products?page=${page + 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
+                Siguiente
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

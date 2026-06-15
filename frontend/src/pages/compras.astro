@@ -1,17 +1,56 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getOrderById } from '../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+const orderId = Astro.url.searchParams.get('order');
+
+let order = null;
+if (orderId) {
+  order = await getOrderById(db, orderId);
+}
 ---
 
 <BaseLayout title="Mis compras | Lanús Computación">
   <div class="ml-container py-6">
     <h1 class="text-xl font-semibold text-ml-text mb-6">Mis compras</h1>
 
-    <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
-      <p class="text-lg font-medium text-ml-text mb-2">No tenés compras todavía</p>
-      <p class="text-sm mb-6">Tus compras aparecerán acá una vez que realices tu primer pedido</p>
-      <a href="/" class="ml-btn-primary inline-block">
-        Empezar a comprar
-      </a>
-    </div>
+    {order ? (
+      <div class="bg-white rounded shadow-card p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-lg font-medium text-ml-text">Pedido #{order.id}</h2>
+            <p class="text-xs text-ml-text-muted">
+              {new Date(order.created_at).toLocaleDateString('es-AR')}
+            </p>
+          </div>
+          <span class={`px-3 py-1 rounded text-xs font-medium ${
+            order.status === 'paid' ? 'bg-green-100 text-green-800' :
+            order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+            order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+            'bg-gray-100 text-gray-800'
+          }`}>
+            {order.status === 'paid' ? 'Pagado' :
+             order.status === 'pending' ? 'Pendiente' :
+             order.status === 'cancelled' ? 'Cancelado' : order.status}
+          </span>
+        </div>
+
+        <div class="border-t pt-4">
+          <div class="flex justify-between text-sm">
+            <span class="text-ml-text-secondary">Total</span>
+            <span class="font-medium text-ml-text">${order.total?.toLocaleString('es-AR')}</span>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+        <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus compras</p>
+        <p class="text-sm mb-6">Tus pedidos aparecerán acá una vez que realices tu primer compra</p>
+        <a href="/login" class="ml-btn-primary inline-block">
+          Iniciar sesión
+        </a>
+      </div>
+    )}
   </div>
 </BaseLayout>

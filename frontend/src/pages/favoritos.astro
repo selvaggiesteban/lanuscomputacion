@@ -2,15 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
 
-const favorites = [
-  { id: '1', title: 'iPhone 15 Pro Max 256GB', price: 2199999, originalPrice: 2499999, discount: 12, image: 'https://via.placeholder.com/200', slug: 'iphone-15-pro-max', rating: 4.7, reviewsCount: 89, freeShipping: true, installments: { count: 6, value: 366666 } },
-  { id: '2', title: 'MacBook Air M3 15"', price: 2399999, originalPrice: 2699999, discount: 11, image: 'https://via.placeholder.com/200', slug: 'macbook-air-m3-15', rating: 4.8, reviewsCount: 45, freeShipping: true, installments: { count: 6, value: 399999 } },
-];
+// Favorites require auth - for now show empty state
 ---
 
 <BaseLayout title="Favoritos | Lanús Computación">
   <div class="ml-container py-6">
     <h1 class="text-xl font-semibold text-ml-text mb-6">Mis favoritos</h1>
-    <ProductGrid products={favorites} columns={4} />
+
+    <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 opacity-30">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+      <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus favoritos</p>
+      <p class="text-sm mb-6">Guardá los productos que te gustan para encontrarlos fácilmente</p>
+      <a href="/login" class="ml-btn-primary inline-block">
+        Iniciar sesión
+      </a>
+    </div>
   </div>
 </BaseLayout>

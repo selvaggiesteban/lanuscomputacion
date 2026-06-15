@@ -133,3 +133,74 @@ export async function getProductCount(db: D1Database, category?: string, subcate
   const result = await db.prepare(sql).bind(...binds).first<{ count: number }>();
   return result?.count ?? 0;
 }
+
+export type Order = {
+  id: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string | null;
+  customer_address: string | null;
+  total: number;
+  status: string;
+  mp_preference_id: string | null;
+  mp_payment_id: string | null;
+  payment_method: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export async function getOrders(db: D1Database, options?: {
+  limit?: number;
+  offset?: number;
+  status?: string;
+}): Promise<Order[]> {
+  let sql = "SELECT * FROM orders";
+  const binds: any[] = [];
+  const conditions: string[] = [];
+
+  if (options?.status) {
+    conditions.push("status = ?");
+    binds.push(options.status);
+  }
+
+  if (conditions.length > 0) {
+    sql += " WHERE " + conditions.join(" AND ");
+  }
+
+  sql += " ORDER BY created_at DESC";
+
+  if (options?.limit) {
+    sql += " LIMIT ?";
+    binds.push(options.limit);
+  }
+  if (options?.offset) {
+    sql += " OFFSET ?";
+    binds.push(options.offset);
+  }
+
+  const { results } = await db.prepare(sql).bind(...binds).all<Order>();
+  return results ?? [];
+}
+
+export async function getOrderById(db: D1Database, orderId: string): Promise<Order | null> {
+  const result = await db.prepare(
+    "SELECT * FROM orders WHERE id = ?",
+  ).bind(orderId).first<Order>();
+  return result ?? null;
+}
+
+export type OrderItem = {
+  order_id: string;
+  product_id: string;
+  product_title: string;
+  quantity: number;
+  unit_price: number;
+  subtotal: number;
+};
+
+export async function getOrderItems(db: D1Database, orderId: string): Promise<OrderItem[]> {
+  const { results } = await db.prepare(
+    "SELECT * FROM order_items WHERE order_id = ?",
+  ).bind(orderId).all<OrderItem>();
+  return results ?? [];
+}

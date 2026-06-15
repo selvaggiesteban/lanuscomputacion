@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const orderId = Astro.url.searchParams.get('order_id');
+---
+
+<BaseLayout title="Pago pendiente | Lanús Computación">
+  <div class="ml-container py-8">
+    <div class="max-w-lg mx-auto text-center">
+      <div class="bg-white rounded shadow-card p-8">
+        <div class="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="3" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+
+        <h1 class="text-xl font-semibold text-ml-text mb-2">Pago pendiente</h1>
+        <p class="text-sm text-ml-text-secondary mb-6">
+          Tu pago está siendo procesado. Te notificaremos cuando se acredite.
+        </p>
+
+        {orderId && (
+          <div class="bg-ml-bg rounded p-4 mb-6">
+            <p class="text-xs text-ml-text-muted">Número de pedido</p>
+            <p class="text-sm font-mono font-medium text-ml-text">{orderId}</p>
+          </div>
+        )}
+
+        <div class="space-y-3">
+          <a href="/" class="ml-btn-primary w-full inline-block text-center">
+            Seguir comprando
+          </a>
+          {orderId && (
+            <a href={`/compras?order=${orderId}`} class="ml-btn-secondary w-full inline-block text-center">
+              Ver estado del pedido
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

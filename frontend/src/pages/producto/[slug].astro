@@ -22,6 +22,28 @@ const relatedProducts = (await getProducts(db, { limit: 5 }))
 ---
 
 <BaseLayout title={`${product.title} | Lanús Computación`}>
+  <!-- Schema.org Product -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: product.description,
+    image: product.thumbnail,
+    sku: product.sku || product.external_id,
+    gtin13: product.ean || undefined,
+    brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "ARS",
+      price: product.price,
+      availability: product.available_qty > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      seller: {
+        "@type": "Organization",
+        name: "Lanús Computación"
+      }
+    }
+  })} />
+
   <div class="ml-container">
     <Breadcrumb items={[
       { label: 'Inicio', href: '/' },

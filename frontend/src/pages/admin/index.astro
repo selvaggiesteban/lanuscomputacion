@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProducts, getCategories, getOrders } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+// Get counts
+const [productCount, categoryCount, orderCount] = await Promise.all([
+  db.prepare("SELECT COUNT(*) as count FROM products WHERE status = 'published'").first<{ count: number }>(),
+  db.prepare("SELECT COUNT(*) as count FROM categories WHERE is_active = 1").first<{ count: number }>(),
+  db.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>(),
+]);
+
+// Get recent orders
+const recentOrders = await getOrders(db, { limit: 5 });
+
+// Get products with low stock
+const lowStockProducts = await db.prepare(
+  "SELECT * FROM products WHERE status = 'published' AND available_qty <= 5 AND available_qty > 0 ORDER BY available_qty ASC LIMIT 10"
+).all();
+---
+
+<BaseLayout title="Admin Dashboard | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Dashboard Admin</h1>
+      <div class="text-sm text-ml-text-muted">
+        {new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{productCount?.count ?? 0}</p>
+            <p class="text-xs text-ml-text-muted">Productos</p>
+          </div>
+        </div>
+        <a href="/admin/products" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+              <line x1="1" y1="10" x2="23" y2="10" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{orderCount?.count ?? 0}</p>
+            <p class="text-xs text-ml-text-muted">Órdenes</p>
+          </div>
+        </div>
+        <a href="/admin/orders" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-purple-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{categoryCount?.count ?? 0}</p>
+            <p class="text-xs text-ml-text-muted">Categorías</p>
+          </div>
+        </div>
+        <a href="/admin/categories" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Recent Orders -->
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b">
+          <h2 class="font-medium text-ml-text">Órdenes recientes</h2>
+        </div>
+        <div class="p-4">
+          {recentOrders.length > 0 ? (
+            <div class="space-y-3">
+              {recentOrders.map(order => (
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div>
+                    <p class="text-sm font-medium text-ml-text">#{order.id.slice(0, 8)}...</p>
+                    <p class="text-xs text-ml-text-muted">{order.customer_email}</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-sm font-medium text-ml-text">${order.total?.toLocaleString('es-AR')}</p>
+                    <span class={`text-xs ${order.status === 'paid' ? 'text-green-600' : order.status === 'pending' ? 'text-yellow-600' : 'text-red-600'}`}>
+                      {order.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-sm text-ml-text-muted text-center py-4">No hay órdenes aún</p>
+          )}
+        </div>
+      </div>
+
+      <!-- Low Stock Products -->
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b">
+          <h2 class="font-medium text-ml-text">Stock bajo</h2>
+        </div>
+        <div class="p-4">
+          {lowStockProducts.results.length > 0 ? (
+            <div class="space-y-3">
+              {lowStockProducts.results.map((product: any) => (
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-ml-text truncate">{product.title}</p>
+                    <p class="text-xs text-ml-text-muted">{product.brand}</p>
+                  </div>
+                  <div class="text-right ml-4">
+                    <span class={`text-sm font-medium ${product.available_qty <= 2 ? 'text-red-600' : 'text-yellow-600'}`}>
+                      {product.available_qty} uds
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-sm text-ml-text-muted text-center py-4">Todo con buen stock</p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

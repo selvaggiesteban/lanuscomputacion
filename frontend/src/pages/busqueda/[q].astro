@@ -1,26 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
-
-export async function getStaticPaths() {
-  return [{ params: { q: 'celulares' } }, { params: { q: 'notebooks' } }];
-}
+import Pagination from '../../components/catalog/Pagination.astro';
+import { getProducts, getProductCount } from '../../lib/d1';
 
 const { q } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
 
-const results = [
-  { id: '1', title: 'iPhone 15 Pro Max 256GB', price: 2199999, originalPrice: 2499999, discount: 12, image: 'https://via.placeholder.com/200', slug: 'iphone-15-pro-max', rating: 4.7, reviewsCount: 89, freeShipping: true, installments: { count: 6, value: 366666 } },
-  { id: '2', title: 'Samsung Galaxy S24 Ultra 512GB', price: 1799999, originalPrice: 1999999, discount: 10, image: 'https://via.placeholder.com/200', slug: 'samsung-galaxy-s24-ultra', rating: 4.6, reviewsCount: 67, freeShipping: true, installments: { count: 6, value: 299999 } },
-];
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const limit = 20;
+const offset = (page - 1) * limit;
+
+const [products, total] = await Promise.all([
+  getProducts(db, { search: q, limit, offset }),
+  getProductCount(db, undefined, undefined).then(async () => {
+    const { count } = await db.prepare(
+      "SELECT COUNT(*) as count FROM products WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
+    ).bind(`%${q}%`, `%${q}%`, `%${q}%`).first<{ count: number }>() ?? { count: 0 };
+    return count;
+  }),
+]);
+
+const totalPages = Math.ceil(total / limit);
 ---
 
 <BaseLayout title={`"${q}" | Lanús Computación`}>
   <div class="ml-container py-4">
     <div class="flex items-center justify-between mb-4">
       <p class="text-sm text-ml-text-secondary">
-        Resultados para <span class="font-semibold text-ml-text">"{q}"</span>: {results.length} productos
+        Resultados para <span class="font-semibold text-ml-text">"{q}"</span>: {total} productos
       </p>
     </div>
-    <ProductGrid products={results} columns={4} />
+
+    <ProductGrid products={products.map(p => ({
+      id: p.id,
+      title: p.title,
+      price: p.price,
+      image: p.thumbnail,
+      slug: p.slug,
+      freeShipping: false,
+    }))} columns={4} />
+
+    <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />
   </div>
 </BaseLayout>
