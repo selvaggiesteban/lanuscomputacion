@@ -5,7 +5,7 @@ import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 import ActiveFilters from '../../components/catalog/ActiveFilters.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount } from '../../lib/d1';
+import { getProducts, getProductCount, getCategoryBySlug, getSubcategories } from '../../lib/d1';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -14,20 +14,33 @@ const page = Number(Astro.url.searchParams.get('page') || 1);
 const limit = 20;
 const offset = (page - 1) * limit;
 
+// Look up category by slug
+const category = slug !== 'todas' ? await getCategoryBySlug(db, slug) : null;
+
+// Get subcategories if this is a parent category
+const subcategories = category && category.level === 0
+  ? await getSubcategories(db, category.id)
+  : [];
+
+// Filter by category_id or subcategory_name
+const categoryFilter = category?.level === 0 ? category.id : undefined;
+const subcategoryFilter = category?.level === 1 ? category.name : undefined;
+
 const [products, total] = await Promise.all([
-  getProducts(db, { category: slug, limit, offset }),
-  getProductCount(db, slug),
+  getProducts(db, { category: categoryFilter, subcategory: subcategoryFilter, limit, offset }),
+  getProductCount(db, categoryFilter, subcategoryFilter),
 ]);
 
 const totalPages = Math.ceil(total / limit);
 
-const categoryName = slug === 'todas' ? 'Todas las categorías' : (products[0]?.category_name || slug);
+const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
 ---
 
 <BaseLayout title={`${categoryName} | Lanús Computación`}>
   <div class="ml-container">
     <Breadcrumb items={[
       { label: 'Inicio', href: '/' },
+      ...(category?.parent_id ? [{ label: 'Categorías', href: '/categoria/todas' }] : []),
       { label: categoryName },
     ]} />
   </div>
@@ -38,6 +51,27 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (products[0]?.
         <h1 class="text-lg font-semibold text-ml-text">{categoryName}</h1>
         <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
       </div>
+
+      {subcategories.length > 0 && (
+        <div class="bg-white rounded shadow-card p-4">
+          <h3 class="text-sm font-semibold text-ml-text mb-3">Subcategorías</h3>
+          <ul class="space-y-2">
+            {subcategories.map((sub) => (
+              <li>
+                <a
+                  href={`/categoria/${sub.slug}`}
+                  class={`text-sm hover:text-ml-blue transition-colors ${sub.slug === slug ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}
+                >
+                  {sub.picture} {sub.name}
+                  {sub.total_items > 0 && (
+                    <span class="text-xs text-ml-text-muted ml-1">({sub.total_items})</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </aside>
 
     <div class="flex-1 min-w-0">

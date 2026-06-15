@@ -1,6 +1,7 @@
 name = "sync-elit"
 main = "src/index.ts"
 compatibility_date = "2026-06-14"
+compatibility_flags = ["nodejs_compat"]
 
 # Cron: every hour
 triggers = { crons = ["0 * * * *"] }
@@ -9,6 +10,9 @@ triggers = { crons = ["0 * * * *"] }
 binding = "lanus_catalog"
 database_name = "lanus-catalog"
 database_id = "c0a53831-2932-4dc5-94d9-b37be72e8219"
+
+[ai]
+binding = "AI"
 
 [env]
 ELIT_API_URL = "https://clientes.elit.com.ar/v1/api/productos"

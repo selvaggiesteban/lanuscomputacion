@@ -1,9 +1,13 @@
 import { ElitClient } from "./client";
 import { normalizeElitProduct } from "./normalizer";
 import { D1Client } from "./d1";
+import { seedCategories } from "./seed_categories";
+import { needsMigration, migrateCategories } from "./migrate_categories";
+import { resetAiCallCounter, getAiCallCount } from "./ai_classifier";
 
 export interface Env {
   lanus_catalog: D1Database;
+  AI: Ai;
   ELIT_API_URL: string;
   ELIT_USER_ID: string;
   ELIT_TOKEN: string;
@@ -36,6 +40,23 @@ async function runSync(env: Env) {
 
   const d1 = new D1Client(env.lanus_catalog);
 
+  // Seed categories (INSERT OR IGNORE, safe every run)
+  const { inserted: newCats } = await seedCategories(env.lanus_catalog);
+  if (newCats > 0) console.log(`[sync-elit] Seeded ${newCats} new categories`);
+
+  // Run one-time migration if needed (products still have uncategorized)
+  if (await needsMigration(env.lanus_catalog)) {
+    console.log("[sync-elit] Running one-time category migration...");
+    const migration = await migrateCategories(env.lanus_catalog);
+    console.log(`[sync-elit] Migration done: ${migration.productsMigrated} migrated, ${migration.productsUnmapped} unmapped`);
+    if (migration.unmappedCombos.length > 0) {
+      console.log("[sync-elit] Unmapped combos:", migration.unmappedCombos);
+    }
+  }
+
+  // Reset AI call counter for this sync batch
+  resetAiCallCounter();
+
   console.log("[sync-elit] Fetching products from ELIT...");
   const rawProducts = await client.getAllProducts();
   console.log(`[sync-elit] Fetched ${rawProducts.length} raw products`);
@@ -60,5 +81,6 @@ async function runSync(env: Env) {
   }
 
   const archived = await d1.deleteOutOfStockProducts(syncedIds);
-  console.log(`[sync-elit] Done: ${inserted} inserted, ${updated} updated, ${archived} archived`);
+  const aiCalls = getAiCallCount();
+  console.log(`[sync-elit] Done: ${inserted} inserted, ${updated} updated, ${archived} archived${aiCalls > 0 ? `, ${aiCalls} AI calls` : ""}`);
 }

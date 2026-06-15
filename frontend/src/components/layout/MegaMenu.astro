@@ -1,37 +1,18 @@
 ---
-// Categorías principales de Tecnología
-const categories = [
-  { id: 'MLA1051', name: 'Celulares y Teléfonos', slug: 'celulares-telefonos', subcategories: [
-    { name: 'Celulares y Smartphones', slug: 'celulares-smartphones' },
-    { name: 'Accesorios para Celulares', slug: 'accesorios-celulares' },
-    { name: 'Smartwatches y Accesorios', slug: 'smartwatches-accesorios' },
-    { name: 'Repuestos de Celulares', slug: 'repuestos-celulares' },
-  ]},
-  { id: 'MLA1648', name: 'Computación', slug: 'computacion', subcategories: [
-    { name: 'Componentes de PC', slug: 'componentes-pc' },
-    { name: 'Notebooks y Accesorios', slug: 'notebooks-accesorios' },
-    { name: 'Periféricos de PC', slug: 'perifericos-pc' },
-    { name: 'Almacenamiento', slug: 'almacenamiento' },
-    { name: 'Monitores y Accesorios', slug: 'monitores-accesorios' },
-    { name: 'Impresión', slug: 'impresion' },
-  ]},
-  { id: 'MLA1000', name: 'Electrónica, Audio y Video', slug: 'electronica-audio-video', subcategories: [
-    { name: 'Audio', slug: 'audio' },
-    { name: 'Televisores', slug: 'televisores' },
-    { name: 'Accesorios para Audio y Video', slug: 'accesorios-audio-video' },
-    { name: 'Drones y Accesorios', slug: 'drones-accesorios' },
-  ]},
-  { id: 'MLA1144', name: 'Consolas y Videojuegos', slug: 'consolas-videojuegos', subcategories: [
-    { name: 'Videojuegos', slug: 'videojuegos' },
-    { name: 'Consolas', slug: 'consolas' },
-    { name: 'Accesorios para Consolas', slug: 'accesorios-consolas' },
-  ]},
-  { id: 'MLA1039', name: 'Cámaras y Accesorios', slug: 'camaras-accesorios', subcategories: [
-    { name: 'Cámaras Digitales', slug: 'camaras-digitales' },
-    { name: 'Accesorios para Cámaras', slug: 'accesorios-camaras' },
-    { name: 'Filmadoras', slug: 'filmadoras' },
-  ]},
-];
+import { getCategories, getSubcategories } from '../../lib/d1';
+
+const db = (Astro.locals as any).runtime?.env?.DB;
+let categories: any[] = [];
+
+if (db) {
+  const topCategories = await getCategories(db);
+  categories = await Promise.all(
+    topCategories.map(async (cat) => {
+      const subs = await getSubcategories(db, cat.id);
+      return { ...cat, subcategories: subs };
+    })
+  );
+}
 ---
 
 <nav class="hidden lg:block bg-white border-t" aria-label="Categorías principales">
@@ -53,7 +34,7 @@ const categories = [
             href={`/categoria/${cat.slug}`}
             class="block px-3 py-2 text-sm text-ml-text-secondary hover:text-ml-blue transition-colors whitespace-nowrap"
           >
-            {cat.name}
+            {cat.picture} {cat.name}
           </a>
           <!-- Dropdown -->
           <div class="absolute top-full left-0 hidden group-hover:block bg-white shadow-megamenu border-t-2 border-ml-yellow rounded-b min-w-[600px] p-4 animate-fade-in z-50">
@@ -63,7 +44,10 @@ const categories = [
                   href={`/categoria/${sub.slug}`}
                   class="block text-sm text-ml-text hover:text-ml-blue transition-colors py-1"
                 >
-                  {sub.name}
+                  {sub.picture} {sub.name}
+                  {sub.total_items > 0 && (
+                    <span class="text-xs text-ml-text-secondary ml-1">({sub.total_items})</span>
+                  )}
                 </a>
               ))}
             </div>

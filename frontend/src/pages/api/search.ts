@@ -26,11 +26,11 @@ export const GET: APIRoute = async ({ locals, request }) => {
   }
 
   if (category) {
-    const catClause = " AND (category_name = ? OR subcategory_name = ?)";
+    const catClause = " AND category_id = ?";
     sql += catClause;
     countSql += catClause;
-    binds.push(category, category);
-    countBinds.push(category, category);
+    binds.push(category);
+    countBinds.push(category);
   }
 
   if (brand) {

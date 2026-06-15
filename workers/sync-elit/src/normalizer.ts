@@ -1,4 +1,5 @@
 import { calculatePriceFromElit } from "./pricing";
+import { mapElitToCategory } from "./category_mapping";
 
 function slugify(text: string): string {
   return text
@@ -15,6 +16,7 @@ export interface NormalizedProduct {
   title: string;
   slug: string;
   description: string;
+  category_id: string;
   category_name: string;
   subcategory_name: string;
   brand: string;
@@ -54,6 +56,14 @@ export function normalizeElitProduct(elitProduct: Record<string, any>): Normaliz
   const stockTotal = Number(elitProduct.stock_total ?? 0);
   const nivelStock = String(elitProduct.nivel_stock ?? "bajo");
 
+  const elitCategory = String(elitProduct.categoria ?? "");
+  const elitSubcategory = String(elitProduct.sub_categoria ?? "");
+
+  // Map ELIT categories to our taxonomy
+  const mapping = mapElitToCategory(elitCategory, elitSubcategory);
+  const categoryId = mapping?.category_id ?? "uncategorized";
+  const subcategoryName = mapping?.subcategory_name ?? elitSubcategory;
+
   return {
     id: `elit_${elitProduct.id ?? ""}`,
     external_id: String(elitProduct.id ?? ""),
@@ -62,8 +72,9 @@ export function normalizeElitProduct(elitProduct: Record<string, any>): Normaliz
     title,
     slug,
     description: `${title} - ${elitProduct.garantia ?? ""}`,
-    category_name: String(elitProduct.categoria ?? ""),
-    subcategory_name: String(elitProduct.sub_categoria ?? ""),
+    category_id: categoryId,
+    category_name: elitCategory,
+    subcategory_name: subcategoryName,
     brand: String(elitProduct.marca ?? ""),
     price: pricing.final_price,
     cost_price: pricing.cost_original,
