@@ -1,54 +1,167 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCategories, getSubcategories } from '../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
+const { results: categories } = await db.prepare(`
+  SELECT c.*,
+    (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'published') as product_count
+  FROM categories c WHERE c.is_active = 1 ORDER BY c.level, c.name
+`).all();
 
-const categories = await getCategories(db);
-
-// Get subcategories for each category
-const categoriesWithSubs = await Promise.all(
-  categories.map(async (cat) => {
-    const subs = await getSubcategories(db, cat.id);
-    return { ...cat, subcategories: subs };
-  })
-);
+const parents = categories.filter((c: any) => c.level === 0);
+const subs = categories.filter((c: any) => c.level === 1);
 ---
 
 <BaseLayout title="Categorías | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Categorías</h1>
-      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+      <div class="flex gap-3">
+        <button id="btn-new-cat" class="ml-btn-primary text-sm">+ Nueva categoría</button>
+        <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+      </div>
     </div>
 
-    <!-- Categories Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {categoriesWithSubs.map(category => (
+      {parents.map((cat: any) => (
         <div class="bg-white rounded shadow-card p-4">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-2xl">{category.picture || '📦'}</span>
-            <div>
-              <h2 class="font-medium text-ml-text">{category.name}</h2>
-              <p class="text-xs text-ml-text-muted">{category.total_items} productos</p>
-            </div>
-          </div>
-
-          {category.subcategories.length > 0 && (
-            <div class="border-t pt-3">
-              <p class="text-xs text-ml-text-muted mb-2">Subcategorías:</p>
-              <div class="space-y-1">
-                {category.subcategories.map(sub => (
-                  <div class="flex items-center justify-between text-sm">
-                    <span class="text-ml-text-secondary">{sub.picture} {sub.name}</span>
-                    <span class="text-xs text-ml-text-muted">{sub.total_items}</span>
-                  </div>
-                ))}
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">{cat.picture || '📦'}</span>
+              <div>
+                <h2 class="font-medium text-ml-text">{cat.name}</h2>
+                <p class="text-xs text-ml-text-muted">{cat.product_count} productos</p>
               </div>
             </div>
-          )}
+            <div class="flex gap-2">
+              <button class="edit-cat text-ml-blue text-xs hover:underline" data-id={cat.id} data-name={cat.name} data-slug={cat.slug} data-picture={cat.picture}>Editar</button>
+              <button class="delete-cat text-red-500 text-xs hover:underline" data-id={cat.id}>Eliminar</button>
+            </div>
+          </div>
+          <div class="border-t pt-3 space-y-1">
+            {subs.filter((s: any) => s.parent_id === cat.id).map((sub: any) => (
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-ml-text-secondary">{sub.picture} {sub.name}</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-ml-text-muted">{sub.product_count}</span>
+                  <button class="edit-cat text-ml-blue text-xs hover:underline" data-id={sub.id} data-name={sub.name} data-slug={sub.slug} data-picture={sub.picture} data-parent={sub.parent_id}>Editar</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
   </div>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h2 id="modal-title" class="font-medium text-ml-text">Nueva categoría</h2>
+        <button id="modal-close" class="text-ml-text-muted hover:text-ml-text text-xl">&times;</button>
+      </div>
+      <form id="cat-form" class="p-4 space-y-4">
+        <input type="hidden" name="id" id="form-id" />
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Nombre</label>
+          <input type="text" name="name" id="form-name" class="ml-input w-full" required />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Slug</label>
+          <input type="text" name="slug" id="form-slug" class="ml-input w-full" required />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Emoji (picture)</label>
+          <input type="text" name="picture" id="form-picture" class="ml-input w-full" placeholder="📦" />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Categoría padre (opcional = subcategoría)</label>
+          <select name="parent_id" id="form-parent" class="ml-input w-full">
+            <option value="">Categoría principal</option>
+            {parents.map((p: any) => <option value={p.id}>{p.name}</option>)}
+          </select>
+        </div>
+        <div class="flex gap-3 justify-end">
+          <button type="button" id="modal-cancel" class="ml-btn-secondary px-4">Cancelar</button>
+          <button type="submit" class="ml-btn-primary px-6">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </BaseLayout>
+
+<script>
+  const overlay = document.getElementById('modal-overlay')!;
+  const form = document.getElementById('cat-form') as HTMLFormElement;
+  const modalTitle = document.getElementById('modal-title')!;
+
+  function openModal(data?: any) {
+    if (data?.id) {
+      modalTitle.textContent = 'Editar categoría';
+      (document.getElementById('form-id') as HTMLInputElement).value = data.id;
+      (document.getElementById('form-name') as HTMLInputElement).value = data.name || '';
+      (document.getElementById('form-slug') as HTMLInputElement).value = data.slug || '';
+      (document.getElementById('form-picture') as HTMLInputElement).value = data.picture || '';
+      (document.getElementById('form-parent') as HTMLSelectElement).value = data.parent || '';
+    } else {
+      modalTitle.textContent = 'Nueva categoría';
+      form.reset();
+      (document.getElementById('form-id') as HTMLInputElement).value = '';
+    }
+    overlay.classList.remove('hidden');
+  }
+
+  document.getElementById('btn-new-cat')?.addEventListener('click', () => openModal());
+  document.getElementById('modal-close')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  document.getElementById('modal-cancel')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  overlay?.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.add('hidden'); });
+
+  document.querySelectorAll('.edit-cat').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = btn as HTMLElement;
+      openModal({
+        id: el.dataset.id, name: el.dataset.name, slug: el.dataset.slug,
+        picture: el.dataset.picture, parent: el.dataset.parent || '',
+      });
+    });
+  });
+
+  document.querySelectorAll('.delete-cat').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('¿Eliminar esta categoría?')) return;
+      await fetch('/api/admin/categories', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: (btn as HTMLElement).dataset.id }),
+      });
+      location.reload();
+    });
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const id = formData.get('id');
+    const body: any = {
+      name: formData.get('name'),
+      slug: formData.get('slug'),
+      picture: formData.get('picture') || '📦',
+      parent_id: formData.get('parent_id') || null,
+      level: formData.get('parent_id') ? 1 : 0,
+    };
+
+    if (id) {
+      body.id = id;
+      await fetch('/api/admin/categories', {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      });
+    } else {
+      await fetch('/api/admin/categories', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      });
+    }
+    overlay.classList.add('hidden');
+    location.reload();
+  });
+</script>

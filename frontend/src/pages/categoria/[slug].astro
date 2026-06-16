@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
-import ActiveFilters from '../../components/catalog/ActiveFilters.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
 import { getProducts, getProductCount, getCategoryBySlug, getSubcategories } from '../../lib/d1';
 
@@ -11,29 +10,41 @@ const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
 
 const page = Number(Astro.url.searchParams.get('page') || 1);
+const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
+const maxPrice = Number(Astro.url.searchParams.get('max_price') || 0);
 const limit = 20;
 const offset = (page - 1) * limit;
 
-// Look up category by slug
 const category = slug !== 'todas' ? await getCategoryBySlug(db, slug) : null;
 
-// Get subcategories if this is a parent category
 const subcategories = category && category.level === 0
   ? await getSubcategories(db, category.id)
   : [];
 
-// Filter by category_id or subcategory_name
 const categoryFilter = category?.level === 0 ? category.id : undefined;
 const subcategoryFilter = category?.level === 1 ? category.name : undefined;
 
-const [products, total] = await Promise.all([
-  getProducts(db, { category: categoryFilter, subcategory: subcategoryFilter, limit, offset }),
-  getProductCount(db, categoryFilter, subcategoryFilter),
-]);
+const products = await getProducts(db, {
+  category: categoryFilter,
+  subcategory: subcategoryFilter,
+  limit,
+  offset,
+  minPrice: minPrice || undefined,
+  maxPrice: maxPrice || undefined,
+});
+const total = await getProductCount(db, categoryFilter, subcategoryFilter);
 
 const totalPages = Math.ceil(total / limit);
-
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
+
+// Build base URL for filters
+const filterBaseUrl = `/categoria/${slug}`;
+
+// Get price range
+const priceRange = await db.prepare(`
+  SELECT MIN(price) as min_price, MAX(price) as max_price
+  FROM products WHERE status = 'published' AND category_id = ?
+`).bind(categoryFilter || '').first<{ min_price: number; max_price: number }>();
 ---
 
 <BaseLayout title={`${categoryName} | Lanús Computación`}>
@@ -46,8 +57,8 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.nam
   </div>
 
   <div class="ml-container flex gap-6">
-    <aside class="hidden lg:block w-64 flex-shrink-0">
-      <div class="mb-4">
+    <aside class="hidden lg:block w-64 flex-shrink-0 space-y-4">
+      <div>
         <h1 class="text-lg font-semibold text-ml-text">{categoryName}</h1>
         <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
       </div>
@@ -58,31 +69,52 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.nam
           <ul class="space-y-2">
             {subcategories.map((sub) => (
               <li>
-                <a
-                  href={`/categoria/${sub.slug}`}
-                  class={`text-sm hover:text-ml-blue transition-colors ${sub.slug === slug ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}
-                >
+                <a href={`/categoria/${sub.slug}`}
+                   class={`text-sm hover:text-ml-blue transition-colors ${sub.slug === slug ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}>
                   {sub.picture} {sub.name}
-                  {sub.total_items > 0 && (
-                    <span class="text-xs text-ml-text-muted ml-1">({sub.total_items})</span>
-                  )}
+                  {sub.total_items > 0 && <span class="text-xs text-ml-text-muted ml-1">({sub.total_items})</span>}
                 </a>
               </li>
             ))}
           </ul>
         </div>
       )}
+
+      <div class="bg-white rounded shadow-card p-4">
+        <h3 class="text-sm font-semibold text-ml-text mb-3">Precio</h3>
+        <form id="price-filter-form" class="space-y-3">
+          <div class="flex gap-2 items-center">
+            <input type="number" name="min_price" placeholder="Mínimo" value={minPrice || ''}
+                   class="ml-input w-full text-sm" min="0" />
+            <span class="text-ml-text-muted">-</span>
+            <input type="number" name="max_price" placeholder="Máximo" value={maxPrice || ''}
+                   class="ml-input w-full text-sm" min="0" />
+          </div>
+          <button type="submit" class="ml-btn-primary w-full text-sm py-2">Filtrar</button>
+          {(minPrice > 0 || maxPrice > 0) && (
+            <a href={filterBaseUrl} class="block text-center text-xs text-ml-blue hover:underline">Limpiar filtro</a>
+          )}
+        </form>
+        {priceRange && (
+          <p class="text-xs text-ml-text-muted mt-2">
+            Rango: ${priceRange.min_price?.toLocaleString('es-AR')} - ${priceRange.max_price?.toLocaleString('es-AR')}
+          </p>
+        )}
+      </div>
     </aside>
 
     <div class="flex-1 min-w-0">
       <div class="flex items-center justify-between mb-4 bg-white p-3 rounded shadow-card">
         <p class="text-sm text-ml-text-secondary">
           {total} resultados en <span class="font-medium text-ml-text">{categoryName}</span>
+          {(minPrice > 0 || maxPrice > 0) && (
+            <span class="text-ml-text-muted">
+              | ${minPrice || 0} - ${maxPrice || '∞'}
+            </span>
+          )}
         </p>
         <SortSelector client:load />
       </div>
-
-      <ActiveFilters filters={[]} baseUrl={`/categoria/${slug}`} />
 
       <ProductGrid products={products.map(p => ({
         id: p.id,
@@ -93,7 +125,21 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.nam
         freeShipping: false,
       }))} columns={4} />
 
-      <Pagination current={page} total={totalPages} baseUrl={`/categoria/${slug}`} />
+      <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${minPrice ? `?min_price=${minPrice}` : ''}${maxPrice ? `${minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('price-filter-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    const min = formData.get('min_price') as string;
+    const max = formData.get('max_price') as string;
+    if (min) params.set('min_price', min);
+    if (max) params.set('max_price', max);
+    window.location.href = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+  });
+</script>

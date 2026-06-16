@@ -39,6 +39,8 @@ export async function getProducts(db: D1Database, options?: {
   subcategory?: string;
   search?: string;
   store?: string;
+  minPrice?: number;
+  maxPrice?: number;
 }): Promise<Product[]> {
   let sql = "SELECT * FROM products WHERE status = 'published'";
   const binds: any[] = [];
@@ -59,6 +61,14 @@ export async function getProducts(db: D1Database, options?: {
   if (options?.store) {
     sql += " AND provider_store = ?";
     binds.push(options.store);
+  }
+  if (options?.minPrice && options.minPrice > 0) {
+    sql += " AND price >= ?";
+    binds.push(options.minPrice);
+  }
+  if (options?.maxPrice && options.maxPrice > 0) {
+    sql += " AND price <= ?";
+    binds.push(options.maxPrice);
   }
 
   sql += " ORDER BY available_qty DESC, created_at DESC";

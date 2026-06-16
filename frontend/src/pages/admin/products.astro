@@ -1,33 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getProducts, getProductCount } from '../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
-
 const page = Number(Astro.url.searchParams.get('page') || 1);
+const search = Astro.url.searchParams.get('q') || '';
 const limit = 20;
 const offset = (page - 1) * limit;
-const search = Astro.url.searchParams.get('q') || '';
 
-let products;
-let total;
+let products: any[] = [];
+let total = 0;
 
 if (search) {
   const { results } = await db.prepare(
     "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
   ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
   products = results;
-
-  const countResult = await db.prepare(
-    "SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
-  ).bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
+  const countResult = await db.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
   total = countResult?.count ?? 0;
 } else {
-  products = await getProducts(db, { limit, offset });
-  total = await getProductCount(db);
+  const { results } = await db.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
+  products = results;
+  const countResult = await db.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
+  total = countResult?.count ?? 0;
 }
 
 const totalPages = Math.ceil(total / limit);
+const categories = (await db.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all()).results;
 ---
 
 <BaseLayout title="Productos | Admin - Lanús Computación">
@@ -35,28 +33,19 @@ const totalPages = Math.ceil(total / limit);
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Productos</h1>
       <div class="flex gap-3">
+        <button id="btn-new-product" class="ml-btn-primary text-sm">+ Nuevo producto</button>
         <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
       </div>
     </div>
 
-    <!-- Search -->
     <div class="bg-white rounded shadow-card p-4 mb-6">
       <form method="GET" class="flex gap-3">
-        <input
-          type="text"
-          name="q"
-          value={search}
-          placeholder="Buscar por título, marca o EAN..."
-          class="ml-input flex-1"
-        />
+        <input type="text" name="q" value={search} placeholder="Buscar por título, marca o EAN..." class="ml-input flex-1" />
         <button type="submit" class="ml-btn-primary px-6">Buscar</button>
-        {search && (
-          <a href="/admin/products" class="ml-btn-secondary px-4">Limpiar</a>
-        )}
+        {search && <a href="/admin/products" class="ml-btn-secondary px-4">Limpiar</a>}
       </form>
     </div>
 
-    <!-- Products Table -->
     <div class="bg-white rounded shadow-card overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -64,42 +53,39 @@ const totalPages = Math.ceil(total / limit);
             <tr>
               <th class="text-left p-3 font-medium text-ml-text">Producto</th>
               <th class="text-left p-3 font-medium text-ml-text">Marca</th>
-              <th class="text-left p-3 font-medium text-ml-text">Categoría</th>
               <th class="text-right p-3 font-medium text-ml-text">Precio</th>
               <th class="text-right p-3 font-medium text-ml-text">Stock</th>
               <th class="text-center p-3 font-medium text-ml-text">Estado</th>
+              <th class="text-center p-3 font-medium text-ml-text">Acciones</th>
             </tr>
           </thead>
           <tbody class="divide-y">
-            {products.map((product: any) => (
-              <tr class="hover:bg-gray-50">
+            {products.map((p: any) => (
+              <tr class="hover:bg-gray-50" data-id={p.id}>
                 <td class="p-3">
                   <div class="flex items-center gap-3">
-                    {product.thumbnail && (
-                      <img src={product.thumbnail} alt="" class="w-10 h-10 object-cover rounded" />
-                    )}
+                    {p.thumbnail && <img src={p.thumbnail} alt="" class="w-10 h-10 object-cover rounded" />}
                     <div>
-                      <p class="font-medium text-ml-text truncate max-w-[300px]">{product.title}</p>
-                      <p class="text-xs text-ml-text-muted">SKU: {product.sku || product.external_id}</p>
+                      <p class="font-medium text-ml-text truncate max-w-[300px]">{p.title}</p>
+                      <p class="text-xs text-ml-text-muted">SKU: {p.sku || p.external_id}</p>
                     </div>
                   </div>
                 </td>
-                <td class="p-3 text-ml-text-secondary">{product.brand || '-'}</td>
-                <td class="p-3 text-ml-text-secondary">{product.category_name || '-'}</td>
-                <td class="p-3 text-right font-medium text-ml-text">${product.price?.toLocaleString('es-AR')}</td>
+                <td class="p-3 text-ml-text-secondary">{p.brand || '-'}</td>
+                <td class="p-3 text-right font-medium text-ml-text">${p.price?.toLocaleString('es-AR')}</td>
                 <td class="p-3 text-right">
-                  <span class={`font-medium ${product.available_qty <= 2 ? 'text-red-600' : product.available_qty <= 5 ? 'text-yellow-600' : 'text-green-600'}`}>
-                    {product.available_qty}
+                  <span class={`font-medium ${p.available_qty <= 2 ? 'text-red-600' : p.available_qty <= 5 ? 'text-yellow-600' : 'text-green-600'}`}>
+                    {p.available_qty}
                   </span>
                 </td>
                 <td class="p-3 text-center">
-                  <span class={`px-2 py-1 rounded text-xs font-medium ${
-                    product.status === 'published' ? 'bg-green-100 text-green-800' :
-                    product.status === 'archived' ? 'bg-gray-100 text-gray-800' :
-                    'bg-yellow-100 text-yellow-800'
-                  }`}>
-                    {product.status}
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${p.status === 'published' ? 'bg-green-100 text-green-800' : p.status === 'archived' ? 'bg-gray-100 text-gray-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                    {p.status}
                   </span>
+                </td>
+                <td class="p-3 text-center">
+                  <button class="edit-product text-ml-blue text-xs hover:underline mr-2" data-id={p.id}>Editar</button>
+                  <button class="delete-product text-red-500 text-xs hover:underline" data-id={p.id}>Archivar</button>
                 </td>
               </tr>
             ))}
@@ -107,26 +93,143 @@ const totalPages = Math.ceil(total / limit);
         </table>
       </div>
 
-      <!-- Pagination -->
       {totalPages > 1 && (
         <div class="p-4 border-t flex items-center justify-between">
-          <p class="text-sm text-ml-text-muted">
-            Mostrando {offset + 1}-{Math.min(offset + limit, total)} de {total}
-          </p>
+          <p class="text-sm text-ml-text-muted">Mostrando {offset + 1}-{Math.min(offset + limit, total)} de {total}</p>
           <div class="flex gap-2">
-            {page > 1 && (
-              <a href={`/admin/products?page=${page - 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
-                Anterior
-              </a>
-            )}
-            {page < totalPages && (
-              <a href={`/admin/products?page=${page + 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">
-                Siguiente
-              </a>
-            )}
+            {page > 1 && <a href={`/admin/products?page=${page - 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Anterior</a>}
+            {page < totalPages && <a href={`/admin/products?page=${page + 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Siguiente</a>}
           </div>
         </div>
       )}
     </div>
   </div>
+
+  <!-- Modal Edit Product -->
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h2 id="modal-title" class="font-medium text-ml-text">Editar producto</h2>
+        <button id="modal-close" class="text-ml-text-muted hover:text-ml-text text-xl">&times;</button>
+      </div>
+      <form id="product-form" class="p-4 space-y-4">
+        <input type="hidden" name="id" id="form-id" />
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Título</label>
+          <input type="text" name="title" id="form-title" class="ml-input w-full" required />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Precio</label>
+            <input type="number" name="price" id="form-price" class="ml-input w-full" step="0.01" />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Stock</label>
+            <input type="number" name="available_qty" id="form-stock" class="ml-input w-full" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Marca</label>
+          <input type="text" name="brand" id="form-brand" class="ml-input w-full" />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Categoría</label>
+          <select name="category_id" id="form-category" class="ml-input w-full">
+            <option value="uncategorized">Sin categoría</option>
+            {categories.map((c: any) => <option value={c.id}>{c.name}</option>)}
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Descripción</label>
+          <textarea name="description" id="form-description" class="ml-input w-full" rows={3}></textarea>
+        </div>
+        <div class="flex gap-3 justify-end">
+          <button type="button" id="modal-cancel" class="ml-btn-secondary px-4">Cancelar</button>
+          <button type="submit" class="ml-btn-primary px-6">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </BaseLayout>
+
+<script>
+  const overlay = document.getElementById('modal-overlay')!;
+  const form = document.getElementById('product-form') as HTMLFormElement;
+  const modalTitle = document.getElementById('modal-title')!;
+
+  function openModal(product?: any) {
+    if (product) {
+      modalTitle.textContent = 'Editar producto';
+      (document.getElementById('form-id') as HTMLInputElement).value = product.id;
+      (document.getElementById('form-title') as HTMLInputElement).value = product.title || '';
+      (document.getElementById('form-price') as HTMLInputElement).value = product.price || '';
+      (document.getElementById('form-stock') as HTMLInputElement).value = product.available_qty || '';
+      (document.getElementById('form-brand') as HTMLInputElement).value = product.brand || '';
+      (document.getElementById('form-category') as HTMLSelectElement).value = product.category_id || 'uncategorized';
+      (document.getElementById('form-description') as HTMLTextAreaElement).value = product.description || '';
+    } else {
+      modalTitle.textContent = 'Nuevo producto';
+      form.reset();
+      (document.getElementById('form-id') as HTMLInputElement).value = '';
+    }
+    overlay.classList.remove('hidden');
+  }
+
+  document.getElementById('btn-new-product')?.addEventListener('click', () => openModal());
+  document.getElementById('modal-close')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  document.getElementById('modal-cancel')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  overlay?.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.add('hidden'); });
+
+  document.querySelectorAll('.edit-product').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = (btn as HTMLElement).dataset.id;
+      const res = await fetch(`/api/admin/products?id=${id}`);
+      const data = await res.json();
+      openModal(data.product);
+    });
+  });
+
+  document.querySelectorAll('.delete-product').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('¿Archivar este producto?')) return;
+      const id = (btn as HTMLElement).dataset.id;
+      await fetch('/api/admin/products', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      location.reload();
+    });
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const id = formData.get('id');
+    const body: any = {
+      title: formData.get('title'),
+      price: Number(formData.get('price')),
+      available_qty: Number(formData.get('available_qty')),
+      brand: formData.get('brand'),
+      category_id: formData.get('category_id'),
+      description: formData.get('description'),
+    };
+
+    if (id) {
+      body.id = id;
+      await fetch('/api/admin/products', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+    } else {
+      await fetch('/api/admin/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+    }
+    overlay.classList.add('hidden');
+    location.reload();
+  });
+</script>

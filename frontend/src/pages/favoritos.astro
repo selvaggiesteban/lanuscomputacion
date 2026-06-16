@@ -1,23 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProductGrid from '../components/catalog/ProductGrid.astro';
-
-// Favorites require auth - for now show empty state
 ---
 
 <BaseLayout title="Favoritos | Lanús Computación">
   <div class="ml-container py-6">
     <h1 class="text-xl font-semibold text-ml-text mb-6">Mis favoritos</h1>
 
-    <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+    <div id="favorites-loading" class="text-center py-16 text-ml-text-muted">
+      <p>Cargando favoritos...</p>
+    </div>
+
+    <div id="favorites-empty" class="hidden bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 opacity-30">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
-      <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus favoritos</p>
-      <p class="text-sm mb-6">Guardá los productos que te gustan para encontrarlos fácilmente</p>
-      <a href="/login" class="ml-btn-primary inline-block">
-        Iniciar sesión
-      </a>
+      <p class="text-lg font-medium text-ml-text mb-2">No tenés favoritos</p>
+      <p class="text-sm mb-6">Guardá los productos que te gustan</p>
+      <a href="/" class="ml-btn-primary inline-block">Explorar productos</a>
     </div>
+
+    <div id="favorites-list" class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
   </div>
 </BaseLayout>
+
+<script>
+  const loading = document.getElementById('favorites-loading')!;
+  const empty = document.getElementById('favorites-empty')!;
+  const list = document.getElementById('favorites-list')!;
+
+  async function loadFavorites() {
+    try {
+      const meRes = await fetch('/api/auth/me');
+      const meData = await meRes.json();
+
+      if (!meData.user) {
+        loading.classList.add('hidden');
+        empty.classList.remove('hidden');
+        empty.querySelector('p')!.textContent = 'Iniciá sesión para ver tus favoritos';
+        return;
+      }
+
+      const res = await fetch('/api/favorites');
+      const data = await res.json();
+      loading.classList.add('hidden');
+
+      if (!data.favorites || data.favorites.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+
+      list.classList.remove('hidden');
+      list.innerHTML = data.favorites.map((fav: any) => `
+        <div class="bg-white rounded shadow-card overflow-hidden group">
+          <a href="/producto/${fav.slug}" class="block">
+            <div class="aspect-square bg-ml-bg p-4 flex items-center justify-center">
+              <img src="${fav.thumbnail}" alt="${fav.title}" class="object-contain max-h-full" />
+            </div>
+            <div class="p-3">
+              <h3 class="text-sm text-ml-text line-clamp-2 mb-2">${fav.title}</h3>
+              <p class="text-lg font-medium text-ml-text">$${fav.price?.toLocaleString('es-AR')}</p>
+            </div>
+          </a>
+          <div class="px-3 pb-3">
+            <button onclick="removeFavorite('${fav.product_id}')" class="text-xs text-red-500 hover:text-red-700">Eliminar</button>
+          </div>
+        </div>
+      `).join('');
+    } catch {
+      loading.classList.add('hidden');
+      empty.classList.remove('hidden');
+    }
+  }
+
+  (window as any).removeFavorite = async function(productId: string) {
+    await fetch('/api/favorites', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product_id: productId }),
+    });
+    loadFavorites();
+  };
+
+  loadFavorites();
+</script>

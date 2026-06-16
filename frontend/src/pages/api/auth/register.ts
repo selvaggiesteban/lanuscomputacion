@@ -1,9 +1,19 @@
 import type { APIRoute } from "astro";
 import { hashPassword, generateToken, createSessionCookie } from "../../../lib/auth";
+import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
   const jwtSecret = locals.runtime.env.JWT_SECRET as string;
+
+  const ip = getClientIp(request);
+  const rateLimit = checkRateLimit(`register:${ip}`, 5, 300000); // 5 attempts per 5 minutes
+  if (!rateLimit.allowed) {
+    return new Response(JSON.stringify({ error: "Demasiados intentos. Intentá de nuevo en unos minutos." }), {
+      status: 429,
+      headers: { "Content-Type": "application/json", "Retry-After": String(rateLimit.resetIn) },
+    });
+  }
 
   if (!jwtSecret) {
     return new Response(JSON.stringify({ error: "JWT_SECRET no configurado" }), {
