@@ -45,7 +45,13 @@ export default function CartContent() {
           customer,
         }),
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data: any;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Error del servidor. Intentá de nuevo.");
+      }
       if (!res.ok) throw new Error(data.error || "Error al procesar");
       if (data.init_point) {
         clearCart();
