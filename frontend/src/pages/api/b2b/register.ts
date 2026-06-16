@@ -41,8 +41,8 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
   // Create B2B customer (pending approval)
   await db.prepare(`
-    INSERT INTO customers (email, name, phone, is_b2b, created_at)
-    VALUES (?, ?, ?, 1, datetime('now'))
+    INSERT INTO customers (email, name, phone, is_b2b, b2b_status, created_at)
+    VALUES (?, ?, ?, 1, 'pending', datetime('now'))
   `).bind(body.email, `${body.name} (${body.company})`, body.phone).run();
 
   return new Response(JSON.stringify({

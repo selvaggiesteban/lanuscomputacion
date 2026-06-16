@@ -5,10 +5,11 @@ import { getProducts, getCategories, getOrders } from '../../lib/d1';
 const db = Astro.locals.runtime.env.DB;
 
 // Get counts
-const [productCount, categoryCount, orderCount] = await Promise.all([
+const [productCount, categoryCount, orderCount, b2bCount] = await Promise.all([
   db.prepare("SELECT COUNT(*) as count FROM products WHERE status = 'published'").first<{ count: number }>(),
   db.prepare("SELECT COUNT(*) as count FROM categories WHERE is_active = 1").first<{ count: number }>(),
   db.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>(),
+  db.prepare("SELECT COUNT(*) as count FROM customers WHERE is_b2b = 1 AND b2b_status = 'pending'").first<{ count: number }>(),
 ]);
 
 // Get recent orders
@@ -24,8 +25,14 @@ const lowStockProducts = await db.prepare(
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Dashboard Admin</h1>
-      <div class="text-sm text-ml-text-muted">
-        {new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+      <div class="flex items-center gap-3">
+        <div class="text-sm text-ml-text-muted">
+          {new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+        </div>
+        <div class="flex gap-2">
+          <a href="/api/admin/export?type=products" class="px-3 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700">Exportar Productos CSV</a>
+          <a href="/api/admin/export?type=orders" class="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700">Exportar Órdenes CSV</a>
+        </div>
       </div>
     </div>
 
@@ -78,6 +85,24 @@ const lowStockProducts = await db.prepare(
           </div>
         </div>
         <a href="/admin/categories" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-purple-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{b2bCount?.count ?? 0}</p>
+            <p class="text-xs text-ml-text-muted">B2B Pendientes</p>
+          </div>
+        </div>
+        <a href="/admin/b2b" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
       </div>
     </div>
 

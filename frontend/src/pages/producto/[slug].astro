@@ -4,6 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import Price from '../../components/ui/Price.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Rating from '../../components/ui/Rating.astro';
+import ShareButtons from '../../components/ui/ShareButtons.astro';
 import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import { getProductBySlug, getProducts } from '../../lib/d1';
@@ -130,6 +131,10 @@ const relatedProducts = (await getProducts(db, { limit: 5 }))
             Comprar ahora
           </a>
 
+          <div class="mt-4">
+            <ShareButtons title={product.title} url={`https://lanuscomputacion.com/producto/${product.slug}`} price={product.price} />
+          </div>
+
           <div class="border-t mt-6 pt-4">
             <h3 class="text-sm font-medium text-ml-text mb-2">Medios de pago</h3>
             <div class="flex flex-wrap gap-4 text-xs text-ml-text-secondary">
@@ -174,6 +179,36 @@ const relatedProducts = (await getProducts(db, { limit: 5 }))
     </div>
 
     <section class="mt-8">
+      <h2 class="text-lg font-medium text-ml-text mb-4">Reseñas</h2>
+      <div id="reviews-section" class="bg-white rounded shadow-card p-4">
+        <div id="reviews-loading" class="text-sm text-ml-text-muted py-4">Cargando reseñas...</div>
+        <div id="reviews-list" class="space-y-4 hidden"></div>
+        <div id="no-reviews" class="text-sm text-ml-text-muted py-4 hidden">No hay reseñas aún. ¡Sé el primero en reseñar!</div>
+
+        <div class="border-t mt-4 pt-4">
+          <h3 class="text-sm font-medium text-ml-text mb-3">Dejá tu reseña</h3>
+          <div id="review-login-msg" class="text-sm text-ml-text-muted mb-3 hidden">
+            <a href="/login" class="ml-link">Iniciá sesión</a> para reseñar.
+          </div>
+          <form id="review-form" class="space-y-3">
+            <div>
+              <label class="text-xs text-ml-text-muted">Puntuación *</label>
+              <div class="flex gap-1 mt-1" id="star-rating">
+                {[1,2,3,4,5].map(n => (
+                  <button type="button" data-rating={n} class="star-btn text-2xl text-gray-300 hover:text-yellow-400 transition-colors">★</button>
+                ))}
+              </div>
+            </div>
+            <input type="hidden" name="rating" id="rating-input" value="0" />
+            <input type="text" name="title" placeholder="Título (opcional)" class="ml-input w-full" />
+            <textarea name="comment" placeholder="Tu reseña (opcional)" class="ml-input w-full" rows="3"></textarea>
+            <button type="submit" class="ml-btn-primary text-sm px-4 py-2">Enviar reseña</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8">
       <h2 class="text-lg font-medium text-ml-text mb-4">Productos relacionados</h2>
       <ProductGrid products={relatedProducts.map(p => ({
         id: p.id,
@@ -186,3 +221,106 @@ const relatedProducts = (await getProducts(db, { limit: 5 }))
     </section>
   </div>
 </BaseLayout>
+
+<script define:vars={{ productId: product.id }}>
+  const reviewForm = document.getElementById('review-form');
+  const reviewsList = document.getElementById('reviews-list');
+  const reviewsLoading = document.getElementById('reviews-loading');
+  const noReviews = document.getElementById('no-reviews');
+  const reviewLoginMsg = document.getElementById('review-login-msg');
+  const ratingInput = document.getElementById('rating-input');
+  const starBtns = document.querySelectorAll('.star-btn');
+
+  // Star rating
+  let selectedRating = 0;
+  starBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedRating = Number(btn.dataset.rating);
+      ratingInput.value = selectedRating;
+      starBtns.forEach((s, i) => {
+        s.classList.toggle('text-yellow-400', i < selectedRating);
+        s.classList.toggle('text-gray-300', i >= selectedRating);
+      });
+    });
+  });
+
+  // Load reviews
+  async function loadReviews() {
+    try {
+      const res = await fetch(`/api/reviews?product_id=${productId}`);
+      const data = await res.json();
+      reviewsLoading.classList.add('hidden');
+
+      if (data.reviews.length === 0) {
+        noReviews.classList.remove('hidden');
+        return;
+      }
+
+      const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+      reviewsList.innerHTML = data.reviews.map(r => `
+        <div class="border-b pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-yellow-500 text-sm">${stars(r.rating)}</span>
+            <span class="text-sm font-medium text-ml-text">${r.title || ''}</span>
+            ${r.is_verified ? '<span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Compra verificada</span>' : ''}
+          </div>
+          <p class="text-xs text-ml-text-muted mt-1">${r.customer_name} · ${new Date(r.created_at).toLocaleDateString('es-AR')}</p>
+          ${r.comment ? `<p class="text-sm text-ml-text-secondary mt-2">${r.comment}</p>` : ''}
+        </div>
+      `).join('');
+      reviewsList.classList.remove('hidden');
+
+      if (data.stats.count > 0) {
+        const header = document.createElement('div');
+        header.className = 'mb-3 pb-3 border-b';
+        header.innerHTML = `<span class="text-sm text-ml-text-muted">${data.stats.count} reseñas · Promedio: <span class="text-yellow-500">${Number(data.stats.avg_rating).toFixed(1)}</span>/5</span>`;
+        reviewsList.prepend(header);
+      }
+    } catch {
+      reviewsLoading.textContent = 'Error al cargar reseñas';
+    }
+  }
+
+  loadReviews();
+
+  // Submit review
+  reviewForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (selectedRating === 0) {
+      alert('Seleccioná una puntuación');
+      return;
+    }
+
+    const formData = new FormData(reviewForm);
+    try {
+      const res = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_id: productId,
+          rating: selectedRating,
+          title: formData.get('title') || null,
+          comment: formData.get('comment') || null,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        if (res.status === 401) {
+          reviewLoginMsg.classList.remove('hidden');
+        } else {
+          alert(data.error || 'Error al enviar reseña');
+        }
+        return;
+      }
+
+      reviewForm.reset();
+      selectedRating = 0;
+      ratingInput.value = 0;
+      starBtns.forEach(s => { s.classList.remove('text-yellow-400'); s.classList.add('text-gray-300'); });
+      loadReviews();
+    } catch {
+      alert('Error de conexión');
+    }
+  });
+</script>
