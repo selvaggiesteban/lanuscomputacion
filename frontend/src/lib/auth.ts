@@ -2,14 +2,14 @@
 // Authentication helpers for Cloudflare Pages + D1
 
 export type User = {
-  id: string;
+  id: number;
   email: string;
   name: string;
   password_hash: string | null;
   google_id: string | null;
   facebook_id: string | null;
-  is_admin: boolean;
-  is_b2b: boolean;
+  is_admin: number;
+  is_b2b: number;
   created_at: string;
 };
 
@@ -31,7 +31,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 
 // Generate JWT token
 export async function generateToken(
-  payload: { userId: string; email: string; isAdmin: boolean },
+  payload: { userId: number; email: string; isAdmin: boolean },
   secret: string,
   expiresInHours = 24
 ): Promise<string> {
@@ -69,7 +69,7 @@ export async function generateToken(
 export async function verifyToken(
   token: string,
   secret: string
-): Promise<{ userId: string; email: string; isAdmin: boolean } | null> {
+): Promise<{ userId: number; email: string; isAdmin: boolean } | null> {
   try {
     const parts = token.split(".");
     if (parts.length !== 3) return null;
@@ -102,7 +102,7 @@ export async function verifyToken(
     }
 
     return {
-      userId: payload.userId,
+      userId: Number(payload.userId),
       email: payload.email,
       isAdmin: payload.isAdmin,
     };

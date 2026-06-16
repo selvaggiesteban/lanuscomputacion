@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { hashPassword, generateToken, createSessionCookie, generateId } from "../../../lib/auth";
+import { hashPassword, generateToken, createSessionCookie } from "../../../lib/auth";
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
@@ -42,13 +42,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 
   // Create user
-  const userId = generateId();
   const passwordHash = await hashPassword(body.password);
 
-  await db.prepare(`
-    INSERT INTO customers (id, email, name, password_hash, is_admin, is_b2b, created_at)
-    VALUES (?, ?, ?, ?, 0, 0, datetime('now'))
-  `).bind(userId, body.email, body.name, passwordHash).run();
+  const result = await db.prepare(`
+    INSERT INTO customers (email, name, password_hash, is_admin, is_b2b, created_at)
+    VALUES (?, ?, ?, 0, 0, datetime('now'))
+  `).bind(body.email, body.name, passwordHash).run();
+
+  const userId = result.meta.last_row_id as number;
 
   // Generate token
   const token = await generateToken(
