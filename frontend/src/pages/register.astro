@@ -89,6 +89,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
   const form = document.getElementById('register-form') as HTMLFormElement;
   const errorDiv = document.getElementById('error-message')!;
+  const googleBtn = document.getElementById('google-register')!;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -132,5 +133,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       errorDiv.textContent = 'Error de conexión';
       errorDiv.classList.remove('hidden');
     }
+  });
+
+  googleBtn?.addEventListener('click', () => {
+    window.location.href = '/api/auth/google';
   });
 </script>

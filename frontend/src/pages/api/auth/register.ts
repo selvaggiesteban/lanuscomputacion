@@ -1,10 +1,12 @@
 import type { APIRoute } from "astro";
 import { hashPassword, generateToken, createSessionCookie } from "../../../lib/auth";
 import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
+import { sendEmail, welcomeEmail } from "../../../lib/email";
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
   const jwtSecret = locals.runtime.env.JWT_SECRET as string;
+  const resendApiKey = locals.runtime.env.RESEND_API_KEY as string | undefined;
 
   const ip = getClientIp(request);
   const rateLimit = checkRateLimit(`register:${ip}`, 5, 300000); // 5 attempts per 5 minutes
@@ -60,6 +62,15 @@ export const POST: APIRoute = async ({ locals, request }) => {
   `).bind(body.email, body.name, passwordHash).run();
 
   const userId = result.meta.last_row_id as number;
+
+  // Send welcome email (non-blocking)
+  if (resendApiKey) {
+    sendEmail(resendApiKey, {
+      to: body.email,
+      subject: "¡Bienvenido a Lanús Computación!",
+      html: welcomeEmail(body.name),
+    }).catch(console.error);
+  }
 
   // Generate token
   const token = await generateToken(

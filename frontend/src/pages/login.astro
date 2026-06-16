@@ -75,6 +75,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
   const form = document.getElementById('login-form') as HTMLFormElement;
   const errorDiv = document.getElementById('error-message')!;
+  const googleBtn = document.getElementById('google-login')!;
+
+  // Show error from URL params (e.g., ?error=google_cancelled)
+  const params = new URLSearchParams(window.location.search);
+  const errorParam = params.get('error');
+  if (errorParam) {
+    const messages: Record<string, string> = {
+      google_cancelled: 'Inicio de sesión con Google cancelado.',
+      google_token_failed: 'Error al autenticar con Google.',
+      google_failed: 'Error al conectar con Google.',
+    };
+    errorDiv.textContent = messages[errorParam] || 'Error al iniciar sesión con Google';
+    errorDiv.classList.remove('hidden');
+    window.history.replaceState({}, '', '/login');
+  }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -99,11 +114,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
-      // Redirect to home or intended page
       window.location.href = '/';
     } catch (err) {
       errorDiv.textContent = 'Error de conexión';
       errorDiv.classList.remove('hidden');
     }
+  });
+
+  googleBtn?.addEventListener('click', () => {
+    window.location.href = '/api/auth/google';
   });
 </script>
