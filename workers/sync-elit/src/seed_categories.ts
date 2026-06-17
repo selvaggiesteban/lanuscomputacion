@@ -19,7 +19,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "celulares-telefonos",
     parent_id: null,
     level: 0,
-    picture: "📱",
+    picture: "",
   },
   {
     id: "cat_camaras",
@@ -27,7 +27,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "camaras-accesorios",
     parent_id: null,
     level: 0,
-    picture: "📷",
+    picture: "",
   },
   {
     id: "cat_consolas",
@@ -35,7 +35,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "consolas-videojuegos",
     parent_id: null,
     level: 0,
-    picture: "🎮",
+    picture: "",
   },
   {
     id: "cat_computacion",
@@ -43,7 +43,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "computacion",
     parent_id: null,
     level: 0,
-    picture: "💻",
+    picture: "",
   },
   {
     id: "cat_electronica",
@@ -51,7 +51,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "electronica-audio-video",
     parent_id: null,
     level: 0,
-    picture: "🎧",
+    picture: "",
   },
 
   // ─── CELULARES Y TELÉFONOS ──────────────────────────────────
@@ -61,7 +61,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "celulares-smartphones",
     parent_id: "cat_celulares",
     level: 1,
-    picture: "📱",
+    picture: "",
   },
   {
     id: "sub_celulares_accesorios",
@@ -69,7 +69,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "accesorios-celulares",
     parent_id: "cat_celulares",
     level: 1,
-    picture: "🔌",
+    picture: "",
   },
   {
     id: "sub_celulares_repuestos",
@@ -77,7 +77,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "repuestos-celulares",
     parent_id: "cat_celulares",
     level: 1,
-    picture: "🔧",
+    picture: "",
   },
 
   // ─── CÁMARAS Y ACCESORIOS ───────────────────────────────────
@@ -87,7 +87,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "camaras-digitales",
     parent_id: "cat_camaras",
     level: 1,
-    picture: "📸",
+    picture: "",
   },
   {
     id: "sub_camaras_accesorios",
@@ -95,7 +95,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "accesorios-camaras",
     parent_id: "cat_camaras",
     level: 1,
-    picture: "🎒",
+    picture: "",
   },
   {
     id: "sub_camaras_filmadoras",
@@ -103,7 +103,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "filmadoras-camaras-accion",
     parent_id: "cat_camaras",
     level: 1,
-    picture: "🎬",
+    picture: "",
   },
 
   // ─── CONSOLAS Y VIDEOJUEGOS ─────────────────────────────────
@@ -113,7 +113,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "video-juegos",
     parent_id: "cat_consolas",
     level: 1,
-    picture: "🕹️",
+    picture: "",
   },
   {
     id: "sub_consolas_playstation",
@@ -121,7 +121,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "para-playstation",
     parent_id: "cat_consolas",
     level: 1,
-    picture: "🎮",
+    picture: "",
   },
   {
     id: "sub_consolas_nintendo",
@@ -129,7 +129,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "para-nintendo",
     parent_id: "cat_consolas",
     level: 1,
-    picture: "🕹️",
+    picture: "",
   },
 
   // ─── COMPUTACIÓN ────────────────────────────────────────────
@@ -139,7 +139,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "componentes-pc",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🖥️",
+    picture: "",
   },
   {
     id: "sub_computacion_impresion",
@@ -147,7 +147,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "impresion",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🖨️",
+    picture: "",
   },
   {
     id: "sub_computacion_tablets",
@@ -155,7 +155,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "tablets-accesorios",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "📱",
+    picture: "",
   },
   {
     id: "sub_computacion_pc",
@@ -163,7 +163,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "pc",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "💻",
+    picture: "",
   },
   {
     id: "sub_computacion_conectividad",
@@ -171,7 +171,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "conectividad-redes",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🌐",
+    picture: "",
   },
   {
     id: "sub_computacion_monitores",
@@ -179,7 +179,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "monitores-accesorios",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🖥️",
+    picture: "",
   },
   {
     id: "sub_computacion_almacenamiento",
@@ -187,7 +187,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "almacenamiento",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "💾",
+    picture: "",
   },
   {
     id: "sub_computacion_memorias",
@@ -195,7 +195,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "memorias",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🧠",
+    picture: "",
   },
   {
     id: "sub_computacion_cables",
@@ -203,7 +203,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "cables",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🔌",
+    picture: "",
   },
   {
     id: "sub_computacion_energia",
@@ -211,7 +211,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "fuentes-estabilizadores",
     parent_id: "cat_computacion",
     level: 1,
-    picture: "🔋",
+    picture: "",
   },
 
   // ─── ELECTRÓNICA, AUDIO Y VIDEO ─────────────────────────────
@@ -221,7 +221,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "audio",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "🎧",
+    picture: "",
   },
   {
     id: "sub_electronica_accesorios_audio",
@@ -229,7 +229,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "accesorios-audio-video",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "🎤",
+    picture: "",
   },
   {
     id: "sub_electronica_componentes",
@@ -237,7 +237,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "componentes-electronicos",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "⚡",
+    picture: "",
   },
   {
     id: "sub_electronica_drones",
@@ -245,7 +245,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "drones-accesorios",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "🛸",
+    picture: "",
   },
   {
     id: "sub_electronica_audio_vehiculos",
@@ -253,7 +253,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "audio-vehiculos",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "🚗",
+    picture: "",
   },
   {
     id: "sub_electronica_televisores",
@@ -261,7 +261,7 @@ const CATEGORIES: CategorySeed[] = [
     slug: "televisores",
     parent_id: "cat_electronica",
     level: 1,
-    picture: "📺",
+    picture: "",
   },
 ];
 

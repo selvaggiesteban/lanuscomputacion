@@ -43,7 +43,7 @@ const categories = await getCategories(db);
           class="ml-card p-4 flex items-center gap-3 hover:border-ml-blue hover:shadow-card-hover transition-all"
         >
           <div class="w-14 h-14 bg-ml-bg rounded flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">{cat.picture || '📦'}</span>
+            <span class="text-2xl">{cat.picture || ''}</span>
           </div>
           <div>
             <h3 class="text-sm font-medium text-ml-text">{cat.name}</h3>

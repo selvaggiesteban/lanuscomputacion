@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
   await db.prepare(`
     INSERT OR REPLACE INTO categories (id, name, slug, parent_id, level, picture, is_active, created_at)
     VALUES (?, ?, ?, ?, ?, ?, 1, datetime('now'))
-  `).bind(id, body.name, body.slug, body.parent_id || null, body.level || 0, body.picture || "📦").run();
+  `).bind(id, body.name, body.slug, body.parent_id || null, body.level || 0, body.picture || "").run();
 
   return new Response(JSON.stringify({ success: true, id }), {
     status: 201, headers: { "Content-Type": "application/json" },
