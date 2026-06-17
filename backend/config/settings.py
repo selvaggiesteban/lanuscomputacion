@@ -26,9 +26,9 @@ MP_ACCESS_TOKEN = os.getenv("MP_ACCESS_TOKEN", "")
 MP_PUBLIC_KEY = os.getenv("MP_PUBLIC_KEY", "")
 MP_TEST_MODE = os.getenv("MP_TEST_MODE", "true").lower() == "true"
 
-BANK_CBUL = os.getenv("BANK_CBU", "0000000000000000000000")
-BANK_ALIAS = os.getenv("BANK_ALIAS", "startech.mayorista")
-BANK_HOLDER = os.getenv("BANK_HOLDER", "Lanús Computación S.A.")
+BANK_CBUL = os.getenv("BANK_CBU", "0720039788000001113604")
+BANK_ALIAS = os.getenv("BANK_ALIAS", "")
+BANK_HOLDER = os.getenv("BANK_HOLDER", "Esteban Selvaggi")
 
 SCRAPE_PRIORITIES = {
     "MLA1051": {"name": "Celulares y Teléfonos", "frequency_h": 12},

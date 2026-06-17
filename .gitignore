@@ -2,9 +2,14 @@ node_modules/
 .wrangler/
 dist/
 data/catalog.db
+data/*.sql
+data/exports/
+data/ml_token.json
 frontend/dist/
 __pycache__/
 *.pyc
 venv/
 .env
 .env.local
+APIS/
+*.db

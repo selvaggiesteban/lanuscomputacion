@@ -16,6 +16,7 @@ binding = "AI"
 
 [env]
 ELIT_API_URL = "https://clientes.elit.com.ar/v1/api/productos"
-ELIT_USER_ID = "31341"
-ELIT_TOKEN = "7tmmibk2olt"
 ELIT_PAGE_LIMIT = "100"
+# ELIT_USER_ID and ELIT_TOKEN must be set as Cloudflare Secrets:
+# wrangler secret put ELIT_USER_ID
+# wrangler secret put ELIT_TOKEN

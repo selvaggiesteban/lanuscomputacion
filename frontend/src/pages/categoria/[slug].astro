@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount, getCategoryBySlug, getSubcategories } from '../../lib/d1';
+import { getProducts, getProductCount, getCategoryBySlug, getSubcategories, getBrandsByCategory } from '../../lib/d1';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -12,6 +12,7 @@ const db = Astro.locals.runtime.env.DB;
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
 const maxPrice = Number(Astro.url.searchParams.get('max_price') || 0);
+const brand = Astro.url.searchParams.get('brand') || '';
 const limit = 20;
 const offset = (page - 1) * limit;
 
@@ -27,12 +28,14 @@ const subcategoryFilter = category?.level === 1 ? category.name : undefined;
 const products = await getProducts(db, {
   category: categoryFilter,
   subcategory: subcategoryFilter,
+  brand: brand || undefined,
   limit,
   offset,
   minPrice: minPrice || undefined,
   maxPrice: maxPrice || undefined,
 });
-const total = await getProductCount(db, categoryFilter, subcategoryFilter);
+const total = await getProductCount(db, categoryFilter, subcategoryFilter, brand || undefined);
+const brands = await getBrandsByCategory(db, categoryFilter, subcategoryFilter);
 
 const totalPages = Math.ceil(total / limit);
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
@@ -77,6 +80,26 @@ const priceRange = await db.prepare(`
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {brands.length > 0 && (
+        <div class="bg-white rounded shadow-card p-4">
+          <h3 class="text-sm font-semibold text-ml-text mb-3">Marca</h3>
+          <ul class="space-y-2 max-h-48 overflow-y-auto">
+            {brands.map((b) => (
+              <li>
+                <a href={`${filterBaseUrl}${brand === b.brand ? '' : `?brand=${encodeURIComponent(b.brand)}`}`}
+                   class={`flex items-center justify-between text-sm hover:text-ml-blue transition-colors ${brand === b.brand ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}>
+                  <span>{b.brand}</span>
+                  <span class="text-xs text-ml-text-muted">({b.count})</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {brand && (
+            <a href={filterBaseUrl} class="block mt-3 text-xs text-ml-blue hover:underline">Limpiar marca</a>
+          )}
         </div>
       )}
 
@@ -125,7 +148,7 @@ const priceRange = await db.prepare(`
         freeShipping: false,
       }))} columns={4} />
 
-      <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${minPrice ? `?min_price=${minPrice}` : ''}${maxPrice ? `${minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />
+      <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${brand ? `?brand=${encodeURIComponent(brand)}` : ''}${minPrice ? `${brand ? '&' : '?'}min_price=${minPrice}` : ''}${maxPrice ? `${brand || minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />
     </div>
   </div>
 </BaseLayout>
@@ -136,6 +159,9 @@ const priceRange = await db.prepare(`
     e.preventDefault();
     const formData = new FormData(form);
     const params = new URLSearchParams();
+    const urlParams = new URLSearchParams(window.location.search);
+    const brand = urlParams.get('brand');
+    if (brand) params.set('brand', brand);
     const min = formData.get('min_price') as string;
     const max = formData.get('max_price') as string;
     if (min) params.set('min_price', min);

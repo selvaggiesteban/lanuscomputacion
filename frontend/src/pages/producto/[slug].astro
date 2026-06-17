@@ -18,8 +18,10 @@ if (!product) {
   return Astro.redirect('/404');
 }
 
-const relatedProducts = (await getProducts(db, { limit: 5 }))
-  .filter(p => p.slug !== slug);
+const relatedProducts = (await getProducts(db, {
+  category: product.category_id,
+  limit: 5,
+})).filter(p => p.slug !== slug);
 ---
 
 <BaseLayout title={`${product.title} | Lanús Computación`}>

@@ -2,6 +2,20 @@
 import Logo from '../../components/ui/Logo.astro';
 import MegaMenu from './MegaMenu.astro';
 import CartIcon from '../../components/cart/CartIcon.tsx';
+import { getCategories, getSubcategories } from '../../lib/d1';
+
+const db = (Astro.locals as any).runtime?.env?.DB;
+let mobileCategories: any[] = [];
+
+if (db) {
+  const topCats = await getCategories(db);
+  mobileCategories = await Promise.all(
+    topCats.map(async (cat: any) => {
+      const subs = await getSubcategories(db, cat.id);
+      return { ...cat, subcategories: subs };
+    })
+  );
+}
 ---
 
 <header class="bg-white border-b sticky top-0 z-50">
@@ -9,7 +23,7 @@ import CartIcon from '../../components/cart/CartIcon.tsx';
   <div class="ml-container flex items-center justify-between h-header">
     <div class="flex items-center gap-4 flex-1">
       <!-- Hamburger (mobile) -->
-      <button class="lg:hidden p-2 -ml-2" aria-label="Menú">
+      <button id="mobile-menu-btn" class="lg:hidden p-2 -ml-2" aria-label="Menú">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round">
           <line x1="4" y1="6" x2="20" y2="6" />
           <line x1="4" y1="12" x2="20" y2="12" />
@@ -114,7 +128,67 @@ import CartIcon from '../../components/cart/CartIcon.tsx';
   <MegaMenu />
 </header>
 
+<!-- Mobile drawer -->
+<div id="mobile-drawer" class="fixed inset-0 z-[100] hidden">
+  <!-- Backdrop -->
+  <div id="mobile-backdrop" class="absolute inset-0 bg-black/50 animate-fade-in"></div>
+  <!-- Panel -->
+  <div id="mobile-panel" class="absolute left-0 top-0 h-full w-80 bg-white shadow-drawer animate-slide-in overflow-y-auto">
+    <div class="flex items-center justify-between p-4 border-b">
+      <span class="font-semibold text-ml-text">Menú</span>
+      <button id="mobile-close-btn" class="p-1 hover:text-ml-blue transition-colors" aria-label="Cerrar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="py-2">
+      <a href="/" class="block px-4 py-3 text-sm text-ml-text hover:bg-gray-50 hover:text-ml-blue transition-colors">Inicio</a>
+      {mobileCategories.map((cat) => (
+        <details class="group">
+          <summary class="flex items-center justify-between px-4 py-3 text-sm text-ml-text hover:bg-gray-50 cursor-pointer list-none">
+            <span>{cat.picture} {cat.name}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-open:rotate-90">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </summary>
+          <div class="bg-gray-50 py-1">
+            <a href={`/categoria/${cat.slug}`} class="block px-8 py-2 text-xs text-ml-blue font-medium hover:bg-gray-100 transition-colors">
+              Ver todos →
+            </a>
+            {cat.subcategories.map((sub: any) => (
+              <a href={`/categoria/${sub.slug}`} class="block px-8 py-2 text-sm text-ml-text-secondary hover:bg-gray-100 hover:text-ml-blue transition-colors">
+                {sub.picture} {sub.name}
+              </a>
+            ))}
+          </div>
+        </details>
+      ))}
+      <hr class="my-2">
+      <a href="/ofertas" class="block px-4 py-3 text-sm text-ml-green font-semibold hover:bg-gray-50 transition-colors">Ofertas</a>
+      <a href="/categoria/todas" class="block px-4 py-3 text-sm text-ml-text hover:bg-gray-50 hover:text-ml-blue transition-colors">Todas las categorías</a>
+      <hr class="my-2">
+      <a href="/login" class="block px-4 py-3 text-sm text-ml-text hover:bg-gray-50 hover:text-ml-blue transition-colors">Iniciar sesión</a>
+      <a href="/register" class="block px-4 py-3 text-sm text-ml-text hover:bg-gray-50 hover:text-ml-blue transition-colors">Crear cuenta</a>
+    </nav>
+  </div>
+</div>
+
 <script>
+  // Mobile drawer
+  const drawer = document.getElementById('mobile-drawer');
+  const openBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-close-btn');
+  const backdrop = document.getElementById('mobile-backdrop');
+
+  function openDrawer() { drawer?.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { drawer?.classList.add('hidden'); document.body.style.overflow = ''; }
+
+  openBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  backdrop?.addEventListener('click', closeDrawer);
+
   // Check auth state and update header
   async function checkAuth() {
     try {

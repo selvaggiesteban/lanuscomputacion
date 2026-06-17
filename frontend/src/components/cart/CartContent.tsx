@@ -138,11 +138,17 @@ export default function CartContent() {
           {error && <p class="text-xs text-red-500 mb-2">{error}</p>}
 
           <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-            {checkingOut ? "Procesando..." : "Ir a pagar"}
+            {checkingOut ? "Procesando..." : "Pagar con Mercado Pago"}
           </button>
 
-          <div class="mt-3 text-center">
-            <span class="text-xs text-ml-text-muted">Medios de pago: Mercado Pago</span>
+          <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
+            <p class="font-medium text-ml-text">O transferencia bancaria</p>
+            <p><strong>Titular:</strong> Esteban Selvaggi</p>
+            <p><strong>CBU:</strong> 0720039788000001113604</p>
+            <p><strong>CUIT:</strong> 20-43310259-3</p>
+            <p><strong>Banco:</strong> Santander SA</p>
+            <p><strong>Cuenta:</strong> 039-011136/0</p>
+            <p class="text-ml-text-muted">Envíá el comprobante por WhatsApp</p>
           </div>
         </div>
       </div>

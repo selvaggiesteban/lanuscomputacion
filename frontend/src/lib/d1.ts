@@ -37,6 +37,7 @@ export async function getProducts(db: D1Database, options?: {
   offset?: number;
   category?: string;
   subcategory?: string;
+  brand?: string;
   search?: string;
   store?: string;
   minPrice?: number;
@@ -52,6 +53,10 @@ export async function getProducts(db: D1Database, options?: {
   if (options?.subcategory && options.subcategory !== 'todas') {
     sql += " AND subcategory_name = ?";
     binds.push(options.subcategory);
+  }
+  if (options?.brand) {
+    sql += " AND brand = ?";
+    binds.push(options.brand);
   }
   if (options?.search) {
     sql += " AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)";
@@ -127,7 +132,7 @@ export async function getCategoryBySlug(db: D1Database, slug: string): Promise<C
   return result ?? null;
 }
 
-export async function getProductCount(db: D1Database, category?: string, subcategory?: string): Promise<number> {
+export async function getProductCount(db: D1Database, category?: string, subcategory?: string, brand?: string): Promise<number> {
   let sql = "SELECT COUNT(*) as count FROM products WHERE status = 'published'";
   const binds: any[] = [];
 
@@ -139,9 +144,32 @@ export async function getProductCount(db: D1Database, category?: string, subcate
     sql += " AND subcategory_name = ?";
     binds.push(subcategory);
   }
+  if (brand) {
+    sql += " AND brand = ?";
+    binds.push(brand);
+  }
 
   const result = await db.prepare(sql).bind(...binds).first<{ count: number }>();
   return result?.count ?? 0;
+}
+
+export async function getBrandsByCategory(db: D1Database, categoryId?: string, subcategory?: string): Promise<{ brand: string; count: number }[]> {
+  let sql = "SELECT brand, COUNT(*) as count FROM products WHERE status = 'published' AND brand IS NOT NULL AND brand != ''";
+  const binds: any[] = [];
+
+  if (categoryId && categoryId !== 'todas') {
+    sql += " AND category_id = ?";
+    binds.push(categoryId);
+  }
+  if (subcategory && subcategory !== 'todas') {
+    sql += " AND subcategory_name = ?";
+    binds.push(subcategory);
+  }
+
+  sql += " GROUP BY brand ORDER BY count DESC LIMIT 20";
+
+  const { results } = await db.prepare(sql).bind(...binds).all<{ brand: string; count: number }>();
+  return results ?? [];
 }
 
 export type Order = {

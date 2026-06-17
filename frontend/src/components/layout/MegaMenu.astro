@@ -36,27 +36,29 @@ if (db) {
           >
             {cat.picture} {cat.name}
           </a>
-          <!-- Dropdown -->
-          <div class="absolute top-full left-0 hidden group-hover:block bg-white shadow-megamenu border-t-2 border-ml-yellow rounded-b min-w-[600px] p-4 animate-fade-in z-50">
-            <div class="grid grid-cols-3 gap-6">
-              {cat.subcategories.map((sub) => (
-                <a
-                  href={`/categoria/${sub.slug}`}
-                  class="block text-sm text-ml-text hover:text-ml-blue transition-colors py-1"
-                >
-                  {sub.picture} {sub.name}
-                  {sub.total_items > 0 && (
-                    <span class="text-xs text-ml-text-secondary ml-1">({sub.total_items})</span>
-                  )}
-                </a>
-              ))}
+          <!-- Full-width dropdown -->
+          <div class="fixed left-0 right-0 top-[96px] hidden group-hover:block bg-white shadow-megamenu border-t-2 border-ml-yellow p-6 animate-fade-in z-50">
+            <div class="max-w-7xl mx-auto">
+              <div class="grid grid-cols-4 gap-8">
+                {cat.subcategories.map((sub) => (
+                  <a
+                    href={`/categoria/${sub.slug}`}
+                    class="block text-sm text-ml-text hover:text-ml-blue transition-colors py-1"
+                  >
+                    {sub.picture} {sub.name}
+                    {sub.total_items > 0 && (
+                      <span class="text-xs text-ml-text-secondary ml-1">({sub.total_items})</span>
+                    )}
+                  </a>
+                ))}
+              </div>
+              <a
+                href={`/categoria/${cat.slug}`}
+                class="block mt-4 pt-4 border-t text-xs text-ml-blue font-medium hover:text-ml-blue-hover"
+              >
+                Ver todos los productos de {cat.name} →
+              </a>
             </div>
-            <a
-              href={`/categoria/${cat.slug}`}
-              class="block mt-3 pt-3 border-t text-xs text-ml-blue font-medium hover:text-ml-blue-hover"
-            >
-              Ver todos los productos de {cat.name} →
-            </a>
           </div>
         </li>
       ))}
