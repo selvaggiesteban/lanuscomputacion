@@ -49,5 +49,49 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
       <slot />
     </main>
     <Footer />
+
+    <script>
+      const CART_KEY = 'lanuscom-cart';
+
+      function getCart() {
+        try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+        catch { return []; }
+      }
+
+      function saveCart(cart) {
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        window.dispatchEvent(new CustomEvent('cart-update'));
+      }
+
+      document.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest('[data-add-to-cart]');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const id = btn.getAttribute('data-add-to-cart')!;
+        const title = btn.getAttribute('data-title') || '';
+        const price = Number(btn.getAttribute('data-price') || 0);
+        const image = btn.getAttribute('data-image') || '';
+        const slug = btn.getAttribute('data-slug') || '';
+
+        const cart = getCart();
+        const existing = cart.find((i) => i.product_id === id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ product_id: id, title, price, quantity: 1, thumbnail: image, slug });
+        }
+        saveCart(cart);
+
+        const original = btn.textContent;
+        btn.textContent = '¡Agregado!';
+        btn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('bg-green-500', 'text-white', 'border-green-500');
+        }, 1500);
+      });
+    </script>
   </body>
 </html>

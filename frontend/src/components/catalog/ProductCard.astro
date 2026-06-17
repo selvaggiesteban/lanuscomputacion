@@ -70,6 +70,10 @@ const { product } = Astro.props;
     <button
       class="ml-btn-outline text-xs px-3 py-1.5"
       data-add-to-cart={product.id}
+      data-title={product.title}
+      data-price={product.price}
+      data-image={product.image}
+      data-slug={product.slug}
       aria-label="Agregar al carrito"
     >
       Agregar al carrito

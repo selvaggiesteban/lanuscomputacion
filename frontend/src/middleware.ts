@@ -1,5 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
-import { verifyToken } from '../lib/auth';
+import { verifyToken } from './lib/auth';
 
 // Protect admin routes
 export const onRequest = defineMiddleware(async (context, next) => {
