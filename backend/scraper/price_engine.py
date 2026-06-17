@@ -14,7 +14,7 @@ def calculate_selling_price(
     currency: str = "USD",
     iva_pct: float = 10.5,
     internal_tax_pct: float = 0.0,
-    markup_pct: float = 23.0,
+    markup_pct: float = 30.0,
     dollar_rate: float | None = None,
     margin_floor_pct: float = 0.0,
 ) -> dict:
@@ -58,6 +58,6 @@ def calculate_price_from_elit(product: dict) -> dict:
         currency=currency,
         iva_pct=iva,
         internal_tax_pct=imp_interno,
-        markup_pct=23.0,
+        markup_pct=30.0,
         dollar_rate=cotizacion if cotizacion > 0 else None,
     )
