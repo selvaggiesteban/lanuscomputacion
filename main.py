@@ -8,11 +8,10 @@ Usage:
     python main.py import-elit             Import all ELIT products
     python main.py import-elit --limit 50  Import first 50 ELIT products
     python main.py sync-elit               Sync ELIT (incremental, last 24h)
-    python main.py auth                    Setup ML API authentication
-    python main.py scrape                  Full scrape of Tecnología
     python main.py export --format json    Export to JSON for frontend
     python main.py review list             List pending review
     python main.py serve                   Start API server
+    python main.py export-frontend         Export DB to frontend JSON files
 """
 
 import sys
@@ -27,46 +26,6 @@ def cmd_init():
     db.initialize()
     print(f"Database initialized at {db.db_path}")
     db.close()
-
-
-def cmd_scrape(args):
-    from backend.db.database import CatalogDB
-    from backend.scraper.ml_api.categories import fetch_category_tree, fetch_all_tecnologia_subcategories
-    from backend.scraper.ml_api.search import search_products_by_category
-
-    db = CatalogDB()
-    db.initialize()
-
-    if args.category:
-        categories = [args.category]
-    else:
-        categories = fetch_all_tecnologia_subcategories()
-
-    if args.test:
-        max_items = 10
-    elif args.incremental:
-        max_items = 200
-    else:
-        max_items = 1000
-
-    for cat_id in categories:
-        cat = db.get_category(cat_id)
-        cat_name = cat["name"] if cat else cat_id
-        print(f"\n{'='*60}")
-        print(f"Processing: {cat_name} ({cat_id})")
-        print(f"{'='*60}")
-
-        if not cat:
-            print(f"  Fetching category tree...")
-            fetch_category_tree(cat_id, max_depth=2)
-
-        print(f"  Searching products (max {max_items})...")
-        saved = search_products_by_category(cat_id, max_items=max_items,
-            progress_callback=lambda cid, pg, cnt, tot: print(f"    Page {pg}: {cnt}/{tot} products", end="\r"))
-        print(f"\n  Saved {len(saved)} products")
-
-    db.close()
-    print(f"\nScrape completed at {datetime.now().isoformat()}")
 
 
 def cmd_export(args):
@@ -92,54 +51,11 @@ def cmd_review(args):
         print(f"Unknown action: {args.action}")
 
 
-def cmd_auth():
-    import os
-    from backend.scraper.ml_api.auth import MLAuth
-
-    client_id = os.getenv("ML_CLIENT_ID")
-    client_secret = os.getenv("ML_CLIENT_SECRET")
-
-    if not client_id or not client_secret:
-        MLAuth.print_instructions()
-        return
-
-    auth = MLAuth(client_id=client_id, client_secret=client_secret)
-
-    if auth.has_token():
-        print(f"Token already exists. Expires at: {auth.token_data.get('expires_at')}")
-        print("Use --force to re-authenticate.")
-        return
-
-    print(f"1. Open this URL in your browser:\n{auth.get_authorization_url()}\n")
-    print("2. Authorize the application")
-    print("3. Copy the authorization code from the redirect URL")
-    code = input("4. Paste authorization code: ").strip()
-    if code:
-        auth.exchange_code(code)
-        print("Token obtained and saved!")
-
-
-def cmd_ocr_categories():
-    from backend.ocr.categorias_ocr import extract_categories_from_image
-    extract_categories_from_image()
-
-
 def cmd_serve():
     import uvicorn
     from backend.api.server import app
     print("Starting StarTech API server...")
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
-
-
-def cmd_images(args):
-    from backend.images.downloader import download_all_images
-    from backend.images.processor import process_all_images
-    from backend.images.seo_namer import rename_all_images
-
-    if args.images_action == "process":
-        download_all_images(limit=args.limit)
-        process_all_images()
-        rename_all_images()
 
 
 def cmd_b2b(args):
@@ -247,75 +163,40 @@ def main():
 
     sub = parser.add_subparsers(dest="command")
 
-    # init
     sub.add_parser("init", help="Initialize database")
 
-    # auth
-    auth_p = sub.add_parser("auth", help="Setup MercadoLibre API authentication")
-    auth_p.add_argument("--force", action="store_true", help="Force re-authentication")
-
-    # scrape
-    scrape_p = sub.add_parser("scrape", help="Scrape products from MercadoLibre")
-    scrape_p.add_argument("--category", "-c", help="Specific category ID to scrape")
-    scrape_p.add_argument("--incremental", action="store_true", help="Incremental update")
-    scrape_p.add_argument("--test", action="store_true", help="Test with 10 products")
-
-    # export
     export_p = sub.add_parser("export", help="Export catalog")
     export_p.add_argument("--format", choices=["csv", "json"], default="csv")
     export_p.add_argument("--include-pending", choices=["yes", "no"], default="yes")
 
-    # review
     review_p = sub.add_parser("review", help="Manage product review queue")
     review_p.add_argument("action", choices=["list", "apply"])
     review_p.add_argument("--file", "-f", help="CSV file with review decisions")
 
-    # ocr
-    sub.add_parser("ocr-categories", help="Extract categories from image using OCR")
-
-    # images
-    img_p = sub.add_parser("images", help="Process product images")
-    img_p.add_argument("images_action", choices=["process"])
-    img_p.add_argument("--limit", type=int, default=0, help="Limit number of images")
-
-    # b2b
     b2b_p = sub.add_parser("b2b", help="B2B pricing")
     b2b_p.add_argument("b2b_action", choices=["calc"])
 
-    # serve
     serve_p = sub.add_parser("serve", help="Start FastAPI server")
     serve_p.add_argument("--port", type=int, default=8000)
     serve_p.add_argument("--host", default="0.0.0.0")
 
-    # test-elit
     sub.add_parser("test-elit", help="Test ELIT API connection")
 
-    # import-elit
     elit_p = sub.add_parser("import-elit", help="Import ELIT products to DB")
     elit_p.add_argument("--limit", type=int, default=0, help="Max products to import (0=all)")
 
-    # sync-elit
     sub.add_parser("sync-elit", help="Sync ELIT products (incremental, last 24h)")
 
-    # export-frontend
     sub.add_parser("export-frontend", help="Export DB to frontend JSON files")
 
     args = parser.parse_args()
 
     if args.command == "init":
         cmd_init()
-    elif args.command == "auth":
-        cmd_auth()
-    elif args.command == "scrape":
-        cmd_scrape(args)
     elif args.command == "export":
         cmd_export(args)
     elif args.command == "review":
         cmd_review(args)
-    elif args.command == "ocr-categories":
-        cmd_ocr_categories()
-    elif args.command == "images":
-        cmd_images(args)
     elif args.command == "b2b":
         cmd_b2b(args)
     elif args.command == "serve":
