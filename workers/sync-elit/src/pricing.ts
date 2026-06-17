@@ -15,14 +15,11 @@ export function calculateSellingPrice(
   ivaPct: number = 10.5,
   internalTaxPct: number = 0,
   markupPct: number = 23,
-  dollarRate: number | null = null,
+  dollarRate: number = 1200,
 ): PricingResult {
   let priceArs: number;
 
   if (currency === "USD") {
-    if (dollarRate === null || dollarRate <= 0) {
-      dollarRate = 1450;
-    }
     priceArs = costPrice * dollarRate;
   } else {
     priceArs = costPrice;
@@ -44,13 +41,15 @@ export function calculateSellingPrice(
   };
 }
 
-export function calculatePriceFromElit(product: Record<string, any>): PricingResult {
+export function calculatePriceFromElit(
+  product: Record<string, any>,
+  dollarRate: number,
+): PricingResult {
   const precio = Number(product.precio ?? 0);
   const monedaCode = Number(product.moneda ?? 1);
   const currency = monedaCode === 2 ? "USD" : "ARS";
   const iva = Number(product.iva ?? 10.5);
   const impInterno = Number(product.impuesto_interno ?? 0);
-  const cotizacion = Number(product.cotizacion ?? 0);
 
   return calculateSellingPrice(
     precio,
@@ -58,6 +57,6 @@ export function calculatePriceFromElit(product: Record<string, any>): PricingRes
     iva,
     impInterno,
     23,
-    cotizacion > 0 ? cotizacion : null,
+    dollarRate,
   );
 }

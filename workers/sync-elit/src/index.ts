@@ -4,6 +4,7 @@ import { D1Client } from "./d1";
 import { seedCategories } from "./seed_categories";
 import { needsMigration, migrateCategories } from "./migrate_categories";
 import { resetAiCallCounter, getAiCallCount } from "./ai_classifier";
+import { getDollarRate } from "./dollar_rate";
 
 export interface Env {
   lanus_catalog: D1Database;
@@ -40,6 +41,10 @@ async function runSync(env: Env) {
 
   const d1 = new D1Client(env.lanus_catalog);
 
+  // Fetch official dollar rate from BCRA
+  const dollarRate = await getDollarRate();
+  console.log(`[sync-elit] Dollar rate: $${dollarRate.rate} (${dollarRate.source})`);
+
   // Seed categories (INSERT OR IGNORE, safe every run)
   const { inserted: newCats } = await seedCategories(env.lanus_catalog);
   if (newCats > 0) console.log(`[sync-elit] Seeded ${newCats} new categories`);
@@ -67,7 +72,7 @@ async function runSync(env: Env) {
 
   for (const raw of rawProducts) {
     try {
-      const product = normalizeElitProduct(raw);
+      const product = normalizeElitProduct(raw, dollarRate.rate);
       if (product.available_qty <= 0) continue;
 
       syncedIds.push(product.external_id);

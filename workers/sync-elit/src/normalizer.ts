@@ -38,8 +38,8 @@ export interface NormalizedProduct {
   provider_store: string;
 }
 
-export function normalizeElitProduct(elitProduct: Record<string, any>): NormalizedProduct {
-  const pricing = calculatePriceFromElit(elitProduct);
+export function normalizeElitProduct(elitProduct: Record<string, any>, dollarRate: number): NormalizedProduct {
+  const pricing = calculatePriceFromElit(elitProduct, dollarRate);
 
   const images: string[] = [];
   const rawImages = elitProduct.imagenes ?? [];
