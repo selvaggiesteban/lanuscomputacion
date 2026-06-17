@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
-import { generateToken, createSessionCookie, hashPassword } from "../../lib/auth";
-import { checkRateLimit, getClientIp } from "../../lib/rate-limit";
+import { generateToken, createSessionCookie, hashPassword } from "../../../lib/auth";
+import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;

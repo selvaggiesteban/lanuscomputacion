@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { sendEmail, orderConfirmationEmail, orderStatusEmail } from "../../lib/email";
+import { sendEmail, orderConfirmationEmail, orderStatusEmail } from "../../../lib/email";
 
 const MP_API = "https://api.mercadopago.com";
 
