@@ -2,14 +2,13 @@
  * Dollar rate provider — modular design for multiple sources.
  *
  * Currently supports:
- *   - BCRA official rate (indicator 4)
+ *   - BCRA official exchange rate (Estadísticas Cambiarias v1.0)
  *
  * Usage:
  *   const rate = await getDollarRate();
  */
 
-const BCRA_URL = "https://api.bcra.gob.ar/estadisticas/v3.0/monetarias";
-const BCRA_INDICATOR = 4; // Dólar oficial
+const BCRA_URL = "https://api.bcra.gob.ar/estadisticascambiarias/v1.0/Cotizaciones/USD";
 const FALLBACK_RATE = 1200;
 
 export interface DollarRateResult {
@@ -19,11 +18,11 @@ export interface DollarRateResult {
 }
 
 /**
- * Fetch the official USD/ARS rate from BCRA.
+ * Fetch the official USD/ARS rate from BCRA (Estadísticas Cambiarias v1.0).
  */
 async function fetchBcraRate(): Promise<DollarRateResult> {
   try {
-    const resp = await fetch(`${BCRA_URL}?indicador=${BCRA_INDICATOR}`, {
+    const resp = await fetch(BCRA_URL, {
       headers: { Accept: "application/json" },
     });
 
@@ -32,11 +31,13 @@ async function fetchBcraRate(): Promise<DollarRateResult> {
       return { rate: FALLBACK_RATE, source: "fallback", fetchedAt: new Date().toISOString() };
     }
 
-    const data = await resp.json() as { results?: Array<{ valores?: { valor?: number } }> };
-    const valor = data?.results?.[0]?.valores?.valor;
+    const data = await resp.json() as {
+      results?: Array<{ detalle?: Array<{ tipoCotizacion?: number }> }>
+    };
+    const cotizacion = data?.results?.[0]?.detalle?.[0]?.tipoCotizacion;
 
-    if (typeof valor === "number" && valor > 0) {
-      return { rate: valor, source: "bcra", fetchedAt: new Date().toISOString() };
+    if (typeof cotizacion === "number" && cotizacion > 0) {
+      return { rate: cotizacion, source: "bcra", fetchedAt: new Date().toISOString() };
     }
 
     console.warn("[dollar_rate] BCRA returned no valid rate");
