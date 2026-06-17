@@ -6,6 +6,15 @@ import { getProducts, getCategories } from '../lib/d1';
 const db = Astro.locals.runtime.env.DB;
 const featuredProducts = await getProducts(db, { limit: 10 });
 const categories = await getCategories(db);
+
+const categoryIds = categories.slice(0, 8).map(c => `'${c.id}'`).join(',');
+const { results: catImages } = await db.prepare(`
+  SELECT category_id, thumbnail
+  FROM products
+  WHERE status = 'published' AND thumbnail != '' AND category_id IN (${categoryIds})
+  GROUP BY category_id
+`).all<{ category_id: string; thumbnail: string }>();
+const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
 ---
 
 <BaseLayout title="Lanús Computación - Tecnología al mejor precio">
@@ -42,8 +51,12 @@ const categories = await getCategories(db);
           href={`/categoria/${cat.slug}`}
           class="ml-card p-4 flex items-center gap-3 hover:border-ml-blue hover:shadow-card-hover transition-all"
         >
-          <div class="w-14 h-14 bg-ml-bg rounded flex items-center justify-center flex-shrink-0">
-            <span class="text-2xl">{cat.picture || ''}</span>
+          <div class="w-14 h-14 bg-ml-bg rounded flex items-center justify-center flex-shrink-0 overflow-hidden">
+            {imageMap[cat.id] ? (
+              <img src={imageMap[cat.id]} alt={cat.name} class="w-full h-full object-contain" loading="lazy" />
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            )}
           </div>
           <div>
             <h3 class="text-sm font-medium text-ml-text">{cat.name}</h3>
