@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { getCart, removeFromCart, updateQuantity, getCartTotal, clearCart } from "../../lib/cart";
+import { getCart, removeFromCart, updateQuantity, clearCart } from "../../lib/cart";
 import type { CartItem } from "../../lib/cart";
 
 interface Props {
@@ -11,6 +11,10 @@ export default function CartDrawer({ open, onClose }: Props) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
   const [error, setError] = useState("");
+  const [step, setStep] = useState<"cart" | "data">("cart");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -29,6 +33,13 @@ export default function CartDrawer({ open, onClose }: Props) {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) {
+      setStep("cart");
+      setError("");
+    }
+  }, [open]);
+
   const handleRemove = (id: string) => {
     removeFromCart(id);
     refresh();
@@ -42,6 +53,10 @@ export default function CartDrawer({ open, onClose }: Props) {
   const total = items.reduce((s, i) => s + i.price * i.quantity, 0);
 
   const handleCheckout = async () => {
+    if (!name.trim() || !email.trim()) {
+      setError("Completá nombre y email");
+      return;
+    }
     setCheckingOut(true);
     setError("");
     try {
@@ -50,6 +65,7 @@ export default function CartDrawer({ open, onClose }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map(i => ({ product_id: i.product_id, quantity: i.quantity })),
+          customer: { name: name.trim(), email: email.trim(), phone: phone.trim() || undefined },
         }),
       });
       const text = await res.text();
@@ -74,7 +90,7 @@ export default function CartDrawer({ open, onClose }: Props) {
       <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-drawer animate-slide-in flex flex-col">
         <div class="flex items-center justify-between p-4 border-b">
           <h2 class="font-semibold text-ml-text">
-            Carrito ({items.reduce((s, i) => s + i.quantity, 0)})
+            {step === "cart" ? `Carrito (${items.reduce((s, i) => s + i.quantity, 0)})` : "Finalizar compra"}
           </h2>
           <button onClick={onClose} class="p-1 hover:text-ml-blue transition-colors" aria-label="Cerrar">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -92,11 +108,11 @@ export default function CartDrawer({ open, onClose }: Props) {
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
-              <p class="font-medium text-ml-text mb-1">Tu carrito está vacío</p>
-              <p class="text-sm mb-4">Agregá productos para empezar</p>
+              <p class="font-medium text-ml-text mb-1">Tu carrito est&aacute; vac&iacute;o</p>
+              <p class="text-sm mb-4">Agreg&aacute; productos para empezar</p>
               <button onClick={onClose} class="ml-btn-primary text-sm px-6 py-2">Seguir comprando</button>
             </div>
-          ) : (
+          ) : step === "cart" ? (
             <div>
               {items.map((item, i) => (
                 <div key={item.product_id} class={`flex gap-3 p-4 ${i < items.length - 1 ? "border-b" : ""}`}>
@@ -123,6 +139,31 @@ export default function CartDrawer({ open, onClose }: Props) {
                 </div>
               ))}
             </div>
+          ) : (
+            <div class="p-4 space-y-4">
+              <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary">
+                {items.map((item) => (
+                  <div key={item.product_id} class="flex justify-between py-1">
+                    <span class="line-clamp-1">{item.title} x{item.quantity}</span>
+                    <span class="font-medium text-ml-text whitespace-nowrap">${(item.price * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                  </div>
+                ))}
+              </div>
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-xs text-ml-text-muted mb-1">Nombre *</label>
+                  <input type="text" value={name} onInput={(e) => setName((e.target as HTMLInputElement).value)} class="ml-input w-full text-sm" placeholder="Tu nombre" />
+                </div>
+                <div>
+                  <label class="block text-xs text-ml-text-muted mb-1">Email *</label>
+                  <input type="email" value={email} onInput={(e) => setEmail((e.target as HTMLInputElement).value)} class="ml-input w-full text-sm" placeholder="tu@email.com" />
+                </div>
+                <div>
+                  <label class="block text-xs text-ml-text-muted mb-1">Tel&eacute;fono (opcional)</label>
+                  <input type="tel" value={phone} onInput={(e) => setPhone((e.target as HTMLInputElement).value)} class="ml-input w-full text-sm" placeholder="11 5332-3937" />
+                </div>
+              </div>
+            </div>
           )}
         </div>
 
@@ -133,9 +174,15 @@ export default function CartDrawer({ open, onClose }: Props) {
               <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
             {error && <p class="text-xs text-red-500">{error}</p>}
-            <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-              {checkingOut ? "Procesando..." : "Pagar con Mercado Pago"}
-            </button>
+            {step === "cart" ? (
+              <button onClick={() => setStep("data")} class="ml-btn-primary w-full text-sm py-3">
+                FINALIZAR COMPRA
+              </button>
+            ) : (
+              <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
+                {checkingOut ? "Procesando..." : "Pagar con Mercado Pago"}
+              </button>
+            )}
             <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
               <p class="font-medium text-ml-text">O transferencia bancaria</p>
               <p><strong>Titular:</strong> Esteban Selvaggi</p>
@@ -143,7 +190,7 @@ export default function CartDrawer({ open, onClose }: Props) {
               <p><strong>CUIT:</strong> 20-43310259-3</p>
               <p><strong>Banco:</strong> Santander SA</p>
               <p><strong>Cuenta:</strong> 039-011136/0</p>
-              <p class="text-ml-text-muted">Envíá el comprobante por WhatsApp</p>
+              <p class="text-ml-text-muted">Envi&aacute; el comprobante por WhatsApp al <strong>+54 9 11 5332-3937</strong></p>
             </div>
             <a href="/carrito" onClick={onClose} class="block text-center text-xs text-ml-blue hover:underline">Ver carrito completo</a>
           </div>

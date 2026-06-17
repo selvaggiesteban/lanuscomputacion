@@ -68,8 +68,10 @@ export const GET: APIRoute = async ({ locals, request }) => {
 
     const tokenData = await tokenRes.json<{ id_token: string }>();
 
+    const base64Url = tokenData.id_token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
     const payload = JSON.parse(
-      atob(tokenData.id_token.split(".")[1])
+      atob(base64)
     ) as {
       sub: string;
       email: string;

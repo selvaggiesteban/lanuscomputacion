@@ -13,6 +13,7 @@ const page = Number(Astro.url.searchParams.get('page') || 1);
 const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
 const maxPrice = Number(Astro.url.searchParams.get('max_price') || 0);
 const brand = Astro.url.searchParams.get('brand') || '';
+const sort = Astro.url.searchParams.get('sort') || '';
 const limit = 20;
 const offset = (page - 1) * limit;
 
@@ -29,6 +30,7 @@ const products = await getProducts(db, {
   category: categoryFilter,
   subcategory: subcategoryFilter,
   brand: brand || undefined,
+  sort: sort || undefined,
   limit,
   offset,
   minPrice: minPrice || undefined,
@@ -136,7 +138,7 @@ const priceRange = await db.prepare(`
             </span>
           )}
         </p>
-        <SortSelector client:load />
+        <SortSelector client:load current={sort} />
       </div>
 
       <ProductGrid products={products.map(p => ({

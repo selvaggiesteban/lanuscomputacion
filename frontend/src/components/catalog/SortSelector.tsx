@@ -9,12 +9,22 @@ const SORT_OPTIONS = [
 
 interface Props {
   current?: string;
-  onChange?: (value: string) => void;
 }
 
-export default function SortSelector({ current = '', onChange }: Props) {
+export default function SortSelector({ current = '' }: Props) {
   const [open, setOpen] = useState(false);
   const selected = SORT_OPTIONS.find(o => o.value === current) || SORT_OPTIONS[0];
+
+  const handleSort = (value: string) => {
+    const params = new URLSearchParams(window.location.search);
+    if (value) {
+      params.set('sort', value);
+    } else {
+      params.delete('sort');
+    }
+    params.delete('page');
+    window.location.href = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+  };
 
   return (
     <div class="relative">
@@ -45,7 +55,7 @@ export default function SortSelector({ current = '', onChange }: Props) {
                   : 'text-ml-text hover:bg-gray-50'
               }`}
               onClick={() => {
-                onChange?.(opt.value);
+                handleSort(opt.value);
                 setOpen(false);
               }}
             >
