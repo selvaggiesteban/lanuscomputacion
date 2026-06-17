@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { getUserFromRequest } from "../../../lib/auth";
+import { getUserFromRequest } from "../../lib/auth";
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
