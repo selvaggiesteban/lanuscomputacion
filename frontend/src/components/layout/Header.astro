@@ -38,20 +38,22 @@ if (db) {
 
       <!-- Search bar -->
       <div class="hidden sm:flex flex-1 max-w-2xl mx-4">
-        <div class="relative w-full">
+        <form id="header-search-form" class="relative w-full" onsubmit="return handleHeaderSearch(event)">
           <input
             type="text"
+            name="q"
+            id="header-search-input"
             class="w-full h-10 pl-4 pr-12 text-sm border rounded-full bg-ml-bg focus:bg-white focus:border-ml-blue focus:outline-none transition-colors"
             placeholder="Buscar productos, marcas y más..."
             aria-label="Buscar"
           />
-          <button class="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-ml-blue hover:text-ml-blue-hover" aria-label="Buscar">
+          <button type="submit" class="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-ml-blue hover:text-ml-blue-hover" aria-label="Buscar">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </button>
-        </div>
+        </form>
       </div>
     </div>
 
@@ -176,6 +178,16 @@ if (db) {
 </div>
 
 <script>
+  function handleHeaderSearch(e: Event) {
+    e.preventDefault();
+    const input = document.getElementById('header-search-input') as HTMLInputElement;
+    const q = input?.value.trim();
+    if (q) {
+      window.location.href = `/busqueda/${encodeURIComponent(q)}`;
+    }
+    return false;
+  }
+
   // Mobile drawer
   const drawer = document.getElementById('mobile-drawer');
   const openBtn = document.getElementById('mobile-menu-btn');
