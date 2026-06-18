@@ -59,7 +59,7 @@ const relatedProducts = (await getProducts(db, {
     <div class="bg-white rounded shadow-card p-4 md:p-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <div class="aspect-square bg-ml-bg rounded-lg flex items-center justify-center overflow-hidden mb-3">
+          <div class="aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden mb-3 border">
             <img
               src={product.thumbnail}
               alt={product.title}
@@ -93,21 +93,6 @@ const relatedProducts = (await getProducts(db, {
                 Cotización USD: ${product.dollar_rate.toFixed(2)}
               </p>
             )}
-          </div>
-
-          <div class="border rounded-lg p-4 mb-4">
-            <h3 class="text-sm font-medium text-ml-text mb-2">Calcular envío</h3>
-            <div class="flex gap-2">
-              <input
-                type="text"
-                placeholder="Código postal"
-                class="ml-input flex-1 uppercase"
-                maxlength="8"
-              />
-              <button class="ml-btn-primary text-sm px-4 py-2 whitespace-nowrap">
-                Calcular
-              </button>
-            </div>
           </div>
 
           <p class="text-xs text-ml-green font-medium mb-4">

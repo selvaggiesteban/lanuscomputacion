@@ -12,3 +12,5 @@ venv/
 .env.local
 APIS/
 *.db
+images/
+logo lanus computacion.PNG

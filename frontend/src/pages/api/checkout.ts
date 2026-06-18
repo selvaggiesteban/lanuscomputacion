@@ -97,10 +97,13 @@ export const POST: APIRoute = async ({ locals, request }) => {
       return `('${orderId}', '${String(p.id)}', '${p.title.replace(/'/g, "''")}', ${item.quantity}, ${p.price}, ${Math.round(p.price * item.quantity * 100) / 100})`;
     });
 
-    await db.batch([
+      const firstItem = body.items[0];
+      const firstProduct = productMap.get(String(firstItem.product_id))!;
+
+      await db.batch([
       db.prepare(
-        "INSERT INTO orders (id, customer_name, customer_email, customer_phone, customer_address, total, status, mp_preference_id, payment_method) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, 'mercadopago')"
-      ).bind(orderId, body.customer.name, body.customer.email, body.customer.phone || null, body.customer.address || null, total, mpData.id),
+        "INSERT INTO orders (id, product_id, unit_price, customer_name, customer_email, customer_phone, total_price, status, mp_preference_id, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, 'mercadopago')"
+      ).bind(orderId, firstProduct.id, firstProduct.price, body.customer.name, body.customer.email, body.customer.phone || null, total, mpData.id),
       db.prepare(
         `INSERT INTO order_items (order_id, product_id, product_title, quantity, unit_price, subtotal) VALUES ${orderItems.join(", ")}`
       ),
@@ -115,8 +118,8 @@ export const POST: APIRoute = async ({ locals, request }) => {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (err) {
-    console.error("Checkout error:", err);
-    return new Response(JSON.stringify({ error: "Error interno del servidor" }), { status: 500, headers: { "Content-Type": "application/json" } });
+  } catch (err: any) {
+    console.error("Checkout error:", err?.message, err?.stack);
+    return new Response(JSON.stringify({ error: "Error interno del servidor", detail: err?.message || String(err) }), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };
