@@ -1,45 +1,43 @@
 """
-MercadoLibre Scraper - fetches product data from ML URLs.
-Uses public API + HTML fallback with proper headers.
+ML Scraper: navigates MercadoLibre with Playwright, takes screenshots, extracts data.
 """
 import re
-import json
 import time
-import hashlib
+import random
 import logging
-from urllib.parse import urlparse, parse_qs
 from typing import Optional
+from urllib.parse import urlparse, parse_qs
 
-import httpx
-from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright, Browser, Page
 
 logger = logging.getLogger(__name__)
 
-ML_API_BASE = "https://api.mercadolibre.com"
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+# User agents for rotation
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+]
 
-HEADERS = {
-    "User-Agent": USER_AGENT,
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "es-AR,es;q=0.9,en;q=0.8",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Connection": "keep-alive",
-}
+VIEWPORTS = [
+    {"width": 1280, "height": 720},
+    {"width": 1366, "height": 768},
+    {"width": 1920, "height": 1080},
+]
 
 
 def extract_item_id(url: str) -> Optional[str]:
     """Extract MLA item ID from various ML URL formats."""
-    # MLA12345678 pattern
     match = re.search(r'(MLA\d{8,12})', url)
     if match:
         return match.group(1)
 
-    # MLAU pattern (variation) - extract base
     match = re.search(r'MLAU(\d+)', url)
     if match:
         return f"MLA{match.group(1)}"
 
-    # wid=MLA12345678
     parsed = urlparse(url)
     qs = parse_qs(parsed.query)
     if 'wid' in qs:
@@ -48,197 +46,233 @@ def extract_item_id(url: str) -> Optional[str]:
     return None
 
 
-def extract_category_from_url(url: str) -> Optional[str]:
-    """Extract category slug from ML category URL."""
-    parsed = urlparse(url)
-    parts = [p for p in parsed.path.split('/') if p]
-    if 'category' in parts:
-        idx = parts.index('category')
-        if idx + 1 < len(parts):
-            return parts[idx + 1]
-    return None
+def _random_delay(min_s: float = 1.5, max_s: float = 3.5):
+    """Random delay to avoid detection."""
+    time.sleep(random.uniform(min_s, max_s))
 
 
-def fetch_item_api(item_id: str, client: httpx.Client) -> Optional[dict]:
-    """Fetch product data from ML API."""
-    try:
-        resp = client.get(f"{ML_API_BASE}/items/{item_id}", headers=HEADERS, timeout=15)
-        if resp.status_code == 200:
-            return resp.json()
-        logger.warning(f"API returned {resp.status_code} for {item_id}")
-    except Exception as e:
-        logger.warning(f"API fetch failed for {item_id}: {e}")
-    return None
+class MLScraper:
+    """Playwright-based MercadoLibre scraper."""
 
+    def __init__(self):
+        self._pw = None
+        self._browser = None
 
-def fetch_item_html(url: str, client: httpx.Client) -> Optional[dict]:
-    """Fetch product data from HTML page as fallback."""
-    try:
-        resp = client.get(url, headers=HEADERS, timeout=20, follow_redirects=True)
-        if resp.status_code != 200:
-            logger.warning(f"HTML returned {resp.status_code}")
-            return None
+    def start(self):
+        """Start Playwright browser."""
+        self._pw = sync_playwright().start()
+        self._browser = self._pw.chromium.launch(
+            headless=True,
+            args=[
+                '--disable-blink-features=AutomationControlled',
+                '--no-sandbox',
+                '--disable-dev-shm-usage',
+            ]
+        )
+        logger.info("Playwright browser started")
 
-        soup = BeautifulSoup(resp.text, 'html.parser')
+    def stop(self):
+        """Stop Playwright browser."""
+        if self._browser:
+            self._browser.close()
+        if self._pw:
+            self._pw.stop()
+        logger.info("Playwright browser stopped")
 
-        data = {}
+    def _new_page(self) -> Page:
+        """Create a new page with random user agent and viewport."""
+        context = self._browser.new_context(
+            user_agent=random.choice(USER_AGENTS),
+            viewport=random.choice(VIEWPORTS),
+            locale='es-AR',
+            timezone_id='America/Argentina/Buenos_Aires',
+        )
+        # Remove webdriver detection
+        context.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+        """)
+        return context.new_page()
 
-        # Title
-        title_el = soup.find('h1', class_=re.compile(r'ui-pdp-title'))
-        if title_el:
-            data['title'] = title_el.get_text(strip=True)
+    def fetch_category_links(self, category_url: str, max_pages: int = 5) -> list[dict]:
+        """
+        Fetch product links from a ML category listing page.
+        Returns: [{'id': 'MLA12345678', 'url': 'https://...'}]
+        """
+        product_ids = []
+        seen_ids = set()
 
-        # Price
-        price_el = soup.find('span', class_=re.compile(r'andes-money-amount__fraction'))
-        if price_el:
-            price_text = price_el.get_text(strip=True).replace('.', '').replace(',', '.')
-            try:
-                data['price'] = float(price_text)
-            except ValueError:
-                pass
-
-        # Currency
-        currency_el = soup.find('span', class_=re.compile(r'andes-money-amount__currency-symbol'))
-        if currency_el:
-            data['currency'] = 'ARS' if '$' in currency_el.text else 'USD'
-
-        # Brand
-        brand_el = soup.find('a', class_=re.compile(r'ui-pdp-action__link'))
-        if brand_el and 'Marca' in brand_el.parent.get_text():
-            data['brand'] = brand_el.get_text(strip=True)
-
-        # Description
-        desc_el = soup.find('div', class_=re.compile(r'ui-pdp-description'))
-        if desc_el:
-            data['description'] = desc_el.get_text(strip=True)[:2000]
-
-        # Images
-        imgs = soup.find_all('img', class_=re.compile(r'ui-pdp-gallery__figure__img'))
-        data['thumbnails'] = [img.get('src') for img in imgs if img.get('src')]
-
-        # Seller
-        seller_el = soup.find('a', class_=re.compile(r'seller-info'))
-        if seller_el:
-            data['seller_name'] = seller_el.get_text(strip=True)
-
-        # Condition
-        cond_el = soup.find('span', class_=re.compile(r'ui-pdp-subtitle'))
-        if cond_el:
-            data['condition'] = cond_el.get_text(strip=True)
-
-        # Sold quantity
-        sold_el = soup.find('span', class_=re.compile(r'sold'))
-        if sold_el:
-            match = re.search(r'(\d+)', sold_el.text)
-            if match:
-                data['sold_quantity'] = int(match.group(1))
-
-        # Review rating
-        rating_el = soup.find('span', class_=re.compile(r'review'));
-        if rating_el:
-            match = re.search(r'([\d,.]+)', rating_el.text)
-            if match:
-                data['reviews'] = {'rating_average': float(match.group(1).replace(',', '.'))}
-
-        return data if data.get('title') else None
-
-    except Exception as e:
-        logger.warning(f"HTML fetch failed: {e}")
-    return None
-
-
-def fetch_category_products(category_url: str, client: httpx.Client, max_pages: int = 5) -> list[dict]:
-    """Fetch all product links from a ML category listing page."""
-    product_ids = []
-
-    for page in range(1, max_pages + 1):
-        url = category_url if page == 1 else f"{category_url}_Desde_{(page-1)*48+1}"
+        page = self._new_page()
         try:
-            resp = client.get(url, headers=HEADERS, timeout=20, follow_redirects=True)
-            if resp.status_code != 200:
-                break
+            for pg in range(1, max_pages + 1):
+                url = category_url if pg == 1 else f"{category_url}_Desde_{(pg - 1) * 48 + 1}"
+                logger.info(f"Category page {pg}: {url}")
 
-            soup = BeautifulSoup(resp.text, 'html.parser')
+                try:
+                    page.goto(url, wait_until='domcontentloaded', timeout=30000)
+                    page.wait_for_selector('a[href*="/MLA"]', timeout=10000)
+                except Exception as e:
+                    logger.warning(f"Category page load failed: {e}")
+                    break
 
-            # Find product links
-            links = soup.find_all('a', href=re.compile(r'/MLA\d+'))
-            if not links:
-                break
+                # Extract product links
+                links = page.eval_on_selector_all(
+                    'a[href*="/MLA"]',
+                    """elements => elements.map(el => ({
+                        href: el.href,
+                        text: el.textContent.trim().substring(0, 50)
+                    }))"""
+                )
 
-            for link in links:
-                href = link.get('href', '')
-                item_id = extract_item_id(href)
-                if item_id and item_id not in [p['id'] for p in product_ids]:
-                    product_ids.append({'id': item_id, 'url': href})
+                new_count = 0
+                for link in links:
+                    href = link.get('href', '')
+                    item_id = extract_item_id(href)
+                    if item_id and item_id not in seen_ids:
+                        seen_ids.add(item_id)
+                        product_ids.append({'id': item_id, 'url': href})
+                        new_count += 1
 
-            # Check for next page
-            next_btn = soup.find('a', class_=re.compile(r'andes-pagination__link--next'))
-            if not next_btn:
-                break
+                logger.info(f"  Found {new_count} new products (total: {len(product_ids)})")
 
-            time.sleep(1)  # Rate limit
+                if new_count == 0:
+                    break
 
-        except Exception as e:
-            logger.warning(f"Category page fetch failed: {e}")
-            break
+                # Check for next page
+                try:
+                    next_btn = page.query_selector('a.andes-pagination__link--next')
+                    if not next_btn:
+                        break
+                except:
+                    break
 
-    return product_ids
+                _random_delay(2, 4)
 
+        finally:
+            page.context.close()
 
-def scrape_product(url: str, client: httpx.Client) -> Optional[dict]:
-    """Scrape a single product from its URL."""
-    item_id = extract_item_id(url)
-    if not item_id:
-        logger.error(f"Could not extract item ID from: {url}")
-        return None
+        return product_ids
 
-    # Try API first
-    data = fetch_item_api(item_id, client)
-    if data:
-        data['_source'] = 'api'
-        return data
+    def scrape_product(self, product_url: str) -> Optional[dict]:
+        """
+        Scrape a single product page: screenshot + image URLs + basic HTML data.
+        Returns dict with screenshot_bytes, image_urls, and html_data.
+        """
+        page = self._new_page()
+        try:
+            logger.info(f"Scraping product: {product_url}")
 
-    # Fallback to HTML
-    data = fetch_item_html(url, client)
-    if data:
-        data['id'] = item_id
-        data['_source'] = 'html'
-        return data
+            try:
+                page.goto(product_url, wait_until='domcontentloaded', timeout=20000)
+                # Wait for product gallery to load
+                page.wait_for_selector('.ui-pdp-gallery, .ui-pdp-container, h1', timeout=10000)
+                _random_delay(1, 2)
+            except Exception as e:
+                logger.warning(f"Product page load partial, taking screenshot anyway: {e}")
 
-    return None
+            # Take screenshot of the main content area
+            try:
+                # Try to get the product info container
+                container = page.query_selector('.ui-pdp-container')
+                if container:
+                    screenshot_bytes = container.screenshot(type='png')
+                else:
+                    screenshot_bytes = page.screenshot(type='png', full_page=False)
+            except Exception as e:
+                logger.warning(f"Screenshot failed: {e}")
+                screenshot_bytes = page.screenshot(type='png', full_page=False)
 
+            # Extract image URLs from gallery
+            image_urls = []
+            try:
+                # Try multiple selectors for ML images
+                selectors = [
+                    '.ui-pdp-gallery__figure__img',
+                    'img[data-src]',
+                    '.ui-pdp-image',
+                    'img[src*="mlstatic"]',
+                    '.poly-component__pictures img',
+                ]
+                for sel in selectors:
+                    img_elements = page.eval_on_selector_all(
+                        sel,
+                        """elements => elements.map(el => ({
+                            src: el.src || el.dataset.src || el.getAttribute('data-zoom') || '',
+                            alt: el.alt || ''
+                        }))"""
+                    )
+                    for img in img_elements:
+                        src = img.get('src', '')
+                        if src and 'mlstatic' in src and src not in image_urls:
+                            # Convert to high-res URL
+                            src = re.sub(r'https://http2\.mlstatic\.com/D_NQ_NP_\d+_F\.', 'https://http2.mlstatic.com/D_NQ_NP_2X_F.', src)
+                            image_urls.append(src)
 
-def download_image(url: str, client: httpx.Client, save_dir: str = "images/ml") -> Optional[str]:
-    """Download an image and return the local path."""
-    import os
+                # If no mlstatic images found, try all images on page
+                if not image_urls:
+                    all_imgs = page.eval_on_selector_all(
+                        'img',
+                        """elements => elements.map(el => ({
+                            src: el.src || '',
+                            alt: el.alt || '',
+                            width: el.naturalWidth || 0
+                        }))"""
+                    )
+                    for img in all_imgs:
+                        src = img.get('src', '')
+                        w = img.get('width', 0)
+                        if src and w > 100 and 'mlstatic' in src:
+                            image_urls.append(src)
+            except Exception as e:
+                logger.warning(f"Image extraction failed: {e}")
 
-    os.makedirs(save_dir, exist_ok=True)
+            # Extract basic HTML data as fallback
+            html_data = {}
+            try:
+                # Title
+                title_el = page.query_selector('h1.ui-pdp-title')
+                if title_el:
+                    html_data['title'] = title_el.inner_text().strip()
 
-    # Generate filename from URL hash
-    url_hash = hashlib.md5(url.encode()).hexdigest()[:12]
-    ext = '.webp' if '.webp' in url else '.jpg'
-    filename = f"ml_{url_hash}{ext}"
-    filepath = os.path.join(save_dir, filename)
+                # Price
+                price_el = page.query_selector('.andes-money-amount__fraction')
+                if price_el:
+                    price_text = price_el.inner_text().strip().replace('.', '').replace(',', '.')
+                    try:
+                        html_data['price'] = float(price_text)
+                    except ValueError:
+                        pass
 
-    if os.path.exists(filepath):
-        return filepath
+                # Currency
+                currency_el = page.query_selector('.andes-money-amount__currency-symbol')
+                if currency_el:
+                    html_data['currency'] = 'ARS' if '$' in currency_el.inner_text() else 'USD'
 
-    try:
-        resp = client.get(url, headers=HEADERS, timeout=30)
-        if resp.status_code == 200:
-            with open(filepath, 'wb') as f:
-                f.write(resp.content)
-            return filepath
-    except Exception as e:
-        logger.warning(f"Image download failed: {e}")
+                # Brand
+                brand_el = page.query_selector('a.ui-pdp-action__link')
+                if brand_el:
+                    brand_text = brand_el.inner_text().strip()
+                    if brand_text and len(brand_text) < 50:
+                        html_data['brand'] = brand_text
 
-    return None
+                # Condition
+                cond_el = page.query_selector('.ui-pdp-subtitle')
+                if cond_el:
+                    html_data['condition'] = cond_el.inner_text().strip()
 
+                # Seller
+                seller_el = page.query_selector('.seller-info')
+                if seller_el:
+                    html_data['seller'] = seller_el.inner_text().strip()
 
-def create_client() -> httpx.Client:
-    """Create an HTTP client with retry logic."""
-    return httpx.Client(
-        follow_redirects=True,
-        timeout=20,
-        limits=httpx.Limits(max_connections=10, max_keepalive_connections=5),
-    )
+            except Exception as e:
+                logger.warning(f"HTML data extraction failed: {e}")
+
+            return {
+                'url': product_url,
+                'screenshot_bytes': screenshot_bytes,
+                'image_urls': image_urls,
+                'html_data': html_data,
+            }
+
+        finally:
+            page.context.close()
