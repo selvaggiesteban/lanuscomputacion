@@ -6,13 +6,13 @@ import brands from '../../data/brands.json';
   <div class="flex items-center justify-between mb-6">
     <h2 class="text-xl font-semibold text-ml-text">Marcas</h2>
   </div>
-  <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
+  <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
     {brands.map((brand) => (
       <a
         href={`/categoria/todas?brand=${encodeURIComponent(brand.name)}`}
-        class="ml-card p-4 flex flex-col items-center justify-center gap-2 hover:border-ml-blue hover:shadow-card-hover transition-all min-h-[100px]"
+        class="ml-card p-3 sm:p-4 flex flex-col items-center justify-center gap-1.5 sm:gap-2 hover:border-ml-blue hover:shadow-card-hover transition-all min-h-[80px] sm:min-h-[100px] overflow-hidden"
       >
-        <div class="w-[120px] h-[60px] flex items-center justify-center overflow-hidden">
+        <div class="w-full h-10 sm:h-12 md:h-14 flex items-center justify-center overflow-hidden">
           <img
             src={brand.logo}
             alt={brand.name}
@@ -20,9 +20,9 @@ import brands from '../../data/brands.json';
             loading="lazy"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
-          <span class="hidden text-sm font-medium text-ml-text-secondary">{brand.name}</span>
+          <span class="hidden text-xs sm:text-sm font-medium text-ml-text-secondary">{brand.name}</span>
         </div>
-        <span class="text-xs text-ml-text-muted text-center leading-tight">{brand.name}</span>
+        <span class="text-[10px] sm:text-xs text-ml-text-muted text-center leading-tight truncate w-full">{brand.name}</span>
       </a>
     ))}
   </div>
