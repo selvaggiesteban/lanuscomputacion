@@ -13,5 +13,10 @@
   { "name": "FORZA", "slug": "forza", "logo": "/brands/forza.svg" },
   { "name": "REDRAGON", "slug": "redragon", "logo": "/brands/redragon.svg" },
   { "name": "LEXAR", "slug": "lexar", "logo": "/brands/lexar.svg" },
-  { "name": "AMD", "slug": "amd", "logo": "/brands/amd.svg" }
+  { "name": "AMD", "slug": "amd", "logo": "/brands/amd.svg" },
+  { "name": "SANDISK", "slug": "sandisk", "logo": "/brands/sandisk.svg" },
+  { "name": "ADATA", "slug": "adata", "logo": "/brands/adata.png" },
+  { "name": "INTEL", "slug": "intel", "logo": "/brands/intel.svg" },
+  { "name": "LENOVO", "slug": "lenovo", "logo": "/brands/lenovo.svg" },
+  { "name": "AOC", "slug": "aoc", "logo": "/brands/aoc.svg" }
 ]
