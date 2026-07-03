@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
+import BrandsSection from '../components/home/BrandsSection.astro';
 import { getProducts, getCategories } from '../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -68,6 +69,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
       ))}
     </div>
   </section>
+
+  <BrandsSection />
 
   <section class="ml-container py-8">
     <div class="flex items-center justify-between mb-6">

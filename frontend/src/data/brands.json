@@ -1,0 +1,17 @@
+[
+  { "name": "ASUS", "slug": "asus", "logo": "/brands/asus.svg" },
+  { "name": "BROTHER", "slug": "brother", "logo": "/brands/brother.svg" },
+  { "name": "KINGSTON", "slug": "kingston", "logo": "/brands/kingston.png" },
+  { "name": "LOGITECH", "slug": "logitech", "logo": "/brands/logitech.svg" },
+  { "name": "EPSON", "slug": "epson", "logo": "/brands/epson.svg" },
+  { "name": "GIGABYTE", "slug": "gigabyte", "logo": "/brands/gigabyte.svg" },
+  { "name": "COOLER MASTER", "slug": "cooler-master", "logo": "/brands/cooler-master.svg" },
+  { "name": "CORSAIR", "slug": "corsair", "logo": "/brands/corsair.svg" },
+  { "name": "TEROS", "slug": "teros", "logo": "/brands/teros.png" },
+  { "name": "HP", "slug": "hp", "logo": "/brands/hp.svg" },
+  { "name": "MSI", "slug": "msi", "logo": "/brands/msi.svg" },
+  { "name": "FORZA", "slug": "forza", "logo": "/brands/forza.svg" },
+  { "name": "REDRAGON", "slug": "redragon", "logo": "/brands/redragon.svg" },
+  { "name": "LEXAR", "slug": "lexar", "logo": "/brands/lexar.svg" },
+  { "name": "AMD", "slug": "amd", "logo": "/brands/amd.svg" }
+]
