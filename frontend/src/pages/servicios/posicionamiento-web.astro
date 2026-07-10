@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6M8 11h6"/>';
+---
+
+<ServicePage
+  title="Posicionamiento Web (SEO) en Lanús | Lanús Computación"
+  description="Posicionamiento web SEO en Lanús. Llegá a más clientes con Google. Auditoría SEO, keywords, contenido, link building e informes mensuales."
+  slug="posicionamiento-web"
+  heroTitle="Posicionamiento Web (SEO) en Lanús"
+  heroSubtitle="Llegá a más clientes cuando buscan tus productos o servicios en Google. Auditoría, estrategia y ejecución con informes mensuales."
+  icon={icon}
+  whatsappText="Hola, quiero solicitar presupuesto de posicionamiento web SEO"
+  benefits={[
+    { icon: '<path d="M9 11H5l7-7 7 7h-4v6h-6v-6z"/>', title: 'Auditoría inicial', desc: 'Analizamos tu web, competencia y oportunidades de mejora.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>', title: 'Keywords', desc: 'Investigamos las palabras clave que buscan tus clientes.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', title: 'Contenido optimizado', desc: 'Creamos y optimizamos contenido para posicionar en Google.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20"/>', title: 'Link building', desc: 'Conseguimos enlaces de calidad que mejoran tu autoridad.' },
+    { icon: '<path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/>', title: 'Informes mensuales', desc: ' Reportes claros con métricas, posicionamiento y próximos pasos.' },
+    { icon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', title: 'Google My Business', desc: 'Optimizamos tu ficha de Google Maps para captar clientes locales.' },
+  ]}
+  steps={[
+    { title: 'Auditoría', desc: 'Auditamos tu web y competencia. Detectamos oportunidades de mejora.' },
+    { title: 'Estrategia', desc: 'Definimos keywords, contenido y plan de acción a 6-12 meses.' },
+    { title: 'Implementación', desc: 'Ejecutamos: optimización on-page, contenido y link building.' },
+    { title: 'Monitoreo', desc: 'Medimos resultados, ajustamos y enviamos informes mensuales.' },
+  ]}
+  faqs={[
+    { question: '¿Cuánto tarda en verse resultados?', answer: 'El SEO es un proceso de medio-largo plazo. Los primeros resultados se ven a partir del tercer mes, pero el posicionamiento sólido se consolida entre 6 y 12 meses de trabajo continuo.' },
+    { question: '¿Garantizan la posición #1 en Google?', answer: 'Nadie puede garantizar la posición #1 en Google. Lo que sí garantizamos es un trabajo profesional y transparente enfocado en mejorar tu visibilidad y tráfico orgánico mes a mes.' },
+    { question: '¿Cuánto cuesta el servicio de SEO?', answer: 'El precio depende de tu sector, competencia y objetivos. Realizamos una auditoría inicial sin costo y te armamos un plan con presupuesto a medida.' },
+    { question: '¿Trabajan SEO local o nacional?', answer: 'Trabajamos ambos. Si tenés un negocio en Lanús o zona sur, optimizamos para captar clientes locales. Si apuntás a todo el país, ajustamos la estrategia para competir a nivel nacional.' },
+    { question: '¿Necesito tener una web para hacer SEO?', answer: 'Sí, necesitás una web. Si no tenés una, podemos diseñarla con la estructura optimizada para SEO desde el inicio. Si ya tenés, la auditamos y optimizamos.' },
+  ]}
+/>

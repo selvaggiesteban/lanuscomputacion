@@ -30,6 +30,9 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
     <meta property="og:locale" content="es_AR" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Per-page head injection (canonical, extra meta, etc.) -->
+    <slot name="head" />
+
     <!-- Schema.org WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",

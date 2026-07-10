@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>';
+---
+
+<ServicePage
+  title="Servicio Técnico de PC en Lanús | Lanús Computación"
+  description="Servicio técnico de PC en Lanús. Mantenimiento preventivo, soporte remoto y presencial, redes, servidores y capacitación. Técnicos certificados."
+  slug="servicio-tecnico-de-pc"
+  heroTitle="Servicio Técnico de PC en Lanús"
+  heroSubtitle="Mantenimiento preventivo, soporte remoto y presencial para hogares y empresas. Técnicos certificados con respuesta rápida."
+  icon={icon}
+  whatsappText="Hola, necesito servicio técnico de PC"
+  benefits={[
+    { icon: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>', title: 'Mantenimiento preventivo', desc: 'Limpieza, optimización y revisión periódica para evitar fallas.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20"/>', title: 'Soporte remoto', desc: 'Resolvemos problemas a distancia, sin esperas y sin traslados.' },
+    { icon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', title: 'Soporte presencial', desc: 'Vamos a tu hogar u oficina en Lanús y zona sur de Buenos Aires.' },
+    { icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>', title: 'Servidores', desc: 'Configuramos y administramos servidores para tu empresa.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>', title: 'Redes', desc: 'Instalamos y configuramos redes cableadas y WiFi para tu negocio.' },
+    { icon: '<path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.42a12 12 0 0 1 .84 5.42c0 2.5-1 5-3 7l-4-4"/>', title: 'Capacitación', desc: 'Te enseñamos a usar tu PC, software y herramientas con paciencia.' },
+  ]}
+  steps={[
+    { title: 'Solicitud', desc: 'Nos contactás por WhatsApp o formulario y describís el problema.' },
+    { title: 'Diagnóstico', desc: 'Identificamos la causa del problema, presencial o remotamente.' },
+    { title: 'Solución', desc: 'Aplicamos la solución: reparación, configuración o mantenimiento.' },
+    { title: 'Seguimiento', desc: 'Verificamos que todo funcione y te damos recomendaciones.' },
+  ]}
+  faqs={[
+    { question: '¿Cómo funciona el soporte remoto?', answer: 'Te enviamos un enlace por WhatsApp que abre una conexión segura a tu PC. Podemos ver tu pantalla y resolver el problema sin necesidad de ir a tu domicilio. Es ideal para problemas de software.' },
+    { question: '¿Van a domicilio?', answer: 'Sí, hacemos visitas a domicilio en Lanús y zona sur de Buenos Aires. Para problemas de hardware o redes que requieren presencia física, coordinamos una visita.' },
+    { question: '¿Tienen contrato para empresas?', answer: 'Sí, ofrecemos planes mensuales para empresas con soporte prioritario, mantenimiento preventivo periódico y respuesta garantizada en menos de 4 horas. Consúltanos por WhatsApp.' },
+    { question: '¿Cuánto tarda la respuesta?', answer: 'El soporte remoto se atiende en el día. Las visitas a domicilio se coordinan en 24-48 horas. Para empresas con contrato, la respuesta es en menos de 4 horas.' },
+    { question: '¿Qué zonas cubren?', answer: 'Cubrimos Lanús, Avellaneda, Remedios de Escalada, Temperley, Lomas de Zamora y zona sur del Gran Buenos Aires. Para empresas con contrato, llegamos a CABA también.' },
+  ]}
+/>

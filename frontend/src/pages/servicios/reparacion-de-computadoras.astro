@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l1 2h2v2H7v-2h2l1-2H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 11h6"/>';
+---
+
+<ServicePage
+  title="Reparación de Computadoras en Lanús | Lanús Computación"
+  description="Reparación de computadoras en Lanús. Hardware, software, virus, formateo, recuperación de datos y actualización de componentes. Presupuesto sin costo. Garantía escrita."
+  slug="reparacion-de-computadoras"
+  heroTitle="Reparación de Computadoras en Lanús"
+  heroSubtitle="Diagnosticamos y reparamos todo tipo de problemas de hardware y software. Presupuesto sin costo, repuestos originales y garantía escrita."
+  icon={icon}
+  whatsappText="Hola, necesito reparar mi computadora"
+  benefits={[
+    { icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>', title: 'Diagnóstico sin costo', desc: 'Revisamos tu PC y te decimos qué tiene antes de cualquier reparación.' },
+    { icon: '<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l1 2h2v2H7v-2h2l1-2H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/>', title: 'Reparación de hardware', desc: 'Cambio de componentes,motherboard, fuente, disco, RAM y más.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', title: 'Instalación de software', desc: 'Windows, drivers, Office y programas esenciales. Todo configurado.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/>', title: 'Limpieza de virus', desc: 'Eliminamos malware, spyware y virus. Instalamos antivirus confiable.' },
+    { icon: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>', title: 'Recuperación de datos', desc: 'Recuperamos archivos de discos dañados o formateados por error.' },
+    { icon: '<path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>', title: 'Garantía escrita', desc: 'Todas nuestras reparaciones tienen garantía por escrito.' },
+  ]}
+  steps={[
+    { title: 'Diagnóstico', desc: 'Recibimos tu PC, la diagnosticamos y te informamos el problema.' },
+    { title: 'Presupuesto', desc: 'Te pasamos el presupuesto del repuesto y la mano de obra. Sin sorpresas.' },
+    { title: 'Reparación', desc: 'Con tu aprobación, reparamos la PC con repuestos originales.' },
+    { title: 'Pruebas', desc: 'Testeamos la PC a fondo antes de entregártela. Garantía incluida.' },
+  ]}
+  faqs={[
+    { question: '¿Van a domicilio?', answer: 'Sí, hacemos visitas a domicilio en Lanús y zona sur de Buenos Aires. También podés traer la PC a nuestro local. El diagnóstico es sin costo en ambos casos.' },
+    { question: '¿Cuánto cuesta la reparación?', answer: 'El diagnóstico es sin costo. Una vez que identificamos el problema, te pasamos un presupuesto con el repuesto y la mano de obra. Vos decidís si querés seguir adelante.' },
+    { question: '¿Qué garantía tienen las reparaciones?', answer: 'Todas nuestras reparaciones tienen garantía por escrito de 30 a 90 días según el tipo de trabajo. Si el problema vuelve a aparecer en ese período, lo solucionamos sin costo.' },
+    { question: '¿Formatean la PC?', answer: 'Sí, hacemos formateo completo con instalación de Windows, drivers y software esencial. También hacemos backup de tus archivos antes de formatear para que no pierdas nada.' },
+    { question: '¿Recuperan datos de discos dañados?', answer: 'Sí, tenemos herramientas especializadas para recuperar datos de discos rígidos, SSDs y pendrives dañados o formateados por error. La probabilidad de éxito depende del daño.' },
+  ]}
+/>

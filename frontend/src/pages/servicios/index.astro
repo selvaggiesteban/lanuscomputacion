@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+
+const services = [
+  {
+    slug: 'diseno-web',
+    title: 'Diseño Web',
+    short: 'Tiendas online, catálogos y landing pages con diseño responsive.',
+    icon: '<rect x="3" y="3" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  },
+  {
+    slug: 'posicionamiento-web',
+    title: 'Posicionamiento Web (SEO)',
+    short: 'Llegá a más clientes con Google. Auditoría, keywords y contenido.',
+    icon: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6M8 11h6"/>',
+  },
+  {
+    slug: 'mantenimiento-web',
+    title: 'Mantenimiento Web',
+    short: 'Actualizaciones, backups, seguridad y soporte técnico mensual.',
+    icon: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  },
+  {
+    slug: 'reparacion-de-computadoras',
+    title: 'Reparación de Computadoras',
+    short: 'Hardware, software, virus, formateo y recuperación de datos.',
+    icon: '<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l1 2h2v2H7v-2h2l1-2H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 11h6"/>',
+  },
+  {
+    slug: 'servicio-tecnico-de-pc',
+    title: 'Servicio Técnico de PC',
+    short: 'Mantenimiento preventivo, soporte remoto y presencial.',
+    icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: s.title,
+    url: `https://lanuscomputacion.com/servicios/${s.slug}`,
+  })),
+};
+---
+
+<BaseLayout title="Servicios | Lanús Computación" description="Servicios de tecnología en Lanús: diseño web, posicionamiento SEO, mantenimiento, reparación de computadoras y servicio técnico de PC. Presupuesto sin costo.">
+  <link rel="canonical" href="https://lanuscomputacion.com/servicios" slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="ml-container py-4">
+    <Breadcrumb items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Servicios' },
+    ]} />
+  </div>
+
+  <!-- Hero -->
+  <section class="ml-container pb-6">
+    <div class="bg-gradient-to-r from-b2b-purple-light to-purple-50 rounded-lg p-6 md:p-8">
+      <h1 class="text-2xl md:text-3xl font-bold text-ml-text mb-2">Servicios</h1>
+      <p class="text-ml-text-secondary text-base md:text-lg">
+        Soluciones de tecnología para tu negocio o tu hogar en Lanús y zona sur.
+        Diseño web, SEO, mantenimiento, reparación y soporte técnico.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="ml-container py-6 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {services.map((s) => (
+        <a
+          href={`/servicios/${s.slug}`}
+          class="bg-white rounded shadow-card hover:shadow-card-hover transition-all p-6 flex flex-col items-start gap-3 hover:border-ml-blue border border-transparent"
+        >
+          <div class="w-12 h-12 bg-b2b-purple-light rounded flex items-center justify-center flex-shrink-0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+          </div>
+          <h2 class="text-lg font-semibold text-ml-text">{s.title}</h2>
+          <p class="text-sm text-ml-text-muted">{s.short}</p>
+          <span class="text-sm text-ml-blue font-medium mt-auto pt-2">Más info →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ml-container pb-12">
+    <div class="bg-b2b-purple text-white rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h2 class="text-xl md:text-2xl font-bold mb-1">¿No sabés qué servicio necesitás?</h2>
+        <p class="opacity-90 text-sm">Contanos qué necesitás y te asesoramos sin costo.</p>
+      </div>
+      <a href="https://wa.me/5491153323937?text=Hola%2C%20necesito%20asesoramiento%20sobre%20servicios" target="_blank" rel="noopener noreferrer" class="bg-white text-b2b-purple font-bold px-6 py-3 rounded hover:bg-purple-50 transition-colors whitespace-nowrap">
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </section>
+</BaseLayout>

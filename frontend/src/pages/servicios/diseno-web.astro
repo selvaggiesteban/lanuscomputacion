@@ -1,0 +1,37 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<rect x="3" y="3" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="12" y1="17" x2="12" y2="21/>';
+---
+
+<ServicePage
+  title="Diseño Web en Lanús | Lanús Computación"
+  description="Diseño web profesional en Lanús. Tiendas online, catálogos y landing pages. Diseño responsive, optimizado para Google. Presupuesto sin costo."
+  slug="diseno-web"
+  heroTitle="Diseño Web en Lanús"
+  heroSubtitle="Tiendas online, catálogos de productos y landing pages con diseño responsive, optimizadas para Google y listas para vender."
+  icon={icon}
+  whatsappText="Hola, quiero solicitar presupuesto de diseño web"
+  benefits={[
+    { icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>', title: 'Diseño responsive', desc: 'Se ve perfecto en celular, tablet y PC.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'Optimizado para SEO', desc: 'Estructura semántica, meta tags y velocidad de carga.' },
+    { icon: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20M7 12h4"/>', title: 'Tienda online', desc: 'Carrito de compras, MercadoPago y gestión de productos.' },
+    { icon: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>', title: 'Hosting incluido', desc: 'Alojamiento en Cloudflare con SSL y CDN sin costo extra.' },
+    { icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', title: 'Soporte post-lanzamiento', desc: 'Acompañamiento y ajustes durante el primer mes.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>', title: 'Diseño a medida', desc: 'No usamos plantillas. Cada diseño es único y adaptado a tu marca.' },
+  ]}
+  steps={[
+    { title: 'Consulta', desc: 'Nos contás tu idea, objetivos y presupuesto. Te asesoramos sin costo.' },
+    { title: 'Diseño', desc: 'Creamos el diseño visual acorde a tu marca y lo revisamos juntos.' },
+    { title: 'Desarrollo', desc: 'Programamos la web con tecnología moderna y optimizada.' },
+    { title: 'Publicación', desc: 'Publicamos tu web online, con dominio y hosting configurados.' },
+  ]}
+  faqs={[
+    { question: '¿Cuánto cuesta una página web?', answer: 'El precio depende del tipo de proyecto: una landing page tiene un costo menor que una tienda online completa. Te armamos un presupuesto sin costo según tus necesidades.' },
+    { question: '¿Cuánto tarda en estar lista?', answer: 'Una landing page tarda entre 1 y 2 semanas. Una tienda online completa puede tomar de 3 a 5 semanas según la cantidad de productos y funcionalidades.' },
+    { question: '¿Incluye hosting y dominio?', answer: 'Sí, incluimos hosting en Cloudflare con SSL y CDN. El dominio lo podés usar el que ya tenés o te ayudamos a registrar uno nuevo.' },
+    { question: '¿Puedo vender productos online?', answer: 'Sí, integramos carrito de compras, MercadoPago como medio de pago y panel de administración para gestionar productos, precios y stock.' },
+    { question: '¿La web funciona en celulares?', answer: 'Sí, todos nuestros diseños son responsive, lo que significa que se adaptan automáticamente a celulares, tablets y computadoras de escritorio.' },
+    { question: '¿Puedo editar el contenido yo mismo?', answer: 'Sí, integramos un panel de administración intuitivo para que puedas actualizar textos, imágenes y productos sin necesidad de conocimientos técnicos.' },
+  ]}
+/>
