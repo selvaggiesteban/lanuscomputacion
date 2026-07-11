@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+
+const faqs = [
+  { q: '¿Cómo hago una compra?', a: 'Elegí el producto, agregalo al carrito, iniciá sesión o creá una cuenta, elegí el medio de pago y coordiná la entrega. Mirá nuestra guía de Cómo comprar para más detalle.' },
+  { q: '¿Qué medios de pago aceptan?', a: 'Aceptamos MercadoPago (tarjeta de crédito, débito, transferencia o efectivo en Rapipago/Pago Fácil) y transferencia bancaria directa.' },
+  { q: '¿Hacen envíos a todo el país?', a: 'Sí, hacemos envíos a todo Argentina. En Lanús y zona sur la entrega es en 24-48 horas. Para el interior, coordinamos con el transporte de tu preferencia.' },
+  { q: '¿Puedo retirar en el local?', a: 'Sí, podés retirar tu compra en nuestro local en Lanús sin costo adicional. Coordiná el día y horario por WhatsApp.' },
+  { q: '¿Los productos tienen garantía?', a: 'Sí, todos los productos tienen garantía oficial del fabricante. El período varía según la marca y el producto (de 3 a 12 meses).' },
+  { q: '¿Puedo pagar en cuotas?', a: 'Sí, con MercadoPago podés pagar en cuotas con tarjeta de crédito. El plan de cuotas depende de tu banco y promociones vigentes.' },
+  { q: '¿Hacen factura A?', a: 'Sí, emitimos factura A o B según tu condición fiscal. Al crear tu cuenta, cargá tu CUIT y condición ante el IVA.' },
+  { q: '¿Tienen precios mayoristas?', a: 'Sí, ofrecemos precios especiales para empresas y revendedores. Registrate en nuestra sección de Mayoristas para acceder a descuentos.' },
+  { q: '¿Puedo cancelar una compra?', a: 'Si el pedido no fue despachado, podés cancelarlo sin costo. Si ya fue enviado, contactanos por WhatsApp para coordinar la devolución.' },
+  { q: '¿Qué pasa si recibo un producto defectuoso?', a: 'Si el producto llega dañado o defectuoso, contactanos dentro de las 72 horas y lo reemplazamos sin costo. Garantía oficial del fabricante inclusiva.' },
+  { q: '¿Necesito crear una cuenta para comprar?', a: 'Sí, necesitás crear una cuenta para poder gestionar el pago, la entrega y el seguimiento de tu pedido. Es rápido y gratuito.' },
+  { q: '¿Cómo contacto con ustedes?', a: 'Podés escribirnos por WhatsApp al 11 5332-3937, usar nuestro formulario de contacto, o visitar nuestro local en Lanús.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title="Preguntas frecuentes | Lanús Computación" description="Resolvé tus dudas sobre compras, envíos, pagos, garantías y más en Lanús Computación. Preguntas frecuentes sobre tecnología y computación.">
+  <link rel="canonical" href="https://lanuscomputacion.com/preguntas-frecuentes" slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="ml-container py-4">
+    <Breadcrumb items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Preguntas frecuentes' },
+    ]} />
+  </div>
+
+  <section class="ml-container pb-6">
+    <div class="bg-gradient-to-r from-ml-yellow to-yellow-200 rounded-lg p-6 md:p-8">
+      <h1 class="text-2xl md:text-3xl font-bold text-ml-text mb-2">Preguntas frecuentes</h1>
+      <p class="text-ml-text-secondary text-base md:text-lg">Acá resolvemos las dudas más comunes sobre compras, envíos y pagos.</p>
+    </div>
+  </section>
+
+  <section class="ml-container py-6 pb-12">
+    <div class="space-y-3 max-w-3xl mx-auto">
+      {faqs.map((faq) => (
+        <details class="bg-white rounded shadow-card group">
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none text-sm font-medium text-ml-text">
+            {faq.q}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="transition-transform group-open:rotate-180 flex-shrink-0">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm text-ml-text-secondary">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-sm text-ml-text-muted mb-3">¿No encontrás tu respuesta?</p>
+      <a href="https://wa.me/5491153323937" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-ml-green font-semibold hover:text-green-700 transition-colors">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        Escribinos por WhatsApp
+      </a>
+    </div>
+  </section>
+</BaseLayout>

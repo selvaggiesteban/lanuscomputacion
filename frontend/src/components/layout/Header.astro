@@ -59,16 +59,6 @@ if (db) {
 
     <!-- Right actions -->
     <div class="flex items-center gap-3 text-sm text-ml-text-secondary">
-      <!-- PC / Info -->
-      <a href="/login" class="hidden md:flex items-center gap-1 hover:text-ml-blue transition-colors">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-          <line x1="8" y1="21" x2="16" y2="21" />
-          <line x1="12" y1="17" x2="12" y2="21" />
-        </svg>
-        <span class="hidden lg:inline">PC / Info</span>
-      </a>
-
       <!-- Perfil (shown when logged out) -->
       <a href="/login" id="login-link" class="flex items-center gap-1 hover:text-ml-blue transition-colors" title="Mi perfil">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -95,31 +85,6 @@ if (db) {
           <button id="logout-btn" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 text-red-600">Cerrar sesión</button>
         </div>
       </div>
-
-      <!-- Compras -->
-      <a href="/compras" class="flex items-center gap-1 hover:text-ml-blue transition-colors" title="Mis compras">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <path d="M16 10a4 4 0 0 1-8 0" />
-        </svg>
-      </a>
-
-      <!-- Favoritos -->
-      <a href="/favoritos" class="hover:text-ml-blue transition-colors" title="Favoritos">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-      </a>
-
-      <!-- Notificaciones -->
-      <button class="hover:text-ml-blue transition-colors relative" title="Notificaciones" aria-label="Notificaciones">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-        </svg>
-        <span class="absolute -top-1 -right-1 w-4 h-4 bg-ml-blue text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
-      </button>
 
       <!-- Carrito -->
       <CartIcon client:load />
