@@ -141,6 +141,82 @@ export function clearSessionCookie(): string {
   return "session_token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0";
 }
 
+// Generate a password reset token (1-hour expiry, purpose-scoped)
+export async function generateResetToken(
+  email: string,
+  secret: string
+): Promise<string> {
+  const header = { alg: "HS256", typ: "JWT" };
+  const now = Math.floor(Date.now() / 1000);
+  const exp = now + 3600; // 1 hour
+
+  const payload = {
+    email,
+    purpose: "reset",
+    iat: now,
+    exp,
+  };
+
+  const encoder = new TextEncoder();
+  const headerB64 = btoa(JSON.stringify(header));
+  const payloadB64 = btoa(JSON.stringify(payload));
+
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"]
+    ),
+    encoder.encode(`${headerB64}.${payloadB64}`)
+  );
+
+  const signatureB64 = btoa(String.fromCharCode(...new Uint8Array(signature)));
+  return `${headerB64}.${payloadB64}.${signatureB64}`;
+}
+
+// Verify a password reset token
+export async function verifyResetToken(
+  token: string,
+  secret: string
+): Promise<{ email: string } | null> {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) return null;
+
+    const [headerB64, payloadB64, signatureB64] = parts;
+
+    const encoder = new TextEncoder();
+    const signature = Uint8Array.from(atob(signatureB64), c => c.charCodeAt(0));
+
+    const valid = await crypto.subtle.verify(
+      "HMAC",
+      await crypto.subtle.importKey(
+        "raw",
+        encoder.encode(secret),
+        { name: "HMAC", hash: "SHA-256" },
+        false,
+        ["verify"]
+      ),
+      signature,
+      encoder.encode(`${headerB64}.${payloadB64}`)
+    );
+
+    if (!valid) return null;
+
+    const payload = JSON.parse(atob(payloadB64));
+
+    if (payload.purpose !== "reset") return null;
+    if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
+
+    return { email: payload.email };
+  } catch {
+    return null;
+  }
+}
+
 // Get JWT secret with dev fallback (never use this in production)
 export function getJwtSecret(env: Record<string, any>): string {
   const secret = env.JWT_SECRET || env.PUBLIC_JWT_SECRET;

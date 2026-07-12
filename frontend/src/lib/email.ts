@@ -161,6 +161,32 @@ export function orderStatusEmail(order: {
   `;
 }
 
+export function resetPasswordEmail(name: string, resetUrl: string): string {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>${BASE_STYLE}</head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Lanús Computación</h1>
+        </div>
+        <div class="content">
+          <h2>Restablecer contraseña</h2>
+          <p>Hola ${name},</p>
+          <p>Recibimos un pedido para restablecer tu contraseña. Hacé clic en el botón de abajo para crear una nueva:</p>
+          <a href="${resetUrl}" class="btn">Restablecer contraseña</a>
+          <p style="margin-top:24px; font-size:13px; color:#666;">Este link expira en 1 hora. Si no pediste este cambio, podés ignorar este mensaje.</p>
+        </div>
+        <div class="footer">
+          <p>Lanús Computación · lanuscomputacion.com</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
 export function welcomeEmail(name: string): string {
   return `
     <!DOCTYPE html>
