@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
-import { getUserFromRequest } from "../../lib/auth";
+import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
-  const jwtSecret = locals.runtime.env.JWT_SECRET as string;
+  const jwtSecret = getJwtSecret(locals.runtime.env);
   const user = await getUserFromRequest(request, db, jwtSecret);
 
   if (!user) {

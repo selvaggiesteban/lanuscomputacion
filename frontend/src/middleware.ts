@@ -1,5 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
-import { verifyToken } from './lib/auth';
+import { verifyToken, getJwtSecret } from './lib/auth';
 
 // Protect admin routes
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -14,7 +14,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       return context.redirect('/login');
     }
 
-    const jwtSecret = context.locals.runtime?.env?.JWT_SECRET;
+    const jwtSecret = getJwtSecret(context.locals.runtime?.env || {});
     if (!jwtSecret) {
       return context.redirect('/login');
     }

@@ -141,7 +141,11 @@ export function clearSessionCookie(): string {
   return "session_token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0";
 }
 
-// Generate random ID
-export function generateId(): string {
-  return crypto.randomUUID();
+// Get JWT secret with dev fallback (never use this in production)
+export function getJwtSecret(env: Record<string, any>): string {
+  const secret = env.JWT_SECRET || env.PUBLIC_JWT_SECRET;
+  if (secret) return secret;
+  // Dev fallback — allows login/register to work locally without .dev.vars
+  console.warn('[auth] JWT_SECRET not configured. Using dev fallback. Set JWT_SECRET in production!');
+  return 'dev-fallback-secret-do-not-use-in-production-CHANGE-ME';
 }

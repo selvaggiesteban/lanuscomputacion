@@ -1,10 +1,10 @@
 import type { APIRoute } from "astro";
-import { generateToken, createSessionCookie, hashPassword } from "../../../lib/auth";
+import { generateToken, createSessionCookie, hashPassword, getJwtSecret } from "../../../lib/auth";
 import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
-  const jwtSecret = locals.runtime.env.JWT_SECRET as string;
+  const jwtSecret = getJwtSecret(locals.runtime.env);
   const clientId = locals.runtime.env.GOOGLE_CLIENT_ID as string;
   const clientSecret = locals.runtime.env.GOOGLE_CLIENT_SECRET as string;
 
