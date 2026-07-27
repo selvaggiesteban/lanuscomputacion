@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount, getCategoryBySlug, getSubcategories, getBrandsByCategory } from '../../lib/d1';
+import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -18,10 +18,6 @@ const limit = 20;
 const offset = (page - 1) * limit;
 
 const category = slug !== 'todas' ? await getCategoryBySlug(db, slug) : null;
-
-const subcategories = category && category.level === 0
-  ? await getSubcategories(db, category.id)
-  : [];
 
 const categoryFilter = category?.level === 0 ? category.id : undefined;
 const subcategoryFilter = category?.level === 1 ? category.name : undefined;
@@ -42,14 +38,29 @@ const brands = await getBrandsByCategory(db, categoryFilter, subcategoryFilter);
 const totalPages = Math.ceil(total / limit);
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
 
-// Build base URL for filters
+// All categories for the sidebar filter
+const allCategories = await getAllCategoriesWithChildren(db);
+
+// Build base URL for filters — always use current page slug
 const filterBaseUrl = `/categoria/${slug}`;
 
-// Get price range
-const priceRange = await db.prepare(`
-  SELECT MIN(price) as min_price, MAX(price) as max_price
-  FROM products WHERE status = 'published' AND category_id = ?
-`).bind(categoryFilter || '').first<{ min_price: number; max_price: number }>();
+// Get price range — fix for "todas" (no category filter)
+let priceRange;
+if (categoryFilter) {
+  priceRange = await db.prepare(`
+    SELECT MIN(price) as min_price, MAX(price) as max_price
+    FROM products WHERE status = 'published' AND category_id = ?
+  `).bind(categoryFilter).first<{ min_price: number; max_price: number }>();
+} else {
+  priceRange = await db.prepare(`
+    SELECT MIN(price) as min_price, MAX(price) as max_price
+    FROM products WHERE status = 'published'
+  `).first<{ min_price: number; max_price: number }>();
+}
+
+// Helper: is a category or subcategory currently active?
+const isCategoryActive = (catSlug: string) => slug === catSlug;
+const isSubcategoryActive = (subSlug: string) => slug === subSlug;
 ---
 
 <BaseLayout title={`${categoryName} | Lanús Computación`}>
@@ -68,22 +79,38 @@ const priceRange = await db.prepare(`
         <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
       </div>
 
-      {subcategories.length > 0 && (
-        <div class="bg-white rounded shadow-card p-4">
-          <h3 class="text-sm font-semibold text-ml-text mb-3">Subcategorías</h3>
-          <ul class="space-y-2">
-            {subcategories.map((sub) => (
-              <li>
-                <a href={`/categoria/${sub.slug}`}
-                   class={`text-sm hover:text-ml-blue transition-colors ${sub.slug === slug ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}>
-                  {sub.picture} {sub.name}
-                  {sub.total_items > 0 && <span class="text-xs text-ml-text-muted ml-1">({sub.total_items})</span>}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <!-- Category filter — always visible -->
+      <div class="bg-white rounded shadow-card p-4">
+        <h3 class="text-sm font-semibold text-ml-text mb-3">Categorías</h3>
+        <ul class="space-y-1">
+          <li>
+            <a href="/categoria/todas"
+               class={`text-sm block py-1 transition-colors ${slug === 'todas' ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
+              Todas las categorías
+            </a>
+          </li>
+          {allCategories.map((cat) => (
+            <li>
+              <a href={`/categoria/${cat.slug}`}
+                 class={`text-sm block py-1 transition-colors ${isCategoryActive(cat.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
+                {cat.picture} {cat.name}
+              </a>
+              {cat.children.length > 0 && (
+                <ul class="ml-4 space-y-0.5 mt-0.5">
+                  {cat.children.map((sub) => (
+                    <li>
+                      <a href={`/categoria/${sub.slug}`}
+                         class={`text-xs block py-0.5 transition-colors ${isSubcategoryActive(sub.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-muted hover:text-ml-blue'}`}>
+                        {sub.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {brands.length > 0 && (
         <div class="bg-white rounded shadow-card p-4">

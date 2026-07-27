@@ -30,7 +30,7 @@ const { product } = Astro.props;
   <a href={`/producto/${product.slug}`} class="block">
     <div class="aspect-square bg-white mb-2 flex items-center justify-center overflow-hidden">
       <img
-        src={product.image}
+        src={product.image || '/placeholder-product.svg'}
         alt={product.title}
         width="200"
         height="200"

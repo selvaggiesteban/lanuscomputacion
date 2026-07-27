@@ -88,7 +88,7 @@ export function normalizeElitProduct(elitProduct: Record<string, any>, dollarRat
     weight: Number(elitProduct.peso ?? 0),
     warranty: String(elitProduct.garantia ?? ""),
     permalink: String(elitProduct.link ?? ""),
-    thumbnail: images[0] ?? "",
+    thumbnail: images[0] || "/placeholder-product.svg",
     images,
     provider: "elit",
     provider_store: "minorista",

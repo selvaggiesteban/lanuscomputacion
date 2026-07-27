@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#f5f5f5"/>
+  <rect x="140" y="120" width="120" height="100" rx="8" stroke="#ccc" stroke-width="3" fill="none"/>
+  <circle cx="170" cy="155" r="12" stroke="#ccc" stroke-width="2" fill="none"/>
+  <polygon points="148,200 180,160 200,185 220,165 252,200" stroke="#ccc" stroke-width="2" fill="none"/>
+  <line x1="200" y1="230" x2="200" y2="280" stroke="#ccc" stroke-width="3"/>
+  <line x1="170" y1="280" x2="230" y2="280" stroke="#ccc" stroke-width="3" stroke-linecap="round"/>
+  <text x="200" y="310" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#999">Sin imagen</text>
+</svg>

@@ -116,6 +116,18 @@ export async function getCategories(db: D1Database): Promise<Category[]> {
   return results ?? [];
 }
 
+export async function getAllCategoriesWithChildren(db: D1Database): Promise<(Category & { children: Category[] })[]> {
+  const parents = await getCategories(db);
+  const withChildren: (Category & { children: Category[] })[] = [];
+
+  for (const parent of parents) {
+    const children = await getSubcategories(db, parent.id);
+    withChildren.push({ ...parent, children });
+  }
+
+  return withChildren;
+}
+
 export async function getSubcategories(db: D1Database, parentId: string): Promise<Category[]> {
   const { results } = await db.prepare(
     `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture,
