@@ -104,6 +104,36 @@ const lowStockProducts = await db.prepare(
         </div>
         <a href="/admin/b2b" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
       </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-yellow-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">Monitoreo</p>
+            <p class="text-xs text-ml-text-muted">Precios, dólar, márgenes</p>
+          </div>
+        </div>
+        <a href="/admin/monitoreo" class="block mt-3 text-xs text-ml-blue hover:underline">Ver dashboard →</a>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-red-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8M8 8l8 8"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">Promociones</p>
+            <p class="text-xs text-ml-text-muted">Descuentos y ofertas</p>
+          </div>
+        </div>
+        <a href="/admin/promociones" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const db = Astro.locals.runtime.env.DB;
+
+// Current dollar rate
+const currentDollar = await db.prepare(
+  "SELECT rate, source, fetched_at FROM dollar_rate_history ORDER BY fetched_at DESC LIMIT 1"
+).first<{ rate: number; source: string; fetched_at: string }>();
+
+// Dollar history last 30 days
+const { results: dollarHistory } = await db.prepare(
+  "SELECT rate, fetched_at FROM dollar_rate_history WHERE fetched_at >= datetime('now', '-30 days') ORDER BY fetched_at ASC"
+).all<{ rate: number; fetched_at: string }>();
+
+// Price changes last 30 days
+const priceChangeStats = await db.prepare(`
+  SELECT
+    COUNT(*) as total_changes,
+    COUNT(DISTINCT product_id) as products_affected,
+    SUM(CASE WHEN reason = 'dollar_change' THEN 1 ELSE 0 END) as dollar_driven,
+    SUM(CASE WHEN reason = 'sync' THEN 1 ELSE 0 END) as sync_driven,
+    SUM(CASE WHEN reason = 'manual' THEN 1 ELSE 0 END) as manual_changes
+  FROM price_history
+  WHERE changed_at >= datetime('now', '-30 days')
+`).first();
+
+// Margin stats
+const marginStats = await db.prepare(`
+  SELECT
+    AVG(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as avg_margin,
+    MIN(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as min_margin,
+    MAX(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as max_margin
+  FROM products WHERE status = 'published' AND cost_price > 0
+`).first();
+
+// Inventory value
+const inventoryValue = await db.prepare(`
+  SELECT
+    SUM(price * available_qty) as total_value,
+    SUM(cost_price * available_qty) as total_cost,
+    COUNT(*) as total_products,
+    SUM(available_qty) as total_units
+  FROM products WHERE status = 'published' AND cost_price > 0
+`).first();
+
+// Active promotions
+const activePromos = await db.prepare(`
+  SELECT COUNT(*) as count FROM promotions
+  WHERE is_active = 1
+  AND (start_date IS NULL OR start_date <= datetime('now'))
+  AND (end_date IS NULL OR end_date >= datetime('now'))
+`).first<{ count: number }>();
+
+// Low stock
+const lowStockCount = await db.prepare(`
+  SELECT COUNT(*) as count FROM products
+  WHERE status = 'published' AND available_qty > 0 AND available_qty <= 5
+`).first<{ count: number }>();
+
+// Top margin products
+const { results: topMargin } = await db.prepare(`
+  SELECT title, brand, price, cost_price,
+    ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
+  FROM products
+  WHERE status = 'published' AND cost_price > 0
+  ORDER BY margin_pct DESC LIMIT 5
+`).all();
+
+// Bottom margin products
+const { results: bottomMargin } = await db.prepare(`
+  SELECT title, brand, price, cost_price,
+    ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
+  FROM products
+  WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
+  ORDER BY margin_pct ASC LIMIT 5
+`).all();
+
+// Recent price changes
+const { results: recentChanges } = await db.prepare(`
+  SELECT ph.*, p.title, p.brand
+  FROM price_history ph
+  LEFT JOIN products p ON ph.product_id = p.id
+  ORDER BY ph.changed_at DESC LIMIT 10
+`).all();
+---
+
+<BaseLayout title="Monitoreo | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Monitoreo de Catálogo</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Top Stats Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
+      <!-- Dollar Rate -->
+      <div class="bg-white rounded shadow-card p-4 col-span-2">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 bg-green-50 rounded flex items-center justify-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span class="text-xs text-ml-text-muted">Dólar BCRA</span>
+        </div>
+        <p class="text-2xl font-bold text-ml-text">${currentDollar?.rate?.toFixed(2) ?? '—'}</p>
+        <p class="text-xs text-ml-text-muted mt-1">
+          {currentDollar?.fetched_at ? new Date(currentDollar.fetched_at).toLocaleString('es-AR') : 'Sin datos'}
+        </p>
+      </div>
+
+      <!-- Avg Margin -->
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted mb-1">Margen Promedio</p>
+        <p class="text-2xl font-bold text-ml-text">{marginStats?.avg_margin ? `${marginStats.avg_margin.toFixed(1)}%` : '—'}</p>
+      </div>
+
+      <!-- Inventory Value -->
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted mb-1">Valor Inventario</p>
+        <p class="text-2xl font-bold text-ml-text">${inventoryValue?.total_value ? Math.round(inventoryValue.total_value).toLocaleString('es-AR') : '—'}</p>
+      </div>
+
+      <!-- Active Promos -->
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted mb-1">Promos Activas</p>
+        <p class="text-2xl font-bold text-purple-600">{activePromos?.count ?? 0}</p>
+        <a href="/admin/promociones" class="text-xs text-ml-blue hover:underline">Gestionar</a>
+      </div>
+
+      <!-- Low Stock -->
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted mb-1">Stock Bajo</p>
+        <p class={`text-2xl font-bold ${(lowStockCount?.count ?? 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>{lowStockCount?.count ?? 0}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Price Changes -->
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b">
+          <h2 class="font-medium text-ml-text">Cambios de Precio (30 días)</h2>
+        </div>
+        <div class="p-4">
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="bg-gray-50 rounded p-3">
+              <p class="text-2xl font-bold text-ml-text">{priceChangeStats?.total_changes ?? 0}</p>
+              <p class="text-xs text-ml-text-muted">Total cambios</p>
+            </div>
+            <div class="bg-gray-50 rounded p-3">
+              <p class="text-2xl font-bold text-ml-text">{priceChangeStats?.products_affected ?? 0}</p>
+              <p class="text-xs text-ml-text-muted">Productos afectados</p>
+            </div>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-ml-text-muted">Por cambio de dólar</span>
+              <span class="font-medium text-ml-text">{priceChangeStats?.dollar_driven ?? 0}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-ml-text-muted">Por sync ELIT</span>
+              <span class="font-medium text-ml-text">{priceChangeStats?.sync_driven ?? 0}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-ml-text-muted">Manuales</span>
+              <span class="font-medium text-ml-text">{priceChangeStats?.manual_changes ?? 0}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Margin Analysis -->
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b">
+          <h2 class="font-medium text-ml-text">Análisis de Márgenes</h2>
+        </div>
+        <div class="p-4">
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div class="bg-gray-50 rounded p-3 text-center">
+              <p class="text-lg font-bold text-green-600">{marginStats?.max_margin ? `${marginStats.max_margin.toFixed(0)}%` : '—'}</p>
+              <p class="text-xs text-ml-text-muted">Máximo</p>
+            </div>
+            <div class="bg-gray-50 rounded p-3 text-center">
+              <p class="text-lg font-bold text-ml-text">{marginStats?.avg_margin ? `${marginStats.avg_margin.toFixed(0)}%` : '—'}</p>
+              <p class="text-xs text-ml-text-muted">Promedio</p>
+            </div>
+            <div class="bg-gray-50 rounded p-3 text-center">
+              <p class="text-lg font-bold text-red-600">{marginStats?.min_margin ? `${marginStats.min_margin.toFixed(0)}%` : '—'}</p>
+              <p class="text-xs text-ml-text-muted">Mínimo</p>
+            </div>
+          </div>
+          <div class="text-sm">
+            <p class="font-medium text-ml-text mb-2">Top 5 Mayor Margen</p>
+            {topMargin.map((p: any) => (
+              <div class="flex justify-between py-1 border-b border-gray-100 last:border-0">
+                <span class="text-ml-text-secondary truncate max-w-[200px]">{p.title}</span>
+                <span class="font-medium text-green-600">{p.margin_pct}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dollar Rate History Chart (simple table) -->
+    <div class="bg-white rounded shadow-card mb-6">
+      <div class="p-4 border-b">
+        <h2 class="font-medium text-ml-text">Historial Cotización Dólar (30 días)</h2>
+      </div>
+      <div class="p-4">
+        {dollarHistory.length > 0 ? (
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left p-2 font-medium text-ml-text">Fecha</th>
+                  <th class="text-right p-2 font-medium text-ml-text">Cotización</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y">
+                {dollarHistory.slice(-10).map((d: any) => (
+                  <tr>
+                    <td class="p-2 text-ml-text-secondary">{new Date(d.fetched_at).toLocaleString('es-AR')}</td>
+                    <td class="p-2 text-right font-medium text-ml-text">${d.rate.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p class="text-sm text-ml-text-muted text-center py-4">Sin datos de historial</p>
+        )}
+      </div>
+    </div>
+
+    <!-- Recent Price Changes -->
+    <div class="bg-white rounded shadow-card">
+      <div class="p-4 border-b">
+        <h2 class="font-medium text-ml-text">Últimos Cambios de Precio</h2>
+      </div>
+      <div class="p-4">
+        {recentChanges.length > 0 ? (
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="text-left p-2 font-medium text-ml-text">Producto</th>
+                  <th class="text-right p-2 font-medium text-ml-text">Precio Anterior</th>
+                  <th class="text-right p-2 font-medium text-ml-text">Precio Nuevo</th>
+                  <th class="text-center p-2 font-medium text-ml-text">Motivo</th>
+                  <th class="text-left p-2 font-medium text-ml-text">Fecha</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y">
+                {recentChanges.map((c: any) => (
+                  <tr>
+                    <td class="p-2">
+                      <p class="text-ml-text truncate max-w-[250px]">{c.title || c.product_id}</p>
+                      <p class="text-xs text-ml-text-muted">{c.brand}</p>
+                    </td>
+                    <td class="p-2 text-right text-ml-text-secondary">${c.old_price?.toFixed(2) ?? '—'}</td>
+                    <td class="p-2 text-right font-medium text-ml-text">${c.new_price?.toFixed(2) ?? '—'}</td>
+                    <td class="p-2 text-center">
+                      <span class={`px-2 py-1 rounded text-xs font-medium ${
+                        c.reason === 'dollar_change' ? 'bg-yellow-100 text-yellow-800' :
+                        c.reason === 'manual' ? 'bg-blue-100 text-blue-800' :
+                        c.reason === 'promotion' ? 'bg-purple-100 text-purple-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {c.reason === 'dollar_change' ? 'Dólar' :
+                         c.reason === 'manual' ? 'Manual' :
+                         c.reason === 'promotion' ? 'Promo' : 'Sync'}
+                      </span>
+                    </td>
+                    <td class="p-2 text-xs text-ml-text-muted">{new Date(c.changed_at).toLocaleString('es-AR')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p class="text-sm text-ml-text-muted text-center py-4">Sin cambios de precio registrados</p>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

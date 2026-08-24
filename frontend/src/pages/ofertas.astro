@@ -1,17 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
-import { getProducts } from '../lib/d1';
+import { getActivePromotions, computePromoDiscount } from '../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
 
-// Get products sorted by discount (cost_price vs price ratio) as proxy for "ofertas"
-const { results: offerProducts } = await db.prepare(`
+// Get active promotions
+const promotions = await getActivePromotions(db);
+
+// Get all published products with stock
+const { results: allProducts } = await db.prepare(`
   SELECT * FROM products
-  WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
-  ORDER BY (price - cost_price) / cost_price DESC
-  LIMIT 20
+  WHERE status = 'published' AND available_qty > 0 AND price > 0
+  ORDER BY created_at DESC
 `).all();
+
+// Apply promotions to products
+const offerProducts: any[] = [];
+for (const product of allProducts) {
+  const promo = computePromoDiscount(promotions, product.id, product.category_id, product.price);
+  if (promo) {
+    offerProducts.push({
+      id: product.id,
+      title: product.title,
+      price: promo.promoPrice,
+      originalPrice: product.price,
+      discount: promo.discount,
+      image: product.thumbnail,
+      slug: product.slug,
+      freeShipping: product.free_shipping === 1,
+      promoName: promo.promoName,
+    });
+  }
+}
+
+// Sort by discount percentage (highest first)
+offerProducts.sort((a, b) => b.discount - a.discount);
 ---
 
 <BaseLayout title="Ofertas | Lanús Computación">
@@ -19,22 +43,17 @@ const { results: offerProducts } = await db.prepare(`
     <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
       <h1 class="text-2xl font-bold text-ml-text mb-1">Ofertas</h1>
       <p class="text-sm text-ml-text-secondary">Los mejores descuentos en tecnología</p>
+      {promotions.length > 0 && (
+        <p class="text-xs text-ml-text-muted mt-2">{promotions.length} promoción(es) activa(s)</p>
+      )}
     </div>
 
     {offerProducts.length > 0 ? (
-      <ProductGrid products={offerProducts.map(p => ({
-        id: p.id,
-        title: p.title,
-        price: p.price,
-        originalPrice: p.cost_price,
-        image: p.thumbnail,
-        slug: p.slug,
-        freeShipping: false,
-      }))} columns={5} />
+      <ProductGrid products={offerProducts} columns={5} />
     ) : (
       <div class="text-center py-16 text-ml-text-muted">
         <p class="text-lg">No hay ofertas disponibles</p>
-        <p class="text-sm mt-1">Volvé pronto para ver los mejores descuentos</p>
+        <p class="text-sm mt-1">Creá promociones en el admin para que aparezcan aquí</p>
       </div>
     )}
   </div>

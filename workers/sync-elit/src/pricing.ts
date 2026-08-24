@@ -44,19 +44,39 @@ export function calculateSellingPrice(
 export function calculatePriceFromElit(
   product: Record<string, any>,
   dollarRate: number,
+  markupPct?: number,
 ): PricingResult {
   const precio = Number(product.precio ?? 0);
   const monedaCode = Number(product.moneda ?? 1);
   const currency = monedaCode === 2 ? "USD" : "ARS";
   const iva = Number(product.iva ?? 10.5);
   const impInterno = Number(product.impuesto_interno ?? 0);
+  const markup = markupPct ?? 30;
 
   return calculateSellingPrice(
     precio,
     currency,
     iva,
     impInterno,
-    30,
+    markup,
     dollarRate,
+  );
+}
+
+export function recalculatePriceForDollarChange(
+  costPrice: number,
+  currency: string,
+  ivaPct: number,
+  internalTaxPct: number,
+  markupPct: number,
+  newDollarRate: number,
+): PricingResult {
+  return calculateSellingPrice(
+    costPrice,
+    currency,
+    ivaPct,
+    internalTaxPct,
+    markupPct,
+    newDollarRate,
   );
 }

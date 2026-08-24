@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const db = Astro.locals.runtime.env.DB;
+
+// Load current config
+const { results: configRows } = await db.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
+const config: Record<string, string> = {};
+for (const row of configRows) config[row.key] = row.value;
+
+const markup = config.global_markup_pct || "30";
+const dollarThreshold = config.dollar_change_threshold || "2";
+const lowStockThreshold = config.low_stock_threshold || "5";
+const autoRecalc = config.auto_recalc_prices !== "false";
+
+// Categories for markup overrides
+const { results: categories } = await db.prepare(
+  "SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name"
+).all<{ id: string; name: string }>();
+---
+
+<BaseLayout title="Configuración | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Configuración de Reglas de Negocio</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Markup Global -->
+    <div class="bg-white rounded shadow-card p-6 mb-6">
+      <h2 class="font-medium text-ml-text mb-4">Markup Global (Ganancia)</h2>
+      <p class="text-sm text-ml-text-secondary mb-4">
+        Porcentaje de ganancia aplicado sobre el precio base + impuestos. Se usa para calcular el precio de venta de productos ELIT.
+      </p>
+      <div class="flex items-center gap-4">
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Markup %</label>
+          <input type="number" id="markup-pct" value={markup} min="0" max="200" step="0.5"
+            class="ml-input w-32" />
+        </div>
+        <div class="mt-5">
+          <button id="save-markup" class="ml-btn-primary px-4">Guardar</button>
+        </div>
+        <div id="markup-saved" class="hidden mt-5 text-sm text-green-600">Guardado</div>
+      </div>
+      <p class="text-xs text-ml-text-muted mt-2">Ejemplo: con markup 30%, un producto que cuesta $1000 USD se vende a $1000 × 1.30 = $1300 USD (antes de impuestos)</p>
+    </div>
+
+    <!-- Alert Thresholds -->
+    <div class="bg-white rounded shadow-card p-6 mb-6">
+      <h2 class="font-medium text-ml-text mb-4">Umbrales de Alerta</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Variación mínima del dólar para alertar (%)</label>
+          <input type="number" id="dollar-threshold" value={dollarThreshold} min="0.1" max="50" step="0.1"
+            class="ml-input w-full" />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Stock mínimo para alerta (unidades)</label>
+          <input type="number" id="low-stock-threshold" value={lowStockThreshold} min="1" max="100"
+            class="ml-input w-full" />
+        </div>
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Recálculo automático de precios</label>
+          <div class="flex items-center gap-2 mt-2">
+            <input type="checkbox" id="auto-recalc" checked={autoRecalc}
+              class="w-4 h-4 text-ml-blue rounded" />
+            <label for="auto-recalc" class="text-sm text-ml-text">Activar recálculo cuando cambia el dólar</label>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <button id="save-thresholds" class="ml-btn-primary px-4">Guardar Umbrales</button>
+        <span id="thresholds-saved" class="hidden ml-3 text-sm text-green-600">Guardado</span>
+      </div>
+    </div>
+
+    <!-- Current Markup Info -->
+    <div class="bg-white rounded shadow-card p-6">
+      <h2 class="font-medium text-ml-text mb-4">Fórmula de Precios</h2>
+      <div class="bg-gray-50 rounded p-4 font-mono text-sm text-ml-text">
+        <p class="mb-2">Precio final = Costo × (1 + IVA/100) × (1 + Imp.Interno/100) × (1 + Markup/100)</p>
+        <p class="text-ml-text-secondary">Donde:</p>
+        <ul class="text-ml-text-secondary ml-4 space-y-1">
+          <li>• IVA: 10.5% (tecnología) o 21% (otros)</li>
+          <li>• Impuesto Interno: 0% (la mayoría)</li>
+          <li>• Markup: <span id="current-markup-display" class="font-bold text-ml-blue">{markup}%</span> (configurable arriba)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('save-markup')?.addEventListener('click', async () => {
+    const value = (document.getElementById('markup-pct') as HTMLInputElement).value;
+    await fetch('/api/admin/configuracion', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ global_markup_pct: value }),
+    });
+    document.getElementById('current-markup-display')!.textContent = value + '%';
+    const saved = document.getElementById('markup-saved')!;
+    saved.classList.remove('hidden');
+    setTimeout(() => saved.classList.add('hidden'), 2000);
+  });
+
+  document.getElementById('save-thresholds')?.addEventListener('click', async () => {
+    const dollarThreshold = (document.getElementById('dollar-threshold') as HTMLInputElement).value;
+    const lowStockThreshold = (document.getElementById('low-stock-threshold') as HTMLInputElement).value;
+    const autoRecalc = (document.getElementById('auto-recalc') as HTMLInputElement).checked;
+    await fetch('/api/admin/configuracion', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        dollar_change_threshold: dollarThreshold,
+        low_stock_threshold: lowStockThreshold,
+        auto_recalc_prices: autoRecalc.toString(),
+      }),
+    });
+    const saved = document.getElementById('thresholds-saved')!;
+    saved.classList.remove('hidden');
+    setTimeout(() => saved.classList.add('hidden'), 2000);
+  });
+</script>

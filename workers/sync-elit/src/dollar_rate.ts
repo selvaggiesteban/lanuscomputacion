@@ -55,3 +55,30 @@ async function fetchBcraRate(): Promise<DollarRateResult> {
 export async function getDollarRate(): Promise<DollarRateResult> {
   return fetchBcraRate();
 }
+
+/**
+ * Save dollar rate to history table.
+ */
+export async function saveDollarRateHistory(db: D1Database, rate: number, source: string): Promise<void> {
+  await db.prepare(
+    "INSERT INTO dollar_rate_history (rate, source, fetched_at) VALUES (?, ?, ?)"
+  ).bind(rate, source, new Date().toISOString()).run();
+}
+
+/**
+ * Get the previous dollar rate (the one before the current fetch).
+ */
+export async function getPreviousDollarRate(db: D1Database): Promise<number | null> {
+  const row = await db.prepare(
+    "SELECT rate FROM dollar_rate_history ORDER BY fetched_at DESC LIMIT 1"
+  ).first<{ rate: number }>();
+  return row?.rate ?? null;
+}
+
+/**
+ * Calculate percentage change between two rates.
+ */
+export function dollarRateChange(oldRate: number, newRate: number): number {
+  if (oldRate === 0) return 0;
+  return ((newRate - oldRate) / oldRate) * 100;
+}

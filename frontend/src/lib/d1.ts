@@ -260,3 +260,61 @@ export async function getOrderItems(db: D1Database, orderId: string): Promise<Or
   ).bind(orderId).all<OrderItem>();
   return results ?? [];
 }
+
+export type Promotion = {
+  id: string;
+  name: string;
+  type: 'percentage' | 'fixed';
+  value: number;
+  applies_to: 'all' | 'category' | 'product';
+  target_id: string | null;
+  start_date: string | null;
+  end_date: string | null;
+  is_active: number;
+};
+
+export async function getActivePromotions(db: D1Database): Promise<Promotion[]> {
+  const { results } = await db.prepare(`
+    SELECT * FROM promotions
+    WHERE is_active = 1
+    AND (start_date IS NULL OR start_date <= datetime('now'))
+    AND (end_date IS NULL OR end_date >= datetime('now'))
+  `).all<Promotion>();
+  return results ?? [];
+}
+
+export function computePromoDiscount(
+  promotions: Promotion[],
+  productId: string,
+  categoryId: string,
+  price: number,
+): { discount: number; promoPrice: number; promoName: string } | null {
+  // Find matching promotions (most specific first: product > category > all)
+  let bestMatch: Promotion | null = null;
+
+  for (const promo of promotions) {
+    if (promo.applies_to === 'product' && promo.target_id === productId) {
+      bestMatch = promo;
+      break;
+    }
+    if (promo.applies_to === 'category' && promo.target_id === categoryId) {
+      if (!bestMatch || bestMatch.applies_to !== 'product') bestMatch = promo;
+    }
+    if (promo.applies_to === 'all') {
+      if (!bestMatch) bestMatch = promo;
+    }
+  }
+
+  if (!bestMatch) return null;
+
+  let promoPrice: number;
+  if (bestMatch.type === 'percentage') {
+    promoPrice = Math.round(price * (1 - bestMatch.value / 100) * 100) / 100;
+  } else {
+    promoPrice = Math.max(0, price - bestMatch.value);
+  }
+
+  const discount = Math.round(((price - promoPrice) / price) * 100);
+
+  return { discount, promoPrice, promoName: bestMatch.name };
+}
