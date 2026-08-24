@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>';
+---
+
+<ServicePage
+  title="Productos de Tecnología | Lanús Computación"
+  description="Venta de productos de tecnología en Lanús. Notebooks, PC de escritorio, componentes, periféricos, redes y más. Envíos a todo el país. Presupuesto sin costo."
+  slug="productos-de-tecnologia"
+  heroTitle="Productos de Tecnología"
+  heroSubtitle="Notebooks, computadoras, componentes, periféricos y soluciones de red. Asesoramiento personalizado y precios competitivos. Envíos a todo el país."
+  icon={icon}
+  whatsappText="Hola, quiero presupuesto de productos de tecnología"
+  benefits={[
+    { icon: '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>', title: 'Notebooks y PCs', desc: 'Computadoras de escritorio y portátiles para trabajo, gaming y estudio.' },
+    { icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>', title: 'Componentes', desc: 'Procesadores, memorias, discos, motherboards, fuentes y tarjetas gráficas.' },
+    { icon: '<path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l1 2h2v2H7v-2h2l1-2H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/>', title: 'Periféricos', desc: 'Monitores, teclados, mouses, impresoras, auriculares y webcams.' },
+    { icon: '<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>', title: 'Redes y conectividad', desc: 'Routers, switches, cables, placas WiFi, repetidores y soluciones de red.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/>', title: 'Marcas reconocidas', desc: 'Trabajamos con las mejores marcas: Gigabyte, AMD, Intel, Samsung, Logitech.' },
+    { icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', title: 'Asesoramiento', desc: 'Te asesoramos para elegir los componentes y productos que mejor se adapten a tu necesidad y presupuesto.' },
+  ]}
+  steps={[
+    { title: 'Consulta', desc: 'Contanos qué necesitás: uso, presupuesto y preferencias de marca.' },
+    { title: 'Presupuesto', desc: 'Te armamos opciones con precios competitivos y stock disponible.' },
+    { title: 'Pedido', desc: 'Confirmás el pedido y coordinamos entrega o envío a todo el país.' },
+    { title: 'Entrega', desc: 'Recibís tu producto con garantía y soporte post-venta.' },
+  ]}
+  faqs={[
+    { question: '¿Venden al por mayor?', answer: 'Sí, ofrecemos precios especiales para compras al por mayor y para empresas. Consultanos con tu requerimiento y te armamos un presupuesto a medida.' },
+    { question: '¿Hacen envíos a todo el país?', answer: 'Sí, realizamos envíos a todo el país通过 correo o transportista. En Lanús y zona sur también hacemos entregas a domicilio. Coordinamos la opción más conveniente.' },
+    { question: '¿Qué garantía tienen los productos?', answer: 'Todos los productos tienen garantía del fabricante (12-36 meses según producto). Additionally, ofrecemos soporte técnico post-venta en nuestro local de Lanús.' },
+    { question: '¿Puedo armar una PC a medida?', answer: 'Sí, te asesoramos para armar la PC ideal según tu uso (gaming, oficina, diseño, edición) y presupuesto. Armamos la PC con los componentes elegidos y la testeamos antes de entregar.' },
+    { question: '¿Tienen stock de los productos?', answer: 'Mantenemos stock de los productos más vendidos. Para productos específicos que no tengamos en stock, los importamos en 5-15 días hábiles. Consultá disponibilidad.' },
+  ]}
+/>

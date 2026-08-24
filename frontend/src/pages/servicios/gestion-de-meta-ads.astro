@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>';
+---
+
+<ServicePage
+  title="Gestión de Meta Ads | Lanús Computación"
+  description="Gestión de Meta Ads (Facebook e Instagram) en Lanús. Campañas de awareness, tráfico, leads, remarketing y ecommerce. Informes mensuales."
+  slug="gestion-de-meta-ads"
+  heroTitle="Gestión de Meta Ads"
+  heroSubtitle="Publicidad en Facebook e Instagram para llegar a tu audiencia ideal. Campañas de awareness, generación de leads, remarketing y ecommerce."
+  icon={icon}
+  whatsappText="Hola, quiero gestionar Meta Ads (Facebook/Instagram) para mi negocio"
+  benefits={[
+    { icon: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>', title: 'Facebook Ads', desc: 'Campañas segmentadas en la red social más grande del mundo.' },
+    { icon: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>', title: 'Instagram Ads', desc: 'Publicidad en stories, reels y feed para llegar a audiencias jóvenes y dinámicas.' },
+    { icon: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>', title: 'Remarketing', desc: 'Recuperá visitantes que no convirtieron con anuncios personalizados.' },
+    { icon: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>', title: 'Generación de leads', desc: 'Campañas optimizadas para captar leads calificados de tu sector.' },
+    { icon: '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>', title: 'E-commerce', desc: 'Campañas de catálogo dinámico y conversiones de compra.' },
+    { icon: '<path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/>', title: 'Informes detallados', desc: 'Reportes mensuales con métricas de alcance, engagement, leads y conversiones.' },
+  ]}
+  steps={[
+    { title: 'Auditoría', desc: 'Analizamos tu presencia en redes, audiencia y competencia.' },
+    { title: 'Estrategia', desc: 'Diseñamos la estrategia: objetivos, audiencias, creativos y presupuesto.' },
+    { title: 'Lanzamiento', desc: 'Creamos campañas, segmentaciones, anuncios y configuramos pixel de Meta.' },
+    { title: 'Optimización', desc: 'Optimizamos audiencias, creativos y puja para maximizar resultados.' },
+  ]}
+  faqs={[
+    { question: '¿Cuánto cuesta gestionar Meta Ads?', answer: 'Nuestro honorario es un fee fijo mensual o un porcentaje del presupuesto publicitario, según tu preferencia. El presupuesto de publicidad lo definís vos. Hacemos presupuesto sin costo.' },
+    { question: '¿Cuánto debo invertir en Meta Ads?', answer: 'Para negocios locales, recomendamos empezar con $50.000-150.000 ARS/mes. Para campañas más amplias, ajustamos según objetivos. Lo importante es la calidad de la segmentación, no solo el presupuesto.' },
+    { question: '¿Facebook o Instagram? ¿Cuál es mejor?', answer: 'Depende de tu público. Facebook tiene mayor alcance en adultos 30+. Instagram es ideal para públicos 18-35, productos visuales y marcas con identidad fuerte. Recomendamos usar ambos en conjunto.' },
+    { question: '¿Qué es el pixel de Meta y por qué es importante?', answer: 'El pixel de Meta es un código que se instala en tu web para rastrear conversiones, crear audiencias personalizadas y optimizar campañas. Es fundamental para que las campañas funcionen bien.' },
+    { question: '¿Cuánto tarda en verse resultados?', answer: 'Meta Ads genera impresiones y clics desde el primer día. Las primeras 1-2 semanas son de learning phase. A partir del segundo mes empiezan a estabilizarse los resultados.' },
+  ]}
+/>

@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
+---
+
+<ServicePage
+  title="Desarrollo Web | Lanús Computación"
+  description="Desarrollo web profesional en Lanús. Aplicaciones web, PWAs, frameworks modernos, optimización de performance. Presupuesto sin costo."
+  slug="desarrollo-web"
+  heroTitle="Desarrollo Web"
+  heroSubtitle="Aplicaciones web modernas, rápidas y escalables. Desarrollamos con las mejores tecnologías para que tu web sea performante y confiable."
+  icon={icon}
+  whatsappText="Hola, necesito desarrollo web para mi proyecto"
+  benefits={[
+    { icon: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>', title: 'Performance', desc: 'Webs rápidas con optimización de carga, lazy loading y compresión.' },
+    { icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>', title: 'Responsive', desc: 'Se adapta perfectamente a celulares, tablets y escritorio.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'SEO técnico', desc: 'Meta tags, sitemap, estructura semántica y Core Web Vitals.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>', title: 'Arquitectura moderna', desc: 'Componentes reutilizables, SSR/SSG, Islands Architecture.' },
+    { icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>', title: 'Escalabilidad', desc: 'Arquitectura preparada para crecer con tu negocio.' },
+    { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Seguridad', desc: 'Protección contra XSS, CSRF, HTTPS yHeaders de seguridad.' },
+  ]}
+  steps={[
+    { title: 'Planificación', desc: 'Definimos alcance, tecnologías, arquitectura y cronograma del proyecto.' },
+    { title: 'Desarrollo', desc: 'Programamos con metodología ágil, entregas parciales y tu feedback.' },
+    { title: 'Testing', desc: 'Testing automatizado, manual, cross-browser y de performance.' },
+    { title: 'Despliegue', desc: 'Publicamos en Cloudflare, Vercel o el hosting que prefieras.' },
+  ]}
+  faqs={[
+    { question: '¿Qué frameworks y tecnologías manejan?', answer: 'Astro, React, Next.js, Vue, Nuxt, Svelte, Node.js, y más. Elegimos la tecnología según tu proyecto: rendimiento, escalabilidad y mantenibilidad.' },
+    { question: '¿Cuánto cuesta desarrollar una web?', answer: 'Depende de la complejidad: una landing page tiene un costo menor que una aplicación web completa con backend. Te damos un presupuesto detallado sin costo.' },
+    { question: '¿Cuánto tarda un proyecto web?', answer: 'Una landing page: 1-2 semanas. Un sitio web corporativo: 2-4 semanas. Una aplicación web completa: 1-3 meses. Los plazos se definen en la propuesta.' },
+    { question: '¿Puedo elegir la tecnología?', answer: 'Sí, podés sugerir tecnologías o dejarnos recomendar. Siempre explicamos pros y contras de cada opción para que tomes la mejor decisión.' },
+    { question: '¿Incluye hosting y dominio?', answer: 'El desarrollo sepublica en el hosting que prefieras. Te asesoramos sobre las mejores opciones (Cloudflare Pages, Vercel, AWS) y te ayudamos con la configuración.' },
+  ]}
+/>

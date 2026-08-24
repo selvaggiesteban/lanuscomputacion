@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.27a7 7 0 0 1-6.03 3.5A7 7 0 0 1 5 19H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><path d="M12 11v4"/><path d="M10 13h4"/>';
+---
+
+<ServicePage
+  title="Automatizaciones con Inteligencia Artificial | Lanús Computación"
+  description="Automatizaciones con inteligencia artificial en Lanús. Chatbots, procesamiento de datos, flujos automatizados, integración con LLMs. Presupuesto sin costo."
+  slug="automatizaciones-ia"
+  heroTitle="Automatizaciones con Inteligencia Artificial"
+  heroSubtitle="Automatizá tareas repetitivas y optimizá procesos con inteligencia artificial. Chatbots, asistentes virtuales, procesamiento de datos y flujos inteligentes."
+  icon={icon}
+  whatsappText="Hola, quiero automatizar procesos con inteligencia artificial"
+  benefits={[
+    { icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', title: 'Chatbots y asistentes', desc: 'Asistentes virtuales con IA para atención al cliente, soporte y ventas.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', title: 'Procesamiento de datos', desc: 'Extracción, clasificación y análisis automático de documentos y datos.' },
+    { icon: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>', title: 'Flujos automatizados', desc: 'Workflows inteligentes que conectan tus apps y procesos sin intervención manual.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/>', title: 'Integración LLMs', desc: 'Conectamos modelos de IA (GPT, Claude, Gemini) a tus sistemas y datos.' },
+    { icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>', title: 'Automatización de procesos', desc: 'Automatizamos tareas de administración, facturación, reportes y más.' },
+    { icon: '<path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/>', title: 'Análisis predictivo', desc: 'Modelos de IA que anticipan tendencias, demanda y comportamiento.' },
+  ]}
+  steps={[
+    { title: 'Diagnóstico', desc: 'Identificamos qué procesos se pueden automatizar y el impacto esperado.' },
+    { title: 'Diseño', desc: 'Diseñamos el flujo de automatización, integraciones y lógica de IA.' },
+    { title: 'Implementación', desc: 'Desarrollamos, testeamos y desplegamos la automatización.' },
+    { title: 'Monitoreo', desc: 'Medimos resultados, ajustamos y optimizamos continuamente.' },
+  ]}
+  faqs={[
+    { question: '¿Qué tipo de automatizaciones pueden hacer con IA?', answer: 'Chatbots de atención al cliente, asistentes virtuales, procesamiento automático de documentos, clasificación de emails, generación de reportes, análisis de datos, seguimiento de leads, recordatorios y flujos de aprobación inteligentes.' },
+    { question: '¿Cuánto cuesta una automatización con IA?', answer: 'Depende de la complejidad del proceso. Un chatbot básico puede costar desde $200.000 ARS. Automatizaciones complejas con múltiples integraciones pueden costar más. Hacemos presupuesto sin costo.' },
+    { question: '¿Necesito conocimientos técnicos para usar la automatización?', answer: 'No, diseñamos las automatizaciones para que sean fáciles de usar. Te damos capacitación y soporte para que aproveches al máximo la herramienta.' },
+    { question: '¿Qué modelos de IA utilizan?', answer: 'Trabajamos con los modelos más adecuados para cada caso: OpenAI (GPT-4), Anthropic (Claude), Google (Gemini), modelos open-source (Llama, Mistral). Elegimos según costo, rendimiento y privacidad.' },
+    { question: '¿Los datos de mi empresa están seguros?', answer: 'Sí, implementamos medidas de seguridad estrictas: encriptación, acceso restringido, cumplimiento de normativas de privacidad y opción de usar modelos on-premise para datos sensibles.' },
+  ]}
+/>
