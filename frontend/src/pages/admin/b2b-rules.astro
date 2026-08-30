@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const db = Astro.locals.runtime.env.DB;
+
+const { results: rules } = await db.prepare(
+  "SELECT * FROM b2b_rules ORDER BY category_name"
+).all();
+---
+
+<BaseLayout title="Reglas B2B | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Reglas de Precios Mayoristas (B2B)</h1>
+      <div class="flex gap-3">
+        <button id="btn-new-rule" class="ml-btn-primary text-sm">+ Nueva Regla</button>
+        <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b">
+            <tr>
+              <th class="text-left p-3 font-medium text-ml-text">Categoría</th>
+              <th class="text-right p-3 font-medium text-ml-text">Descuento %</th>
+              <th class="text-center p-3 font-medium text-ml-text">Cant. mínima</th>
+              <th class="text-center p-3 font-medium text-ml-text">Estado</th>
+              <th class="text-center p-3 font-medium text-ml-text">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            {rules.length > 0 ? rules.map((r: any) => (
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium text-ml-text">{r.category_name}</td>
+                <td class="p-3 text-right font-medium text-ml-text">{(r.discount_pct * 100).toFixed(0)}%</td>
+                <td class="p-3 text-center text-ml-text-secondary">{r.min_quantity} uds.</td>
+                <td class="p-3 text-center">
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${r.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                    {r.is_active ? 'Activa' : 'Inactiva'}
+                  </span>
+                </td>
+                <td class="p-3 text-center">
+                  <button class="edit-rule text-ml-blue text-xs hover:underline mr-2" data-id={r.id}>Editar</button>
+                  <button class="delete-rule text-red-500 text-xs hover:underline" data-id={r.id}>Eliminar</button>
+                </td>
+              </tr>
+            )) : (
+              <tr>
+                <td colspan="5" class="p-8 text-center text-ml-text-muted">
+                  No hay reglas configuradas. Creá una para empezar.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h2 id="modal-title" class="font-medium text-ml-text">Nueva Regla B2B</h2>
+        <button id="modal-close" class="text-ml-text-muted hover:text-ml-text text-xl">&times;</button>
+      </div>
+      <form id="rule-form" class="p-4 space-y-4">
+        <input type="hidden" name="id" id="form-id" />
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Nombre de categoría</label>
+          <input type="text" name="category_name" id="form-category-name" class="ml-input w-full" placeholder="Ej: Componentes de PC" required />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Descuento (%)</label>
+            <input type="number" name="discount_pct" id="form-discount-pct" class="ml-input w-full" step="0.01" min="0" max="1" value="0.10" required />
+            <p class="text-xs text-ml-text-muted mt-1">Ej: 0.10 = 10%</p>
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Cantidad mínima</label>
+            <input type="number" name="min_quantity" id="form-min-qty" class="ml-input w-full" value="6" min="1" required />
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="checkbox" name="is_active" id="form-active" checked class="w-4 h-4 text-ml-blue rounded" />
+          <label for="form-active" class="text-sm text-ml-text">Activa</label>
+        </div>
+        <div class="flex gap-3 justify-end">
+          <button type="button" id="modal-cancel" class="ml-btn-secondary px-4">Cancelar</button>
+          <button type="submit" class="ml-btn-primary px-6">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const overlay = document.getElementById('modal-overlay')!;
+  const form = document.getElementById('rule-form') as HTMLFormElement;
+  const modalTitle = document.getElementById('modal-title')!;
+
+  function openModal(rule?: any) {
+    if (rule) {
+      modalTitle.textContent = 'Editar Regla B2B';
+      (document.getElementById('form-id') as HTMLInputElement).value = rule.id;
+      (document.getElementById('form-category-name') as HTMLInputElement).value = rule.category_name || '';
+      (document.getElementById('form-discount-pct') as HTMLInputElement).value = rule.discount_pct || '';
+      (document.getElementById('form-min-qty') as HTMLInputElement).value = rule.min_quantity || 6;
+      (document.getElementById('form-active') as HTMLInputElement).checked = rule.is_active === 1;
+    } else {
+      modalTitle.textContent = 'Nueva Regla B2B';
+      form.reset();
+      (document.getElementById('form-id') as HTMLInputElement).value = '';
+    }
+    overlay.classList.remove('hidden');
+  }
+
+  document.getElementById('btn-new-rule')?.addEventListener('click', () => openModal());
+  document.getElementById('modal-close')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  document.getElementById('modal-cancel')?.addEventListener('click', () => overlay.classList.add('hidden'));
+  overlay?.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.add('hidden'); });
+
+  document.querySelectorAll('.edit-rule').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = (btn as HTMLElement).dataset.id;
+      const res = await fetch(`/api/admin/b2b-rules`);
+      const rules = await res.json();
+      const rule = rules.find((r: any) => r.id === id);
+      if (rule) openModal(rule);
+    });
+  });
+
+  document.querySelectorAll('.delete-rule').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('¿Eliminar esta regla?')) return;
+      const id = (btn as HTMLElement).dataset.id;
+      await fetch('/api/admin/b2b-rules', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      location.reload();
+    });
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const id = formData.get('id') || `b2b_${Date.now()}`;
+    const body: any = {
+      id,
+      category_name: formData.get('category_name'),
+      discount_pct: Number(formData.get('discount_pct')),
+      min_quantity: Number(formData.get('min_quantity')),
+      is_active: (document.getElementById('form-active') as HTMLInputElement).checked,
+    };
+
+    await fetch('/api/admin/b2b-rules', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    overlay.classList.add('hidden');
+    location.reload();
+  });
+</script>

@@ -318,3 +318,179 @@ export function computePromoDiscount(
 
   return { discount, promoPrice, promoName: bestMatch.name };
 }
+
+// ─── Coupons ────────────────────────────────────────────────────────────────
+
+export type Coupon = {
+  id: string;
+  code: string;
+  type: 'percentage' | 'fixed';
+  value: number;
+  min_purchase: number;
+  max_uses: number | null;
+  used_count: number;
+  applies_to: 'all' | 'category' | 'product';
+  target_id: string | null;
+  start_date: string | null;
+  end_date: string | null;
+  is_active: number;
+};
+
+export async function validateCoupon(
+  db: D1Database,
+  code: string,
+  cartTotal: number,
+): Promise<{ valid: boolean; coupon?: Coupon; error?: string }> {
+  const coupon = await db.prepare(
+    "SELECT * FROM coupons WHERE UPPER(code) = UPPER(?) AND is_active = 1"
+  ).bind(code).first<Coupon>();
+
+  if (!coupon) return { valid: false, error: 'Cupón no encontrado o inactivo' };
+
+  if (coupon.start_date && new Date(coupon.start_date) > new Date()) {
+    return { valid: false, error: 'El cupón aún no está vigente' };
+  }
+  if (coupon.end_date && new Date(coupon.end_date) < new Date()) {
+    return { valid: false, error: 'El cupón expiró' };
+  }
+  if (coupon.max_uses && coupon.used_count >= coupon.max_uses) {
+    return { valid: false, error: 'El cupón alcanzó el máximo de usos' };
+  }
+  if (cartTotal < coupon.min_purchase) {
+    return { valid: false, error: `Compra mínima: $${coupon.min_purchase.toLocaleString('es-AR')}` };
+  }
+
+  return { valid: true, coupon };
+}
+
+export function applyCouponDiscount(
+  coupon: Coupon,
+  productId: string,
+  categoryId: string,
+  price: number,
+): { discounted: boolean; finalPrice: number } {
+  if (coupon.applies_to === 'product' && coupon.target_id !== productId) {
+    return { discounted: false, finalPrice: price };
+  }
+  if (coupon.applies_to === 'category' && coupon.target_id !== categoryId) {
+    return { discounted: false, finalPrice: price };
+  }
+
+  let finalPrice: number;
+  if (coupon.type === 'percentage') {
+    finalPrice = Math.round(price * (1 - coupon.value / 100) * 100) / 100;
+  } else {
+    finalPrice = Math.max(0, price - coupon.value);
+  }
+
+  return { discounted: true, finalPrice };
+}
+
+export async function incrementCouponUsage(db: D1Database, couponId: string): Promise<void> {
+  await db.prepare("UPDATE coupons SET used_count = used_count + 1 WHERE id = ?").bind(couponId).run();
+}
+
+export async function getAllCoupons(db: D1Database): Promise<Coupon[]> {
+  const { results } = await db.prepare("SELECT * FROM coupons ORDER BY created_at DESC").all<Coupon>();
+  return results ?? [];
+}
+
+export async function getCouponById(db: D1Database, id: string): Promise<Coupon | null> {
+  return await db.prepare("SELECT * FROM coupons WHERE id = ?").bind(id).first<Coupon>() ?? null;
+}
+
+export async function upsertCoupon(db: D1Database, coupon: {
+  id: string; code: string; type: string; value: number;
+  min_purchase?: number; max_uses?: number | null;
+  applies_to?: string; target_id?: string | null;
+  start_date?: string | null; end_date?: string | null;
+  is_active?: number;
+}): Promise<void> {
+  await db.prepare(`
+    INSERT INTO coupons (id, code, type, value, min_purchase, max_uses, applies_to, target_id, start_date, end_date, is_active)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      code=excluded.code, type=excluded.type, value=excluded.value,
+      min_purchase=excluded.min_purchase, max_uses=excluded.max_uses,
+      applies_to=excluded.applies_to, target_id=excluded.target_id,
+      start_date=excluded.start_date, end_date=excluded.end_date, is_active=excluded.is_active
+  `).bind(
+    coupon.id, coupon.code, coupon.type, coupon.value,
+    coupon.min_purchase ?? 0, coupon.max_uses ?? null,
+    coupon.applies_to ?? 'all', coupon.target_id ?? null,
+    coupon.start_date ?? null, coupon.end_date ?? null,
+    coupon.is_active ?? 1,
+  ).run();
+}
+
+export async function deleteCoupon(db: D1Database, id: string): Promise<void> {
+  await db.prepare("DELETE FROM coupons WHERE id = ?").bind(id).run();
+}
+
+// ─── B2B Rules ──────────────────────────────────────────────────────────────
+
+export type B2bRule = {
+  id: string;
+  category_name: string;
+  discount_pct: number;
+  min_quantity: number;
+  is_active: number;
+};
+
+export async function getB2bRules(db: D1Database): Promise<B2bRule[]> {
+  const { results } = await db.prepare("SELECT * FROM b2b_rules ORDER BY category_name").all<B2bRule>();
+  return results ?? [];
+}
+
+export async function getActiveB2bRules(db: D1Database): Promise<B2bRule[]> {
+  const { results } = await db.prepare("SELECT * FROM b2b_rules WHERE is_active = 1 ORDER BY category_name").all<B2bRule>();
+  return results ?? [];
+}
+
+export async function getB2bRuleForCategory(db: D1Database, categoryName: string): Promise<B2bRule> {
+  const rules = await getActiveB2bRules(db);
+  const match = rules.find(r => r.category_name.toLowerCase() === categoryName?.toLowerCase());
+  return match ?? rules.find(r => r.category_name === 'Default') ?? { id: 'b2b_default', category_name: 'Default', discount_pct: 0.10, min_quantity: 6, is_active: 1 };
+}
+
+export async function upsertB2bRule(db: D1Database, rule: {
+  id: string; category_name: string; discount_pct: number;
+  min_quantity: number; is_active?: number;
+}): Promise<void> {
+  await db.prepare(`
+    INSERT INTO b2b_rules (id, category_name, discount_pct, min_quantity, is_active)
+    VALUES (?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      category_name=excluded.category_name, discount_pct=excluded.discount_pct,
+      min_quantity=excluded.min_quantity, is_active=excluded.is_active
+  `).bind(rule.id, rule.category_name, rule.discount_pct, rule.min_quantity, rule.is_active ?? 1).run();
+}
+
+export async function deleteB2bRule(db: D1Database, id: string): Promise<void> {
+  await db.prepare("DELETE FROM b2b_rules WHERE id = ?").bind(id).run();
+}
+
+// ─── Store Config ───────────────────────────────────────────────────────────
+
+export type StoreConfig = {
+  installment_count: number;
+  installment_has_interest: boolean;
+  bank_transfer_discount_pct: number;
+};
+
+export async function getStoreConfig(db: D1Database): Promise<StoreConfig> {
+  const { results } = await db.prepare("SELECT key, value FROM store_config").all<{ key: string; value: string }>();
+  const map = Object.fromEntries(results.map(r => [r.key, r.value]));
+  return {
+    installment_count: Number(map.installment_count) || 12,
+    installment_has_interest: map.installment_has_interest === 'true',
+    bank_transfer_discount_pct: Number(map.bank_transfer_discount_pct) || 10,
+  };
+}
+
+export async function setStoreConfig(db: D1Database, key: string, value: string): Promise<void> {
+  await db.prepare(`
+    INSERT INTO store_config (key, value, updated_at) VALUES (?, ?, datetime('now'))
+    ON CONFLICT(key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at
+  `).bind(key, value).run();
+}

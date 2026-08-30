@@ -7,7 +7,7 @@ import Rating from '../../components/ui/Rating.astro';
 import ShareButtons from '../../components/ui/ShareButtons.astro';
 import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
-import { getProductBySlug, getProducts } from '../../lib/d1';
+import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount } from '../../lib/d1';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -18,10 +18,18 @@ if (!product) {
   return Astro.redirect('/404');
 }
 
+const promotions = await getActivePromotions(db);
+const promoResult = computePromoDiscount(promotions, product.id, product.category_id, product.price);
+const promoPrice = promoResult?.promoPrice ?? product.price;
+
 const relatedProducts = (await getProducts(db, {
   category: product.category_id,
   limit: 5,
 })).filter(p => p.slug !== slug);
+
+const relatedWithPromos = relatedProducts.map(p => {
+  const rp = computePromoDiscount(promotions, p.id, p.category_id, p.price);
+  return { ...p, promoPrice: rp?.promoPrice ?? p.price };
 ---
 
 <BaseLayout title={`${product.title} | Lanús Computación`}>
@@ -105,6 +113,8 @@ const relatedProducts = (await getProducts(db, {
             productId={product.id}
             title={product.title}
             price={product.price}
+            promoPrice={promoPrice}
+            categoryId={product.category_id}
             thumbnail={product.thumbnail}
             slug={product.slug}
             availableQty={product.available_qty}
@@ -189,10 +199,12 @@ const relatedProducts = (await getProducts(db, {
 
     <section class="mt-8">
       <h2 class="text-lg font-medium text-ml-text mb-4">Productos relacionados</h2>
-      <ProductGrid products={relatedProducts.map(p => ({
+      <ProductGrid products={relatedWithPromos.map(p => ({
         id: p.id,
         title: p.title,
         price: p.price,
+        promoPrice: p.promoPrice,
+        categoryId: p.category_id,
         image: p.thumbnail,
         slug: p.slug,
         freeShipping: false,

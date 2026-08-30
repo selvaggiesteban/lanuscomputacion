@@ -7,6 +7,10 @@ export default function CartContent() {
   const [checkingOut, setCheckingOut] = useState(false);
   const [error, setError] = useState("");
   const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState<{ totalDiscount: number; couponId: string; code: string } | null>(null);
+  const [couponError, setCouponError] = useState("");
+  const [applyingCoupon, setApplyingCoupon] = useState(false);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -26,7 +30,44 @@ export default function CartContent() {
     refresh();
   };
 
-  const total = items.reduce((s, i) => s + i.price * i.quantity, 0);
+  const subtotal = items.reduce((s, i) => (i.promo_price ?? i.price) * i.quantity + s, 0);
+  const discount = couponDiscount?.totalDiscount ?? 0;
+  const total = subtotal - discount;
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setApplyingCoupon(true);
+    setCouponError("");
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: couponCode.trim(),
+          cartTotal: subtotal,
+          items: items.map(i => ({
+            productId: i.product_id,
+            categoryId: i.category_id ?? "",
+            price: i.promo_price ?? i.price,
+          })),
+        }),
+      });
+      const data = await res.json();
+      if (!data.valid) {
+        setCouponError(data.error);
+        setCouponDiscount(null);
+      } else {
+        setCouponDiscount({
+          totalDiscount: data.totalDiscount,
+          couponId: data.couponId,
+          code: data.code,
+        });
+      }
+    } catch {
+      setCouponError("Error al validar cupón");
+    }
+    setApplyingCoupon(false);
+  };
 
   const handleCheckout = async () => {
     if (!customer.name || !customer.email) {
@@ -41,8 +82,13 @@ export default function CartContent() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: items.map(i => ({ product_id: i.product_id, quantity: i.quantity })),
+          items: items.map(i => ({
+            product_id: i.product_id,
+            quantity: i.quantity,
+            promo_price: i.promo_price ?? i.price,
+          })),
           customer,
+          coupon_id: couponDiscount?.couponId ?? null,
         }),
       });
       const text = await res.text();
@@ -94,7 +140,14 @@ export default function CartContent() {
               </a>
               <div class="flex-1 min-w-0">
                 <a href={`/producto/${item.slug}`} class="text-sm text-ml-text hover:text-ml-blue line-clamp-2 mb-1">{item.title}</a>
-                <p class="text-base font-semibold text-ml-text">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+                <div class="flex items-center gap-2">
+                  {item.promo_price && item.promo_price < item.price && (
+                    <span class="text-xs text-ml-text-muted line-through">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                  )}
+                  <p class={`text-base font-semibold ${item.promo_price && item.promo_price < item.price ? 'text-red-600' : 'text-ml-text'}`}>
+                    ${(item.promo_price ?? item.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })}
+                  </p>
+                </div>
                 <div class="flex items-center gap-3 mt-2">
                   <div class="flex items-center border rounded text-sm">
                     <button onClick={() => handleQty(item.product_id, item.quantity - 1)} class="px-2 py-1 hover:bg-ml-bg" disabled={item.quantity <= 1}>-</button>
@@ -107,7 +160,7 @@ export default function CartContent() {
                 </div>
               </div>
               <div class="text-right flex-shrink-0">
-                <p class="text-sm font-semibold text-ml-text">${(item.price * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+                <p class="text-sm font-semibold text-ml-text">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
               </div>
             </div>
           ))}
@@ -120,12 +173,41 @@ export default function CartContent() {
           <div class="space-y-2 text-sm mb-4">
             <div class="flex justify-between">
               <span class="text-ml-text-muted">Productos ({items.reduce((s, i) => s + i.quantity, 0)})</span>
-              <span class="font-medium">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              <span class="font-medium">${subtotal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
+            {discount > 0 && (
+              <div class="flex justify-between text-green-600">
+                <span>Descuento ({couponDiscount?.code})</span>
+                <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
+            )}
             <div class="flex justify-between border-t pt-2">
               <span class="font-semibold text-ml-text">Total</span>
               <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-xs text-ml-text-muted mb-1">Cupón de descuento</label>
+            <div class="flex gap-2">
+              <input
+                type="text"
+                placeholder="Código"
+                value={couponCode}
+                onChange={e => setCouponCode((e.target as HTMLInputElement).value.toUpperCase())}
+                class="ml-input flex-1 text-sm font-mono uppercase"
+              />
+              <button onClick={handleApplyCoupon} disabled={applyingCoupon} class="ml-btn-secondary text-sm px-3">
+                {applyingCoupon ? "..." : "Aplicar"}
+              </button>
+            </div>
+            {couponError && <p class="text-xs text-red-500 mt-1">{couponError}</p>}
+            {couponDiscount && (
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs text-green-600 font-medium">✓ Cupón {couponDiscount.code} aplicado</span>
+                <button onClick={() => { setCouponDiscount(null); setCouponCode(""); }} class="text-xs text-ml-text-muted hover:text-red-500">Quitar</button>
+              </div>
+            )}
           </div>
 
           <div class="space-y-2 mb-4">

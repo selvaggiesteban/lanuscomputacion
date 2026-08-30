@@ -5,12 +5,14 @@ type Props = {
   productId: string;
   title: string;
   price: number;
+  promoPrice?: number;
+  categoryId?: string;
   thumbnail: string;
   slug: string;
   availableQty: number;
 };
 
-export default function AddToCartButton({ productId, title, price, thumbnail, slug, availableQty }: Props) {
+export default function AddToCartButton({ productId, title, price, promoPrice, categoryId, thumbnail, slug, availableQty }: Props) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [count, setCount] = useState(0);
@@ -26,7 +28,16 @@ export default function AddToCartButton({ productId, title, price, thumbnail, sl
   const handleAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart({ product_id: productId, title, price, thumbnail, slug }, qty);
+    addToCart({
+      product_id: productId,
+      title,
+      price,
+      original_price: promoPrice && promoPrice < price ? price : undefined,
+      promo_price: promoPrice && promoPrice < price ? promoPrice : undefined,
+      category_id: categoryId,
+      thumbnail,
+      slug,
+    }, qty);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };

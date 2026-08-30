@@ -15,6 +15,10 @@ export default function CartDrawer({ open, onClose }: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState<{ totalDiscount: number; couponId: string; code: string } | null>(null);
+  const [couponError, setCouponError] = useState("");
+  const [applyingCoupon, setApplyingCoupon] = useState(false);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -37,6 +41,9 @@ export default function CartDrawer({ open, onClose }: Props) {
     if (!open) {
       setStep("cart");
       setError("");
+      setCouponCode("");
+      setCouponDiscount(null);
+      setCouponError("");
     }
   }, [open]);
 
@@ -50,7 +57,40 @@ export default function CartDrawer({ open, onClose }: Props) {
     refresh();
   };
 
-  const total = items.reduce((s, i) => s + i.price * i.quantity, 0);
+  const subtotal = items.reduce((s, i) => (i.promo_price ?? i.price) * i.quantity + s, 0);
+  const discount = couponDiscount?.totalDiscount ?? 0;
+  const total = subtotal - discount;
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setApplyingCoupon(true);
+    setCouponError("");
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: couponCode.trim(),
+          cartTotal: subtotal,
+          items: items.map(i => ({
+            productId: i.product_id,
+            categoryId: i.category_id ?? "",
+            price: i.promo_price ?? i.price,
+          })),
+        }),
+      });
+      const data = await res.json();
+      if (!data.valid) {
+        setCouponError(data.error);
+        setCouponDiscount(null);
+      } else {
+        setCouponDiscount({ totalDiscount: data.totalDiscount, couponId: data.couponId, code: data.code });
+      }
+    } catch {
+      setCouponError("Error al validar cupón");
+    }
+    setApplyingCoupon(false);
+  };
 
   const handleCheckout = async () => {
     if (!name.trim() || !email.trim()) {
@@ -64,8 +104,13 @@ export default function CartDrawer({ open, onClose }: Props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: items.map(i => ({ product_id: i.product_id, quantity: i.quantity })),
+          items: items.map(i => ({
+            product_id: i.product_id,
+            quantity: i.quantity,
+            promo_price: i.promo_price ?? i.price,
+          })),
           customer: { name: name.trim(), email: email.trim(), phone: phone.trim() || undefined },
+          coupon_id: couponDiscount?.couponId ?? null,
         }),
       });
       const text = await res.text();
@@ -125,7 +170,14 @@ export default function CartDrawer({ open, onClose }: Props) {
                   </a>
                   <div class="flex-1 min-w-0">
                     <a href={`/producto/${item.slug}`} onClick={onClose} class="text-sm text-ml-text hover:text-ml-blue line-clamp-2 mb-1">{item.title}</a>
-                    <p class="text-sm font-semibold text-ml-text">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+                    <div class="flex items-center gap-2">
+                      {item.promo_price && item.promo_price < item.price && (
+                        <span class="text-xs text-ml-text-muted line-through">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                      )}
+                      <p class={`text-sm font-semibold ${item.promo_price && item.promo_price < item.price ? 'text-red-600' : 'text-ml-text'}`}>
+                        ${(item.promo_price ?? item.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })}
+                      </p>
+                    </div>
                     <div class="flex items-center gap-3 mt-1">
                       <div class="flex items-center border rounded text-xs">
                         <button onClick={() => handleQty(item.product_id, item.quantity - 1)} class="px-2 py-1 hover:bg-ml-bg" disabled={item.quantity <= 1}>-</button>
@@ -135,7 +187,7 @@ export default function CartDrawer({ open, onClose }: Props) {
                       <button onClick={() => handleRemove(item.product_id)} class="text-xs text-ml-text-muted hover:text-red-500">Eliminar</button>
                     </div>
                   </div>
-                  <p class="text-sm font-semibold text-ml-text whitespace-nowrap">${(item.price * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+                  <p class="text-sm font-semibold text-ml-text whitespace-nowrap">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
                 </div>
               ))}
             </div>
@@ -145,7 +197,7 @@ export default function CartDrawer({ open, onClose }: Props) {
                 {items.map((item) => (
                   <div key={item.product_id} class="flex justify-between py-1">
                     <span class="line-clamp-1">{item.title} x{item.quantity}</span>
-                    <span class="font-medium text-ml-text whitespace-nowrap">${(item.price * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                    <span class="font-medium text-ml-text whitespace-nowrap">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
                   </div>
                 ))}
               </div>
@@ -169,10 +221,43 @@ export default function CartDrawer({ open, onClose }: Props) {
 
         {items.length > 0 && (
           <div class="border-t p-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-ml-text-muted">Total</span>
-              <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            <div class="space-y-1 text-sm mb-2">
+              <div class="flex justify-between">
+                <span class="text-ml-text-muted">Subtotal</span>
+                <span class="font-medium">${subtotal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              {discount > 0 && (
+                <div class="flex justify-between text-green-600">
+                  <span>Descuento ({couponDiscount?.code})</span>
+                  <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                </div>
+              )}
+              <div class="flex justify-between border-t pt-1">
+                <span class="font-semibold text-ml-text">Total</span>
+                <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
             </div>
+
+            {step === "cart" && (
+              <div>
+                <label class="block text-xs text-ml-text-muted mb-1">Cupón</label>
+                <div class="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Código"
+                    value={couponCode}
+                    onInput={(e) => setCouponCode((e.target as HTMLInputElement).value.toUpperCase())}
+                    class="ml-input flex-1 text-sm font-mono uppercase"
+                  />
+                  <button onClick={handleApplyCoupon} disabled={applyingCoupon} class="ml-btn-secondary text-xs px-3">
+                    {applyingCoupon ? "..." : "OK"}
+                  </button>
+                </div>
+                {couponError && <p class="text-xs text-red-500 mt-1">{couponError}</p>}
+                {couponDiscount && <p class="text-xs text-green-600 mt-1">✓ Cupón {couponDiscount.code} aplicado</p>}
+              </div>
+            )}
+
             {error && <p class="text-xs text-red-500">{error}</p>}
             {step === "cart" ? (
               <button onClick={() => setStep("data")} class="ml-btn-primary w-full text-sm py-3">

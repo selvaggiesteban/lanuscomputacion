@@ -13,6 +13,19 @@ export type PriceMode = 'mejor-precio' | 'todos' | 'usd' | 'ars';
 /** Bank-transfer discount percentage applied to the base price. */
 export const TRANSFER_DISCOUNT_PCT = 10;
 
+export const DEFAULT_INSTALLMENT_COUNT = 12;
+
+export function getInstallmentCountOverride(): number {
+  if (typeof window === 'undefined') return DEFAULT_INSTALLMENT_COUNT;
+  const stored = localStorage.getItem('lanuscom-installment-count');
+  return stored ? Number(stored) : DEFAULT_INSTALLMENT_COUNT;
+}
+
+export function setInstallmentCountOverride(count: number): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem('lanuscom-installment-count', String(count));
+}
+
 /**
  * Given a base ARS price and the current mode, return the display price
  * formatted for the UI. Also returns the currency symbol.

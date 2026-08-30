@@ -2,9 +2,13 @@ export type CartItem = {
   product_id: string;
   title: string;
   price: number;
+  original_price?: number;
+  promo_price?: number;
+  category_id?: string;
   quantity: number;
   thumbnail: string;
   slug: string;
+  coupon_id?: string;
 };
 
 const STORAGE_KEY = "lanuscom-cart";
@@ -51,7 +55,7 @@ export function getCartCount(): number {
 }
 
 export function getCartTotal(): number {
-  return getCart().reduce((sum, i) => sum + i.price * i.quantity, 0);
+  return getCart().reduce((sum, i) => sum + (i.promo_price ?? i.price) * i.quantity, 0);
 }
 
 export function clearCart(): void {
