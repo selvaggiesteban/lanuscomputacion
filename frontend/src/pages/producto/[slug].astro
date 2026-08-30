@@ -30,6 +30,7 @@ const relatedProducts = (await getProducts(db, {
 const relatedWithPromos = relatedProducts.map(p => {
   const rp = computePromoDiscount(promotions, p.id, p.category_id, p.price);
   return { ...p, promoPrice: rp?.promoPrice ?? p.price };
+});
 ---
 
 <BaseLayout title={`${product.title} | Lanús Computación`}>
