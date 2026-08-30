@@ -1,0 +1,164 @@
+---
+---
+
+<div class="hidden lg:block bg-white border-b" id="price-filter-bar">
+  <div class="ml-container flex items-center h-megamenu gap-4 text-sm">
+    <span class="text-ml-text-secondary font-medium whitespace-nowrap">Ver precios en:</span>
+    <div class="flex gap-2" id="price-mode-buttons">
+      <button
+        data-mode="mejor-precio"
+        class="price-mode-btn px-3 py-1 rounded-full text-xs font-semibold border border-ml-border text-ml-text-secondary hover:border-ml-blue hover:text-ml-blue transition-colors"
+      >
+        Mejor precio <span class="ml-0.5">🔥</span>
+      </button>
+      <button
+        data-mode="todos"
+        class="price-mode-btn px-3 py-1 rounded-full text-xs font-semibold border border-ml-border text-ml-text-secondary hover:border-ml-blue hover:text-ml-blue transition-colors"
+      >
+        Todos los medios de pago <span class="ml-0.5">💳</span>
+      </button>
+      <button
+        data-mode="usd"
+        class="price-mode-btn px-3 py-1 rounded-full text-xs font-semibold border border-ml-border text-ml-text-secondary hover:border-ml-blue hover:text-ml-blue transition-colors"
+      >
+        USD
+      </button>
+      <button
+        data-mode="ars"
+        class="price-mode-btn px-3 py-1 rounded-full text-xs font-semibold border border-ml-border text-ml-text-secondary hover:border-ml-blue hover:text-ml-blue transition-colors"
+      >
+        ARS
+      </button>
+    </div>
+    <span class="ml-auto text-xs text-ml-text-muted whitespace-nowrap">Cotización USD: <span id="usd-rate">—</span> % - BCRA</span>
+  </div>
+</div>
+
+<script>
+  const TRANSFER_DISCOUNT_PCT = 10;
+
+  type PriceMode = 'mejor-precio' | 'todos' | 'usd' | 'ars';
+
+  function formatARS(value: number): string {
+    return '$ ' + value.toLocaleString('es-AR');
+  }
+
+  function formatUSD(value: number): string {
+    return 'U$S ' + value.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
+
+  function applyPriceMode(mode: PriceMode) {
+    const containers = document.querySelectorAll('.price-container') as NodeListOf<HTMLElement>;
+
+    containers.forEach((container) => {
+      const basePrice = Number(container.getAttribute('data-price-base') || 0);
+      const dollarRate = Number(container.getAttribute('data-price-dollar-rate') || 0);
+      const mainEl = container.querySelector('.price-main') as HTMLElement | null;
+      const originalEl = container.querySelector('.price-original') as HTMLElement | null;
+      const installmentsEl = container.querySelector('.price-installments') as HTMLElement | null;
+      const discountEl = container.querySelector('.price-discount') as HTMLElement | null;
+
+      if (!mainEl || basePrice <= 0) return;
+
+      let displayPrice = basePrice;
+      let prefix = '$';
+
+      switch (mode) {
+        case 'mejor-precio': {
+          displayPrice = Math.round(basePrice * (1 - TRANSFER_DISCOUNT_PCT / 100));
+          prefix = '$';
+          if (discountEl) discountEl.textContent = `${TRANSFER_DISCOUNT_PCT}% OFF transferencia`;
+          break;
+        }
+        case 'usd': {
+          if (dollarRate > 0) {
+            displayPrice = Math.round((basePrice / dollarRate) * 100) / 100;
+            prefix = 'U$S';
+          }
+          if (discountEl) discountEl.textContent = '';
+          break;
+        }
+        case 'todos':
+        case 'ars':
+        default: {
+          displayPrice = basePrice;
+          prefix = '$';
+          if (discountEl) {
+            const origDiscount = mainEl.getAttribute('data-price-discount');
+            discountEl.textContent = origDiscount ? `${origDiscount}% OFF` : '';
+          }
+          break;
+        }
+      }
+
+      // Update main price
+      if (mode === 'usd') {
+        mainEl.textContent = formatUSD(displayPrice);
+      } else {
+        mainEl.textContent = formatARS(displayPrice);
+      }
+
+      // Update installments
+      if (installmentsEl) {
+        const count = Number(installmentsEl.getAttribute('data-installment-count') || 12);
+        const hasInterest = installmentsEl.getAttribute('data-installment-has-interest') === 'true';
+        const installmentValue = Math.round(displayPrice / count);
+        const interestLabel = hasInterest ? 'con interés' : 'sin interés';
+        installmentsEl.textContent = `en ${count}x ${formatARS(installmentValue)} ${interestLabel}`;
+      }
+    });
+
+    // Update cart buttons with new prices
+    const cartBtns = document.querySelectorAll('[data-add-to-cart]') as NodeListOf<HTMLElement>;
+    cartBtns.forEach((btn) => {
+      const container = btn.closest('.price-container') as HTMLElement | null;
+      if (container) {
+        const basePrice = Number(container.getAttribute('data-price-base') || 0);
+        const dollarRate = Number(container.getAttribute('data-price-dollar-rate') || 0);
+        let newPrice = basePrice;
+        if (mode === 'mejor-precio') {
+          newPrice = Math.round(basePrice * (1 - TRANSFER_DISCOUNT_PCT / 100));
+        } else if (mode === 'usd' && dollarRate > 0) {
+          newPrice = Math.round((basePrice / dollarRate) * 100) / 100;
+        }
+        btn.setAttribute('data-price', String(newPrice));
+      }
+    });
+
+    // Dispatch custom event for other components
+    document.dispatchEvent(new CustomEvent('price-mode-change', { detail: { mode } }));
+  }
+
+  function initPriceFilter() {
+    const buttons = document.querySelectorAll('.price-mode-btn') as NodeListOf<HTMLButtonElement>;
+    const html = document.documentElement;
+
+    function setActive(mode: string) {
+      html.setAttribute('data-price-mode', mode);
+      buttons.forEach((btn) => {
+        if (btn.getAttribute('data-mode') === mode) {
+          btn.classList.add('bg-ml-blue', 'text-white', 'border-ml-blue');
+          btn.classList.remove('text-ml-text-secondary', 'border-ml-border');
+        } else {
+          btn.classList.remove('bg-ml-blue', 'text-white', 'border-ml-blue');
+          btn.classList.add('text-ml-text-secondary', 'border-ml-border');
+        }
+      });
+      try { localStorage.setItem('lanuscom-price-mode', mode); } catch {}
+      applyPriceMode(mode as PriceMode);
+    }
+
+    const saved = (localStorage.getItem('lanuscom-price-mode') as PriceMode) || 'mejor-precio';
+    setActive(saved);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-mode');
+        if (mode) setActive(mode);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initPriceFilter);
+  document.addEventListener('astro:after-swap', initPriceFilter);
+</script>

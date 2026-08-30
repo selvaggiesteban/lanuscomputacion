@@ -19,6 +19,7 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
 ---
 
 <BaseLayout title="Lanús Computación - Tecnología al mejor precio">
+  <!-- Hero Banner -->
   <section class="bg-gradient-to-r from-ml-yellow to-yellow-200">
     <div class="ml-container py-8 md:py-12">
       <div class="max-w-2xl">
@@ -41,6 +42,79 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
     </div>
   </section>
 
+  <!-- Beneficios -->
+  <section class="ml-container py-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
+        <div class="w-10 h-10 bg-ml-green-bg rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-ml-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"/>
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-ml-text">Garantía oficial</h4>
+          <p class="text-xs text-ml-text-muted">Directa de marca</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
+        <div class="w-10 h-10 bg-ml-blue-light rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-ml-text">Hasta 12 cuotas</h4>
+          <p class="text-xs text-ml-text-muted">Con todas las tarjetas</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
+        <div class="w-10 h-10 bg-ml-green-bg rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-ml-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-ml-text">Envío 24/48h</h4>
+          <p class="text-xs text-ml-text-muted">A todo el país</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
+        <div class="w-10 h-10 bg-ml-yellow rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-ml-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-ml-text">Soporte experto</h4>
+          <p class="text-xs text-ml-text-muted">Asesoría real</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos destacados -->
+  <section class="ml-container py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold text-ml-text">Productos destacados</h2>
+      <a href="/categoria/todas" class="text-sm ml-link">Ver más</a>
+    </div>
+    <ProductGrid products={featuredProducts.map(p => ({
+      id: p.id,
+      title: p.title,
+      price: p.price,
+      image: p.thumbnail,
+      slug: p.slug,
+      freeShipping: false,
+      dollarRate: p.dollar_rate,
+    }))} columns={5} />
+  </section>
+
+  <!-- Categorías -->
   <section class="ml-container py-8">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-xl font-semibold text-ml-text">Categorías</h2>
@@ -70,32 +144,6 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
     </div>
   </section>
 
+  <!-- Marcas -->
   <BrandsSection />
-
-  <section class="ml-container py-8">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xl font-semibold text-ml-text">Productos destacados</h2>
-      <a href="/categoria/todas" class="text-sm ml-link">Ver más</a>
-    </div>
-    <ProductGrid products={featuredProducts.map(p => ({
-      id: p.id,
-      title: p.title,
-      price: p.price,
-      image: p.thumbnail,
-      slug: p.slug,
-      freeShipping: false,
-    }))} columns={5} />
-  </section>
-
-  <section class="ml-container py-8">
-    <div class="bg-b2b-purple text-white rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div>
-        <h2 class="text-xl md:text-2xl font-bold mb-1">Comprá al por mayor</h2>
-        <p class="opacity-90 text-sm">Descuentos exclusivos para empresas. Registrate sin costo.</p>
-      </div>
-      <a href="/b2b" class="bg-white text-b2b-purple font-bold px-6 py-3 rounded hover:bg-purple-50 transition-colors whitespace-nowrap">
-        Quiero ser mayorista
-      </a>
-    </div>
-  </section>
 </BaseLayout>

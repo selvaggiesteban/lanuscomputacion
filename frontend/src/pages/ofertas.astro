@@ -49,7 +49,10 @@ offerProducts.sort((a, b) => b.discount - a.discount);
     </div>
 
     {offerProducts.length > 0 ? (
-      <ProductGrid products={offerProducts} columns={5} />
+      <ProductGrid products={offerProducts.map(p => ({
+        ...p,
+        dollarRate: p.dollar_rate,
+      }))} columns={5} />
     ) : (
       <div class="text-center py-16 text-ml-text-muted">
         <p class="text-lg">No hay ofertas disponibles</p>

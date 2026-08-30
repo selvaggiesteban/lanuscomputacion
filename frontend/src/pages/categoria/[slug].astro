@@ -175,6 +175,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         image: p.thumbnail,
         slug: p.slug,
         freeShipping: false,
+        dollarRate: p.dollar_rate,
       }))} columns={4} />
 
       <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${brand ? `?brand=${encodeURIComponent(brand)}` : ''}${minPrice ? `${brand ? '&' : '?'}min_price=${minPrice}` : ''}${maxPrice ? `${brand || minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />

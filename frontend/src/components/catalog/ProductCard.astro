@@ -17,6 +17,7 @@ export interface Product {
   isNew?: boolean;
   installments?: { count: number; value: number };
   b2bPrice?: number;
+  dollarRate?: number;
 }
 
 export interface Props {
@@ -26,7 +27,7 @@ export interface Props {
 const { product } = Astro.props;
 ---
 
-<article class="ml-card p-3 flex flex-col relative">
+<article class="ml-card p-3 flex flex-col relative" data-product-card data-dollar-rate={product.dollarRate || 0}>
   <a href={`/producto/${product.slug}`} class="block">
     <div class="aspect-square bg-white mb-2 flex items-center justify-center overflow-hidden">
       <img
@@ -50,6 +51,7 @@ const { product } = Astro.props;
       installments={product.installments}
       size="md"
       b2b={!!product.b2bPrice}
+      dollarRate={product.dollarRate}
     />
 
     <div class="flex items-center gap-2 mt-1">

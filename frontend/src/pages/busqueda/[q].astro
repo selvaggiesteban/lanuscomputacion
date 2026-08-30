@@ -39,6 +39,7 @@ const totalPages = Math.ceil(total / limit);
       image: p.thumbnail,
       slug: p.slug,
       freeShipping: false,
+      dollarRate: p.dollar_rate,
     }))} columns={4} />
 
     <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />

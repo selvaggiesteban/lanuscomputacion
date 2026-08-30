@@ -1,6 +1,7 @@
 ---
 import '../styles.css';
 import Header from '../components/layout/Header.astro';
+import PriceFilterBar from '../components/catalog/PriceFilterBar.astro';
 import Footer from '../components/layout/Footer.astro';
 
 export interface Props {
@@ -48,6 +49,7 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
+    <PriceFilterBar />
     <main class="flex-1">
       <slot />
     </main>

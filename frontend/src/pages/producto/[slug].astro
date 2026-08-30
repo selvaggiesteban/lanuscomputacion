@@ -87,6 +87,7 @@ const relatedProducts = (await getProducts(db, {
             <Price
               price={product.price}
               size="lg"
+              dollarRate={product.dollar_rate}
             />
             {product.dollar_rate > 0 && (
               <p class="text-xs text-ml-text-muted mt-1">
@@ -195,6 +196,7 @@ const relatedProducts = (await getProducts(db, {
         image: p.thumbnail,
         slug: p.slug,
         freeShipping: false,
+        dollarRate: p.dollar_rate,
       }))} columns={5} />
     </section>
   </div>
