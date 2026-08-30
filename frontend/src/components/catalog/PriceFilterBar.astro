@@ -30,7 +30,7 @@
         ARS
       </button>
     </div>
-    <span class="ml-auto text-xs text-ml-text-muted whitespace-nowrap">Cotización USD: <span id="usd-rate">—</span> % - BCRA</span>
+    <span class="ml-auto text-xs text-ml-text-muted whitespace-nowrap">Cotización USD: <span id="usd-rate">—</span></span>
   </div>
 </div>
 
@@ -132,6 +132,30 @@
   function initPriceFilter() {
     const buttons = document.querySelectorAll('.price-mode-btn') as NodeListOf<HTMLButtonElement>;
     const html = document.documentElement;
+    const usdRateEl = document.getElementById('usd-rate');
+
+    // Get dollar rate from first product on page
+    function getDollarRate(): number {
+      const firstPrice = document.querySelector('.price-container') as HTMLElement | null;
+      if (firstPrice) {
+        const rate = Number(firstPrice.getAttribute('data-price-dollar-rate') || 0);
+        if (rate > 0) return rate;
+      }
+      // Fallback: check any product card
+      const firstCard = document.querySelector('[data-dollar-rate]') as HTMLElement | null;
+      if (firstCard) {
+        const rate = Number(firstCard.getAttribute('data-dollar-rate') || 0);
+        if (rate > 0) return rate;
+      }
+      return 0;
+    }
+
+    // Update USD rate display
+    function updateUsdRate() {
+      if (!usdRateEl) return;
+      const rate = getDollarRate();
+      usdRateEl.textContent = rate > 0 ? `$${rate.toLocaleString('es-AR')}` : '—';
+    }
 
     function setActive(mode: string) {
       html.setAttribute('data-price-mode', mode);
@@ -146,6 +170,7 @@
       });
       try { localStorage.setItem('lanuscom-price-mode', mode); } catch {}
       applyPriceMode(mode as PriceMode);
+      updateUsdRate();
     }
 
     const saved = (localStorage.getItem('lanuscom-price-mode') as PriceMode) || 'mejor-precio';
