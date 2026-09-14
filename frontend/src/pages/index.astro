@@ -10,12 +10,14 @@ const categories = await getCategories(db);
 
 const categoryIds = categories.slice(0, 8).map(c => c.id);
 const placeholders = categoryIds.map(() => '?').join(',');
-const { results: catImages } = await db.prepare(`
-  SELECT category_id, thumbnail
-  FROM products
-  WHERE status = 'published' AND thumbnail != '' AND category_id IN (${placeholders})
-  GROUP BY category_id
-`).bind(...categoryIds).all<{ category_id: string; thumbnail: string }>();
+const { results: catImages } = categoryIds.length > 0
+  ? await db.prepare(`
+      SELECT category_id, thumbnail
+      FROM products
+      WHERE status = 'published' AND thumbnail != '' AND category_id IN (${placeholders})
+      GROUP BY category_id
+    `).bind(...categoryIds).all<{ category_id: string; thumbnail: string }>()
+  : { results: [] as { category_id: string; thumbnail: string }[] };
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
 ---
 

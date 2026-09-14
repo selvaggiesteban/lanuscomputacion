@@ -5,7 +5,11 @@ const db = (Astro.locals as any).runtime?.env?.DB;
 let categories: any[] = [];
 
 if (db) {
-  categories = await getAllCategoriesTree(db);
+  try {
+    categories = await getAllCategoriesTree(db);
+  } catch (e) {
+    console.error('[MegaMenu] Error loading categories:', e);
+  }
 }
 ---
 

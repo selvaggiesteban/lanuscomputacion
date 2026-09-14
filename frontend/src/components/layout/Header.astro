@@ -8,7 +8,11 @@ const db = (Astro.locals as any).runtime?.env?.DB;
 let mobileCategories: any[] = [];
 
 if (db) {
-  mobileCategories = await getAllCategoriesTree(db);
+  try {
+    mobileCategories = await getAllCategoriesTree(db);
+  } catch (e) {
+    console.error('[Header] Error loading categories:', e);
+  }
 }
 ---
 
