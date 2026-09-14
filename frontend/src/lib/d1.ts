@@ -44,7 +44,7 @@ export async function getProducts(db: D1Database, options?: {
   maxPrice?: number;
   sort?: string;
 }): Promise<Product[]> {
-  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, slug, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store FROM products WHERE status = 'published'";
+  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store FROM products WHERE status = 'published'";
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {
@@ -120,7 +120,7 @@ export async function getAllCategoriesFlat(db: D1Database): Promise<Category[]> 
     `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture
      FROM categories c
      WHERE c.is_active = 1
-     ORDER BY c.parent_id NULLS FIRST, c.name`,
+     ORDER BY c.parent_id, c.name`,
   ).all<Category>();
   return results ?? [];
 }
