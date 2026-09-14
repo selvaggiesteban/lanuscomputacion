@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
-import { getProducts, getProductCount } from '../../lib/d1';
+import { getProducts } from '../../lib/d1';
 
 const { q } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -13,12 +13,9 @@ const offset = (page - 1) * limit;
 
 const [products, total] = await Promise.all([
   getProducts(db, { search: q, limit, offset }),
-  getProductCount(db, undefined, undefined).then(async () => {
-    const { count } = await db.prepare(
-      "SELECT COUNT(*) as count FROM products WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
-    ).bind(`%${q}%`, `%${q}%`, `%${q}%`).first<{ count: number }>() ?? { count: 0 };
-    return count;
-  }),
+  db.prepare(
+    "SELECT COUNT(*) as count FROM products WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
+  ).bind(`%${q}%`, `%${q}%`, `%${q}%`).first<{ count: number }>().then(r => r?.count ?? 0),
 ]);
 
 const totalPages = Math.ceil(total / limit);

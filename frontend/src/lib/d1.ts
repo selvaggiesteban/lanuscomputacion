@@ -44,7 +44,7 @@ export async function getProducts(db: D1Database, options?: {
   maxPrice?: number;
   sort?: string;
 }): Promise<Product[]> {
-  let sql = "SELECT * FROM products WHERE status = 'published'";
+  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, slug, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store FROM products WHERE status = 'published'";
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {
@@ -106,8 +106,7 @@ export async function getProductBySlug(db: D1Database, slug: string): Promise<Pr
 
 export async function getCategories(db: D1Database): Promise<Category[]> {
   const { results } = await db.prepare(
-    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture,
-            (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'published') as total_items
+    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture
      FROM categories c
      WHERE c.is_active = 1 AND c.parent_id IS NULL
      ORDER BY c.name`,
@@ -116,22 +115,45 @@ export async function getCategories(db: D1Database): Promise<Category[]> {
   return results ?? [];
 }
 
-export async function getAllCategoriesWithChildren(db: D1Database): Promise<(Category & { children: Category[] })[]> {
-  const parents = await getCategories(db);
-  const withChildren: (Category & { children: Category[] })[] = [];
+export async function getAllCategoriesFlat(db: D1Database): Promise<Category[]> {
+  const { results } = await db.prepare(
+    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture
+     FROM categories c
+     WHERE c.is_active = 1
+     ORDER BY c.parent_id NULLS FIRST, c.name`,
+  ).all<Category>();
+  return results ?? [];
+}
 
-  for (const parent of parents) {
-    const children = await getSubcategories(db, parent.id);
-    withChildren.push({ ...parent, children });
+export type CategoryTree = Category & { subcategories: Category[] };
+
+export async function getAllCategoriesTree(db: D1Database): Promise<CategoryTree[]> {
+  const flat = await getAllCategoriesFlat(db);
+  const parents = flat.filter(c => c.parent_id === null);
+  const childrenMap = new Map<string, Category[]>();
+
+  for (const cat of flat) {
+    if (cat.parent_id) {
+      const list = childrenMap.get(cat.parent_id) ?? [];
+      list.push(cat);
+      childrenMap.set(cat.parent_id, list);
+    }
   }
 
-  return withChildren;
+  return parents.map(p => ({
+    ...p,
+    subcategories: childrenMap.get(p.id) ?? [],
+  }));
+}
+
+export async function getAllCategoriesWithChildren(db: D1Database): Promise<(Category & { children: Category[] })[]> {
+  const tree = await getAllCategoriesTree(db);
+  return tree.map(t => ({ ...t, children: t.subcategories }));
 }
 
 export async function getSubcategories(db: D1Database, parentId: string): Promise<Category[]> {
   const { results } = await db.prepare(
-    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture,
-            (SELECT COUNT(*) FROM products p WHERE p.subcategory_name = c.name AND p.status = 'published') as total_items
+    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture
      FROM categories c
      WHERE c.is_active = 1 AND c.parent_id = ?
      ORDER BY c.name`,
@@ -142,8 +164,7 @@ export async function getSubcategories(db: D1Database, parentId: string): Promis
 
 export async function getCategoryBySlug(db: D1Database, slug: string): Promise<Category | null> {
   const result = await db.prepare(
-    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture,
-            (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'published') as total_items
+    `SELECT c.id, c.name, c.slug, c.parent_id, c.level, c.picture
      FROM categories c
      WHERE c.slug = ? AND c.is_active = 1`,
   ).bind(slug).first<Category>();
@@ -448,9 +469,17 @@ export async function getActiveB2bRules(db: D1Database): Promise<B2bRule[]> {
 }
 
 export async function getB2bRuleForCategory(db: D1Database, categoryName: string): Promise<B2bRule> {
-  const rules = await getActiveB2bRules(db);
-  const match = rules.find(r => r.category_name.toLowerCase() === categoryName?.toLowerCase());
-  return match ?? rules.find(r => r.category_name === 'Default') ?? { id: 'b2b_default', category_name: 'Default', discount_pct: 0.10, min_quantity: 6, is_active: 1 };
+  const match = await db.prepare(
+    "SELECT * FROM b2b_rules WHERE is_active = 1 AND LOWER(category_name) = LOWER(?)"
+  ).bind(categoryName).first<B2bRule>();
+
+  if (match) return match;
+
+  const fallback = await db.prepare(
+    "SELECT * FROM b2b_rules WHERE is_active = 1 AND category_name = 'Default'"
+  ).first<B2bRule>();
+
+  return fallback ?? { id: 'b2b_default', category_name: 'Default', discount_pct: 0.10, min_quantity: 6, is_active: 1 };
 }
 
 export async function upsertB2bRule(db: D1Database, rule: {

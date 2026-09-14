@@ -8,11 +8,13 @@ const db = Astro.locals.runtime.env.DB;
 // Get active promotions
 const promotions = await getActivePromotions(db);
 
-// Get all published products with stock
+// Get published products with stock (capped to prevent D1 row read blowup)
 const { results: allProducts } = await db.prepare(`
-  SELECT * FROM products
+  SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping
+  FROM products
   WHERE status = 'published' AND available_qty > 0 AND price > 0
   ORDER BY created_at DESC
+  LIMIT 2000
 `).all();
 
 // Apply promotions to products

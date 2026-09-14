@@ -1,17 +1,11 @@
 ---
-import { getCategories, getSubcategories } from '../../lib/d1';
+import { getAllCategoriesTree } from '../../lib/d1';
 
 const db = (Astro.locals as any).runtime?.env?.DB;
 let categories: any[] = [];
 
 if (db) {
-  const topCategories = await getCategories(db);
-  categories = await Promise.all(
-    topCategories.map(async (cat) => {
-      const subs = await getSubcategories(db, cat.id);
-      return { ...cat, subcategories: subs };
-    })
-  );
+  categories = await getAllCategoriesTree(db);
 }
 ---
 
@@ -46,9 +40,6 @@ if (db) {
                     class="block text-sm text-ml-text hover:text-ml-blue transition-colors py-1"
                   >
                     {sub.picture} {sub.name}
-                    {sub.total_items > 0 && (
-                      <span class="text-xs text-ml-text-secondary ml-1">({sub.total_items})</span>
-                    )}
                   </a>
                 ))}
               </div>

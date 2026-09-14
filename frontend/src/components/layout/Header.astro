@@ -2,19 +2,13 @@
 import Logo from '../../components/ui/Logo.astro';
 import MegaMenu from './MegaMenu.astro';
 import CartIcon from '../../components/cart/CartIcon.tsx';
-import { getCategories, getSubcategories } from '../../lib/d1';
+import { getAllCategoriesTree } from '../../lib/d1';
 
 const db = (Astro.locals as any).runtime?.env?.DB;
 let mobileCategories: any[] = [];
 
 if (db) {
-  const topCats = await getCategories(db);
-  mobileCategories = await Promise.all(
-    topCats.map(async (cat: any) => {
-      const subs = await getSubcategories(db, cat.id);
-      return { ...cat, subcategories: subs };
-    })
-  );
+  mobileCategories = await getAllCategoriesTree(db);
 }
 ---
 

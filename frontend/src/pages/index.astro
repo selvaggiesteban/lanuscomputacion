@@ -8,13 +8,14 @@ const db = Astro.locals.runtime.env.DB;
 const featuredProducts = await getProducts(db, { limit: 10 });
 const categories = await getCategories(db);
 
-const categoryIds = categories.slice(0, 8).map(c => `'${c.id}'`).join(',');
+const categoryIds = categories.slice(0, 8).map(c => c.id);
+const placeholders = categoryIds.map(() => '?').join(',');
 const { results: catImages } = await db.prepare(`
   SELECT category_id, thumbnail
   FROM products
-  WHERE status = 'published' AND thumbnail != '' AND category_id IN (${categoryIds})
+  WHERE status = 'published' AND thumbnail != '' AND category_id IN (${placeholders})
   GROUP BY category_id
-`).all<{ category_id: string; thumbnail: string }>();
+`).bind(...categoryIds).all<{ category_id: string; thumbnail: string }>();
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
 ---
 
@@ -135,9 +136,6 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
           </div>
           <div>
             <h3 class="text-sm font-medium text-ml-text">{cat.name}</h3>
-            {cat.total_items > 0 && (
-              <p class="text-xs text-ml-text-muted">{cat.total_items} productos</p>
-            )}
           </div>
         </a>
       ))}
