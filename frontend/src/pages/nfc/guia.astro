@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllNfcCards } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+const cards = await getAllNfcCards(db);
+const baseUrl = 'https://lanuscomputacion.com';
+---
+
+<BaseLayout title="Guía de Programación NFC | Lanús Computación">
+  <div class="ml-container py-8">
+    <div class="max-w-3xl mx-auto">
+      <header class="text-center mb-10">
+        <h1 class="text-3xl font-bold text-ml-text mb-3">Guía de Programación de Tarjetas NFC</h1>
+        <p class="text-ml-text-secondary">20 tarjetas NTAG213 para <span class="font-semibold">lanuscomputacion.com</span></p>
+      </header>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">📋 Especificaciones Técnicas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Chip</p>
+            <p class="text-ml-text-secondary">NTAG213 (NXP)</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Memoria</p>
+            <p class="text-ml-text-secondary">144 bytes (user memory)</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Frecuencia</p>
+            <p class="text-ml-text-secondary">13.56 MHz (ISO 14443A)</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Distancia lectura</p>
+            <p class="text-ml-text-secondary">~2-4 cm</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Dimensiones físicas</p>
+            <p class="text-ml-text-secondary">13 × 18 cm (etiqueta)</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded">
+            <p class="font-medium text-ml-text">Codificación</p>
+            <p class="text-ml-text-secondary">NDEF URI Record</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">📱 Apps Recomendadas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="https://play.google.com/store/apps/details?id=com.wakdev.wdnfc" target="_blank" class="bg-white border border-ml-border rounded-lg p-4 hover:border-ml-blue transition-colors">
+            <h3 class="font-medium text-ml-text mb-1">NFC Tools (Android)</h3>
+            <p class="text-sm text-ml-text-secondary">La más completa y gratuita</p>
+          </a>
+          <a href="https://apps.apple.com/app/nfc-tools/id1252962749" target="_blank" class="bg-white border border-ml-border rounded-lg p-4 hover:border-ml-blue transition-colors">
+            <h3 class="font-medium text-ml-text mb-1">NFC Tools (iOS)</h3>
+            <p class="text-sm text-ml-text-secondary">Compatible iPhone 7+ con iOS 13+</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">🔧 Pasos para Programar</h2>
+        <ol class="space-y-4 text-sm">
+          <li class="flex gap-3">
+            <span class="w-8 h-8 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-sm font-bold">1</span>
+            <div>
+              <p class="font-medium text-ml-text">Abrir NFC Tools</p>
+              <p class="text-ml-text-secondary">Seleccionar "Escribir" → "Añadir un registro" → "URL/URI"</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-8 h-8 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <div>
+              <p class="font-medium text-ml-text">Ingresar la URL</p>
+              <p class="text-ml-text-secondary">Copiar exactamente la URL de la tabla de abajo (ej: <code class="bg-gray-100 px-1 rounded">https://lanuscomputacion.com/p/01</code>)</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-8 h-8 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <div>
+              <p class="font-medium text-ml-text">Escribir en la tarjeta</p>
+              <p class="text-ml-text-secondary">Acerca el teléfono a la etiqueta NFC hasta que confirme "Escritura completada"</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-8 h-8 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-sm font-bold">4</span>
+            <div>
+              <p class="font-medium text-ml-text">Verificar</p>
+              <p class="text-ml-text-secondary">Usa la pestaña "Leer" para confirmar que la URL se guardó correctamente</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">📋 Tabla de URLs para las 20 Tarjetas</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b text-left text-xs text-ml-text-muted">
+                <th class="p-2 font-medium">#</th>
+                <th class="p-2 font-medium">Título</th>
+                <th class="p-2 font-medium">URL a Programar</th>
+                <th class="p-2 font-medium">Destino</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              {cards.map(card => (
+                <tr class="hover:bg-gray-50">
+                  <td class="p-2 text-ml-text-muted">{card.card_number.toString().padStart(2, '0')}</td>
+                  <td class="p-2">
+                    <div class="flex items-center gap-2">
+                      <span style={{backgroundColor: card.background_color}} class="w-6 h-6 rounded flex items-center justify-center text-white text-xs">{card.icon}</span>
+                      <span class="font-medium text-ml-text">{card.title}</span>
+                    </div>
+                  </td>
+                  <td class="p-2 font-mono text-xs bg-gray-50 rounded px-2 py-1">{baseUrl}/{card.slug}</td>
+                  <td class="p-2 text-ml-text-secondary capitalize">{card.target_type}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">⚡ Comandos Rápidos (Terminal)</h2>
+        <p class="text-sm text-ml-text-secondary mb-3">Si usas <code class="bg-gray-100 px-1 rounded">nfc-mfclassic</code> o <code class="bg-gray-100 px-1 rounded">libnfc</code> en Linux:</p>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded text-xs overflow-x-auto"><code>{`# Ejemplo para tarjeta 01
+nfc-mfclassic W a nfc_01.dump
+
+# O con libnfc (escribir NDEF URI)
+nfc-emulate-forum-tag4 nfc_01.ndef
+
+# Verificar contenido
+nfc-poll
+nfc-read`}</code></pre>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-6 mb-8">
+        <h2 class="text-lg font-semibold text-ml-text mb-4">✅ Checklist de Verificación</h2>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Todas las 20 tarjetas programadas</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Cada tarjeta redirige a la URL correcta</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Probado en iPhone (iOS 13+)</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Probado en Android (NFC activado)</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> QR codes generados como respaldo</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Etiquetas físicas pegadas en ubicaciones</li>
+          <li class="flex items-center gap-2"><input type="checkbox" class="w-4 h-4 text-ml-yellow" /> Analytics de escaneos funcionando</li>
+        </ul>
+      </div>
+
+      <div class="text-center">
+        <a href="/admin/nfc" class="ml-btn-primary">Volver al Panel NFC</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

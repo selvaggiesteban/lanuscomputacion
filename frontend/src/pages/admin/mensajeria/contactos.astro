@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getContacts } from '../../../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+const url = new URL(Astro.request.url);
+const page = Number(url.searchParams.get('page') || 1);
+const limit = 20;
+const offset = (page - 1) * limit;
+const search = url.searchParams.get('search') || '';
+
+const contacts = await getContacts(db, { limit, offset, search: search || undefined });
+const totalContacts = await getContacts(db, { search: search || undefined });
+const totalPages = Math.ceil(totalContacts.length / limit);
+---
+
+<BaseLayout title="Contactos | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Contactos</h1>
+      <a href="/admin/mensajeria/contactos/nuevo" class="ml-btn-primary text-sm py-1.5 px-3">+ Nuevo contacto</a>
+    </div>
+
+    <!-- Search -->
+    <form class="mb-6" method="GET">
+      <div class="flex gap-2">
+        <input type="text" name="search" value="{search}" placeholder="Buscar por nombre, email, teléfono..." class="ml-input flex-1" />
+        <button type="submit" class="ml-btn-primary">Buscar</button>
+        {search && <a href="/admin/mensajeria/contactos" class="ml-btn-outline">Limpiar</a>}
+      </div>
+    </form>
+
+    <!-- Contacts Table -->
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50">
+            <tr class="text-left text-xs text-ml-text-muted">
+              <th class="p-3 font-medium">Nombre</th>
+              <th class="p-3 font-medium">Email</th>
+              <th class="p-3 font-medium">Teléfono / WhatsApp</th>
+              <th class="p-3 font-medium">Etiquetas</th>
+              <th class="p-3 font-medium">Estado</th>
+              <th class="p-3 font-medium text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {contacts.map(contact => (
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="p-3">
+                  <p class="text-sm font-medium text-ml-text">{contact.name}</th>
+                </td>
+                <td class="p-3 text-sm text-ml-text-secondary">{contact.email || '—'}</td>
+                <td class="p-3 text-sm text-ml-text-secondary">
+                  {contact.phone || contact.whatsapp || '—'}
+                </td>
+                <td class="p-3 text-sm text-ml-text-muted">
+                  {contact.tags ? JSON.parse(contact.tags).join(', ') : '—'}
+                </td>
+                <td class="p-3">
+                  <span class={`text-xs px-2 py-0.5 rounded ${contact.is_subscribed ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                    {contact.is_subscribed ? 'Suscrito' : 'No suscrito'}
+                  </span>
+                </td>
+                <td class="p-3 text-right">
+                  <a href={`/admin/mensajeria/contactos/${contact.id}`} class="text-xs text-ml-blue hover:underline">Editar</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {contacts.length === 0 && (
+        <div class="p-8 text-center text-ml-text-muted">No hay contactos</div>
+      )}
+    </div>
+
+    <!-- Pagination -->
+    {totalPages > 1 && (
+      <div class="flex items-center justify-center gap-2 mt-6">
+        {page > 1 && (
+          <a href={`/admin/mensajeria/contactos?page=${page - 1}${search ? `&search=${encodeURIComponent(search)}` : ''}`} class="ml-btn-outline text-sm">Anterior</a>
+        )}
+        <span class="text-sm text-ml-text-secondary">Página {page} de {totalPages}</span>
+        {page < totalPages && (
+          <a href={`/admin/mensajeria/contactos?page=${page + 1}${search ? `&search=${encodeURIComponent(search)}` : ''}`} class="ml-btn-outline text-sm">Siguiente</a>
+        )}
+      </div>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllNfcCards, getNfcScanStats } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+const cards = await getAllNfcCards(db);
+const scanStats = await getNfcScanStats(db, 30);
+---
+
+<BaseLayout title="Gestión NFC | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Tarjetas NFC</h1>
+      <div class="text-sm text-ml-text-muted">
+        20 tarjetas NTAG213 · 144 bytes c/u
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <rect x="2" y="4" width="20" height="14" rx="2" />
+              <path d="M2 10h20M2 14h20M6 6v8" stroke-width="1.5" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{cards.length}</p>
+            <p class="text-xs text-ml-text-muted">Tarjetas totales</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{cards.filter(c => c.is_active).length}</p>
+            <p class="text-xs text-ml-text-muted">Activas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-yellow-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">{scanStats.total_scans}</p>
+            <p class="text-xs text-ml-text-muted">Escaneos (30 días)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-purple-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">
+              <a href="/nfc/guia" class="ml-link">Guía</a>
+            </p>
+            <p class="text-xs text-ml-text-muted">Programar tarjetas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NFC Cards Table -->
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h2 class="font-medium text-ml-text">Tarjetas NTAG213 configuradas</h2>
+        <a href="/admin/nfc/nueva" class="ml-btn-primary text-xs py-1.5 px-3">+ Nueva tarjeta</a>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50">
+            <tr class="text-left text-xs text-ml-text-muted">
+              <th class="p-3 font-medium">#</th>
+              <th class="p-3 font-medium">Tarjeta</th>
+              <th class="p-3 font-medium">Slug / URL</th>
+              <th class="p-3 font-medium">Tipo destino</th>
+              <th class="p-3 font-medium">Estado</th>
+              <th class="p-3 font-medium text-right">Escaneos (30d)</th>
+              <th class="p-3 font-medium text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {cards.map(card => {
+              const cardScans = scanStats.scans_by_card.find(s => s.card_id === card.id)?.count ?? 0;
+              return (
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="p-3 text-sm text-ml-text-muted">{card.card_number.toString().padStart(2, '0')}</td>
+                  <td class="p-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded flex items-center justify-center text-white text-sm" style={{backgroundColor: card.background_color}}>
+                        {card.icon}
+                      </div>
+                      <div>
+                        <p class="text-sm font-medium text-ml-text">{card.title}</p>
+                        <p class="text-xs text-ml-text-muted">{card.description || 'Sin descripción'}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-3">
+                    <p class="text-sm font-mono text-ml-text">/{card.slug}</p>
+                    <p class="text-xs text-ml-text-muted truncate max-w-xs">{card.target_url}</p>
+                  </td>
+                  <td class="p-3">
+                    <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-ml-text-secondary capitalize">{card.target_type}</span>
+                  </td>
+                  <td class="p-3">
+                    <span class={`text-xs px-2 py-0.5 rounded ${card.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                      {card.is_active ? 'Activa' : 'Inactiva'}
+                    </span>
+                  </td>
+                  <td class="p-3 text-right text-sm text-ml-text-secondary">{cardScans}</td>
+                  <td class="p-3 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <a href={`/admin/nfc/editar/${card.id}`} class="text-xs text-ml-blue hover:underline">Editar</a>
+                      <span class="text-xs text-ml-text-muted">|</span>
+                      <button onclick="deleteNfcCard('{card.id}')" class="text-xs text-red-600 hover:underline">Eliminar</button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Scanned Cards -->
+    {scanStats.scans_by_card.length > 0 && (
+      <div class="mt-6 bg-white rounded shadow-card p-4">
+        <h3 class="font-medium text-ml-text mb-3">Más escaneadas (30 días)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {scanStats.scans_by_card.slice(0, 6).map((stat, i) => {
+            const card = cards.find(c => c.id === stat.card_id);
+            if (!card) return null;
+            return (
+              <div key={card.id} class="flex items-center gap-3 p-3 bg-gray-50 rounded">
+                <span class="w-8 h-8 bg-yellow-100 text-yellow-700 rounded-full flex items-center justify-center text-sm font-bold">{i + 1}</span>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-ml-text truncate">{card.title}</p>
+                  <p class="text-xs text-ml-text-muted">/{card.slug}</p>
+                </div>
+                <span class="text-lg font-bold text-ml-text text-yellow-600">{stat.count}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </div>
+
+  <script>
+    async function deleteNfcCard(id) {
+      if (!confirm('¿Eliminar esta tarjeta NFC? Esta acción no se puede deshacer.')) return;
+      try {
+        const res = await fetch('/api/admin/nfc', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        if (res.ok) {
+          location.reload();
+        } else {
+          alert('Error al eliminar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    }
+  </script>
+</BaseLayout>

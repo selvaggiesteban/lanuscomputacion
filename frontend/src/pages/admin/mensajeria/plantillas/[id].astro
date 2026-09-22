@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getMessageTemplates, upsertMessageTemplate, deleteMessageTemplate } from '../../../../lib/d1';
+
+const { id } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
+
+let template = null;
+if (id) {
+  const templates = await getMessageTemplates(db);
+  template = templates.find(t => t.id === id);
+  if (!template) {
+    return Astro.redirect('/admin/mensajeria/plantillas');
+  }
+}
+---
+
+<BaseLayout title={template ? `Editar Plantilla: ${template.name}` : 'Nueva Plantilla' | Lanús Computación}>
+  <div class="ml-container py-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-xl font-semibold text-ml-text">{template ? 'Editar' : 'Nueva'} Plantilla</h1>
+        </div>
+        <a href="/admin/mensajeria/plantillas" class="text-sm ml-link">← Volver</a>
+      </div>
+
+      <form id="template-form" class="bg-white rounded shadow-card p-6 space-y-6">
+        {template && <input type="hidden" name="id" value="{template.id}" />}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">ID (slug único)</label>
+            <input type="text" name="id" value="{template?.id || ''}" class="ml-input w-full" required pattern="[a-z_]+" />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Nombre</label>
+            <input type="text" name="name" value="{template?.name || ''}" class="ml-input w-full" required />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Canal</label>
+          <select name="channel_id" class="ml-input w-full" required>
+            <option value="whatsapp" selected={template?.channel_id === 'whatsapp'}>WhatsApp</option>
+            <option value="telegram" selected={template?.channel_id === 'telegram'}>Telegram</option>
+            <option value="messenger" selected={template?.channel_id === 'messenger'}>Messenger</option>
+            <option value="email" selected={template?.channel_id === 'email'}>Email</option>
+            <option value="sms" selected={template?.channel_id === 'sms'}>SMS</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Asunto (solo email)</label>
+          <input type="text" name="subject" value="{template?.subject || ''}" class="ml-input w-full" placeholder="Asunto del email" />
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Contenido *</label>
+          <textarea name="content" class="ml-input w-full font-mono text-sm" rows="8" required placeholder="Hola {{name}}, bienvenido a {{company}}...">{template?.content || ''}</textarea>
+          <p class="text-xs text-ml-text-muted mt-1">Variables disponibles: {{name}}, {{company}}, {{order_id}}, {{total}}, {{product}}, {{discount}}, {{url}}, {{message}}, {{details}}</p>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Variables (JSON array)</label>
+          <input type="text" name="variables" value="{template?.variables || '[]'}" class="ml-input w-full" placeholder='["name", "company", "message"]' />
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input type="checkbox" name="is_active" class="w-4 h-4 text-ml-yellow rounded" checked={!template || template.is_active} />
+          <span class="text-sm text-ml-text">Activa</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t">
+          <a href="/admin/mensajeria/plantillas" class="ml-btn-outline">Cancelar</a>
+          <button type="submit" class="ml-btn-primary">{template ? 'Guardar' : 'Crear'}</button>
+        </div>
+      </form>
+
+      {template && (
+        <div class="mt-4 text-center">
+          <button onclick="deleteTemplate('{template.id}')" class="text-red-600 hover:underline text-sm">Eliminar plantilla</button>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('template-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      data.is_active = data.is_active ? 1 : 0;
+      try {
+        data.variables = JSON.parse(formData.get('variables') || '[]');
+      } catch {
+        data.variables = [];
+      }
+
+      try {
+        const res = await fetch('/api/admin/mensajeria/plantillas', {
+          method: template ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert(template ? 'Guardado correctamente' : 'Plantilla creada');
+          location.href = '/admin/mensajeria/plantillas';
+        } else {
+          const err = await res.json();
+          alert('Error: ' + (err.error || 'Error al guardar'));
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    });
+
+    async function deleteTemplate(id) {
+      if (!confirm('¿Eliminar esta plantilla?')) return;
+      try {
+        const res = await fetch('/api/admin/mensajeria/plantillas', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        if (res.ok) {
+          location.href = '/admin/mensajeria/plantillas';
+        } else {
+          alert('Error al eliminar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    }
+  </script>
+</BaseLayout>

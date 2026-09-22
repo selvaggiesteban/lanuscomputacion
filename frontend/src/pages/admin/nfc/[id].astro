@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getNfcCardBySlug, getAllNfcCards } from '../../lib/d1';
+
+const { id } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
+
+const card = await getNfcCardBySlug(db, id);
+const allCards = await getAllNfcCards(db);
+
+if (!card) {
+  return Astro.redirect('/admin/nfc');
+}
+
+const targetTypes = ['page', 'product', 'category', 'contact', 'custom'];
+---
+
+<BaseLayout title={`Editar NFC: ${card.title} | Lanús Computación`}>
+  <div class="ml-container py-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-xl font-semibold text-ml-text">Editar Tarjeta NFC</h1>
+          <p class="text-sm text-ml-text-muted">#{card.card_number.toString().padStart(2, '0')} · {card.slug}</p>
+        </div>
+        <a href="/admin/nfc" class="text-sm ml-link">← Volver</a>
+      </div>
+
+      <form id="nfc-form" class="bg-white rounded shadow-card p-6 space-y-6">
+        <input type="hidden" name="id" value="{card.id}" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Número de tarjeta (1-20)</label>
+            <input type="number" name="card_number" min="1" max="20" value="{card.card_number}" class="ml-input w-full" required />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Slug (p/XX)</label>
+            <input type="text" name="slug" value="{card.slug}" class="ml-input w-full" required pattern="p/\d{2}" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Título *</label>
+          <input type="text" name="title" value="{card.title}" class="ml-input w-full" required />
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Descripción</label>
+          <textarea name="description" class="ml-input w-full" rows="3">{card.description || ''}</textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">URL Destino *</label>
+          <input type="text" name="target_url" value="{card.target_url}" class="ml-input w-full" required placeholder="https://... o /ruta" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Tipo destino *</label>
+            <select name="target_type" class="ml-input w-full" required>
+              {targetTypes.map(t => (
+                <option value={t} selected={card.target_type === t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">ID destino (opcional)</label>
+            <input type="text" name="target_id" value="{card.target_id || ''}" class="ml-input w-full" placeholder="product_id, category_id, etc." />
+          </div>
+          <div class="flex items-end">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="is_active" class="w-4 h-4 text-ml-yellow rounded" checked={card.is_active} />
+              <span class="text-sm text-ml-text">Activa</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Color fondo</label>
+            <input type="color" name="background_color" value="{card.background_color}" class="ml-input w-full h-10 p-1" />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Color texto</label>
+            <input type="color" name="text_color" value="{card.text_color}" class="ml-input w-full h-10 p-1" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Icono (emoji)</label>
+          <input type="text" name="icon" value="{card.icon || ''}" class="ml-input w-full" maxlength="2" placeholder="📦" />
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t">
+          <a href="/admin/nfc" class="ml-btn-outline">Cancelar</a>
+          <button type="submit" class="ml-btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+
+      <!-- Delete button -->
+      <div class="mt-4 text-center">
+        <button onclick="deleteCard('{card.id}')" class="text-red-600 hover:underline text-sm">Eliminar tarjeta</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('nfc-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      data.is_active = data.is_active ? 1 : 0;
+      data.card_number = Number(data.card_number);
+
+      try {
+        const res = await fetch('/api/admin/nfc', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert('Guardado correctamente');
+          location.reload();
+        } else {
+          alert('Error al guardar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    });
+
+    async function deleteCard(id) {
+      if (!confirm('¿Eliminar esta tarjeta NFC? Esta acción no se puede deshacer.')) return;
+      try {
+        const res = await fetch('/api/admin/nfc', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        if (res.ok) {
+          location.href = '/admin/nfc';
+        } else {
+          alert('Error al eliminar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    }
+  </script>
+</BaseLayout>

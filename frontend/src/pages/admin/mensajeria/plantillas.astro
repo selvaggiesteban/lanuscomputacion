@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getMessageTemplates } from '../../../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+const templates = await getMessageTemplates(db);
+---
+
+<BaseLayout title="Plantillas de Mensajes | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Plantillas de Mensajes</h1>
+      <a href="/admin/mensajeria/plantillas/nueva" class="ml-btn-primary text-sm py-1.5 px-3">+ Nueva plantilla</a>
+    </div>
+
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50">
+            <tr class="text-left text-xs text-ml-text-muted">
+              <th class="p-3 font-medium">ID</th>
+              <th class="p-3 font-medium">Nombre</th>
+              <th class="p-3 font-medium">Canal</th>
+              <th class="p-3 font-medium">Asunto</th>
+              <th class="p-3 font-medium">Variables</th>
+              <th class="p-3 font-medium">Estado</th>
+              <th class="p-3 font-medium text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {templates.map(t => (
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="p-3 text-sm font-mono text-ml-text">{t.id}</td>
+                <td class="p-3 text-sm font-medium text-ml-text">{t.name}</td>
+                <td class="p-3">
+                  <span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-ml-text-secondary capitalize">{t.channel_id}</span>
+                </td>
+                <td class="p-3 text-sm text-ml-text-secondary">{t.subject || '—'}</td>
+                <td class="p-3 text-xs text-ml-text-muted">
+                  {t.variables ? JSON.parse(t.variables).join(', ') : '—'}
+                </td>
+                <td class="p-3">
+                  <span class={`text-xs px-2 py-0.5 rounded ${t.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                    {t.is_active ? 'Activa' : 'Inactiva'}
+                  </span>
+                </td>
+                <td class="p-3 text-right">
+                  <a href={`/admin/mensajeria/plantillas/${t.id}`} class="text-xs text-ml-blue hover:underline">Editar</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {templates.length === 0 && (
+        <div class="p-8 text-center text-ml-text-muted">No hay plantillas. Crea tu primera plantilla.</div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

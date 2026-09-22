@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllMessagingChannels, getContacts, getMessageTemplates } from '../../lib/d1';
+
+const db = Astro.locals.runtime.env.DB;
+
+const channels = await getAllMessagingChannels(db);
+const contacts = await getContacts(db, { limit: 20 });
+const templates = await getMessageTemplates(db);
+---
+
+<BaseLayout title="Mensajería | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Centro de Mensajería</h1>
+      <div class="flex gap-2">
+        <a href="/admin/mensajeria/canales/nuevo" class="ml-btn-primary text-sm py-1.5 px-3">+ Canal</a>
+        <a href="/admin/mensajeria/contactos/nuevo" class="ml-btn-outline text-sm py-1.5 px-3">+ Contacto</a>
+        <a href="/admin/mensajeria/plantillas/nueva" class="ml-btn-outline text-sm py-1.5 px-3">+ Plantilla</a>
+      </div>
+    </div>
+
+    <!-- Channels -->
+    <div class="bg-white rounded shadow-card mb-6">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h2 class="font-medium text-ml-text">Canales de Comunicación</h2>
+        <a href="/admin/mensajeria/canales/nuevo" class="text-sm ml-link">+ Nuevo canal</a>
+      </div>
+      <div class="divide-y">
+        {channels.map(channel => {
+          const config = JSON.parse(channel.config || '{}');
+          return (
+            <div class="p-4 flex items-center justify-between hover:bg-gray-50">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-2xl">{channel.icon}</div>
+                <div>
+                  <p class="font-medium text-ml-text">{channel.name}</p>
+                  <p class="text-xs text-ml-text-muted">
+                    {channel.id === 'whatsapp' && config.phone && `+${config.phone}`}
+                    {channel.id === 'email' && config.address && config.address}
+                    {channel.id === 'telegram' && config.username && `@${config.username}`}
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class={`text-xs px-2 py-1 rounded ${channel.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                  {channel.is_active ? 'Activo' : 'Inactivo'}
+                </span>
+                <a href={`/admin/mensajeria/canales/${channel.id}`} class="text-xs text-ml-blue hover:underline">Configurar</a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Recent Contacts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b flex items-center justify-between">
+          <h2 class="font-medium text-ml-text">Contactos Recientes</h2>
+          <a href="/admin/mensajeria/contactos" class="text-sm ml-link">Ver todos</a>
+        </div>
+        <div class="p-4">
+          {contacts.length > 0 ? (
+            <div class="space-y-3 max-h-80 overflow-y-auto">
+              {contacts.map(contact => (
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-ml-text truncate">{contact.name}</p>
+                    <p class="text-xs text-ml-text-muted truncate">
+                      {contact.email || contact.phone || contact.whatsapp || 'Sin contacto'}
+                    </p>
+                  </div>
+                  <a href={`/admin/mensajeria/contactos/${contact.id}`} class="text-xs text-ml-blue hover:underline ml-4">Ver</a>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-sm text-ml-text-muted text-center py-4">No hay contactos</p>
+          )}
+        </div>
+      </div>
+
+      <!-- Message Templates -->
+      <div class="bg-white rounded shadow-card">
+        <div class="p-4 border-b flex items-center justify-between">
+          <h2 class="font-medium text-ml-text">Plantillas de Mensajes</h2>
+          <a href="/admin/mensajeria/plantillas" class="text-sm ml-link">Ver todas</a>
+        </div>
+        <div class="p-4">
+          {templates.length > 0 ? (
+            <div class="space-y-3 max-h-80 overflow-y-auto">
+              {templates.map(template => (
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-ml-text truncate">{template.name}</p>
+                    <p class="text-xs text-ml-text-muted">Canal: {template.channel_id} {template.subject ? `· Asunto: ${template.subject}` : ''}</p>
+                  </div>
+                  <a href={`/admin/mensajeria/plantillas/${template.id}`} class="text-xs text-ml-blue hover:underline ml-4">Editar</a>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-sm text-ml-text-muted text-center py-4">No hay plantillas</p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

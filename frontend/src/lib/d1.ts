@@ -20,6 +20,8 @@ export type Product = {
   thumbnail: string;
   provider: string;
   provider_store: string;
+  free_shipping: number;
+  sku: string;
 };
 
 export type Category = {
@@ -522,4 +524,349 @@ export async function setStoreConfig(db: D1Database, key: string, value: string)
     INSERT INTO store_config (key, value, updated_at) VALUES (?, ?, datetime('now'))
     ON CONFLICT(key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at
   `).bind(key, value).run();
+}
+
+// ─── NFC Cards ────────────────────────────────────────────────────────────────
+
+export type NfcCard = {
+  id: string;
+  card_number: number;
+  slug: string;
+  title: string;
+  description: string | null;
+  target_url: string;
+  target_type: 'page' | 'product' | 'category' | 'contact' | 'custom';
+  target_id: string | null;
+  background_color: string;
+  text_color: string;
+  icon: string | null;
+  is_active: number;
+  scan_count: number;
+  last_scanned_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type NfcScan = {
+  id: number;
+  card_id: string;
+  scanned_at: string;
+  ip_hash: string | null;
+  user_agent: string | null;
+  referrer: string | null;
+};
+
+export async function getAllNfcCards(db: D1Database): Promise<NfcCard[]> {
+  const { results } = await db.prepare(
+    `SELECT * FROM nfc_cards ORDER BY card_number`
+  ).all<NfcCard>();
+  return results ?? [];
+}
+
+export async function getActiveNfcCards(db: D1Database): Promise<NfcCard[]> {
+  const { results } = await db.prepare(
+    `SELECT * FROM nfc_cards WHERE is_active = 1 ORDER BY card_number`
+  ).all<NfcCard>();
+  return results ?? [];
+}
+
+export async function getNfcCardBySlug(db: D1Database, slug: string): Promise<NfcCard | null> {
+  const result = await db.prepare(
+    `SELECT * FROM nfc_cards WHERE slug = ?`
+  ).bind(slug).first<NfcCard>();
+  return result ?? null;
+}
+
+export async function getNfcCardByNumber(db: D1Database, cardNumber: number): Promise<NfcCard | null> {
+  const result = await db.prepare(
+    `SELECT * FROM nfc_cards WHERE card_number = ?`
+  ).bind(cardNumber).first<NfcCard>();
+  return result ?? null;
+}
+
+export async function upsertNfcCard(db: D1Database, card: {
+  id: string;
+  card_number: number;
+  slug: string;
+  title: string;
+  description?: string | null;
+  target_url: string;
+  target_type: string;
+  target_id?: string | null;
+  background_color?: string;
+  text_color?: string;
+  icon?: string | null;
+  is_active?: number;
+}): Promise<void> {
+  await db.prepare(`
+    INSERT INTO nfc_cards (id, card_number, slug, title, description, target_url, target_type, target_id, background_color, text_color, icon, is_active)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      card_number=excluded.card_number, slug=excluded.slug, title=excluded.title,
+      description=excluded.description, target_url=excluded.target_url, target_type=excluded.target_type,
+      target_id=excluded.target_id, background_color=excluded.background_color, text_color=excluded.text_color,
+      icon=excluded.icon, is_active=excluded.is_active, updated_at=datetime('now')
+  `).bind(
+    card.id, card.card_number, card.slug, card.title,
+    card.description ?? null, card.target_url, card.target_type,
+    card.target_id ?? null, card.background_color ?? '#1a1a2e',
+    card.text_color ?? '#ffffff', card.icon ?? null, card.is_active ?? 1
+  ).run();
+}
+
+export async function deleteNfcCard(db: D1Database, id: string): Promise<void> {
+  await db.prepare("DELETE FROM nfc_cards WHERE id = ?").bind(id).run();
+}
+
+export async function incrementNfcScanCount(db: D1Database, cardId: string, ipHash?: string, userAgent?: string, referrer?: string): Promise<void> {
+  await db.prepare(`
+    UPDATE nfc_cards SET scan_count = scan_count + 1, last_scanned_at = datetime('now') WHERE id = ?
+  `).bind(cardId).run();
+
+  await db.prepare(`
+    INSERT INTO nfc_scans (card_id, ip_hash, user_agent, referrer)
+    VALUES (?, ?, ?, ?)
+  `).bind(cardId, ipHash ?? null, userAgent ?? null, referrer ?? null).run();
+}
+
+export async function getNfcScanStats(db: D1Database, days = 30): Promise<{ total_scans: number; scans_by_card: { card_id: string; count: number }[] }> {
+  const total = await db.prepare(`
+    SELECT COUNT(*) as count FROM nfc_scans WHERE scanned_at >= datetime('now', ?)
+  `).bind(`-${days} days`).first<{ count: number }>();
+
+  const byCard = await db.prepare(`
+    SELECT card_id, COUNT(*) as count FROM nfc_scans
+    WHERE scanned_at >= datetime('now', ?)
+    GROUP BY card_id ORDER BY count DESC
+  `).bind(`-${days} days`).all<{ card_id: string; count: number }>();
+
+  return {
+    total_scans: total?.count ?? 0,
+    scans_by_card: byCard ?? []
+  };
+}
+
+// ─── Messaging System ────────────────────────────────────────────────────────
+
+export type MessagingChannel = {
+  id: string;
+  name: string;
+  icon: string | null;
+  is_active: number;
+  config: string;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Message = {
+  id: number;
+  channel_id: string;
+  direction: 'inbound' | 'outbound';
+  contact_id: number | null;
+  subject: string | null;
+  content: string;
+  status: 'pending' | 'sent' | 'delivered' | 'read' | 'failed';
+  sent_at: string | null;
+  delivered_at: string | null;
+  read_at: string | null;
+  created_at: string;
+};
+
+export type Contact = {
+  id: number;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  whatsapp: string | null;
+  telegram: string | null;
+  messenger_id: string | null;
+  tags: string | null;
+  notes: string | null;
+  is_subscribed: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type MessageTemplate = {
+  id: string;
+  name: string;
+  channel_id: string;
+  subject: string | null;
+  content: string;
+  variables: string | null;
+  is_active: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export async function getAllMessagingChannels(db: D1Database): Promise<MessagingChannel[]> {
+  const { results } = await db.prepare(
+    `SELECT * FROM messaging_channels ORDER BY display_order`
+  ).all<MessagingChannel>();
+  return results ?? [];
+}
+
+export async function getActiveMessagingChannels(db: D1Database): Promise<MessagingChannel[]> {
+  const { results } = await db.prepare(
+    `SELECT * FROM messaging_channels WHERE is_active = 1 ORDER BY display_order`
+  ).all<MessagingChannel>();
+  return results ?? [];
+}
+
+export async function upsertMessagingChannel(db: D1Database, channel: {
+  id: string;
+  name: string;
+  icon?: string | null;
+  is_active?: number;
+  config?: string;
+  display_order?: number;
+}): Promise<void> {
+  await db.prepare(`
+    INSERT INTO messaging_channels (id, name, icon, is_active, config, display_order)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      name=excluded.name, icon=excluded.icon, is_active=excluded.is_active,
+      config=excluded.config, display_order=excluded.display_order, updated_at=datetime('now')
+  `).bind(
+    channel.id, channel.name, channel.icon ?? null, channel.is_active ?? 1,
+    channel.config ?? '{}', channel.display_order ?? 0
+  ).run();
+}
+
+export async function deleteMessagingChannel(db: D1Database, id: string): Promise<void> {
+  await db.prepare("DELETE FROM messaging_channels WHERE id = ?").bind(id).run();
+}
+
+export async function getContacts(db: D1Database, options?: { limit?: number; offset?: number; search?: string }): Promise<Contact[]> {
+  let sql = "SELECT * FROM contacts WHERE 1=1";
+  const binds: any[] = [];
+
+  if (options?.search) {
+    sql += " AND (name LIKE ? OR email LIKE ? OR phone LIKE ?)";
+    const term = `%${options.search}%`;
+    binds.push(term, term, term);
+  }
+
+  sql += " ORDER BY created_at DESC";
+
+  if (options?.limit) {
+    sql += " LIMIT ?";
+    binds.push(options.limit);
+  }
+  if (options?.offset) {
+    sql += " OFFSET ?";
+    binds.push(options.offset);
+  }
+
+  const { results } = await db.prepare(sql).bind(...binds).all<Contact>();
+  return results ?? [];
+}
+
+export async function getContactById(db: D1Database, id: number): Promise<Contact | null> {
+  const result = await db.prepare("SELECT * FROM contacts WHERE id = ?").bind(id).first<Contact>();
+  return result ?? null;
+}
+
+export async function getContactById(db: D1Database, id: number): Promise<Contact | null> {
+  const result = await db.prepare("SELECT * FROM contacts WHERE id = ?").bind(id).first<Contact>();
+  return result ?? null;
+}
+
+export async function upsertContact(db: D1Database, contact: {
+  id?: number;
+  name: string;
+  email?: string | null;
+  phone?: string | null;
+  whatsapp?: string | null;
+  telegram?: string | null;
+  messenger_id?: string | null;
+  tags?: string | null;
+  notes?: string | null;
+  is_subscribed?: number;
+}): Promise<number> {
+  if (contact.id) {
+    await db.prepare(`
+      UPDATE contacts SET name=?, email=?, phone=?, whatsapp=?, telegram=?, messenger_id=?, tags=?, notes=?, is_subscribed=?, updated_at=datetime('now')
+      WHERE id=?
+    `).bind(
+      contact.name, contact.email ?? null, contact.phone ?? null,
+      contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
+      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1, contact.id
+    ).run();
+    return contact.id;
+  } else {
+    const result = await db.prepare(`
+      INSERT INTO contacts (name, email, phone, whatsapp, telegram, messenger_id, tags, notes, is_subscribed)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      contact.name, contact.email ?? null, contact.phone ?? null,
+      contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
+      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1
+    ).run();
+    return result.meta.last_row_id;
+  }
+}
+
+export async function deleteContact(db: D1Database, id: number): Promise<void> {
+  await db.prepare("DELETE FROM contacts WHERE id = ?").bind(id).run();
+}
+
+export async function getMessageTemplates(db: D1Database): Promise<MessageTemplate[]> {
+  const { results } = await db.prepare("SELECT * FROM message_templates ORDER BY created_at DESC").all<MessageTemplate>();
+  return results ?? [];
+}
+
+export async function upsertMessageTemplate(db: D1Database, template: {
+  id: string;
+  name: string;
+  channel_id: string;
+  subject?: string | null;
+  content: string;
+  variables?: string | null;
+  is_active?: number;
+}): Promise<void> {
+  await db.prepare(`
+    INSERT INTO message_templates (id, name, channel_id, subject, content, variables, is_active)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      name=excluded.name, channel_id=excluded.channel_id, subject=excluded.subject,
+      content=excluded.content, variables=excluded.variables, is_active=excluded.is_active, updated_at=datetime('now')
+  `).bind(
+    template.id, template.name, template.channel_id, template.subject ?? null,
+    template.content, template.variables ?? null, template.is_active ?? 1
+  ).run();
+}
+
+export async function deleteMessageTemplate(db: D1Database, id: string): Promise<void> {
+  await db.prepare("DELETE FROM message_templates WHERE id = ?").bind(id).run();
+}
+
+export async function logMessage(db: D1Database, message: {
+  channel_id: string;
+  direction: 'inbound' | 'outbound';
+  contact_id?: number | null;
+  subject?: string | null;
+  content: string;
+  status?: string;
+}): Promise<number> {
+  const result = await db.prepare(`
+    INSERT INTO messages (channel_id, direction, contact_id, subject, content, status)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `).bind(
+    message.channel_id, message.direction, message.contact_id ?? null,
+    message.subject ?? null, message.content, message.status ?? 'pending'
+  ).run();
+  return result.meta.last_row_id;
+}
+
+export async function updateMessageStatus(db: D1Database, id: number, status: string, timestampField?: string): Promise<void> {
+  let sql = "UPDATE messages SET status = ?";
+  const binds: any[] = [status];
+  if (timestampField) {
+    sql += `, ${timestampField} = datetime('now')`;
+  }
+  sql += " WHERE id = ?";
+  binds.push(id);
+  await db.prepare(sql).bind(...binds).run();
 }

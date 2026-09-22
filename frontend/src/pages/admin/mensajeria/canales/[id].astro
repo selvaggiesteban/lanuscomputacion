@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
+
+const { id } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
+
+const channels = await getAllMessagingChannels(db);
+const channel = channels.find(c => c.id === id);
+
+if (!channel) {
+  return Astro.redirect('/admin/mensajeria');
+}
+
+const config = JSON.parse(channel.config || '{}');
+---
+
+<BaseLayout title={`Canal: ${channel.name} | Lanús Computación`>
+  <div class="ml-container py-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-xl font-semibold text-ml-text">Configurar Canal: {channel.name}</h1>
+          <p class="text-sm text-ml-text-muted">ID: {channel.id}</p>
+        </div>
+        <a href="/admin/mensajeria" class="text-sm ml-link">← Volver</a>
+      </div>
+
+      <form id="channel-form" class="bg-white rounded shadow-card p-6 space-y-6">
+        <input type="hidden" name="id" value="{channel.id}" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Nombre</label>
+            <input type="text" name="name" value="{channel.name}" class="ml-input w-full" required />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Icono (emoji)</label>
+            <input type="text" name="icon" value="{channel.icon || ''}" class="ml-input w-full" maxlength="2" placeholder="💬" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Orden de visualización</label>
+            <input type="number" name="display_order" value="{channel.display_order}" class="ml-input w-full" min="0" />
+          </div>
+          <div class="flex items-end">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="is_active" class="w-4 h-4 text-ml-yellow rounded" checked={channel.is_active} />
+              <span class="text-sm text-ml-text">Activo</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Configuración (JSON)</label>
+          <textarea name="config" class="ml-input w-full font-mono text-sm" rows="8" placeholder='{"phone": "5491153323937", "default_message": "Hola..."}'>{JSON.stringify(config, null, 2)}</textarea>
+          <p class="text-xs text-ml-text-muted mt-1">Ejemplos: WhatsApp: {"phone": "5491153323937", "default_message": "..."}, Email: {"address": "info@...", "smtp_host": "...", "smtp_port": 587}</p>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t">
+          <a href="/admin/mensajeria" class="ml-btn-outline">Cancelar</a>
+          <button type="submit" class="ml-btn-primary">Guardar</button>
+        </div>
+      </form>
+
+      <div class="mt-4 text-center">
+        <button onclick="deleteChannel('{channel.id}')" class="text-red-600 hover:underline text-sm">Eliminar canal</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('channel-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      data.is_active = data.is_active ? 1 : 0;
+      data.display_order = Number(data.display_order);
+      try {
+        data.config = JSON.parse(formData.get('config') || '{}');
+      } catch {
+        alert('JSON inválido en configuración');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/admin/mensajeria/canales', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert('Guardado correctamente');
+          location.reload();
+        } else {
+          alert('Error al guardar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    });
+
+    async function deleteChannel(id) {
+      if (!confirm('¿Eliminar este canal? Esta acción no se puede deshacer.')) return;
+      try {
+        const res = await fetch('/api/admin/mensajeria/canales', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        if (res.ok) {
+          location.href = '/admin/mensajeria';
+        } else {
+          alert('Error al eliminar');
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    }
+  </script>
+</BaseLayout>

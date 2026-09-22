@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getNfcCardBySlug, incrementNfcScanCount } from '../../lib/d1';
+
+const { slug } = Astro.params;
+const db = Astro.locals.runtime.env.DB;
+
+const card = await getNfcCardBySlug(db, `p/${slug}`);
+
+if (!card || !card.is_active) {
+  return Astro.redirect('/404');
+}
+
+// Track scan
+const ipHash = Astro.request.headers.get('cf-connecting-ip') 
+  ? await crypto.subtle.digest('SHA-256', new TextEncoder().encode(Astro.request.headers.get('cf-connecting-ip')!))
+    .then(h => Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join(''))
+    .catch(() => null)
+  : null;
+
+const userAgent = Astro.request.headers.get('user-agent');
+const referrer = Astro.request.headers.get('referer');
+
+await incrementNfcScanCount(db, card.id, ipHash ?? undefined, userAgent ?? undefined, referrer ?? undefined);
+
+// Determine redirect URL
+const redirectUrl = card.target_url.startsWith('http') 
+  ? card.target_url 
+  : `https://lanuscomputacion.com${card.target_url.startsWith('/') ? '' : '/'}${card.target_url}`;
+---
+
+<BaseLayout title={`${card.title} | Lanús Computación`}>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="w-full max-w-md mx-4">
+      <!-- NFC Card Visual -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden" style={{backgroundColor: card.background_color}}>
+        <div class="p-8 text-center text-white">
+          <div class="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl" style={{backgroundColor: 'rgba(255,255,255,0.2)'}}>
+            {card.icon}
+          </div>
+          <h1 class="text-2xl font-bold mb-2">{card.title}</h1>
+          {card.description && <p class="text-lg opacity-90 mb-6">{card.description}</p>}
+          
+          <div class="space-y-3">
+            <a 
+              href={redirectUrl}
+              class="block w-full bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-6 rounded-lg transition-colors backdrop-blur-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ir a {card.title}
+            </a>
+            <a 
+              href={redirectUrl}
+              class="block w-full bg-white text-gray-900 font-medium py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir en nueva pestaña
+            </a>
+          </div>
+        </div>
+        
+        <div class="px-8 pb-8">
+          <div class="bg-white/10 rounded-lg p-4 text-center">
+            <p class="text-sm opacity-70 mb-2">Escaneado {card.scan_count} veces</p>
+            <p class="text-xs opacity-50">Tarjeta #{card.card_number.toString().padStart(2, '0')} · NTAG213</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Code fallback -->
+      <div class="mt-6 bg-white rounded-xl shadow p-6 text-center">
+        <h3 class="font-medium text-ml-text mb-3">¿No tienes NFC? Escanea el código QR</h3>
+        <div id="qrcode" class="mx-auto"></div>
+        <p class="text-xs text-ml-text-muted mt-2">{redirectUrl}</p>
+      </div>
+
+      <!-- Instructions -->
+      <div class="mt-6 bg-white rounded-xl shadow p-6">
+        <h3 class="font-medium text-ml-text mb-3">Cómo usar tu tarjeta NFC</h3>
+        <ol class="space-y-2 text-sm text-ml-text-secondary">
+          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">1</span>Acerca tu teléfono a la tarjeta NFC</li>
+          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">2</span>Toca la notificación que aparece</li>
+          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">3</span>Accede directo a {card.title}</li>
+        </ol>
+        <p class="mt-4 text-xs text-ml-text-muted">
+          * Requiere NFC activado. En iOS: Configuración > General > NFC. En Android: Configuración > Dispositivos conectados > NFC.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Generate QR code
+    const qrcode = document.getElementById('qrcode');
+    const url = '{redirectUrl}';
+    
+    // Simple QR code using Google Charts API (or you can use a local library)
+    qrcode.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}" alt="QR Code para ${card.title}" class="mx-auto" />`;
+  </script>
+</BaseLayout>

@@ -134,6 +134,37 @@ const lowStockProducts = await db.prepare(
         </div>
         <a href="/admin/promociones" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
       </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <rect x="2" y="4" width="20" height="14" rx="2" />
+              <path d="M2 10h20M2 14h20M6 6v8" stroke-width="1.5" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">Tarjetas NFC</p>
+            <p class="text-xs text-ml-text-muted">20 tarjetas NTAG213</p>
+          </div>
+        </div>
+        <a href="/admin/nfc" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
+
+      <div class="bg-white rounded shadow-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-green-50 rounded flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-ml-text">Mensajería</p>
+            <p class="text-xs text-ml-text-muted">Canales, contactos, plantillas</p>
+          </div>
+        </div>
+        <a href="/admin/mensajeria" class="block mt-3 text-xs text-ml-blue hover:underline">Gestionar →</a>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
