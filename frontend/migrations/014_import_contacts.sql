@@ -1,7 +1,6 @@
 ﻿-- Import: emails.csv -> contacts (lanus-catalog D1)
 -- Rules: ENRICH_RULES.md (regex + junk domains + auto-reply + placeholders)
 -- Generated: 2026-09-22 | Source rows: 66 | Valid: 66 | Rejected: 0
-BEGIN TRANSACTION;
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Abogario', 'info@abogario.com.ar', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: abogario.com.ar', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'info@abogario.com.ar');
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Acuatika25', 'info@acuatika25.com.ar', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: acuatika25.com.ar', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'info@acuatika25.com.ar');
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Alquiriasolutions', 'info@alquiriasolutions.com', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: alquiriasolutions.com', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'info@alquiriasolutions.com');
@@ -68,4 +67,3 @@ INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Vintagera
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Watervan', 'info@watervan.com.ar', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: watervan.com.ar', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'info@watervan.com.ar');
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Yourdream', 'info@yourdream.ae', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: yourdream.ae', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'info@yourdream.ae');
 INSERT INTO contacts (name, email, tags, notes, is_subscribed) SELECT 'Zingueriazarza', 'zzingueria@gmail.com', '["import","web"]', 'Imported from emails.csv 2026-09-22 - ENRICH_RULES validated - domain: zingueriazarza.com.ar', 1 WHERE NOT EXISTS (SELECT 1 FROM contacts WHERE email = 'zzingueria@gmail.com');
-COMMIT;
