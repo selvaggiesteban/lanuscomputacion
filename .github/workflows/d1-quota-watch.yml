@@ -1,0 +1,75 @@
+name: D1 quota watch
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check rowsRead against free-tier quota (5M/day)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+            echo "::error::Missing secret CLOUDFLARE_API_TOKEN (create a Cloudflare API token with Analytics Read permission and add it to Settings > Secrets and variables > Actions)"
+            exit 1
+          fi
+
+          DB_ID="c0a53831-2932-4dc5-94d9-b37be72e8219"
+          WARN=3500000   # 70% of the 5M/day free daily read quota
+          CRIT=4500000   # 90% — the site is hours away from a full outage
+
+          ACCOUNT_TAG=$(curl -sf -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            https://api.cloudflare.com/client/v4/accounts \
+            | jq -r '.result[0].id // empty')
+
+          if [ -z "$ACCOUNT_TAG" ]; then
+            echo "::error::Could not resolve Cloudflare account (token needs Account Read)"
+            exit 1
+          fi
+
+          TODAY=$(date -u +%F)
+          YESTERDAY=$(date -u -d "yesterday" +%F)
+
+          RESPONSE=$(curl -sf -X POST \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            https://api.cloudflare.com/client/v4/graphql/ \
+            -d "$(jq -n \
+              --arg accountTag "$ACCOUNT_TAG" \
+              --arg start "$YESTERDAY" \
+              --arg end "$TODAY" \
+              --arg databaseId "$DB_ID" \
+              '{
+                query: "query D1QuotaWatch($accountTag: string!, $start: Date!, $end: Date!, $databaseId: string!) { viewer { accounts(filter: { accountTag: $accountTag }) { d1AnalyticsAdaptiveGroups(limit: 10, filter: { date_geq: $start, date_leq: $end, databaseId: $databaseId }, orderBy: [date_DESC]) { sum { rowsRead rowsWritten } dimensions { date } } } } }",
+                variables: { accountTag: $accountTag, start: $start, end: $end, databaseId: $databaseId }
+              }')")
+
+          TODAY_READS=$(echo "$RESPONSE" | jq -r --arg d "$TODAY" \
+            '[.data.viewer.accounts[0].d1AnalyticsAdaptiveGroups[]? | select(.dimensions.date == $d) | .sum.rowsRead] | first // 0')
+          YDAY_READS=$(echo "$RESPONSE" | jq -r --arg d "$YESTERDAY" \
+            '[.data.viewer.accounts[0].d1AnalyticsAdaptiveGroups[]? | select(.dimensions.date == $d) | .sum.rowsRead] | first // 0')
+
+          echo "D1 rows read — yesterday: ${YDAY_READS} / today so far: ${TODAY_READS} (free quota: 5,000,000/day)"
+
+          if [ "$TODAY_READS" -gt "$CRIT" ]; then
+            echo "::error::CRITICAL: ${TODAY_READS} rows read today (>${CRIT}). The site will hit the D1 free-tier wall within hours. Reduce traffic to catalog pages or upgrade to Workers Paid."
+            exit 1
+          fi
+          if [ "$TODAY_READS" -gt "$WARN" ]; then
+            echo "::warning::WARNING: ${TODAY_READS} rows read today (>${WARN}). On pace to exhaust the daily quota."
+            exit 1
+          fi
+          if [ "$YDAY_READS" -gt 5000000 ]; then
+            echo "::error::Yesterday ended at ${YDAY_READS} rows read — the daily quota was exceeded (outage day)."
+            exit 1
+          fi
+
+          echo "OK: within quota."

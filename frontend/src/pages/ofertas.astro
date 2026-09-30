@@ -8,14 +8,26 @@ const db = Astro.locals.runtime.env.DB;
 // Get active promotions
 const promotions = await getActivePromotions(db);
 
-// Get published products with stock (capped to prevent D1 row read blowup)
-const { results: allProducts } = await db.prepare(`
-  SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping
-  FROM products
-  WHERE status = 'published' AND available_qty > 0 AND price > 0
-  ORDER BY created_at DESC
-  LIMIT 2000
-`).all();
+// Only scan products that can match an active promotion (D1 quota protection).
+// Without active promos the products query is skipped entirely (0 rows read).
+const promoWindow = `
+  pr.is_active = 1
+  AND (pr.start_date IS NULL OR pr.start_date <= datetime('now'))
+  AND (pr.end_date IS NULL OR pr.end_date >= datetime('now'))`;
+const { results: allProducts } = promotions.length > 0
+  ? await db.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+        AND (
+          EXISTS (SELECT 1 FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'all')
+          OR category_id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'category')
+          OR id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'product')
+        )
+      ORDER BY created_at DESC
+      LIMIT 500
+    `).all()
+  : { results: [] as any[] };
 
 // Apply promotions to products
 const offerProducts: any[] = [];

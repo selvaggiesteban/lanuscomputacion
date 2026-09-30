@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
-import { getProducts } from '../../lib/d1';
 
 const { q } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -11,12 +10,21 @@ const page = Number(Astro.url.searchParams.get('page') || 1);
 const limit = 20;
 const offset = (page - 1) * limit;
 
-const [products, total] = await Promise.all([
-  getProducts(db, { search: q, limit, offset }),
-  db.prepare(
-    "SELECT COUNT(*) as count FROM products WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)"
-  ).bind(`%${q}%`, `%${q}%`, `%${q}%`).first<{ count: number }>().then(r => r?.count ?? 0),
-]);
+// Single pass: rows + total via window count (halves D1 rows read per search)
+const term = `%${q}%`;
+const { results } = await db.prepare(`
+  SELECT id, title, price, thumbnail, slug, dollar_rate, COUNT(*) OVER() AS total_count
+  FROM products
+  WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
+  ORDER BY available_qty DESC, created_at DESC
+  LIMIT ? OFFSET ?
+`).bind(term, term, term, limit, offset).all<{
+  id: string; title: string; price: number; thumbnail: string;
+  slug: string; dollar_rate: number; total_count: number;
+}>();
+
+const products = results ?? [];
+const total = products.length > 0 ? (products[0].total_count as number) : 0;
 
 const totalPages = Math.ceil(total / limit);
 ---
