@@ -1,4 +1,13 @@
-const API_BASE = import.meta.env.PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_ENV = import.meta.env.PUBLIC_API_URL;
+
+if (!API_BASE_ENV) {
+  if (import.meta.env.PROD) {
+    throw new Error('[api] CRITICAL: PUBLIC_API_URL is not configured in production.');
+  }
+  console.warn('[api] PUBLIC_API_URL not configured. Using fallback: http://localhost:8000');
+}
+
+const API_BASE = API_BASE_ENV || 'http://localhost:8000';
 
 export async function fetchCategories() {
   const res = await fetch(`${API_BASE}/api/categories`);

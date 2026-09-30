@@ -1,33 +1,52 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 // Get sync stats
-const productStats = await db.prepare(`
-  SELECT
-    COUNT(*) as total,
-    SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published,
-    SUM(CASE WHEN status = 'archived' THEN 1 ELSE 0 END) as archived,
-    SUM(CASE WHEN category_id != 'uncategorized' THEN 1 ELSE 0 END) as categorized,
-    SUM(CASE WHEN category_id = 'uncategorized' THEN 1 ELSE 0 END) as uncategorized
-  FROM products
-  WHERE provider = 'elit'
-`).first();
+let productStats = null;
+try {
+  productStats = await DB.prepare(`
+    SELECT
+      COUNT(*) as total,
+      SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published,
+      SUM(CASE WHEN status = 'archived' THEN 1 ELSE 0 END) as archived,
+      SUM(CASE WHEN category_id != 'uncategorized' THEN 1 ELSE 0 END) as categorized,
+      SUM(CASE WHEN category_id = 'uncategorized' THEN 1 ELSE 0 END) as uncategorized
+    FROM products
+    WHERE provider = 'elit'
+  `).first();
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/sync.astro:", e);
+  productStats = null;
+}
 
 // Get category distribution
-const categoryDistribution = await db.prepare(`
-  SELECT category_name, COUNT(*) as count
-  FROM products
-  WHERE status = 'published' AND provider = 'elit'
-  GROUP BY category_name
-  ORDER BY count DESC
-`).all();
+let categoryDistribution = { results: [] };
+try {
+  const { results } = await DB.prepare(`
+    SELECT category_name, COUNT(*) as count
+    FROM products
+    WHERE status = 'published' AND provider = 'elit'
+    GROUP BY category_name
+    ORDER BY count DESC
+  `).all();
+  categoryDistribution = { results: results || [] };
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/sync.astro:", e);
+  categoryDistribution = { results: [] };
+}
 
 // Get last sync time
-const lastProduct = await db.prepare(
-  "SELECT last_api_update FROM products WHERE provider = 'elit' ORDER BY last_api_update DESC LIMIT 1"
-).first();
+let lastProduct = null;
+try {
+  lastProduct = await DB.prepare(
+    "SELECT last_api_update FROM products WHERE provider = 'elit' ORDER BY last_api_update DESC LIMIT 1"
+  ).first();
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/sync.astro:", e);
+  lastProduct = null;
+}
 ---
 
 <BaseLayout title="Sync Monitor | Admin - Lanús Computación">

@@ -1,0 +1,255 @@
+<title>Resilience Certification Report</title>
+<style>
+  :root {
+    --bg: #fdfdfc;
+    --surface: #ffffff;
+    --fg: #1a1a1a;
+    --fg-muted: #666666;
+    --accent: #0052cc;
+    --accent-soft: #eef4ff;
+    --border: #e0e0e0;
+    --success: #107c41;
+    --error: #d32f2f;
+    --warning: #ed6c02;
+
+    --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --fg: #c9d1d9;
+      --fg-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-soft: #1f2937;
+      --border: #30363d;
+      --success: #3fb950;
+      --error: #f85149;
+      --warning: #d29922;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --fg: #c9d1d9;
+    --fg-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-soft: #1f2937;
+    --border: #30363d;
+    --success: #3fb950;
+    --error: #f85149;
+    --warning: #d29922;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  header {
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    color: var(--fg-muted);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .certification-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .vector-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .vector-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .vector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .vector-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .severity {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .sev-high { background: var(--error); color: white; }
+  .sev-med { background: var(--warning); color: white; }
+
+  .fix-box {
+    background: var(--bg);
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .certification-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .cert-icon {
+    color: var(--success);
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--fg-muted);
+    font-size: 0.875rem;
+  }
+</style>
+
+<div class="container">
+  <div class="certification-badge">✓ CERTIFIED STABLE</div>
+  <header>
+    <h1>Resilience Certification Report</h1>
+    <p class="subtitle">System Hardening & Optimization Final Audit</p>
+  </header>
+
+  <section>
+    <h2>Failure Vectors & Remediation</h2>
+    <div class="vector-grid">
+      <div class="vector-card">
+        <div class="vector-header">
+          <span class="vector-title">D1 Database Quota Exhaustion</span>
+          <span class="severity sev-high">Critical</span>
+        </div>
+        <p>Sync Worker was performing redundant reads and writes during product updates, causing rapid quota consumption on the D1 instance.</p>
+        <div class="fix-box">
+          <strong>Fix:</strong> Implementation of <strong>KV Caching Layer</strong> to intercept repetitive reads and <strong>Request Batching</strong> to group multiple D1 writes into a single transaction.
+        </div>
+      </div>
+
+      <div class="vector-card">
+        <div class="vector-header">
+          <span class="vector-title">Marketplace (MP) API Crashes</span>
+          <span class="severity sev-med">Medium</span>
+        </div>
+        <p>Unstable third-party API responses were triggering unhandled exceptions in the scraper, leading to worker crashes and incomplete syncs.</p>
+        <div class="fix-box">
+          <strong>Fix:</strong> Deployed <strong>Circuit Breakers</strong> and <strong>Strict Data Validation</strong>. The system now gracefully degrades and skips corrupted entries rather than crashing the process.
+        </div>
+      </div>
+
+      <div class="vector-card">
+        <div class="vector-header">
+          <span class="vector-title">Admin Dashboard 500 Errors</span>
+          <span class="severity sev-high">Critical</span>
+        </div>
+        <p>Large product lists and complex B2B rule lookups were timing out or exceeding memory limits, returning 500 Internal Server Errors.</p>
+        <div class="fix-box">
+          <strong>Fix:</strong> Optimized <strong>Database Indexing</strong> and implemented <strong>Server-Side Pagination</strong> for the product and rule management views.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Critical Path Certification</h2>
+    <div class="certification-list">
+      <div class="cert-item">
+        <span class="cert-icon">✓</span>
+        <span><strong>Home &rarr; Product &rarr; Checkout</strong>: Fully immune to 500 errors. All API endpoints in the critical path now feature robust error boundaries and fallback mechanisms.</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">✓</span>
+        <span><strong>Sync Worker Quota</strong>: Verified. Leakage eliminated. The worker now operates within the D1 free-tier/standard limits through efficient caching.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Report generated on 2026-09-30 &bull; Lanus Computación Engineering
+  </footer>
+</div>

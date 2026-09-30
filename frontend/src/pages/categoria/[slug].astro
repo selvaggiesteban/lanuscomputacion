@@ -7,7 +7,7 @@ import SortSelector from '../../components/catalog/SortSelector.tsx';
 import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
 
 const { slug } = Astro.params;
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
@@ -17,12 +17,12 @@ const sort = Astro.url.searchParams.get('sort') || '';
 const limit = 20;
 const offset = (page - 1) * limit;
 
-const category = slug !== 'todas' ? await getCategoryBySlug(db, slug) : null;
+const category = slug !== 'todas' ? await getCategoryBySlug(DB, slug) : null;
 
 const categoryFilter = category?.level === 0 ? category.id : undefined;
 const subcategoryFilter = category?.level === 1 ? category.name : undefined;
 
-const products = await getProducts(db, {
+const products = await getProducts(DB, {
   category: categoryFilter,
   subcategory: subcategoryFilter,
   brand: brand || undefined,
@@ -32,14 +32,14 @@ const products = await getProducts(db, {
   minPrice: minPrice || undefined,
   maxPrice: maxPrice || undefined,
 });
-const total = await getProductCount(db, categoryFilter, subcategoryFilter, brand || undefined);
-const brands = await getBrandsByCategory(db, categoryFilter, subcategoryFilter);
+const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined);
+const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter);
 
 const totalPages = Math.ceil(total / limit);
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
 
 // All categories for the sidebar filter
-const allCategories = await getAllCategoriesWithChildren(db);
+const allCategories = await getAllCategoriesWithChildren(DB);
 
 // Build base URL for filters — always use current page slug
 const filterBaseUrl = `/categoria/${slug}`;
@@ -47,15 +47,25 @@ const filterBaseUrl = `/categoria/${slug}`;
 // Get price range — fix for "todas" (no category filter)
 let priceRange;
 if (categoryFilter) {
-  priceRange = await db.prepare(`
-    SELECT MIN(price) as min_price, MAX(price) as max_price
-    FROM products WHERE status = 'published' AND category_id = ?
-  `).bind(categoryFilter).first<{ min_price: number; max_price: number }>();
+  try {
+    priceRange = await DB.prepare(`
+      SELECT MIN(price) as min_price, MAX(price) as max_price
+      FROM products WHERE status = 'published' AND category_id = ?
+    `).bind(categoryFilter).first<{ min_price: number; max_price: number }>();
+  } catch (e) {
+    console.error("D1 Error in [slug].astro:", e);
+    priceRange = null;
+  }
 } else {
-  priceRange = await db.prepare(`
-    SELECT MIN(price) as min_price, MAX(price) as max_price
-    FROM products WHERE status = 'published'
-  `).first<{ min_price: number; max_price: number }>();
+  try {
+    priceRange = await DB.prepare(`
+      SELECT MIN(price) as min_price, MAX(price) as max_price
+      FROM products WHERE status = 'published'
+    `).first<{ min_price: number; max_price: number }>();
+  } catch (e) {
+    console.error("D1 Error in [slug].astro:", e);
+    priceRange = null;
+  }
 }
 
 // Helper: is a category or subcategory currently active?
@@ -168,7 +178,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         <SortSelector client:load current={sort} />
       </div>
 
-      <ProductGrid products={products.map(p => ({
+      <ProductGrid products={products?.map(p => ({
         id: p.id,
         title: p.title,
         price: p.price,
@@ -177,7 +187,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         slug: p.slug,
         freeShipping: false,
         dollarRate: p.dollar_rate,
-      }))} columns={4} />
+      })) || []} columns={4} />
 
       <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${brand ? `?brand=${encodeURIComponent(brand)}` : ''}${minPrice ? `${brand ? '&' : '?'}min_price=${minPrice}` : ''}${maxPrice ? `${brand || minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />
     </div>

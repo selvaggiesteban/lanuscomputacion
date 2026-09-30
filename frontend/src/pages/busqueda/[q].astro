@@ -4,7 +4,7 @@ import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 
 const { q } = Astro.params;
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const limit = 20;
@@ -12,18 +12,27 @@ const offset = (page - 1) * limit;
 
 // Single pass: rows + total via window count (halves D1 rows read per search)
 const term = `%${q}%`;
-const { results } = await db.prepare(`
-  SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, COUNT(*) OVER() AS total_count
-  FROM products
-  WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
-  ORDER BY available_qty DESC, created_at DESC
-  LIMIT ? OFFSET ?
-`).bind(term, term, term, limit, offset).all<{
+let products: {
   id: string; title: string; price: number; thumbnail: string;
   slug: string; dollar_rate: number; category_name: string; total_count: number;
-}>();
+}[] = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, COUNT(*) OVER() AS total_count
+    FROM products
+    WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
+    ORDER BY available_qty DESC, created_at DESC
+    LIMIT ? OFFSET ?
+  `).bind(term, term, term, limit, offset).all<{
+    id: string; title: string; price: number; thumbnail: string;
+    slug: string; dollar_rate: number; category_name: string; total_count: number;
+  }>();
+  products = results || [];
+} catch (e) {
+  console.error("D1 Error in [q].astro:", e);
+  products = [];
+}
 
-const products = results ?? [];
 const total = products.length > 0 ? (products[0].total_count as number) : 0;
 
 const totalPages = Math.ceil(total / limit);
@@ -37,7 +46,7 @@ const totalPages = Math.ceil(total / limit);
       </p>
     </div>
 
-    <ProductGrid products={products.map(p => ({
+    <ProductGrid products={(products || []).map(p => ({
       id: p.id,
       title: p.title,
       price: p.price,

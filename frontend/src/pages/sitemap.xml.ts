@@ -1,17 +1,31 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ locals }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
 
   // Get all published products
-  const { results: products } = await db.prepare(
-    "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
-  ).all<{ slug: string; last_api_update: string }>();
+  let products: { slug: string; last_api_update: string }[] = [];
+  try {
+    const { results } = await DB.prepare(
+      "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
+    ).all<{ slug: string; last_api_update: string }>();
+    products = results || [];
+  } catch (e) {
+    console.error("D1 Error in sitemap.xml.ts:", e);
+    products = [];
+  }
 
   // Get all categories
-  const { results: categories } = await db.prepare(
-    "SELECT slug FROM categories WHERE is_active = 1"
-  ).all<{ slug: string }>();
+  let categories: { slug: string }[] = [];
+  try {
+    const { results } = await DB.prepare(
+      "SELECT slug FROM categories WHERE is_active = 1"
+    ).all<{ slug: string }>();
+    categories = results || [];
+  } catch (e) {
+    console.error("D1 Error in sitemap.xml.ts:", e);
+    categories = [];
+  }
 
   const baseUrl = "https://lanuscomputacion.com";
   const now = new Date().toISOString();

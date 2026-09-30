@@ -1,12 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 // Load current config
-const { results: configRows } = await db.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
+let configRows = [];
+try {
+  const { results } = await DB.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
+  configRows = results;
+} catch (e) {
+  console.error('Error fetching app_config:', e);
+  configRows = [];
+}
+
 const config: Record<string, string> = {};
-for (const row of configRows) config[row.key] = row.value;
+for (const row of (configRows || [])) config[row.key] = row.value;
 
 const markup = config.global_markup_pct || "30";
 const dollarThreshold = config.dollar_change_threshold || "2";
@@ -14,9 +22,16 @@ const lowStockThreshold = config.low_stock_threshold || "5";
 const autoRecalc = config.auto_recalc_prices !== "false";
 
 // Categories for markup overrides
-const { results: categories } = await db.prepare(
-  "SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name"
-).all<{ id: string; name: string }>();
+let categories = [];
+try {
+  const { results } = await DB.prepare(
+    "SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name"
+  ).all<{ id: string; name: string }>();
+  categories = results;
+} catch (e) {
+  console.error('Error fetching categories for config:', e);
+  categories = [];
+}
 ---
 
 <BaseLayout title="Configuración | Admin - Lanús Computación">

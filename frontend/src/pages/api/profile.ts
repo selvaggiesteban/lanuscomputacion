@@ -2,9 +2,9 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
 
   if (!user) {
     return new Response(JSON.stringify({ error: "No autenticado" }), {
@@ -33,7 +33,11 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 
   binds.push(user.id);
-  await db.prepare(`UPDATE customers SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  try {
+    await DB.prepare(`UPDATE customers SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/profile.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,

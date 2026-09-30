@@ -2,25 +2,31 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../../lib/auth";
 
 export const GET: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
 
   if (!user || !user.is_admin) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
   }
 
-  const { results: categories } = await db.prepare(
-    "SELECT * FROM categories ORDER BY level, name"
-  ).all();
+  let categories = [];
+  try {
+    const { results } = await DB.prepare(
+      "SELECT * FROM categories ORDER BY level, name"
+    ).all();
+    categories = results;
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/categories.ts:", e);
+  }
 
-  return new Response(JSON.stringify({ categories }), { status: 200, headers: { "Content-Type": "application/json" } });
+  return new Response(JSON.stringify({ categories: (categories || []) }), { status: 200, headers: { "Content-Type": "application/json" } });
 };
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
 
   if (!user || !user.is_admin) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
@@ -37,10 +43,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
   const id = `custom_${body.slug.replace(/[^a-z0-9]/g, "_")}`;
 
-  await db.prepare(`
-    INSERT OR REPLACE INTO categories (id, name, slug, parent_id, level, picture, is_active, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, 1, datetime('now'))
-  `).bind(id, body.name, body.slug, body.parent_id || null, body.level || 0, body.picture || "").run();
+  try {
+    await DB.prepare(`
+      INSERT OR REPLACE INTO categories (id, name, slug, parent_id, level, picture, is_active, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, 1, datetime('now'))
+    `).bind(id, body.name, body.slug, body.parent_id || null, body.level || 0, body.picture || "").run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/categories.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true, id }), {
     status: 201, headers: { "Content-Type": "application/json" },
@@ -48,9 +58,9 @@ export const POST: APIRoute = async ({ locals, request }) => {
 };
 
 export const PUT: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
 
   if (!user || !user.is_admin) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
@@ -78,15 +88,19 @@ export const PUT: APIRoute = async ({ locals, request }) => {
   }
 
   binds.push(body.id);
-  await db.prepare(`UPDATE categories SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  try {
+    await DB.prepare(`UPDATE categories SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/categories.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json" } });
 };
 
 export const DELETE: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
 
   if (!user || !user.is_admin) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
@@ -101,7 +115,11 @@ export const DELETE: APIRoute = async ({ locals, request }) => {
     return new Response(JSON.stringify({ error: "Falta id" }), { status: 400 });
   }
 
-  await db.prepare("UPDATE categories SET is_active = 0 WHERE id = ?").bind(body.id).run();
+  try {
+    await DB.prepare("UPDATE categories SET is_active = 0 WHERE id = ?").bind(body.id).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/categories.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json" } });
 };

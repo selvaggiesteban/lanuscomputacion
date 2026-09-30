@@ -122,7 +122,8 @@ export default function CartDrawer({ open, onClose }: Props) {
         window.location.href = data.init_point;
       }
     } catch (e: any) {
-      setError(e.message);
+      const is502 = e.message?.includes('502') || e.status === 502;
+      setError(is502 ? "El servicio de pagos no está disponible temporalmente. Por favor, intentá más tarde." : e.message);
     }
     setCheckingOut(false);
   };

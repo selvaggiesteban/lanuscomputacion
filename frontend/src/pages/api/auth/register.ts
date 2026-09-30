@@ -35,9 +35,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 
   // Check if user already exists
-  const existing = await db.prepare(
-    "SELECT id FROM customers WHERE email = ?"
-  ).bind(body.email).first();
+  let existing = null;
+  try {
+    existing = await db.prepare(
+      "SELECT id FROM customers WHERE email = ?"
+    ).bind(body.email).first();
+  } catch (e) {
+    console.error("Error checking existing user during registration:", e);
+  }
 
   if (existing) {
     return new Response(JSON.stringify({ error: "El email ya está registrado" }), {
@@ -49,12 +54,20 @@ export const POST: APIRoute = async ({ locals, request }) => {
   // Create user
   const passwordHash = await hashPassword(body.password);
 
-  const result = await db.prepare(`
-    INSERT INTO customers (email, name, password_hash, is_admin, is_b2b, created_at)
-    VALUES (?, ?, ?, 0, 0, datetime('now'))
-  `).bind(body.email, body.name, passwordHash).run();
-
-  const userId = result.meta.last_row_id as number;
+  let userId;
+  try {
+    const result = await db.prepare(`
+      INSERT INTO customers (email, name, password_hash, is_admin, is_b2b, created_at)
+      VALUES (?, ?, ?, 0, 0, datetime('now'))
+    `).bind(body.email, body.name, passwordHash).run();
+    userId = result.meta.last_row_id as number;
+  } catch (e) {
+    console.error("Error creating user:", e);
+    return new Response(JSON.stringify({ error: "Error interno al crear la cuenta" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
   // Send welcome email (non-blocking)
   if (resendApiKey) {

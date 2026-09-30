@@ -1,15 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
-const { results: categories } = await db.prepare(`
-  SELECT c.*,
-    (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'published') as product_count
-  FROM categories c WHERE c.is_active = 1 ORDER BY c.level, c.name
-`).all();
+const DB = Astro.locals.runtime.env.DB;
+let categories = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT c.*,
+      (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'published') as product_count
+    FROM categories c WHERE c.is_active = 1 ORDER BY c.level, c.name
+  `).all();
+  categories = results;
+} catch (e) {
+  console.error('Error fetching categories:', e);
+  categories = [];
+}
 
-const parents = categories.filter((c: any) => c.level === 0);
-const subs = categories.filter((c: any) => c.level === 1);
+const parents = (categories || []).filter((c: any) => c.level === 0);
+const subs = (categories || []).filter((c: any) => c.level === 1);
 ---
 
 <BaseLayout title="Categorías | Admin - Lanús Computación">

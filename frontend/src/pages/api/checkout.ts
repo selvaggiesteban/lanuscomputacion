@@ -6,7 +6,7 @@ import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
 const MP_API = "https://api.mercadopago.com";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const mpToken = locals.runtime.env.MP_ACCESS_TOKEN as string;
 
   if (!mpToken) {
@@ -31,20 +31,37 @@ export const POST: APIRoute = async ({ locals, request }) => {
   try {
     const ids = body.items.map(i => i.product_id);
     const placeholders = ids.map(() => "?").join(",");
-    const { results: products } = await db.prepare(
-      `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
-    ).bind(...ids).all<{ id: string; title: string; price: number; category_id: string; category_name: string; available_qty: number; thumbnail: string; slug: string }>();
 
-    const productMap = new Map(products.map(p => [String(p.id), p]));
+    let products = [];
+    try {
+      const { results } = await DB.prepare(
+        `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
+      ).bind(...ids).all<{ id: string; title: string; price: number; category_id: string; category_name: string; available_qty: number; thumbnail: string; slug: string }>();
+      products = results;
+    } catch (e) {
+      console.error("Error fetching products:", e);
+    }
 
-    const promotions = await getActivePromotions(db);
-    const config = await getStoreConfig(db);
+    const productMap = new Map((products || []).map(p => [String(p.id), p]));
+
+    const promotions = await getActivePromotions(DB);
+    const config = await getStoreConfig(DB);
 
     // Server-side wholesale gate: only approved B2B accounts (session cookie)
     // are charged the wholesale price. Displayed prices are informational only.
-    const sessionUser = await getUserFromRequest(request, db, getJwtSecret((locals.runtime as any).env ?? {}));
-    const b2bApproved = isApprovedB2bUser(sessionUser as any);
-    const b2bRules = b2bApproved ? await getActiveB2bRules(db) : [];
+    let sessionUser;
+    let b2bApproved = false;
+    let b2bRules = [];
+    try {
+      sessionUser = await getUserFromRequest(request, DB, getJwtSecret((locals.runtime as any).env ?? {}));
+      b2bApproved = isApprovedB2bUser(sessionUser as any);
+      if (b2bApproved) {
+        b2bRules = await getActiveB2bRules(DB);
+      }
+    } catch (e) {
+      console.error("B2B auth/rules error:", e);
+      // Fallback to non-B2B if auth fails to prevent 500
+    }
 
     const mpItems: any[] = [];
     let total = 0;
@@ -112,12 +129,19 @@ export const POST: APIRoute = async ({ locals, request }) => {
     const orderId = crypto.randomUUID();
 
     const preference: any = {
-      items: mpItems,
+      items: mpItems.map(item => ({
+        id: String(item.id || "unknown"),
+        title: String(item.title || "Producto sin título"),
+        quantity: Number(item.quantity) || 1,
+        unit_price: Number(item.unit_price) || 0,
+        currency_id: String(item.currency_id || "ARS"),
+        picture_url: item.picture_url ? String(item.picture_url) : undefined,
+      })),
       payer: {
-        name: body.customer.name,
-        email: body.customer.email,
-        phone: body.customer.phone ? { area_code: "", number: body.customer.phone } : undefined,
-        address: body.customer.address ? { street_name: body.customer.address, street_number: "" } : undefined,
+        name: String(body.customer.name || "Cliente"),
+        email: String(body.customer.email || "email@example.com"),
+        phone: body.customer.phone ? { area_code: "", number: String(body.customer.phone) } : undefined,
+        address: body.customer.address ? { street_name: String(body.customer.address), street_number: "" } : undefined,
       },
       back_urls: {
         success: `${origin}/checkout/success?order_id=${orderId}`,
@@ -147,7 +171,10 @@ export const POST: APIRoute = async ({ locals, request }) => {
     if (!mpRes.ok) {
       const err = await mpRes.text();
       console.error("MP API error:", err);
-      return new Response(JSON.stringify({ error: "Error al crear preferencia MP", detail: err }), { status: 502, headers: { "Content-Type": "application/json" } });
+      return new Response(JSON.stringify({
+        error: "Hubo un problema al procesar el pago con Mercado Pago.",
+        detail: "Por favor, intenta nuevamente o contactanos si el problema persiste."
+      }), { status: 502, headers: { "Content-Type": "application/json" } });
     }
 
     const mpData = await mpRes.json();
@@ -156,14 +183,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
     const firstProduct = productMap.get(String(firstItem.product_id))!;
 
     const batchStatements = [
-      db.prepare(
+      DB.prepare(
         "INSERT INTO orders (id, product_id, unit_price, customer_name, customer_email, customer_phone, total_price, status, mp_preference_id, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, 'mercadopago')"
       ).bind(orderId, firstProduct.id, firstProduct.price, body.customer.name, body.customer.email, body.customer.phone || null, total, mpData.id),
     ];
 
     for (const item of orderItemsData) {
       batchStatements.push(
-        db.prepare(
+        DB.prepare(
           "INSERT INTO order_items (order_id, product_id, product_title, quantity, unit_price, subtotal, discount_amount, promo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         ).bind(orderId, item.product_id, item.product_title, item.quantity, item.unit_price, item.subtotal, item.discount_amount, item.promo_id)
       );
@@ -171,11 +198,11 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
     if (body.coupon_id) {
       batchStatements.push(
-        db.prepare("UPDATE coupons SET used_count = used_count + 1 WHERE id = ?").bind(body.coupon_id)
+        DB.prepare("UPDATE coupons SET used_count = used_count + 1 WHERE id = ?").bind(body.coupon_id)
       );
     }
 
-    await db.batch(batchStatements);
+    await DB.batch(batchStatements);
 
     return new Response(JSON.stringify({
       order_id: orderId,

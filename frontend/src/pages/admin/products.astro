@@ -11,21 +11,37 @@ let products: any[] = [];
 let total = 0;
 
 if (search) {
-  const { results } = await db.prepare(
-    "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
-  ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
-  products = results;
-  const countResult = await db.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
-  total = countResult?.count ?? 0;
+  try {
+    const { results } = await db.prepare(
+      "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
+    ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
+    products = results;
+    const countResult = await db.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
+    total = countResult?.count ?? 0;
+  } catch (e) {
+    console.error("Error fetching searched products:", e);
+    products = [];
+    total = 0;
+  }
 } else {
-  const { results } = await db.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
-  products = results;
-  const countResult = await db.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
-  total = countResult?.count ?? 0;
+  try {
+    const { results } = await db.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
+    products = results;
+    const countResult = await db.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
+    total = countResult?.count ?? 0;
+  } catch (e) {
+    console.error("Error fetching all products:", e);
+    products = [];
+    total = 0;
+  }
 }
 
+
 const totalPages = Math.ceil(total / limit);
-const categories = (await db.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all()).results;
+const categories = (await db.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all().catch(e => {
+  console.error("Error fetching categories:", e);
+  return { results: [] };
+})).results;
 ---
 
 <BaseLayout title="Productos | Admin - Lanús Computación">

@@ -11,16 +11,28 @@ let orders: any[] = [];
 let total = 0;
 
 if (status) {
-  const { results } = await db.prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(status, limit, offset).all();
-  orders = results;
-  const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders WHERE status = ?").bind(status).first<{ count: number }>();
-  total = countResult?.count ?? 0;
-} else {
-  const { results } = await db.prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
-  orders = results;
-  const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>();
-  total = countResult?.count ?? 0;
-}
+    try {
+      const { results } = await db.prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(status, limit, offset).all();
+      orders = results;
+      const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders WHERE status = ?").bind(status).first<{ count: number }>();
+      total = countResult?.count ?? 0;
+    } catch (e) {
+      console.error("Error fetching filtered orders:", e);
+      orders = [];
+      total = 0;
+    }
+  } else {
+    try {
+      const { results } = await db.prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
+      orders = results;
+      const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>();
+      total = countResult?.count ?? 0;
+    } catch (e) {
+      console.error("Error fetching all orders:", e);
+      orders = [];
+      total = 0;
+    }
+  }
 
 const totalPages = Math.ceil(total / limit);
 

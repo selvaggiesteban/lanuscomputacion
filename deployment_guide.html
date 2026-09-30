@@ -1,0 +1,304 @@
+<title>Master Deployment Guide</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --fg: #0f172a;
+    --fg-muted: #64748b;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --border: #e2e8f0;
+    --success: #16a34a;
+
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --fg: #f1f5f9;
+      --fg-muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-soft: #1e3a8a;
+      --border: #334155;
+      --success: #4ade80;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --fg: #f1f5f9;
+    --fg-muted: #94a3b8;
+    --accent: #60a5fa;
+    --accent-soft: #1e3a8a;
+    --border: #334155;
+    --success: #4ade80;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--fg-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .step-container {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+
+  .step-number {
+    background: var(--accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+  }
+
+  .step-content h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .code-block {
+    background: var(--bg);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  th, td {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .verification-suite {
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .verification-suite h2 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--accent);
+  }
+
+  .test-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .test-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .test-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+</style>
+
+<div class="container">
+  <header>
+    <h1>Master Deployment Guide</h1>
+    <p class="lead">Step-by-step instructions for deploying the Hardened Architecture to production.</p>
+  </header>
+
+  <section>
+    <div class="step-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>KV Namespace Setup</h3>
+          <p>To enable the caching layer and prevent D1 quota exhaustion, create the following KV namespace in the Cloudflare Dashboard:</p>
+          <div class="code-block">
+            # Create via Wrangler CLI
+            wrangler kv:namespace create PRODUCT_CACHE
+          </div>
+          <p>Update your <code>frontend/wrangler.jsonc</code> to bind the namespace:</p>
+          <div class="code-block">
+            "kv_namespaces": [
+              {
+                "binding": "PRODUCT_CACHE",
+                "id": "YOUR_GENERATED_KV_ID"
+              }
+            ]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Configure Environment Variables</h3>
+          <p>Deploy the following secrets and variables to both the <strong>Frontend</strong> and <strong>Sync Worker</strong> environments.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Purpose</th>
+                <th>Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>MP_API_KEY</code></td>
+                <td>Marketplace API Authentication</td>
+                <td>Yes (Secret)</td>
+              </tr>
+              <tr>
+                <td><code>D1_DATABASE_ID</code></td>
+                <td>Primary Database Binding</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td><code>SYNC_BATCH_SIZE</code></td>
+                <td>KV/D1 Batching Threshold (Recommended: 50)</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td><code>CIRCUIT_BREAKER_THRESHOLD</code></td>
+                <td>Max API failures before trip (Recommended: 5)</td>
+                <td>Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Deployment Sequence</h3>
+          <p>Run the following commands in order to ensure database migrations are applied before the application boots.</p>
+          <div class="code-block">
+            # 1. Apply Database Migrations
+            wrangler d1 migrations apply lanus-db --remote
+
+            # 2. Deploy Sync Worker
+            cd workers/sync-worker && wrangler deploy
+
+            # 3. Deploy Frontend Application
+            cd frontend && npm run build && wrangler deploy
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="verification-suite">
+    <h2>✓ Post-Deployment Verification</h2>
+    <p>Perform these tests to certify the stability of the environment.</p>
+    <div class="test-list">
+      <div class="test-item">
+        <div class="test-checkbox"></div>
+        <span><strong>Critical Path:</strong> Navigate Home &rarr; Product &rarr; Checkout. Ensure zero 500 errors.</span>
+      </div>
+      <div class="test-item">
+        <div class="test-checkbox"></div>
+        <span><strong>Edge Case:</strong> Access a non-existent product URL. Confirm graceful 404 instead of server crash.</span>
+      </div>
+      <div class="test-item">
+        <div class="test-checkbox"></div>
+        <span><strong>Admin Stability:</strong> Open <code>/admin/products</code>. Confirm pagination loads quickly.</span>
+      </div>
+      <div class="test-item">
+        <div class="test-checkbox"></div>
+        <span><strong>B2B Rules:</strong> Verify Admin <code>/admin/rules</code> loads without timeout.</span>
+      </div>
+      <div class="test-item">
+        <div class="test-checkbox"></div>
+        <span><strong>Sync Health:</strong> Trigger a manual Sync Worker run. Check logs for "Batching" events.</span>
+      </div>
+    </div>
+  </section>
+</div>

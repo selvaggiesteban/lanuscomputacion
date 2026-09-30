@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
 import { getActivePromotions, computePromoDiscount } from '../lib/d1';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 // Get active promotions
-const promotions = await getActivePromotions(db);
+const promotions = await getActivePromotions(DB);
 
 // Only scan products that can match an active promotion (D1 quota protection).
 // Without active promos the products query is skipped entirely (0 rows read).
@@ -14,8 +14,10 @@ const promoWindow = `
   pr.is_active = 1
   AND (pr.start_date IS NULL OR pr.start_date <= datetime('now'))
   AND (pr.end_date IS NULL OR pr.end_date >= datetime('now'))`;
-const { results: allProducts } = promotions.length > 0
-  ? await db.prepare(`
+let allProducts: any[] = [];
+if (promotions.length > 0) {
+  try {
+    const { results } = await DB.prepare(`
       SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping
       FROM products
       WHERE status = 'published' AND available_qty > 0 AND price > 0
@@ -26,8 +28,13 @@ const { results: allProducts } = promotions.length > 0
         )
       ORDER BY created_at DESC
       LIMIT 500
-    `).all()
-  : { results: [] as any[] };
+    `).all();
+    allProducts = results || [];
+  } catch (e) {
+    console.error("D1 Error in ofertas.astro:", e);
+    allProducts = [];
+  }
+}
 
 // Apply promotions to products
 const offerProducts: any[] = [];

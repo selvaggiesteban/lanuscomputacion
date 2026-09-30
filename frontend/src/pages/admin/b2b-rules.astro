@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
-const { results: rules } = await db.prepare(
-  "SELECT * FROM b2b_rules ORDER BY category_name"
-).all();
+let rules = [];
+try {
+  const { results } = await DB.prepare(
+    "SELECT * FROM b2b_rules ORDER BY category_name"
+  ).all();
+  rules = results;
+} catch (e) {
+  console.error('Error fetching B2B rules:', e);
+  rules = [];
+}
 ---
 
 <BaseLayout title="Reglas B2B | Admin - Lanús Computación">
@@ -31,7 +38,7 @@ const { results: rules } = await db.prepare(
             </tr>
           </thead>
           <tbody class="divide-y">
-            {rules.length > 0 ? rules.map((r: any) => (
+            { (rules || []).length > 0 ? (rules || []).map((r: any) => (
               <tr class="hover:bg-gray-50">
                 <td class="p-3 font-medium text-ml-text">{r.category_name}</td>
                 <td class="p-3 text-right font-medium text-ml-text">{(r.discount_pct * 100).toFixed(0)}%</td>

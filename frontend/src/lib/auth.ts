@@ -115,7 +115,7 @@ export async function verifyToken(
 // Get user from request (checks cookie)
 export async function getUserFromRequest(
   request: Request,
-  db: D1Database,
+  DB: D1Database,
   jwtSecret: string
 ): Promise<User | null> {
   const cookie = request.headers.get("Cookie") || "";
@@ -125,11 +125,16 @@ export async function getUserFromRequest(
   const payload = await verifyToken(match[1], jwtSecret);
   if (!payload) return null;
 
-  const user = await db.prepare(
-    "SELECT * FROM customers WHERE id = ?"
-  ).bind(payload.userId).first<User>();
+  try {
+    const user = await DB.prepare(
+      "SELECT * FROM customers WHERE id = ?"
+    ).bind(payload.userId).first<User>();
 
-  return user ?? null;
+    return user ?? null;
+  } catch (e) {
+    console.error("D1 Error in auth.ts:", e);
+    return null;
+  }
 }
 
 // Create session cookie
@@ -222,6 +227,11 @@ export async function verifyResetToken(
 export function getJwtSecret(env: Record<string, any>): string {
   const secret = env.JWT_SECRET || env.PUBLIC_JWT_SECRET;
   if (secret) return secret;
+
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('[auth] CRITICAL: JWT_SECRET is not configured in production. Authentication is disabled for security.');
+  }
+
   // Dev fallback — allows login/register to work locally without .dev.vars
   console.warn('[auth] JWT_SECRET not configured. Using dev fallback. Set JWT_SECRET in production!');
   return 'dev-fallback-secret-do-not-use-in-production-CHANGE-ME';

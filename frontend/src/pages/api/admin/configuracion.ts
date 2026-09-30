@@ -2,21 +2,28 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../../lib/auth";
 
 async function requireAdmin(locals: any, request: Request) {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
   if (!user || !user.is_admin) return null;
-  return { db, user };
+  return { DB, user };
 }
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
-  const { results: configRows } = await db.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
+  let configRows = [];
+  try {
+    const { results } = await DB.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
+    configRows = results;
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/configuracion.ts:", e);
+  }
+
   const config: Record<string, string> = {};
-  for (const row of configRows) config[row.key] = row.value;
+  for (const row of (configRows || [])) config[row.key] = row.value;
 
   // Defaults
   if (!config.global_markup_pct) config.global_markup_pct = "30";
@@ -33,7 +40,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
 export const PUT: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
   let body: Record<string, string>;
   try { body = await request.json(); } catch {
@@ -44,9 +51,13 @@ export const PUT: APIRoute = async ({ locals, request }) => {
 
   for (const [key, value] of Object.entries(body)) {
     if (allowedKeys.includes(key)) {
-      await db.prepare(
-        "INSERT OR REPLACE INTO app_config (key, value, updated_at) VALUES (?, ?, datetime('now'))"
-      ).bind(key, String(value)).run();
+      try {
+        await DB.prepare(
+          "INSERT OR REPLACE INTO app_config (key, value, updated_at) VALUES (?, ?, datetime('now'))"
+        ).bind(key, String(value)).run();
+      } catch (e) {
+        console.error("D1 Error in frontend/src/pages/api/admin/configuracion.ts:", e);
+      }
     }
   }
 

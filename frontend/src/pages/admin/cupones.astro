@@ -1,15 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
-const { results: coupons } = await db.prepare(
-  "SELECT * FROM coupons ORDER BY created_at DESC"
-).all();
+let coupons = [];
+try {
+  const { results } = await DB.prepare(
+    "SELECT * FROM coupons ORDER BY created_at DESC"
+  ).all();
+  coupons = results || [];
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/cupones.astro:", e);
+  coupons = [];
+}
 
-const { results: categories } = await db.prepare(
-  "SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name"
-).all<{ id: string; name: string }>();
+let categories = [];
+try {
+  const { results } = await DB.prepare(
+    "SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name"
+  ).all<{ id: string; name: string }>();
+  categories = results || [];
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/cupones.astro:", e);
+  categories = [];
+}
 ---
 
 <BaseLayout title="Cupones | Admin - Lanús Computación">
@@ -24,15 +38,15 @@ const { results: categories } = await db.prepare(
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <div class="bg-white rounded shadow-card p-4">
-        <p class="text-2xl font-bold text-purple-600">{coupons.filter((c: any) => c.is_active).length}</p>
+        <p class="text-2xl font-bold text-purple-600">{(coupons || []).filter((c: any) => c.is_active).length}</p>
         <p class="text-xs text-ml-text-muted">Cupones Activos</p>
       </div>
       <div class="bg-white rounded shadow-card p-4">
-        <p class="text-2xl font-bold text-ml-text">{coupons.length}</p>
+        <p class="text-2xl font-bold text-ml-text">{(coupons || []).length}</p>
         <p class="text-xs text-ml-text-muted">Total Cupones</p>
       </div>
       <div class="bg-white rounded shadow-card p-4">
-        <p class="text-2xl font-bold text-green-600">{coupons.reduce((sum: number, c: any) => sum + (c.used_count || 0), 0)}</p>
+        <p class="text-2xl font-bold text-green-600">{(coupons || []).reduce((sum: number, c: any) => sum + (c.used_count || 0), 0)}</p>
         <p class="text-xs text-ml-text-muted">Usos Totales</p>
       </div>
     </div>
@@ -53,7 +67,7 @@ const { results: categories } = await db.prepare(
             </tr>
           </thead>
           <tbody class="divide-y">
-            {coupons.length > 0 ? coupons.map((c: any) => {
+            {(coupons || []).length > 0 ? (coupons || []).map((c: any) => {
               const isExpired = c.end_date && new Date(c.end_date) < new Date();
               const isNotStarted = c.start_date && new Date(c.start_date) > new Date();
               const statusLabel = !c.is_active ? 'Inactivo' : isExpired ? 'Vencido' : isNotStarted ? 'Programado' : 'Activo';
@@ -147,7 +161,7 @@ const { results: categories } = await db.prepare(
           <label class="block text-xs text-ml-text-muted mb-1">ID del objetivo</label>
           <select name="target_id" id="form-target-id" class="ml-input w-full">
             <option value="">Seleccionar categoría...</option>
-            {categories.map((c: any) => <option value={c.id}>{c.name}</option>)}
+                          {(categories || []).map((c: any) => <option value={c.id}>{c.name}</option>)}
           </select>
           <p class="text-xs text-ml-text-muted mt-1">Para producto específico, ingresá el ID del producto</p>
         </div>

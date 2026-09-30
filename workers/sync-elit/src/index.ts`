@@ -130,7 +130,7 @@ async function recalculateAllPricesForDollarChange(
   }
 
   if (statements.length > 0) {
-    // D1 supports up to 100 statements per batch
+    // Process in batches of 100 to avoid D1 statement limits
     for (let i = 0; i < statements.length; i += 100) {
       await db.batch(statements.slice(i, i + 100));
     }
@@ -177,51 +177,53 @@ async function runSync(env: Env) {
   const rawProducts = await client.getAllProducts();
   console.log(`[sync-elit] Fetched ${rawProducts.length} raw products`);
 
-  let processed = 0;
+  let inserted = 0;
+  let updated = 0;
+  let priceChanged = 0;
   const syncedIds: string[] = [];
-  const statements: D1.Statement[] = [];
 
-  for (const raw of rawProducts) {
-    try {
-      const product = normalizeElitProduct(raw, dollarRate.rate, markupPct);
-      if (product.available_qty <= 0) continue;
+  // Use batching for product upserts to avoid quota exhaustion
+  const productBatchSize = 50;
+  for (let i = 0; i < rawProducts.length; i += productBatchSize) {
+    const batchSlice = rawProducts.slice(i, i + productBatchSize);
+    const statements: D1.Statement[] = [];
 
-      syncedIds.push(product.external_id);
+    for (const raw of batchSlice) {
+      try {
+        const product = normalizeElitProduct(raw, dollarRate.rate, markupPct);
+        if (product.available_qty <= 0) continue;
 
-      // Optimize: Use a single UPSERT statement instead of SELECT -> UPDATE/INSERT
-      statements.push(
-        env.lanus_catalog.prepare(
-          `INSERT INTO products (id, external_id, title, slug, description, category_id, category_name, subcategory_name, status, price, cost_price, currency, dollar_rate, brand, ean, available_qty, permalink, thumbnail, provider, provider_store, free_shipping, sku)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-           ON CONFLICT(id) DO UPDATE SET
-           title=excluded.title, slug=excluded.slug, price=excluded.price, available_qty=excluded.available_qty, cost_price=excluded.cost_price, dollar_rate=excluded.dollar_rate, status=excluded.status`
-        ).bind(
-          product.id, product.external_id, product.title, product.slug, product.description,
-          product.category_id, product.category_name, product.subcategory_name, product.status,
-          product.price, product.cost_price, product.currency, product.dollar_rate, product.brand,
-          product.ean, product.available_qty, product.permalink, product.thumbnail, product.provider,
-          product.provider_store, product.free_shipping, product.sku
-        )
-      );
+        syncedIds.push(product.external_id);
 
-      // Batch execute every 100 statements
-      if (statements.length >= 100) {
-        await env.lanus_catalog.batch(statements);
-        processed += statements.length;
-        statements.length = 0; // Clear array
+        // D1 upsert implementation normally happens in d1.upsertProduct.
+        // To truly batch, we implement a simplified upsert statement here:
+        statements.push(
+          env.lanus_catalog.prepare(
+            `INSERT INTO products (id, external_id, title, slug, description, category_id, category_name, subcategory_name, status, price, cost_price, currency, dollar_rate, brand, ean, available_qty, permalink, thumbnail, provider, provider_store, free_shipping, sku)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             ON CONFLICT(id) DO UPDATE SET
+             title=excluded.title, slug=excluded.slug, price=excluded.price, available_qty=excluded.available_qty, cost_price=excluded.cost_price, dollar_rate=excluded.dollar_rate, status=excluded.status`
+          ).bind(
+            product.id, product.external_id, product.title, product.slug, product.description,
+            product.category_id, product.category_name, product.subcategory_name, product.status,
+            product.price, product.cost_price, product.currency, product.dollar_rate, product.brand,
+            product.ean, product.available_qty, product.permalink, product.thumbnail, product.provider,
+            product.provider_store, product.free_shipping, product.sku
+          )
+        );
+      } catch (err) {
+        console.error(`[sync-elit] Error normalizing product ${raw.id}:`, err);
       }
-    } catch (err) {
-      console.error(`[sync-elit] Error normalizing product ${raw.id}:`, err);
     }
-  }
 
-  // Final batch for remaining statements
-  if (statements.length > 0) {
-    await env.lanus_catalog.batch(statements);
-    processed += statements.length;
+    if (statements.length > 0) {
+      await env.lanus_catalog.batch(statements);
+      // For simplicity in this sync loop, we count as updated/inserted based on batch size
+      updated += statements.length;
+    }
   }
 
   const archived = await d1.deleteOutOfStockProducts(syncedIds);
   const aiCalls = getAiCallCount();
-  console.log(`[sync-elit] Done: ${processed} products synced, ${archived} archived${aiCalls > 0 ? `, ${aiCalls} AI calls` : ""}`);
+  console.log(`[sync-elit] Done: Sync complete. ${updated} processed, ${archived} archived${aiCalls > 0 ? `, ${aiCalls} AI calls` : ""}`);
 }

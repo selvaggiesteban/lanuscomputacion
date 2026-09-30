@@ -1,13 +1,34 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 // Get B2B customers grouped by status
 const [pending, approved, rejected] = await Promise.all([
-  db.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'pending' ORDER BY created_at DESC").all(),
-  db.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'approved' ORDER BY created_at DESC").all(),
-  db.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'rejected' ORDER BY created_at DESC").all(),
+  (async () => {
+    try {
+      return await DB.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'pending' ORDER BY created_at DESC").all();
+    } catch (e) {
+      console.error("D1 Error in frontend/src/pages/admin/b2b.astro:", e);
+      return { results: [] };
+    }
+  })(),
+  (async () => {
+    try {
+      return await DB.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'approved' ORDER BY created_at DESC").all();
+    } catch (e) {
+      console.error("D1 Error in frontend/src/pages/admin/b2b.astro:", e);
+      return { results: [] };
+    }
+  })(),
+  (async () => {
+    try {
+      return await DB.prepare("SELECT id, email, name, phone, b2b_status, created_at FROM customers WHERE is_b2b = 1 AND b2b_status = 'rejected' ORDER BY created_at DESC").all();
+    } catch (e) {
+      console.error("D1 Error in frontend/src/pages/admin/b2b.astro:", e);
+      return { results: [] };
+    }
+  })(),
 ]);
 ---
 
@@ -19,9 +40,9 @@ const [pending, approved, rejected] = await Promise.all([
         <h1 class="text-xl font-semibold text-ml-text">Gestión de Cuentas B2B</h1>
       </div>
       <div class="flex gap-2 text-sm">
-          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full">{pending.results.length} pendientes</span>
-          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">{approved.results.length} aprobadas</span>
-          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full">{rejected.results.length} rechazadas</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full">{pending?.results?.length || 0} pendientes</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">{approved?.results?.length || 0} aprobadas</span>
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full">{rejected?.results?.length || 0} rechazadas</span>
         </div>
       </div>
 
@@ -31,20 +52,20 @@ const [pending, approved, rejected] = await Promise.all([
           <h2 class="font-medium text-ml-text">Pendientes de Aprobación</h2>
         </div>
         <div class="p-4">
-          {pending.results.length > 0 ? (
+          {pending?.results?.length > 0 ? (
             <div class="space-y-3" id="b2b-pending">
-              {(pending.results as any[]).map((c) => (
-                <div class="flex items-center justify-between p-4 border rounded-lg" data-id={c.id}>
+              {(pending?.results || []).map((c) => (
+                <div class="flex items-center justify-between p-4 border rounded-lg" data-id={c?.id}>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-ml-text">{c.name}</p>
-                    <p class="text-xs text-ml-text-muted">{c.email} · {c.phone}</p>
-                    <p class="text-xs text-ml-text-muted">Solicitó: {new Date(c.created_at).toLocaleDateString('es-AR')}</p>
+                    <p class="text-sm font-medium text-ml-text">{c?.name}</p>
+                    <p class="text-xs text-ml-text-muted">{c?.email} · {c?.phone}</p>
+                    <p class="text-xs text-ml-text-muted">Solicitó: {new Date(c?.created_at).toLocaleDateString('es-AR')}</p>
                   </div>
                   <div class="flex gap-2 ml-4">
-                    <button class="b2b-approve px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700" data-id={c.id}>
+                    <button class="b2b-approve px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700" data-id={c?.id}>
                       Aprobar
                     </button>
-                    <button class="b2b-reject px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700" data-id={c.id}>
+                    <button class="b2b-reject px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700" data-id={c?.id}>
                       Rechazar
                     </button>
                   </div>
@@ -63,13 +84,13 @@ const [pending, approved, rejected] = await Promise.all([
           <h2 class="font-medium text-ml-text">Cuentas Aprobadas</h2>
         </div>
         <div class="p-4">
-          {approved.results.length > 0 ? (
+          {approved?.results?.length > 0 ? (
             <div class="space-y-2">
-              {(approved.results as any[]).map((c) => (
+              {(approved?.results || []).map((c) => (
                 <div class="flex items-center justify-between p-3 border rounded-lg">
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-ml-text">{c.name}</p>
-                    <p class="text-xs text-ml-text-muted">{c.email} · {c.phone}</p>
+                    <p class="text-sm font-medium text-ml-text">{c?.name}</p>
+                    <p class="text-xs text-ml-text-muted">{c?.email} · {c?.phone}</p>
                   </div>
                   <span class="text-xs text-green-600 font-medium">Aprobado</span>
                 </div>
@@ -87,13 +108,13 @@ const [pending, approved, rejected] = await Promise.all([
           <h2 class="font-medium text-ml-text">Cuentas Rechazadas</h2>
         </div>
         <div class="p-4">
-          {rejected.results.length > 0 ? (
+          {rejected?.results?.length > 0 ? (
             <div class="space-y-2">
-              {(rejected.results as any[]).map((c) => (
+              {(rejected?.results || []).map((c) => (
                 <div class="flex items-center justify-between p-3 border rounded-lg">
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-ml-text">{c.name}</p>
-                    <p class="text-xs text-ml-text-muted">{c.email} · {c.phone}</p>
+                    <p class="text-sm font-medium text-ml-text">{c?.name}</p>
+                    <p class="text-xs text-ml-text-muted">{c?.email} · {c?.phone}</p>
                   </div>
                   <span class="text-xs text-red-600 font-medium">Rechazado</span>
                 </div>

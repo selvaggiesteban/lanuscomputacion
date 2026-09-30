@@ -2,10 +2,10 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../../lib/auth";
 
 export const GET: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
 
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
   if (!user || user.is_admin !== 1) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 401, headers: { "Content-Type": "application/json" } });
   }
@@ -22,19 +22,25 @@ export const GET: APIRoute = async ({ locals, request }) => {
 
   sql += " ORDER BY created_at DESC";
 
-  const { results } = await db.prepare(sql).bind(...binds).all();
+  let results = [];
+  try {
+    const { results: dbResults } = await DB.prepare(sql).bind(...binds).all();
+    results = dbResults;
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/b2b.ts:", e);
+  }
 
-  return new Response(JSON.stringify({ customers: results }), {
+  return new Response(JSON.stringify({ customers: (results || []) }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
 };
 
 export const PUT: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
 
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
   if (!user || user.is_admin !== 1) {
     return new Response(JSON.stringify({ error: "No autorizado" }), { status: 401, headers: { "Content-Type": "application/json" } });
   }
@@ -50,9 +56,13 @@ export const PUT: APIRoute = async ({ locals, request }) => {
     return new Response(JSON.stringify({ error: "Datos inválidos" }), { status: 400, headers: { "Content-Type": "application/json" } });
   }
 
-  await db.prepare(
-    "UPDATE customers SET b2b_status = ? WHERE id = ? AND is_b2b = 1"
-  ).bind(body.b2b_status, body.id).run();
+  try {
+    await DB.prepare(
+      "UPDATE customers SET b2b_status = ? WHERE id = ? AND is_b2b = 1"
+    ).bind(body.b2b_status, body.id).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/b2b.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
