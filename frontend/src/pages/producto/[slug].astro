@@ -108,10 +108,10 @@ const relatedWithPromos = relatedProducts.map(p => {
               </p>
             )}
             {b2bInfo && (
-              <div class="mt-3 inline-flex flex-col bg-b2b-purple text-white rounded-lg px-4 py-2">
+              <div class="mt-3 flex flex-col text-[#ff0000]">
                 <span class="text-[11px] font-semibold uppercase tracking-widest">Precio mayorista</span>
                 <span class="text-xl font-bold leading-tight">${b2bInfo.price.toLocaleString('es-AR')}</span>
-                <span class="text-[11px] opacity-90">
+                <span class="text-[11px]">
                   {b2bInfo.minQuantity > 1 ? `Desde ${b2bInfo.minQuantity} unidades · ` : ''}solo cuentas mayoristas aprobadas
                 </span>
               </div>
