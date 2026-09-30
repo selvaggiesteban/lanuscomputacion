@@ -26,14 +26,9 @@ jobs:
           WARN=3500000   # 70% of the 5M/day free daily read quota
           CRIT=4500000   # 90% — the site is hours away from a full outage
 
-          ACCOUNT_TAG=$(curl -sf -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            https://api.cloudflare.com/client/v4/accounts \
-            | jq -r '.result[0].id // empty')
-
-          if [ -z "$ACCOUNT_TAG" ]; then
-            echo "::error::Could not resolve Cloudflare account (token needs Account Read)"
-            exit 1
-          fi
+          # Fixed account tag: the /accounts lookup needs an extra token
+          # permission; GraphQL only requires Account Analytics: Read.
+          ACCOUNT_TAG="793d012a405417ee4382f1ef1869753e"
 
           TODAY=$(date -u +%F)
           YESTERDAY=$(date -u -d "yesterday" +%F)
@@ -51,6 +46,13 @@ jobs:
                 query: "query D1QuotaWatch($accountTag: string!, $start: Date!, $end: Date!, $databaseId: string!) { viewer { accounts(filter: { accountTag: $accountTag }) { d1AnalyticsAdaptiveGroups(limit: 10, filter: { date_geq: $start, date_leq: $end, databaseId: $databaseId }, orderBy: [date_DESC]) { sum { rowsRead rowsWritten } dimensions { date } } } } }",
                 variables: { accountTag: $accountTag, start: $start, end: $end, databaseId: $databaseId }
               }')")
+
+          # Fail loudly on GraphQL/permission errors instead of reading 0 and
+          # reporting a false "OK: within quota".
+          if ! echo "$RESPONSE" | jq -e '.data.viewer.accounts[0]' >/dev/null 2>&1; then
+            echo "::error::D1 analytics query failed — token needs 'Account Analytics: Read'. Response: ${RESPONSE}"
+            exit 1
+          fi
 
           TODAY_READS=$(echo "$RESPONSE" | jq -r --arg d "$TODAY" \
             '[.data.viewer.accounts[0].d1AnalyticsAdaptiveGroups[]? | select(.dimensions.date == $d) | .sum.rowsRead] | first // 0')
