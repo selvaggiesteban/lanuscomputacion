@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { getContacts } from '../../../../lib/d1';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getContacts } from '../../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
 const url = new URL(Astro.request.url);

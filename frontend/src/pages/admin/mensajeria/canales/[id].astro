@@ -15,7 +15,7 @@ if (!channel) {
 const config = JSON.parse(channel.config || '{}');
 ---
 
-<BaseLayout title={`Canal: ${channel.name} | Lanús Computación`>
+<BaseLayout title={`Canal: ${channel.name} | Lanús Computación`}>
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -56,7 +56,7 @@ const config = JSON.parse(channel.config || '{}');
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Configuración (JSON)</label>
           <textarea name="config" class="ml-input w-full font-mono text-sm" rows="8" placeholder='{"phone": "5491153323937", "default_message": "Hola..."}'>{JSON.stringify(config, null, 2)}</textarea>
-          <p class="text-xs text-ml-text-muted mt-1">Ejemplos: WhatsApp: {"phone": "5491153323937", "default_message": "..."}, Email: {"address": "info@...", "smtp_host": "...", "smtp_port": 587}</p>
+          <p class="text-xs text-ml-text-muted mt-1">Ejemplos: WhatsApp (telefono y mensaje predeterminado), Email (direccion, host y puerto SMTP).</p>
         </div>
 
         <div class="flex items-center justify-end gap-3 pt-4 border-t">

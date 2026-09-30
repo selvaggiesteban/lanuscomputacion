@@ -768,11 +768,6 @@ export async function getContactById(db: D1Database, id: number): Promise<Contac
   return result ?? null;
 }
 
-export async function getContactById(db: D1Database, id: number): Promise<Contact | null> {
-  const result = await db.prepare("SELECT * FROM contacts WHERE id = ?").bind(id).first<Contact>();
-  return result ?? null;
-}
-
 export async function upsertContact(db: D1Database, contact: {
   id?: number;
   name: string;
