@@ -1,4 +1,4 @@
-import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../lib/d1';
+import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
 
 export async function GET({ locals }) {
   const db = locals.runtime.env.DB;

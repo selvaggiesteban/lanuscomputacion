@@ -1,4 +1,4 @@
-import { getContacts, upsertContact, deleteContact } from '../../../lib/d1';
+import { getContacts, upsertContact, deleteContact } from '../../../../lib/d1';
 
 export async function GET({ locals }) {
   const db = locals.runtime.env.DB;
