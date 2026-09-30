@@ -6,6 +6,7 @@ import { needsMigration, migrateCategories } from "./migrate_categories";
 import { resetAiCallCounter, getAiCallCount } from "./ai_classifier";
 import { getDollarRate, saveDollarRateHistory, getPreviousDollarRate, dollarRateChange } from "./dollar_rate";
 import { recalculatePriceForDollarChange } from "./pricing";
+import { notifyOffersChanges } from "./offers-watch";
 
 export interface Env {
   lanus_catalog: D1Database;
@@ -14,6 +15,7 @@ export interface Env {
   ELIT_USER_ID: string;
   ELIT_TOKEN: string;
   ELIT_PAGE_LIMIT?: string;
+  RESEND_API_KEY?: string;
 }
 
 const DEFAULT_MARKUP = 30;
@@ -24,16 +26,27 @@ export default {
     console.log("[sync-elit] Starting scheduled sync...");
     await runSync(env);
     console.log("[sync-elit] Sync complete.");
+    await runOffersWatch(env);
   },
 
   async fetch(request: Request, env: Env, _ctx: ExecutionContext) {
     if (request.method === "GET" && new URL(request.url).pathname === "/__cron") {
       await runSync(env);
+      await runOffersWatch(env);
       return new Response("OK", { status: 200 });
     }
     return new Response("Not found", { status: 404 });
   },
 };
+
+// Email the operator when the /ofertas feed changed (never fails the sync).
+async function runOffersWatch(env: Env) {
+  try {
+    await notifyOffersChanges(env);
+  } catch (err) {
+    console.error("[offers-watch] Notification failed:", err);
+  }
+}
 
 async function getMarkupConfig(db: D1Database): Promise<number> {
   const row = await db.prepare(

@@ -20,3 +20,5 @@ ELIT_PAGE_LIMIT = "100"
 # ELIT_USER_ID and ELIT_TOKEN must be set as Cloudflare Secrets:
 # wrangler secret put ELIT_USER_ID
 # wrangler secret put ELIT_TOKEN
+# RESEND_API_KEY sends the hourly /ofertas change alerts (to selvaggi.esteban@gmail.com):
+# wrangler secret put RESEND_API_KEY
