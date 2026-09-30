@@ -77,7 +77,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
   }
 
-  const response = await next();
+  let response: Response;
+  try {
+    response = await next();
+  } catch (err: any) {
+    // TEMP DIAGNOSTIC: surface the render error instead of an empty 500
+    return new Response(
+      `RENDER_ERROR: ${err?.message || err}\n${err?.stack || ''}`,
+      { status: 500, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Render-Error': '1' } }
+    );
+  }
 
   // 2) MISS → store public 200 HTML at the edge (max-age for browsers,
   //    s-maxage for the edge cache; never cache Set-Cookie responses)
