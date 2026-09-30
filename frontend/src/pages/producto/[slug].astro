@@ -5,7 +5,8 @@ import Price from '../../components/ui/Price.astro';
 import Badge from '../../components/ui/Badge.astro';
 import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
-import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount } from '../../lib/d1';
+import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount, getActiveB2bRules } from '../../lib/d1';
+import { getB2bPrice } from '../../lib/b2b';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -19,6 +20,11 @@ if (!product) {
 const promotions = await getActivePromotions(db);
 const promoResult = computePromoDiscount(promotions, product.id, product.category_id, product.price);
 const promoPrice = promoResult?.promoPrice ?? product.price;
+
+// Public wholesale price (informational). The purchase gate is server-side
+// in /api/checkout: only approved B2B accounts pay this price.
+const b2bRules = await getActiveB2bRules(db);
+const b2bInfo = getB2bPrice(b2bRules, product.category_name, product.price, promoPrice);
 
 const relatedProducts = (await getProducts(db, {
   category: product.category_id,
@@ -101,6 +107,15 @@ const relatedWithPromos = relatedProducts.map(p => {
                 Cotización USD: ${product.dollar_rate.toFixed(2)}
               </p>
             )}
+            {b2bInfo && (
+              <div class="mt-3 inline-flex flex-col bg-b2b-purple text-white rounded-lg px-4 py-2">
+                <span class="text-[11px] font-semibold uppercase tracking-widest">Precio mayorista</span>
+                <span class="text-xl font-bold leading-tight">${b2bInfo.price.toLocaleString('es-AR')}</span>
+                <span class="text-[11px] opacity-90">
+                  {b2bInfo.minQuantity > 1 ? `Desde ${b2bInfo.minQuantity} unidades · ` : ''}solo cuentas mayoristas aprobadas
+                </span>
+              </div>
+            )}
           </div>
 
           <AddToCartButton
@@ -153,6 +168,7 @@ const relatedWithPromos = relatedProducts.map(p => {
         price: p.price,
         promoPrice: p.promoPrice,
         categoryId: p.category_id,
+        categoryName: p.category_name,
         image: p.thumbnail,
         slug: p.slug,
         freeShipping: false,

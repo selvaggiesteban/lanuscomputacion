@@ -1,6 +1,8 @@
 ---
 import ProductCard from './ProductCard.astro';
 import type { Product } from './ProductCard.astro';
+import { getActiveB2bRules } from '../../lib/d1';
+import { getB2bPrice } from '../../lib/b2b';
 
 export interface Props {
   products: Product[];
@@ -8,6 +10,34 @@ export interface Props {
 }
 
 const { products, columns = 4 } = Astro.props;
+
+// Public wholesale price: computed once per page from DB rules. The value is
+// identical for every visitor, so the edge cache stays valid. Purchases are
+// gated server-side in /api/checkout (approved B2B accounts only).
+let items = products;
+if (products.length > 0) {
+  try {
+    const db = (Astro.locals as any)?.runtime?.env?.DB;
+    if (db) {
+      const rules = await getActiveB2bRules(db);
+      if (rules.length > 0) {
+        items = products.map((p) => {
+          const info = getB2bPrice(
+            rules,
+            p.categoryName,
+            p.originalPrice ?? p.price,
+            p.price
+          );
+          return info
+            ? { ...p, b2bPrice: info.price, b2bMinQty: info.minQuantity }
+            : p;
+        });
+      }
+    }
+  } catch {
+    // Wholesale price is informational — render cards without it.
+  }
+}
 
 const gridCols = {
   2: 'grid-cols-2 md:grid-cols-2',
@@ -17,9 +47,9 @@ const gridCols = {
 };
 ---
 
-{products.length > 0 ? (
+{items.length > 0 ? (
   <div class={`grid ${gridCols[columns]} gap-4`}>
-    {products.map(product => (
+    {items.map(product => (
       <ProductCard product={product} />
     ))}
   </div>

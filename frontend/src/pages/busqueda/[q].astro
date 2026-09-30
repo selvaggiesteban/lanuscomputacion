@@ -13,14 +13,14 @@ const offset = (page - 1) * limit;
 // Single pass: rows + total via window count (halves D1 rows read per search)
 const term = `%${q}%`;
 const { results } = await db.prepare(`
-  SELECT id, title, price, thumbnail, slug, dollar_rate, COUNT(*) OVER() AS total_count
+  SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, COUNT(*) OVER() AS total_count
   FROM products
   WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
   ORDER BY available_qty DESC, created_at DESC
   LIMIT ? OFFSET ?
 `).bind(term, term, term, limit, offset).all<{
   id: string; title: string; price: number; thumbnail: string;
-  slug: string; dollar_rate: number; total_count: number;
+  slug: string; dollar_rate: number; category_name: string; total_count: number;
 }>();
 
 const products = results ?? [];
@@ -41,6 +41,7 @@ const totalPages = Math.ceil(total / limit);
       id: p.id,
       title: p.title,
       price: p.price,
+      categoryName: p.category_name,
       image: p.thumbnail,
       slug: p.slug,
       freeShipping: false,

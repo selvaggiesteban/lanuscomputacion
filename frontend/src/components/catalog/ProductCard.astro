@@ -19,7 +19,9 @@ export interface Product {
   b2bPrice?: number;
   promoPrice?: number;
   categoryId?: string;
+  categoryName?: string;
   dollarRate?: number;
+  b2bMinQty?: number;
 }
 
 export interface Props {
@@ -47,19 +49,26 @@ const { product } = Astro.props;
     </h3>
 
     <Price
-      price={product.b2bPrice ?? product.price}
+      price={product.price}
       originalPrice={product.originalPrice}
       discount={product.discount}
       installments={product.installments}
       size="md"
-      b2b={!!product.b2bPrice}
       dollarRate={product.dollarRate}
     />
+
+    {product.b2bPrice && (
+      <div class="mt-1 bg-b2b-purple text-white text-xs font-bold px-2 py-1.5 rounded flex items-center justify-between gap-2">
+        <span class="uppercase tracking-wide">
+          Mayorista{product.b2bMinQty && product.b2bMinQty > 1 ? ` · mín. ${product.b2bMinQty} u.` : ''}
+        </span>
+        <span>${product.b2bPrice.toLocaleString('es-AR')}</span>
+      </div>
+    )}
 
     <div class="flex items-center gap-2 mt-1">
       {product.freeShipping && <Badge variant="free_shipping" />}
       {product.isNew && <Badge variant="new" />}
-      {product.b2bPrice && <Badge variant="b2b" />}
     </div>
 
     {product.rating && (

@@ -10,6 +10,7 @@ export type User = {
   facebook_id: string | null;
   is_admin: number;
   is_b2b: number;
+  b2b_status: string | null;
   created_at: string;
 };
 

@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
-import { getActivePromotions, computePromoDiscount, incrementCouponUsage, getStoreConfig } from "../../lib/d1";
+import { getActivePromotions, computePromoDiscount, incrementCouponUsage, getStoreConfig, getActiveB2bRules } from "../../lib/d1";
+import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
+import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
 
 const MP_API = "https://api.mercadopago.com";
 
@@ -30,13 +32,19 @@ export const POST: APIRoute = async ({ locals, request }) => {
     const ids = body.items.map(i => i.product_id);
     const placeholders = ids.map(() => "?").join(",");
     const { results: products } = await db.prepare(
-      `SELECT id, title, price, category_id, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
-    ).bind(...ids).all<{ id: string; title: string; price: number; category_id: string; available_qty: number; thumbnail: string; slug: string }>();
+      `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
+    ).bind(...ids).all<{ id: string; title: string; price: number; category_id: string; category_name: string; available_qty: number; thumbnail: string; slug: string }>();
 
     const productMap = new Map(products.map(p => [String(p.id), p]));
 
     const promotions = await getActivePromotions(db);
     const config = await getStoreConfig(db);
+
+    // Server-side wholesale gate: only approved B2B accounts (session cookie)
+    // are charged the wholesale price. Displayed prices are informational only.
+    const sessionUser = await getUserFromRequest(request, db, getJwtSecret((locals.runtime as any).env ?? {}));
+    const b2bApproved = isApprovedB2bUser(sessionUser as any);
+    const b2bRules = b2bApproved ? await getActiveB2bRules(db) : [];
 
     const mpItems: any[] = [];
     let total = 0;
@@ -54,7 +62,8 @@ export const POST: APIRoute = async ({ locals, request }) => {
         return new Response(JSON.stringify({ error: `Stock insuficiente: ${product.title}` }), { status: 400, headers: { "Content-Type": "application/json" } });
       }
 
-      let unitPrice = item.promo_price ?? product.price;
+      // Prices come from the database only — the client never dictates what it pays.
+      let unitPrice = product.price;
       let discountAmount = 0;
       let promoId: string | null = null;
 
@@ -63,6 +72,15 @@ export const POST: APIRoute = async ({ locals, request }) => {
         discountAmount = (unitPrice - promoResult.promoPrice) * item.quantity;
         unitPrice = promoResult.promoPrice;
         promoId = promotions.find(p => p.name === promoResult.promoName)?.id ?? null;
+      }
+
+      // B2B: wholesale price for approved accounts that meet the minimum quantity
+      if (b2bApproved) {
+        const b2b = getB2bPrice(b2bRules, product.category_name, product.price);
+        if (b2b && item.quantity >= b2b.minQuantity && b2b.price < unitPrice) {
+          discountAmount += (unitPrice - b2b.price) * item.quantity;
+          unitPrice = b2b.price;
+        }
       }
 
       const subtotal = Math.round(unitPrice * item.quantity * 100) / 100;
@@ -112,14 +130,19 @@ export const POST: APIRoute = async ({ locals, request }) => {
       statement_descriptor: "LANUSCOMP",
     };
 
-    const mpRes = await fetch(`${MP_API}/checkout/preferences`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${mpToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(preference),
-    });
+    let mpRes: Response;
+    try {
+      mpRes = await fetch(`${MP_API}/checkout/preferences`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${mpToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(preference),
+      });
+    } catch {
+      return new Response(JSON.stringify({ error: "No se pudo conectar con MercadoPago. Intentá de nuevo en unos minutos." }), { status: 502, headers: { "Content-Type": "application/json" } });
+    }
 
     if (!mpRes.ok) {
       const err = await mpRes.text();
