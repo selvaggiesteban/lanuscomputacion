@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const status = Astro.url.searchParams.get('status') || '';
 const limit = 20;
@@ -12,9 +12,9 @@ let total = 0;
 
 if (status) {
     try {
-      const { results } = await db.prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(status, limit, offset).all();
+      const { results } = await DB.prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(status, limit, offset).all();
       orders = results;
-      const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders WHERE status = ?").bind(status).first<{ count: number }>();
+      const countResult = await DB.prepare("SELECT COUNT(*) as count FROM orders WHERE status = ?").bind(status).first<{ count: number }>();
       total = countResult?.count ?? 0;
     } catch (e) {
       console.error("Error fetching filtered orders:", e);
@@ -23,9 +23,9 @@ if (status) {
     }
   } else {
     try {
-      const { results } = await db.prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
+      const { results } = await DB.prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
       orders = results;
-      const countResult = await db.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>();
+      const countResult = await DB.prepare("SELECT COUNT(*) as count FROM orders").first<{ count: number }>();
       total = countResult?.count ?? 0;
     } catch (e) {
       console.error("Error fetching all orders:", e);
@@ -77,7 +77,7 @@ const statusColors: Record<string, string> = {
             </tr>
           </thead>
           <tbody class="divide-y">
-            {orders.map((o: any) => (
+            {(orders || []).map((o: any) => (
               <tr class="hover:bg-gray-50">
                 <td class="p-3 font-mono text-xs text-ml-text">#{o.id.slice(0, 8)}...</td>
                 <td class="p-3">

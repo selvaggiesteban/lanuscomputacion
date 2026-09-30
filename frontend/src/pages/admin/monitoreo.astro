@@ -1,88 +1,150 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 
 // Current dollar rate
-const currentDollar = await db.prepare(
-  "SELECT rate, source, fetched_at FROM dollar_rate_history ORDER BY fetched_at DESC LIMIT 1"
-).first<{ rate: number; source: string; fetched_at: string }>();
+let currentDollar = null;
+try {
+  currentDollar = await DB.prepare(
+    "SELECT rate, source, fetched_at FROM dollar_rate_history ORDER BY fetched_at DESC LIMIT 1"
+  ).first<{ rate: number; source: string; fetched_at: string }>();
+} catch (e) {
+  console.error('Error fetching current dollar rate:', e);
+}
 
 // Dollar history last 30 days
-const { results: dollarHistory } = await db.prepare(
-  "SELECT rate, fetched_at FROM dollar_rate_history WHERE fetched_at >= datetime('now', '-30 days') ORDER BY fetched_at ASC"
-).all<{ rate: number; fetched_at: string }>();
+let dollarHistory = [];
+try {
+  const { results } = await DB.prepare(
+    "SELECT rate, fetched_at FROM dollar_rate_history WHERE fetched_at >= datetime('now', '-30 days') ORDER BY fetched_at ASC"
+  ).all<{ rate: number; fetched_at: string }>();
+  dollarHistory = results;
+} catch (e) {
+  console.error('Error fetching dollar history:', e);
+  dollarHistory = [];
+}
 
 // Price changes last 30 days
-const priceChangeStats = await db.prepare(`
-  SELECT
-    COUNT(*) as total_changes,
-    COUNT(DISTINCT product_id) as products_affected,
-    SUM(CASE WHEN reason = 'dollar_change' THEN 1 ELSE 0 END) as dollar_driven,
-    SUM(CASE WHEN reason = 'sync' THEN 1 ELSE 0 END) as sync_driven,
-    SUM(CASE WHEN reason = 'manual' THEN 1 ELSE 0 END) as manual_changes
-  FROM price_history
-  WHERE changed_at >= datetime('now', '-30 days')
-`).first();
+let priceChangeStats = null;
+try {
+  priceChangeStats = await DB.prepare(`
+    SELECT
+      COUNT(*) as total_changes,
+      COUNT(DISTINCT product_id) as products_affected,
+      SUM(CASE WHEN reason = 'dollar_change' THEN 1 ELSE 0 END) as dollar_driven,
+      SUM(CASE WHEN reason = 'sync' THEN 1 ELSE 0 END) as sync_driven,
+      SUM(CASE WHEN reason = 'manual' THEN 1 ELSE 0 END) as manual_changes
+    FROM price_history
+    WHERE changed_at >= datetime('now', '-30 days')
+  `).first();
+} catch (e) {
+  console.error('Error fetching price change stats:', e);
+}
 
 // Margin stats
-const marginStats = await db.prepare(`
-  SELECT
-    AVG(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as avg_margin,
-    MIN(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as min_margin,
-    MAX(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as max_margin
-  FROM products WHERE status = 'published' AND cost_price > 0
-`).first();
+let marginStats = null;
+try {
+  marginStats = await DB.prepare(`
+    SELECT
+      AVG(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as avg_margin,
+      MIN(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as min_margin,
+      MAX(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as max_margin
+    FROM products WHERE status = 'published' AND cost_price > 0
+  `).first();
+} catch (e) {
+  console.error('Error fetching margin stats:', e);
+}
 
 // Inventory value
-const inventoryValue = await db.prepare(`
-  SELECT
-    SUM(price * available_qty) as total_value,
-    SUM(cost_price * available_qty) as total_cost,
-    COUNT(*) as total_products,
-    SUM(available_qty) as total_units
-  FROM products WHERE status = 'published' AND cost_price > 0
-`).first();
+let inventoryValue = null;
+try {
+  inventoryValue = await DB.prepare(`
+    SELECT
+      SUM(price * available_qty) as total_value,
+      SUM(cost_price * available_qty) as total_cost,
+      COUNT(*) as total_products,
+      SUM(available_qty) as total_units
+    FROM products WHERE status = 'published' AND cost_price > 0
+  `).first();
+} catch (e) {
+  console.error('Error fetching inventory value:', e);
+}
 
 // Active promotions
-const activePromos = await db.prepare(`
-  SELECT COUNT(*) as count FROM promotions
-  WHERE is_active = 1
-  AND (start_date IS NULL OR start_date <= datetime('now'))
-  AND (end_date IS NULL OR end_date >= datetime('now'))
-`).first<{ count: number }>();
+let activePromos = { count: 0 };
+try {
+  const result = await DB.prepare(`
+    SELECT COUNT(*) as count FROM promotions
+    WHERE is_active = 1
+    AND (start_date IS NULL OR start_date <= datetime('now'))
+    AND (end_date IS NULL OR end_date >= datetime('now'))
+  `).first<{ count: number }>();
+  activePromos = result || { count: 0 };
+} catch (e) {
+  console.error('Error fetching active promotions:', e);
+  activePromos = { count: 0 };
+}
 
 // Low stock
-const lowStockCount = await db.prepare(`
-  SELECT COUNT(*) as count FROM products
-  WHERE status = 'published' AND available_qty > 0 AND available_qty <= 5
-`).first<{ count: number }>();
+let lowStockCount = { count: 0 };
+try {
+  const result = await DB.prepare(`
+    SELECT COUNT(*) as count FROM products
+    WHERE status = 'published' AND available_qty > 0 AND available_qty <= 5
+  `).first<{ count: number }>();
+  lowStockCount = result || { count: 0 };
+} catch (e) {
+  console.error('Error fetching low stock count:', e);
+  lowStockCount = { count: 0 };
+}
 
 // Top margin products
-const { results: topMargin } = await db.prepare(`
-  SELECT title, brand, price, cost_price,
-    ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
-  FROM products
-  WHERE status = 'published' AND cost_price > 0
-  ORDER BY margin_pct DESC LIMIT 5
-`).all();
+let topMargin = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT title, brand, price, cost_price,
+      ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
+    FROM products
+    WHERE status = 'published' AND cost_price > 0
+    ORDER BY margin_pct DESC LIMIT 5
+  `).all();
+  topMargin = results;
+} catch (e) {
+  console.error('Error fetching top margin products:', e);
+  topMargin = [];
+}
 
 // Bottom margin products
-const { results: bottomMargin } = await db.prepare(`
-  SELECT title, brand, price, cost_price,
-    ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
-  FROM products
-  WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
-  ORDER BY margin_pct ASC LIMIT 5
-`).all();
+let bottomMargin = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT title, brand, price, cost_price,
+      ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
+    FROM products
+    WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
+    ORDER BY margin_pct ASC LIMIT 5
+  `).all();
+  bottomMargin = results;
+} catch (e) {
+  console.error('Error fetching bottom margin products:', e);
+  bottomMargin = [];
+}
 
 // Recent price changes
-const { results: recentChanges } = await db.prepare(`
-  SELECT ph.*, p.title, p.brand
-  FROM price_history ph
-  LEFT JOIN products p ON ph.product_id = p.id
-  ORDER BY ph.changed_at DESC LIMIT 10
-`).all();
+let recentChanges = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT ph.*, p.title, p.brand
+    FROM price_history ph
+    LEFT JOIN products p ON ph.product_id = p.id
+    ORDER BY ph.changed_at DESC LIMIT 10
+  `).all();
+  recentChanges = results;
+} catch (e) {
+  console.error('Error fetching recent price changes:', e);
+  recentChanges = [];
+}
 ---
 
 <BaseLayout title="Monitoreo | Admin - Lanús Computación">
@@ -190,7 +252,7 @@ const { results: recentChanges } = await db.prepare(`
           </div>
           <div class="text-sm">
             <p class="font-medium text-ml-text mb-2">Top 5 Mayor Margen</p>
-            {topMargin.map((p: any) => (
+            { (topMargin || []).map((p: any) => (
               <div class="flex justify-between py-1 border-b border-gray-100 last:border-0">
                 <span class="text-ml-text-secondary truncate max-w-[200px]">{p.title}</span>
                 <span class="font-medium text-green-600">{p.margin_pct}%</span>
@@ -207,7 +269,7 @@ const { results: recentChanges } = await db.prepare(`
         <h2 class="font-medium text-ml-text">Historial Cotización Dólar (30 días)</h2>
       </div>
       <div class="p-4">
-        {dollarHistory.length > 0 ? (
+        { (dollarHistory || []).length > 0 ? (
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead class="bg-gray-50">
@@ -217,7 +279,7 @@ const { results: recentChanges } = await db.prepare(`
                 </tr>
               </thead>
               <tbody class="divide-y">
-                {dollarHistory.slice(-10).map((d: any) => (
+                {(dollarHistory || []).slice(-10).map((d: any) => (
                   <tr>
                     <td class="p-2 text-ml-text-secondary">{new Date(d.fetched_at).toLocaleString('es-AR')}</td>
                     <td class="p-2 text-right font-medium text-ml-text">${d.rate.toFixed(2)}</td>
@@ -238,7 +300,7 @@ const { results: recentChanges } = await db.prepare(`
         <h2 class="font-medium text-ml-text">Últimos Cambios de Precio</h2>
       </div>
       <div class="p-4">
-        {recentChanges.length > 0 ? (
+        { (recentChanges || []).length > 0 ? (
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead class="bg-gray-50">
@@ -251,7 +313,7 @@ const { results: recentChanges } = await db.prepare(`
                 </tr>
               </thead>
               <tbody class="divide-y">
-                {recentChanges.map((c: any) => (
+                {(recentChanges || []).map((c: any) => (
                   <tr>
                     <td class="p-2">
                       <p class="text-ml-text truncate max-w-[250px]">{c.title || c.product_id}</p>

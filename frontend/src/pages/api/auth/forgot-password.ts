@@ -4,7 +4,7 @@ import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 import { sendEmail, resetPasswordEmail } from "../../../lib/email";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const resendApiKey = locals.runtime.env.RESEND_API_KEY as string | undefined;
 
@@ -34,9 +34,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  const user = await db.prepare(
-    "SELECT id, email, name, password_hash FROM customers WHERE email = ?"
-  ).bind(body.email).first<{ id: number; email: string; name: string; password_hash: string | null }>();
+  let user = null;
+  try {
+    user = await DB.prepare(
+      "SELECT id, email, name, password_hash FROM customers WHERE email = ?"
+    ).bind(body.email).first<{ id: number; email: string; name: string; password_hash: string | null }>();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/auth/forgot-password.ts:", e);
+  }
 
   // Don't reveal if user exists
   if (!user || !user.password_hash) {
@@ -47,9 +52,13 @@ export const POST: APIRoute = async ({ locals, request }) => {
   const token = await generateResetToken(user.email, jwtSecret);
 
   // Store token hash and expiry in DB
-  await db.prepare(
-    "UPDATE customers SET password_reset_token = ?, password_reset_expires = datetime('now', '+1 hour') WHERE id = ?"
-  ).bind(token, user.id).run();
+  try {
+    await DB.prepare(
+      "UPDATE customers SET password_reset_token = ?, password_reset_expires = datetime('now', '+1 hour') WHERE id = ?"
+    ).bind(token, user.id).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/auth/forgot-password.ts:", e);
+  }
 
   // Send reset email (non-blocking)
   if (resendApiKey) {

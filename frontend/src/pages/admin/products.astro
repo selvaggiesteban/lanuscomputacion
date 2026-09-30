@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const db = Astro.locals.runtime.env.DB;
+const DB = Astro.locals.runtime.env.DB;
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const search = Astro.url.searchParams.get('q') || '';
 const limit = 20;
@@ -12,25 +12,25 @@ let total = 0;
 
 if (search) {
   try {
-    const { results } = await db.prepare(
+    const { results } = await DB.prepare(
       "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
     ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
-    products = results;
-    const countResult = await db.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
+    products = results || [];
+    const countResult = await DB.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
     total = countResult?.count ?? 0;
   } catch (e) {
-    console.error("Error fetching searched products:", e);
+    console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
     products = [];
     total = 0;
   }
 } else {
   try {
-    const { results } = await db.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
-    products = results;
-    const countResult = await db.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
+    const { results } = await DB.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
+    products = results || [];
+    const countResult = await DB.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
     total = countResult?.count ?? 0;
   } catch (e) {
-    console.error("Error fetching all products:", e);
+    console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
     products = [];
     total = 0;
   }
@@ -38,10 +38,14 @@ if (search) {
 
 
 const totalPages = Math.ceil(total / limit);
-const categories = (await db.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all().catch(e => {
-  console.error("Error fetching categories:", e);
-  return { results: [] };
-})).results;
+let categories: any[] = [];
+try {
+  const { results } = await DB.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all();
+  categories = results || [];
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
+  categories = [];
+}
 ---
 
 <BaseLayout title="Productos | Admin - Lanús Computación">
@@ -76,7 +80,7 @@ const categories = (await db.prepare("SELECT id, name FROM categories WHERE is_a
             </tr>
           </thead>
           <tbody class="divide-y">
-            {products.map((p: any) => (
+            {(products || []).map((p: any) => (
               <tr class="hover:bg-gray-50" data-id={p.id}>
                 <td class="p-3">
                   <div class="flex items-center gap-3">

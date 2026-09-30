@@ -6,24 +6,29 @@ function generatePromoId(): string {
 }
 
 async function requireAdmin(locals: any, request: Request) {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const user = await getUserFromRequest(request, db, jwtSecret);
+  const user = await getUserFromRequest(request, DB, jwtSecret);
   if (!user || !user.is_admin) return null;
-  return { db, user };
+  return { DB, user };
 }
 
 export const GET: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
   const activeOnly = url.searchParams.get("active") === "true";
 
   if (id) {
-    const promo = await db.prepare("SELECT * FROM promotions WHERE id = ?").bind(id).first();
+    let promo = null;
+    try {
+      promo = await DB.prepare("SELECT * FROM promotions WHERE id = ?").bind(id).first();
+    } catch (e) {
+      console.error("D1 Error in frontend/src/pages/api/admin/promociones.ts:", e);
+    }
     return new Response(JSON.stringify({ promo }), { status: 200, headers: { "Content-Type": "application/json" } });
   }
 
@@ -39,15 +44,21 @@ export const GET: APIRoute = async ({ locals, request }) => {
   if (conditions.length > 0) query += " WHERE " + conditions.join(" AND ");
   query += " ORDER BY created_at DESC";
 
-  const { results: promos } = await db.prepare(query).all();
+  let promos = [];
+  try {
+    const { results } = await DB.prepare(query).all();
+    promos = results;
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/promociones.ts:", e);
+  }
 
-  return new Response(JSON.stringify({ promos }), { status: 200, headers: { "Content-Type": "application/json" } });
+  return new Response(JSON.stringify({ promos: (promos || []) }), { status: 200, headers: { "Content-Type": "application/json" } });
 };
 
 export const POST: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
   let body: any;
   try { body = await request.json(); } catch {
@@ -68,20 +79,24 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
   const id = generatePromoId();
 
-  await db.prepare(`
-    INSERT INTO promotions (id, name, type, value, applies_to, target_id, start_date, end_date, is_active, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
-  `).bind(
-    id,
-    body.name,
-    body.type,
-    body.value,
-    body.applies_to,
-    body.target_id || null,
-    body.start_date || null,
-    body.end_date || null,
-    body.is_active !== undefined ? (body.is_active ? 1 : 0) : 1,
-  ).run();
+  try {
+    await DB.prepare(`
+      INSERT INTO promotions (id, name, type, value, applies_to, target_id, start_date, end_date, is_active, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+    `).bind(
+      id,
+      body.name,
+      body.type,
+      body.value,
+      body.applies_to,
+      body.target_id || null,
+      body.start_date || null,
+      body.end_date || null,
+      body.is_active !== undefined ? (body.is_active ? 1 : 0) : 1,
+    ).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/promociones.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true, id }), {
     status: 201,
@@ -92,7 +107,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
 export const PUT: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
   let body: any;
   try { body = await request.json(); } catch {
@@ -123,7 +138,11 @@ export const PUT: APIRoute = async ({ locals, request }) => {
   }
 
   binds.push(body.id);
-  await db.prepare(`UPDATE promotions SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  try {
+    await DB.prepare(`UPDATE promotions SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/promociones.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json" } });
 };
@@ -131,7 +150,7 @@ export const PUT: APIRoute = async ({ locals, request }) => {
 export const DELETE: APIRoute = async ({ locals, request }) => {
   const auth = await requireAdmin(locals, request);
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
-  const { db } = auth;
+  const { DB } = auth;
 
   let body: { id?: string };
   try { body = await request.json(); } catch {
@@ -142,7 +161,11 @@ export const DELETE: APIRoute = async ({ locals, request }) => {
     return new Response(JSON.stringify({ error: "Falta id" }), { status: 400 });
   }
 
-  await db.prepare("DELETE FROM promotions WHERE id = ?").bind(body.id).run();
+  try {
+    await DB.prepare("DELETE FROM promotions WHERE id = ?").bind(body.id).run();
+  } catch (e) {
+    console.error("D1 Error in frontend/src/pages/api/admin/promociones.ts:", e);
+  }
 
   return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json" } });
 };

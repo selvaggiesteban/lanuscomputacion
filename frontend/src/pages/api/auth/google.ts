@@ -3,7 +3,7 @@ import { generateToken, createSessionCookie, hashPassword, getJwtSecret } from "
 import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const GET: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const clientId = locals.runtime.env.GOOGLE_CLIENT_ID as string;
   const clientSecret = locals.runtime.env.GOOGLE_CLIENT_SECRET as string;
@@ -83,38 +83,52 @@ export const GET: APIRoute = async ({ locals, request }) => {
     const email = payload.email;
     const name = payload.name;
 
-    let user = await db.prepare(
-      "SELECT * FROM customers WHERE google_id = ? OR email = ?"
-    ).bind(googleId, email).first<{
-      id: number;
-      email: string;
-      name: string;
-      google_id: string | null;
-      is_admin: number;
-    }>();
+    let user = null;
+    try {
+      user = await DB.prepare(
+        "SELECT * FROM customers WHERE google_id = ? OR email = ?"
+      ).bind(googleId, email).first<{
+        id: number;
+        email: string;
+        name: string;
+        google_id: string | null;
+        is_admin: number;
+      }>();
+    } catch (e) {
+      console.error("D1 Error in frontend/src/pages/api/auth/google.ts:", e);
+    }
 
     if (!user) {
       const randomPassword = await hashPassword(crypto.randomUUID());
-      const result = await db.prepare(`
-        INSERT INTO customers (email, name, password_hash, google_id, is_admin, is_b2b, created_at)
-        VALUES (?, ?, ?, ?, 0, 0, datetime('now'))
-      `).bind(email, name, randomPassword, googleId).run();
+      let result = null;
+      try {
+        result = await DB.prepare(`
+          INSERT INTO customers (email, name, password_hash, google_id, is_admin, is_b2b, created_at)
+          VALUES (?, ?, ?, ?, 0, 0, datetime('now'))
+        `).bind(email, name, randomPassword, googleId).run();
+      } catch (e) {
+        console.error("D1 Error in frontend/src/pages/api/auth/google.ts:", e);
+      }
 
       user = {
-        id: result.meta.last_row_id as number,
+        id: result?.meta?.last_row_id as number,
         email,
         name,
         google_id: googleId,
         is_admin: 0,
       };
     } else if (!user.google_id) {
-      await db.prepare(
-        "UPDATE customers SET google_id = ? WHERE id = ?"
-      ).bind(googleId, user.id).run();
+      try {
+        await DB.prepare(
+          "UPDATE customers SET google_id = ? WHERE id = ?"
+        ).bind(googleId, user.id).run();
+      } catch (e) {
+        console.error("D1 Error in frontend/src/pages/api/auth/google.ts:", e);
+      }
     }
 
     const token = await generateToken(
-      { userId: user.id, email: user.email, isAdmin: user.is_admin === 1 },
+      { userId: user?.id, email: user?.email, isAdmin: user?.is_admin === 1 },
       jwtSecret
     );
 
