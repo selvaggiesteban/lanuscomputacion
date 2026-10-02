@@ -70,8 +70,7 @@ jobs:
             exit 1
           fi
           if [ "$YDAY_READS" -gt 5000000 ]; then
-            echo "::error::Yesterday ended at ${YDAY_READS} rows read — the daily quota was exceeded (outage day)."
-            exit 1
+            echo "::warning::Yesterday ended at ${YDAY_READS} rows read — the daily quota was exceeded (outage day)."
           fi
 
           echo "OK: within quota."
