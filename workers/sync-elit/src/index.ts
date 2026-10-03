@@ -1,5 +1,5 @@
 import { ElitClient } from "./client";
-import { normalizeElitProduct } from "./normalizer";
+import { normalizeElitProduct, type NormalizedProduct } from "./normalizer";
 import { D1Client } from "./d1";
 import { seedCategories } from "./seed_categories";
 import { needsMigration, migrateCategories } from "./migrate_categories";
@@ -92,7 +92,7 @@ async function recalculateAllPricesForDollarChange(
   }>();
 
   let changed = 0;
-  const statements: D1.Statement[] = [];
+  const statements: D1PreparedStatement[] = [];
 
   for (const product of usdProducts) {
     const productMarkup = product.markup_pct || markupPct;
@@ -139,6 +139,30 @@ async function recalculateAllPricesForDollarChange(
   return changed;
 }
 
+interface SyncedProductRow {
+  id: string;
+  title: string;
+  slug: string;
+  status: string;
+  price: number;
+  cost_price: number;
+  dollar_rate: number;
+  available_qty: number;
+}
+
+// Returns true only when one of the columns the upsert writes would change.
+// Skipping unchanged products keeps the hourly sync within the D1 free-tier
+// row-write quota (blind upserts used to consume ~92k of the 100k daily limit).
+function upsertChangesRow(current: SyncedProductRow, incoming: NormalizedProduct): boolean {
+  if (current.title !== incoming.title || current.slug !== incoming.slug) return true;
+  if (current.status !== "published") return true;
+  if (Math.abs(current.price - incoming.price) > 0.01) return true;
+  if (Math.abs(current.cost_price - incoming.cost_price) > 0.01) return true;
+  if (Math.abs(current.dollar_rate - incoming.dollar_rate) > 0.01) return true;
+  if (current.available_qty !== incoming.available_qty) return true;
+  return false;
+}
+
 async function runSync(env: Env) {
   const client = new ElitClient({
     apiUrl: env.ELIT_API_URL,
@@ -177,9 +201,18 @@ async function runSync(env: Env) {
   const rawProducts = await client.getAllProducts();
   console.log(`[sync-elit] Fetched ${rawProducts.length} raw products`);
 
+  // The free tier counts every written row, so only upsert products whose
+  // synced columns actually differ from what is already in the database.
+  const { results: currentRows } = await env.lanus_catalog.prepare(
+    `SELECT id, title, slug, status, price, cost_price, dollar_rate, available_qty
+     FROM products WHERE provider = 'elit'`
+  ).all<SyncedProductRow>();
+  const currentById = new Map(currentRows.map((row): [string, SyncedProductRow] => [row.id, row]));
+
   let processed = 0;
+  let unchanged = 0;
   const syncedIds: string[] = [];
-  const statements: D1.Statement[] = [];
+  const statements: D1PreparedStatement[] = [];
 
   for (const raw of rawProducts) {
     try {
@@ -188,19 +221,24 @@ async function runSync(env: Env) {
 
       syncedIds.push(product.external_id);
 
-      // Optimize: Use a single UPSERT statement instead of SELECT -> UPDATE/INSERT
+      const current = currentById.get(product.id);
+      if (current && !upsertChangesRow(current, product)) {
+        unchanged++;
+        continue;
+      }
+
       statements.push(
         env.lanus_catalog.prepare(
-          `INSERT INTO products (id, external_id, title, slug, description, category_id, category_name, subcategory_name, status, price, cost_price, currency, dollar_rate, brand, ean, available_qty, permalink, thumbnail, provider, provider_store, free_shipping, sku)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `INSERT INTO products (id, external_id, title, slug, description, category_id, category_name, subcategory_name, status, price, cost_price, currency, dollar_rate, brand, ean, available_qty, permalink, thumbnail, provider, provider_store, sku, last_api_update)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
            ON CONFLICT(id) DO UPDATE SET
-           title=excluded.title, slug=excluded.slug, price=excluded.price, available_qty=excluded.available_qty, cost_price=excluded.cost_price, dollar_rate=excluded.dollar_rate, status=excluded.status`
+           title=excluded.title, slug=excluded.slug, price=excluded.price, available_qty=excluded.available_qty, cost_price=excluded.cost_price, dollar_rate=excluded.dollar_rate, status=excluded.status, last_api_update=datetime('now')`
         ).bind(
           product.id, product.external_id, product.title, product.slug, product.description,
-          product.category_id, product.category_name, product.subcategory_name, product.status,
+          product.category_id, product.category_name, product.subcategory_name, "published",
           product.price, product.cost_price, product.currency, product.dollar_rate, product.brand,
           product.ean, product.available_qty, product.permalink, product.thumbnail, product.provider,
-          product.provider_store, product.free_shipping, product.sku
+          product.provider_store, product.sku
         )
       );
 
@@ -223,5 +261,5 @@ async function runSync(env: Env) {
 
   const archived = await d1.deleteOutOfStockProducts(syncedIds);
   const aiCalls = getAiCallCount();
-  console.log(`[sync-elit] Done: ${processed} products synced, ${archived} archived${aiCalls > 0 ? `, ${aiCalls} AI calls` : ""}`);
+  console.log(`[sync-elit] Done: ${processed} products written, ${unchanged} unchanged, ${archived} archived${aiCalls > 0 ? `, ${aiCalls} AI calls` : ""}`);
 }

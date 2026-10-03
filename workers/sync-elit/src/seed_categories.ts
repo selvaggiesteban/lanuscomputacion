@@ -267,18 +267,20 @@ const CATEGORIES: CategorySeed[] = [
 
 /**
  * Seeds categories into D1 using INSERT OR IGNORE (safe to run multiple times).
+ * Uses a single db.batch() call: each individual statement counts as a D1
+ * subrequest, and Workers Free allows only 1,000 per invocation.
  */
 export async function seedCategories(db: D1Database): Promise<{ inserted: number }> {
-  let inserted = 0;
-
-  for (const cat of CATEGORIES) {
-    const result = await db.prepare(`
+  const statements = CATEGORIES.map((cat) =>
+    db.prepare(`
       INSERT OR IGNORE INTO categories (id, name, slug, parent_id, level, picture, is_active, created_at)
       VALUES (?, ?, ?, ?, ?, ?, 1, datetime('now'))
-    `).bind(cat.id, cat.name, cat.slug, cat.parent_id, cat.level, cat.picture).run();
+    `).bind(cat.id, cat.name, cat.slug, cat.parent_id, cat.level, cat.picture)
+  );
 
-    if (result.meta.changes > 0) inserted++;
-  }
+  const results = await db.batch(statements);
+  let inserted = 0;
+  for (const result of results) inserted += result.meta.changes ?? 0;
 
   return { inserted };
 }

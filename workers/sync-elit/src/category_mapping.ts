@@ -88,6 +88,10 @@ const SUBCATEGORY_MAP: Record<string, CategoryMapping> = {
   "Perifericos|Teclados":                  { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
   "Perifericos|Mouses":                    { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
   "Perifericos|Mouse Pads":                { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "Perifericos|Volantes":                  { category_id: CAT.CONSOLAS, subcategory_name: SUB.CON_VIDEOJUEGOS },
+  "Perifericos|Joysticks":                 { category_id: CAT.CONSOLAS, subcategory_name: SUB.CON_VIDEOJUEGOS },
+  "Perifericos|Camaras Web":               { category_id: CAT.CAMARAS, subcategory_name: SUB.CAM_DIGITALES },
+  "Perifericos|Adaptadores":               { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_CABLES },
 
   // --- Almacenamiento ---
   "Almacenamiento|Discos Externos":        { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_ALMACENAMIENTO },
@@ -143,7 +147,11 @@ const SUBCATEGORY_MAP: Record<string, CategoryMapping> = {
   "Accesorios|Extensores":                 { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_CABLES },
   "Accesorios|Protectores":                { category_id: CAT.CELULARES, subcategory_name: SUB.CEL_ACCESORIOS },
   "Accesorios|Soportes":                   { category_id: CAT.ELECTRONICA, subcategory_name: SUB.ELEC_ACC_AUDIO },
-  "Accesorios|Trituradora":                { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "Accesorios|Trituradora":               { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+
+  // --- Empty ELIT category (products with subcategory only) ---
+  "|Cartuchos de Tiinta":                  { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_IMPRESION },
+  "|Toners":                               { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_IMPRESION },
 };
 
 // ============================================================
@@ -167,7 +175,26 @@ const CATEGORY_MAP: Record<string, CategoryMapping> = {
   "Estuches":           { category_id: CAT.CELULARES, subcategory_name: SUB.CEL_ACCESORIOS },
   "Insumos":            { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_IMPRESION },
   "Accesorios":         { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "Software":           { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "Simuladores":        { category_id: CAT.ELECTRONICA, subcategory_name: SUB.ELEC_ACC_AUDIO },
+  "":                   { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
 };
+
+/**
+ * ELIT sometimes sends accented category names ("Periféricos") while the map
+ * keys use unaccented ASCII ("Perifericos"). Normalize both sides so accent
+ * drift in the API never breaks the mapping.
+ */
+function stripAccents(s: string): string {
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+const SUBCATEGORY_MAP_NORM: Record<string, CategoryMapping> = Object.fromEntries(
+  Object.entries(SUBCATEGORY_MAP).map(([k, v]) => [stripAccents(k), v]),
+);
+const CATEGORY_MAP_NORM: Record<string, CategoryMapping> = Object.fromEntries(
+  Object.entries(CATEGORY_MAP).map(([k, v]) => [stripAccents(k), v]),
+);
 
 /**
  * Maps an ELIT product category/subcategory to our taxonomy.
@@ -178,11 +205,13 @@ export function mapElitToCategory(
   elitSubcategory: string,
 ): CategoryMapping | null {
   // 1. Try subcategory-level mapping (most specific)
-  const key = `${elitCategory}|${elitSubcategory}`;
-  if (SUBCATEGORY_MAP[key]) return SUBCATEGORY_MAP[key];
+  const key = stripAccents(`${elitCategory}|${elitSubcategory}`);
+  const sub = SUBCATEGORY_MAP_NORM[key];
+  if (sub) return sub;
 
   // 2. Try category-level fallback
-  if (CATEGORY_MAP[elitCategory]) return CATEGORY_MAP[elitCategory];
+  const cat = CATEGORY_MAP_NORM[stripAccents(elitCategory)];
+  if (cat) return cat;
 
   // 3. No mapping found — AI classifier needed
   return null;

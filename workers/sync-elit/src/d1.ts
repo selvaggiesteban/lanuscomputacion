@@ -59,10 +59,31 @@ export class D1Client {
 
   async deleteOutOfStockProducts(syncedIds: string[]): Promise<number> {
     if (syncedIds.length === 0) return 0;
-    const placeholders = syncedIds.map(() => "?").join(",");
-    const result = await this.db.prepare(
-      `UPDATE products SET status = 'archived' WHERE provider = 'elit' AND external_id NOT IN (${placeholders}) AND status = 'published'`,
-    ).bind(...syncedIds).run();
-    return result.meta.changes ?? 0;
+
+    // D1 allows at most 100 bound parameters per statement, so a single
+    // "NOT IN (?,?,...)" with ~1800 ids fails with "too many SQL variables".
+    // Fetch the candidates instead and archive the diff in batched UPDATEs.
+    const { results } = await this.db.prepare(
+      `SELECT external_id FROM products WHERE provider = 'elit' AND status = 'published'`,
+    ).all<{ external_id: string }>();
+
+    const synced = new Set(syncedIds);
+    const toArchive = results
+      .map((row) => row.external_id)
+      .filter((externalId): externalId is string => Boolean(externalId) && !synced.has(externalId));
+
+    if (toArchive.length === 0) return 0;
+
+    let archived = 0;
+    for (let i = 0; i < toArchive.length; i += 100) {
+      const statements = toArchive.slice(i, i + 100).map((externalId) =>
+        this.db.prepare(
+          `UPDATE products SET status = 'archived' WHERE provider = 'elit' AND external_id = ?`,
+        ).bind(externalId),
+      );
+      const batchResults = await this.db.batch(statements);
+      for (const result of batchResults) archived += result.meta.changes ?? 0;
+    }
+    return archived;
   }
 }
