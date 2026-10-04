@@ -29,23 +29,22 @@ if (categoryIds.length > 0) {
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
 ---
 
-<BaseLayout title="Lanús Computación - Tecnología al mejor precio">
+<BaseLayout title="Lanús Computación - Tecnología en oferta">
   <!-- Hero Banner -->
-  <section class="bg-gradient-to-r from-ml-yellow to-yellow-200">
+  <section class="bg-white">
     <div class="ml-container py-8 md:py-12">
       <div class="max-w-2xl">
         <h1 class="text-3xl md:text-4xl font-bold text-ml-text mb-3">
-          Tecnología al mejor precio
+          Tecnología en oferta
         </h1>
         <p class="text-lg text-ml-text-secondary mb-6">
-          Encontrá todo en celulares, computación, audio, gaming y más. 
-          <span class="text-b2b-purple font-semibold">Precios especiales para empresas.</span>
+          Encontrá todo en celulares, computación, audio, gaming y más.
         </p>
         <div class="flex gap-3">
-          <a href="/categoria/todas" class="ml-btn-primary">
-            Ver catálogo
+          <a href="/categoria/todas" class="ml-btn-primary bg-black hover:bg-gray-800">
+            Ver productos
           </a>
-          <a href="/ofertas" class="ml-btn-secondary">
+          <a href="/ofertas" class="ml-btn-secondary bg-white text-black border border-black hover:bg-gray-100">
             Ofertas
           </a>
         </div>
@@ -57,8 +56,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
   <section class="ml-container py-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
-        <div class="w-10 h-10 bg-ml-green-bg rounded-full flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-ml-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-10 h-10 bg-[#f1f1f1] rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 12l2 2 4-4"/>
             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
           </svg>
@@ -69,8 +68,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
         </div>
       </div>
       <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
-        <div class="w-10 h-10 bg-ml-blue-light rounded-full flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-10 h-10 bg-[#f1f1f1] rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
             <line x1="1" y1="10" x2="23" y2="10"/>
           </svg>
@@ -81,8 +80,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
         </div>
       </div>
       <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
-        <div class="w-10 h-10 bg-ml-green-bg rounded-full flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-ml-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-10 h-10 bg-[#f1f1f1] rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="3" width="15" height="13"/>
             <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
             <circle cx="5.5" cy="18.5" r="2.5"/>
@@ -95,8 +94,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
         </div>
       </div>
       <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
-        <div class="w-10 h-10 bg-ml-yellow rounded-full flex items-center justify-center flex-shrink-0">
-          <svg class="w-5 h-5 text-ml-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="w-10 h-10 bg-[#f1f1f1] rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
         </div>
