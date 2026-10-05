@@ -1,11 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProductGrid from '../components/catalog/ProductGrid.astro';
 import BrandsSection from '../components/home/BrandsSection.astro';
-import { getProducts, getCategories } from '../lib/d1';
+import { getCategories } from '../lib/d1';
 
 const DB = Astro.locals.runtime.env.DB;
-const featuredProducts = await getProducts(DB, { limit: 10 });
 const categories = await getCategories(DB);
 
 const categoryIds = categories.slice(0, 8).map(c => c.id);
@@ -105,24 +103,6 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Productos destacados -->
-  <section class="ml-container py-8">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xl font-semibold text-ml-text">Productos destacados</h2>
-      <a href="/categoria/todas" class="text-sm ml-link">Ver más</a>
-    </div>
-    <ProductGrid products={featuredProducts.map(p => ({
-      id: p.id,
-      title: p.title,
-      price: p.price,
-      categoryName: p.category_name,
-      image: p.thumbnail,
-      slug: p.slug,
-      freeShipping: false,
-      dollarRate: p.dollar_rate,
-    }))} columns={5} />
   </section>
 
   <!-- Categorías -->
