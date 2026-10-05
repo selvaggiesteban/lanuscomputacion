@@ -104,8 +104,8 @@ const jsonLdFaq = {
   <section class="ml-container pb-6">
     <div class="bg-gradient-to-r from-b2b-purple-light to-purple-50 rounded-lg p-6 md:p-8">
       <div class="flex items-start gap-4">
-        <div class="w-14 h-14 bg-b2b-purple rounded flex items-center justify-center flex-shrink-0">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+        <div class="w-14 h-14 bg-[#f1f1f1] rounded flex items-center justify-center flex-shrink-0">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
         </div>
         <div>
           <h1 class="text-2xl md:text-3xl font-bold text-ml-text mb-2">{heroTitle}</h1>
@@ -122,8 +122,8 @@ const jsonLdFaq = {
       {benefits.map((b) => (
         <div class="bg-white rounded shadow-card p-4">
           <div class="flex items-start gap-3">
-            <div class="w-10 h-10 bg-ml-green-bg rounded flex items-center justify-center flex-shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a650" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={b.icon} />
+            <div class="w-10 h-10 bg-[#f1f1f1] rounded flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={b.icon} />
             </div>
             <div>
               <h3 class="text-sm font-semibold text-ml-text">{b.title}</h3>
@@ -136,18 +136,20 @@ const jsonLdFaq = {
   </section>
 
   <!-- Process Steps -->
-  <section class="ml-container py-6">
-    <h2 class="text-xl font-semibold text-ml-text mb-6">Cómo trabajamos</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      {steps.map((step, i) => (
-        <div class="relative bg-white rounded shadow-card p-4">
-          <div class="absolute -top-3 -left-3 w-8 h-8 bg-b2b-purple text-white rounded-full flex items-center justify-center text-sm font-bold">
-            {i + 1}
+  <section class="bg-[#000000] py-6">
+    <div class="ml-container">
+      <h2 class="text-xl font-semibold text-white mb-6">Cómo trabajamos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {steps.map((step, i) => (
+          <div class="relative bg-white rounded shadow-card p-4">
+            <div class="absolute -top-3 -left-3 w-8 h-8 bg-b2b-purple text-white rounded-full flex items-center justify-center text-sm font-bold">
+              {i + 1}
+            </div>
+            <h3 class="text-sm font-semibold text-ml-text mt-2">{step.title}</h3>
+            <p class="text-xs text-ml-text-muted mt-1">{step.desc}</p>
           </div>
-          <h3 class="text-sm font-semibold text-ml-text mt-2">{step.title}</h3>
-          <p class="text-xs text-ml-text-muted mt-1">{step.desc}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 
@@ -176,17 +178,17 @@ const jsonLdFaq = {
 
   <!-- CTA Banner -->
   <section class="ml-container py-6 pb-12">
-    <div class="bg-b2b-purple text-white rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="bg-white text-black rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
         <h2 class="text-xl md:text-2xl font-bold mb-1">{ctaText}</h2>
         <p class="opacity-90 text-sm">Respondemos a la brevedad. Sin compromiso.</p>
       </div>
       <div class="flex gap-3 flex-shrink-0">
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="bg-white text-b2b-purple font-bold px-6 py-3 rounded hover:bg-purple-50 transition-colors whitespace-nowrap">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white font-bold px-6 py-3 rounded hover:bg-[#20ba5a] transition-colors whitespace-nowrap">
           WhatsApp
         </a>
         <a href="/servicios/contacto" class="bg-b2b-purple-light text-white font-bold px-6 py-3 rounded hover:bg-purple-400 transition-colors whitespace-nowrap border border-purple-300">
-          Formulario
+          Contacto
         </a>
       </div>
     </div>
