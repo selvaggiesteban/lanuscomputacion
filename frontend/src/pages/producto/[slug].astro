@@ -130,6 +130,35 @@ const relatedWithPromos = relatedProducts.map(p => {
             availableQty={product.available_qty}
           />
 
+          {/* Deep-link: /producto/[slug]?add=1 agrega al carrito y redirige a /carrito */}
+          <div
+            id="buy-now-payload"
+            hidden
+            data-payload={JSON.stringify({
+              product_id: product.id,
+              title: product.title,
+              price: product.price,
+              original_price: promoPrice < product.price ? product.price : undefined,
+              promo_price: promoPrice < product.price ? promoPrice : undefined,
+              category_id: product.category_id,
+              thumbnail: product.thumbnail,
+              slug: product.slug,
+            })}
+          />
+          <script>
+            import { addToCart } from '../../lib/cart';
+            if (new URLSearchParams(window.location.search).get('add') === '1') {
+              const el = document.getElementById('buy-now-payload');
+              const payload = el?.getAttribute('data-payload');
+              if (payload) {
+                try {
+                  addToCart(JSON.parse(payload), 1);
+                } catch {}
+              }
+              window.location.replace('/carrito');
+            }
+          </script>
+
         </div>
       </div>
 
