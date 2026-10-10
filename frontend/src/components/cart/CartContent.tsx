@@ -2,6 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { getCart, removeFromCart, updateQuantity, getCartTotal, clearCart } from "../../lib/cart";
 import type { CartItem } from "../../lib/cart";
 
+const WA_NUMBER = "5491153323937";
+const TRANSFER = {
+  titular: "Esteban Selvaggi",
+  cvu: "0000077200132500365889",
+  alias: "SELVAGGIESTEAAG.PF",
+  cuit: "20-43310259-3",
+};
+
 export default function CartContent() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
@@ -11,6 +19,8 @@ export default function CartContent() {
   const [couponDiscount, setCouponDiscount] = useState<{ totalDiscount: number; couponId: string; code: string } | null>(null);
   const [couponError, setCouponError] = useState("");
   const [applyingCoupon, setApplyingCoupon] = useState(false);
+  const [payStep, setPayStep] = useState<"form" | "methods" | "done">("form");
+  const [orderResult, setOrderResult] = useState<{ orderId: string; method: string; waUrl: string } | null>(null);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -69,16 +79,20 @@ export default function CartContent() {
     setApplyingCoupon(false);
   };
 
-  const handleCheckout = async () => {
+  const handleContinue = () => {
     if (!customer.name || !customer.email) {
       setError("Completá nombre y email");
       return;
     }
+    setError("");
+    setPayStep("methods");
+  };
+
+  const handleOrder = async (method: "transferencia" | "efectivo") => {
     setCheckingOut(true);
     setError("");
-
     try {
-      const res = await fetch("/api/checkout", {
+      const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -88,30 +102,31 @@ export default function CartContent() {
             promo_price: i.promo_price ?? i.price,
           })),
           customer,
+          payment_method: method,
           coupon_id: couponDiscount?.couponId ?? null,
         }),
       });
-      const text = await res.text();
-      let data: any;
-      try {
-        data = JSON.parse(text);
-      } catch {
-        throw new Error("Error del servidor. Intentá de nuevo.");
-      }
+      const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al procesar");
-      if (data.init_point) {
-        clearCart();
-        window.location.href = data.init_point;
-        return;
-      }
+
+      const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
+      const msg = method === "transferencia"
+        ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`
+        : `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
+      setOrderResult({
+        orderId: data.order_id,
+        method,
+        waUrl: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
+      });
+      clearCart();
+      setPayStep("done");
     } catch (e: any) {
-      const is502 = e.message?.includes('502') || e.status === 502;
-      setError(is502 ? "El servicio de pagos no está disponible temporalmente. Por favor, intentá más tarde." : e.message);
+      setError(e.message);
     }
     setCheckingOut(false);
   };
 
-  if (items.length === 0) {
+  if (items.length === 0 && payStep !== "done") {
     return (
       <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 opacity-30">
@@ -220,18 +235,57 @@ export default function CartContent() {
 
           {error && <p class="text-xs text-red-500 mb-2">{error}</p>}
 
-          <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-            {checkingOut ? "Procesando..." : "Pagar"}
-          </button>
+          {payStep === "form" && (
+            <button onClick={handleContinue} class="ml-btn-primary w-full text-sm py-3">
+              Pagar
+            </button>
+          )}
 
-          <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
-            <p class="font-medium text-ml-text">O transferencia bancaria</p>
-            <p><strong>Titular:</strong> Esteban Selvaggi</p>
-            <p><strong>CVU:</strong> 0000077200132500365889</p>
-            <p><strong>Alias:</strong> SELVAGGIESTEAAG.PF</p>
-            <p><strong>CUIT:</strong> 20-43310259-3</p>
-            <p class="text-ml-text-muted">Enviá el comprobante por WhatsApp</p>
-          </div>
+          {payStep === "methods" && (
+            <div class="space-y-2">
+              <p class="text-xs text-ml-text-muted">Elegí cómo querés pagar:</p>
+              <button onClick={() => handleOrder("transferencia")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Transferencia bancaria"}</p>
+                <p class="text-xs text-ml-text-muted">Transferís y nos mandás el comprobante por WhatsApp</p>
+              </button>
+              <button onClick={() => handleOrder("efectivo")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
+                <p class="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
+              </button>
+              <button onClick={() => setPayStep("form")} class="text-xs text-ml-blue hover:underline">← Volver</button>
+            </div>
+          )}
+
+          {payStep === "done" && orderResult && (
+            <div class="border rounded p-4 space-y-3">
+              <p class="text-sm font-medium text-green-600">✓ Pedido registrado</p>
+              <p class="text-xs text-ml-text-muted">Pedido #{orderResult.orderId.slice(0, 8)}</p>
+              {orderResult.method === "transferencia" ? (
+                <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
+                  <p><strong>Titular:</strong> {TRANSFER.titular}</p>
+                  <p><strong>CVU:</strong> {TRANSFER.cvu}</p>
+                  <p><strong>Alias:</strong> {TRANSFER.alias}</p>
+                  <p><strong>CUIT:</strong> {TRANSFER.cuit}</p>
+                </div>
+              ) : (
+                <p class="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>
+              )}
+              <a href={orderResult.waUrl} target="_blank" rel="noopener" class="block text-center bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
+                {orderResult.method === "transferencia" ? "Enviar comprobante por WhatsApp" : "Coordinar por WhatsApp"}
+              </a>
+            </div>
+          )}
+
+          {payStep !== "done" && (
+            <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
+              <p class="font-medium text-ml-text">O transferencia bancaria</p>
+              <p><strong>Titular:</strong> Esteban Selvaggi</p>
+              <p><strong>CVU:</strong> 0000077200132500365889</p>
+              <p><strong>Alias:</strong> SELVAGGIESTEAAG.PF</p>
+              <p><strong>CUIT:</strong> 20-43310259-3</p>
+              <p class="text-ml-text-muted">Enviá el comprobante por WhatsApp</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

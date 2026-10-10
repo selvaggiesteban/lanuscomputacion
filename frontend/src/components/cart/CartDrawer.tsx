@@ -2,6 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { getCart, removeFromCart, updateQuantity, clearCart } from "../../lib/cart";
 import type { CartItem } from "../../lib/cart";
 
+const WA_NUMBER = "5491153323937";
+const TRANSFER = {
+  titular: "Esteban Selvaggi",
+  cvu: "0000077200132500365889",
+  alias: "SELVAGGIESTEAAG.PF",
+  cuit: "20-43310259-3",
+};
+
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -11,7 +19,7 @@ export default function CartDrawer({ open, onClose }: Props) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
   const [error, setError] = useState("");
-  const [step, setStep] = useState<"cart" | "data">("cart");
+  const [step, setStep] = useState<"cart" | "data" | "methods" | "done">("cart");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -19,6 +27,7 @@ export default function CartDrawer({ open, onClose }: Props) {
   const [couponDiscount, setCouponDiscount] = useState<{ totalDiscount: number; couponId: string; code: string } | null>(null);
   const [couponError, setCouponError] = useState("");
   const [applyingCoupon, setApplyingCoupon] = useState(false);
+  const [orderResult, setOrderResult] = useState<{ orderId: string; method: string; waUrl: string } | null>(null);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -92,15 +101,20 @@ export default function CartDrawer({ open, onClose }: Props) {
     setApplyingCoupon(false);
   };
 
-  const handleCheckout = async () => {
+  const handleContinue = () => {
     if (!name.trim() || !email.trim()) {
       setError("Completá nombre y email");
       return;
     }
+    setError("");
+    setStep("methods");
+  };
+
+  const handleOrder = async (method: "transferencia" | "efectivo") => {
     setCheckingOut(true);
     setError("");
     try {
-      const res = await fetch("/api/checkout", {
+      const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -110,20 +124,26 @@ export default function CartDrawer({ open, onClose }: Props) {
             promo_price: i.promo_price ?? i.price,
           })),
           customer: { name: name.trim(), email: email.trim(), phone: phone.trim() || undefined },
+          payment_method: method,
           coupon_id: couponDiscount?.couponId ?? null,
         }),
       });
-      const text = await res.text();
-      let data: any;
-      try { data = JSON.parse(text); } catch { throw new Error("Error del servidor"); }
+      const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al procesar");
-      if (data.init_point) {
-        clearCart();
-        window.location.href = data.init_point;
-      }
+
+      const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
+      const msg = method === "transferencia"
+        ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`
+        : `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
+      setOrderResult({
+        orderId: data.order_id,
+        method,
+        waUrl: `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
+      });
+      clearCart();
+      setStep("done");
     } catch (e: any) {
-      const is502 = e.message?.includes('502') || e.status === 502;
-      setError(is502 ? "El servicio de pagos no está disponible temporalmente. Por favor, intentá más tarde." : e.message);
+      setError(e.message);
     }
     setCheckingOut(false);
   };
@@ -136,7 +156,7 @@ export default function CartDrawer({ open, onClose }: Props) {
       <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-drawer animate-slide-in flex flex-col">
         <div class="flex items-center justify-between p-4 border-b">
           <h2 class="font-semibold text-ml-text">
-            {step === "cart" ? `Carrito (${items.reduce((s, i) => s + i.quantity, 0)})` : "Finalizar compra"}
+            {step === "done" ? "Pedido registrado" : step === "cart" ? `Carrito (${items.reduce((s, i) => s + i.quantity, 0)})` : "Finalizar compra"}
           </h2>
           <button onClick={onClose} class="p-1 hover:text-ml-blue transition-colors" aria-label="Cerrar">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -147,7 +167,26 @@ export default function CartDrawer({ open, onClose }: Props) {
         </div>
 
         <div class="flex-1 overflow-y-auto">
-          {items.length === 0 ? (
+          {step === "done" && orderResult ? (
+            <div class="p-4 space-y-4 text-center">
+              <p class="font-medium text-green-600">✓ Pedido registrado</p>
+              <p class="text-xs text-ml-text-muted">Pedido #{orderResult.orderId.slice(0, 8)}</p>
+              {orderResult.method === "transferencia" ? (
+                <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 text-left">
+                  <p><strong>Titular:</strong> {TRANSFER.titular}</p>
+                  <p><strong>CVU:</strong> {TRANSFER.cvu}</p>
+                  <p><strong>Alias:</strong> {TRANSFER.alias}</p>
+                  <p><strong>CUIT:</strong> {TRANSFER.cuit}</p>
+                </div>
+              ) : (
+                <p class="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>
+              )}
+              <a href={orderResult.waUrl} target="_blank" rel="noopener" class="block bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
+                {orderResult.method === "transferencia" ? "Enviar comprobante por WhatsApp" : "Coordinar por WhatsApp"}
+              </a>
+              <button onClick={onClose} class="ml-btn-secondary text-sm px-6 py-2">Seguir comprando</button>
+            </div>
+          ) : items.length === 0 ? (
             <div class="flex flex-col items-center justify-center h-full text-ml-text-muted p-8">
               <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mb-4 opacity-30">
                 <circle cx="9" cy="21" r="1" />
@@ -191,6 +230,19 @@ export default function CartDrawer({ open, onClose }: Props) {
                   <p class="text-sm font-semibold text-ml-text whitespace-nowrap">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
                 </div>
               ))}
+            </div>
+          ) : step === "methods" ? (
+            <div class="p-4 space-y-3">
+              <p class="text-xs text-ml-text-muted">Elegí cómo querés pagar:</p>
+              <button onClick={() => handleOrder("transferencia")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Transferencia bancaria"}</p>
+                <p class="text-xs text-ml-text-muted">Transferís y nos mandás el comprobante por WhatsApp</p>
+              </button>
+              <button onClick={() => handleOrder("efectivo")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
+                <p class="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
+              </button>
+              <button onClick={() => setStep("data")} class="text-xs text-ml-blue hover:underline">← Volver a mis datos</button>
             </div>
           ) : (
             <div class="p-4 space-y-4">
@@ -260,13 +312,14 @@ export default function CartDrawer({ open, onClose }: Props) {
             )}
 
             {error && <p class="text-xs text-red-500">{error}</p>}
-            {step === "cart" ? (
+            {step === "cart" && (
               <button onClick={() => setStep("data")} class="ml-btn-primary w-full text-sm py-3">
                 FINALIZAR COMPRA
               </button>
-            ) : (
-              <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-                {checkingOut ? "Procesando..." : "Pagar"}
+            )}
+            {step === "data" && (
+              <button onClick={handleContinue} class="ml-btn-primary w-full text-sm py-3">
+                Pagar
               </button>
             )}
             <a href="/carrito" onClick={onClose} class="block text-center text-xs text-ml-blue hover:underline">Ver carrito completo</a>
