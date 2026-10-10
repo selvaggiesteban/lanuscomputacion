@@ -20,6 +20,7 @@ const markup = config.global_markup_pct || "30";
 const dollarThreshold = config.dollar_change_threshold || "2";
 const lowStockThreshold = config.low_stock_threshold || "5";
 const autoRecalc = config.auto_recalc_prices !== "false";
+const mpEnabled = config.mp_enabled !== "false";
 
 // Categories for markup overrides
 let categories = [];
@@ -90,6 +91,24 @@ try {
       </div>
     </div>
 
+    <!-- Medios de pago -->
+    <div class="bg-white rounded shadow-card p-6 mb-6">
+      <h2 class="font-medium text-ml-text mb-4">Medios de Pago</h2>
+      <p class="text-sm text-ml-text-secondary mb-4">
+        Controla si el checkout online con Mercado Pago está habilitado. Al desactivarlo, los clientes ven un aviso para coordinar la compra por WhatsApp.
+      </p>
+      <div class="flex items-center gap-2 mb-4">
+        <input type="checkbox" id="mp-enabled" checked={mpEnabled}
+          class="w-4 h-4 text-ml-blue rounded" />
+        <label for="mp-enabled" class="text-sm text-ml-text">Habilitar pago online con Mercado Pago</label>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="save-mp" class="ml-btn-primary px-4">Guardar</button>
+        <span id="mp-saved" class="hidden text-sm text-green-600">Guardado</span>
+        <span id="mp-status" class="text-xs text-ml-text-muted">{mpEnabled ? 'Activo' : 'Desactivado temporalmente'}</span>
+      </div>
+    </div>
+
     <!-- Current Markup Info -->
     <div class="bg-white rounded shadow-card p-6">
       <h2 class="font-medium text-ml-text mb-4">Fórmula de Precios</h2>
@@ -116,6 +135,19 @@ try {
     });
     document.getElementById('current-markup-display')!.textContent = value + '%';
     const saved = document.getElementById('markup-saved')!;
+    saved.classList.remove('hidden');
+    setTimeout(() => saved.classList.add('hidden'), 2000);
+  });
+
+  document.getElementById('save-mp')?.addEventListener('click', async () => {
+    const enabled = (document.getElementById('mp-enabled') as HTMLInputElement).checked;
+    await fetch('/api/admin/configuracion', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mp_enabled: enabled.toString() }),
+    });
+    document.getElementById('mp-status')!.textContent = enabled ? 'Activo' : 'Desactivado temporalmente';
+    const saved = document.getElementById('mp-saved')!;
     saved.classList.remove('hidden');
     setTimeout(() => saved.classList.add('hidden'), 2000);
   });

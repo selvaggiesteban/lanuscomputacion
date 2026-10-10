@@ -30,6 +30,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
   if (!config.dollar_change_threshold) config.dollar_change_threshold = "2";
   if (!config.low_stock_threshold) config.low_stock_threshold = "5";
   if (!config.auto_recalc_prices) config.auto_recalc_prices = "true";
+  if (config.mp_enabled === undefined) config.mp_enabled = "true";
 
   return new Response(JSON.stringify({ config }), {
     status: 200,
@@ -47,7 +48,7 @@ export const PUT: APIRoute = async ({ locals, request }) => {
     return new Response(JSON.stringify({ error: "JSON inválido" }), { status: 400 });
   }
 
-  const allowedKeys = ["global_markup_pct", "dollar_change_threshold", "low_stock_threshold", "auto_recalc_prices"];
+  const allowedKeys = ["global_markup_pct", "dollar_change_threshold", "low_stock_threshold", "auto_recalc_prices", "mp_enabled"];
 
   for (const [key, value] of Object.entries(body)) {
     if (allowedKeys.includes(key)) {

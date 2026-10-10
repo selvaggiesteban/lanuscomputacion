@@ -9,6 +9,19 @@ export const POST: APIRoute = async ({ locals, request }) => {
   const DB = locals.runtime.env.DB as D1Database;
   const mpToken = locals.runtime.env.MP_ACCESS_TOKEN as string;
 
+  // Kill-switch temporal del medio de pago Mercado Pago (app_config.mp_enabled).
+  // Fail-open: si la lectura falla, el checkout queda habilitado.
+  try {
+    const row = await DB.prepare("SELECT value FROM app_config WHERE key = 'mp_enabled'").first<{ value: string }>();
+    if (row && row.value === "false") {
+      return new Response(JSON.stringify({
+        error: "El pago online con Mercado Pago está momentáneamente deshabilitado. Podés coordinar tu compra escribiéndonos por WhatsApp al 11 5332-3937.",
+      }), { status: 503, headers: { "Content-Type": "application/json" } });
+    }
+  } catch (e) {
+    console.error("mp_enabled check error:", e);
+  }
+
   if (!mpToken) {
     return new Response(JSON.stringify({ error: "MercadoPago no configurado" }), { status: 500, headers: { "Content-Type": "application/json" } });
   }
