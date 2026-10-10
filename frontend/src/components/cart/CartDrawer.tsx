@@ -266,7 +266,7 @@ export default function CartDrawer({ open, onClose }: Props) {
               </button>
             ) : (
               <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-                {checkingOut ? "Procesando..." : "Pagar con Mercado Pago"}
+                {checkingOut ? "Procesando..." : "Pagar"}
               </button>
             )}
             <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">

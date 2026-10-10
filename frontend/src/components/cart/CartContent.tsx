@@ -221,7 +221,7 @@ export default function CartContent() {
           {error && <p class="text-xs text-red-500 mb-2">{error}</p>}
 
           <button onClick={handleCheckout} disabled={checkingOut} class="ml-btn-primary w-full text-sm py-3">
-            {checkingOut ? "Procesando..." : "Pagar con Mercado Pago"}
+            {checkingOut ? "Procesando..." : "Pagar"}
           </button>
 
           <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
