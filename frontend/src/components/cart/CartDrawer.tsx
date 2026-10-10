@@ -272,10 +272,9 @@ export default function CartDrawer({ open, onClose }: Props) {
             <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
               <p class="font-medium text-ml-text">O transferencia bancaria</p>
               <p><strong>Titular:</strong> Esteban Selvaggi</p>
-              <p><strong>CBU:</strong> 0720039788000001113604</p>
+              <p><strong>CVU:</strong> 0000077200132500365889</p>
+              <p><strong>Alias:</strong> SELVAGGIESTEAAG.PF</p>
               <p><strong>CUIT:</strong> 20-43310259-3</p>
-              <p><strong>Banco:</strong> Santander SA</p>
-              <p><strong>Cuenta:</strong> 039-011136/0</p>
               <p class="text-ml-text-muted">Envi&aacute; el comprobante por WhatsApp al <strong>+54 9 11 5332-3937</strong></p>
             </div>
             <a href="/carrito" onClick={onClose} class="block text-center text-xs text-ml-blue hover:underline">Ver carrito completo</a>
