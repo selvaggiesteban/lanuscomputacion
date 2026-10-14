@@ -112,7 +112,7 @@ export function partes(d: Date) {
 
 export function flyerHref(d: Date): string {
   const { dia, iso } = partes(d);
-  return `/flyers/${iso.slice(0, 4)}/ofertas-lanus-${iso}-${dia}.html`;
+  return `/lista/${iso.slice(0, 4)}/ofertas-lanus-${iso}-${dia}.html`;
 }
 
 export function productoCard(p: FlyerProduct): string {

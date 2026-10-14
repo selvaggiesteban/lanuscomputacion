@@ -1,7 +1,7 @@
 // lanus-flyers-updater — Worker con cron (7:00 y 17:00 ART).
 // Refresca el snapshot de precios de los flyers de campaña en KV
 // (clave `snapshot:latest`, binding FLYERS), sirvido por el sitio en
-// /flyers/{año}/ofertas-lanus-{fecha}-{día}.html.
+// /lista/{año}/ofertas-lanus-{fecha}-{día}.html.
 //
 // Replica completo el pipeline de selección de la campaña
 // (datos/fetch-productos.mjs): las 7 secciones de la plantilla con todas
