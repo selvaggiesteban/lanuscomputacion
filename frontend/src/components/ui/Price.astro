@@ -11,9 +11,17 @@ export interface Props {
   size?: 'sm' | 'md' | 'lg';
   b2b?: boolean;
   dollarRate?: number;
+  ivaPct?: number | null;
+  internalTaxPct?: number | null;
 }
 
-const { price, originalPrice, discount, installments, size = 'md', b2b, dollarRate = 0 } = Astro.props;
+const { price, originalPrice, discount, installments, size = 'md', b2b, dollarRate = 0, ivaPct, internalTaxPct } = Astro.props;
+
+// Precio sin impuestos nacionales: ELIT data (iva_pct + internal_tax_pct)
+const priceNoNationalTaxes =
+  typeof ivaPct === 'number'
+    ? Math.round(price / (1 + (ivaPct + (internalTaxPct ?? 0)) / 100))
+    : null;
 
 const priceClass = size === 'lg' ? 'ml-price' : size === 'md' ? 'text-price-md' : 'text-price-md text-lg';
 ---
@@ -47,3 +55,8 @@ const priceClass = size === 'lg' ? 'ml-price' : size === 'md' ? 'text-price-md' 
     </span>
   )}
 </div>
+{priceNoNationalTaxes !== null && (
+  <div class="price-no-taxes" style="font-size:14px;font-weight:400">
+    Precio sin impuestos nacionales ${priceNoNationalTaxes.toLocaleString('es-AR')}
+  </div>
+)}

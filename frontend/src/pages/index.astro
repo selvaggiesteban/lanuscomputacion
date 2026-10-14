@@ -177,4 +177,44 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
 
   <!-- Marcas -->
   <BrandsSection />
+
+  <!-- Popup 404 -->
+  <div id="not-found-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 p-4">
+    <div class="bg-white rounded-xl shadow-card p-6 max-w-sm w-full text-center">
+      <div class="text-5xl font-bold text-ml-yellow mb-3">!</div>
+      <h2 class="text-xl font-bold text-ml-text mb-2">Página no encontrada</h2>
+      <p class="text-ml-text-secondary mb-5">La página que buscas no existe o fue movida.</p>
+      <button id="not-found-close" type="button" class="ml-btn-primary">Volver al inicio</button>
+    </div>
+  </div>
+
+  <script>
+    const nfModal = document.getElementById('not-found-modal');
+    const nfClose = document.getElementById('not-found-close');
+
+    const showNf = () => {
+      if (!nfModal) return;
+      if (window.location.hash === '#404') {
+        nfModal.classList.remove('hidden');
+        nfModal.classList.add('flex');
+      } else {
+        nfModal.classList.add('hidden');
+        nfModal.classList.remove('flex');
+      }
+    };
+
+    const hideNf = () => {
+      nfModal?.classList.add('hidden');
+      nfModal?.classList.remove('flex');
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      window.scrollTo({ top: 0 });
+    };
+
+    showNf();
+    window.addEventListener('hashchange', showNf);
+    nfClose?.addEventListener('click', hideNf);
+    nfModal?.addEventListener('click', (e) => {
+      if (e.target === nfModal) hideNf();
+    });
+  </script>
 </BaseLayout>

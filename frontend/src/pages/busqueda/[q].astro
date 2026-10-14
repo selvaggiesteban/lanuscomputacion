@@ -15,10 +15,11 @@ const term = `%${q}%`;
 let products: {
   id: string; title: string; price: number; thumbnail: string;
   slug: string; dollar_rate: number; category_name: string; total_count: number;
+  iva_pct: number; internal_tax_pct: number;
 }[] = [];
 try {
   const { results } = await DB.prepare(`
-    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, COUNT(*) OVER() AS total_count
+    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, iva_pct, internal_tax_pct, COUNT(*) OVER() AS total_count
     FROM products
     WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
     ORDER BY available_qty DESC, created_at DESC
@@ -26,6 +27,7 @@ try {
   `).bind(term, term, term, limit, offset).all<{
     id: string; title: string; price: number; thumbnail: string;
     slug: string; dollar_rate: number; category_name: string; total_count: number;
+    iva_pct: number; internal_tax_pct: number;
   }>();
   products = results || [];
 } catch (e) {
@@ -55,6 +57,8 @@ const totalPages = Math.ceil(total / limit);
       slug: p.slug,
       freeShipping: false,
       dollarRate: p.dollar_rate,
+      ivaPct: p.iva_pct,
+      internalTaxPct: p.internal_tax_pct,
     }))} columns={4} />
 
     <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />

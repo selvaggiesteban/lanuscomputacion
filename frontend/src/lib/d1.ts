@@ -22,6 +22,8 @@ export type Product = {
   provider_store: string;
   free_shipping: number;
   sku: string;
+  iva_pct: number;
+  internal_tax_pct: number;
 };
 
 export type Category = {
@@ -46,7 +48,7 @@ export async function getProducts(db: D1Database, options?: {
   maxPrice?: number;
   sort?: string;
 }): Promise<Product[]> {
-  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store FROM products WHERE status = 'published'";
+  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct FROM products WHERE status = 'published'";
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {

@@ -18,7 +18,7 @@ let allProducts: any[] = [];
 if (promotions.length > 0) {
   try {
     const { results } = await DB.prepare(`
-      SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping
+      SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping, iva_pct, internal_tax_pct
       FROM products
       WHERE status = 'published' AND available_qty > 0 AND price > 0
         AND (
@@ -53,6 +53,8 @@ for (const product of allProducts) {
       freeShipping: product.free_shipping === 1,
       promoName: promo.promoName,
       dollar_rate: product.dollar_rate,
+      ivaPct: product.iva_pct,
+      internalTaxPct: product.internal_tax_pct,
     });
   }
 }

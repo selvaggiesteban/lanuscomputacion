@@ -101,6 +101,8 @@ const relatedWithPromos = relatedProducts.map(p => {
               price={product.price}
               size="lg"
               dollarRate={product.dollar_rate}
+              ivaPct={product.iva_pct}
+              internalTaxPct={product.internal_tax_pct}
             />
             {product.dollar_rate > 0 && (
               <p class="text-xs text-ml-text-muted mt-1">
@@ -202,6 +204,8 @@ const relatedWithPromos = relatedProducts.map(p => {
         slug: p.slug,
         freeShipping: false,
         dollarRate: p.dollar_rate,
+        ivaPct: p.iva_pct,
+        internalTaxPct: p.internal_tax_pct,
       }))} columns={5} />
     </section>
   </div>
