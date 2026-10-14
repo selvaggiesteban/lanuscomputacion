@@ -35,7 +35,7 @@ export interface FlyerSnapshot {
 }
 
 export const SITE = 'https://lanuscomputacion.com';
-export const HEADER_IMG = `${SITE}/campana-header.png`;
+export const HEADER_IMG = `${SITE}/computaci%C3%B3n%20en%20lan%C3%BAs%20ofertas%20de%20tecnolog%C3%ADa.webp`;
 const WA = '5491153323937'; // WhatsApp Lanús Computación
 const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
@@ -132,6 +132,7 @@ export function productoCard(p: FlyerProduct): string {
 
 export function flyer(d: Date, snapshot: FlyerSnapshot): string {
   const { dia, fecha } = partes(d);
+  const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
   const waCta = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar las ofertas mayoristas del ${dia} ${fecha}`)}`;
   const secciones = snapshot.secciones
     .map(
@@ -149,7 +150,7 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ofertas Mayoristas Lanús Computación — ${dia} ${fecha}</title>
+<title>Ofertas de tecnología - ${diaCap} ${fecha}</title>
 <style>${cssSitio}</style>
 <style>${flyerCss}</style>
 </head>
