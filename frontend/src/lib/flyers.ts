@@ -35,7 +35,7 @@ export interface FlyerSnapshot {
 }
 
 export const SITE = 'https://lanuscomputacion.com';
-export const LOGO = `${SITE}/logo.png`;
+export const HEADER_IMG = `${SITE}/campana-header.png`;
 const WA = '5491153323937'; // WhatsApp Lanús Computación
 const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
@@ -48,12 +48,9 @@ const flyerCss = `
 /* ===== Flyer campaña Lanús Computación (tokens del sitio) ===== */
 body{margin:0;background:#EDEDED;font-family:'Proxima Nova',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333333}
 .fl-wrap{max-width:640px;margin:0 auto;background:#FFFFFF}
-.fl-header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid #E0E0E0}
-.fl-header img{height:44px;display:block}
-.fl-tag{background:#DC2626;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px}
+.fl-logo{display:block;width:100%;height:auto}
 .fl-body{padding:24px}
 .fl-h1{font-size:22px;font-weight:700;color:#333333;margin:0 0 12px}
-.fl-intro{font-size:14px;color:#666666;line-height:1.65;margin:0 0 20px}
 .fl-badges{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 20px}
 .fl-badge{background:#F5F5F5;border:1px solid #E0E0E0;border-radius:8px;padding:10px 12px}
 .fl-badge b{display:block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#333333}
@@ -135,7 +132,6 @@ export function productoCard(p: FlyerProduct): string {
 
 export function flyer(d: Date, snapshot: FlyerSnapshot): string {
   const { dia, fecha } = partes(d);
-  const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
   const waCta = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar las ofertas mayoristas del ${dia} ${fecha}`)}`;
   const secciones = snapshot.secciones
     .map(
@@ -159,13 +155,9 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
 </head>
 <body>
   <div class="fl-wrap">
-    <div class="fl-header">
-      <img src="${LOGO}" alt="Lanús Computación">
-      <span class="fl-tag">Precios mayoristas</span>
-    </div>
+    <img class="fl-logo" src="${HEADER_IMG}" alt="Lanús Computación">
     <div class="fl-body">
-      <h1 class="fl-h1">Ofertas Mayoristas — ${diaCap} ${fecha}</h1>
-      <p class="fl-intro">Hola, ¿cómo estás? Te compartimos nuestra selección de la semana con <b>stock inmediato</b> y <b>precios mayoristas</b>: NAS, notebooks, PCs, monitores, redes, UPS y discos. En cada equipo te dejamos el precio vigente y el precio sin impuestos nacionales, con el botón para comprarlo directo en el sitio con el carrito cargado. Y si lo que buscás no está en la lista, consultanos igual por WhatsApp: te lo cotizamos.</p>
+      <h1 class="fl-h1">Ofertas de tecnología</h1>
       <div class="fl-badges">
         <div class="fl-badge"><b>Stock disponible</b><span>listo para despachar</span></div>
         <div class="fl-badge"><b>Precios mayoristas</b><span>para cuentas aprobadas</span></div>
