@@ -135,7 +135,7 @@ This platform powers the online operations of a computer retail and services bus
 | Session storage | Cloudflare KV (Astro sessions) |
 | CDN / Security | Cloudflare (DNS, SSL, DDoS, WAF) |
 | Payments | Mercado Pago |
-| Transactional email | Resend |
+| Transactional email | Gmail SMTP (`cloudflare:sockets`, contraseña de aplicación) |
 | Background jobs | Cloudflare Workers (hourly catalog sync, Workers AI) |
 | CI/CD | GitHub → Cloudflare Pages (push-to-deploy) + GitHub Actions quota watchdog |
 | Package management | npm |
@@ -216,7 +216,7 @@ Open `http://localhost:4321`.
 |---|---|---|
 | `MP_ACCESS_TOKEN` | Pages secret | MercadoPago payment preferences |
 | `JWT_SECRET` | Pages secret | Session/signature key (a dev fallback warns in logs if unset) |
-| `RESEND_API_KEY` | Pages secret | Transactional email (register, reset, order updates) |
+| `GMAIL_USER`, `GMAIL_APP_PASSWORD` | Pages secrets | Transactional email vía Gmail SMTP (register, reset, order updates) |
 | `ELIT_USER_ID`, `ELIT_TOKEN` | sync-elit secrets | ELIT supplier API credentials |
 | `CLOUDFLARE_API_TOKEN` | GitHub Actions secret | D1 quota watchdog (Analytics Read) |
 
@@ -224,7 +224,8 @@ Open `http://localhost:4321`.
 # Pages secrets
 npx wrangler pages secret put MP_ACCESS_TOKEN --project-name lanuscomputacion
 npx wrangler pages secret put JWT_SECRET --project-name lanuscomputacion
-npx wrangler pages secret put RESEND_API_KEY --project-name lanuscomputacion
+npx wrangler pages secret put GMAIL_USER --project-name lanuscomputacion
+npx wrangler pages secret put GMAIL_APP_PASSWORD --project-name lanuscomputacion
 
 # Worker secrets
 cd workers/sync-elit

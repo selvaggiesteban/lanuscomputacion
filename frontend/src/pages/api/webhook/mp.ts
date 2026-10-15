@@ -6,7 +6,8 @@ const MP_API = "https://api.mercadopago.com";
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
   const mpToken = locals.runtime.env.MP_ACCESS_TOKEN as string;
-  const resendApiKey = locals.runtime.env.RESEND_API_KEY as string | undefined;
+  const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
+  const gmailReady = Boolean(emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD);
 
   if (!mpToken) {
     return new Response(JSON.stringify({ error: "MP no configurado" }), { status: 500 });
@@ -76,7 +77,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     }
 
     // Send order confirmation email
-    if (resendApiKey) {
+    if (gmailReady) {
       const order = await db.prepare(
         "SELECT * FROM orders WHERE id = ?"
       ).bind(orderId).first<{ customer_name: string; customer_email: string; total: number }>();
@@ -92,7 +93,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
           total: order.total,
           customerName: order.customer_name,
         });
-        await sendEmail(resendApiKey, {
+        await sendEmail(emailEnv, {
           to: order.customer_email,
           subject: `Confirmación de pedido #${orderId}`,
           html,
@@ -101,7 +102,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     }
   } else if (["cancelled", "refunded", "shipped", "delivered"].includes(localStatus)) {
     // Send status update email
-    if (resendApiKey) {
+    if (gmailReady) {
       const order = await db.prepare(
         "SELECT * FROM orders WHERE id = ?"
       ).bind(orderId).first<{ customer_name: string; customer_email: string }>();
@@ -112,7 +113,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
           status: localStatus,
           customerName: order.customer_name,
         });
-        await sendEmail(resendApiKey, {
+        await sendEmail(emailEnv, {
           to: order.customer_email,
           subject: `Actualización de tu pedido #${orderId}`,
           html,

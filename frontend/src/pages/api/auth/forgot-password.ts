@@ -6,7 +6,7 @@ import { sendEmail, resetPasswordEmail } from "../../../lib/email";
 export const POST: APIRoute = async ({ locals, request }) => {
   const DB = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const resendApiKey = locals.runtime.env.RESEND_API_KEY as string | undefined;
+  const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
 
   const ip = getClientIp(request);
   const rateLimit = checkRateLimit(`reset-password:${ip}`, 5, 300000);
@@ -61,9 +61,9 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 
   // Send reset email (non-blocking)
-  if (resendApiKey) {
+  if (emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD) {
     const resetUrl = `https://lanuscomputacion.com/restablecer-contrasena?token=${token}`;
-    sendEmail(resendApiKey, {
+    sendEmail(emailEnv, {
       to: user.email,
       subject: "Restablecer contraseña — Lanús Computación",
       html: resetPasswordEmail(user.name, resetUrl),

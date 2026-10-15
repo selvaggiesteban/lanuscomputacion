@@ -6,7 +6,7 @@ import { sendEmail, welcomeEmail } from "../../../lib/email";
 export const POST: APIRoute = async ({ locals, request }) => {
   const db = locals.runtime.env.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
-  const resendApiKey = locals.runtime.env.RESEND_API_KEY as string | undefined;
+  const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
 
   const ip = getClientIp(request);
   const rateLimit = checkRateLimit(`register:${ip}`, 5, 300000); // 5 attempts per 5 minutes
@@ -70,8 +70,8 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 
   // Send welcome email (non-blocking)
-  if (resendApiKey) {
-    sendEmail(resendApiKey, {
+  if (emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD) {
+    sendEmail(emailEnv, {
       to: body.email,
       subject: "¡Bienvenido a Lanús Computación!",
       html: welcomeEmail(body.name),
