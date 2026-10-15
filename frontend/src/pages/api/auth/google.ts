@@ -137,7 +137,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/",
+        Location: user?.is_admin === 1 ? "/admin" : "/",
         "Set-Cookie": cookie,
       },
     });

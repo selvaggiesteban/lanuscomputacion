@@ -7,6 +7,8 @@
 // catalog change flows through this same snapshot. Adding a new provider or a
 // new notification channel only requires a new snapshot source or sender.
 
+import { connect } from "cloudflare:sockets";
+
 export interface WatchPromo {
   id: string;
   name: string;
@@ -31,7 +33,6 @@ export interface OfferChanges {
 }
 
 const ALERT_TO = "selvaggi.esteban@gmail.com";
-const FROM = "Lanús Computación <no-reply@lanuscomputacion.com>";
 const SITE = "https://lanuscomputacion.com";
 
 const PROMO_W = `
@@ -204,38 +205,109 @@ function changesHtml(s: OffersSnapshot, c: OfferChanges): string {
 }
 
 async function sendEmail(
-  env: { RESEND_API_KEY?: string },
+  env: { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string },
   subject: string,
   html: string
 ): Promise<boolean> {
-  if (!env.RESEND_API_KEY) {
-    console.log("[offers-watch] RESEND_API_KEY not configured — email skipped");
+  const user = env.GMAIL_USER;
+  const pass = env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    console.log("[offers-watch] GMAIL_USER/GMAIL_APP_PASSWORD not configured — email skipped");
     return false;
   }
-  try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ from: FROM, to: [ALERT_TO], subject, html }),
-    });
-    if (!res.ok) {
-      const err = await res.text();
-      console.error("[offers-watch] Resend error:", err);
-      return false;
+
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+  const socket = connect({ hostname: "smtp.gmail.com", port: 465 }, { secureTransport: "on" });
+  const writer = socket.writable.getWriter();
+  const reader = socket.readable.getReader();
+  let buf = "";
+  const timeout = setTimeout(() => { try { socket.close(); } catch {} }, 20000);
+
+  const write = (line: string) => writer.write(encoder.encode(line + "\r\n"));
+
+  function b64utf8(s: string): string {
+    const bytes = encoder.encode(s);
+    let bin = "";
+    for (const b of bytes) bin += String.fromCharCode(b);
+    return btoa(bin);
+  }
+
+  async function readReply(): Promise<number> {
+    for (;;) {
+      let scan = 0;
+      let pos = buf.indexOf("\r\n", scan);
+      let last: string | null = null;
+      while (pos !== -1) {
+        last = buf.slice(scan, pos);
+        scan = pos + 2;
+        pos = buf.indexOf("\r\n", scan);
+      }
+      if (last !== null && /^\d{3} [^-]/.test(last)) {
+        buf = buf.slice(scan);
+        return parseInt(last.slice(0, 3), 10);
+      }
+      const { done, value } = await reader.read();
+      if (done) throw new Error("SMTP: conexión cerrada inesperadamente");
+      if (value) buf += decoder.decode(value, { stream: true });
     }
+  }
+
+  async function expect(expected: number, step: string) {
+    const code = await readReply();
+    if (code !== expected) {
+      throw new Error(`SMTP ${step}: esperaba ${expected}, recibió ${code}`);
+    }
+  }
+
+  try {
+    await expect(220, "saludo");
+    await write("EHLO lanuscomputacion.com");
+    await expect(250, "EHLO");
+    await write("AUTH LOGIN");
+    await expect(334, "AUTH LOGIN");
+    await write(b64utf8(user));
+    await expect(334, "usuario");
+    await write(b64utf8(pass));
+    await expect(235, "autenticación");
+    await write(`MAIL FROM:<${user}>`);
+    await expect(250, "MAIL FROM");
+    await write(`RCPT TO:<${ALERT_TO}>`);
+    await expect(250, "RCPT TO");
+    await write("DATA");
+    await expect(354, "DATA");
+
+    const bodyB64 = (b64utf8(html).match(/.{1,76}/g) || []).join("\r\n");
+    const message = [
+      `From: =?UTF-8?B?${b64utf8("Lanús Computación")}?= <${user}>`,
+      `To: <${ALERT_TO}>`,
+      `Subject: =?UTF-8?B?${b64utf8(subject)}?=`,
+      "MIME-Version: 1.0",
+      "Content-Type: text/html; charset=utf-8",
+      "Content-Transfer-Encoding: base64",
+      "",
+      bodyB64,
+      ".",
+    ].join("\r\n");
+    await write(message);
+    await expect(250, "envío");
+    await write("QUIT");
     return true;
   } catch (err) {
-    console.error("[offers-watch] Send failed:", err);
+    console.error("[offers-watch] SMTP error:", String(err));
     return false;
+  } finally {
+    clearTimeout(timeout);
+    try { writer.releaseLock(); } catch {}
+    try { reader.releaseLock(); } catch {}
+    try { socket.close(); } catch {}
   }
 }
 
 export async function notifyOffersChanges(env: {
   lanus_catalog: D1Database;
-  RESEND_API_KEY?: string;
+  GMAIL_USER?: string;
+  GMAIL_APP_PASSWORD?: string;
 }): Promise<void> {
   const db = env.lanus_catalog;
 

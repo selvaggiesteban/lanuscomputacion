@@ -15,7 +15,8 @@ export interface Env {
   ELIT_USER_ID: string;
   ELIT_TOKEN: string;
   ELIT_PAGE_LIMIT?: string;
-  RESEND_API_KEY?: string;
+  GMAIL_USER?: string;
+  GMAIL_APP_PASSWORD?: string;
 }
 
 const DEFAULT_MARKUP = 30;

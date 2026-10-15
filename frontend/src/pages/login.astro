@@ -128,7 +128,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
-      window.location.href = '/';
+      window.location.href = data.user?.isAdmin ? '/admin' : '/';
     } catch (err) {
       errorDiv.textContent = 'Error de conexión';
       errorDiv.classList.remove('hidden');
