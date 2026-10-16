@@ -1,0 +1,29 @@
+{
+  "id": "elit_18701",
+  "title": "Fan Cooler CM MF120 Lite ARGB White 3-Pack 120mm",
+  "price": 35650.74,
+  "originalPrice": 16.52,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18701/i/qxNt1_l.webp",
+  "slug": "fan-cooler-cm-mf120-lite-argb-white-3-pack-120mm",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MFW-B2DW-173PA-R1",
+  "ean": "4719512154939",
+  "warranty": "24",
+  "description": "Fan Cooler CM MF120 Lite ARGB White 3-Pack 120mm - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5942
+  },
+  "stock": 68,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

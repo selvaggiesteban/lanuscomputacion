@@ -1,0 +1,29 @@
+{
+  "id": "elit_18815",
+  "title": "Proyector Portátil Epson EF22B Negro",
+  "price": 1579293.17,
+  "originalPrice": 731.82,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18815/i/oGe5J_l.webp",
+  "slug": "proyector-portatil-epson-ef22b-negro",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11HB38120",
+  "ean": "10343990104",
+  "warranty": "24",
+  "description": "Proyector Portátil Epson EF22B Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 263216
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

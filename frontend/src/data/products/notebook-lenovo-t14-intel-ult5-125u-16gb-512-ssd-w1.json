@@ -1,0 +1,29 @@
+{
+  "id": "elit_18583",
+  "title": "Notebook Lenovo T14-Intel, ULT5-125U, 16GB, 512 SSD, W1",
+  "price": 3157603.1,
+  "originalPrice": 1602.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18583/i/UGSAU_l.webp",
+  "slug": "notebook-lenovo-t14-intel-ult5-125u-16gb-512-ssd-w1",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21MM001JAR",
+  "ean": "198154737504",
+  "warranty": "36 MESES",
+  "description": "Notebook Lenovo T14-Intel, ULT5-125U, 16GB, 512 SSD, W1 - 36 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 526267
+  },
+  "stock": 58,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

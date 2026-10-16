@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>';
+---
+
+<ServicePage
+  title="E-commerce | Lanús Computación"
+  description="Desarrollo de tiendas online y e-commerce en Lanús. MercadoPago, carrito de compras, gestión de stock, panel de administración. Presupuesto sin costo."
+  slug="e-commerce"
+  heroTitle="E-commerce"
+  heroSubtitle="Vendé online con una tienda profesional. Carrito de compras, MercadoPago, gestión de stock, envíos y panel de administración completo."
+  icon={icon}
+  whatsappText="Hola, quiero crear una tienda online / e-commerce"
+  benefits={[
+    { icon: '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>', title: 'Carrito de compras', desc: 'Experiencia de compra fluida: agregar, modificar, eliminar y finalizar compra.' },
+    { icon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', title: 'MercadoPago', desc: 'Integración completa: tarjetas, transferencia, efectivo, cuotas y más.' },
+    { icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>', title: 'Panel de administración', desc: 'Gestioná productos, precios, stock, pedidos y clientes desde un solo lugar.' },
+    { icon: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>', title: 'Gestión de stock', desc: 'Control automático de inventario, alertas de stock bajo y variantes.' },
+    { icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>', title: 'Notificaciones', desc: 'Emails automáticos de confirmación, envío y estado del pedido.' },
+    { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Seguridad', desc: 'HTTPS, protección de datos de pago y cumplimiento de normativas.' },
+  ]}
+  steps={[
+    { title: 'Análisis', desc: 'Definimos catálogo, medios de pago, envíos, funcionalidades y diseño.' },
+    { title: 'Diseño', desc: 'Diseñamos la tienda con foco en conversión y experiencia de compra.' },
+    { title: 'Desarrollo', desc: 'Configuramos la tienda, productos, pasarela de pagos y envíos.' },
+    { title: 'Lanzamiento', desc: 'Cargamos productos, testeamos el flujo de compra y publicamos.' },
+  ]}
+  faqs={[
+    { question: '¿Qué plataforma usan para e-commerce?', answer: 'Depende de tus necesidades: Astro/React para tiendas custom, WooCommerce para WordPress, o plataformas SaaS como Shopify. Elegimos la mejor opción según tu caso.' },
+    { question: '¿Cuánto cuesta crear una tienda online?', answer: 'Una tienda simple con pocos productos: desde $250.000 ARS. Tiendas completas con muchas funcionalidades: desde $500.000 ARS. El costo incluye diseño, desarrollo, integración con MercadoPago y configuración.' },
+    { question: '¿Cuánto tarda en estar lista?', answer: 'Una tienda pequeña: 2-3 semanas. Una tienda completa con catálogo amplio: 4-6 semanas. Incluye carga de productos, testing y capacitación.' },
+    { question: '¿Incluye integración con MercadoPago?', answer: 'Sí, integramos MercadoPago con tarjetas de crédito, débito, transferencia bancaria, efectivo (Rapipago/Pago Fácil) y cuotas. También trabajamos con otros medios de pago.' },
+    { question: '¿Puedo gestionar los productos yo mismo?', answer: 'Sí, te damos acceso a un panel intuitivo para cargar productos, actualizar precios, gestionar stock, ver pedidos y gestionar clientes sin conocimientos técnicos.' },
+  ]}
+/>

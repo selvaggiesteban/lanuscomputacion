@@ -1,0 +1,29 @@
+{
+  "id": "elit_18202",
+  "title": "Memoria PC Prop. DDR5 16GB 5600Mhz CL46 1.1V 16Gbi",
+  "price": 519415.48,
+  "originalPrice": 263.56,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18202/i/rEmej_l.webp",
+  "slug": "memoria-pc-prop-ddr5-16gb-5600mhz-cl46-1-1v-16gbi",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KCP556US8-16",
+  "ean": "740617334357",
+  "warranty": "99",
+  "description": "Memoria PC Prop. DDR5 16GB 5600Mhz CL46 1.1V 16Gbi - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 86569
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

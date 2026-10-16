@@ -1,0 +1,29 @@
+{
+  "id": "elit_19794",
+  "title": "Cartucho de Tinta Brother LC406XLCs Cian",
+  "price": 126720.35,
+  "originalPrice": 64.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19794/i/1Qr4X_l.webp",
+  "slug": "cartucho-de-tinta-brother-lc406xlcs-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC406XLCS",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho de Tinta Brother LC406XLCs Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21120
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

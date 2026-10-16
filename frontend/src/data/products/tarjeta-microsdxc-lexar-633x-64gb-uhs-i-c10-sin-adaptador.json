@@ -1,0 +1,29 @@
+{
+  "id": "elit_17778",
+  "title": "Tarjeta microSDXC Lexar  633x 64GB UHS-I C10 sin adaptador",
+  "price": 25955.01,
+  "originalPrice": 13.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17778/i/HoqLD_l.webp",
+  "slug": "tarjeta-microsdxc-lexar-633x-64gb-uhs-i-c10-sin-adaptador",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "LEXAR",
+  "sku": "LMS0633064G-BNNNG",
+  "ean": "843367128891",
+  "warranty": "120",
+  "description": "Tarjeta microSDXC Lexar  633x 64GB UHS-I C10 sin adaptador - 120",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4326
+  },
+  "stock": 340,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

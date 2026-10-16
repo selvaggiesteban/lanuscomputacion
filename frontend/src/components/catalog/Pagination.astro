@@ -1,0 +1,62 @@
+---
+export interface Props {
+  current: number;
+  total: number;
+  baseUrl: string;
+}
+
+const { current, total, baseUrl } = Astro.props;
+const pages = [];
+
+const start = Math.max(1, current - 2);
+const end = Math.min(total, current + 2);
+
+if (start > 1) {
+  pages.push(1);
+  if (start > 2) pages.push('...');
+}
+for (let i = start; i <= end; i++) pages.push(i);
+if (end < total) {
+  if (end < total - 1) pages.push('...');
+  pages.push(total);
+}
+---
+
+{total > 1 && (
+  <nav class="flex items-center justify-center gap-1 mt-8" aria-label="Paginación">
+    {current > 1 && (
+      <a href={`${baseUrl}?page=${current - 1}`} class="p-2 text-ml-text-muted hover:text-ml-blue transition-colors" aria-label="Página anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </a>
+    )}
+
+    {pages.map((page) =>
+      page === '...' ? (
+        <span class="w-8 h-8 flex items-center justify-center text-ml-text-muted">...</span>
+      ) : (
+        <a
+          href={`${baseUrl}?page=${page}`}
+          class={`w-8 h-8 flex items-center justify-center rounded text-sm transition-colors ${
+            page === current
+              ? 'bg-ml-blue text-white font-bold'
+              : 'text-ml-text-secondary hover:bg-gray-100'
+          }`}
+          aria-label={`Página ${page}`}
+          aria-current={page === current ? 'page' : undefined}
+        >
+          {page}
+        </a>
+      )
+    )}
+
+    {current < total && (
+      <a href={`${baseUrl}?page=${current + 1}`} class="p-2 text-ml-text-muted hover:text-ml-blue transition-colors" aria-label="Página siguiente">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </a>
+    )}
+  </nav>
+)}

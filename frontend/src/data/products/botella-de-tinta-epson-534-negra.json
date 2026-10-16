@@ -1,0 +1,29 @@
+{
+  "id": "elit_8611",
+  "title": "Botella de Tinta Epson 534 Negra",
+  "price": 48706.85,
+  "originalPrice": 22.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8611/i/LqMnH_l.webp",
+  "slug": "botella-de-tinta-epson-534-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T534120-AL",
+  "ean": "10343943865",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 534 Negra - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8118
+  },
+  "stock": 42,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

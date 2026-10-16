@@ -1,0 +1,29 @@
+{
+  "id": "elit_17728",
+  "title": "Procesador AMD Ryzen 5 9600X 3.9GHz AM5 S/Cooler",
+  "price": 477280.47,
+  "originalPrice": 242.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17728/i/VN0Hv_l.webp",
+  "slug": "procesador-amd-ryzen-5-9600x-3-9ghz-am5-s-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001405WOF",
+  "ean": "730143315609",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 9600X 3.9GHz AM5 S/Cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 79547
+  },
+  "stock": 37,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

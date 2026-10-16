@@ -1,0 +1,29 @@
+{
+  "id": "elit_6687",
+  "title": "Volante LOGITECH G29 Negro",
+  "price": 528545.93,
+  "originalPrice": 244.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6687/i/GfBek_l.webp",
+  "slug": "volante-logitech-g29-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Volantes",
+  "brand": "LOGITECH",
+  "sku": "941-000111",
+  "ean": "97855112774",
+  "warranty": "12",
+  "description": "Volante LOGITECH G29 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 88091
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

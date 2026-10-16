@@ -1,0 +1,29 @@
+{
+  "id": "elit_16267",
+  "title": "Teclado Inalámbrico LOGITECH K650 Graphite",
+  "price": 59221.56,
+  "originalPrice": 30.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16267/i/TjXPy_l.webp",
+  "slug": "teclado-inalambrico-logitech-k650-graphite",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-010910",
+  "ean": "97855179548",
+  "warranty": "12",
+  "description": "Teclado Inalámbrico LOGITECH K650 Graphite - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9870
+  },
+  "stock": 62,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

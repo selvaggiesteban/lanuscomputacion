@@ -1,0 +1,29 @@
+{
+  "id": "elit_19470",
+  "title": "Motherboard ASUS PRIME A520M-K/CSM AM4 DDR4",
+  "price": 99109.9,
+  "originalPrice": 50.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19470/i/dBN13_l.webp",
+  "slug": "motherboard-asus-prime-a520m-k-csm-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME A520M-K/CSM",
+  "ean": "4718017826952",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME A520M-K/CSM AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 16518
+  },
+  "stock": 135,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19440",
+  "title": "Motherboard MSI PRO H610M-B LGA 1700 DDR5",
+  "price": 120946.0,
+  "originalPrice": 61.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19440/i/bXKiE_l.webp",
+  "slug": "motherboard-msi-pro-h610m-b-lga-1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO H610M-B",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Motherboard MSI PRO H610M-B LGA 1700 DDR5 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20158
+  },
+  "stock": 60,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

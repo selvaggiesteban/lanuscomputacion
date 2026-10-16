@@ -1,0 +1,29 @@
+{
+  "id": "elit_15394",
+  "title": "Mouse Pad LOGITECH M Grafito",
+  "price": 17631.15,
+  "originalPrice": 8.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15394/i/PrBfK_l.webp",
+  "slug": "mouse-pad-logitech-m-grafito",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouse Pads",
+  "brand": "LOGITECH",
+  "sku": "956-000035",
+  "ean": "97855169419",
+  "warranty": "12",
+  "description": "Mouse Pad LOGITECH M Grafito - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2939
+  },
+  "stock": 119,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

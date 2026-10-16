@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 3 0 0 1 4 10 15 3 0 0 1-4 10 15 3 0 0 1-4-10 15 3 0 0 1 4-10z"/>';
+---
+
+<ServicePage
+  title="Desarrollo de Sitios Webs | Lanús Computación"
+  description="Desarrollo de sitios webs en Lanús. Landing pages, sitios corporativos, blogs, portfolios, multisitios. Diseño profesional y SEO. Presupuesto sin costo."
+  slug="desarrollo-de-sitios-webs"
+  heroTitle="Desarrollo de Sitios Webs"
+  heroSubtitle="Sitios web profesionales para tu negocio o proyecto. Landing pages, sitios corporativos, blogs y portfolios con diseño optimizado para Google."
+  icon={icon}
+  whatsappText="Hola, quiero presupuesto de desarrollo de sitio web"
+  benefits={[
+    { icon: '<rect x="3" y="3" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/>', title: 'Landing pages', desc: 'Páginas de aterrizaje optimizadas para convertir visitantes en clientes.' },
+    { icon: '<path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/>', title: 'Sitios corporativos', desc: 'Webs institucionales que transmiten confianza y profesionalismo.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', title: 'Blogs y portfolios', desc: 'Sitios de contenido con SEO optimizado para posicionar en Google.' },
+    { icon: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>', title: 'Multisitios', desc: 'Gestionar múltiples sitios desde un solo panel de administración.' },
+    { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'Carga rápida', desc: 'Optimización de imágenes, código mínimo y CDN para carga instantánea.' },
+    { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Seguridad', desc: 'SSL, headers de seguridad, backups y protección contra spam.' },
+  ]}
+  steps={[
+    { title: 'Briefing', desc: 'Nos contás tu proyecto, objetivos, público yreferentes de diseño.' },
+    { title: 'Propuesta', desc: 'Te presentamos estructura, diseño, tecnologías ypresupuesto detallado.' },
+    { title: 'Desarrollo', desc: 'Construimos tu web con revisiones en cada etapa para tu aprobación.' },
+    { title: 'Lanzamiento', desc: 'Configuramos dominio, hosting, SEO básico y publicamos tu web.' },
+  ]}
+  faqs={[
+    { question: '¿Qué tipo de sitios web desarrollan?', answer: 'Landing pages, sitios corporativos, blogs, portfolios, tiendas online, directorios, multisitios y cualquier sitio web que necesites. Cada proyecto es único y a medida.' },
+    { question: '¿Cuánto cuesta un sitio web?', answer: 'Una landing page simple: desde $150.000 ARS. Un sitio corporativo: desde $300.000 ARS. Sitios más complejos con funcionalidades custom se presupuestan según alcance. Sin compromiso.' },
+    { question: '¿Cuánto tarda en estar listo?', answer: 'Una landing page: 5-10 días hábiles. Un sitio corporativo: 2-4 semanas. Blogs y portfolios: 1-2 semanas. Plazos estimados según alcance.' },
+    { question: '¿Puedo editar el contenido yo mismo?', answer: 'Sí, integramos un CMS (Content Management System) para que puedas actualizar textos, imágenes y contenido sin conocimientos técnicos.' },
+    { question: '¿Incluye hosting?', answer: 'El desarrollo sepublica en el hosting que prefieras. Te recomendamos Cloudflare Pages (gratuito) o Vercel. Te ayudamos con la configuración inicial.' },
+  ]}
+/>

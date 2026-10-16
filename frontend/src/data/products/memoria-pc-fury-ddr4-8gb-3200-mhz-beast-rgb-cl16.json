@@ -1,0 +1,29 @@
+{
+  "id": "elit_17018",
+  "title": "Memoria PC Fury DDR4 8GB 3200 Mhz Beast RGB CL16",
+  "price": 223485.03,
+  "originalPrice": 113.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17018/i/0AjnA_l.webp",
+  "slug": "memoria-pc-fury-ddr4-8gb-3200-mhz-beast-rgb-cl16",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF432C16BB2A/8",
+  "ean": "740617337549",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR4 8GB 3200 Mhz Beast RGB CL16 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37248
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

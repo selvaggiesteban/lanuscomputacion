@@ -1,0 +1,29 @@
+{
+  "id": "elit_19058",
+  "title": "Impresora Brother T430W Multifunción",
+  "price": 479925.4,
+  "originalPrice": 222.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19058/i/KBvNk_l.webp",
+  "slug": "impresora-brother-t430w-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "BROTHER",
+  "sku": "DCPT430W",
+  "ean": "12502676843",
+  "warranty": "24",
+  "description": "Impresora Brother T430W Multifunción - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 79988
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

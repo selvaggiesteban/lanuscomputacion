@@ -1,0 +1,29 @@
+{
+  "id": "elit_17998",
+  "title": "Auricular Inalámbricos Logitech Zone 300 Blanco",
+  "price": 131057.47,
+  "originalPrice": 60.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17998/i/rvip8_l.webp",
+  "slug": "auricular-inalambricos-logitech-zone-300-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001416",
+  "ean": "97855193681",
+  "warranty": "24",
+  "description": "Auricular Inalámbricos Logitech Zone 300 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21843
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

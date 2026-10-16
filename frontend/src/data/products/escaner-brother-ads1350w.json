@@ -1,0 +1,29 @@
+{
+  "id": "elit_19788",
+  "title": "Escaner Brother ADS1350W",
+  "price": 742644.32,
+  "originalPrice": 376.83,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19788/i/9MiPV_l.webp",
+  "slug": "escaner-brother-ads1350w",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Escaner",
+  "brand": "BROTHER",
+  "sku": "ADS1350W",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Escaner Brother ADS1350W - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 123774
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

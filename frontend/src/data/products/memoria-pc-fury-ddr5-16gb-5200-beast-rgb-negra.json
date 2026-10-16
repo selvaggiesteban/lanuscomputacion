@@ -1,0 +1,29 @@
+{
+  "id": "elit_17337",
+  "title": "Memoria PC Fury DDR5 16GB 5200 Beast RGB Negra",
+  "price": 493696.97,
+  "originalPrice": 250.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17337/i/xV8A5_l.webp",
+  "slug": "memoria-pc-fury-ddr5-16gb-5200-beast-rgb-negra",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KF552C40BBA-16",
+  "ean": "740617328639",
+  "warranty": "99",
+  "description": "Memoria PC Fury DDR5 16GB 5200 Beast RGB Negra - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 82283
+  },
+  "stock": 32,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

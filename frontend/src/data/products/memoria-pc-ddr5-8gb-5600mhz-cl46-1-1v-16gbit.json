@@ -1,0 +1,29 @@
+{
+  "id": "elit_18230",
+  "title": "Memoria PC DDR5 8GB 5600Mhz CL46 1.1V 16Gbit",
+  "price": 270901.7,
+  "originalPrice": 137.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18230/i/49MCY_l.webp",
+  "slug": "memoria-pc-ddr5-8gb-5600mhz-cl46-1-1v-16gbit",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KVR56U46BS6-8",
+  "ean": "740617332841",
+  "warranty": "99",
+  "description": "Memoria PC DDR5 8GB 5600Mhz CL46 1.1V 16Gbit - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 45150
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

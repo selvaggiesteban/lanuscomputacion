@@ -1,0 +1,99 @@
+import type { APIRoute } from "astro";
+import { hashPassword, generateToken, createSessionCookie, getJwtSecret } from "../../../lib/auth";
+import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
+import { sendEmail, welcomeEmail } from "../../../lib/email";
+
+export const POST: APIRoute = async ({ locals, request }) => {
+  const db = locals.runtime.env.DB as D1Database;
+  const jwtSecret = getJwtSecret(locals.runtime.env);
+  const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
+
+  const ip = getClientIp(request);
+  const rateLimit = checkRateLimit(`register:${ip}`, 5, 300000); // 5 attempts per 5 minutes
+  if (!rateLimit.allowed) {
+    return new Response(JSON.stringify({ error: "Demasiados intentos. Intentá de nuevo en unos minutos." }), {
+      status: 429,
+      headers: { "Content-Type": "application/json", "Retry-After": String(rateLimit.resetIn) },
+    });
+  }
+
+  let body: { name?: string; email?: string; password?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "JSON inválido" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  if (!body.name || !body.email || !body.password) {
+    return new Response(JSON.stringify({ error: "Faltan datos: name, email, password" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // Check if user already exists
+  let existing = null;
+  try {
+    existing = await db.prepare(
+      "SELECT id FROM customers WHERE email = ?"
+    ).bind(body.email).first();
+  } catch (e) {
+    console.error("Error checking existing user during registration:", e);
+  }
+
+  if (existing) {
+    return new Response(JSON.stringify({ error: "El email ya está registrado" }), {
+      status: 409,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // Create user
+  const passwordHash = await hashPassword(body.password);
+
+  let userId;
+  try {
+    const result = await db.prepare(`
+      INSERT INTO customers (email, name, password_hash, is_admin, is_b2b, created_at)
+      VALUES (?, ?, ?, 0, 0, datetime('now'))
+    `).bind(body.email, body.name, passwordHash).run();
+    userId = result.meta.last_row_id as number;
+  } catch (e) {
+    console.error("Error creating user:", e);
+    return new Response(JSON.stringify({ error: "Error interno al crear la cuenta" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // Send welcome email (non-blocking)
+  if (emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD) {
+    sendEmail(emailEnv, {
+      to: body.email,
+      subject: "¡Bienvenido a Lanús Computación!",
+      html: welcomeEmail(body.name),
+    }).catch(console.error);
+  }
+
+  // Generate token
+  const token = await generateToken(
+    { userId, email: body.email, isAdmin: false },
+    jwtSecret
+  );
+
+  const cookie = createSessionCookie(token);
+
+  return new Response(JSON.stringify({
+    success: true,
+    user: { id: userId, name: body.name, email: body.email },
+  }), {
+    status: 201,
+    headers: {
+      "Content-Type": "application/json",
+      "Set-Cookie": cookie,
+    },
+  });
+};

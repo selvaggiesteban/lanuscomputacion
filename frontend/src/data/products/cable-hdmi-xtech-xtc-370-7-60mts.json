@@ -1,0 +1,29 @@
+{
+  "id": "elit_8583",
+  "title": "Cable HDMI XTECH XTC-370 7.60mts",
+  "price": 13293.5,
+  "originalPrice": 6.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8583/i/QYIkt_l.webp",
+  "slug": "cable-hdmi-xtech-xtc-370-7-60mts",
+  "categorySlug": "cables",
+  "category": "Cables",
+  "subcategory": "Cables",
+  "brand": "XTECH",
+  "sku": "XTC-370",
+  "ean": "798302161757",
+  "warranty": "12",
+  "description": "Cable HDMI XTECH XTC-370 7.60mts - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2216
+  },
+  "stock": 77,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

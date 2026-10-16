@@ -1,0 +1,29 @@
+{
+  "id": "elit_15346",
+  "title": "Procesador INTEL Core i5-12400F 2.50GHz LGA1700 DDR4/DDR5",
+  "price": 321964.29,
+  "originalPrice": 163.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15346/i/x6FFj_l.webp",
+  "slug": "procesador-intel-core-i5-12400f-2-50ghz-lga1700-ddr4-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071512400F",
+  "ean": "5032037237758",
+  "warranty": "36",
+  "description": "Procesador INTEL Core i5-12400F 2.50GHz LGA1700 DDR4/DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 53661
+  },
+  "stock": 191,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

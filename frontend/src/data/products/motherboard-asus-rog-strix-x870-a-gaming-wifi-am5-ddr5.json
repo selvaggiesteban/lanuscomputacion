@@ -1,0 +1,29 @@
+{
+  "id": "elit_19488",
+  "title": "Motherboard ASUS ROG STRIX X870-A GAMING WIFI AM5 DDR5",
+  "price": 651397.78,
+  "originalPrice": 330.53,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19488/i/4qnmn_l.webp",
+  "slug": "motherboard-asus-rog-strix-x870-a-gaming-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "ROG STRIX X870-A GAMING WIFI",
+  "ean": "4711387737859",
+  "warranty": "36",
+  "description": "Motherboard ASUS ROG STRIX X870-A GAMING WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 108566
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

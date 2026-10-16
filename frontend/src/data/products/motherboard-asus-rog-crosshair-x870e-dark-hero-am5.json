@@ -1,0 +1,29 @@
+{
+  "id": "elit_20221",
+  "title": "Motherboard ASUS ROG CROSSHAIR X870E DARK HERO AM5",
+  "price": 1419129.97,
+  "originalPrice": 720.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20221/i/2K7iV_l.webp",
+  "slug": "motherboard-asus-rog-crosshair-x870e-dark-hero-am5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "ROG CROSSHAIR X870E DARK HERO",
+  "ean": "4711636398671",
+  "warranty": "36",
+  "description": "Motherboard ASUS ROG CROSSHAIR X870E DARK HERO AM5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 236522
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

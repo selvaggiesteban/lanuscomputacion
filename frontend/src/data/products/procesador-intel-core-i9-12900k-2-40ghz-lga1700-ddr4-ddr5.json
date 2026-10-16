@@ -1,0 +1,29 @@
+{
+  "id": "elit_15260",
+  "title": "Procesador INTEL Core i9-12900K 2.40GHz LGA1700 DDR4/DDR5",
+  "price": 982427.6,
+  "originalPrice": 498.5,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15260/i/1M8WC_l.webp",
+  "slug": "procesador-intel-core-i9-12900k-2-40ghz-lga1700-ddr4-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071512900K",
+  "ean": "5032037234641",
+  "warranty": "36",
+  "description": "Procesador INTEL Core i9-12900K 2.40GHz LGA1700 DDR4/DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 163738
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19098",
+  "title": "Procesador AMD Ryzen 7 5700 3.7GHz 8 Core AM4",
+  "price": 290274.35,
+  "originalPrice": 147.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19098/i/lwkwR_l.webp",
+  "slug": "procesador-amd-ryzen-7-5700-3-7ghz-8-core-am4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000743SBX",
+  "ean": "730143317856",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 5700 3.7GHz 8 Core AM4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 48379
+  },
+  "stock": 89,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

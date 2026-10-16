@@ -1,0 +1,29 @@
+{
+  "id": "elit_17684",
+  "title": "Teclado gaming HyperX Alloy Rise 75%",
+  "price": 262979.22,
+  "originalPrice": 133.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17684/i/2OMz3_l.webp",
+  "slug": "teclado-gaming-hyperx-alloy-rise-75",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "HYPERX",
+  "sku": "7G7A4AA",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Teclado gaming HyperX Alloy Rise 75% - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 43830
+  },
+  "stock": 28,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

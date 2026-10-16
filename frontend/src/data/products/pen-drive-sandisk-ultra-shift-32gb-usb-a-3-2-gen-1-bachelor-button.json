@@ -1,0 +1,29 @@
+{
+  "id": "elit_18372",
+  "title": "Pen Drive SANDISK Ultra Shift 32GB USB-A 3.2 Gen 1 Bachelor Button",
+  "price": 20156.05,
+  "originalPrice": 9.34,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18372/i/HMPyU_l.webp",
+  "slug": "pen-drive-sandisk-ultra-shift-32gb-usb-a-3-2-gen-1-bachelor-button",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ410-032G-G46BB",
+  "ean": "619659203207",
+  "warranty": "36",
+  "description": "Pen Drive SANDISK Ultra Shift 32GB USB-A 3.2 Gen 1 Bachelor Button - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3359
+  },
+  "stock": 127,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

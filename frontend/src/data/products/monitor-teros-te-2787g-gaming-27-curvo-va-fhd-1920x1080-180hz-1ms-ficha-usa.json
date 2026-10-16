@@ -1,0 +1,29 @@
+{
+  "id": "elit_19000",
+  "title": "Monitor Teros TE-2787G Gaming 27\" Curvo VA FHD (1920X1080) 180Hz 1ms Ficha USA",
+  "price": 283890.04,
+  "originalPrice": 119.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19000/i/oCCgK_l.webp",
+  "slug": "monitor-teros-te-2787g-gaming-27-curvo-va-fhd-1920x1080-180hz-1ms-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "TEROS",
+  "sku": "TE-2787G",
+  "ean": "782752509108",
+  "warranty": "36",
+  "description": "Monitor Teros TE-2787G Gaming 27\" Curvo VA FHD (1920X1080) 180Hz 1ms Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47315
+  },
+  "stock": 183,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

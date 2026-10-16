@@ -1,0 +1,29 @@
+{
+  "id": "elit_18074",
+  "title": "Motherboard MSI PRO X870-P WIFI AM5 DD5",
+  "price": 436387.05,
+  "originalPrice": 221.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18074/i/agiyC_l.webp",
+  "slug": "motherboard-msi-pro-x870-p-wifi-am5-dd5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO X870-P WIFI",
+  "ean": "4711377256339",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO X870-P WIFI AM5 DD5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 72731
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

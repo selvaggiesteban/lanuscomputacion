@@ -1,0 +1,29 @@
+{
+  "id": "elit_20202",
+  "title": "Mouse Inalámbrico Redragon King M916 Pro Negro",
+  "price": 56580.73,
+  "originalPrice": 28.71,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20202/i/YZ73c_l.webp",
+  "slug": "mouse-inalambrico-redragon-king-m916-pro-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "REDRAGON",
+  "sku": "M916-PRO-1K",
+  "ean": "6950376721952",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico Redragon King M916 Pro Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9430
+  },
+  "stock": 143,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

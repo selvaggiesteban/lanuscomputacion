@@ -1,0 +1,29 @@
+{
+  "id": "elit_17171",
+  "title": "Impresora Epson L3560 Multifunción EcoTank",
+  "price": 665624.32,
+  "originalPrice": 308.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17171/i/zBWya_l.webp",
+  "slug": "impresora-epson-l3560-multifuncion-ecotank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CK58302",
+  "ean": "10343973428",
+  "warranty": "12",
+  "description": "Impresora Epson L3560 Multifunción EcoTank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 110937
+  },
+  "stock": 99,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

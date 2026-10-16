@@ -1,0 +1,29 @@
+{
+  "id": "elit_15945",
+  "title": "Tóner Pantum NT-PB211 Negro",
+  "price": 47433.61,
+  "originalPrice": 21.98,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15945/i/zX3YV_l.webp",
+  "slug": "toner-pantum-nt-pb211-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "PANTUM",
+  "sku": "NT-PB211",
+  "ean": "6936358015462",
+  "warranty": "12",
+  "description": "Tóner Pantum NT-PB211 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7906
+  },
+  "stock": 594,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

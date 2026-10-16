@@ -1,0 +1,29 @@
+{
+  "id": "elit_19862",
+  "title": "Mini PC ASUS PN52-BB7000XTC Ryzen 7 5800H BAREBONE (S/RAM - S/SSD)",
+  "price": 868024.55,
+  "originalPrice": 440.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19862/i/Xccj0_l.webp",
+  "slug": "mini-pc-asus-pn52-bb7000xtc-ryzen-7-5800h-barebone-s-ram-s-ssd",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Mini PC",
+  "brand": "ASUS",
+  "sku": "PN52-BB7000XTC",
+  "ean": "4711387237113",
+  "warranty": "36",
+  "description": "Mini PC ASUS PN52-BB7000XTC Ryzen 7 5800H BAREBONE (S/RAM - S/SSD) - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 144671
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

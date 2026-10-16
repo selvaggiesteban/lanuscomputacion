@@ -1,0 +1,29 @@
+{
+  "id": "elit_17322",
+  "title": "Memoria SODIMM Fury DDR5 16GB 5600MHz Impact Negra",
+  "price": 499983.71,
+  "originalPrice": 253.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17322/i/PIYE6_l.webp",
+  "slug": "memoria-sodimm-fury-ddr5-16gb-5600mhz-impact-negra",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "KINGSTON",
+  "sku": "KF556S40IB-16",
+  "ean": "740617331677",
+  "warranty": "99",
+  "description": "Memoria SODIMM Fury DDR5 16GB 5600MHz Impact Negra - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 83331
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

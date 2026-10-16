@@ -1,0 +1,29 @@
+{
+  "id": "elit_19517",
+  "title": "Memoria Ram UDIMM ADATA XPG LANCER BLADE RGB 16GB DDR5 6000 BLACK CL48 1.1V",
+  "price": 495884.52,
+  "originalPrice": 251.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19517/i/PDnA2_l.webp",
+  "slug": "memoria-ram-udimm-adata-xpg-lancer-blade-rgb-16gb-ddr5-6000-black-cl48-1-1v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AX5U6000C4816G-SLABRBK",
+  "ean": "4711085948434",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA XPG LANCER BLADE RGB 16GB DDR5 6000 BLACK CL48 1.1V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 82647
+  },
+  "stock": 28,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

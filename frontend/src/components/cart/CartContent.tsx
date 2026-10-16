@@ -10,21 +10,6 @@ const TRANSFER = {
   cuit: "20-43310259-3",
 };
 
-const ACID_KEY = "lanuscom-acid";
-
-function getAcid(): string {
-  try {
-    let a = localStorage.getItem(ACID_KEY);
-    if (!a) {
-      a = crypto.randomUUID();
-      localStorage.setItem(ACID_KEY, a);
-    }
-    return a;
-  } catch {
-    return "";
-  }
-}
-
 export default function CartContent() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
@@ -44,54 +29,6 @@ export default function CartContent() {
     window.addEventListener("cart-update", refresh);
     return () => window.removeEventListener("cart-update", refresh);
   }, [refresh]);
-
-  const sendAbandoned = useCallback(
-    (orderId?: string) => {
-      try {
-        const cart = getCart();
-        if (!orderId && cart.length === 0) return;
-        const payload = {
-          session_id: getAcid(),
-          items: cart.map((i) => ({
-            product_id: i.product_id,
-            title: i.title,
-            quantity: i.quantity,
-            price: i.promo_price ?? i.price,
-          })),
-          customer: {
-            name: customer.name,
-            email: customer.email,
-            phone: customer.phone,
-            address: customer.address,
-          },
-          page: window.location.pathname,
-          order_id: orderId ?? null,
-        };
-        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-        if (typeof navigator.sendBeacon === "function" && navigator.sendBeacon("/api/track/abandoned", blob)) {
-          return;
-        }
-        void fetch("/api/track/abandoned", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-          keepalive: true,
-        });
-      } catch {
-        // El tracking de carritos nunca debe romper el checkout.
-      }
-    },
-    [customer]
-  );
-
-  useEffect(() => {
-    const hasData =
-      items.length > 0 ||
-      Boolean(customer.name || customer.email || customer.phone || customer.address);
-    if (!hasData) return;
-    const t = setTimeout(() => sendAbandoned(), 4000);
-    return () => clearTimeout(t);
-  }, [items, customer, sendAbandoned]);
 
   const handleRemove = (id: string) => {
     removeFromCart(id);
@@ -151,7 +88,7 @@ export default function CartContent() {
     setPayStep("methods");
   };
 
-  const handleOrder = async (method: "transferencia" | "efectivo" | "a_convenir") => {
+  const handleOrder = async (method: "transferencia" | "efectivo") => {
     setCheckingOut(true);
     setError("");
     try {
@@ -167,24 +104,15 @@ export default function CartContent() {
           customer,
           payment_method: method,
           coupon_id: couponDiscount?.couponId ?? null,
-          abandoned_session_id: getAcid(),
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al procesar");
 
-      sendAbandoned(data.order_id);
       const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
-
-      let msg = "";
-      if (method === "transferencia") {
-        msg = `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`;
-      } else if (method === "efectivo") {
-        msg = `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
-      } else {
-        msg = `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (Envío a convenir). Productos: ${resumen}. Total: $${(total + 17000).toLocaleString("es-AR", { minimumFractionDigits: 2 })} (incluye envío).`;
-      }
-
+      const msg = method === "transferencia"
+        ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`
+        : `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
       setOrderResult({
         orderId: data.order_id,
         method,
@@ -324,10 +252,6 @@ export default function CartContent() {
                 <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
                 <p class="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
               </button>
-              <button onClick={() => handleOrder("a_convenir")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
-                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "A convenir"}</p>
-                <p class="text-xs text-ml-text-muted">Costo: $17.000 · Llega en 3 días hábiles</p>
-              </button>
               <button onClick={() => setPayStep("form")} class="text-xs text-ml-blue hover:underline">← Volver</button>
             </div>
           )}
@@ -342,11 +266,6 @@ export default function CartContent() {
                   <p><strong>CVU:</strong> {TRANSFER.cvu}</p>
                   <p><strong>Alias:</strong> {TRANSFER.alias}</p>
                   <p><strong>CUIT:</strong> {TRANSFER.cuit}</p>
-                </div>
-              ) : orderResult.method === "a_convenir" ? (
-                <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
-                  <p><strong>Envío:</strong> A convenir ($17.000)</p>
-                  <p>Llega en 3 días hábiles</p>
                 </div>
               ) : (
                 <p class="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>

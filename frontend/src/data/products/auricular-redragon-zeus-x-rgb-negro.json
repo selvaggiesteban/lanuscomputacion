@@ -1,0 +1,29 @@
+{
+  "id": "elit_20174",
+  "title": "Auricular Redragon Zeus X RGB Negro",
+  "price": 112325.72,
+  "originalPrice": 52.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20174/i/7HZto_l.webp",
+  "slug": "auricular-redragon-zeus-x-rgb-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "REDRAGON",
+  "sku": "H510-RGB",
+  "ean": "6950376705914",
+  "warranty": "12",
+  "description": "Auricular Redragon Zeus X RGB Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 18721
+  },
+  "stock": 31,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19713",
+  "title": "Camara Ezviz CB2 1080P BK",
+  "price": 117656.07,
+  "originalPrice": 54.52,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19713/i/25ut4_l.webp",
+  "slug": "camara-ezviz-cb2-1080p-bk",
+  "categorySlug": "seguridad",
+  "category": "Seguridad",
+  "subcategory": "Cámaras WiFi",
+  "brand": "EZVIZ",
+  "sku": "CS-CB2-R100-2D2WF-BK(AM-STD)(Type-C Blac",
+  "ean": "6941545618593",
+  "warranty": "12",
+  "description": "Camara Ezviz CB2 1080P BK - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19609
+  },
+  "stock": 71,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

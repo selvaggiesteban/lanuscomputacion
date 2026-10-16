@@ -1,0 +1,29 @@
+{
+  "id": "elit_18094",
+  "title": "Monitor AOC 20E1H 19,5\" TN HD (1600 x 900) 60Hz 5ms Ficha USA",
+  "price": 134135.36,
+  "originalPrice": 56.25,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18094/i/JmvWD_l.webp",
+  "slug": "monitor-aoc-20e1h-195-tn-hd-1600-x-900-60hz-5ms-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "AOC",
+  "sku": "20E1H",
+  "ean": "685417719587",
+  "warranty": "36",
+  "description": "Monitor AOC 20E1H 19,5\" TN HD (1600 x 900) 60Hz 5ms Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22356
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

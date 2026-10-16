@@ -1,0 +1,29 @@
+{
+  "id": "elit_19860",
+  "title": "Auricular ASUS A303 TUF GAMING H1 GEN II HATSUNE MIKU EDITION",
+  "price": 194007.35,
+  "originalPrice": 89.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19860/i/sheYU_l.webp",
+  "slug": "auricular-asus-a303-tuf-gaming-h1-gen-ii-hatsune-miku-edition",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "ASUS",
+  "sku": "A303 TUF GAMING H1 GEN II MIKU",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Auricular ASUS A303 TUF GAMING H1 GEN II HATSUNE MIKU EDITION - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32335
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

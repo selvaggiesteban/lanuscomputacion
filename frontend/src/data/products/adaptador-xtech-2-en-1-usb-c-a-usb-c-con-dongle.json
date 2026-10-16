@@ -1,0 +1,29 @@
+{
+  "id": "elit_19613",
+  "title": "Adaptador Xtech, 2 en 1, usb-C a usb-C con Dongle",
+  "price": 7941.57,
+  "originalPrice": 3.68,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19613/i/8hxOb_l.webp",
+  "slug": "adaptador-xtech-2-en-1-usb-c-a-usb-c-con-dongle",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "XTECH",
+  "sku": "XTC-532",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Adaptador Xtech, 2 en 1, usb-C a usb-C con Dongle - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1324
+  },
+  "stock": 17,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

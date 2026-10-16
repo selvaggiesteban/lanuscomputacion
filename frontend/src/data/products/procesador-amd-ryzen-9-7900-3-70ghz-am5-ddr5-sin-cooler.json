@@ -1,0 +1,29 @@
+{
+  "id": "elit_19142",
+  "title": "Procesador AMD Ryzen 9 7900 3.70GHz AM5 DDR5 SIN COOLER",
+  "price": 713417.83,
+  "originalPrice": 362.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19142/i/Oxmmv_l.webp",
+  "slug": "procesador-amd-ryzen-9-7900-3-70ghz-am5-ddr5-sin-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000590WOF",
+  "ean": "730143317771",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 9 7900 3.70GHz AM5 DDR5 SIN COOLER - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 118903
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

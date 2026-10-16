@@ -1,0 +1,29 @@
+{
+  "id": "elit_19793",
+  "title": "Cartucho de Tinta Brother LC406XLBKS Negro",
+  "price": 114363.64,
+  "originalPrice": 58.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19793/i/4Nm61_l.webp",
+  "slug": "cartucho-de-tinta-brother-lc406xlbks-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC406XLBKS",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho de Tinta Brother LC406XLBKS Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19061
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

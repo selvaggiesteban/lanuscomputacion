@@ -1,0 +1,29 @@
+{
+  "id": "elit_19877",
+  "title": "Fuente ASUS ROG THOR 1000W PLATINUM III GAMING",
+  "price": 791739.88,
+  "originalPrice": 366.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19877/i/5MjhM_l.webp",
+  "slug": "fuente-asus-rog-thor-1000w-platinum-iii-gaming",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "ASUS",
+  "sku": "ROG-THOR-1000P3-GAMING",
+  "ean": "4711636074537",
+  "warranty": "36",
+  "description": "Fuente ASUS ROG THOR 1000W PLATINUM III GAMING - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 131957
+  },
+  "stock": 17,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

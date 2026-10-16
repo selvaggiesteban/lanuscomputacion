@@ -1,0 +1,29 @@
+{
+  "id": "elit_18200",
+  "title": "Memoria PC DDR5 16GB 5600Mhz CL46 1.1V 16Gbit",
+  "price": 489932.8,
+  "originalPrice": 248.6,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18200/i/ZR57d_l.webp",
+  "slug": "memoria-pc-ddr5-16gb-5600mhz-cl46-1-1v-16gbit",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "KINGSTON",
+  "sku": "KVR56U46BS8-16",
+  "ean": "740617332827",
+  "warranty": "99",
+  "description": "Memoria PC DDR5 16GB 5600Mhz CL46 1.1V 16Gbit - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 81655
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

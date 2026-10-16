@@ -1,0 +1,29 @@
+{
+  "id": "elit_20003",
+  "title": "Proyector Portátil Epson EF30 Gris 150\" Smart 350lm",
+  "price": 1114387.69,
+  "originalPrice": 516.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20003/i/mOwXV_l.webp",
+  "slug": "proyector-portatil-epson-ef30-gris-150-smart-350lm",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Proyectores",
+  "brand": "EPSON",
+  "sku": "V11HC43921",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Proyector Portátil Epson EF30 Gris 150\" Smart 350lm - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 185731
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

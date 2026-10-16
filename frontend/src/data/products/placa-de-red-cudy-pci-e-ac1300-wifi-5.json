@@ -1,0 +1,29 @@
+{
+  "id": "elit_19001",
+  "title": "Placa de Red Cudy PCI-E AC1300 WIFI 5",
+  "price": 26349.16,
+  "originalPrice": 13.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19001/i/fBxPT_l.webp",
+  "slug": "placa-de-red-cudy-pci-e-ac1300-wifi-5",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Routers",
+  "brand": "CUDY",
+  "sku": "WE1300",
+  "ean": "6971690791179",
+  "warranty": "12",
+  "description": "Placa de Red Cudy PCI-E AC1300 WIFI 5 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4392
+  },
+  "stock": 211,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "accesorios",
+    "name": "Accesorios",
+    "slug": "accesorios"
+  },
+  {
+    "id": "almacenamiento",
+    "name": "Almacenamiento",
+    "slug": "almacenamiento"
+  },
+  {
+    "id": "audio",
+    "name": "Audio",
+    "slug": "audio"
+  },
+  {
+    "id": "cables",
+    "name": "Cables",
+    "slug": "cables"
+  },
+  {
+    "id": "computadoras",
+    "name": "Computadoras",
+    "slug": "computadoras"
+  },
+  {
+    "id": "conectividad",
+    "name": "Conectividad",
+    "slug": "conectividad"
+  },
+  {
+    "id": "estuches",
+    "name": "Estuches",
+    "slug": "estuches"
+  },
+  {
+    "id": "hardware",
+    "name": "Hardware",
+    "slug": "hardware"
+  },
+  {
+    "id": "imagen",
+    "name": "Imagen",
+    "slug": "imagen"
+  },
+  {
+    "id": "impresoras",
+    "name": "Impresoras",
+    "slug": "impresoras"
+  },
+  {
+    "id": "insumos",
+    "name": "Insumos",
+    "slug": "insumos"
+  },
+  {
+    "id": "memorias",
+    "name": "Memorias",
+    "slug": "memorias"
+  },
+  {
+    "id": "periféricos",
+    "name": "Periféricos",
+    "slug": "periféricos"
+  },
+  {
+    "id": "seguridad",
+    "name": "Seguridad",
+    "slug": "seguridad"
+  },
+  {
+    "id": "unidad-de-energia",
+    "name": "Unidad de Energia",
+    "slug": "unidad-de-energia"
+  },
+  {
+    "id": "video-juegos",
+    "name": "Video Juegos",
+    "slug": "video-juegos"
+  }
+]

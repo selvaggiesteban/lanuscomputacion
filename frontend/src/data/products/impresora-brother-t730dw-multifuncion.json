@@ -1,0 +1,29 @@
+{
+  "id": "elit_19060",
+  "title": "Impresora Brother T730DW Multifunción",
+  "price": 656733.21,
+  "originalPrice": 304.32,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19060/i/FVkt8_l.webp",
+  "slug": "impresora-brother-t730dw-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "BROTHER",
+  "sku": "DCPT730DW",
+  "ean": "12502676867",
+  "warranty": "24",
+  "description": "Impresora Brother T730DW Multifunción - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 109456
+  },
+  "stock": 71,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

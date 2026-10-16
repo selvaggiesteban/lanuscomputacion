@@ -1,0 +1,29 @@
+{
+  "id": "elit_8253",
+  "title": "Cartucho tinta LC107BK Negra",
+  "price": 49545.09,
+  "originalPrice": 25.14,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8253/i/VHaP3_l.webp",
+  "slug": "cartucho-tinta-lc107bk-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC107BK",
+  "ean": "12502633488",
+  "warranty": "12",
+  "description": "Cartucho tinta LC107BK Negra - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8258
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19832",
+  "title": "Pen Drive Lexar JumpDrive V40 16GB USB 2.0 Negro",
+  "price": 16638.45,
+  "originalPrice": 7.71,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19832/i/DpZDB_l.webp",
+  "slug": "pen-drive-lexar-jumpdrive-v40-16gb-usb-2-0-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "LEXAR",
+  "sku": "LJDV40-16GAB",
+  "ean": "843367105182",
+  "warranty": "24",
+  "description": "Pen Drive Lexar JumpDrive V40 16GB USB 2.0 Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2773
+  },
+  "stock": 880,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19080",
+  "title": "Tambor Drum Brother DR3609",
+  "price": 317727.49,
+  "originalPrice": 147.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19080/i/d8owS_l.webp",
+  "slug": "tambor-drum-brother-dr3609",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cilindros",
+  "brand": "BROTHER",
+  "sku": "DR3609",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tambor Drum Brother DR3609 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 52955
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

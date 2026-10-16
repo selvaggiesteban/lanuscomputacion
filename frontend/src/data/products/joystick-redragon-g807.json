@@ -1,0 +1,29 @@
+{
+  "id": "elit_20157",
+  "title": "Joystick Redragon G807",
+  "price": 27038.93,
+  "originalPrice": 13.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20157/i/WcLj5_l.webp",
+  "slug": "joystick-redragon-g807",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "REDRAGON",
+  "sku": "G807",
+  "ean": "6950376750570",
+  "warranty": "12",
+  "description": "Joystick Redragon G807 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4506
+  },
+  "stock": 73,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

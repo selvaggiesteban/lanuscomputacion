@@ -1,0 +1,29 @@
+{
+  "id": "elit_19372",
+  "title": "Auriculares gaming CORSAIR HS80 RGB WIRELESS con audio espacial - blanco",
+  "price": 320942.97,
+  "originalPrice": 148.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19372/i/HD3ik_l.webp",
+  "slug": "auriculares-gaming-corsair-hs80-rgb-wireless-con-audio-espacial-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "CORSAIR",
+  "sku": "CA-9011236-NA",
+  "ean": "840006635208",
+  "warranty": "24",
+  "description": "Auriculares gaming CORSAIR HS80 RGB WIRELESS con audio espacial - blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 53490
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

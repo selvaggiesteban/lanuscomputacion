@@ -1,0 +1,29 @@
+{
+  "id": "elit_7095",
+  "title": "UPS FDC FORZA Online 2000VA 1800W",
+  "price": 677392.21,
+  "originalPrice": 343.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7095/i/kAYmy_l.webp",
+  "slug": "ups-fdc-forza-online-2000va-1800w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FDC-2002T-A",
+  "ean": "798302107847",
+  "warranty": "24",
+  "description": "UPS FDC FORZA Online 2000VA 1800W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 112899
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

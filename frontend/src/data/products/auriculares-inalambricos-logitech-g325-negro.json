@@ -1,0 +1,29 @@
+{
+  "id": "elit_19609",
+  "title": "Auriculares Inalámbricos Logitech G325 Negro",
+  "price": 191698.25,
+  "originalPrice": 88.83,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19609/i/JTKD7_l.webp",
+  "slug": "auriculares-inalambricos-logitech-g325-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001523",
+  "ean": "97855202727",
+  "warranty": "24",
+  "description": "Auriculares Inalámbricos Logitech G325 Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31950
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

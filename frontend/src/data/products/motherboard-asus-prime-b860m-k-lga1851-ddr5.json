@@ -1,0 +1,29 @@
+{
+  "id": "elit_19497",
+  "title": "Motherboard ASUS PRIME B860M-K LGA1851 DDR5",
+  "price": 226145.57,
+  "originalPrice": 114.75,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19497/i/j3coK_l.webp",
+  "slug": "motherboard-asus-prime-b860m-k-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B860M-K",
+  "ean": "4711387808498",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B860M-K LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37691
+  },
+  "stock": 34,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

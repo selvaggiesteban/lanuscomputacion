@@ -1,0 +1,29 @@
+{
+  "id": "elit_19817",
+  "title": "Procesador AMD Ryzen 7 9850X3D AM5,  sin cooler",
+  "price": 1067407.09,
+  "originalPrice": 541.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19817/i/hxs9T_l.webp",
+  "slug": "procesador-amd-ryzen-7-9850x3d-am5-sin-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001973WOF",
+  "ean": "730143318280",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 9850X3D AM5,  sin cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 177901
+  },
+  "stock": 24,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

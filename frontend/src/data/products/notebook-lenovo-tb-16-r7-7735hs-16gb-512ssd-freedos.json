@@ -1,0 +1,29 @@
+{
+  "id": "elit_18362",
+  "title": "Notebook Lenovo TB 16 R7_7735HS, 16GB, 512SSD, FREEDOS",
+  "price": 2146086.98,
+  "originalPrice": 1088.96,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18362/i/cdMaV_l.webp",
+  "slug": "notebook-lenovo-tb-16-r7-7735hs-16gb-512ssd-freedos",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21MW005YAR",
+  "ean": "198155963360",
+  "warranty": "1Y PREMIER SUPPORT",
+  "description": "Notebook Lenovo TB 16 R7_7735HS, 16GB, 512SSD, FREEDOS - 1Y PREMIER SUPPORT",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 357681
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

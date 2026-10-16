@@ -1,0 +1,29 @@
+{
+  "id": "elit_18151",
+  "title": "Notebook HP Laptop R5-7520 FHD 14\" 8GB/512 W11h",
+  "price": 1228300.55,
+  "originalPrice": 623.26,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18151/i/UlgEC_l.webp",
+  "slug": "notebook-hp-laptop-r5-7520-fhd-14-8gb-512-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "A4GV3LA",
+  "ean": "198415327550",
+  "warranty": "12",
+  "description": "Notebook HP Laptop R5-7520 FHD 14\" 8GB/512 W11h - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 204717
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

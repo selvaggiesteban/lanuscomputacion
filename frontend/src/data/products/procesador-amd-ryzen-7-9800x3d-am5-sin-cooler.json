@@ -1,0 +1,29 @@
+{
+  "id": "elit_18065",
+  "title": "Procesador AMD Ryzen 7 9800X3D AM5,  sin cooler",
+  "price": 899813.03,
+  "originalPrice": 456.58,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18065/i/k0Wwg_l.webp",
+  "slug": "procesador-amd-ryzen-7-9800x3d-am5-sin-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001084WOF",
+  "ean": "730143315289",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 9800X3D AM5,  sin cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 149969
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

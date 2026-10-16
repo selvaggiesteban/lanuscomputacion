@@ -1,0 +1,29 @@
+{
+  "id": "elit_18027",
+  "title": "Botella de tinta HP GT53/GT52 Negra Cian Magenta Amarilla Pack de 4",
+  "price": 78530.89,
+  "originalPrice": 36.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18027/i/qlO5q_l.webp",
+  "slug": "botella-de-tinta-hp-gt53-gt52-negra-cian-magenta-amarilla-pack-de-4",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "HP",
+  "sku": "9F3N4AL",
+  "ean": "197961509342",
+  "warranty": "HP",
+  "description": "Botella de tinta HP GT53/GT52 Negra Cian Magenta Amarilla Pack de 4 - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13088
+  },
+  "stock": 1759,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

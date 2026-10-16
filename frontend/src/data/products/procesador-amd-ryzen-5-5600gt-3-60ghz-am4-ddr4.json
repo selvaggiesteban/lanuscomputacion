@@ -1,0 +1,29 @@
+{
+  "id": "elit_17191",
+  "title": "Procesador AMD Ryzen 5 5600GT 3.60GHz AM4 DDR4",
+  "price": 309430.21,
+  "originalPrice": 157.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17191/i/mBRlM_l.webp",
+  "slug": "procesador-amd-ryzen-5-5600gt-3-60ghz-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001488BOX",
+  "ean": "730143316002",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 5600GT 3.60GHz AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 51572
+  },
+  "stock": 247,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

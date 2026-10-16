@@ -1,0 +1,29 @@
+{
+  "id": "elit_18268",
+  "title": "Lenovo Mouse Gaming Legion M300s RGB  USB",
+  "price": 43218.93,
+  "originalPrice": 21.93,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18268/i/Hie7P_l.webp",
+  "slug": "lenovo-mouse-gaming-legion-m300s-rgb-usb",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LENOVO",
+  "sku": "GY51H47350",
+  "ean": "195892041030",
+  "warranty": "12 MESES",
+  "description": "Lenovo Mouse Gaming Legion M300s RGB  USB - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7203
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

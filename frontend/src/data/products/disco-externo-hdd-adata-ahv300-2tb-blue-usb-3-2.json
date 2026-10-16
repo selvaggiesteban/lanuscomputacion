@@ -1,0 +1,29 @@
+{
+  "id": "elit_20084",
+  "title": "Disco Externo HDD ADATA AHV300 2TB Blue USB 3.2",
+  "price": 243251.83,
+  "originalPrice": 123.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20084/i/3WNgi_l.webp",
+  "slug": "disco-externo-hdd-adata-ahv300-2tb-blue-usb-3-2",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "ADATA",
+  "sku": "AHV300-2TU31-CBL",
+  "ean": "4713218465030",
+  "warranty": "36",
+  "description": "Disco Externo HDD ADATA AHV300 2TB Blue USB 3.2 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 40542
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

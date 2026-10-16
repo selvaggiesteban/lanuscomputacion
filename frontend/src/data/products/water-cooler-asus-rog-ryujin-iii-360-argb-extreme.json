@@ -1,0 +1,29 @@
+{
+  "id": "elit_19707",
+  "title": "Water Cooler ASUS ROG RYUJIN III 360 ARGB EXTREME",
+  "price": 756006.12,
+  "originalPrice": 383.61,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19707/i/FCyBj_l.webp",
+  "slug": "water-cooler-asus-rog-ryujin-iii-360-argb-extreme",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "ASUS",
+  "sku": "ROG RYUJIN III 360 ARGB EXTREME WHITE",
+  "ean": "4711387828915",
+  "warranty": "36",
+  "description": "Water Cooler ASUS ROG RYUJIN III 360 ARGB EXTREME - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 126001
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

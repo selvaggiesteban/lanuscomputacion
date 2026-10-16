@@ -1,0 +1,29 @@
+{
+  "id": "elit_17173",
+  "title": "Impresora Epson L8050 Multifunción EcoTank",
+  "price": 816331.31,
+  "originalPrice": 414.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17173/i/PLGtt_l.webp",
+  "slug": "impresora-epson-l8050-multifuncion-ecotank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CK37301",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Impresora Epson L8050 Multifunción EcoTank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 136055
+  },
+  "stock": 17,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

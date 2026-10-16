@@ -1,0 +1,29 @@
+{
+  "id": "elit_18149",
+  "title": "Notebook HP Pavilion Aero R5-8640 13\" 16GB/512 W11h",
+  "price": 2183728.64,
+  "originalPrice": 1108.06,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18149/i/p9itB_l.webp",
+  "slug": "notebook-hp-pavilion-aero-r5-8640-13-16gb-512-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "A1UC1LA",
+  "ean": "198122844272",
+  "warranty": "12",
+  "description": "Notebook HP Pavilion Aero R5-8640 13\" 16GB/512 W11h - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 363955
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

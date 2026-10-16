@@ -1,0 +1,29 @@
+{
+  "id": "elit_18429",
+  "title": "Asustor NAS Tower Drivestor 2 Pro Gen2 AS3302T v2 2X3.5/2.5",
+  "price": 635946.96,
+  "originalPrice": 322.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18429/i/vRl41_l.webp",
+  "slug": "asustor-nas-tower-drivestor-2-pro-gen2-as3302t-v2-2x3-5-2-5",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Nas",
+  "brand": "ASUSTOR",
+  "sku": "AS3302T v2",
+  "ean": "4710474831517",
+  "warranty": "36",
+  "description": "Asustor NAS Tower Drivestor 2 Pro Gen2 AS3302T v2 2X3.5/2.5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 105991
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

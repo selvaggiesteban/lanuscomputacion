@@ -1,0 +1,29 @@
+{
+  "id": "elit_4521",
+  "title": "Disco Externo HDD WESTERN DIGITAL Elements 1TB USB 3.0 Tipo A Negro",
+  "price": 222519.36,
+  "originalPrice": 112.91,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/4521/i/8d3Ch_l.webp",
+  "slug": "disco-externo-hdd-western-digital-elements-1tb-usb-3-0-tipo-a-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "WD",
+  "sku": "WDBUZG0010BBK-WESN",
+  "ean": "718037855448",
+  "warranty": "24",
+  "description": "Disco Externo HDD WESTERN DIGITAL Elements 1TB USB 3.0 Tipo A Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37087
+  },
+  "stock": 71,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

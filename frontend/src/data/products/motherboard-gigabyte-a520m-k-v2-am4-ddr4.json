@@ -1,0 +1,29 @@
+{
+  "id": "elit_16713",
+  "title": "Motherboard GIGABYTE A520M K V2 AM4 DDR4",
+  "price": 89098.4,
+  "originalPrice": 45.21,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16713/i/kGwJY_l.webp",
+  "slug": "motherboard-gigabyte-a520m-k-v2-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "A520M K V2",
+  "ean": "4719331852771",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE A520M K V2 AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 14850
+  },
+  "stock": 4651,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

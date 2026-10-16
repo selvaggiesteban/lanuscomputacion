@@ -1,0 +1,29 @@
+{
+  "id": "elit_17076",
+  "title": "Teclado Inalámbrico Logitech Pebble 2 K380 Rosa",
+  "price": 50274.28,
+  "originalPrice": 25.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17076/i/ISO5r_l.webp",
+  "slug": "teclado-inalambrico-logitech-pebble-2-k380-rosa",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-011785",
+  "ean": "97855186379",
+  "warranty": "12",
+  "description": "Teclado Inalámbrico Logitech Pebble 2 K380 Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8379
+  },
+  "stock": 49,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

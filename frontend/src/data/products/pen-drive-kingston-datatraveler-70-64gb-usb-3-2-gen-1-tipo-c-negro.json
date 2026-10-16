@@ -1,0 +1,29 @@
+{
+  "id": "elit_15017",
+  "title": "Pen Drive KINGSTON DataTraveler 70 64GB USB 3.2 Gen 1 Tipo C Negro",
+  "price": 18710.16,
+  "originalPrice": 8.67,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15017/i/65qlm_l.webp",
+  "slug": "pen-drive-kingston-datatraveler-70-64gb-usb-3-2-gen-1-tipo-c-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DT70/64GB",
+  "ean": "740617305302",
+  "warranty": "60",
+  "description": "Pen Drive KINGSTON DataTraveler 70 64GB USB 3.2 Gen 1 Tipo C Negro - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3118
+  },
+  "stock": 170,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

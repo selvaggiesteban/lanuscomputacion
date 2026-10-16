@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGrid from '../../components/catalog/ProductGrid.astro';
+import Pagination from '../../components/catalog/Pagination.astro';
+
+const { q } = Astro.params;
+const DB = Astro.locals.runtime.env.DB;
+
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const limit = 20;
+const offset = (page - 1) * limit;
+
+// Single pass: rows + total via window count (halves D1 rows read per search)
+const term = `%${q}%`;
+let products: {
+  id: string; title: string; price: number; thumbnail: string;
+  slug: string; dollar_rate: number; category_name: string; total_count: number;
+  iva_pct: number; internal_tax_pct: number;
+}[] = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, iva_pct, internal_tax_pct, COUNT(*) OVER() AS total_count
+    FROM products
+    WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
+    ORDER BY available_qty DESC, created_at DESC
+    LIMIT ? OFFSET ?
+  `).bind(term, term, term, limit, offset).all<{
+    id: string; title: string; price: number; thumbnail: string;
+    slug: string; dollar_rate: number; category_name: string; total_count: number;
+    iva_pct: number; internal_tax_pct: number;
+  }>();
+  products = results || [];
+} catch (e) {
+  console.error("D1 Error in [q].astro:", e);
+  products = [];
+}
+
+const total = products.length > 0 ? (products[0].total_count as number) : 0;
+
+const totalPages = Math.ceil(total / limit);
+---
+
+<BaseLayout title={`"${q}" | Lanús Computación`}>
+  <div class="ml-container py-4">
+    <div class="flex items-center justify-between mb-4">
+      <p class="text-sm text-ml-text-secondary">
+        Resultados para <span class="font-semibold text-ml-text">"{q}"</span>: {total} productos
+      </p>
+    </div>
+
+    <ProductGrid products={(products || []).map(p => ({
+      id: p.id,
+      title: p.title,
+      price: p.price,
+      categoryName: p.category_name,
+      image: p.thumbnail,
+      slug: p.slug,
+      freeShipping: false,
+      dollarRate: p.dollar_rate,
+      ivaPct: p.iva_pct,
+      internalTaxPct: p.internal_tax_pct,
+    }))} columns={4} />
+
+    <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />
+  </div>
+</BaseLayout>

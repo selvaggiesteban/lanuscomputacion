@@ -1,0 +1,29 @@
+{
+  "id": "elit_19084",
+  "title": "Tóner Brother TN219XL Magenta",
+  "price": 195798.52,
+  "originalPrice": 90.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19084/i/mrdXj_l.webp",
+  "slug": "toner-brother-tn219xl-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN219XLM",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tóner Brother TN219XL Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 32633
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

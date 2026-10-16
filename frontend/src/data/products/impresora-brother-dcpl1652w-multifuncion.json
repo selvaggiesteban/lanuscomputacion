@@ -1,0 +1,29 @@
+{
+  "id": "elit_20005",
+  "title": "Impresora Brother DCPL1652W Multifuncion",
+  "price": 570066.53,
+  "originalPrice": 264.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20005/i/AXWVd_l.webp",
+  "slug": "impresora-brother-dcpl1652w-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "DCPL1652W",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Impresora Brother DCPL1652W Multifuncion - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 95011
+  },
+  "stock": 44,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

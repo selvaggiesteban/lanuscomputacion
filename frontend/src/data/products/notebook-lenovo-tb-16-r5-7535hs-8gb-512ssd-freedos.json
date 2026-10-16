@@ -1,0 +1,29 @@
+{
+  "id": "elit_18363",
+  "title": "Notebook Lenovo TB 16 R5_7535HS, 8GB, 512SSD, FREEDOS",
+  "price": 1744917.54,
+  "originalPrice": 885.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18363/i/yvJ9r_l.webp",
+  "slug": "notebook-lenovo-tb-16-r5-7535hs-8gb-512ssd-freedos",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "LENOVO",
+  "sku": "21MW0060AR",
+  "ean": "198155963391",
+  "warranty": "1Y PREMIER SUPPORT",
+  "description": "Notebook Lenovo TB 16 R5_7535HS, 8GB, 512SSD, FREEDOS - 1Y PREMIER SUPPORT",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 290820
+  },
+  "stock": 77,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

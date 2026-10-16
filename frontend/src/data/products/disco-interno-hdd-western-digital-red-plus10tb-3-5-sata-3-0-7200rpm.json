@@ -1,0 +1,29 @@
+{
+  "id": "elit_19146",
+  "title": "Disco Interno HDD WESTERN DIGITAL Red Plus10TB 3.5\" SATA 3.0 7200rpm",
+  "price": 771791.97,
+  "originalPrice": 391.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19146/i/qjCEs_l.webp",
+  "slug": "disco-interno-hdd-western-digital-red-plus10tb-3-5-sata-3-0-7200rpm",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "WD",
+  "sku": "WD100EFGX",
+  "ean": "718037906201",
+  "warranty": "36",
+  "description": "Disco Interno HDD WESTERN DIGITAL Red Plus10TB 3.5\" SATA 3.0 7200rpm - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 128632
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

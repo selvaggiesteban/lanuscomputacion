@@ -1,0 +1,29 @@
+{
+  "id": "elit_6124",
+  "title": "Botella de Tinta Brother Magenta",
+  "price": 17048.48,
+  "originalPrice": 7.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6124/i/Hgzfk_l.webp",
+  "slug": "botella-de-tinta-brother-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BT5001M",
+  "ean": "12502641025",
+  "warranty": "12",
+  "description": "Botella de Tinta Brother Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2841
+  },
+  "stock": 466,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

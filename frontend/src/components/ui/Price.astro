@@ -1,0 +1,62 @@
+---
+export interface Props {
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  installments?: {
+    count: number;
+    value: number;
+    hasInterest?: boolean;
+  };
+  size?: 'sm' | 'md' | 'lg';
+  b2b?: boolean;
+  dollarRate?: number;
+  ivaPct?: number | null;
+  internalTaxPct?: number | null;
+}
+
+const { price, originalPrice, discount, installments, size = 'md', b2b, dollarRate = 0, ivaPct, internalTaxPct } = Astro.props;
+
+// Precio sin impuestos nacionales: ELIT data (iva_pct + internal_tax_pct)
+const priceNoNationalTaxes =
+  typeof ivaPct === 'number'
+    ? Math.round(price / (1 + (ivaPct + (internalTaxPct ?? 0)) / 100))
+    : null;
+
+const priceClass = size === 'lg' ? 'ml-price' : size === 'md' ? 'text-price-md' : 'text-price-md text-lg';
+---
+
+<div
+  class="flex flex-col gap-1 price-container"
+  data-price-base={price}
+  data-price-dollar-rate={dollarRate}
+>
+  {originalPrice && (
+    <span class="ml-price-strikethrough price-original" data-price-original={originalPrice}>
+      ${originalPrice.toLocaleString('es-AR')}
+    </span>
+  )}
+  <div class="flex items-center gap-2">
+    <span class={`${priceClass} ${b2b ? 'text-b2b-purple' : ''} price-main`} data-price-value={price}>
+      ${price.toLocaleString('es-AR')}
+    </span>
+    {discount && discount > 0 && (
+      <span class="ml-badge-off price-discount">{discount}% OFF</span>
+    )}
+    {b2b && (
+      <span class="ml-badge-b2b">B2B</span>
+    )}
+  </div>
+  {installments && (
+    <span class="ml-installments price-installments"
+          data-installment-count={installments.count}
+          data-installment-has-interest={installments.hasInterest ? 'true' : 'false'}>
+      en {installments.count}x ${installments.value.toLocaleString('es-AR')} {installments.hasInterest ? 'con interés' : 'sin interés'}
+    </span>
+  )}
+</div>
+{priceNoNationalTaxes !== null && (
+  <div class="price-no-taxes" style="font-size:14px;font-weight:400">
+    Precio sin impuestos nacionales ${priceNoNationalTaxes.toLocaleString('es-AR')}
+  </div>
+)}

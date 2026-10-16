@@ -1,0 +1,29 @@
+{
+  "id": "elit_18105",
+  "title": "Monitor AOC 27G4E 27\" IPS FHD (1920 x 1080) 180Hz 1ms Gaming  Ficha USA",
+  "price": 352281.19,
+  "originalPrice": 147.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18105/i/oEm4K_l.webp",
+  "slug": "monitor-aoc-27g4e-27-ips-fhd-1920-x-1080-180hz-1ms-gaming-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "AOC",
+  "sku": "27G4E",
+  "ean": "6973985231858",
+  "warranty": "36",
+  "description": "Monitor AOC 27G4E 27\" IPS FHD (1920 x 1080) 180Hz 1ms Gaming  Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 58714
+  },
+  "stock": 86,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

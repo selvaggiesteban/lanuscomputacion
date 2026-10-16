@@ -1,0 +1,29 @@
+{
+  "id": "elit_20019",
+  "title": "Placa de Video ASUS AMD Radeon DUAL RX9060XT 16GB",
+  "price": 1127042.52,
+  "originalPrice": 571.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20019/i/7qQJO_l.webp",
+  "slug": "placa-de-video-asus-amd-radeon-dual-rx9060xt-16gb",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "DUAL-RX9060XT-16G",
+  "ean": "4711636196772",
+  "warranty": "36",
+  "description": "Placa de Video ASUS AMD Radeon DUAL RX9060XT 16GB - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 187840
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

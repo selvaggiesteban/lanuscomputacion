@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ml-bg text-ml-text;
+    min-height: 100vh;
+  }
+
+  * {
+    @apply border-ml-border;
+  }
+}
+
+@layer components {
+  .ml-container {
+    @apply mx-auto max-w-7xl px-4;
+  }
+
+  .ml-card {
+    @apply bg-white rounded shadow-card hover:shadow-card-hover transition-shadow duration-200;
+  }
+
+  .ml-btn-primary {
+    @apply bg-ml-blue text-white font-bold py-3 px-8 rounded text-base
+           hover:bg-ml-blue-hover transition-colors duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .ml-btn-secondary {
+    @apply bg-ml-blue-light text-ml-blue font-bold py-3 px-8 rounded text-base
+           hover:bg-blue-100 transition-colors duration-150;
+  }
+
+  .ml-btn-outline {
+    @apply border border-ml-border text-ml-text py-2 px-4 rounded text-sm
+           hover:border-ml-blue hover:text-ml-blue transition-colors duration-150;
+  }
+
+  .ml-badge-off {
+    @apply bg-ml-yellow text-ml-text text-xs font-bold px-1.5 py-0.5 rounded-sm;
+  }
+
+  .ml-badge-shipping {
+    @apply bg-ml-green-bg text-ml-green text-xs font-medium px-2 py-0.5 rounded-sm;
+  }
+
+  .ml-badge-b2b {
+    @apply bg-b2b-purple text-white text-xs font-bold px-2 py-0.5 rounded-sm;
+  }
+
+  .ml-badge-new {
+    @apply bg-ml-blue text-white text-xs px-2 py-0.5 rounded-sm;
+  }
+
+  .ml-input {
+    @apply border rounded px-3 py-2 text-sm text-ml-text
+           focus:outline-none focus:border-ml-blue focus:ring-1 focus:ring-ml-blue
+           placeholder:text-ml-text-muted;
+  }
+
+  .ml-link {
+    @apply text-ml-blue hover:text-ml-blue-hover transition-colors duration-150 cursor-pointer;
+  }
+
+  .ml-price {
+    @apply text-price text-ml-text;
+  }
+
+  .ml-price-strikethrough {
+    @apply text-sm text-ml-text-muted line-through;
+  }
+
+  .ml-installments {
+    @apply text-sm text-ml-green;
+  }
+
+  .ml-grid {
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4;
+  }
+
+  .ml-skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer rounded;
+  }
+
+  .ml-breadcrumb {
+    @apply text-xs text-ml-text-muted flex items-center gap-1 py-2;
+  }
+
+  .ml-breadcrumb a {
+    @apply text-ml-blue hover:text-ml-blue-hover;
+  }
+}

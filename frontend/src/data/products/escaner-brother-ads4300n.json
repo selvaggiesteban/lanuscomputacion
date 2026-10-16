@@ -1,0 +1,29 @@
+{
+  "id": "elit_19055",
+  "title": "Escaner Brother ADS4300N",
+  "price": 1160112.0,
+  "originalPrice": 588.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19055/i/mfkqu_l.webp",
+  "slug": "escaner-brother-ads4300n",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Escaner",
+  "brand": "BROTHER",
+  "sku": "ADS4300N",
+  "ean": "12502666349",
+  "warranty": "12",
+  "description": "Escaner Brother ADS4300N - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 193352
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

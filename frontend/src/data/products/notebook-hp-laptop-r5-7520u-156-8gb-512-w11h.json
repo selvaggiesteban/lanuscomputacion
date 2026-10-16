@@ -1,0 +1,29 @@
+{
+  "id": "elit_20032",
+  "title": "Notebook HP Laptop R5-7520U 15,6\" 8GB/512 W11H",
+  "price": 1401294.52,
+  "originalPrice": 711.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20032/i/34osM_l.webp",
+  "slug": "notebook-hp-laptop-r5-7520u-156-8gb-512-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "B9TP2LA",
+  "ean": "198990785394",
+  "warranty": "12",
+  "description": "Notebook HP Laptop R5-7520U 15,6\" 8GB/512 W11H - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 233549
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

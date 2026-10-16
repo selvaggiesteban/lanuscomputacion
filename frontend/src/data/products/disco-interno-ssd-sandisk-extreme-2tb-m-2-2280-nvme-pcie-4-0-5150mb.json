@@ -1,0 +1,29 @@
+{
+  "id": "elit_18322",
+  "title": "Disco Interno SSD Sandisk Extreme 2TB M.2 2280 NVMe PCIe 4.0 5150MB",
+  "price": 607883.24,
+  "originalPrice": 308.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18322/i/iRi2F_l.webp",
+  "slug": "disco-interno-ssd-sandisk-extreme-2tb-m-2-2280-nvme-pcie-4-0-5150mb",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "SANDISK",
+  "sku": "SDSSDX3N-2T00-G26",
+  "ean": "619659208431",
+  "warranty": "36",
+  "description": "Disco Interno SSD Sandisk Extreme 2TB M.2 2280 NVMe PCIe 4.0 5150MB - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 101314
+  },
+  "stock": 128,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

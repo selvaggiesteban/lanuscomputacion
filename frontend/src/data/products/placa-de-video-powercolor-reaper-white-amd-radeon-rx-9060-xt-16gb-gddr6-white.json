@@ -1,0 +1,29 @@
+{
+  "id": "elit_19123",
+  "title": "Placa de Video Powercolor Reaper White AMD Radeon RX 9060 XT 16GB GDDR6 WHITE",
+  "price": 957260.9,
+  "originalPrice": 485.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19123/i/IscOD_l.webp",
+  "slug": "placa-de-video-powercolor-reaper-white-amd-radeon-rx-9060-xt-16gb-gddr6-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "POWERCOLOR",
+  "sku": "RX9060XT 16G-A/WHITE",
+  "ean": "4713436176060",
+  "warranty": "24",
+  "description": "Placa de Video Powercolor Reaper White AMD Radeon RX 9060 XT 16GB GDDR6 WHITE - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 159543
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

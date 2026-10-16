@@ -1,0 +1,29 @@
+{
+  "id": "elit_19679",
+  "title": "Motherboard ASUS ROG CROSSHAIR X870E HERO AM5 DDR5",
+  "price": 1390100.56,
+  "originalPrice": 705.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19679/i/hqW7D_l.webp",
+  "slug": "motherboard-asus-rog-crosshair-x870e-hero-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "ROG CROSSHAIR X870E HERO",
+  "ean": "4711387710302",
+  "warranty": "36",
+  "description": "Motherboard ASUS ROG CROSSHAIR X870E HERO AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 231683
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

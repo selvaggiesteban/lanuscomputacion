@@ -1,0 +1,29 @@
+{
+  "id": "elit_20024",
+  "title": "Mouses ASUS P713 ROG HARPE ACE AIM LAB EDITION/BLK",
+  "price": 137204.83,
+  "originalPrice": 69.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20024/i/WNKWA_l.webp",
+  "slug": "mouses-asus-p713-rog-harpe-ace-aim-lab-edition-blk",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "ASUS",
+  "sku": "P713 ROG HARPE ACE AIM LAB EDITION/BLK",
+  "ean": "4711081936398",
+  "warranty": "12",
+  "description": "Mouses ASUS P713 ROG HARPE ACE AIM LAB EDITION/BLK - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22867
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

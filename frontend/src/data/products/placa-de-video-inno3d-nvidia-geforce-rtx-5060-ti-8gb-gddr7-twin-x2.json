@@ -1,0 +1,29 @@
+{
+  "id": "elit_19847",
+  "title": "Placa de Video INNO3D NVIDIA Geforce RTX 5060 Ti 8GB GDDR7 TWIN X2",
+  "price": 886983.33,
+  "originalPrice": 450.07,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19847/i/0uM29_l.webp",
+  "slug": "placa-de-video-inno3d-nvidia-geforce-rtx-5060-ti-8gb-gddr7-twin-x2",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "INNO3D",
+  "sku": "N506T2-08D7-193075N",
+  "ean": "8886307700735",
+  "warranty": "36",
+  "description": "Placa de Video INNO3D NVIDIA Geforce RTX 5060 Ti 8GB GDDR7 TWIN X2 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 147831
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19638",
+  "title": "Power Klip Xtreme , 30000 mAh, Laptos; celus, Tabl",
+  "price": 135869.88,
+  "originalPrice": 62.96,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19638/i/NwjBA_l.webp",
+  "slug": "power-klip-xtreme-30000-mah-laptos-celus-tabl",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Cargadores Portátiles",
+  "brand": "KLIP XTREME",
+  "sku": "KPB-850",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Power Klip Xtreme , 30000 mAh, Laptos; celus, Tabl - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 22645
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

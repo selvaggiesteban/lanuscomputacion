@@ -1,0 +1,29 @@
+{
+  "id": "elit_19625",
+  "title": "Adaptador Xtech, Multipuerto, 7 en 1 , USB C",
+  "price": 43505.99,
+  "originalPrice": 20.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19625/i/ghlwx_l.webp",
+  "slug": "adaptador-xtech-multipuerto-7-en-1-usb-c",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "XTECH",
+  "sku": "XTC-571",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Adaptador Xtech, Multipuerto, 7 en 1 , USB C - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7251
+  },
+  "stock": 102,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_10287",
+  "title": "Cartucho de Tinta Plotter  HP 712 Magenta",
+  "price": 47948.77,
+  "originalPrice": 24.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10287/i/xKEqU_l.webp",
+  "slug": "cartucho-de-tinta-plotter-hp-712-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Plotters",
+  "brand": "HP",
+  "sku": "3ED68A",
+  "ean": "193905352821",
+  "warranty": "HP",
+  "description": "Cartucho de Tinta Plotter  HP 712 Magenta - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7991
+  },
+  "stock": 37,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

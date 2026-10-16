@@ -1,0 +1,29 @@
+{
+  "id": "elit_19828",
+  "title": "Liquid cooler CORSAIR iCUE LINK TITAN 240 RX RGB Negro",
+  "price": 210872.12,
+  "originalPrice": 107.0,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19828/i/6lEfk_l.webp",
+  "slug": "liquid-cooler-corsair-icue-link-titan-240-rx-rgb-negro",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "CORSAIR",
+  "sku": "CW-9061016-WW",
+  "ean": "840006685418",
+  "warranty": "60",
+  "description": "Liquid cooler CORSAIR iCUE LINK TITAN 240 RX RGB Negro - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 35145
+  },
+  "stock": 82,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

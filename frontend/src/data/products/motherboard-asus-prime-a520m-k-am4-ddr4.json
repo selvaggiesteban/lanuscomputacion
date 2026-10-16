@@ -1,0 +1,29 @@
+{
+  "id": "elit_9959",
+  "title": "Motherboard ASUS PRIME A520M-K AM4 DDR4",
+  "price": 91049.46,
+  "originalPrice": 46.2,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9959/i/4Q4Ky_l.webp",
+  "slug": "motherboard-asus-prime-a520m-k-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME-A520M-K",
+  "ean": "4718017826938",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME A520M-K AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15175
+  },
+  "stock": 321,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

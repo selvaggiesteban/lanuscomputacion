@@ -1,0 +1,29 @@
+{
+  "id": "elit_17181",
+  "title": "Procesador Core i3-14100F 3.5GHz 12MB LGA 1700",
+  "price": 215976.41,
+  "originalPrice": 109.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17181/i/8Aia3_l.webp",
+  "slug": "procesador-core-i3-14100f-3-5ghz-12mb-lga-1700",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071514100F",
+  "ean": "5032037279093",
+  "warranty": "36",
+  "description": "Procesador Core i3-14100F 3.5GHz 12MB LGA 1700 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 35996
+  },
+  "stock": 199,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

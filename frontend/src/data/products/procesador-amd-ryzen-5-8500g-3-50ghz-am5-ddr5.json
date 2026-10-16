@@ -1,0 +1,29 @@
+{
+  "id": "elit_17190",
+  "title": "Procesador AMD Ryzen 5 8500G 3.50GHz AM5 DDR5",
+  "price": 268241.16,
+  "originalPrice": 136.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17190/i/P9OKk_l.webp",
+  "slug": "procesador-amd-ryzen-5-8500g-3-50ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000931BOX",
+  "ean": "730143316439",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 8500G 3.50GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 44707
+  },
+  "stock": 91,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

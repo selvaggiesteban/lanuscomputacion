@@ -1,0 +1,29 @@
+{
+  "id": "elit_19335",
+  "title": "Fuente Teros TE-1320S 850W 80 Plus Platinum ATX Full Modular",
+  "price": 129525.26,
+  "originalPrice": 60.02,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19335/i/6huIu_l.webp",
+  "slug": "fuente-teros-te-1320s-850w-80-plus-platinum-atx-full-modular",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "TEROS",
+  "sku": "TE-1320S",
+  "ean": "782752508323",
+  "warranty": "12",
+  "description": "Fuente Teros TE-1320S 850W 80 Plus Platinum ATX Full Modular - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21588
+  },
+  "stock": 228,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

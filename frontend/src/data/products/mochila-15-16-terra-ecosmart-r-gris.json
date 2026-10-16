@@ -1,0 +1,29 @@
+{
+  "id": "elit_17781",
+  "title": "Mochila 15-16\" Terra EcoSmart® - Gris",
+  "price": 81120.54,
+  "originalPrice": 37.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17781/i/FUnKp_l.webp",
+  "slug": "mochila-15-16-terra-ecosmart-r-gris",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "TARGUS",
+  "sku": "TBB64904GL",
+  "ean": "92636368357",
+  "warranty": "36",
+  "description": "Mochila 15-16\" Terra EcoSmart® - Gris - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13520
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

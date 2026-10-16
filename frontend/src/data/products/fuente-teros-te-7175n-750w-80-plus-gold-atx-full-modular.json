@@ -1,0 +1,29 @@
+{
+  "id": "elit_19279",
+  "title": "Fuente Teros TE-7175N 750w 80 Plus Gold ATX Full Modular",
+  "price": 116059.12,
+  "originalPrice": 53.78,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19279/i/iUv10_l.webp",
+  "slug": "fuente-teros-te-7175n-750w-80-plus-gold-atx-full-modular",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "TEROS",
+  "sku": "TE-7175N",
+  "ean": "782752506756",
+  "warranty": "12",
+  "description": "Fuente Teros TE-7175N 750w 80 Plus Gold ATX Full Modular - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19343
+  },
+  "stock": 214,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

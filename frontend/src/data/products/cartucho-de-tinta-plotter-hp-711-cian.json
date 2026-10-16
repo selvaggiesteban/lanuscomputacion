@@ -1,0 +1,29 @@
+{
+  "id": "elit_6162",
+  "title": "Cartucho de  Tinta Plotter HP 711  Cian",
+  "price": 66946.97,
+  "originalPrice": 33.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6162/i/Ay7u5_l.webp",
+  "slug": "cartucho-de-tinta-plotter-hp-711-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Plotters",
+  "brand": "HP",
+  "sku": "CZ130A",
+  "ean": "886112841133",
+  "warranty": "HP",
+  "description": "Cartucho de  Tinta Plotter HP 711  Cian - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11158
+  },
+  "stock": 129,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

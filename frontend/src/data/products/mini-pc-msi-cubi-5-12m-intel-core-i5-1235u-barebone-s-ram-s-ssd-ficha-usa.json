@@ -1,0 +1,29 @@
+{
+  "id": "elit_18663",
+  "title": "Mini PC MSI CUBI 5 12M- Intel Core i5-1235U BAREBONE (S/RAM - S/SSD) FICHA USA",
+  "price": 717221.42,
+  "originalPrice": 363.93,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18663/i/p1YTg_l.webp",
+  "slug": "mini-pc-msi-cubi-5-12m-intel-core-i5-1235u-barebone-s-ram-s-ssd-ficha-usa",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Mini PC",
+  "brand": "MSI",
+  "sku": "CUBI  5 12M-015BUS",
+  "ean": "824142310168",
+  "warranty": "36",
+  "description": "Mini PC MSI CUBI 5 12M- Intel Core i5-1235U BAREBONE (S/RAM - S/SSD) FICHA USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 119537
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

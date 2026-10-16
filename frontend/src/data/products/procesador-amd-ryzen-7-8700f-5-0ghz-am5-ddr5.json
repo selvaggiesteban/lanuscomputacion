@@ -1,0 +1,29 @@
+{
+  "id": "elit_17498",
+  "title": "Procesador AMD Ryzen 7 8700F 5.0GHz AM5 DDR5",
+  "price": 463898.96,
+  "originalPrice": 235.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17498/i/4ywvi_l.webp",
+  "slug": "procesador-amd-ryzen-7-8700f-5-0ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001590BOX",
+  "ean": "730143316699",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 8700F 5.0GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 77316
+  },
+  "stock": 94,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

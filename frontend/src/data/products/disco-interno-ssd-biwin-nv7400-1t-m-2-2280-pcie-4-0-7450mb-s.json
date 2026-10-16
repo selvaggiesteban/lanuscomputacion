@@ -1,0 +1,29 @@
+{
+  "id": "elit_19541",
+  "title": "Disco Interno SSD BIWIN NV7400 1T M.2 2280 PCIe 4.0 7450MB/s",
+  "price": 328408.7,
+  "originalPrice": 166.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19541/i/PGdYB_l.webp",
+  "slug": "disco-interno-ssd-biwin-nv7400-1t-m-2-2280-pcie-4-0-7450mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "BIWIN",
+  "sku": "BNV740001TB-RGX",
+  "ean": "6955914621015",
+  "warranty": "60",
+  "description": "Disco Interno SSD BIWIN NV7400 1T M.2 2280 PCIe 4.0 7450MB/s - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54735
+  },
+  "stock": 146,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

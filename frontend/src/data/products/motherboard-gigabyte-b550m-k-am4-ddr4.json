@@ -1,0 +1,29 @@
+{
+  "id": "elit_16729",
+  "title": "Motherboard GIGABYTE B550M K AM4 DDR4",
+  "price": 140397.48,
+  "originalPrice": 71.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16729/i/p1oNx_l.webp",
+  "slug": "motherboard-gigabyte-b550m-k-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "B550M K",
+  "ean": "4719331852764",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE B550M K AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23400
+  },
+  "stock": 559,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

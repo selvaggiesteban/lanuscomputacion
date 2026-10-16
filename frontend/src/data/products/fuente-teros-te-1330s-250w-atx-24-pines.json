@@ -1,0 +1,29 @@
+{
+  "id": "elit_19320",
+  "title": "Fuente Teros TE-1330S 250W ATX 24 Pines",
+  "price": 26759.63,
+  "originalPrice": 12.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19320/i/7s997_l.webp",
+  "slug": "fuente-teros-te-1330s-250w-atx-24-pines",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "TEROS",
+  "sku": "TE-1330S",
+  "ean": "782752509788",
+  "warranty": "12",
+  "description": "Fuente Teros TE-1330S 250W ATX 24 Pines - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4460
+  },
+  "stock": 434,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

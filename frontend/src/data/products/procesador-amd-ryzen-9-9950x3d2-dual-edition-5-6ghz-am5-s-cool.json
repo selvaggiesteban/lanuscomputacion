@@ -1,0 +1,29 @@
+{
+  "id": "elit_19927",
+  "title": "Procesador AMD RYZEN 9 9950X3D2 Dual Edition 5.6GHZ AM5, s/Cool",
+  "price": 1969131.76,
+  "originalPrice": 999.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19927/i/8BMJR_l.webp",
+  "slug": "procesador-amd-ryzen-9-9950x3d2-dual-edition-5-6ghz-am5-s-cool",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001978WOF",
+  "ean": "0",
+  "warranty": "36",
+  "description": "Procesador AMD RYZEN 9 9950X3D2 Dual Edition 5.6GHZ AM5, s/Cool - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 328189
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

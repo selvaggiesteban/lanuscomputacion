@@ -1,0 +1,29 @@
+{
+  "id": "elit_10217",
+  "title": "Cable multifuncional para carga 5 en 1",
+  "price": 8200.53,
+  "originalPrice": 3.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10217/i/1Yh5N_l.webp",
+  "slug": "cable-multifuncional-para-carga-5-en-1",
+  "categorySlug": "cables",
+  "category": "Cables",
+  "subcategory": "Cables",
+  "brand": "XTECH",
+  "sku": "XTC-560",
+  "ean": "798480164311",
+  "warranty": "12",
+  "description": "Cable multifuncional para carga 5 en 1 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1367
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

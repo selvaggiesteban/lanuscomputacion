@@ -1,0 +1,29 @@
+{
+  "id": "elit_19366",
+  "title": "Gabinete CORSAIR 3500X LX-R RGB iCUE LINK Mid Tower Blanco",
+  "price": 270073.98,
+  "originalPrice": 137.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19366/i/IkrTy_l.webp",
+  "slug": "gabinete-corsair-3500x-lx-r-rgb-icue-link-mid-tower-blanco",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011325-WW",
+  "ean": "840440407126",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR 3500X LX-R RGB iCUE LINK Mid Tower Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 45012
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

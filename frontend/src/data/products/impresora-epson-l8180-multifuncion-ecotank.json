@@ -1,0 +1,29 @@
+{
+  "id": "elit_14935",
+  "title": "Impresora Epson L8180 Multifunción Ecotank",
+  "price": 2102681.4,
+  "originalPrice": 974.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14935/i/SxNE7_l.webp",
+  "slug": "impresora-epson-l8180-multifuncion-ecotank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CJ21303",
+  "ean": "10343963252",
+  "warranty": "12 meses",
+  "description": "Impresora Epson L8180 Multifunción Ecotank - 12 meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 350447
+  },
+  "stock": 41,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

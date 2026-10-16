@@ -1,0 +1,29 @@
+{
+  "id": "elit_15671",
+  "title": "Joystick LOGITECH F710 Gris",
+  "price": 55615.06,
+  "originalPrice": 28.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15671/i/9Yc6P_l.webp",
+  "slug": "joystick-logitech-f710-gris",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "LOGITECH",
+  "sku": "940-000117",
+  "ean": "97855068859",
+  "warranty": "24",
+  "description": "Joystick LOGITECH F710 Gris - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9269
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

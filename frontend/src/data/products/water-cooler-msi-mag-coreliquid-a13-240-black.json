@@ -1,0 +1,29 @@
+{
+  "id": "elit_18988",
+  "title": "Water Cooler MSI MAG CORELIQUID A13 240 BLACK",
+  "price": 125616.72,
+  "originalPrice": 63.74,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18988/i/OMD3a_l.webp",
+  "slug": "water-cooler-msi-mag-coreliquid-a13-240-black",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "MSI",
+  "sku": "MAG CORELIQUID A13 240",
+  "ean": "824142388839",
+  "warranty": "36",
+  "description": "Water Cooler MSI MAG CORELIQUID A13 240 BLACK - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20936
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

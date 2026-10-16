@@ -1,0 +1,29 @@
+{
+  "id": "elit_17967",
+  "title": "Notebook HP PB 440G11 14\" Intel U5 8GB/512 Win11P",
+  "price": 1880683.72,
+  "originalPrice": 954.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17967/i/MLdnT_l.webp",
+  "slug": "notebook-hp-pb-440g11-14-intel-u5-8gb-512-win11p",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "HP",
+  "sku": "B0FW8LT",
+  "ean": "198828059031",
+  "warranty": "12",
+  "description": "Notebook HP PB 440G11 14\" Intel U5 8GB/512 Win11P - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 313447
+  },
+  "stock": 144,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

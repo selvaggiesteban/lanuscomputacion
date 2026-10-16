@@ -1,0 +1,29 @@
+{
+  "id": "elit_19391",
+  "title": "Teclado gamer mecánico CORSAIR K70 CORE RGB: Negro (EN)",
+  "price": 149108.27,
+  "originalPrice": 75.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19391/i/hVihh_l.webp",
+  "slug": "teclado-gamer-mecanico-corsair-k70-core-rgb-negro-en",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "CORSAIR",
+  "sku": "CH-910971E-NA",
+  "ean": "840006666707",
+  "warranty": "24",
+  "description": "Teclado gamer mecánico CORSAIR K70 CORE RGB: Negro (EN) - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 24851
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

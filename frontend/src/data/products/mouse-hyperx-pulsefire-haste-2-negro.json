@@ -1,0 +1,29 @@
+{
+  "id": "elit_17229",
+  "title": "Mouse HyperX Pulsefire Haste 2 - (Negro)",
+  "price": 64247.02,
+  "originalPrice": 32.6,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17229/i/BZptt_l.webp",
+  "slug": "mouse-hyperx-pulsefire-haste-2-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "HYPERX",
+  "sku": "6N0A7AA",
+  "ean": "196786272523",
+  "warranty": "24",
+  "description": "Mouse HyperX Pulsefire Haste 2 - (Negro) - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10708
+  },
+  "stock": 97,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

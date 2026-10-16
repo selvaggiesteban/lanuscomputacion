@@ -1,0 +1,29 @@
+{
+  "id": "elit_18629",
+  "title": "Router Mesh Cudy AC1200 3 pack",
+  "price": 96626.73,
+  "originalPrice": 49.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18629/i/Srdc2_l.webp",
+  "slug": "router-mesh-cudy-ac1200-3-pack",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Routers",
+  "brand": "CUDY",
+  "sku": "M1200(3-PACK)",
+  "ean": "6971690792770",
+  "warranty": "12",
+  "description": "Router Mesh Cudy AC1200 3 pack - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 16104
+  },
+  "stock": 61,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

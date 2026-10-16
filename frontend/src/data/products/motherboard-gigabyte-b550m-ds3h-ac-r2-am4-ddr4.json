@@ -1,0 +1,29 @@
+{
+  "id": "elit_19657",
+  "title": "Motherboard GIGABYTE B550M DS3H AC R2 AM4 DDR4",
+  "price": 166253.95,
+  "originalPrice": 84.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19657/i/jl5Et_l.webp",
+  "slug": "motherboard-gigabyte-b550m-ds3h-ac-r2-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "B550M DS3H AC R2",
+  "ean": "4719331869908",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE B550M DS3H AC R2 AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27709
+  },
+  "stock": 114,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

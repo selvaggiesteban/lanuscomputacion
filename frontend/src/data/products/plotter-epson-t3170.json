@@ -1,0 +1,29 @@
+{
+  "id": "elit_18758",
+  "title": "Plotter Epson T3170",
+  "price": 1786954.02,
+  "originalPrice": 906.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18758/i/F3epM_l.webp",
+  "slug": "plotter-epson-t3170",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Plotters",
+  "brand": "EPSON",
+  "sku": "SCT3170SR",
+  "ean": "10343945418",
+  "warranty": "12",
+  "description": "Plotter Epson T3170 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 297826
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19059",
+  "title": "Impresora Brother T530DW Multifunción",
+  "price": 543069.51,
+  "originalPrice": 251.65,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19059/i/JzH9s_l.webp",
+  "slug": "impresora-brother-t530dw-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "BROTHER",
+  "sku": "DCPT530DW",
+  "ean": "12502676850",
+  "warranty": "24",
+  "description": "Impresora Brother T530DW Multifunción - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 90512
+  },
+  "stock": 86,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

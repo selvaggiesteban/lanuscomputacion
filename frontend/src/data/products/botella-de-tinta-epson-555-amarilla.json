@@ -1,0 +1,29 @@
+{
+  "id": "elit_15030",
+  "title": "Botella de Tinta Epson 555 Amarilla",
+  "price": 46743.04,
+  "originalPrice": 21.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15030/i/HjbOu_l.webp",
+  "slug": "botella-de-tinta-epson-555-amarilla",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T555420-AL",
+  "ean": "10343959132",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 555 Amarilla - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7791
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

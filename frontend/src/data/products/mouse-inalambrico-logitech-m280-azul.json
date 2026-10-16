@@ -1,0 +1,29 @@
+{
+  "id": "elit_6458",
+  "title": "Mouse Inalámbrico LOGITECH M280 Azul",
+  "price": 17579.25,
+  "originalPrice": 8.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6458/i/Pz5XH_l.webp",
+  "slug": "mouse-inalambrico-logitech-m280-azul",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-004361",
+  "ean": "97855109187",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico LOGITECH M280 Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2930
+  },
+  "stock": 102,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

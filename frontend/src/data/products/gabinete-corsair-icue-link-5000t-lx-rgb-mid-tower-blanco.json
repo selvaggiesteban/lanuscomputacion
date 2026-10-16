@@ -1,0 +1,29 @@
+{
+  "id": "elit_19345",
+  "title": "Gabinete CORSAIR iCUE LINK 5000T LX RGB Mid Tower blanco",
+  "price": 491036.43,
+  "originalPrice": 249.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19345/i/6KeN6_l.webp",
+  "slug": "gabinete-corsair-icue-link-5000t-lx-rgb-mid-tower-blanco",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011299-WW",
+  "ean": "840440487746",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR iCUE LINK 5000T LX RGB Mid Tower blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 81839
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19696",
+  "title": "Microfono ASUS C501 ROG CARNYX/NA",
+  "price": 338509.37,
+  "originalPrice": 156.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19696/i/qJl8C_l.webp",
+  "slug": "microfono-asus-c501-rog-carnyx-na",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Micrófonos",
+  "brand": "ASUS",
+  "sku": "C501 ROG CARNYX/NA",
+  "ean": "4711387474945",
+  "warranty": "12",
+  "description": "Microfono ASUS C501 ROG CARNYX/NA - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 56418
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

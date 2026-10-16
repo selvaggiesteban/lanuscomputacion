@@ -1,0 +1,29 @@
+{
+  "id": "elit_17639",
+  "title": "Pen Drive Lexar M22 32GB UDB 2.0",
+  "price": 18731.74,
+  "originalPrice": 8.68,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17639/i/NN5GZ_l.webp",
+  "slug": "pen-drive-lexar-m22-32gb-udb-2-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "LEXAR",
+  "sku": "LJDM022032G-BNJNG",
+  "ean": "843367124800",
+  "warranty": "24",
+  "description": "Pen Drive Lexar M22 32GB UDB 2.0 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3122
+  },
+  "stock": 960,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

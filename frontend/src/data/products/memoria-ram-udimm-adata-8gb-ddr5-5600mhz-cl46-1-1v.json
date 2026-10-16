@@ -1,0 +1,29 @@
+{
+  "id": "elit_19512",
+  "title": "Memoria Ram UDIMM ADATA 8GB DDR5 5600MHz CL46 1.1V",
+  "price": 252337.07,
+  "originalPrice": 128.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19512/i/VhOEh_l.webp",
+  "slug": "memoria-ram-udimm-adata-8gb-ddr5-5600mhz-cl46-1-1v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AD5U56008G-S",
+  "ean": "4711085940179",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA 8GB DDR5 5600MHz CL46 1.1V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 42056
+  },
+  "stock": 119,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

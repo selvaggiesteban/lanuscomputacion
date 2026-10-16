@@ -1,0 +1,29 @@
+{
+  "id": "elit_17249",
+  "title": "Fan Cooler Master Mobius 120P ARGB 120mm PWM White",
+  "price": 71236.74,
+  "originalPrice": 33.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17249/i/R0ANw_l.webp",
+  "slug": "fan-cooler-master-mobius-120p-argb-120mm-pwm-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MFZ-M2DW-24NP2-R1",
+  "ean": "4719512132067",
+  "warranty": "24",
+  "description": "Fan Cooler Master Mobius 120P ARGB 120mm PWM White - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11873
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

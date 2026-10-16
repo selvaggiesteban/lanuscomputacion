@@ -1,0 +1,29 @@
+{
+  "id": "elit_14699",
+  "title": "Mochila para laptop",
+  "price": 20436.59,
+  "originalPrice": 9.47,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14699/i/Aj8BA_l.webp",
+  "slug": "mochila-para-laptop",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "XTECH",
+  "sku": "XTB-209",
+  "ean": "798302230262",
+  "warranty": "12 MESES",
+  "description": "Mochila para laptop - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3406
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

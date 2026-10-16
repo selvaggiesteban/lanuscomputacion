@@ -1,0 +1,29 @@
+{
+  "id": "elit_19231",
+  "title": "UPS Forza Online FDC-2022R-I 2K 2000VA/1800W rack",
+  "price": 855943.74,
+  "originalPrice": 434.32,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19231/i/4oBdJ_l.webp",
+  "slug": "ups-forza-online-fdc-2022r-i-2k-2000va-1800w-rack",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FDC-2022R-I",
+  "ean": "798302202313",
+  "warranty": "24",
+  "description": "UPS Forza Online FDC-2022R-I 2K 2000VA/1800W rack - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 142657
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

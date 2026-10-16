@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import CartContent from '../components/cart/CartContent.tsx';
+---
+
+<BaseLayout title="Carrito | Lanús Computación">
+  <div class="ml-container">
+    <Breadcrumb items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Carrito' },
+    ]} />
+
+    <div class="py-6">
+      <h1 class="text-xl font-semibold text-ml-text mb-6">Carrito de compras</h1>
+      <CartContent client:load />
+    </div>
+  </div>
+</BaseLayout>

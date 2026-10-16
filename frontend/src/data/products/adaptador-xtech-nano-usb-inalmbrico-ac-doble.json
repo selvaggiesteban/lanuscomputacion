@@ -1,0 +1,29 @@
+{
+  "id": "elit_19624",
+  "title": "Adaptador Xtech, Nano Usb , inalmbrico Ac , doble",
+  "price": 17263.92,
+  "originalPrice": 8.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19624/i/ju5Nd_l.webp",
+  "slug": "adaptador-xtech-nano-usb-inalmbrico-ac-doble",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "XTECH",
+  "sku": "XTC-600",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Adaptador Xtech, Nano Usb , inalmbrico Ac , doble - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2877
+  },
+  "stock": 15,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

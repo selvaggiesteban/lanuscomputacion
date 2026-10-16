@@ -1,0 +1,29 @@
+{
+  "id": "elit_19863",
+  "title": "Mini PC ASUS PN53-BB7000X1TDR Ryzen 7 7735HS BAREBONE (S/RAM - S/SSD)",
+  "price": 929276.0,
+  "originalPrice": 471.53,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19863/i/kp8Gc_l.webp",
+  "slug": "mini-pc-asus-pn53-bb7000x1tdr-ryzen-7-7735hs-barebone-s-ram-s-ssd",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Mini PC",
+  "brand": "ASUS",
+  "sku": "PN53-BB7000X1TDR",
+  "ean": "199291171909",
+  "warranty": "36",
+  "description": "Mini PC ASUS PN53-BB7000X1TDR Ryzen 7 7735HS BAREBONE (S/RAM - S/SSD) - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 154879
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

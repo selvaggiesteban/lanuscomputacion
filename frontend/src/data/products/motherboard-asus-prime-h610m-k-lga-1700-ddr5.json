@@ -1,0 +1,29 @@
+{
+  "id": "elit_19491",
+  "title": "Motherboard ASUS PRIME H610M-K LGA 1700 DDR5",
+  "price": 128612.29,
+  "originalPrice": 65.26,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19491/i/Spg6h_l.webp",
+  "slug": "motherboard-asus-prime-h610m-k-lga-1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME H610M-K",
+  "ean": "4711387336328",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME H610M-K LGA 1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21435
+  },
+  "stock": 109,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

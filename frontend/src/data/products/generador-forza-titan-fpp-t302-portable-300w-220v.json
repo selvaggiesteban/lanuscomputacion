@@ -1,0 +1,29 @@
+{
+  "id": "elit_19150",
+  "title": "Generador Forza Titan FPP-T302 Portable 300W 220V",
+  "price": 401480.83,
+  "originalPrice": 186.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19150/i/XRCgv_l.webp",
+  "slug": "generador-forza-titan-fpp-t302-portable-300w-220v",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FPP-T302-I",
+  "ean": "0",
+  "warranty": "36",
+  "description": "Generador Forza Titan FPP-T302 Portable 300W 220V - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 66913
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

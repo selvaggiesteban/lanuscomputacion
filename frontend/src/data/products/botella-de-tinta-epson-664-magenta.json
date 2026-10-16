@@ -1,0 +1,29 @@
+{
+  "id": "elit_3883",
+  "title": "Botella de Tinta Epson 664 Magenta",
+  "price": 21062.42,
+  "originalPrice": 9.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3883/i/XlRsu_l.webp",
+  "slug": "botella-de-tinta-epson-664-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T664320-AL",
+  "ean": "10343885318",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 664 Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3510
+  },
+  "stock": 284,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

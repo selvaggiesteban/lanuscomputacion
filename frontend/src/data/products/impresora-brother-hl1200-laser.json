@@ -1,0 +1,29 @@
+{
+  "id": "elit_6006",
+  "title": "Impresora Brother HL1200 Laser",
+  "price": 203797.07,
+  "originalPrice": 103.41,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6006/i/Y0FUo_l.webp",
+  "slug": "impresora-brother-hl1200-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "HL1200",
+  "ean": "12502639749",
+  "warranty": "12",
+  "description": "Impresora Brother HL1200 Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 33966
+  },
+  "stock": 305,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

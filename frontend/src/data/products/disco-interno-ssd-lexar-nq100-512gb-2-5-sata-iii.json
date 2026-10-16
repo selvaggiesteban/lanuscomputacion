@@ -1,0 +1,29 @@
+{
+  "id": "elit_19135",
+  "title": "Disco Interno SSD LEXAR NQ100 512GB 2.5” SATA III",
+  "price": 213907.1,
+  "originalPrice": 108.54,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19135/i/PjeyM_l.webp",
+  "slug": "disco-interno-ssd-lexar-nq100-512gb-2-5-sata-iii",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "LEXAR",
+  "sku": "LNQ100X512G-RNNNG",
+  "ean": "843367140015",
+  "warranty": "36",
+  "description": "Disco Interno SSD LEXAR NQ100 512GB 2.5” SATA III - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 35651
+  },
+  "stock": 574,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

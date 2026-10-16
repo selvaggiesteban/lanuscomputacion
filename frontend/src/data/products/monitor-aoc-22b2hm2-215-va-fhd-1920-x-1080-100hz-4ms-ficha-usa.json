@@ -1,0 +1,29 @@
+{
+  "id": "elit_18096",
+  "title": "Monitor AOC 22B2HM2 21,5\" VA FHD (1920 x 1080) 100Hz 4ms Ficha USA",
+  "price": 146177.74,
+  "originalPrice": 61.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18096/i/CzK6I_l.webp",
+  "slug": "monitor-aoc-22b2hm2-215-va-fhd-1920-x-1080-100hz-4ms-ficha-usa",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "AOC",
+  "sku": "22B2HM2",
+  "ean": "685417734184",
+  "warranty": "36",
+  "description": "Monitor AOC 22B2HM2 21,5\" VA FHD (1920 x 1080) 100Hz 4ms Ficha USA - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 24363
+  },
+  "stock": 97,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

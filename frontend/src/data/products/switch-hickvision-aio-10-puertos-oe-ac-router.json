@@ -1,0 +1,29 @@
+{
+  "id": "elit_17398",
+  "title": "Switch Hickvision AIO 10 puertos OE AC Router",
+  "price": 149285.64,
+  "originalPrice": 75.75,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17398/i/AHfQA_l.webp",
+  "slug": "switch-hickvision-aio-10-puertos-oe-ac-router",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Switches",
+  "brand": "HIKVISION",
+  "sku": "DS-3WG210GP-SI",
+  "ean": "6942160450032",
+  "warranty": "24",
+  "description": "Switch Hickvision AIO 10 puertos OE AC Router - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 24881
+  },
+  "stock": 12,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

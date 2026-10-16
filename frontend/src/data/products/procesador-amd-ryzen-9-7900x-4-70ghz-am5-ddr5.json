@@ -1,0 +1,29 @@
+{
+  "id": "elit_16254",
+  "title": "Procesador AMD Ryzen 9 7900X 4.70GHz AM5 DDR5",
+  "price": 759080.52,
+  "originalPrice": 385.17,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16254/i/drykr_l.webp",
+  "slug": "procesador-amd-ryzen-9-7900x-4-70ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000589WOF",
+  "ean": "730143314558",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 9 7900X 4.70GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 126513
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

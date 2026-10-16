@@ -1,0 +1,29 @@
+{
+  "id": "elit_17970",
+  "title": "Notebook HP EB 645G11 14\" R5 7535U 16GB/512 Win11P",
+  "price": 2048750.77,
+  "originalPrice": 1039.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17970/i/wbzMR_l.webp",
+  "slug": "notebook-hp-eb-645g11-14-r5-7535u-16gb-512-win11p",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "HP",
+  "sku": "B0FY2LT",
+  "ean": "198828059178",
+  "warranty": "12",
+  "description": "Notebook HP EB 645G11 14\" R5 7535U 16GB/512 Win11P - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 341458
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

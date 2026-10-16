@@ -1,0 +1,29 @@
+{
+  "id": "elit_10674",
+  "title": "Pen Drive Sandisk Ultra Shift 3.0 USB Black 64GB",
+  "price": 25249.01,
+  "originalPrice": 11.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10674/i/0Ape6_l.webp",
+  "slug": "pen-drive-sandisk-ultra-shift-3-0-usb-black-64gb",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ410-064G-G46",
+  "ean": "619659181918",
+  "warranty": "12",
+  "description": "Pen Drive Sandisk Ultra Shift 3.0 USB Black 64GB - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4208
+  },
+  "stock": 2279,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

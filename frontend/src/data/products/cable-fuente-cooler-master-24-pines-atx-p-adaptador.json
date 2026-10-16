@@ -1,0 +1,29 @@
+{
+  "id": "elit_15709",
+  "title": "Cable Fuente Cooler Master 24 Pines ATX p/Adaptador",
+  "price": 2913.35,
+  "originalPrice": 1.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15709/i/FejnU_l.webp",
+  "slug": "cable-fuente-cooler-master-24-pines-atx-p-adaptador",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "COOLER MASTER",
+  "sku": "CABLE24PINES",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cable Fuente Cooler Master 24 Pines ATX p/Adaptador - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 486
+  },
+  "stock": 95,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

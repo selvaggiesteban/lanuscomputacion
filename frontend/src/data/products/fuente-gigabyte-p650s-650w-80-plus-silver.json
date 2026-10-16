@@ -1,0 +1,29 @@
+{
+  "id": "elit_18016",
+  "title": "Fuente GIGABYTE P650S 650W 80 PLUS Silver",
+  "price": 91953.87,
+  "originalPrice": 42.61,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18016/i/Lrp7i_l.webp",
+  "slug": "fuente-gigabyte-p650s-650w-80-plus-silver",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "GIGABYTE",
+  "sku": "GP-P650SS",
+  "ean": "4719331555122",
+  "warranty": "36",
+  "description": "Fuente GIGABYTE P650S 650W 80 PLUS Silver - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15326
+  },
+  "stock": 233,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

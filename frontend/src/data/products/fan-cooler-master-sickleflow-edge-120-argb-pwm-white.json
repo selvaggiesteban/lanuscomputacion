@@ -1,0 +1,29 @@
+{
+  "id": "elit_18783",
+  "title": "Fan Cooler Master SickleFlow Edge 120 ARGB PWM White",
+  "price": 23220.46,
+  "originalPrice": 10.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18783/i/jGji8_l.webp",
+  "slug": "fan-cooler-master-sickleflow-edge-120-argb-pwm-white",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MFX-B2DW-25NP2-R2",
+  "ean": "4719512151945",
+  "warranty": "24",
+  "description": "Fan Cooler Master SickleFlow Edge 120 ARGB PWM White - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3870
+  },
+  "stock": 332,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

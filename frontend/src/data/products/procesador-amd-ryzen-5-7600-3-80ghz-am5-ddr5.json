@@ -1,0 +1,29 @@
+{
+  "id": "elit_16673",
+  "title": "Procesador AMD Ryzen 5 7600 3.80GHz AM5 DDR5",
+  "price": 404519.74,
+  "originalPrice": 205.26,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16673/i/8AiKy_l.webp",
+  "slug": "procesador-amd-ryzen-5-7600-3-80ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001015BOX",
+  "ean": "730143314572",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 7600 3.80GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 67420
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19840",
+  "title": "Motherboard MSI PRO B860M-E  LGA 1851 DDR5",
+  "price": 187695.9,
+  "originalPrice": 95.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19840/i/XZnos_l.webp",
+  "slug": "motherboard-msi-pro-b860m-e-lga-1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO B860M-E",
+  "ean": "824142449356",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO B860M-E  LGA 1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31283
+  },
+  "stock": 57,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

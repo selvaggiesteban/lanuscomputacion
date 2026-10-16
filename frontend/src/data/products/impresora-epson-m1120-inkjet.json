@@ -1,0 +1,29 @@
+{
+  "id": "elit_8491",
+  "title": "Impresora Epson M1120 Inkjet",
+  "price": 429784.98,
+  "originalPrice": 218.08,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8491/i/DLvjE_l.webp",
+  "slug": "impresora-epson-m1120-inkjet",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CG96303",
+  "ean": "10343944589",
+  "warranty": "24",
+  "description": "Impresora Epson M1120 Inkjet - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 71631
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

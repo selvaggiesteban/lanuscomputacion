@@ -1,0 +1,29 @@
+{
+  "id": "elit_7444",
+  "title": "UPS FDC FORZA Online 10000VA 10000W",
+  "price": 4509017.5,
+  "originalPrice": 2287.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7444/i/5njkI_l.webp",
+  "slug": "ups-fdc-forza-online-10000va-10000w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FDC-210K",
+  "ean": "798302107557",
+  "warranty": "24",
+  "description": "UPS FDC FORZA Online 10000VA 10000W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 751503
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

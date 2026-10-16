@@ -1,0 +1,29 @@
+{
+  "id": "elit_17665",
+  "title": "Auricular Lenovo Gaming Legion H500 Pro",
+  "price": 64805.79,
+  "originalPrice": 30.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17665/i/KGD7a_l.webp",
+  "slug": "auricular-lenovo-gaming-legion-h500-pro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LENOVO",
+  "sku": "GXD0T69864",
+  "ean": "193268735224",
+  "warranty": "12",
+  "description": "Auricular Lenovo Gaming Legion H500 Pro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 10801
+  },
+  "stock": 34,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

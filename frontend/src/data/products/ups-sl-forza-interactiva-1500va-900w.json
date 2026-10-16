@@ -1,0 +1,29 @@
+{
+  "id": "elit_14971",
+  "title": "UPS SL FORZA Interactiva 1500VA 900W",
+  "price": 266960.17,
+  "originalPrice": 135.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14971/i/fgh8n_l.webp",
+  "slug": "ups-sl-forza-interactiva-1500va-900w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "SL-1502UL-A",
+  "ean": "798302109254",
+  "warranty": "36",
+  "description": "UPS SL FORZA Interactiva 1500VA 900W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 44493
+  },
+  "stock": 85,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

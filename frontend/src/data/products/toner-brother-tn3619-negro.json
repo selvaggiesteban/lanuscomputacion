@@ -1,0 +1,29 @@
+{
+  "id": "elit_19089",
+  "title": "Tóner Brother TN3619 Negro",
+  "price": 252598.0,
+  "originalPrice": 117.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19089/i/CS0uN_l.webp",
+  "slug": "toner-brother-tn3619-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN3619",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tóner Brother TN3619 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 42100
+  },
+  "stock": 79,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

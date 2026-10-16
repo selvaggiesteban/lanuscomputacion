@@ -1,0 +1,29 @@
+{
+  "id": "elit_19069",
+  "title": "Botella de tinta Brother BTD100 Color Magenta",
+  "price": 17544.82,
+  "originalPrice": 8.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19069/i/SJzmO_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-color-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100MMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD100 Color Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2924
+  },
+  "stock": 65,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

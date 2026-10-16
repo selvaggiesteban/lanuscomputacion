@@ -1,0 +1,29 @@
+{
+  "id": "elit_20021",
+  "title": "Placa de Video ASUS AMD Radeon TUF RX9070XT O16G G",
+  "price": 1863084.76,
+  "originalPrice": 945.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20021/i/4REEO_l.webp",
+  "slug": "placa-de-video-asus-amd-radeon-tuf-rx9070xt-o16g-g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "TUF-RX9070XT-O16G-GAMING",
+  "ean": "4711387860809",
+  "warranty": "36",
+  "description": "Placa de Video ASUS AMD Radeon TUF RX9070XT O16G G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 310514
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

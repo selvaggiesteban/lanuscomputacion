@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { upsertContact } from '../../../../lib/d1';
+---
+
+<BaseLayout title="Nuevo Contacto | Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-xl font-semibold text-ml-text">Nuevo Contacto</h1>
+        <a href="/admin/mensajeria/contactos" class="text-sm ml-link">← Volver</a>
+      </div>
+
+      <form id="contact-form" class="bg-white rounded shadow-card p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Nombre *</label>
+            <input type="text" name="name" class="ml-input w-full" required />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Email</label>
+            <input type="email" name="email" class="ml-input w-full" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Teléfono</label>
+            <input type="tel" name="phone" class="ml-input w-full" placeholder="+54 11 1234-5678" />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">WhatsApp</label>
+            <input type="tel" name="whatsapp" class="ml-input w-full" placeholder="5491153323937" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Telegram</label>
+            <input type="text" name="telegram" class="ml-input w-full" placeholder="@usuario" />
+          </div>
+          <div>
+            <label class="block text-xs text-ml-text-muted mb-1">Messenger ID</label>
+            <input type="text" name="messenger_id" class="ml-input w-full" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Etiquetas (JSON array)</label>
+          <input type="text" name="tags" value="[]" class="ml-input w-full" placeholder='["cliente", "vip", "b2b"]' />
+        </div>
+
+        <div>
+          <label class="block text-xs text-ml-text-muted mb-1">Notas</label>
+          <textarea name="notes" class="ml-input w-full" rows="3" placeholder="Notas internas..."></textarea>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input type="checkbox" name="is_subscribed" class="w-4 h-4 text-ml-yellow rounded" checked />
+          <span class="text-sm text-ml-text">Suscrito a comunicaciones (SMS/Email)</span>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-4 border-t">
+          <a href="/admin/mensajeria/contactos" class="ml-btn-outline">Cancelar</a>
+          <button type="submit" class="ml-btn-primary">Crear contacto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      data.is_subscribed = data.is_subscribed ? 1 : 0;
+      try {
+        data.tags = JSON.parse(formData.get('tags') || '[]');
+      } catch {
+        data.tags = [];
+      }
+
+      try {
+        const res = await fetch('/api/admin/mensajeria/contactos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert('Contacto creado correctamente');
+          location.href = '/admin/mensajeria/contactos';
+        } else {
+          const err = await res.json();
+          alert('Error: ' + (err.error || 'Error al crear'));
+        }
+      } catch {
+        alert('Error de conexión');
+      }
+    });
+  </script>
+</BaseLayout>

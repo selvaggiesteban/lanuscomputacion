@@ -1,0 +1,29 @@
+{
+  "id": "elit_18767",
+  "title": "Motherboard MSI PRO B840M-B AM5 DDR5",
+  "price": 143846.32,
+  "originalPrice": 72.99,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18767/i/7ak4t_l.webp",
+  "slug": "motherboard-msi-pro-b840m-b-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO B840M-B",
+  "ean": "4711377360166",
+  "warranty": "36",
+  "description": "Motherboard MSI PRO B840M-B AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23974
+  },
+  "stock": 281,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

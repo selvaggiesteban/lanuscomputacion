@@ -1,0 +1,29 @@
+{
+  "id": "elit_15692",
+  "title": "Procesador INTEL Core i7-12700 1.60GHz LGA1700 DDR4/DDR5",
+  "price": 710895.25,
+  "originalPrice": 360.72,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15692/i/1M1UL_l.webp",
+  "slug": "procesador-intel-core-i7-12700-1-60ghz-lga1700-ddr4-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071512700",
+  "ean": "5032037237840",
+  "warranty": "36",
+  "description": "Procesador INTEL Core i7-12700 1.60GHz LGA1700 DDR4/DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 118483
+  },
+  "stock": 144,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

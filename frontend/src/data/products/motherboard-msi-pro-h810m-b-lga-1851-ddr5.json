@@ -1,0 +1,29 @@
+{
+  "id": "elit_19439",
+  "title": "Motherboard MSI PRO H810M-B LGA 1851 DDR5",
+  "price": 200308.81,
+  "originalPrice": 101.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19439/i/dwHEb_l.webp",
+  "slug": "motherboard-msi-pro-h810m-b-lga-1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "PRO H810M-B",
+  "ean": "4711377337977",
+  "warranty": "24",
+  "description": "Motherboard MSI PRO H810M-B LGA 1851 DDR5 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 33385
+  },
+  "stock": 242,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

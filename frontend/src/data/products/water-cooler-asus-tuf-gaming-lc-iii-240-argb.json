@@ -1,0 +1,29 @@
+{
+  "id": "elit_20013",
+  "title": "Water Cooler ASUS TUF GAMING LC III 240 ARGB",
+  "price": 184128.81,
+  "originalPrice": 93.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20013/i/SxGHq_l.webp",
+  "slug": "water-cooler-asus-tuf-gaming-lc-iii-240-argb",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "ASUS",
+  "sku": "TUF GAMING LC III 240 ARGB",
+  "ean": "4711636159050",
+  "warranty": "36",
+  "description": "Water Cooler ASUS TUF GAMING LC III 240 ARGB - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 30688
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

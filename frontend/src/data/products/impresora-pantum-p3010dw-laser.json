@@ -1,0 +1,29 @@
+{
+  "id": "elit_16088",
+  "title": "Impresora Pantum P3010DW Laser",
+  "price": 240611.0,
+  "originalPrice": 122.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16088/i/s54oS_l.webp",
+  "slug": "impresora-pantum-p3010dw-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "PANTUM",
+  "sku": "P3010DW",
+  "ean": "6936358032438",
+  "warranty": "12",
+  "description": "Impresora Pantum P3010DW Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 40102
+  },
+  "stock": 146,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18985",
+  "title": "Auricular Inalámbrico Logitech G522 Blanco",
+  "price": 357802.2,
+  "originalPrice": 165.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18985/i/sMUsV_l.webp",
+  "slug": "auricular-inalambrico-logitech-g522-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001549",
+  "ean": "97855205575",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech G522 Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 59634
+  },
+  "stock": 38,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

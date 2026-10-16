@@ -1,0 +1,29 @@
+{
+  "id": "elit_18326",
+  "title": "Disco Interno SSD Sandisk Plus 2TB M.2 2280 NVMe PCIe 3.0 3200Mb/s",
+  "price": 590737.56,
+  "originalPrice": 299.75,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18326/i/av6uk_l.webp",
+  "slug": "disco-interno-ssd-sandisk-plus-2tb-m-2-2280-nvme-pcie-3-0-3200mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "SANDISK",
+  "sku": "SDSSDA3N-2T00-G26",
+  "ean": "619659208325",
+  "warranty": "36",
+  "description": "Disco Interno SSD Sandisk Plus 2TB M.2 2280 NVMe PCIe 3.0 3200Mb/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 98456
+  },
+  "stock": 94,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

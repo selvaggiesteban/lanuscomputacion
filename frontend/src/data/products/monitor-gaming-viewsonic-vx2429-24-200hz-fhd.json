@@ -1,0 +1,29 @@
+{
+  "id": "elit_19169",
+  "title": "Monitor Gaming ViewSonic VX2429 24\" 200Hz FHD",
+  "price": 244162.13,
+  "originalPrice": 102.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19169/i/N72St_l.webp",
+  "slug": "monitor-gaming-viewsonic-vx2429-24-200hz-fhd",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "VIEWSONIC",
+  "sku": "VX2429",
+  "ean": "766907032680",
+  "warranty": "36",
+  "description": "Monitor Gaming ViewSonic VX2429 24\" 200Hz FHD - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 40694
+  },
+  "stock": 134,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

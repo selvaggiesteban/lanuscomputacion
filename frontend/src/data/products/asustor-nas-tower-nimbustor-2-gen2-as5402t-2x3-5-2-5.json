@@ -1,0 +1,29 @@
+{
+  "id": "elit_18431",
+  "title": "Asustor NAS Tower Nimbustor 2 Gen2 AS5402T 2X3.5/2.5",
+  "price": 877819.26,
+  "originalPrice": 445.42,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18431/i/Wbbdp_l.webp",
+  "slug": "asustor-nas-tower-nimbustor-2-gen2-as5402t-2x3-5-2-5",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Nas",
+  "brand": "ASUSTOR",
+  "sku": "AS5402T",
+  "ean": "4710474831494",
+  "warranty": "36",
+  "description": "Asustor NAS Tower Nimbustor 2 Gen2 AS5402T 2X3.5/2.5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 146303
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19694",
+  "title": "Teclado ASUS M605 ROG FALCHION ACE HFX/HFX/ES",
+  "price": 186119.28,
+  "originalPrice": 94.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19694/i/0zPhA_l.webp",
+  "slug": "teclado-asus-m605-rog-falchion-ace-hfx-hfx-es",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "ASUS",
+  "sku": "M605 ROG FALCHION ACE HFX/HFX/ES",
+  "ean": "4711387651773",
+  "warranty": "12",
+  "description": "Teclado ASUS M605 ROG FALCHION ACE HFX/HFX/ES - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31020
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

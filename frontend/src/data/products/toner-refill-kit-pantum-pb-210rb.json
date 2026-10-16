@@ -1,0 +1,29 @@
+{
+  "id": "elit_16577",
+  "title": "Tóner Refill Kit Pantum PB-210RB",
+  "price": 20415.01,
+  "originalPrice": 9.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16577/i/Hij2N_l.webp",
+  "slug": "toner-refill-kit-pantum-pb-210rb",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "PANTUM",
+  "sku": "PB-210RB",
+  "ean": "6936358010504",
+  "warranty": "12",
+  "description": "Tóner Refill Kit Pantum PB-210RB - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3403
+  },
+  "stock": 313,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

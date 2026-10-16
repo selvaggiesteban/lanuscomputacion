@@ -1,0 +1,29 @@
+{
+  "id": "elit_17647",
+  "title": "Motherboard MSI B550M-A PRO (AM4)",
+  "price": 129420.3,
+  "originalPrice": 65.67,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17647/i/PTzIx_l.webp",
+  "slug": "motherboard-msi-b550m-a-pro-am4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "B550M-A PRO",
+  "ean": "4719072752613",
+  "warranty": "36",
+  "description": "Motherboard MSI B550M-A PRO (AM4) - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21570
+  },
+  "stock": 50,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

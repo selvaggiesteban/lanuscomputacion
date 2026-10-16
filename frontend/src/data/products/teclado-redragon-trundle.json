@@ -1,0 +1,29 @@
+{
+  "id": "elit_20197",
+  "title": "Teclado Redragon Trundle",
+  "price": 81530.65,
+  "originalPrice": 41.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20197/i/Sw2DP_l.webp",
+  "slug": "teclado-redragon-trundle",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "K668WBO-RGB-SP",
+  "ean": "6950376727800",
+  "warranty": "12",
+  "description": "Teclado Redragon Trundle - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13588
+  },
+  "stock": 67,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19096",
+  "title": "Módulo Controlador Cooler Master 3-Knob para MasterHUB",
+  "price": 121907.4,
+  "originalPrice": 56.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19096/i/QSfrN_l.webp",
+  "slug": "modulo-controlador-cooler-master-3-knob-para-masterhub",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "COOLER MASTER",
+  "sku": "MHKB03AA22",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Módulo Controlador Cooler Master 3-Knob para MasterHUB - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 20318
+  },
+  "stock": 29,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

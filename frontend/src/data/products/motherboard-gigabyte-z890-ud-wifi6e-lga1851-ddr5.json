@@ -1,0 +1,29 @@
+{
+  "id": "elit_18519",
+  "title": "Motherboard GIGABYTE Z890 UD WIFI6E LGA1851 DDR5",
+  "price": 404224.12,
+  "originalPrice": 205.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18519/i/2xVjk_l.webp",
+  "slug": "motherboard-gigabyte-z890-ud-wifi6e-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "Z890 UD WIFI6E",
+  "ean": "4719331865313",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE Z890 UD WIFI6E LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 67371
+  },
+  "stock": 41,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_17831",
+  "title": "Disco Externo SSD Sandisk Portable 2TB USB-C 3.2 Gen 2 800Mb/s",
+  "price": 917725.96,
+  "originalPrice": 425.26,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17831/i/CpeQJ_l.webp",
+  "slug": "disco-externo-ssd-sandisk-portable-2tb-usb-c-3-2-gen-2-800mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos SSD",
+  "brand": "SANDISK",
+  "sku": "SDSSDE30-2T00-G26",
+  "ean": "90619659204856",
+  "warranty": "36",
+  "description": "Disco Externo SSD Sandisk Portable 2TB USB-C 3.2 Gen 2 800Mb/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 152954
+  },
+  "stock": 197,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

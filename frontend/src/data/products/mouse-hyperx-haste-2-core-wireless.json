@@ -1,0 +1,29 @@
+{
+  "id": "elit_17846",
+  "title": "Mouse HyperX Haste 2 Core Wireless",
+  "price": 67873.23,
+  "originalPrice": 34.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17846/i/zAsln_l.webp",
+  "slug": "mouse-hyperx-haste-2-core-wireless",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "HYPERX",
+  "sku": "8R2E6AA",
+  "ean": "197498115382",
+  "warranty": "24",
+  "description": "Mouse HyperX Haste 2 Core Wireless - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11312
+  },
+  "stock": 456,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

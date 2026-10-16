@@ -1,0 +1,29 @@
+{
+  "id": "elit_18263",
+  "title": "Auricular Lenovo Aur Gaming 7,1 Legion E510 RGB",
+  "price": 44973.45,
+  "originalPrice": 20.84,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18263/i/nSupw_l.webp",
+  "slug": "auricular-lenovo-aur-gaming-71-legion-e510-rgb",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LENOVO",
+  "sku": "GXD1N40797",
+  "ean": "195892093084",
+  "warranty": "12 MESES",
+  "description": "Auricular Lenovo Aur Gaming 7,1 Legion E510 RGB - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7496
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

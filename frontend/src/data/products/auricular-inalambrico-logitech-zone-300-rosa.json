@@ -1,0 +1,29 @@
+{
+  "id": "elit_17997",
+  "title": "Auricular Inalámbrico Logitech Zone 300 Rosa",
+  "price": 131402.75,
+  "originalPrice": 60.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17997/i/3bvKa_l.webp",
+  "slug": "auricular-inalambrico-logitech-zone-300-rosa",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-001411",
+  "ean": "97855193629",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech Zone 300 Rosa - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21900
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

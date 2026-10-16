@@ -1,0 +1,29 @@
+{
+  "id": "elit_19186",
+  "title": "Impresora Brother DCPL5660DN Multifuncion",
+  "price": 1581710.17,
+  "originalPrice": 732.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19186/i/x40rZ_l.webp",
+  "slug": "impresora-brother-dcpl5660dn-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "DCPL5660DN",
+  "ean": "12502666547",
+  "warranty": "12",
+  "description": "Impresora Brother DCPL5660DN Multifuncion - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 263618
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

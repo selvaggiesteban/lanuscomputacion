@@ -1,0 +1,29 @@
+{
+  "id": "elit_10547",
+  "title": "Tarjeta de Memoria SANDISK Ultra MicroSDXC 128GB UHS-I U1 V10",
+  "price": 44322.56,
+  "originalPrice": 22.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10547/i/BNidw_l.webp",
+  "slug": "tarjeta-de-memoria-sandisk-ultra-microsdxc-128gb-uhs-i-u1-v10",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "SANDISK",
+  "sku": "SDSQUNR-128G-GN6TA",
+  "ean": "619659185107",
+  "warranty": "12",
+  "description": "Tarjeta de Memoria SANDISK Ultra MicroSDXC 128GB UHS-I U1 V10 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7387
+  },
+  "stock": 464,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18774",
+  "title": "Water Cooler CM Masterliquid 240 Atmos II Pixel LED",
+  "price": 386487.21,
+  "originalPrice": 196.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18774/i/AoUDr_l.webp",
+  "slug": "water-cooler-cm-masterliquid-240-atmos-ii-pixel-led",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Coolers",
+  "brand": "COOLER MASTER",
+  "sku": "MLX-D24M-A25SZ-P1",
+  "ean": "4719512159613",
+  "warranty": "24",
+  "description": "Water Cooler CM Masterliquid 240 Atmos II Pixel LED - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 64415
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

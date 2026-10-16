@@ -1,0 +1,29 @@
+{
+  "id": "elit_20017",
+  "title": "Placa de Video ASUS NVIDIA GeForce DUAL RTX5060TI",
+  "price": 966050.52,
+  "originalPrice": 490.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20017/i/lvFPM_l.webp",
+  "slug": "placa-de-video-asus-nvidia-geforce-dual-rtx5060ti",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "ASUS",
+  "sku": "DUAL-RTX5060TI-O8G",
+  "ean": "4711636014175",
+  "warranty": "36",
+  "description": "Placa de Video ASUS NVIDIA GeForce DUAL RTX5060TI - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 161008
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19684",
+  "title": "Motherboard ASUS Z890 AYW GAMING WIFI W LGA1851 DDR5",
+  "price": 440446.83,
+  "originalPrice": 223.49,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19684/i/R0xSl_l.webp",
+  "slug": "motherboard-asus-z890-ayw-gaming-wifi-w-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "Z890 AYW GAMING WIFI W",
+  "ean": "4711387752111",
+  "warranty": "36",
+  "description": "Motherboard ASUS Z890 AYW GAMING WIFI W LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 73408
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

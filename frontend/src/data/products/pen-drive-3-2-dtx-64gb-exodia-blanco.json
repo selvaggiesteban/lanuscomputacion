@@ -1,0 +1,29 @@
+{
+  "id": "elit_17424",
+  "title": "Pen Drive 3.2 DTX 64GB Exodia Blanco",
+  "price": 19163.35,
+  "originalPrice": 8.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17424/i/0SA3A_l.webp",
+  "slug": "pen-drive-3-2-dtx-64gb-exodia-blanco",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "KC-U2G64-5R",
+  "ean": "740617314342",
+  "warranty": "60",
+  "description": "Pen Drive 3.2 DTX 64GB Exodia Blanco - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3194
+  },
+  "stock": 630,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

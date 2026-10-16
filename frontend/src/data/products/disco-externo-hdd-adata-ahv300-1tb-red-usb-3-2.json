@@ -1,0 +1,29 @@
+{
+  "id": "elit_20081",
+  "title": "Disco Externo HDD ADATA AHV300 1TB Red USB 3.2",
+  "price": 179950.78,
+  "originalPrice": 91.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20081/i/MJWhL_l.webp",
+  "slug": "disco-externo-hdd-adata-ahv300-1tb-red-usb-3-2",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "ADATA",
+  "sku": "AHV300-1TU31-CRD",
+  "ean": "4713218465009",
+  "warranty": "36",
+  "description": "Disco Externo HDD ADATA AHV300 1TB Red USB 3.2 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29992
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

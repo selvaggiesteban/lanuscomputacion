@@ -1,0 +1,29 @@
+{
+  "id": "elit_9831",
+  "title": "Protector Tensión FSP FORZA 2200W 6 Tomas",
+  "price": 32521.59,
+  "originalPrice": 15.07,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/9831/i/XEOID_l.webp",
+  "slug": "protector-tension-fsp-forza-2200w-6-tomas",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Protectores",
+  "brand": "FORZA",
+  "sku": "FSP-602USB-A",
+  "ean": "798302107892",
+  "warranty": "24",
+  "description": "Protector Tensión FSP FORZA 2200W 6 Tomas - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5420
+  },
+  "stock": 1430,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

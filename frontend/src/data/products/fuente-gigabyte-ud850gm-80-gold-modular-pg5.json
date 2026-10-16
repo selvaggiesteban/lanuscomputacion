@@ -1,0 +1,29 @@
+{
+  "id": "elit_16765",
+  "title": "Fuente GIGABYTE UD850GM 80 Gold Modular PG5",
+  "price": 207344.0,
+  "originalPrice": 96.08,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16765/i/VD1at_l.webp",
+  "slug": "fuente-gigabyte-ud850gm-80-gold-modular-pg5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "GIGABYTE",
+  "sku": "GP-UD850GM PG5",
+  "ean": "4719331552633",
+  "warranty": "36",
+  "description": "Fuente GIGABYTE UD850GM 80 Gold Modular PG5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 34557
+  },
+  "stock": 138,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

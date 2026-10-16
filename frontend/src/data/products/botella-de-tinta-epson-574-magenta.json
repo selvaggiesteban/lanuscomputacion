@@ -1,0 +1,29 @@
+{
+  "id": "elit_17185",
+  "title": "Botella de  Tinta Epson 574 Magenta",
+  "price": 24148.41,
+  "originalPrice": 11.19,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17185/i/xSoUp_l.webp",
+  "slug": "botella-de-tinta-epson-574-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T574320-AL",
+  "ean": "10343973626",
+  "warranty": "12",
+  "description": "Botella de  Tinta Epson 574 Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4025
+  },
+  "stock": 37,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

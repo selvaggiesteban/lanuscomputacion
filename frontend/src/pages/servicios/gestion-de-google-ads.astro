@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>';
+---
+
+<ServicePage
+  title="Gestión de Google Ads | Lanús Computación"
+  description="Gestión de Google Ads en Lanús. Campañas de búsqueda, display, Shopping, remarketing y YouTube Ads. Informes mensuales. Presupuesto sin costo."
+  slug="gestion-de-google-ads"
+  heroTitle="Gestión de Google Ads"
+  heroSubtitle="Campañas publicitarias en Google para atraer clientes que buscan tus productos o servicios. Búsqueda, display, Shopping, remarketing y YouTube."
+  icon={icon}
+  whatsappText="Hola, quiero gestionar Google Ads para mi negocio"
+  benefits={[
+    { icon: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>', title: 'Campañas de búsqueda', desc: 'Aparecí en los primeros resultados cuando tu cliente te busca en Google.' },
+    { icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/>', title: 'Google Shopping', desc: 'Mostrá tus productos con imagen, precio y nombre directo en Google.' },
+    { icon: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>', title: 'Display y remarketing', desc: 'Publicidad visual en sitios web y remarketing para recuperar visitantes.' },
+    { icon: '<polygon points="23 7 16 12 23 17 23 7"/>', title: 'YouTube Ads', desc: 'Videos publicitarios en YouTube segmentados por audiencia e intereses.' },
+    { icon: '<path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/>', title: 'Optimización continua', desc: 'Ajustamos pujas, keywords y segmentación para maximizar ROI.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', title: 'Informes claros', desc: 'Reportes mensuales con métricas clave: clics, conversiones, costo por lead, ROI.' },
+  ]}
+  steps={[
+    { title: 'Auditoría', desc: 'Analizamos tu cuenta actual (si tenés) o creamos desde cero.' },
+    { title: 'Estrategia', desc: 'Definimos objetivos, presupuesto, keywords, segmentación y tipos de campaña.' },
+    { title: 'Lanzamiento', desc: 'Configuramos las campañas, anuncios, landing pages y tracking de conversiones.' },
+    { title: 'Optimización', desc: 'Medimos, ajustamos y escalamos las campañas para maximizar resultados.' },
+  ]}
+  faqs={[
+    { question: '¿Cuánto cuesta gestionar Google Ads?', answer: 'Nuestro honorario de gestión es un porcentaje del presupuesto publicitario o un fee fijo mensual, según tu preferencia. El presupuesto publicitario lo definís vos. Hacemos presupuesto sin costo.' },
+    { question: '¿Cuánto presupuesto debo invertir en Google Ads?', answer: 'Depende de tu sector y competencia. Para negocios locales en Lanús, recomendamos empezar con $100.000-300.000 ARS/mes de presupuesto publicitario. Ajustamos según resultados.' },
+    { question: '¿Cuánto tarda en verse resultados?', answer: 'Google Ads genera clics y tráfico desde el primer día. Las primeras 2-4 semanas son de optimización. A partir del segundo mes empiezan a estabilizarse los costos por conversión.' },
+    { question: '¿Qué tipo de campañas recomiendan?', answer: 'Depende de tu negocio. Campañas de búsqueda son ideales para captar clientes con intención de compra. Shopping para e-commerce. Display y remarketing para marca y recuperar visitantes. Diseñamos la mezcla ideal.' },
+    { question: '¿Puedo ver los resultados en tiempo real?', answer: 'Sí, te damos acceso a tu cuenta de Google Ads para que veas los resultados en tiempo real. Además, enviamos informes mensuales detallados con análisis y recomendaciones.' },
+  ]}
+/>

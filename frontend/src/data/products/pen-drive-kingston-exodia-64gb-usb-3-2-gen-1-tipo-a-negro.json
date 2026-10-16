@@ -1,0 +1,29 @@
+{
+  "id": "elit_10666",
+  "title": "Pen Drive KINGSTON Exodia 64GB USB 3.2 Gen 1 Tipo A Negro",
+  "price": 19184.93,
+  "originalPrice": 8.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10666/i/SNaHb_l.webp",
+  "slug": "pen-drive-kingston-exodia-64gb-usb-3-2-gen-1-tipo-a-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTX/64GB",
+  "ean": "740617309829",
+  "warranty": "60",
+  "description": "Pen Drive KINGSTON Exodia 64GB USB 3.2 Gen 1 Tipo A Negro - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3197
+  },
+  "stock": 2878,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

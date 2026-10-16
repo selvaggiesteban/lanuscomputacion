@@ -1,0 +1,29 @@
+{
+  "id": "elit_15167",
+  "title": "Impresora HP SM720 Multifunción Smart Tank",
+  "price": 537437.04,
+  "originalPrice": 249.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15167/i/g8Kxx_l.webp",
+  "slug": "impresora-hp-sm720-multifuncion-smart-tank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "HP",
+  "sku": "6UU46A",
+  "ean": "195908303015",
+  "warranty": "12",
+  "description": "Impresora HP SM720 Multifunción Smart Tank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 89573
+  },
+  "stock": 224,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

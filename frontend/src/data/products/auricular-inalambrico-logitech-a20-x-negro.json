@@ -1,0 +1,29 @@
+{
+  "id": "elit_19626",
+  "title": "Auricular Inalámbrico Logitech A20 X Negro",
+  "price": 380310.51,
+  "originalPrice": 176.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19626/i/FN0w3_l.webp",
+  "slug": "auricular-inalambrico-logitech-a20-x-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "939-002246",
+  "ean": "97855207968",
+  "warranty": "24",
+  "description": "Auricular Inalámbrico Logitech A20 X Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 63385
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

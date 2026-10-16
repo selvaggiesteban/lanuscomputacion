@@ -1,0 +1,29 @@
+{
+  "id": "elit_18452",
+  "title": "Monitor GIGABYTE 25\" Edge FHD GS25F2 - 200hz 1ms",
+  "price": 251864.48,
+  "originalPrice": 105.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18452/i/Mrzqi_l.webp",
+  "slug": "monitor-gigabyte-25-edge-fhd-gs25f2-200hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "GIGABYTE",
+  "sku": "GS25F2",
+  "ean": "4719331866297",
+  "warranty": "36",
+  "description": "Monitor GIGABYTE 25\" Edge FHD GS25F2 - 200hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 41977
+  },
+  "stock": 487,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

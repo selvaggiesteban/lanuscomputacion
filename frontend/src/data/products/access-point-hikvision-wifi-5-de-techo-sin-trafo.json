@@ -1,0 +1,29 @@
+{
+  "id": "elit_17396",
+  "title": "Access Point Hikvision WiFi 5 de techo sin trafo",
+  "price": 85531.31,
+  "originalPrice": 43.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17396/i/YxKWY_l.webp",
+  "slug": "access-point-hikvision-wifi-5-de-techo-sin-trafo",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Extensores",
+  "brand": "HIKVISION",
+  "sku": "DS-3WAP522-SI",
+  "ean": "6942160449562",
+  "warranty": "24",
+  "description": "Access Point Hikvision WiFi 5 de techo sin trafo - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 14255
+  },
+  "stock": 88,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

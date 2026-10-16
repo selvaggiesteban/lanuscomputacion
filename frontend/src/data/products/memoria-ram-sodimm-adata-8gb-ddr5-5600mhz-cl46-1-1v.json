@@ -1,0 +1,29 @@
+{
+  "id": "elit_19516",
+  "title": "Memoria Ram SODIMM ADATA 8GB DDR5 5600MHz CL46 1.1V",
+  "price": 254839.95,
+  "originalPrice": 129.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19516/i/V0Qi7_l.webp",
+  "slug": "memoria-ram-sodimm-adata-8gb-ddr5-5600mhz-cl46-1-1v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "ADATA",
+  "sku": "AD5S56008G-S",
+  "ean": "4711085941091",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM ADATA 8GB DDR5 5600MHz CL46 1.1V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 42473
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

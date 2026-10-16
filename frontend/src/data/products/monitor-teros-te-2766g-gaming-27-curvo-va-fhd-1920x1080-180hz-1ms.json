@@ -1,0 +1,29 @@
+{
+  "id": "elit_19045",
+  "title": "Monitor Teros TE-2766G Gaming 27\" Curvo VA FHD (1920X1080) 180Hz 1ms",
+  "price": 354570.44,
+  "originalPrice": 148.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19045/i/wB8da_l.webp",
+  "slug": "monitor-teros-te-2766g-gaming-27-curvo-va-fhd-1920x1080-180hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "TEROS",
+  "sku": "TE-2766G",
+  "ean": "782752506503",
+  "warranty": "36",
+  "description": "Monitor Teros TE-2766G Gaming 27\" Curvo VA FHD (1920X1080) 180Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 59095
+  },
+  "stock": 246,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_17254",
+  "title": "Disco Interno SSD WD Green SN350 1TB M.2 2280 NVMe PCIe 3.0 2400MB/S",
+  "price": 299674.91,
+  "originalPrice": 152.06,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17254/i/64oXX_l.webp",
+  "slug": "disco-interno-ssd-wd-green-sn350-1tb-m-2-2280-nvme-pcie-3-0-2400mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "WD",
+  "sku": "WDS100T2G0C-00CDH0",
+  "ean": "718037880082",
+  "warranty": "36",
+  "description": "Disco Interno SSD WD Green SN350 1TB M.2 2280 NVMe PCIe 3.0 2400MB/S - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 49946
+  },
+  "stock": 954,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

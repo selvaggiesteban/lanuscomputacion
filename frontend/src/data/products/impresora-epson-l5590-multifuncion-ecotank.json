@@ -1,0 +1,29 @@
+{
+  "id": "elit_17172",
+  "title": "Impresora Epson L5590 Multifunción EcoTank",
+  "price": 699829.17,
+  "originalPrice": 324.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17172/i/5tils_l.webp",
+  "slug": "impresora-epson-l5590-multifuncion-ecotank",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CK57303",
+  "ean": "10343973404",
+  "warranty": "12",
+  "description": "Impresora Epson L5590 Multifunción EcoTank - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 116638
+  },
+  "stock": 38,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

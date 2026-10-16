@@ -1,0 +1,29 @@
+{
+  "id": "elit_19871",
+  "title": "Fuente ASUS TUF GAMING 750W GOLD",
+  "price": 211552.17,
+  "originalPrice": 98.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19871/i/oXKxU_l.webp",
+  "slug": "fuente-asus-tuf-gaming-750w-gold",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "ASUS",
+  "sku": "TUF-GAMING-750G",
+  "ean": "4711636074575",
+  "warranty": "36",
+  "description": "Fuente ASUS TUF GAMING 750W GOLD - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 35259
+  },
+  "stock": 66,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

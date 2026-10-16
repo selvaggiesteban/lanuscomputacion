@@ -1,0 +1,29 @@
+{
+  "id": "elit_19073",
+  "title": "Cartucho Tinta Brother LC105 Magenta",
+  "price": 37602.24,
+  "originalPrice": 19.08,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19073/i/ejDNY_l.webp",
+  "slug": "cartucho-tinta-brother-lc105-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC105M",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Cartucho Tinta Brother LC105 Magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 6267
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

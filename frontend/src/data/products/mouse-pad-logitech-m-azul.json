@@ -1,0 +1,29 @@
+{
+  "id": "elit_15396",
+  "title": "Mouse Pad LOGITECH M Azul",
+  "price": 13681.94,
+  "originalPrice": 6.34,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15396/i/FMax4_l.webp",
+  "slug": "mouse-pad-logitech-m-azul",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouse Pads",
+  "brand": "LOGITECH",
+  "sku": "956-000038",
+  "ean": "97855169440",
+  "warranty": "12",
+  "description": "Mouse Pad LOGITECH M Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2280
+  },
+  "stock": 22,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

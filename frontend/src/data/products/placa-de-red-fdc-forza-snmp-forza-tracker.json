@@ -1,0 +1,29 @@
+{
+  "id": "elit_7840",
+  "title": "Placa de Red FDC FORZA SNMP Forza Tracker",
+  "price": 372261.04,
+  "originalPrice": 172.5,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7840/i/X9GYe_l.webp",
+  "slug": "placa-de-red-fdc-forza-snmp-forza-tracker",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Placas de Red",
+  "brand": "FORZA",
+  "sku": "FDC-CD610",
+  "ean": "31011806100814",
+  "warranty": "24",
+  "description": "Placa de Red FDC FORZA SNMP Forza Tracker - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 62044
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

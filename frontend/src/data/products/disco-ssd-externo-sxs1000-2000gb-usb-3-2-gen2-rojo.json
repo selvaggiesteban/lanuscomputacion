@@ -1,0 +1,29 @@
+{
+  "id": "elit_19030",
+  "title": "Disco SSD Externo SXS1000 2000GB USB 3.2 Gen2 Rojo",
+  "price": 669034.01,
+  "originalPrice": 310.02,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19030/i/7luZj_l.webp",
+  "slug": "disco-ssd-externo-sxs1000-2000gb-usb-3-2-gen2-rojo",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos SSD",
+  "brand": "KINGSTON",
+  "sku": "SXS1000R/2000G",
+  "ean": "0",
+  "warranty": "60",
+  "description": "Disco SSD Externo SXS1000 2000GB USB 3.2 Gen2 Rojo - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 111506
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

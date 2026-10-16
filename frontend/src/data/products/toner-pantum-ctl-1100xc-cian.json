@@ -1,0 +1,29 @@
+{
+  "id": "elit_15948",
+  "title": "Tóner Pantum CTL-1100XC Cian",
+  "price": 117656.07,
+  "originalPrice": 54.52,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15948/i/be7vO_l.webp",
+  "slug": "toner-pantum-ctl-1100xc-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "PANTUM",
+  "sku": "CTL-1100XC",
+  "ean": "6936358021449",
+  "warranty": "12",
+  "description": "Tóner Pantum CTL-1100XC Cian - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19609
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

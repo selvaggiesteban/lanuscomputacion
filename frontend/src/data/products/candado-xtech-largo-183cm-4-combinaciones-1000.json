@@ -1,0 +1,29 @@
+{
+  "id": "elit_19640",
+  "title": "Candado Xtech, largo 183cm , 4 combinaciones ,1000",
+  "price": 9128.49,
+  "originalPrice": 4.23,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19640/i/kmud3_l.webp",
+  "slug": "candado-xtech-largo-183cm-4-combinaciones-1000",
+  "categorySlug": "accesorios",
+  "category": "Accesorios",
+  "subcategory": "Candados",
+  "brand": "XTECH",
+  "sku": "XTA-110",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Candado Xtech, largo 183cm , 4 combinaciones ,1000 - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1521
+  },
+  "stock": 30,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19632",
+  "title": "Disco SSD ADATA SU650 512GB 2.5\" SATA 3.0",
+  "price": 164007.27,
+  "originalPrice": 83.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19632/i/RgwI5_l.webp",
+  "slug": "disco-ssd-adata-su650-512gb-2-5-sata-3-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "ADATA",
+  "sku": "ASU650SS-512GT-R",
+  "ean": "4711085931528",
+  "warranty": "36",
+  "description": "Disco SSD ADATA SU650 512GB 2.5\" SATA 3.0 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27335
+  },
+  "stock": 44,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

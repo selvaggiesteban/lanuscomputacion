@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>';
+---
+
+<ServicePage
+  title="Desarrollo de Aplicaciones | Lanús Computación"
+  description="Desarrollo de aplicaciones móviles y web en Lanús. Apps nativas, híbridas, PWA, cross-platform. Presupuesto sin costo."
+  slug="desarrollo-de-aplicaciones"
+  heroTitle="Desarrollo de Aplicaciones"
+  heroSubtitle="Aplicaciones móviles y web a medida. Desde apps nativas hasta progressive web apps, con tecnología moderna y rendimiento óptimo."
+  icon={icon}
+  whatsappText="Hola, necesito desarrollar una aplicación"
+  benefits={[
+    { icon: '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>', title: 'Apps móviles', desc: 'Aplicaciones nativas e híbridas para iOS y Android.' },
+    { icon: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>', title: 'Apps web (PWA)', desc: 'Progressive Web Apps que funcionan como nativas desde el navegador.' },
+    { icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/>', title: 'Cross-platform', desc: 'Una sola base de código para iOS, Android y web.' },
+    { icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>', title: 'Backend robusto', desc: 'APIs, autenticación, bases de datos y lógica de negocio en el servidor.' },
+    { icon: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>', title: 'Integraciones', desc: 'Conectamos tu app con servicios de terceros: pagos, notificaciones, maps.' },
+    { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Seguridad', desc: 'Autenticación segura, encriptación de datos y mejores prácticas.' },
+  ]}
+  steps={[
+    { title: 'Concepto', desc: 'Definimos la idea, público objetivo, funcionalidades y plataforma.' },
+    { title: 'Diseño UX/UI', desc: 'Diseñamos la interfaz con foco en usabilidad y experiencia del usuario.' },
+    { title: 'Desarrollo', desc: 'Programamos la app con entregas iterativas para tu validación.' },
+    { title: 'Lanzamiento', desc: 'Publicamos en stores (App Store, Google Play) o como PWA.' },
+  ]}
+  faqs={[
+    { question: '¿Nativa o híbrida? ¿Cuál es mejor?', answer: 'Depende de tu app. Nativa rinde mejor y tiene acceso completo al hardware. Híbrida es más rápida y económica de desarrollar. Analizamos tu caso y recomendamos la mejor opción.' },
+    { question: '¿Cuánto cuesta desarrollar una app?', answer: 'Una app simple puede costar desde u$s 3.000-5.000. Apps complejas con backend, pagos y múltiples funciones pueden llegar a u$s 10.000-30.000+. Hacemos presupuesto detallado sin costo.' },
+    { question: '¿Cuánto tarda desarrollar una app?', answer: 'Una app simple: 1-2 meses. Una app mediana: 2-4 meses. Apps complejas: 4-6 meses o más. Los plazos se definen en la propuesta con hitos claros.' },
+    { question: '¿Publican en App Store y Google Play?', answer: 'Sí, nos encargamos del proceso completo de publicación en ambas tiendas, incluyendo screenshots, descripción, categoría y revisión de políticas.' },
+    { question: '¿Ofrecen soporte post-lanzamiento?', answer: 'Sí, ofrecemos planes de soporte que incluyen corrección de bugs, actualizaciones, monitoreo de crash reports y mejoras continuas.' },
+  ]}
+/>

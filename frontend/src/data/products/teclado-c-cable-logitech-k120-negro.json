@@ -1,0 +1,29 @@
+{
+  "id": "elit_3996",
+  "title": "Teclado c/Cable LOGITECH K120 Negro",
+  "price": 13282.97,
+  "originalPrice": 6.74,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/3996/i/uCHHH_l.webp",
+  "slug": "teclado-c-cable-logitech-k120-negro",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-004422",
+  "ean": "97855088741",
+  "warranty": "12",
+  "description": "Teclado c/Cable LOGITECH K120 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2214
+  },
+  "stock": 556,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

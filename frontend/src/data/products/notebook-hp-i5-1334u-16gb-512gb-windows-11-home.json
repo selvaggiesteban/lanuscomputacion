@@ -1,0 +1,29 @@
+{
+  "id": "elit_20031",
+  "title": "Notebook HP i5-1334U 16GB 512GB Windows 11 Home",
+  "price": 1674088.16,
+  "originalPrice": 849.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20031/i/mqBMQ_l.webp",
+  "slug": "notebook-hp-i5-1334u-16gb-512gb-windows-11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "BM7S5LA",
+  "ean": "199251282690",
+  "warranty": "12 meses",
+  "description": "Notebook HP i5-1334U 16GB 512GB Windows 11 Home - 12 meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 279015
+  },
+  "stock": 90,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

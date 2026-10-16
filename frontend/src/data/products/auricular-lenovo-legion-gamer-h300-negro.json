@@ -1,0 +1,29 @@
+{
+  "id": "elit_18266",
+  "title": "Auricular Lenovo Legion Gamer H300 Negro",
+  "price": 59194.9,
+  "originalPrice": 27.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18266/i/zO5qO_l.webp",
+  "slug": "auricular-lenovo-legion-gamer-h300-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LENOVO",
+  "sku": "GXD0T69863",
+  "ean": "1932687352170",
+  "warranty": "12 MESES",
+  "description": "Auricular Lenovo Legion Gamer H300 Negro - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9866
+  },
+  "stock": 66,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19230",
+  "title": "UPS Forza Online FDC-3022R-I 3K 3000VA/2700W rack",
+  "price": 1112872.7,
+  "originalPrice": 564.69,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19230/i/wewJV_l.webp",
+  "slug": "ups-forza-online-fdc-3022r-i-3k-3000va-2700w-rack",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FDC-3022R-I",
+  "ean": "798302202351",
+  "warranty": "24",
+  "description": "UPS Forza Online FDC-3022R-I 3K 3000VA/2700W rack - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 185479
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

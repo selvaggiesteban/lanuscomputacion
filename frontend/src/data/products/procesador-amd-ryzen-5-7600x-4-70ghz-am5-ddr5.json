@@ -1,0 +1,29 @@
+{
+  "id": "elit_16253",
+  "title": "Procesador AMD Ryzen 5 7600X 4.70GHz AM5 DDR5",
+  "price": 451916.7,
+  "originalPrice": 229.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16253/i/nhE0S_l.webp",
+  "slug": "procesador-amd-ryzen-5-7600x-4-70ghz-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000593WOF",
+  "ean": "730143314442",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 5 7600X 4.70GHz AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 75319
+  },
+  "stock": 32,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

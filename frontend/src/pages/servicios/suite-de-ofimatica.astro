@@ -1,0 +1,36 @@
+---
+import ServicePage from '../../components/servicios/ServicePage.astro';
+
+const icon = '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="7" y1="8" x2="7" y2="12"/><line x1="10" y1="8" x2="10" y2="12"/><line x1="13" y1="8" x2="13" y2="12"/>';
+---
+
+<ServicePage
+  title="Suite de Ofimática | Lanús Computación"
+  description="Suite de ofimática todo en uno para Windows. OCR de PDF, extraer texto, plantillas, backup automática, PDF a Word, imagen a PDF. Descargá el AI Agent."
+  slug="suite-de-ofimatica"
+  heroTitle="Suite de ofimática"
+  heroSubtitle="Suite de ofimática todo en uno con un potente conjunto de herramientas. Simplificá tu flujo de trabajo con OCR, conversión de documentos, plantillas y backup automática."
+  icon={icon}
+  ctaText="Descargar AI Agent"
+  whatsappText="Hola, quiero descargar la suite de ofimática"
+  benefits={[
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>', title: 'OCR de PDF', desc: 'Extraé texto de escaneados y fotos con reconocimiento óptico de caracteres de alta precisión.' },
+    { icon: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>', title: 'Extraer texto', desc: 'Copiá el contenido de cualquier documento PDF, imagen o escaneado de un solo clic.' },
+    { icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>', title: 'Plantillas', desc: 'Usá plantillas profesionales predefinidas para documentos, informes y presentaciones.' },
+    { icon: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>', title: 'Backup automática', desc: 'Copia de seguridad automática de tus documentos en la nube sin que tengas que hacer nada.' },
+    { icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/>', title: 'PDF a Word', desc: 'Convertí archivos PDF a documentos Word editables manteniendo el formato original.' },
+    { icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>', title: 'Imagen a PDF', desc: 'Transformá fotos y escaneados en documentos PDF organizados y listos para enviar.' },
+  ]}
+  steps={[
+    { title: 'Descargar', desc: 'Hacé clic en descargar y obtené el instalador en segundos. Gratis y sin registros.' },
+    { title: 'Instalar', desc: 'Seguí el asistente de instalación. En menos de un minuto tenés todo listo.' },
+    { title: 'Usar', desc: 'Elegí la herramienta que necesitás y empezá a trabajar sin curva de aprendizaje.' },
+  ]}
+  faqs={[
+    { question: '¿Qué es la suite de ofimática?', answer: 'Es un conjunto de herramientas de productividad todo en uno que incluye OCR de PDF, extracción de texto, conversión de documentos, plantillas profesionales y backup automática. Todo desde una sola aplicación.' },
+    { question: '¿Es gratuita la suite?', answer: 'Sí, la suite es completamente gratuita. Incluye todas las herramientas sin costo y sin limitaciones. Solo descargás, instalás y empezás a usar.' },
+    { question: '¿Qué formato de documentos soporta?', answer: 'Soporta PDF, Word (DOCX), Excel (XLSX), imágenes (JPG, PNG, WebP), y más. Podés convertir entre formatos y extraer texto de cualquiera de ellos.' },
+    { question: '¿El OCR funciona con documentos en español?', answer: 'Sí, el motor de OCR soporta español, inglés y otros idiomas principales. La precisión supera el 98% en documentos impresos y más del 90% en manuscritos legibles.' },
+    { question: '¿Dónde se guarda el backup automático?', answer: 'El backup se configura según tus preferencias: podés usar almacenamiento local, nube (Google Drive, OneDrive) o ambos. Tus documentos están siempre seguros y accesibles.' },
+  ]}
+/>

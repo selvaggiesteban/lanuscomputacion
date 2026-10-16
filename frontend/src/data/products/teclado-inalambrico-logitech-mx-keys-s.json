@@ -1,0 +1,29 @@
+{
+  "id": "elit_18029",
+  "title": "Teclado Inalámbrico Logitech MX Keys S",
+  "price": 166707.22,
+  "originalPrice": 84.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18029/i/EJZMy_l.webp",
+  "slug": "teclado-inalambrico-logitech-mx-keys-s",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-011561",
+  "ean": "97855187888",
+  "warranty": "24",
+  "description": "Teclado Inalámbrico Logitech MX Keys S - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27785
+  },
+  "stock": 19,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

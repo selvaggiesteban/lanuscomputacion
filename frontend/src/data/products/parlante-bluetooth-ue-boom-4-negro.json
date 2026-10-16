@@ -1,0 +1,29 @@
+{
+  "id": "elit_18162",
+  "title": "Parlante Bluetooth UE Boom 4 Negro",
+  "price": 324223.18,
+  "originalPrice": 150.24,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18162/i/qOScH_l.webp",
+  "slug": "parlante-bluetooth-ue-boom-4-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "LOGITECH",
+  "sku": "984-001968",
+  "ean": "97855197726",
+  "warranty": "12",
+  "description": "Parlante Bluetooth UE Boom 4 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54037
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

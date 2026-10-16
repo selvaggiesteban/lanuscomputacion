@@ -1,0 +1,29 @@
+{
+  "id": "elit_19859",
+  "title": "Teclado ASUS RA09 TUF GAMING K3 GEN II HATSUNE MIKU EDITION",
+  "price": 169426.88,
+  "originalPrice": 85.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19859/i/4iP3w_l.webp",
+  "slug": "teclado-asus-ra09-tuf-gaming-k3-gen-ii-hatsune-miku-edition",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "ASUS",
+  "sku": "RA09 TUF GAMING K3 GEN II MIKU/RD/CA/PBT",
+  "ean": "4711387881576",
+  "warranty": "12",
+  "description": "Teclado ASUS RA09 TUF GAMING K3 GEN II HATSUNE MIKU EDITION - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 28238
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

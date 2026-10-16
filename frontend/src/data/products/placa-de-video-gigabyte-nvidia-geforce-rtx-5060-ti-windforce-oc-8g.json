@@ -1,0 +1,29 @@
+{
+  "id": "elit_18655",
+  "title": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti WINDFORCE OC 8G",
+  "price": 940075.81,
+  "originalPrice": 477.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18655/i/skOLH_l.webp",
+  "slug": "placa-de-video-gigabyte-nvidia-geforce-rtx-5060-ti-windforce-oc-8g",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "GIGABYTE",
+  "sku": "GV-N506TWF2OC-8GD",
+  "ean": "0",
+  "warranty": "36",
+  "description": "Placa de Video GIGABYTE NVIDIA GeForce RTX 5060 Ti WINDFORCE OC 8G - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 156679
+  },
+  "stock": 35,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

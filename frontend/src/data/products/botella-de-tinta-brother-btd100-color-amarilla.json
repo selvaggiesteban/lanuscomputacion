@@ -1,0 +1,29 @@
+{
+  "id": "elit_19070",
+  "title": "Botella de tinta Brother BTD100 Color Amarilla",
+  "price": 17544.82,
+  "originalPrice": 8.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19070/i/GQrix_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-color-amarilla",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100YMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD100 Color Amarilla - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2924
+  },
+  "stock": 44,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

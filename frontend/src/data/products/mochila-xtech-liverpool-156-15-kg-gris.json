@@ -1,0 +1,29 @@
+{
+  "id": "elit_19599",
+  "title": "Mochila Xtech, Liverpool, 15,6\", 15 kg, Gris",
+  "price": 23716.8,
+  "originalPrice": 10.99,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19599/i/vN9wL_l.webp",
+  "slug": "mochila-xtech-liverpool-156-15-kg-gris",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "XTECH",
+  "sku": "XTB-221",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Xtech, Liverpool, 15,6\", 15 kg, Gris - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3953
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

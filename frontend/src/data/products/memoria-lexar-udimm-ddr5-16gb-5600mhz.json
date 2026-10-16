@@ -1,0 +1,29 @@
+{
+  "id": "elit_18330",
+  "title": "Memoria LEXAR UDIMM DDR5 16GB 5600MHz",
+  "price": 463524.52,
+  "originalPrice": 235.2,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18330/i/N8TOk_l.webp",
+  "slug": "memoria-lexar-udimm-ddr5-16gb-5600mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "LEXAR",
+  "sku": "LD5U16G56C46ST-BGS",
+  "ean": "843367132782",
+  "warranty": "99",
+  "description": "Memoria LEXAR UDIMM DDR5 16GB 5600MHz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 77254
+  },
+  "stock": 27,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

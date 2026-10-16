@@ -1,0 +1,29 @@
+{
+  "id": "elit_19683",
+  "title": "Motherboard ASUS PRIME Z890-P WIFI LGA1851 DDR5",
+  "price": 469259.45,
+  "originalPrice": 238.11,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19683/i/bCK5i_l.webp",
+  "slug": "motherboard-asus-prime-z890-p-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME Z890-P WIFI",
+  "ean": "4711387754818",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME Z890-P WIFI LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 78210
+  },
+  "stock": 7,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

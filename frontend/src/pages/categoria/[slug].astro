@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import ProductGrid from '../../components/catalog/ProductGrid.astro';
+import Pagination from '../../components/catalog/Pagination.astro';
+import SortSelector from '../../components/catalog/SortSelector.tsx';
+import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
+
+const { slug } = Astro.params;
+const DB = Astro.locals.runtime.env.DB;
+
+const page = Number(Astro.url.searchParams.get('page') || 1);
+const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
+const maxPrice = Number(Astro.url.searchParams.get('max_price') || 0);
+const brand = Astro.url.searchParams.get('brand') || '';
+const sort = Astro.url.searchParams.get('sort') || '';
+const limit = 20;
+const offset = (page - 1) * limit;
+
+const category = slug !== 'todas' ? await getCategoryBySlug(DB, slug) : null;
+
+const categoryFilter = category?.level === 0 ? category.id : undefined;
+const subcategoryFilter = category?.level === 1 ? category.name : undefined;
+
+const products = await getProducts(DB, {
+  category: categoryFilter,
+  subcategory: subcategoryFilter,
+  brand: brand || undefined,
+  sort: sort || undefined,
+  limit,
+  offset,
+  minPrice: minPrice || undefined,
+  maxPrice: maxPrice || undefined,
+});
+const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined);
+const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter);
+
+const totalPages = Math.ceil(total / limit);
+const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
+
+// All categories for the sidebar filter
+const allCategories = await getAllCategoriesWithChildren(DB);
+
+// Build base URL for filters — always use current page slug
+const filterBaseUrl = `/categoria/${slug}`;
+
+// Get price range — fix for "todas" (no category filter)
+let priceRange;
+if (categoryFilter) {
+  try {
+    priceRange = await DB.prepare(`
+      SELECT MIN(price) as min_price, MAX(price) as max_price
+      FROM products WHERE status = 'published' AND category_id = ?
+    `).bind(categoryFilter).first<{ min_price: number; max_price: number }>();
+  } catch (e) {
+    console.error("D1 Error in [slug].astro:", e);
+    priceRange = null;
+  }
+} else {
+  try {
+    priceRange = await DB.prepare(`
+      SELECT MIN(price) as min_price, MAX(price) as max_price
+      FROM products WHERE status = 'published'
+    `).first<{ min_price: number; max_price: number }>();
+  } catch (e) {
+    console.error("D1 Error in [slug].astro:", e);
+    priceRange = null;
+  }
+}
+
+// Helper: is a category or subcategory currently active?
+const isCategoryActive = (catSlug: string) => slug === catSlug;
+const isSubcategoryActive = (subSlug: string) => slug === subSlug;
+---
+
+<BaseLayout title={`${categoryName} | Lanús Computación`}>
+  <div class="ml-container">
+    <Breadcrumb items={[
+      { label: 'Inicio', href: '/' },
+      ...(category?.parent_id ? [{ label: 'Categorías', href: '/categoria/todas' }] : []),
+      { label: categoryName },
+    ]} />
+  </div>
+
+  <div class="ml-container flex gap-6">
+    <aside class="hidden lg:block w-64 flex-shrink-0 space-y-4">
+      <div>
+        <h1 class="text-lg font-semibold text-ml-text">{categoryName}</h1>
+        <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
+      </div>
+
+      <!-- Category filter — always visible -->
+      <div class="bg-white rounded shadow-card p-4">
+        <h3 class="text-sm font-semibold text-ml-text mb-3">Categorías</h3>
+        <ul class="space-y-1">
+          <li>
+            <a href="/categoria/todas"
+               class={`text-sm block py-1 transition-colors ${slug === 'todas' ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
+              Todas las categorías
+            </a>
+          </li>
+          {allCategories.map((cat) => (
+            <li>
+              <a href={`/categoria/${cat.slug}`}
+                 class={`text-sm block py-1 transition-colors ${isCategoryActive(cat.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
+                {cat.picture} {cat.name}
+              </a>
+              {cat.children.length > 0 && (
+                <ul class="ml-4 space-y-0.5 mt-0.5">
+                  {cat.children.map((sub) => (
+                    <li>
+                      <a href={`/categoria/${sub.slug}`}
+                         class={`text-xs block py-0.5 transition-colors ${isSubcategoryActive(sub.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-muted hover:text-ml-blue'}`}>
+                        {sub.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {brands.length > 0 && (
+        <div class="bg-white rounded shadow-card p-4">
+          <h3 class="text-sm font-semibold text-ml-text mb-3">Marca</h3>
+          <ul class="space-y-2 max-h-48 overflow-y-auto">
+            {brands.map((b) => (
+              <li>
+                <a href={`${filterBaseUrl}${brand === b.brand ? '' : `?brand=${encodeURIComponent(b.brand)}`}`}
+                   class={`flex items-center justify-between text-sm hover:text-ml-blue transition-colors ${brand === b.brand ? 'text-ml-blue font-medium' : 'text-ml-text-secondary'}`}>
+                  <span>{b.brand}</span>
+                  <span class="text-xs text-ml-text-muted">({b.count})</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {brand && (
+            <a href={filterBaseUrl} class="block mt-3 text-xs text-ml-blue hover:underline">Limpiar marca</a>
+          )}
+        </div>
+      )}
+
+      <div class="bg-white rounded shadow-card p-4">
+        <h3 class="text-sm font-semibold text-ml-text mb-3">Precio</h3>
+        <form id="price-filter-form" class="space-y-3">
+          <div class="flex gap-2 items-center">
+            <input type="number" name="min_price" placeholder="Mínimo" value={minPrice || ''}
+                   class="ml-input w-full text-sm" min="0" />
+            <span class="text-ml-text-muted">-</span>
+            <input type="number" name="max_price" placeholder="Máximo" value={maxPrice || ''}
+                   class="ml-input w-full text-sm" min="0" />
+          </div>
+          <button type="submit" class="ml-btn-primary w-full text-sm py-2">Filtrar</button>
+          {(minPrice > 0 || maxPrice > 0) && (
+            <a href={filterBaseUrl} class="block text-center text-xs text-ml-blue hover:underline">Limpiar filtro</a>
+          )}
+        </form>
+        {priceRange && (
+          <p class="text-xs text-ml-text-muted mt-2">
+            Rango: ${priceRange.min_price?.toLocaleString('es-AR')} - ${priceRange.max_price?.toLocaleString('es-AR')}
+          </p>
+        )}
+      </div>
+    </aside>
+
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center justify-between mb-4 bg-white p-3 rounded shadow-card">
+        <p class="text-sm text-ml-text-secondary">
+          {total} resultados en <span class="font-medium text-ml-text">{categoryName}</span>
+          {(minPrice > 0 || maxPrice > 0) && (
+            <span class="text-ml-text-muted">
+              | ${minPrice || 0} - ${maxPrice || '∞'}
+            </span>
+          )}
+        </p>
+        <SortSelector client:load current={sort} />
+      </div>
+
+      <ProductGrid products={products?.map(p => ({
+        id: p.id,
+        title: p.title,
+        price: p.price,
+        categoryName: p.category_name,
+        image: p.thumbnail,
+        slug: p.slug,
+        freeShipping: false,
+        dollarRate: p.dollar_rate,
+        ivaPct: p.iva_pct,
+        internalTaxPct: p.internal_tax_pct,
+      })) || []} columns={4} />
+
+      <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${brand ? `?brand=${encodeURIComponent(brand)}` : ''}${minPrice ? `${brand ? '&' : '?'}min_price=${minPrice}` : ''}${maxPrice ? `${brand || minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('price-filter-form') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    const urlParams = new URLSearchParams(window.location.search);
+    const brand = urlParams.get('brand');
+    if (brand) params.set('brand', brand);
+    const min = formData.get('min_price') as string;
+    const max = formData.get('max_price') as string;
+    if (min) params.set('min_price', min);
+    if (max) params.set('max_price', max);
+    window.location.href = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+  });
+</script>

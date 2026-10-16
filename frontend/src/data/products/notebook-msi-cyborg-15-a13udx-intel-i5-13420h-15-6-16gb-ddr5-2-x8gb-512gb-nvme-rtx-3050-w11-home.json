@@ -1,0 +1,29 @@
+{
+  "id": "elit_18732",
+  "title": "Notebook MSI Cyborg 15 A13UDX Intel I5-13420H 15.6\" 16GB DDR5 (2 x8GB)  512GB NVMe RTX 3050 W11 Home",
+  "price": 2461015.62,
+  "originalPrice": 1248.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18732/i/YmlIO_l.webp",
+  "slug": "notebook-msi-cyborg-15-a13udx-intel-i5-13420h-15-6-16gb-ddr5-2-x8gb-512gb-nvme-rtx-3050-w11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "MSI",
+  "sku": "9S7-15K111-1886",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Notebook MSI Cyborg 15 A13UDX Intel I5-13420H 15.6\" 16GB DDR5 (2 x8GB)  512GB NVMe RTX 3050 W11 Home - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 410169
+  },
+  "stock": 42,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

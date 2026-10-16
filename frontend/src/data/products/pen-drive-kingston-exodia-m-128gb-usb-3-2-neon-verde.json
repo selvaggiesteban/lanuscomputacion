@@ -1,0 +1,29 @@
+{
+  "id": "elit_19104",
+  "title": "Pen Drive KINGSTON Exodia M 128GB USB 3.2 Neón Verde",
+  "price": 32564.75,
+  "originalPrice": 15.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19104/i/l5PdQ_l.webp",
+  "slug": "pen-drive-kingston-exodia-m-128gb-usb-3-2-neon-verde",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "KC-U2L128-7LG",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Pen Drive KINGSTON Exodia M 128GB USB 3.2 Neón Verde - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5427
+  },
+  "stock": 158,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

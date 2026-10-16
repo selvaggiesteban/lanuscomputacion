@@ -1,0 +1,29 @@
+{
+  "id": "elit_17177",
+  "title": "Procesador Core i7-14700F  2.1GHz 33MB LGA 1700",
+  "price": 785153.77,
+  "originalPrice": 398.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17177/i/gRsZ3_l.webp",
+  "slug": "procesador-core-i7-14700f-2-1ghz-33mb-lga-1700",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071514700F",
+  "ean": "5032037279246",
+  "warranty": "60",
+  "description": "Procesador Core i7-14700F  2.1GHz 33MB LGA 1700 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 130859
+  },
+  "stock": 133,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

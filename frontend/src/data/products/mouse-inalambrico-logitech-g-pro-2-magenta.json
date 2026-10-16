@@ -1,0 +1,29 @@
+{
+  "id": "elit_18166",
+  "title": "Mouse Inalámbrico Logitech G PRO 2 Magenta",
+  "price": 161780.3,
+  "originalPrice": 82.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18166/i/FKSA5_l.webp",
+  "slug": "mouse-inalambrico-logitech-g-pro-2-magenta",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-007308",
+  "ean": "97855196217",
+  "warranty": "24",
+  "description": "Mouse Inalámbrico Logitech G PRO 2 Magenta - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 26963
+  },
+  "stock": 17,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

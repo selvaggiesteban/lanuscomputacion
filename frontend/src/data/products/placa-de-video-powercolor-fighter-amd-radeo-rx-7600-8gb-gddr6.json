@@ -1,0 +1,29 @@
+{
+  "id": "elit_19710",
+  "title": "Placa de Video PowerColor Fighter  AMD Radeo RX 7600 8GB GDDR6",
+  "price": 639908.21,
+  "originalPrice": 324.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19710/i/eEokR_l.webp",
+  "slug": "placa-de-video-powercolor-fighter-amd-radeo-rx-7600-8gb-gddr6",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "POWERCOLOR",
+  "sku": "RX7600 8G-F/v2",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Placa de Video PowerColor Fighter  AMD Radeo RX 7600 8GB GDDR6 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 106651
+  },
+  "stock": 153,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

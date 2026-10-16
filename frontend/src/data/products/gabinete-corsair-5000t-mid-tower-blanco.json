@@ -1,0 +1,29 @@
+{
+  "id": "elit_19347",
+  "title": "Gabinete CORSAIR 5000T Mid Tower Blanco",
+  "price": 316012.57,
+  "originalPrice": 160.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19347/i/nTKXE_l.webp",
+  "slug": "gabinete-corsair-5000t-mid-tower-blanco",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Gabinetes",
+  "brand": "CORSAIR",
+  "sku": "CC-9011301-WW",
+  "ean": "840440487760",
+  "warranty": "24",
+  "description": "Gabinete CORSAIR 5000T Mid Tower Blanco - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 52669
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

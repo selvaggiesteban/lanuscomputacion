@@ -1,0 +1,29 @@
+{
+  "id": "elit_16011",
+  "title": "Pen Drive KINGSTON Exodia M 64GB USB 3.2 Gen 1 Tipo A Negro",
+  "price": 19184.93,
+  "originalPrice": 8.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16011/i/z7uOh_l.webp",
+  "slug": "pen-drive-kingston-exodia-m-64gb-usb-3-2-gen-1-tipo-a-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "KINGSTON",
+  "sku": "DTXM/64GB",
+  "ean": "740617326260",
+  "warranty": "60",
+  "description": "Pen Drive KINGSTON Exodia M 64GB USB 3.2 Gen 1 Tipo A Negro - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3197
+  },
+  "stock": 1173,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

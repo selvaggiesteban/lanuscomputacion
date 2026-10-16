@@ -1,0 +1,29 @@
+{
+  "id": "elit_14972",
+  "title": "UPS SL FORZA Interactiva 2000VA 1200W",
+  "price": 282016.83,
+  "originalPrice": 143.1,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14972/i/6Xxuo_l.webp",
+  "slug": "ups-sl-forza-interactiva-2000va-1200w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "SL-2002UL-A",
+  "ean": "798302109261",
+  "warranty": "36",
+  "description": "UPS SL FORZA Interactiva 2000VA 1200W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 47003
+  },
+  "stock": 56,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

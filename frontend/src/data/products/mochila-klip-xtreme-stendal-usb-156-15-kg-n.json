@@ -1,0 +1,29 @@
+{
+  "id": "elit_19587",
+  "title": "Mochila Klip Xtreme, Stendal, USB, 15,6\", 15 kg, N",
+  "price": 34312.76,
+  "originalPrice": 15.9,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19587/i/TLo18_l.webp",
+  "slug": "mochila-klip-xtreme-stendal-usb-156-15-kg-n",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "KLIP XTREME",
+  "sku": "KNB-577BK",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Klip Xtreme, Stendal, USB, 15,6\", 15 kg, N - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5719
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

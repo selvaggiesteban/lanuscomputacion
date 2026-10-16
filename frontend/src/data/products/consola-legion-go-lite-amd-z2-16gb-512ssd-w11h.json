@@ -1,0 +1,29 @@
+{
+  "id": "elit_18124",
+  "title": "Consola  Legion GO lite, AMD Z2, 16GB, 512SSD, W11H",
+  "price": 1485418.65,
+  "originalPrice": 688.32,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18124/i/LmSWh_l.webp",
+  "slug": "consola-legion-go-lite-amd-z2-16gb-512ssd-w11h",
+  "categorySlug": "video-juegos",
+  "category": "Video Juegos",
+  "subcategory": "Consolas",
+  "brand": "LENOVO",
+  "sku": "83L30002AR",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Consola  Legion GO lite, AMD Z2, 16GB, 512SSD, W11H - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 247570
+  },
+  "stock": 254,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

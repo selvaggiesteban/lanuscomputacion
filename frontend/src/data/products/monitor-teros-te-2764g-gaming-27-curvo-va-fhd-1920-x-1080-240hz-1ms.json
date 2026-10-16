@@ -1,0 +1,29 @@
+{
+  "id": "elit_18755",
+  "title": "Monitor Teros TE-2764G Gaming 27\" Curvo VA FHD (1920 x 1080) 240Hz 1ms",
+  "price": 399329.92,
+  "originalPrice": 167.46,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18755/i/uVxpO_l.webp",
+  "slug": "monitor-teros-te-2764g-gaming-27-curvo-va-fhd-1920-x-1080-240hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "TEROS",
+  "sku": "TE-2764G",
+  "ean": "782752506183",
+  "warranty": "36",
+  "description": "Monitor Teros TE-2764G Gaming 27\" Curvo VA FHD (1920 x 1080) 240Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 66555
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

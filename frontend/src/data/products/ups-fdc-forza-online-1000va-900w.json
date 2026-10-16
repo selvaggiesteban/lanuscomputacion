@@ -1,0 +1,29 @@
+{
+  "id": "elit_7094",
+  "title": "UPS FDC FORZA Online 1000VA 900W",
+  "price": 447896.33,
+  "originalPrice": 227.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7094/i/WaLxR_l.webp",
+  "slug": "ups-fdc-forza-online-1000va-900w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "FDC-1002T-A",
+  "ean": "798302107830",
+  "warranty": "24",
+  "description": "UPS FDC FORZA Online 1000VA 900W - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 74649
+  },
+  "stock": 43,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

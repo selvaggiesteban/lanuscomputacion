@@ -1,0 +1,29 @@
+{
+  "id": "elit_17638",
+  "title": "Pen Drive Lexar M22  16GB USB 2.0",
+  "price": 16616.87,
+  "originalPrice": 7.7,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17638/i/gdNmi_l.webp",
+  "slug": "pen-drive-lexar-m22-16gb-usb-2-0",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "LEXAR",
+  "sku": "LJDM022016G-BNJNG",
+  "ean": "843367124794",
+  "warranty": "24",
+  "description": "Pen Drive Lexar M22  16GB USB 2.0 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 2769
+  },
+  "stock": 524,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

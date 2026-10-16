@@ -1,0 +1,29 @@
+{
+  "id": "elit_18269",
+  "title": "Lenovo Mouse Gaming Legion M600 Wireless",
+  "price": 115250.48,
+  "originalPrice": 58.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18269/i/Ybx8D_l.webp",
+  "slug": "lenovo-mouse-gaming-legion-m600-wireless",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LENOVO",
+  "sku": "GY50X79385",
+  "ean": "194632497441",
+  "warranty": "12 MESES",
+  "description": "Lenovo Mouse Gaming Legion M600 Wireless - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19208
+  },
+  "stock": 34,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

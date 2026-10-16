@@ -1,0 +1,29 @@
+{
+  "id": "elit_20155",
+  "title": "Combo Teclado y Mouse Redragon S145",
+  "price": 72149.8,
+  "originalPrice": 36.61,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20155/i/5UVxH_l.webp",
+  "slug": "combo-teclado-y-mouse-redragon-s145",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "REDRAGON",
+  "sku": "S145-SP",
+  "ean": "6950376728715",
+  "warranty": "12",
+  "description": "Combo Teclado y Mouse Redragon S145 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12025
+  },
+  "stock": 90,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

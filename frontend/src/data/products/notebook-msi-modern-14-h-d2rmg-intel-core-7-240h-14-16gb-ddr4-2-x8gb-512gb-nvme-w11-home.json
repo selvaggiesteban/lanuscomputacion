@@ -1,0 +1,29 @@
+{
+  "id": "elit_18737",
+  "title": "Notebook MSI Modern 14 H D2RMG Intel Core 7 240H 14\" 16GB DDR4 (2 x8GB) 512GB NVMe W11 Home",
+  "price": 2527233.41,
+  "originalPrice": 1282.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18737/i/8emFv_l.webp",
+  "slug": "notebook-msi-modern-14-h-d2rmg-intel-core-7-240h-14-16gb-ddr4-2-x8gb-512gb-nvme-w11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "MSI",
+  "sku": "9S7-14L112-438",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Notebook MSI Modern 14 H D2RMG Intel Core 7 240H 14\" 16GB DDR4 (2 x8GB) 512GB NVMe W11 Home - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 421206
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

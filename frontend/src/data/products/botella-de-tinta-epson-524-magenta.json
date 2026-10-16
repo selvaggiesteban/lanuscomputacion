@@ -1,0 +1,29 @@
+{
+  "id": "elit_15034",
+  "title": "Botella de Tinta Epson 524 magenta",
+  "price": 21645.09,
+  "originalPrice": 10.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15034/i/f6BHF_l.webp",
+  "slug": "botella-de-tinta-epson-524-magenta",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T524320-AL",
+  "ean": "10343954915",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 524 magenta - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3608
+  },
+  "stock": 25,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

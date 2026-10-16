@@ -1,0 +1,29 @@
+{
+  "id": "elit_18465",
+  "title": "Notebook Lenovo IP S 15.6\" FHD R7 5825U 16GB SSD512G",
+  "price": 1579471.61,
+  "originalPrice": 801.45,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18465/i/rPq6t_l.webp",
+  "slug": "notebook-lenovo-ip-s-15-6-fhd-r7-5825u-16gb-ssd512g",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "LENOVO",
+  "sku": "82XM00M8AR",
+  "ean": "198156183576",
+  "warranty": "12 Meses",
+  "description": "Notebook Lenovo IP S 15.6\" FHD R7 5825U 16GB SSD512G - 12 Meses",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 263245
+  },
+  "stock": 105,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

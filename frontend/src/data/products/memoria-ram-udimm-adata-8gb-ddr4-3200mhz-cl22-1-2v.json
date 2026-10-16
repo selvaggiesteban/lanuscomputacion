@@ -1,0 +1,29 @@
+{
+  "id": "elit_20070",
+  "title": "Memoria Ram UDIMM ADATA 8GB DDR4 3200MHz CL22  1.2V",
+  "price": 164342.3,
+  "originalPrice": 83.39,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20070/i/jqVOT_l.webp",
+  "slug": "memoria-ram-udimm-adata-8gb-ddr4-3200mhz-cl22-1-2v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AD4U32008G22-SGN",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA 8GB DDR4 3200MHz CL22  1.2V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 27390
+  },
+  "stock": 36,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19182",
+  "title": "Impresora Epson L4360 Multifunción",
+  "price": 755204.35,
+  "originalPrice": 349.95,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19182/i/ZybYV_l.webp",
+  "slug": "impresora-epson-l4360-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CL41303",
+  "ean": "198390000981",
+  "warranty": "12",
+  "description": "Impresora Epson L4360 Multifunción - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 125867
+  },
+  "stock": 129,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

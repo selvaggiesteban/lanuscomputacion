@@ -1,0 +1,29 @@
+{
+  "id": "elit_8506",
+  "title": "Impresora Brother MFCT4500DW Multifunción Inkjet",
+  "price": 1981464.58,
+  "originalPrice": 918.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8506/i/R4AL3_l.webp",
+  "slug": "impresora-brother-mfct4500dw-multifuncion-inkjet",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "BROTHER",
+  "sku": "MFCT4500DW",
+  "ean": "12502651604",
+  "warranty": "12",
+  "description": "Impresora Brother MFCT4500DW Multifunción Inkjet - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 330244
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

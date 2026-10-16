@@ -1,0 +1,29 @@
+{
+  "id": "elit_20075",
+  "title": "Memoria Ram UDIMM ADATA XPG SPECTRIX D35G 16GB DDR4 3200 BLACK RGB CL16 1.35V",
+  "price": 309075.47,
+  "originalPrice": 156.83,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20075/i/u08Mg_l.webp",
+  "slug": "memoria-ram-udimm-adata-xpg-spectrix-d35g-16gb-ddr4-3200-black-rgb-cl16-1-35v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AX4U320016G16A-SBKD35G",
+  "ean": "4711085943316",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA XPG SPECTRIX D35G 16GB DDR4 3200 BLACK RGB CL16 1.35V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 51513
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

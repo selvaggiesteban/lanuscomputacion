@@ -1,0 +1,29 @@
+{
+  "id": "elit_18267",
+  "title": "Lenovo Teclado Gamer Legion Km310 Membrana Rgb",
+  "price": 57329.63,
+  "originalPrice": 29.09,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18267/i/t1iAo_l.webp",
+  "slug": "lenovo-teclado-gamer-legion-km310-membrana-rgb",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LENOVO",
+  "sku": "GY41N91858",
+  "ean": "195892097105",
+  "warranty": "12 MESES",
+  "description": "Lenovo Teclado Gamer Legion Km310 Membrana Rgb - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9555
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

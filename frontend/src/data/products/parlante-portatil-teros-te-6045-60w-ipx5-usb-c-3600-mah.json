@@ -1,0 +1,29 @@
+{
+  "id": "elit_19281",
+  "title": "Parlante Portatil Teros TE-6045 60W IPX5 USB-C 3600 mAh",
+  "price": 150080.58,
+  "originalPrice": 56.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19281/i/xoeaU_l.webp",
+  "slug": "parlante-portatil-teros-te-6045-60w-ipx5-usb-c-3600-mah",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "TEROS",
+  "sku": "TE-6045N",
+  "ean": "782752507272",
+  "warranty": "12",
+  "description": "Parlante Portatil Teros TE-6045 60W IPX5 USB-C 3600 mAh - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 25013
+  },
+  "stock": 136,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19751",
+  "title": "Disco Interno SSD TEAM GROUP CX1 480GB SATA 3.0 530MB/s",
+  "price": 187577.65,
+  "originalPrice": 95.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19751/i/JuO16_l.webp",
+  "slug": "disco-interno-ssd-team-group-cx1-480gb-sata-3-0-530mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "TEAM GROUP",
+  "sku": "T253X5480G0C101",
+  "ean": "765441051904",
+  "warranty": "36",
+  "description": "Disco Interno SSD TEAM GROUP CX1 480GB SATA 3.0 530MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 31263
+  },
+  "stock": 317,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

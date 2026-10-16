@@ -1,0 +1,29 @@
+{
+  "id": "elit_18369",
+  "title": "Motherboard MSI B860M GAMING PLUS WIFI LGA1851 DDR5",
+  "price": 375450.92,
+  "originalPrice": 190.51,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18369/i/jEboP_l.webp",
+  "slug": "motherboard-msi-b860m-gaming-plus-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "B860M GAMING PLUS WIFI",
+  "ean": "4711377286558",
+  "warranty": "36",
+  "description": "Motherboard MSI B860M GAMING PLUS WIFI LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 62575
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

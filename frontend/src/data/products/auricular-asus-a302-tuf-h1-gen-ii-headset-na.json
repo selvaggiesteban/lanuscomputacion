@@ -1,0 +1,29 @@
+{
+  "id": "elit_19698",
+  "title": "Auricular ASUS A302 TUF H1 GEN II HEADSET NA",
+  "price": 104815.76,
+  "originalPrice": 48.57,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19698/i/F4J7O_l.webp",
+  "slug": "auricular-asus-a302-tuf-h1-gen-ii-headset-na",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "ASUS",
+  "sku": "A302 TUF H1 GEN II HEADSET NA",
+  "ean": "4711387671825",
+  "warranty": "12",
+  "description": "Auricular ASUS A302 TUF H1 GEN II HEADSET NA - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 17469
+  },
+  "stock": 35,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

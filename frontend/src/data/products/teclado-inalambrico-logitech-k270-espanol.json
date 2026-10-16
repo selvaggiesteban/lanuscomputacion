@@ -1,0 +1,29 @@
+{
+  "id": "elit_17126",
+  "title": "Teclado Inalámbrico Logitech K270 Español",
+  "price": 26230.92,
+  "originalPrice": 13.31,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17126/i/PjhZE_l.webp",
+  "slug": "teclado-inalambrico-logitech-k270-espanol",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "LOGITECH",
+  "sku": "920-004426",
+  "ean": "97855088789",
+  "warranty": "12",
+  "description": "Teclado Inalámbrico Logitech K270 Español - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4372
+  },
+  "stock": 345,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

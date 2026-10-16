@@ -1,0 +1,29 @@
+{
+  "id": "elit_7089",
+  "title": "UPS FORZA NT-502A Interactiva 500VA 250W",
+  "price": 69804.58,
+  "originalPrice": 35.42,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7089/i/eHmAu_l.webp",
+  "slug": "ups-forza-nt-502a-interactiva-500va-250w",
+  "categorySlug": "unidad-de-energia",
+  "category": "Unidad de Energia",
+  "subcategory": "Ups",
+  "brand": "FORZA",
+  "sku": "NT-502A",
+  "ean": "798302107786",
+  "warranty": "36",
+  "description": "UPS FORZA NT-502A Interactiva 500VA 250W - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 11634
+  },
+  "stock": 79,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

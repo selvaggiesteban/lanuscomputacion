@@ -1,0 +1,29 @@
+{
+  "id": "elit_15283",
+  "title": "Tóner Pantum PD-219 Negro",
+  "price": 47951.54,
+  "originalPrice": 22.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15283/i/G5nDJ_l.webp",
+  "slug": "toner-pantum-pd-219-negro",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "PANTUM",
+  "sku": "PD-219",
+  "ean": "6936358012744",
+  "warranty": "12",
+  "description": "Tóner Pantum PD-219 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7992
+  },
+  "stock": 1039,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

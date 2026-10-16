@@ -1,0 +1,29 @@
+{
+  "id": "elit_18284",
+  "title": "Procesador Intel Core Ultra 7 265 3.9 GHz 36 LGA1",
+  "price": 825988.07,
+  "originalPrice": 419.12,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18284/i/h3bGm_l.webp",
+  "slug": "procesador-intel-core-ultra-7-265-3-9-ghz-36-lga1",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX80768265",
+  "ean": "5032037282512",
+  "warranty": "36",
+  "description": "Procesador Intel Core Ultra 7 265 3.9 GHz 36 LGA1 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 137665
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

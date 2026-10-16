@@ -1,0 +1,29 @@
+{
+  "id": "elit_17300",
+  "title": "Disco SSD 2T Renegade M.2 2280 PCIe 4.0 NVMe",
+  "price": 876242.65,
+  "originalPrice": 444.62,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17300/i/VMfOy_l.webp",
+  "slug": "disco-ssd-2t-renegade-m-2-2280-pcie-4-0-nvme",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SFYRDK/2000G",
+  "ean": "740617331134",
+  "warranty": "60",
+  "description": "Disco SSD 2T Renegade M.2 2280 PCIe 4.0 NVMe - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 146040
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

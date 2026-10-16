@@ -1,0 +1,29 @@
+{
+  "id": "elit_17305",
+  "title": "Disco duro int 2TB SATA 6 Gb/s 64MB  Skyhawk",
+  "price": 254091.05,
+  "originalPrice": 128.93,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17305/i/DKm86_l.webp",
+  "slug": "disco-duro-int-2tb-sata-6-gb-s-64mb-skyhawk",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos",
+  "brand": "SEAGATE",
+  "sku": "ST2000VX017",
+  "ean": "8719706028240",
+  "warranty": "24",
+  "description": "Disco duro int 2TB SATA 6 Gb/s 64MB  Skyhawk - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 42349
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

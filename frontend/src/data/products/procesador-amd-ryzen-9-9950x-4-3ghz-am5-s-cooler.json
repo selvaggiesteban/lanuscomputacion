@@ -1,0 +1,29 @@
+{
+  "id": "elit_17731",
+  "title": "Procesador AMD Ryzen 9 9950X 4.3GHz AM5 S/Cooler",
+  "price": 1220851.05,
+  "originalPrice": 619.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17731/i/qTbS5_l.webp",
+  "slug": "procesador-amd-ryzen-9-9950x-4-3ghz-am5-s-cooler",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100001277WOF",
+  "ean": "730143315272",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 9 9950X 4.3GHz AM5 S/Cooler - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 203475
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

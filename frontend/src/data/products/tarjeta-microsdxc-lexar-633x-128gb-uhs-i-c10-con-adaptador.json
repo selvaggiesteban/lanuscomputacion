@@ -1,0 +1,29 @@
+{
+  "id": "elit_17675",
+  "title": "Tarjeta microSDXC Lexar  633x 128GB UHS-I C10 con adaptador",
+  "price": 38311.72,
+  "originalPrice": 19.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17675/i/F86Xu_l.webp",
+  "slug": "tarjeta-microsdxc-lexar-633x-128gb-uhs-i-c10-con-adaptador",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Memorias Flash",
+  "brand": "LEXAR",
+  "sku": "LSDMI128BB633A",
+  "ean": "843367119707",
+  "warranty": "120",
+  "description": "Tarjeta microSDXC Lexar  633x 128GB UHS-I C10 con adaptador - 120",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 6385
+  },
+  "stock": 349,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

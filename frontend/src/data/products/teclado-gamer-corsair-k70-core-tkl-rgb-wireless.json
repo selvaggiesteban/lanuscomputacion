@@ -1,0 +1,29 @@
+{
+  "id": "elit_19397",
+  "title": "Teclado gamer CORSAIR K70 CORE TKL RGB Wireless",
+  "price": 219405.55,
+  "originalPrice": 111.33,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19397/i/v26iw_l.webp",
+  "slug": "teclado-gamer-corsair-k70-core-tkl-rgb-wireless",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Teclados",
+  "brand": "CORSAIR",
+  "sku": "CH-914901E-NA",
+  "ean": "840006678939",
+  "warranty": "24",
+  "description": "Teclado gamer CORSAIR K70 CORE TKL RGB Wireless - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 36568
+  },
+  "stock": 31,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

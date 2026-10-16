@@ -1,0 +1,29 @@
+{
+  "id": "elit_19443",
+  "title": "Motherboard MSI B850M GAMING PRO WIFI6E AM5 DDR5",
+  "price": 359960.68,
+  "originalPrice": 182.65,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19443/i/dsjS5_l.webp",
+  "slug": "motherboard-msi-b850m-gaming-pro-wifi6e-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "B850M GAMING PRO WIFI6E",
+  "ean": "824142444627",
+  "warranty": "24",
+  "description": "Motherboard MSI B850M GAMING PRO WIFI6E AM5 DDR5 - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 59993
+  },
+  "stock": 6,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

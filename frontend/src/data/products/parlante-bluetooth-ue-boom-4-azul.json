@@ -1,0 +1,29 @@
+{
+  "id": "elit_18163",
+  "title": "Parlante Bluetooth UE Boom 4 Azul",
+  "price": 328452.93,
+  "originalPrice": 152.2,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18163/i/JjPc1_l.webp",
+  "slug": "parlante-bluetooth-ue-boom-4-azul",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "LOGITECH",
+  "sku": "984-001976",
+  "ean": "97855197733",
+  "warranty": "12",
+  "description": "Parlante Bluetooth UE Boom 4 Azul - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54742
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

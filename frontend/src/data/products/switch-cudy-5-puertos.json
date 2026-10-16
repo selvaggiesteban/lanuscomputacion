@@ -1,0 +1,29 @@
+{
+  "id": "elit_18647",
+  "title": "Switch Cudy 5 puertos",
+  "price": 7981.61,
+  "originalPrice": 4.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18647/i/rpWzs_l.webp",
+  "slug": "switch-cudy-5-puertos",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Switches",
+  "brand": "CUDY",
+  "sku": "FS105D",
+  "ean": "6971690790035",
+  "warranty": "12",
+  "description": "Switch Cudy 5 puertos - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1330
+  },
+  "stock": 313,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

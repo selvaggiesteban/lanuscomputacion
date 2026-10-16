@@ -1,0 +1,29 @@
+{
+  "id": "elit_20073",
+  "title": "Memoria Ram UDIMM ADATA XPG SPECTRIX D35G 8GB DDR4 3200 BLACK RGB CL16 1.35V",
+  "price": 174215.85,
+  "originalPrice": 88.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20073/i/LTS77_l.webp",
+  "slug": "memoria-ram-udimm-adata-xpg-spectrix-d35g-8gb-ddr4-3200-black-rgb-cl16-1-35v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "ADATA",
+  "sku": "AX4U32008G16A-SBKD35G",
+  "ean": "4711085943279",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM ADATA XPG SPECTRIX D35G 8GB DDR4 3200 BLACK RGB CL16 1.35V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29036
+  },
+  "stock": 39,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

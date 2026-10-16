@@ -1,0 +1,29 @@
+{
+  "id": "elit_16030",
+  "title": "Pen Drive SANDISK Cruzer Blade 128GB USB 2.0 Tipo A Negro",
+  "price": 34183.27,
+  "originalPrice": 15.84,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16030/i/Opq5C_l.webp",
+  "slug": "pen-drive-sandisk-cruzer-blade-128gb-usb-2-0-tipo-a-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ50-128G-B35",
+  "ean": "619659125905",
+  "warranty": "12",
+  "description": "Pen Drive SANDISK Cruzer Blade 128GB USB 2.0 Tipo A Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 5697
+  },
+  "stock": 157,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18941",
+  "title": "Monitor Portatil Teros TE-1501S 15.6\" Plano IPS FHD (1920 x 1080) 60Hz USB",
+  "price": 169284.79,
+  "originalPrice": 70.99,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18941/i/VVaN8_l.webp",
+  "slug": "monitor-portatil-teros-te-1501s-15-6-plano-ips-fhd-1920-x-1080-60hz-usb",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "TEROS",
+  "sku": "TE-1501S",
+  "ean": "782752508804",
+  "warranty": "36",
+  "description": "Monitor Portatil Teros TE-1501S 15.6\" Plano IPS FHD (1920 x 1080) 60Hz USB - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 28214
+  },
+  "stock": 376,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

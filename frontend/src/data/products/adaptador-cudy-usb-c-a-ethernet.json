@@ -1,0 +1,29 @@
+{
+  "id": "elit_18949",
+  "title": "Adaptador Cudy USB-C a Ethernet",
+  "price": 18343.3,
+  "originalPrice": 8.5,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18949/i/6koOj_l.webp",
+  "slug": "adaptador-cudy-usb-c-a-ethernet",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "CUDY",
+  "sku": "UE10C",
+  "ean": "6971690794200",
+  "warranty": "12",
+  "description": "Adaptador Cudy USB-C a Ethernet - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3057
+  },
+  "stock": 50,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

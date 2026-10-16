@@ -1,0 +1,29 @@
+{
+  "id": "elit_19137",
+  "title": "Disco Interno SSD LEXAR NQ780 1T M.2 NVMe 6500MB/s",
+  "price": 348451.4,
+  "originalPrice": 176.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19137/i/429yP_l.webp",
+  "slug": "disco-interno-ssd-lexar-nq780-1t-m-2-nvme-6500mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "LEXAR",
+  "sku": "LNQ780X001T-RNNNG",
+  "ean": "843367137008",
+  "warranty": "36",
+  "description": "Disco Interno SSD LEXAR NQ780 1T M.2 NVMe 6500MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 58075
+  },
+  "stock": 289,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18491",
+  "title": "Disco Externo HDD WESTERN DIGITAL MyPassport 4TB USB 3.2 Azul",
+  "price": 347564.56,
+  "originalPrice": 176.36,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18491/i/IkDiK_l.webp",
+  "slug": "disco-externo-hdd-western-digital-mypassport-4tb-usb-3-2-azul",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "WD",
+  "sku": "WDBPKJ0040BBL-WESN",
+  "ean": "718037870212",
+  "warranty": "36",
+  "description": "Disco Externo HDD WESTERN DIGITAL MyPassport 4TB USB 3.2 Azul - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 57927
+  },
+  "stock": 59,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

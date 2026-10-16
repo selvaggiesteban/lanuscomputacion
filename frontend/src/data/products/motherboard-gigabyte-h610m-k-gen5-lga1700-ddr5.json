@@ -1,0 +1,29 @@
+{
+  "id": "elit_20062",
+  "title": "Motherboard GIGABYTE H610M K GEN5 LGA1700 DDR5",
+  "price": 140614.26,
+  "originalPrice": 71.35,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20062/i/Vbqy8_l.webp",
+  "slug": "motherboard-gigabyte-h610m-k-gen5-lga1700-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "H610M K GEN5",
+  "ean": "4719331851217",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE H610M K GEN5 LGA1700 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 23436
+  },
+  "stock": 200,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

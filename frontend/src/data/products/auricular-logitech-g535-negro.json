@@ -1,0 +1,29 @@
+{
+  "id": "elit_16048",
+  "title": "Auricular Logitech G535 Negro",
+  "price": 248195.61,
+  "originalPrice": 115.01,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16048/i/oE7L4_l.webp",
+  "slug": "auricular-logitech-g535-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-000971",
+  "ean": "97855165428",
+  "warranty": "24",
+  "description": "Auricular Logitech G535 Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 41366
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

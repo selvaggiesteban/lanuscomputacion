@@ -1,0 +1,29 @@
+{
+  "id": "elit_19480",
+  "title": "Motherboard ASUS PRIME B840M-A AM5 DDR5",
+  "price": 230126.52,
+  "originalPrice": 116.77,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19480/i/YpGJF_l.webp",
+  "slug": "motherboard-asus-prime-b840m-a-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B840M-A",
+  "ean": "4711387797198",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B840M-A AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 38354
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

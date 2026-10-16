@@ -1,0 +1,29 @@
+{
+  "id": "elit_11892",
+  "title": "Disco Interno SSD CRUCIAL BX500 2TB 2.5\" SATA 3.0  540MB/s",
+  "price": 433805.34,
+  "originalPrice": 220.12,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/11892/i/cVvfh_l.webp",
+  "slug": "disco-interno-ssd-crucial-bx500-2tb-2-5-sata-3-0-540mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "CRUCIAL",
+  "sku": "CT2000BX500SSD1",
+  "ean": "649528821584",
+  "warranty": "36",
+  "description": "Disco Interno SSD CRUCIAL BX500 2TB 2.5\" SATA 3.0  540MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 72301
+  },
+  "stock": 223,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

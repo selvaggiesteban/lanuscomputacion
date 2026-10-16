@@ -1,0 +1,29 @@
+{
+  "id": "elit_19090",
+  "title": "Tóner Brother TN3619XL Negro Alto Rendimiento",
+  "price": 281019.32,
+  "originalPrice": 130.22,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19090/i/OUD3K_l.webp",
+  "slug": "toner-brother-tn3619xl-negro-alto-rendimiento",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Toners",
+  "brand": "BROTHER",
+  "sku": "TN3619XL",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Tóner Brother TN3619XL Negro Alto Rendimiento - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 46837
+  },
+  "stock": 3,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

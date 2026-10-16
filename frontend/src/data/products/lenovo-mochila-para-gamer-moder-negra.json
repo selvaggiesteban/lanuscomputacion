@@ -1,0 +1,29 @@
+{
+  "id": "elit_18259",
+  "title": "Lenovo Mochila para Gamer Moder Negra",
+  "price": 55159.37,
+  "originalPrice": 25.56,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18259/i/zazPe_l.webp",
+  "slug": "lenovo-mochila-para-gamer-moder-negra",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "LENOVO",
+  "sku": "GX41H70101",
+  "ean": "195892042952",
+  "warranty": "12 MESES",
+  "description": "Lenovo Mochila para Gamer Moder Negra - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9193
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

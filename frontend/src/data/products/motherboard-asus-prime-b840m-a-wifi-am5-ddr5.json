@@ -1,0 +1,29 @@
+{
+  "id": "elit_19481",
+  "title": "Motherboard ASUS PRIME B840M-A WIFI AM5 DDR5",
+  "price": 261875.59,
+  "originalPrice": 132.88,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19481/i/l2fNe_l.webp",
+  "slug": "motherboard-asus-prime-b840m-a-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME B840M-A WIFI",
+  "ean": "4711387797143",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME B840M-A WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 43646
+  },
+  "stock": 24,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

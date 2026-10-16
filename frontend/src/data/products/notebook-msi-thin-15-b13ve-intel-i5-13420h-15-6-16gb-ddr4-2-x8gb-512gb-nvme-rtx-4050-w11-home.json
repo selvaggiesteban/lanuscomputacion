@@ -1,0 +1,29 @@
+{
+  "id": "elit_18733",
+  "title": "Notebook MSI Thin 15 B13VE Intel I5-13420H 15.6\" 16GB DDR4 (2 x8GB) 512GB NVMe, RTX 4050 W11 Home",
+  "price": 2895372.78,
+  "originalPrice": 1469.16,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18733/i/QIyYS_l.webp",
+  "slug": "notebook-msi-thin-15-b13ve-intel-i5-13420h-15-6-16gb-ddr4-2-x8gb-512gb-nvme-rtx-4050-w11-home",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "MSI",
+  "sku": "9S7-16R831-3245",
+  "ean": "0",
+  "warranty": "24",
+  "description": "Notebook MSI Thin 15 B13VE Intel I5-13420H 15.6\" 16GB DDR4 (2 x8GB) 512GB NVMe, RTX 4050 W11 Home - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 482562
+  },
+  "stock": 11,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

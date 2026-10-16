@@ -1,0 +1,29 @@
+{
+  "id": "elit_20099",
+  "title": "Botella de tinta Brother BTD100 Negra Pack de 2",
+  "price": 43743.37,
+  "originalPrice": 20.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20099/i/vGQUY_l.webp",
+  "slug": "botella-de-tinta-brother-btd100-negra-pack-de-2",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD100BK2PKMEX",
+  "ean": "0",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD100 Negra Pack de 2 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 7291
+  },
+  "stock": 121,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

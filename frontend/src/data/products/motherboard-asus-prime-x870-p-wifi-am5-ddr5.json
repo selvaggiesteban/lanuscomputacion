@@ -1,0 +1,29 @@
+{
+  "id": "elit_19486",
+  "title": "Motherboard ASUS PRIME X870-P WIFI AM5 DDR5",
+  "price": 477221.35,
+  "originalPrice": 242.15,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19486/i/VoZtW_l.webp",
+  "slug": "motherboard-asus-prime-x870-p-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME X870-P WIFI",
+  "ean": "4711387718148",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME X870-P WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 79537
+  },
+  "stock": 14,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

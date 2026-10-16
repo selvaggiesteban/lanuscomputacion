@@ -1,0 +1,29 @@
+{
+  "id": "elit_6843",
+  "title": "Botella de Tinta HP GT52 Cian",
+  "price": 20069.73,
+  "originalPrice": 9.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6843/i/CaxuZ_l.webp",
+  "slug": "botella-de-tinta-hp-gt52-cian",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "HP",
+  "sku": "M0H54AL",
+  "ean": "190780132524",
+  "warranty": "HP",
+  "description": "Botella de Tinta HP GT52 Cian - HP",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3345
+  },
+  "stock": 251,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

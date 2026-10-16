@@ -1,0 +1,29 @@
+{
+  "id": "elit_15814",
+  "title": "Procesador INTEL Core i9-12900F 1.80GHz LGA1700 DDR4/DDR5",
+  "price": 941140.02,
+  "originalPrice": 477.55,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15814/i/AF0Lt_l.webp",
+  "slug": "procesador-intel-core-i9-12900f-1-80ghz-lga1700-ddr4-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071512900F",
+  "ean": "5032037237901",
+  "warranty": "36",
+  "description": "Procesador INTEL Core i9-12900F 1.80GHz LGA1700 DDR4/DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 156857
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_20077",
+  "title": "Memoria Ram SODIMM ADATA 8GB DDR3L 1600MHz CL11 1.35V",
+  "price": 91601.27,
+  "originalPrice": 46.48,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20077/i/mmUze_l.webp",
+  "slug": "memoria-ram-sodimm-adata-8gb-ddr3l-1600mhz-cl11-1-35v",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "ADATA",
+  "sku": "ADDS1600W8G11-S",
+  "ean": "0",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM ADATA 8GB DDR3L 1600MHz CL11 1.35V - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15267
+  },
+  "stock": 19,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

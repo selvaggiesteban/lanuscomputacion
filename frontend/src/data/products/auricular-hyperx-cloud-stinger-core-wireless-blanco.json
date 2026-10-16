@@ -1,0 +1,29 @@
+{
+  "id": "elit_15628",
+  "title": "Auricular HYPERX Cloud Stinger Core Wireless Blanco",
+  "price": 185353.63,
+  "originalPrice": 85.89,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15628/i/7CY7P_l.webp",
+  "slug": "auricular-hyperx-cloud-stinger-core-wireless-blanco",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "HYPERX",
+  "sku": "4P5J1AA",
+  "ean": "196188047453",
+  "warranty": "0",
+  "description": "Auricular HYPERX Cloud Stinger Core Wireless Blanco - 0",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 30892
+  },
+  "stock": 365,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

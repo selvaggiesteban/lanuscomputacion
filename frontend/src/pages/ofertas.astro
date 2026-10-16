@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductGrid from '../components/catalog/ProductGrid.astro';
+import { getActivePromotions, computePromoDiscount } from '../lib/d1';
+
+const DB = Astro.locals.runtime.env.DB;
+
+// Get active promotions
+const promotions = await getActivePromotions(DB);
+
+// Only scan products that can match an active promotion (D1 quota protection).
+// Without active promos the products query is skipped entirely (0 rows read).
+const promoWindow = `
+  pr.is_active = 1
+  AND (pr.start_date IS NULL OR pr.start_date <= datetime('now'))
+  AND (pr.end_date IS NULL OR pr.end_date >= datetime('now'))`;
+let allProducts: any[] = [];
+if (promotions.length > 0) {
+  try {
+    const { results } = await DB.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping, iva_pct, internal_tax_pct
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+        AND (
+          EXISTS (SELECT 1 FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'all')
+          OR category_id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'category')
+          OR id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'product')
+        )
+      ORDER BY created_at DESC
+      LIMIT 500
+    `).all();
+    allProducts = results || [];
+  } catch (e) {
+    console.error("D1 Error in ofertas.astro:", e);
+    allProducts = [];
+  }
+}
+
+// Apply promotions to products
+const offerProducts: any[] = [];
+for (const product of allProducts) {
+  const promo = computePromoDiscount(promotions, product.id, product.category_id, product.price);
+  if (promo) {
+    offerProducts.push({
+      id: product.id,
+      title: product.title,
+      price: promo.promoPrice,
+      originalPrice: product.price,
+      discount: promo.discount,
+      categoryName: product.category_name,
+      image: product.thumbnail,
+      slug: product.slug,
+      freeShipping: product.free_shipping === 1,
+      promoName: promo.promoName,
+      dollar_rate: product.dollar_rate,
+      ivaPct: product.iva_pct,
+      internalTaxPct: product.internal_tax_pct,
+    });
+  }
+}
+
+// Sort by discount percentage (highest first)
+offerProducts.sort((a, b) => b.discount - a.discount);
+---
+
+<BaseLayout title="Ofertas | Lanús Computación">
+  <div class="ml-container py-4">
+    <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
+      <h1 class="text-2xl font-bold text-ml-text mb-1">Ofertas</h1>
+      <p class="text-sm text-ml-text-secondary">Los mejores descuentos en tecnología</p>
+      {promotions.length > 0 && (
+        <p class="text-xs text-ml-text-muted mt-2">{promotions.length} promoción(es) activa(s)</p>
+      )}
+    </div>
+
+    {offerProducts.length > 0 ? (
+      <ProductGrid products={offerProducts.map(p => ({
+        ...p,
+        dollarRate: p.dollar_rate,
+      }))} columns={5} />
+    ) : (
+      <div class="text-center py-16 text-ml-text-muted">
+        <p class="text-lg">No hay ofertas disponibles</p>
+        <p class="text-sm mt-1">Creá promociones en el admin para que aparezcan aquí</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

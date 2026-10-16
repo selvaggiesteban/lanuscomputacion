@@ -1,0 +1,29 @@
+{
+  "id": "elit_6477",
+  "title": "Auricular LOGITECH H390 Negro",
+  "price": 51361.23,
+  "originalPrice": 23.8,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6477/i/Cdcwq_l.webp",
+  "slug": "auricular-logitech-h390-negro",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "981-000014",
+  "ean": "97855046871",
+  "warranty": "12",
+  "description": "Auricular LOGITECH H390 Negro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 8560
+  },
+  "stock": 1048,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

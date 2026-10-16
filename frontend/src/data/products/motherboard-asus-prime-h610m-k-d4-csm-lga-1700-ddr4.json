@@ -1,0 +1,29 @@
+{
+  "id": "elit_20010",
+  "title": "Motherboard ASUS PRIME H610M-K D4 CSM LGA 1700 DDR4",
+  "price": 131509.32,
+  "originalPrice": 66.73,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20010/i/lYvm4_l.webp",
+  "slug": "motherboard-asus-prime-h610m-k-d4-csm-lga-1700-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "PRIME H610M-K D4-CSM",
+  "ean": "4711081565529",
+  "warranty": "36",
+  "description": "Motherboard ASUS PRIME H610M-K D4 CSM LGA 1700 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 21918
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

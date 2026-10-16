@@ -1,0 +1,29 @@
+{
+  "id": "elit_20205",
+  "title": "Mouse Inalámbrico Redragon King M916 Pro 4K Blanco",
+  "price": 80525.56,
+  "originalPrice": 40.86,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20205/i/mqA5g_l.webp",
+  "slug": "mouse-inalambrico-redragon-king-m916-pro-4k-blanco",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "REDRAGON",
+  "sku": "M916W-PRO-4K",
+  "ean": "6950376722126",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico Redragon King M916 Pro 4K Blanco - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 13421
+  },
+  "stock": 101,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_14877",
+  "title": "Procesador AMD Ryzen 7 5700G 3.80GHz AM4 DDR4",
+  "price": 368592.65,
+  "originalPrice": 187.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14877/i/nlQxi_l.webp",
+  "slug": "procesador-amd-ryzen-7-5700g-3-80ghz-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "AMD",
+  "sku": "100-100000263BOX",
+  "ean": "730143313377",
+  "warranty": "36",
+  "description": "Procesador AMD Ryzen 7 5700G 3.80GHz AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 61432
+  },
+  "stock": 571,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

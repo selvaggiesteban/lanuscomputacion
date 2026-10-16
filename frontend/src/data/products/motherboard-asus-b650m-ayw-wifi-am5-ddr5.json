@@ -1,0 +1,29 @@
+{
+  "id": "elit_19475",
+  "title": "Motherboard ASUS B650M-AYW WIFI AM5 DDR5",
+  "price": 228234.58,
+  "originalPrice": 115.81,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19475/i/rfTPu_l.webp",
+  "slug": "motherboard-asus-b650m-ayw-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "B650M-AYW WIFI",
+  "ean": "4711387778760",
+  "warranty": "36",
+  "description": "Motherboard ASUS B650M-AYW WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 38039
+  },
+  "stock": 9,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

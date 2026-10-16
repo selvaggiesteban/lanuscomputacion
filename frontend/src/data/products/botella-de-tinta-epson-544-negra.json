@@ -1,0 +1,29 @@
+{
+  "id": "elit_7811",
+  "title": "Botella de Tinta Epson 544 Negra",
+  "price": 20954.52,
+  "originalPrice": 9.71,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7811/i/qU1rU_l.webp",
+  "slug": "botella-de-tinta-epson-544-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "EPSON",
+  "sku": "T544120-AL",
+  "ean": "10343941977",
+  "warranty": "12",
+  "description": "Botella de Tinta Epson 544 Negra - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3492
+  },
+  "stock": 128,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

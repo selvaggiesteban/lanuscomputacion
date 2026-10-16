@@ -1,0 +1,29 @@
+{
+  "id": "elit_19722",
+  "title": "Motherboard ASUS TUF GAMING A620AM-PLUS WIFI AM5 DDR5",
+  "price": 239960.65,
+  "originalPrice": 121.76,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19722/i/TkznG_l.webp",
+  "slug": "motherboard-asus-tuf-gaming-a620am-plus-wifi-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "TUF GAMING A620AM-PLUS WIFI",
+  "ean": "4711636231824",
+  "warranty": "36",
+  "description": "Motherboard ASUS TUF GAMING A620AM-PLUS WIFI AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 39993
+  },
+  "stock": 97,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

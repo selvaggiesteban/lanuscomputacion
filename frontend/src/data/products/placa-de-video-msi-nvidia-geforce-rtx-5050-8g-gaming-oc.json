@@ -1,0 +1,29 @@
+{
+  "id": "elit_19437",
+  "title": "Placa de Video MSI NVIDIA Geforce RTX 5050 8G GAMING OC",
+  "price": 669351.47,
+  "originalPrice": 339.64,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19437/i/uz3oU_l.webp",
+  "slug": "placa-de-video-msi-nvidia-geforce-rtx-5050-8g-gaming-oc",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Placas de Video",
+  "brand": "MSI",
+  "sku": "RTX 5050 8G GAMING OC",
+  "ean": "824142438343",
+  "warranty": "36",
+  "description": "Placa de Video MSI NVIDIA Geforce RTX 5050 8G GAMING OC - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 111559
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_18152",
+  "title": "Notebook HP Laptop i3-1215 HD 14\" 8GB/512 W11h",
+  "price": 1210405.98,
+  "originalPrice": 614.18,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18152/i/2c0tn_l.webp",
+  "slug": "notebook-hp-laptop-i3-1215-hd-14-8gb-512-w11h",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Consumo",
+  "brand": "HP",
+  "sku": "A4GZ2LA",
+  "ean": "198415328557",
+  "warranty": "12",
+  "description": "Notebook HP Laptop i3-1215 HD 14\" 8GB/512 W11h - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 201734
+  },
+  "stock": 8,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

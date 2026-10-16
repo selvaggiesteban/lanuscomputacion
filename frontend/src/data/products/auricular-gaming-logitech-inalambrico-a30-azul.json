@@ -1,0 +1,29 @@
+{
+  "id": "elit_16667",
+  "title": "Auricular Gaming Logitech Inalámbrico A30 Azul",
+  "price": 522352.37,
+  "originalPrice": 242.05,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/16667/i/abuiw_l.webp",
+  "slug": "auricular-gaming-logitech-inalambrico-a30-azul",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "LOGITECH",
+  "sku": "939-002007",
+  "ean": "97855168160",
+  "warranty": "24",
+  "description": "Auricular Gaming Logitech Inalámbrico A30 Azul - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 87059
+  },
+  "stock": 1,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

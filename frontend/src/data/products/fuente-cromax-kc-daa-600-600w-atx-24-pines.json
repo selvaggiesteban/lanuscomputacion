@@ -1,0 +1,29 @@
+{
+  "id": "elit_7708",
+  "title": "Fuente CROMAX KC-DAA-600 600W ATX 24 Pines",
+  "price": 27320.72,
+  "originalPrice": 12.66,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7708/i/ADqAL_l.webp",
+  "slug": "fuente-cromax-kc-daa-600-600w-atx-24-pines",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Fuentes",
+  "brand": "CROMAX",
+  "sku": "KC-DAA-600",
+  "ean": "7798146840354",
+  "warranty": "12",
+  "description": "Fuente CROMAX KC-DAA-600 600W ATX 24 Pines - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4553
+  },
+  "stock": 1378,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

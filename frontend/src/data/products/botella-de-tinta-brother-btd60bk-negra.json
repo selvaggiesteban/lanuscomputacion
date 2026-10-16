@@ -1,0 +1,29 @@
+{
+  "id": "elit_7717",
+  "title": "Botella de tinta Brother BTD60BK Negra",
+  "price": 22832.01,
+  "originalPrice": 10.58,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/7717/i/EHusV_l.webp",
+  "slug": "botella-de-tinta-brother-btd60bk-negra",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Botellas de Tinta",
+  "brand": "BROTHER",
+  "sku": "BTD60BK",
+  "ean": "12502650386",
+  "warranty": "12",
+  "description": "Botella de tinta Brother BTD60BK Negra - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3805
+  },
+  "stock": 1963,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19051",
+  "title": "Memoria Ram SODIMM KINGSTON KVR 8GB DDR4 3200Mhz",
+  "price": 227229.49,
+  "originalPrice": 115.3,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19051/i/sGKeg_l.webp",
+  "slug": "memoria-ram-sodimm-kingston-kvr-8gb-ddr4-3200mhz",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias Notebook",
+  "brand": "KINGSTON",
+  "sku": "KVR32S22S8/8WP",
+  "ean": "740617351910",
+  "warranty": "99",
+  "description": "Memoria Ram SODIMM KINGSTON KVR 8GB DDR4 3200Mhz - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 37872
+  },
+  "stock": 117,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

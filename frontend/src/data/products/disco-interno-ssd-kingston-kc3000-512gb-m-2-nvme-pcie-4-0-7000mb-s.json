@@ -1,0 +1,29 @@
+{
+  "id": "elit_15296",
+  "title": "Disco Interno SSD KINGSTON KC3000 512GB M.2 NVMe PCIe 4.0  7000MB/s",
+  "price": 384575.57,
+  "originalPrice": 195.14,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15296/i/lqesi_l.webp",
+  "slug": "disco-interno-ssd-kingston-kc3000-512gb-m-2-nvme-pcie-4-0-7000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SKC3000S/512G",
+  "ean": "740617324402",
+  "warranty": "36",
+  "description": "Disco Interno SSD KINGSTON KC3000 512GB M.2 NVMe PCIe 4.0  7000MB/s - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 64096
+  },
+  "stock": 4,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

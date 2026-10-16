@@ -1,0 +1,29 @@
+{
+  "id": "elit_18116",
+  "title": "Auricular Cooler Master CH351 Wireless BT 5.4 2.4GHz USB-C 3.5mm Macaron",
+  "price": 152184.63,
+  "originalPrice": 70.52,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18116/i/o7FYA_l.webp",
+  "slug": "auricular-cooler-master-ch351-wireless-bt-5-4-2-4ghz-usb-c-3-5mm-macaron",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Auriculares",
+  "brand": "COOLER MASTER",
+  "sku": "CH-351-MC",
+  "ean": "4719512156490",
+  "warranty": "12",
+  "description": "Auricular Cooler Master CH351 Wireless BT 5.4 2.4GHz USB-C 3.5mm Macaron - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 25364
+  },
+  "stock": 29,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_10030",
+  "title": "Impresora EPSON M2120 Multifunción",
+  "price": 588798.27,
+  "originalPrice": 272.84,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/10030/i/v77J0_l.webp",
+  "slug": "impresora-epson-m2120-multifuncion",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras de Sistema Continuo",
+  "brand": "EPSON",
+  "sku": "C11CJ18301",
+  "ean": "10343950658",
+  "warranty": "12",
+  "description": "Impresora EPSON M2120 Multifunción - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 98133
+  },
+  "stock": 5,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19499",
+  "title": "Motherboard ASUS ROG STRIX Z890-A GAMING WIFI LGA1851 DDR5",
+  "price": 773270.04,
+  "originalPrice": 392.37,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19499/i/pehQO_l.webp",
+  "slug": "motherboard-asus-rog-strix-z890-a-gaming-wifi-lga1851-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "ASUS",
+  "sku": "ROG STRIX Z890-A GAMING WIFI",
+  "ean": "4711387758830",
+  "warranty": "36",
+  "description": "Motherboard ASUS ROG STRIX Z890-A GAMING WIFI LGA1851 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 128878
+  },
+  "stock": 2,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19622",
+  "title": "Adaptador Xtech, Micro Usb macho a Usb-a hembra, 1",
+  "price": 2222.78,
+  "originalPrice": 1.03,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19622/i/wwJv2_l.webp",
+  "slug": "adaptador-xtech-micro-usb-macho-a-usb-a-hembra-1",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Adaptadores",
+  "brand": "XTECH",
+  "sku": "XTC-368",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Adaptador Xtech, Micro Usb macho a Usb-a hembra, 1 - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 370
+  },
+  "stock": 20,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

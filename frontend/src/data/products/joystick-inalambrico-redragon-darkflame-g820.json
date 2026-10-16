@@ -1,0 +1,29 @@
+{
+  "id": "elit_20158",
+  "title": "Joystick Inalàmbrico Redragon Darkflame G820",
+  "price": 73999.02,
+  "originalPrice": 34.29,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/20158/i/bUaUm_l.webp",
+  "slug": "joystick-inalambrico-redragon-darkflame-g820",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Joysticks",
+  "brand": "REDRAGON",
+  "sku": "G820",
+  "ean": "6950376732361",
+  "warranty": "12",
+  "description": "Joystick Inalàmbrico Redragon Darkflame G820 - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12333
+  },
+  "stock": 111,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

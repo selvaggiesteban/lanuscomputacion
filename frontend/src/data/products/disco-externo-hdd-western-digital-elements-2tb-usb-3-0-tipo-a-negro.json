@@ -1,0 +1,29 @@
+{
+  "id": "elit_6246",
+  "title": "Disco Externo HDD WESTERN DIGITAL Elements 2TB USB 3.0 Tipo A Negro",
+  "price": 263649.28,
+  "originalPrice": 133.78,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6246/i/rkYjP_l.webp",
+  "slug": "disco-externo-hdd-western-digital-elements-2tb-usb-3-0-tipo-a-negro",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Externos",
+  "brand": "WD",
+  "sku": "WDBU6Y0020BBK-WESN",
+  "ean": "718037855363",
+  "warranty": "24",
+  "description": "Disco Externo HDD WESTERN DIGITAL Elements 2TB USB 3.0 Tipo A Negro - 24",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 43942
+  },
+  "stock": 405,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

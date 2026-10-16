@@ -1,0 +1,29 @@
+{
+  "id": "elit_19661",
+  "title": "Mochila Xtech Bristol 15,6\", 15 kg , Negra",
+  "price": 24687.92,
+  "originalPrice": 11.44,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19661/i/vUaN7_l.webp",
+  "slug": "mochila-xtech-bristol-156-15-kg-negra",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "XTECH",
+  "sku": "XTB-222",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Xtech Bristol 15,6\", 15 kg , Negra - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 4115
+  },
+  "stock": 67,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

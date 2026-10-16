@@ -1,0 +1,29 @@
+{
+  "id": "elit_19288",
+  "title": "Cable Teros USB-C a USB-C White",
+  "price": 6387.78,
+  "originalPrice": 2.96,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19288/i/pBZQG_l.webp",
+  "slug": "cable-teros-usb-c-a-usb-c-white",
+  "categorySlug": "cables",
+  "category": "Cables",
+  "subcategory": "Cables",
+  "brand": "TEROS",
+  "sku": "TE-70208W",
+  "ean": "782752505919",
+  "warranty": "12",
+  "description": "Cable Teros USB-C a USB-C White - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 1065
+  },
+  "stock": 1653,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

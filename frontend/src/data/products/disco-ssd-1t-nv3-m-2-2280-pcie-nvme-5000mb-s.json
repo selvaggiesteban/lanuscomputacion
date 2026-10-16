@@ -1,0 +1,29 @@
+{
+  "id": "elit_17829",
+  "title": "Disco SSD 1T NV3 M.2 2280 PCIe NVMe 5000MB/s",
+  "price": 357556.35,
+  "originalPrice": 181.43,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17829/i/i5kRv_l.webp",
+  "slug": "disco-ssd-1t-nv3-m-2-2280-pcie-nvme-5000mb-s",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Discos Internos SSD",
+  "brand": "KINGSTON",
+  "sku": "SNV3S/1000G",
+  "ean": "740617344790",
+  "warranty": "60",
+  "description": "Disco SSD 1T NV3 M.2 2280 PCIe NVMe 5000MB/s - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 59593
+  },
+  "stock": 357,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

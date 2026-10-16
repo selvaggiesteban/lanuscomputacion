@@ -1,0 +1,29 @@
+{
+  "id": "elit_8257",
+  "title": "Cartucho de tinta LC3019BK Negra Alto Rendimiento",
+  "price": 76426.36,
+  "originalPrice": 38.78,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/8257/i/jwZnG_l.webp",
+  "slug": "cartucho-de-tinta-lc3019bk-negra-alto-rendimiento",
+  "categorySlug": "insumos",
+  "category": "Insumos",
+  "subcategory": "Cartuchos de Tinta",
+  "brand": "BROTHER",
+  "sku": "LC3019BK",
+  "ean": "12502645955",
+  "warranty": "12",
+  "description": "Cartucho de tinta LC3019BK Negra Alto Rendimiento - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12738
+  },
+  "stock": 10,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

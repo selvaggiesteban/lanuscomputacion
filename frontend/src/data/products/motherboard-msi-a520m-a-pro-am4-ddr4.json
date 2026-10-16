@@ -1,0 +1,29 @@
+{
+  "id": "elit_14774",
+  "title": "Motherboard MSI A520M-A PRO AM4 DDR4",
+  "price": 90596.18,
+  "originalPrice": 45.97,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/14774/i/oBp68_l.webp",
+  "slug": "motherboard-msi-a520m-a-pro-am4-ddr4",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "MSI",
+  "sku": "A520M-A PRO",
+  "ean": "4719072749927",
+  "warranty": "36",
+  "description": "Motherboard MSI A520M-A PRO AM4 DDR4 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15099
+  },
+  "stock": 3990,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

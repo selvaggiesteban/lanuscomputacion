@@ -1,0 +1,29 @@
+{
+  "id": "elit_18160",
+  "title": "Parlante Bluetooth UE Wonderboom 4 Rosa",
+  "price": 174671.35,
+  "originalPrice": 80.94,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/18160/i/MAt2k_l.webp",
+  "slug": "parlante-bluetooth-ue-wonderboom-4-rosa",
+  "categorySlug": "audio",
+  "category": "Audio",
+  "subcategory": "Parlantes",
+  "brand": "LOGITECH",
+  "sku": "984-001890",
+  "ean": "97855189967",
+  "warranty": "12",
+  "description": "Parlante Bluetooth UE Wonderboom 4 Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 29112
+  },
+  "stock": 21,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

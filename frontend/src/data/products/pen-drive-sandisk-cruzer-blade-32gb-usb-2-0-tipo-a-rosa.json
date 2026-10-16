@@ -1,0 +1,29 @@
+{
+  "id": "elit_15365",
+  "title": "Pen Drive SANDISK Cruzer Blade 32GB USB 2.0 Tipo A Rosa",
+  "price": 22896.75,
+  "originalPrice": 10.61,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/15365/i/VgHs2_l.webp",
+  "slug": "pen-drive-sandisk-cruzer-blade-32gb-usb-2-0-tipo-a-rosa",
+  "categorySlug": "almacenamiento",
+  "category": "Almacenamiento",
+  "subcategory": "Pen Drives",
+  "brand": "SANDISK",
+  "sku": "SDCZ50C-032G-B35PE",
+  "ean": "619659146962",
+  "warranty": "12",
+  "description": "Pen Drive SANDISK Cruzer Blade 32GB USB 2.0 Tipo A Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 3816
+  },
+  "stock": 136,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

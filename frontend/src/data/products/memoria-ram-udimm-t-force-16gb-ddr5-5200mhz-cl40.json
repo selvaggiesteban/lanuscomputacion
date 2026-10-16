@@ -1,0 +1,29 @@
+{
+  "id": "elit_19787",
+  "title": "Memoria Ram UDIMM T-FORCE 16GB DDR5 5200Mhz CL40",
+  "price": 532245.18,
+  "originalPrice": 270.07,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19787/i/h4uql_l.webp",
+  "slug": "memoria-ram-udimm-t-force-16gb-ddr5-5200mhz-cl40",
+  "categorySlug": "memorias",
+  "category": "Memorias",
+  "subcategory": "Memorias PC",
+  "brand": "TEAM GROUP",
+  "sku": "FLBD516G5200HC40C01",
+  "ean": "765441662490",
+  "warranty": "99",
+  "description": "Memoria Ram UDIMM T-FORCE 16GB DDR5 5200Mhz CL40 - 99",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 88708
+  },
+  "stock": 48,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

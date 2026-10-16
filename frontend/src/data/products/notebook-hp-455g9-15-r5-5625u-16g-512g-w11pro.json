@@ -1,0 +1,29 @@
+{
+  "id": "elit_17149",
+  "title": "Notebook HP 455G9 15\" R5 5625U 16G/512G W11Pro",
+  "price": 2264668.06,
+  "originalPrice": 1149.13,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17149/i/0Pxu5_l.webp",
+  "slug": "notebook-hp-455g9-15-r5-5625u-16g-512g-w11pro",
+  "categorySlug": "computadoras",
+  "category": "Computadoras",
+  "subcategory": "Notebooks Corporativo",
+  "brand": "HP",
+  "sku": "9Q0B5AT",
+  "ean": "197961836950",
+  "warranty": "12",
+  "description": "Notebook HP 455G9 15\" R5 5625U 16G/512G W11Pro - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 377445
+  },
+  "stock": 13,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

@@ -1,0 +1,29 @@
+{
+  "id": "elit_19594",
+  "title": "Mochila Xtech,Battlestash, Gamer, 17\", 18 kg, Neg",
+  "price": 58353.27,
+  "originalPrice": 27.04,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19594/i/2pH1o_l.webp",
+  "slug": "mochila-xtech-battlestash-gamer-17-18-kg-neg",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "XTECH",
+  "sku": "XTB-508",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Xtech,Battlestash, Gamer, 17\", 18 kg, Neg - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 9726
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

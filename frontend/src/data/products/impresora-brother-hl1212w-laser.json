@@ -1,0 +1,29 @@
+{
+  "id": "elit_6057",
+  "title": "Impresora Brother HL1212W Laser",
+  "price": 250819.58,
+  "originalPrice": 127.27,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/6057/i/TluB6_l.webp",
+  "slug": "impresora-brother-hl1212w-laser",
+  "categorySlug": "impresoras",
+  "category": "Impresoras",
+  "subcategory": "Impresoras Láser",
+  "brand": "BROTHER",
+  "sku": "HL1212W",
+  "ean": "12502639824",
+  "warranty": "12",
+  "description": "Impresora Brother HL1212W Laser - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 41803
+  },
+  "stock": 533,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

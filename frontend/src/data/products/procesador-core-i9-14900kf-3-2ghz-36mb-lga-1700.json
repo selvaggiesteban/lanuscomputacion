@@ -1,0 +1,29 @@
+{
+  "id": "elit_17088",
+  "title": "Procesador Core i9-14900KF 3.2GHz 36MB LGA 1700",
+  "price": 1105442.91,
+  "originalPrice": 560.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17088/i/wr6HR_l.webp",
+  "slug": "procesador-core-i9-14900kf-3-2ghz-36mb-lga-1700",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Procesadores",
+  "brand": "INTEL",
+  "sku": "BX8071514900KF",
+  "ean": "5032037278546",
+  "warranty": "60",
+  "description": "Procesador Core i9-14900KF 3.2GHz 36MB LGA 1700 - 60",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 184240
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

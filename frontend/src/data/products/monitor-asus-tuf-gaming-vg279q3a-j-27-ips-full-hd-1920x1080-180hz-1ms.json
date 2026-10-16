@@ -1,0 +1,29 @@
+{
+  "id": "elit_19869",
+  "title": "Monitor ASUS TUF Gaming VG279Q3A-J 27\" IPS Full HD (1920x1080) 180Hz 1ms",
+  "price": 325621.05,
+  "originalPrice": 136.55,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19869/i/qdJyp_l.webp",
+  "slug": "monitor-asus-tuf-gaming-vg279q3a-j-27-ips-full-hd-1920x1080-180hz-1ms",
+  "categorySlug": "imagen",
+  "category": "Imagen",
+  "subcategory": "Monitores",
+  "brand": "ASUS",
+  "sku": "VG279Q3A-J",
+  "ean": "4711387717561",
+  "warranty": "36",
+  "description": "Monitor ASUS TUF Gaming VG279Q3A-J 27\" IPS Full HD (1920x1080) 180Hz 1ms - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 54270
+  },
+  "stock": 115,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": true,
+  "dollarRate": 1450.0
+}

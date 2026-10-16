@@ -1,0 +1,29 @@
+{
+  "id": "elit_19586",
+  "title": "Mochila Klip Xtreme, Nomad, 2 en 1, Imper, Usb ,Ca",
+  "price": 91500.68,
+  "originalPrice": 42.4,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19586/i/6oCaa_l.webp",
+  "slug": "mochila-klip-xtreme-nomad-2-en-1-imper-usb-ca",
+  "categorySlug": "estuches",
+  "category": "Estuches",
+  "subcategory": "Mochilas",
+  "brand": "KLIP XTREME",
+  "sku": "KNB-950",
+  "ean": "0",
+  "warranty": "12 MESES",
+  "description": "Mochila Klip Xtreme, Nomad, 2 en 1, Imper, Usb ,Ca - 12 MESES",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 15250
+  },
+  "stock": 16,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

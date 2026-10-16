@@ -1,0 +1,29 @@
+{
+  "id": "elit_17101",
+  "title": "Mouse Inalámbrico Logitech MX Anywhere 3S Rosa",
+  "price": 114146.85,
+  "originalPrice": 57.92,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/17101/i/rGKvY_l.webp",
+  "slug": "mouse-inalambrico-logitech-mx-anywhere-3s-rosa",
+  "categorySlug": "perifericos",
+  "category": "Periféricos",
+  "subcategory": "Mouses",
+  "brand": "LOGITECH",
+  "sku": "910-006934",
+  "ean": "97855184061",
+  "warranty": "12",
+  "description": "Mouse Inalámbrico Logitech MX Anywhere 3S Rosa - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 19024
+  },
+  "stock": 18,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

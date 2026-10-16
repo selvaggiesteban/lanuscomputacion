@@ -1,0 +1,29 @@
+{
+  "id": "elit_19008",
+  "title": "Router Mesh Cudy AC1200 Gigabit 2 pack",
+  "price": 77411.75,
+  "originalPrice": 39.28,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19008/i/LE6u1_l.webp",
+  "slug": "router-mesh-cudy-ac1200-gigabit-2-pack",
+  "categorySlug": "conectividad",
+  "category": "Conectividad",
+  "subcategory": "Routers",
+  "brand": "CUDY",
+  "sku": "M1300(2-Pack)",
+  "ean": "6971690792091",
+  "warranty": "12",
+  "description": "Router Mesh Cudy AC1200 Gigabit 2 pack - 12",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 12902
+  },
+  "stock": 79,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}

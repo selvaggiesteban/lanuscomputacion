@@ -1,0 +1,29 @@
+{
+  "id": "elit_19895",
+  "title": "Motherboard GIGABYTE B840M H AM5 DDR5",
+  "price": 160794.92,
+  "originalPrice": 81.59,
+  "discount": null,
+  "image": "https://images.elit.com.ar/p/19895/i/k7SZ2_l.webp",
+  "slug": "motherboard-gigabyte-b840m-h-am5-ddr5",
+  "categorySlug": "hardware",
+  "category": "Hardware",
+  "subcategory": "Motherboards",
+  "brand": "GIGABYTE",
+  "sku": "B840M H",
+  "ean": "4719331877880",
+  "warranty": "36",
+  "description": "Motherboard GIGABYTE B840M H AM5 DDR5 - 36",
+  "rating": 0,
+  "reviewsCount": 0,
+  "freeShipping": false,
+  "installments": {
+    "count": 6,
+    "value": 26799
+  },
+  "stock": 33,
+  "provider": "elit",
+  "providerStore": "minorista",
+  "isGamer": false,
+  "dollarRate": 1450.0
+}
