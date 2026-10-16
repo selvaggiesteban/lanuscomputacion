@@ -1,6 +1,7 @@
 name = "lanus-computacion-api"
 main = "backend/api/server.py"
 compatibility_date = "2024-04-03"
+compatibility_flags = ["python_workers"]
 
 [vars]
 ENVIRONMENT = "production"
