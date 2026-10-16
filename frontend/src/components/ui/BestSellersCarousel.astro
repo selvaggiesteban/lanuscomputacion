@@ -6,6 +6,11 @@ export interface Props {
 }
 
 const { title = 'Más Vendidos', linkText = 'Ver más', linkHref = '/categoria/todas' } = Astro.props;
+import { getProducts } from '../lib/d1';
+
+// In an actual Astro component, you can't access Astro.locals from here directly if it's a UI component
+// but the page that uses it (index.astro) can pass the data.
+// However, let's implement the logic to handle the products prop.
 ---
 
 <section class="ml-container py-8">
@@ -20,25 +25,10 @@ const { title = 'Más Vendidos', linkText = 'Ver más', linkHref = '/categoria/t
       class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide transition-transform duration-500 ease-out"
       style="scroll-behavior: smooth;"
     >
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div class="flex-shrink-0 w-1/2 md:w-1/4 lg:w-1/6 snap-start">
-          <div class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
-            <div class="aspect-square bg-ml-bg rounded mb-3 flex items-center justify-center text-ml-text-muted text-xs">
-              Producto {i + 1}
-            </div>
-            <div class="flex-1">
-              <div class="h-4 bg-gray-100 rounded mb-2 w-3/4"></div>
-              <div class="h-3 bg-gray-50 rounded mb-3 w-1/2"></div>
-            </div>
-            <div class="mt-auto pt-2 border-t flex justify-between items-center">
-              <div class="h-5 bg-ml-yellow rounded w-12"></div>
-              <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+      <!-- Products will be rendered here -->
+      {Astro.slots.render('default') ||
+        <div class="text-ml-text-muted italic">Cargando productos...</div>
+      }
     </div>
 
     <!-- Controls -->
