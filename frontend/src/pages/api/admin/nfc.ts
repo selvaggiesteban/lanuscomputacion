@@ -1,7 +1,7 @@
 import { getAllNfcCards, getNfcCardBySlug, upsertNfcCard, deleteNfcCard, incrementNfcScanCount } from '../../../lib/d1';
 
 export async function GET({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   const url = new URL(request.url);
   const slug = url.searchParams.get('slug');
   const cardNumber = url.searchParams.get('number');
@@ -25,7 +25,7 @@ export async function GET({ request, locals }) {
 }
 
 export async function POST({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     await upsertNfcCard(db, data);
@@ -36,7 +36,7 @@ export async function POST({ request, locals }) {
 }
 
 export async function PUT({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     await upsertNfcCard(db, data);
@@ -47,7 +47,7 @@ export async function PUT({ request, locals }) {
 }
 
 export async function DELETE({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     await deleteNfcCard(db, data.id);

@@ -4,7 +4,7 @@ import { sendEmail, orderConfirmationEmail, orderStatusEmail } from "../../../li
 const MP_API = "https://api.mercadopago.com";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const db = locals.runtime?.env?.DB as D1Database;
   const mpToken = locals.runtime.env.MP_ACCESS_TOKEN as string;
   const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
   const gmailReady = Boolean(emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD);

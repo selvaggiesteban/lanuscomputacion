@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../../lib/auth";
 
 export const GET: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const user = await getUserFromRequest(request, DB, jwtSecret);
 
@@ -24,7 +24,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
 };
 
 export const PUT: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const user = await getUserFromRequest(request, DB, jwtSecret);
 

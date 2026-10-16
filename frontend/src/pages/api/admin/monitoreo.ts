@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { getUserFromRequest, getJwtSecret } from "../../../lib/auth";
 
 async function requireAdmin(locals: any, request: Request) {
-  const db = locals.runtime.env.DB as D1Database;
+  const db = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const user = await getUserFromRequest(request, db, jwtSecret);
   if (!user || !user.is_admin) return null;

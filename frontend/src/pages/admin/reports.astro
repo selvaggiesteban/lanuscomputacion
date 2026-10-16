@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const start_date = Astro.url.searchParams.get('start_date') || '';
+const end_date = Astro.url.searchParams.get('end_date') || '';
+
+let report = {
+  metrics: { total_sales: 0, order_count: 0 },
+  top_products: [],
+  payment_methods: []
+};
+
+try {
+  const response = await fetch(`${Astro.url.origin}/api/reports${start_date ? `?start_date=${start_date}` : ''}${end_date ? (start_date ? `&end_date=${end_date}` : `?end_date=${end_date}`) : ''}`);
+  if (response.ok) {
+    report = await response.json();
+  }
+} catch (e) {
+  console.error("Error fetching report:", e);
+}
+---
+
+<BaseLayout title="Reportes | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Reportes de Ventas</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-white rounded shadow-card p-4 mb-6">
+      <form class="flex gap-4 items-end flex-wrap">
+        <div class="flex gap-4 items-end">
+          <div>
+            <label class="block text-xs font-medium text-ml-text-muted mb-1">Fecha Inicio</label>
+            <input type="date" name="start_date" value={start_date} class="border rounded px-2 py-1 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-ml-text-muted mb-1">Fecha Fin</label>
+            <input type="date" name="end_date" value={end_date} class="border rounded px-2 py-1 text-sm" />
+          </div>
+          <button type="submit" class="bg-ml-blue text-white px-4 py-1 rounded text-sm hover:bg-blue-700 transition-colors">Filtrar</button>
+          <a href="/admin/reports" class="text-sm text-ml-blue hover:underline py-1">Limpiar</a>
+        </div>
+        <div class="ml-auto">
+          <a href={`/api/admin/export-orders${start_date ? `?start_date=${start_date}` : ''}${end_date ? (start_date ? `&end_date=${end_date}` : `?end_date=${end_date}`) : ''}`}
+             class="inline-flex items-center gap-2 bg-gray-100 text-ml-text px-4 py-1 rounded text-sm hover:bg-gray-200 transition-colors border">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Exportar CSV
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- KPI Row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white p-6 rounded shadow-card border-l-4 border-ml-blue">
+        <p class="text-sm font-medium text-ml-text-muted uppercase tracking-wider">Ventas Totales</p>
+        <p class="text-3xl font-bold text-ml-text">${report.metrics.total_sales.toLocaleString('es-AR')}</p>
+      </div>
+      <div class="bg-white p-6 rounded shadow-card border-l-4 border-green-500">
+        <p class="text-sm font-medium text-ml-text-muted uppercase tracking-wider">Cantidad de Órdenes</p>
+        <p class="text-3xl font-bold text-ml-text">{report.metrics.order_count}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Top Products -->
+      <div class="bg-white rounded shadow-card overflow-hidden">
+        <div class="p-4 border-b bg-gray-50">
+          <h2 class="font-medium text-ml-text">Productos Top (Ventas)</h2>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 border-b">
+              <tr>
+                <th class="text-left p-3 font-medium text-ml-text">Producto</th>
+                <th class="text-right p-3 font-medium text-ml-text">Cant.</th>
+                <th class="text-right p-3 font-medium text-ml-text">Ingresos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              {report.top_products.length > 0 ? report.top_products.map((p: any) => (
+                <tr class="hover:bg-gray-50">
+                  <td class="p-3 text-ml-text">{p.title}</td>
+                  <td class="p-3 text-right text-ml-text">{p.total_qty}</td>
+                  <td class="p-3 text-right font-medium text-ml-text">${p.total_revenue.toLocaleString('es-AR')}</td>
+                </tr>
+              )) : (
+                <tr><td colspan="3" class="p-4 text-center text-ml-text-muted">No hay datos disponibles</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="bg-white rounded shadow-card overflow-hidden">
+        <div class="p-4 border-b bg-gray-50">
+          <h2 class="font-medium text-ml-text">Métodos de Pago</h2>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 border-b">
+              <tr>
+                <th class="text-left p-3 font-medium text-ml-text">Método</th>
+                <th class="text-right p-3 font-medium text-ml-text">Órdenes</th>
+                <th class="text-right p-3 font-medium text-ml-text">Total</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              {report.payment_methods.length > 0 ? report.payment_methods.map((m: any) => (
+                <tr class="hover:bg-gray-50">
+                  <td class="p-3 text-ml-text capitalize">{m.payment_method || 'No especificado'}</td>
+                  <td class="p-3 text-right text-ml-text">{m.order_count}</td>
+                  <td class="p-3 text-right font-medium text-ml-text">${m.total_revenue.toLocaleString('es-AR')}</td>
+                </tr>
+              )) : (
+                <tr><td colspan="3" class="p-4 text-center text-ml-text-muted">No hay datos disponibles</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

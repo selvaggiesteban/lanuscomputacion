@@ -3,7 +3,7 @@ import { generateToken, createSessionCookie, hashPassword, getJwtSecret } from "
 import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const GET: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const clientId = locals.runtime.env.GOOGLE_CLIENT_ID as string;
   const clientSecret = locals.runtime.env.GOOGLE_CLIENT_SECRET as string;

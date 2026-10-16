@@ -1,13 +1,18 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/ui/Breadcrumb.astro';
-import ProductGrid from '../../components/catalog/ProductGrid.astro';
-import Pagination from '../../components/catalog/Pagination.astro';
-import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import ProductGrid from '../components/catalog/ProductGrid.astro';
+import Pagination from '../components/catalog/Pagination.astro';
+import SortSelector from '../components/catalog/SortSelector.tsx';
+import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../lib/d1';
 
-const { slug } = Astro.params;
-const DB = Astro.locals.runtime.env.DB;
+const slug = Astro.url.searchParams.get('slug') || 'todas';
+const DB = Astro.locals.runtime?.env?.DB;
+
+if (!DB) {
+  // Prevent build crash: return empty state or a simple message
+  // In a real static build, this page will be a shell that loads data client-side or is handled by the Worker
+}
 
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
@@ -42,7 +47,7 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.nam
 const allCategories = await getAllCategoriesWithChildren(DB);
 
 // Build base URL for filters — always use current page slug
-const filterBaseUrl = `/categoria/${slug}`;
+const filterBaseUrl = `/categoria?slug=${slug}`;
 
 // Get price range — fix for "todas" (no category filter)
 let priceRange;
@@ -77,7 +82,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
   <div class="ml-container">
     <Breadcrumb items={[
       { label: 'Inicio', href: '/' },
-      ...(category?.parent_id ? [{ label: 'Categorías', href: '/categoria/todas' }] : []),
+      ...(category?.parent_id ? [{ label: 'Categorías', href: '/categoria?slug=todas' }] : []),
       { label: categoryName },
     ]} />
   </div>
@@ -94,14 +99,14 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         <h3 class="text-sm font-semibold text-ml-text mb-3">Categorías</h3>
         <ul class="space-y-1">
           <li>
-            <a href="/categoria/todas"
+            <a href="/categoria?slug=todas"
                class={`text-sm block py-1 transition-colors ${slug === 'todas' ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
               Todas las categorías
             </a>
           </li>
           {allCategories.map((cat) => (
             <li>
-              <a href={`/categoria/${cat.slug}`}
+              <a href={`/categoria?slug=${cat.slug}`}
                  class={`text-sm block py-1 transition-colors ${isCategoryActive(cat.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
                 {cat.picture} {cat.name}
               </a>
@@ -109,7 +114,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
                 <ul class="ml-4 space-y-0.5 mt-0.5">
                   {cat.children.map((sub) => (
                     <li>
-                      <a href={`/categoria/${sub.slug}`}
+                      <a href={`/categoria?slug=${sub.slug}`}
                          class={`text-xs block py-0.5 transition-colors ${isSubcategoryActive(sub.slug) ? 'text-ml-blue font-medium' : 'text-ml-text-muted hover:text-ml-blue'}`}>
                         {sub.name}
                       </a>

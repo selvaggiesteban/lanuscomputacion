@@ -6,7 +6,7 @@ import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
 const MP_API = "https://api.mercadopago.com";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
   const mpToken = locals.runtime.env.MP_ACCESS_TOKEN as string;
 
   // Kill-switch temporal del medio de pago Mercado Pago (app_config.mp_enabled).

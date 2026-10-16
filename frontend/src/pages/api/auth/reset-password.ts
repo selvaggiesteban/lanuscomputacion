@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { verifyResetToken, hashPassword, getJwtSecret } from "../../../lib/auth";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const db = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
 
   let body: { token?: string; password?: string };

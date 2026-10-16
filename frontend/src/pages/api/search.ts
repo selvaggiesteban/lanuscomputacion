@@ -3,7 +3,13 @@ import type { Product } from "../../lib/d1";
 
 export const GET: APIRoute = async ({ locals, request }) => {
   try {
-    const DB = locals.runtime.env.DB as D1Database;
+    const DB = locals.runtime?.env?.DB as D1Database;
+    if (!DB) {
+      return new Response(JSON.stringify({ error: "Database connection not available" }), {
+        status: 503,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
     const url = new URL(request.url);
     const q = url.searchParams.get("q") || "";
     const category = url.searchParams.get("category") || "";

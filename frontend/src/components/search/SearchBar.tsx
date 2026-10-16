@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
+import React, { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 
 interface SuggestProduct {
   id: string;
@@ -75,7 +75,7 @@ export default function SearchBar({ className = "" }: SearchBarProps) {
   };
 
   const openProduct = (slug: string) => {
-    window.location.href = `/producto/${slug}`;
+    window.location.href = `/producto?slug=${slug}`;
   };
 
   const onSubmit = (e: FormEvent) => {

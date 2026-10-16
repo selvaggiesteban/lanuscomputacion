@@ -40,7 +40,7 @@ if (search) {
 const totalPages = Math.ceil(total / limit);
 let categories: any[] = [];
 try {
-  const { results } = await DB.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all();
+  const { results } = await DB.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER by name").all();
   categories = results || [];
 } catch (e) {
   console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
@@ -162,7 +162,14 @@ try {
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Descripción</label>
           <textarea name="description" id="form-description" class="ml-input w-full" rows={3}></textarea>
+          <div class="mt-2 flex items-center gap-2">
+            <button type="button" id="btn-generate-ai" class="text-xs text-ml-blue hover:underline flex items-center gap-1">
+              <span>✨ Generar con AI</span>
+            </button>
+            <span id="ai-loading" class="hidden text-xs text-ml-text-muted animate-pulse">Generando...</span>
+          </div>
         </div>
+
         <div class="flex gap-3 justify-end">
           <button type="button" id="modal-cancel" class="ml-btn-secondary px-4">Cancelar</button>
           <button type="submit" class="ml-btn-primary px-6">Guardar</button>
@@ -176,6 +183,8 @@ try {
   const overlay = document.getElementById('modal-overlay')!;
   const form = document.getElementById('product-form') as HTMLFormElement;
   const modalTitle = document.getElementById('modal-title')!;
+  const btnGenerateAI = document.getElementById('btn-generate-ai');
+  const aiLoading = document.getElementById('ai-loading');
 
   function openModal(product?: any) {
     if (product) {
@@ -251,5 +260,47 @@ try {
     }
     overlay.classList.add('hidden');
     location.reload();
+  });
+
+  btnGenerateAI?.addEventListener('click', async () => {
+    const productId = (document.getElementById('form-id') as HTMLInputElement).value;
+    if (!productId) {
+      alert('Por favor, seleccione o cree un producto primero.');
+      return;
+    }
+
+    if (aiLoading) {
+      aiLoading.classList.remove('hidden');
+    }
+
+    try {
+      const res = await fetch('/api/admin/ai-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Error al generar contenido');
+      }
+
+      const data = await res.json();
+
+      let formattedContent = 'Sugerencias de contenido AI:\n\n';
+      const posts = data.posts || (Array.isArray(data) ? data : [data]);
+
+      posts.forEach((post: any, i: number) => {
+        formattedContent += `[${post.format || 'Post'}] ${post.hook || ''}\n${post.body || ''}\nHashtags: ${post.hashtags || ''}\n\n`;
+      });
+
+      alert(formattedContent);
+    } catch (e: any) {
+      alert('Error: ' + e.message);
+    } finally {
+      if (aiLoading) {
+        aiLoading.classList.add('hidden');
+      }
+    }
   });
 </script>

@@ -3,7 +3,7 @@ import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
 
 export const GET: APIRoute = async ({ locals, request }) => {
   try {
-    const DB = locals.runtime.env.DB as D1Database;
+    const DB = locals.runtime?.env?.DB as D1Database;
     const jwtSecret = getJwtSecret(locals.runtime.env);
     const user = await getUserFromRequest(request, DB, jwtSecret);
 

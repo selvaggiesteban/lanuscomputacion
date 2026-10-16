@@ -1,9 +1,14 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getNfcCardBySlug, incrementNfcScanCount } from '../../lib/d1';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getNfcCardBySlug, incrementNfcScanCount } from '../lib/d1';
 
-const { slug } = Astro.params;
-const db = Astro.locals.runtime.env.DB;
+const slug = Astro.url.searchParams.get('slug') || '';
+const db = Astro.locals.runtime?.env?.DB;
+
+if (!db) {
+  // Build time guard
+  return new Response('Database not available', { status: 503 });
+}
 
 const card = await getNfcCardBySlug(db, `p/${slug}`);
 
@@ -12,8 +17,9 @@ if (!card || !card.is_active) {
 }
 
 // Track scan
-const ipHash = Astro.request.headers.get('cf-connecting-ip') 
-  ? await crypto.subtle.digest('SHA-256', new TextEncoder().encode(Astro.request.headers.get('cf-connecting-ip')!))
+const ip = Astro.request.headers.get('cf-connecting-ip');
+const ipHash = ip
+  ? await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip))
     .then(h => Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join(''))
     .catch(() => null)
   : null;
@@ -21,7 +27,9 @@ const ipHash = Astro.request.headers.get('cf-connecting-ip')
 const userAgent = Astro.request.headers.get('user-agent');
 const referrer = Astro.request.headers.get('referer');
 
-await incrementNfcScanCount(db, card.id, ipHash ?? undefined, userAgent ?? undefined, referrer ?? undefined);
+if (db) {
+  await incrementNfcScanCount(db, card.id, ipHash ?? undefined, userAgent ?? undefined, referrer ?? undefined);
+}
 
 // Determine redirect URL
 const redirectUrl = card.target_url.startsWith('http') 

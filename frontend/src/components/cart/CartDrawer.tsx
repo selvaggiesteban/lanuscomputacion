@@ -66,9 +66,10 @@ export default function CartDrawer({ open, onClose }: Props) {
     refresh();
   };
 
+  const SHIPPING_RATE = 17000;
   const subtotal = items.reduce((s, i) => (i.promo_price ?? i.price) * i.quantity + s, 0);
   const discount = couponDiscount?.totalDiscount ?? 0;
-  const total = subtotal - discount;
+  const total = subtotal - discount + SHIPPING_RATE;
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return;
@@ -285,6 +286,10 @@ export default function CartDrawer({ open, onClose }: Props) {
                   <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
                 </div>
               )}
+              <div class="flex justify-between border-t pt-1">
+                <span class="text-ml-text-muted">Envío</span>
+                <span class="font-medium">${SHIPPING_RATE.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
               <div class="flex justify-between border-t pt-1">
                 <span class="font-semibold text-ml-text">Total</span>
                 <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>

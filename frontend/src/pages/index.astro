@@ -14,13 +14,17 @@ let catImages: { category_id: string; thumbnail: string }[] = [];
 
 if (categoryIds.length > 0) {
   try {
-    const { results } = await DB.prepare(`
-      SELECT category_id, thumbnail
-      FROM products
-      WHERE status = 'published' AND thumbnail != '' AND category_id IN (${placeholders})
-      GROUP BY category_id
-    `).bind(...categoryIds).all<{ category_id: string; thumbnail: string }>();
-    catImages = results || [];
+    if (!DB) {
+      catImages = [];
+    } else {
+      const { results } = await DB.prepare(`
+        SELECT category_id, thumbnail
+        FROM products
+        WHERE status = 'published' AND thumbnail != '' AND category_id IN (${placeholders})
+        GROUP BY category_id
+      `).bind(...categoryIds).all<{ category_id: string; thumbnail: string }>();
+      catImages = results || [];
+    }
   } catch (e) {
     console.error("D1 Error in index.astro:", e);
     catImages = [];
@@ -48,7 +52,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
           Encontrá todo en celulares, computación, audio, gaming y más.
         </p>
         <div class="flex gap-3">
-          <a href="/categoria/todas" class="ml-btn-primary bg-black hover:bg-gray-800">
+          <a href="/categoria?slug=todas" class="ml-btn-primary bg-black hover:bg-gray-800">
             Ver productos
           </a>
           <a href="/ofertas" class="ml-btn-secondary bg-white text-black border border-black hover:bg-gray-100">
@@ -119,7 +123,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
     <BestSellersCarousel>
       {bestSellers.slice(0, 20).map(p => (
         <div class="flex-shrink-0 w-1/2 md:w-1/4 lg:w-1/6 snap-start">
-          <a href={`/producto/${p.slug}`} class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
+          <a href={`/producto?slug=${p.slug}`} class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
             <div class="aspect-square bg-ml-bg rounded mb-3 flex items-center justify-center overflow-hidden">
               <img src={p.thumbnail} alt={p.title} class="w-full h-full object-contain" loading="lazy" />
             </div>
@@ -143,7 +147,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
   <section class="ml-container py-8">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-xl font-semibold text-ml-text">Categorías</h2>
-      <a href="/categoria/todas" class="text-sm ml-link">Ver todas</a>
+      <a href="/categoria?slug=todas" class="text-sm ml-link">Ver todas</a>
     </div>
 
     <div class="relative">
@@ -154,7 +158,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
             const imgSrc = slideImage?.src ?? imageMap[cat.id];
             const imgAlt = slideImage?.alt ?? cat.name;
             return (
-            <a href={`/categoria/${cat.slug}`} class="min-w-full">
+            <a href={`/categoria?slug=${cat.slug}`} class="min-w-full">
               <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 p-6 md:p-10 md:pl-14 text-center md:text-left">
                   <h2 class="text-xl md:text-3xl font-bold text-ml-text">{cat.name}</h2>

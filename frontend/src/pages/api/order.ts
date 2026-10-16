@@ -7,7 +7,7 @@ import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
 // efectivo (sin Mercado Pago). Mismas reglas de precio que /api/checkout
 // (promos + precio mayorista solo para cuentas B2B aprobadas).
 export const POST: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
 
   let body: {
     items?: { product_id: string; quantity: number; promo_price?: number }[];
@@ -58,6 +58,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
       console.error("B2B auth/rules error:", e);
     }
 
+    const SHIPPING_RATE = 17000;
     const orderId = crypto.randomUUID();
     const orderItemsData: {
       product_id: string; product_title: string; quantity: number;
@@ -109,7 +110,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
       });
     }
 
-    total = Math.round(total * 100) / 100;
+    total = Math.round(total * 100) / 100 + SHIPPING_RATE;
     const firstProduct = productMap.get(String(body.items[0].product_id))!;
 
     const batchStatements = [
@@ -146,7 +147,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
 export const GET: APIRoute = async ({ locals, url }) => {
   try {
-    const DB = locals.runtime.env.DB as D1Database;
+    const DB = locals.runtime?.env?.DB as D1Database;
     const id = url.searchParams.get("id");
 
     if (!id) {

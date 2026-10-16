@@ -3,7 +3,7 @@ import { verifyPassword, generateToken, createSessionCookie, getJwtSecret } from
 import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const db = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
 
   const ip = getClientIp(request);

@@ -4,7 +4,7 @@ import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 import { sendEmail, resetPasswordEmail } from "../../../lib/email";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  const DB = locals.runtime?.env?.DB as D1Database;
   const jwtSecret = getJwtSecret(locals.runtime.env);
   const emailEnv = locals.runtime.env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
 

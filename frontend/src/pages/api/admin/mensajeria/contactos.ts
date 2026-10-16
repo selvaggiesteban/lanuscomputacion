@@ -1,7 +1,7 @@
 import { getContacts, upsertContact, deleteContact } from '../../../../lib/d1';
 
 export async function GET({ locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const contacts = await getContacts(db);
     return new Response(JSON.stringify(contacts));
@@ -11,7 +11,7 @@ export async function GET({ locals }) {
 }
 
 export async function POST({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     const id = await upsertContact(db, data);
@@ -22,7 +22,7 @@ export async function POST({ request, locals }) {
 }
 
 export async function PUT({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     await upsertContact(db, data);
@@ -33,7 +33,7 @@ export async function PUT({ request, locals }) {
 }
 
 export async function DELETE({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const db = locals.runtime?.env?.DB;
   try {
     const data = await request.json();
     await deleteContact(db, data.id);

@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const db = locals.runtime.env.DB as D1Database;
+  const db = locals.runtime?.env?.DB as D1Database;
 
   let body: {
     name?: string;
