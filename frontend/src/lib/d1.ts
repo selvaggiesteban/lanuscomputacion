@@ -1,4 +1,10 @@
 export async function getCategories(db: any) {
+  if (!db) {
+    return [
+      { id: "cat_celulares", name: "Celulares", slug: "celulares" },
+      { id: "cat_computacion", name: "Computación", slug: "computacion" },
+    ];
+  }
   try {
     const { results } = await db.prepare("SELECT * FROM categories").all();
     return results || [];
@@ -12,6 +18,18 @@ export async function getCategories(db: any) {
 }
 
 export async function getBestSellers(db: any) {
+  if (!db) {
+    return [
+      {
+        id: "1",
+        title: "Producto de Ejemplo",
+        brand: "Marca",
+        price: 1000,
+        thumbnail: "/placeholder.webp",
+        slug: "producto-ejemplo",
+      },
+    ];
+  }
   try {
     const { results } = await db.prepare("SELECT * FROM products WHERE status = 'published' LIMIT 20").all();
     return results || [];
