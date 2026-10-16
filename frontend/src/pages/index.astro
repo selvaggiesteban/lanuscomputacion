@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandsSection from '../components/home/BrandsSection.astro';
 import BestSellersCarousel from '../components/ui/BestSellersCarousel.astro';
-import { getCategories } from '../lib/d1';
+import { getCategories, getBestSellers } from '../lib/d1';
 
 const DB = (Astro.locals && Astro.locals.runtime && Astro.locals.runtime.env) ? Astro.locals.runtime.env.DB : null;
 const categories = await getCategories(DB);
