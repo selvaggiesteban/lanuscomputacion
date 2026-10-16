@@ -2,10 +2,10 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getNfcCardBySlug, getAllNfcCards } from '../../../lib/d1';
 
-const { id } = Astro.params;
+const id = Astro.url.searchParams.get('id');
 const db = Astro.locals.runtime.env.DB;
 
-const card = await getNfcCardBySlug(db, id);
+const card = id ? await getNfcCardBySlug(db, id) : null;
 const allCards = await getAllNfcCards(db);
 
 if (!card) {

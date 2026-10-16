@@ -2,11 +2,11 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
 
-const { id } = Astro.params;
+const id = Astro.url.searchParams.get('id');
 const db = Astro.locals.runtime.env.DB;
 
 const channels = await getAllMessagingChannels(db);
-const channel = channels.find(c => c.id === id);
+const channel = id ? channels.find(c => c.id === id) : null;
 
 if (!channel) {
   return Astro.redirect('/admin/mensajeria');
