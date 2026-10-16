@@ -392,3 +392,4 @@ This project is licensed under the MIT License.
 
 © 2026 Esteban Selvaggi · Lanús Computación
 # Trigger deploy
+Update for deploy
