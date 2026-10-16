@@ -25,6 +25,13 @@ if (categoryIds.length > 0) {
   }
 }
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
+
+const staticSlideImages: Record<string, { src: string; alt: string }> = {
+  cat_celulares: {
+    src: '/2601_image_41341.webp',
+    alt: 'Celulares y teléfonos: smartphones, accesorios y repuestos en Lanús Computación',
+  },
+};
 ---
 
 <BaseLayout title="Lanús Computación - Tecnología en oferta">
@@ -115,15 +122,19 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
     <div class="relative">
       <div class="overflow-hidden rounded-lg border border-ml-border bg-white shadow-card">
         <div id="cat-track" class="flex transition-transform duration-500 ease-out">
-          {categories.slice(0, 8).map((cat) => (
+          {categories.slice(0, 8).map((cat) => {
+            const slideImage = staticSlideImages[cat.id];
+            const imgSrc = slideImage?.src ?? imageMap[cat.id];
+            const imgAlt = slideImage?.alt ?? cat.name;
+            return (
             <a href={`/categoria/${cat.slug}`} class="min-w-full">
               <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 p-6 md:p-10 md:pl-14 text-center md:text-left">
                   <h2 class="text-xl md:text-3xl font-bold text-ml-text">{cat.name}</h2>
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-8 flex items-center justify-center">
-                  {imageMap[cat.id] ? (
-                    <img src={imageMap[cat.id]} alt={cat.name} class="h-40 md:h-56 object-contain" loading="lazy" />
+                  {imgSrc ? (
+                    <img src={imgSrc} alt={imgAlt} class="h-40 md:h-56 object-contain" loading="lazy" />
                   ) : (
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-32 h-32 text-gray-300">
                       <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -134,7 +145,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
                 </div>
               </div>
             </a>
-          ))}
+            );
+          })}
         </div>
       </div>
 

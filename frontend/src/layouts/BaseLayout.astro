@@ -50,7 +50,7 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
-    <PriceFilterBar />
+    {Astro.url.pathname !== '/' && <PriceFilterBar />}
     <main class="flex-1">
       <slot />
     </main>
