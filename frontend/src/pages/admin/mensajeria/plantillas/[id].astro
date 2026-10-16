@@ -13,6 +13,8 @@ if (id) {
     return Astro.redirect('/admin/mensajeria/plantillas');
   }
 }
+
+const varsHint = '{{name}}, {{company}}, {{order_id}}, {{total}}, {{product}}, {{discount}}, {{url}}, {{message}}, {{details}}';
 ---
 
 <AdminLayout title={template ? `Editar Plantilla: ${template.name} | Lanús Computación` : 'Nueva Plantilla | Lanús Computación'}>
@@ -25,17 +27,17 @@ if (id) {
         <a href="/admin/mensajeria/plantillas" class="text-sm ml-link">← Volver</a>
       </div>
 
-      <form id="template-form" class="bg-white rounded shadow-card p-6 space-y-6">
-        {template && <input type="hidden" name="id" value="{template.id}" />}
+      <form id="template-form" data-mode={template ? 'edit' : 'create'} class="bg-white rounded shadow-card p-6 space-y-6">
+        {template && <input type="hidden" name="id" value={template.id} />}
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">ID (slug único)</label>
-            <input type="text" name="id" value="{template?.id || ''}" class="ml-input w-full" required pattern="[a-z_]+" />
+            <input type="text" name="id" value={template?.id || ''} class="ml-input w-full" required pattern="[a-z_]+" />
           </div>
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Nombre</label>
-            <input type="text" name="name" value="{template?.name || ''}" class="ml-input w-full" required />
+            <input type="text" name="name" value={template?.name || ''} class="ml-input w-full" required />
           </div>
         </div>
 
@@ -52,18 +54,18 @@ if (id) {
 
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Asunto (solo email)</label>
-          <input type="text" name="subject" value="{template?.subject || ''}" class="ml-input w-full" placeholder="Asunto del email" />
+          <input type="text" name="subject" value={template?.subject || ''} class="ml-input w-full" placeholder="Asunto del email" />
         </div>
 
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Contenido *</label>
           <textarea name="content" class="ml-input w-full font-mono text-sm" rows="8" required placeholder="Hola {{name}}, bienvenido a {{company}}...">{template?.content || ''}</textarea>
-          <p class="text-xs text-ml-text-muted mt-1">Variables disponibles: {{name}}, {{company}}, {{order_id}}, {{total}}, {{product}}, {{discount}}, {{url}}, {{message}}, {{details}}</p>
+          <p class="text-xs text-ml-text-muted mt-1">Variables disponibles: {varsHint}</p>
         </div>
 
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Variables (JSON array)</label>
-          <input type="text" name="variables" value="{template?.variables || '[]'}" class="ml-input w-full" placeholder='["name", "company", "message"]' />
+          <input type="text" name="variables" value={template?.variables || '[]'} class="ml-input w-full" placeholder='["name", "company", "message"]' />
         </div>
 
         <div class="flex items-center gap-2">
@@ -79,13 +81,15 @@ if (id) {
 
       {template && (
         <div class="mt-4 text-center">
-          <button onclick="deleteTemplate('{template.id}')" class="text-red-600 hover:underline text-sm">Eliminar plantilla</button>
+          <button type="button" data-del={template.id} class="text-red-600 hover:underline text-sm">Eliminar plantilla</button>
         </div>
       )}
     </div>
   </div>
 
   <script>
+    const mode = document.getElementById('template-form')?.getAttribute('data-mode');
+
     document.getElementById('template-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -99,12 +103,12 @@ if (id) {
 
       try {
         const res = await fetch('/api/admin/mensajeria/plantillas', {
-          method: template ? 'PUT' : 'POST',
+          method: mode === 'edit' ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
         if (res.ok) {
-          alert(template ? 'Guardado correctamente' : 'Plantilla creada');
+          alert(mode === 'edit' ? 'Guardado correctamente' : 'Plantilla creada');
           location.href = '/admin/mensajeria/plantillas';
         } else {
           const err = await res.json();
@@ -132,5 +136,10 @@ if (id) {
         alert('Error de conexión');
       }
     }
+
+    document.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('[data-del]');
+      if (b) deleteTemplate(b.getAttribute('data-del')!);
+    });
   </script>
 </AdminLayout>

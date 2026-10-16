@@ -24,7 +24,7 @@ const totalPages = Math.ceil(totalContacts.length / limit);
     <!-- Search -->
     <form class="mb-6" method="GET">
       <div class="flex gap-2">
-        <input type="text" name="search" value="{search}" placeholder="Buscar por nombre, email, teléfono..." class="ml-input flex-1" />
+        <input type="text" name="search" value={search} placeholder="Buscar por nombre, email, teléfono..." class="ml-input flex-1" />
         <button type="submit" class="ml-btn-primary">Buscar</button>
         {search && <a href="/admin/mensajeria/contactos" class="ml-btn-outline">Limpiar</a>}
       </div>

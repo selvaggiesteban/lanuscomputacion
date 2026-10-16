@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS orders (
     mp_payment_id TEXT,
     mp_preference_id TEXT,
     transfer_proof_path TEXT,
-    status TEXT DEFAULT 'pending' CHECK(status IN ('pending','confirmed','shipped','delivered','cancelled')),
+    status TEXT DEFAULT 'pending' CHECK(status IN ('pending','paid','processing','shipped','delivered','cancelled')),
     customer_name TEXT,
     customer_email TEXT,
     customer_phone TEXT,

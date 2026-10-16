@@ -1,6 +1,7 @@
 ---
 import AdminLayout from '../../../../layouts/AdminLayout.astro';
 import { upsertMessageTemplate } from '../../../../lib/d1';
+const varsHint = '{{name}}, {{company}}, {{order_id}}, {{total}}, {{product}}, {{discount}}, {{url}}, {{message}}, {{details}}';
 ---
 
 <AdminLayout title="Nueva Plantilla | Lanús Computación">
@@ -42,7 +43,7 @@ import { upsertMessageTemplate } from '../../../../lib/d1';
         <div>
           <label class="block text-xs text-ml-text-muted mb-1">Contenido *</label>
           <textarea name="content" class="ml-input w-full font-mono text-sm" rows="8" required placeholder="Hola {{name}}, bienvenido a {{company}}..."></textarea>
-          <p class="text-xs text-ml-text-muted mt-1">Variables: {{name}}, {{company}}, {{order_id}}, {{total}}, {{product}}, {{discount}}, {{url}}, {{message}}, {{details}}</p>
+          <p class="text-xs text-ml-text-muted mt-1">Variables: {varsHint}</p>
         </div>
 
         <div>

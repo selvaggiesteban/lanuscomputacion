@@ -723,6 +723,11 @@ export async function getActiveMessagingChannels(db: D1Database): Promise<Messag
   return results ?? [];
 }
 
+const toDbText = (v: unknown, fallback: string | null = null): string | null => {
+  if (v === undefined || v === null) return fallback;
+  return typeof v === 'string' ? v : JSON.stringify(v);
+};
+
 export async function upsertMessagingChannel(db: D1Database, channel: {
   id: string;
   name: string;
@@ -739,7 +744,7 @@ export async function upsertMessagingChannel(db: D1Database, channel: {
       config=excluded.config, display_order=excluded.display_order, updated_at=datetime('now')
   `).bind(
     channel.id, channel.name, channel.icon ?? null, channel.is_active ?? 1,
-    channel.config ?? '{}', channel.display_order ?? 0
+    toDbText(channel.config, '{}'), channel.display_order ?? 0
   ).run();
 }
 
@@ -796,7 +801,7 @@ export async function upsertContact(db: D1Database, contact: {
     `).bind(
       contact.name, contact.email ?? null, contact.phone ?? null,
       contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
-      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1, contact.id
+      toDbText(contact.tags), contact.notes ?? null, contact.is_subscribed ?? 1, contact.id
     ).run();
     return contact.id;
   } else {
@@ -806,7 +811,7 @@ export async function upsertContact(db: D1Database, contact: {
     `).bind(
       contact.name, contact.email ?? null, contact.phone ?? null,
       contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
-      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1
+      toDbText(contact.tags), contact.notes ?? null, contact.is_subscribed ?? 1
     ).run();
     return result.meta.last_row_id;
   }
@@ -838,7 +843,7 @@ export async function upsertMessageTemplate(db: D1Database, template: {
       content=excluded.content, variables=excluded.variables, is_active=excluded.is_active, updated_at=datetime('now')
   `).bind(
     template.id, template.name, template.channel_id, template.subject ?? null,
-    template.content, template.variables ?? null, template.is_active ?? 1
+    template.content, toDbText(template.variables), template.is_active ?? 1
   ).run();
 }
 

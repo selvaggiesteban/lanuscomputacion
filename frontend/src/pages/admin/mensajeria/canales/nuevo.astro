@@ -35,7 +35,7 @@ const channels = await getAllMessagingChannels(db);
           </div>
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Orden de visualización</label>
-            <input type="number" name="display_order" value="{channels.length}" class="ml-input w-full" min="0" />
+            <input type="number" name="display_order" value={channels.length} class="ml-input w-full" min="0" />
           </div>
         </div>
 
