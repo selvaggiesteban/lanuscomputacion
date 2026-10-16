@@ -4,7 +4,7 @@ import BrandsSection from '../components/home/BrandsSection.astro';
 import BestSellersCarousel from '../components/ui/BestSellersCarousel.astro';
 import { getCategories } from '../lib/d1';
 
-const DB = Astro.locals.runtime.env.DB;
+const DB = (Astro.locals && Astro.locals.runtime && Astro.locals.runtime.env) ? Astro.locals.runtime.env.DB : null;
 const categories = await getCategories(DB);
 const bestSellers = await getBestSellers(DB);
 
