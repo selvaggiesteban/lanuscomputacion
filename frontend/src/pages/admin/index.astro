@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getProducts, getCategories, getOrders } from '../../lib/d1';
 
 const DB = Astro.locals.runtime.env.DB;
@@ -37,7 +37,7 @@ try {
 }
 ---
 
-<BaseLayout title="Admin Dashboard | Lanús Computación">
+<AdminLayout title="Admin Dashboard | Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Dashboard Admin</h1>
@@ -242,4 +242,4 @@ try {
       </div>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>

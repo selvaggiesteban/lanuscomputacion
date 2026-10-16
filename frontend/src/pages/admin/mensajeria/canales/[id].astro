@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../../layouts/AdminLayout.astro';
 import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
 
 const { id } = Astro.params;
@@ -15,7 +15,7 @@ if (!channel) {
 const config = JSON.parse(channel.config || '{}');
 ---
 
-<BaseLayout title={`Canal: ${channel.name} | Lanús Computación`}>
+<AdminLayout title={`Canal: ${channel.name} | Lanús Computación`}>
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -120,4 +120,4 @@ const config = JSON.parse(channel.config || '{}');
       }
     }
   </script>
-</BaseLayout>
+</AdminLayout>

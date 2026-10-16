@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 const page = Number(Astro.url.searchParams.get('page') || 1);
@@ -47,7 +47,7 @@ const statusColors: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="Órdenes | Admin - Lanús Computación">
+<AdminLayout title="Órdenes | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Órdenes</h1>
@@ -113,7 +113,7 @@ const statusColors: Record<string, string> = {
       )}
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>
 
 <script>
   document.querySelectorAll('.status-select').forEach(select => {

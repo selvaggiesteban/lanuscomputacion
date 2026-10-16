@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getNfcCardBySlug, getAllNfcCards } from '../../../lib/d1';
 
 const { id } = Astro.params;
@@ -15,7 +15,7 @@ if (!card) {
 const targetTypes = ['page', 'product', 'category', 'contact', 'custom'];
 ---
 
-<BaseLayout title={`Editar NFC: ${card.title} | Lanús Computación`}>
+<AdminLayout title={`Editar NFC: ${card.title} | Lanús Computación`}>
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -148,4 +148,4 @@ const targetTypes = ['page', 'product', 'category', 'contact', 'custom'];
       }
     }
   </script>
-</BaseLayout>
+</AdminLayout>

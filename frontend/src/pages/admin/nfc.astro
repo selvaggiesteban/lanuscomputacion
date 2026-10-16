@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getAllNfcCards, getNfcScanStats } from '../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -8,7 +8,7 @@ const cards = await getAllNfcCards(db);
 const scanStats = await getNfcScanStats(db, 30);
 ---
 
-<BaseLayout title="Gestión NFC | Lanús Computación">
+<AdminLayout title="Gestión NFC | Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Tarjetas NFC</h1>
@@ -189,4 +189,4 @@ const scanStats = await getNfcScanStats(db, 30);
       }
     }
   </script>
-</BaseLayout>
+</AdminLayout>

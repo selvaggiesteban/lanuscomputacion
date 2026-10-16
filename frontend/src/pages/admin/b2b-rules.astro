@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 
@@ -15,7 +15,7 @@ try {
 }
 ---
 
-<BaseLayout title="Reglas B2B | Admin - Lanús Computación">
+<AdminLayout title="Reglas B2B | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Reglas de Precios Mayoristas (B2B)</h1>
@@ -100,7 +100,7 @@ try {
       </form>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>
 
 <script>
   const overlay = document.getElementById('modal-overlay')!;

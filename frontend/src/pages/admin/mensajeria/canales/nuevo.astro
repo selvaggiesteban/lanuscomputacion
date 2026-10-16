@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../../layouts/AdminLayout.astro';
 import { getAllMessagingChannels, upsertMessagingChannel } from '../../../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
 const channels = await getAllMessagingChannels(db);
 ---
 
-<BaseLayout title="Nuevo Canal de Mensajería | Lanús Computación">
+<AdminLayout title="Nuevo Canal de Mensajería | Lanús Computación">
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -92,4 +92,4 @@ const channels = await getAllMessagingChannels(db);
       }
     });
   </script>
-</BaseLayout>
+</AdminLayout>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../../layouts/AdminLayout.astro';
 import { getContacts, upsertContact, deleteContact } from '../../../../lib/d1';
 
 const { id } = Astro.params;
@@ -14,7 +14,7 @@ if (id) {
 }
 ---
 
-<BaseLayout title={contact ? `Editar Contacto: ${contact.name} | Lanús Computación` : 'Nuevo Contacto | Lanús Computación'}>
+<AdminLayout title={contact ? `Editar Contacto: ${contact.name} | Lanús Computación` : 'Nuevo Contacto | Lanús Computación'}>
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -137,4 +137,4 @@ if (id) {
       }
     }
   </script>
-</BaseLayout>
+</AdminLayout>

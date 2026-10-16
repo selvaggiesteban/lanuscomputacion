@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getContacts } from '../../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -14,7 +14,7 @@ const totalContacts = await getContacts(db, { search: search || undefined });
 const totalPages = Math.ceil(totalContacts.length / limit);
 ---
 
-<BaseLayout title="Contactos | Lanús Computación">
+<AdminLayout title="Contactos | Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Contactos</h1>
@@ -89,4 +89,4 @@ const totalPages = Math.ceil(totalContacts.length / limit);
       </div>
     )}
   </div>
-</BaseLayout>
+</AdminLayout>

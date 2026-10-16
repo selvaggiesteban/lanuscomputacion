@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 let categories = [];
@@ -19,7 +19,7 @@ const parents = (categories || []).filter((c: any) => c.level === 0);
 const subs = (categories || []).filter((c: any) => c.level === 1);
 ---
 
-<BaseLayout title="Categorías | Admin - Lanús Computación">
+<AdminLayout title="Categorías | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Categorías</h1>
@@ -96,7 +96,7 @@ const subs = (categories || []).filter((c: any) => c.level === 1);
       </form>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>
 
 <script>
   const overlay = document.getElementById('modal-overlay')!;
