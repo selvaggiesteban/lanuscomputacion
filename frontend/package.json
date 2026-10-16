@@ -10,8 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.0.0",
-    "@astrojs/cloudflare": "^4.0.0",
+    "astro": "4.16.19",
+    "@astrojs/cloudflare": "latest",
     "tailwindcss": "^3.4.0"
+  },
+  "overrides": {
+    "@astrojs/cloudflare": {
+      "astro": "4.16.19"
+    }
   }
 }
