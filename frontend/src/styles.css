@@ -71,7 +71,7 @@
   }
 
   .ml-price {
-    @apply text-price text-ml-text;
+    @apply text-lg font-bold text-ml-text;
   }
 
   .ml-price-strikethrough {
