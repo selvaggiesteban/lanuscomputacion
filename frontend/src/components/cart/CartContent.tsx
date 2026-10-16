@@ -151,7 +151,7 @@ export default function CartContent() {
     setPayStep("methods");
   };
 
-  const handleOrder = async (method: "transferencia" | "efectivo") => {
+  const handleOrder = async (method: "transferencia" | "efectivo" | "a_convenir") => {
     setCheckingOut(true);
     setError("");
     try {
@@ -175,9 +175,16 @@ export default function CartContent() {
 
       sendAbandoned(data.order_id);
       const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
-      const msg = method === "transferencia"
-        ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`
-        : `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
+
+      let msg = "";
+      if (method === "transferencia") {
+        msg = `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`;
+      } else if (method === "efectivo") {
+        msg = `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (pago en EFECTIVO). Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}.`;
+      } else {
+        msg = `Hola! Quiero coordinar el pedido #${data.order_id.slice(0, 8)} (Envío a convenir). Productos: ${resumen}. Total: $${(total + 17000).toLocaleString("es-AR", { minimumFractionDigits: 2 })} (incluye envío).`;
+      }
+
       setOrderResult({
         orderId: data.order_id,
         method,
@@ -317,6 +324,10 @@ export default function CartContent() {
                 <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
                 <p class="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
               </button>
+              <button onClick={() => handleOrder("a_convenir")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "A convenir"}</p>
+                <p class="text-xs text-ml-text-muted">Costo: $17.000 · Llega en 3 días hábiles</p>
+              </button>
               <button onClick={() => setPayStep("form")} class="text-xs text-ml-blue hover:underline">← Volver</button>
             </div>
           )}
@@ -331,6 +342,11 @@ export default function CartContent() {
                   <p><strong>CVU:</strong> {TRANSFER.cvu}</p>
                   <p><strong>Alias:</strong> {TRANSFER.alias}</p>
                   <p><strong>CUIT:</strong> {TRANSFER.cuit}</p>
+                </div>
+              ) : orderResult.method === "a_convenir" ? (
+                <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
+                  <p><strong>Envío:</strong> A convenir ($17.000)</p>
+                  <p>Llega en 3 días hábiles</p>
                 </div>
               ) : (
                 <p class="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>

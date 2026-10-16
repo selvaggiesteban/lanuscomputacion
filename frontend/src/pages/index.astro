@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandsSection from '../components/home/BrandsSection.astro';
+import BestSellersCarousel from '../components/ui/BestSellersCarousel.astro';
 import { getCategories } from '../lib/d1';
 
 const DB = Astro.locals.runtime.env.DB;
@@ -57,7 +58,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
     </div>
   </section>
 
-  <!-- Beneficios -->
+  <!-- Value Props -->
   <section class="ml-container py-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white rounded-lg p-4 flex items-center gap-3 border border-ml-border">
@@ -67,7 +68,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
           </svg>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h4 class="text-sm font-semibold text-ml-text">Garantía oficial</h4>
           <p class="text-xs text-ml-text-muted">Directa de marca</p>
         </div>
@@ -79,7 +80,7 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
             <line x1="1" y1="10" x2="23" y2="10"/>
           </svg>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h4 class="text-sm font-semibold text-ml-text">Hasta 12 cuotas</h4>
           <p class="text-xs text-ml-text-muted">Con todas las tarjetas</p>
         </div>
@@ -88,12 +89,12 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
         <div class="w-10 h-10 bg-[#f1f1f1] rounded-full flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="3" width="15" height="13"/>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
             <circle cx="5.5" cy="18.5" r="2.5"/>
             <circle cx="18.5" cy="18.5" r="2.5"/>
           </svg>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h4 class="text-sm font-semibold text-ml-text">Envío 24/48h</h4>
           <p class="text-xs text-ml-text-muted">A todo el país</p>
         </div>
@@ -104,13 +105,16 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h4 class="text-sm font-semibold text-ml-text">Soporte experto</h4>
           <p class="text-xs text-ml-text-muted">Asesoría real</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Best Sellers -->
+  <BestSellersCarousel />
 
   <!-- Categorías -->
   <section class="ml-container py-8">
@@ -148,7 +152,6 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
             );
           })}
         </div>
-      </div>
 
       <button id="cat-prev" type="button" aria-label="Anterior" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 border border-ml-border shadow-card flex items-center justify-center text-ml-text hover:bg-gray-50 transition-colors z-10">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -226,7 +229,10 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
     window.addEventListener('hashchange', showNf);
     nfClose?.addEventListener('click', hideNf);
     nfModal?.addEventListener('click', (e) => {
-      if (e.target === nfModal) hideNf();
+      if (e.target === nfModal) {
+        nfModal.classList.add('hidden');
+        nfModal.classList.remove('flex');
+      }
     });
   </script>
 </BaseLayout>

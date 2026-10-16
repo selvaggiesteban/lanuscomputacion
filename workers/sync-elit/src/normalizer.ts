@@ -61,7 +61,7 @@ export function normalizeElitProduct(elitProduct: Record<string, any>, dollarRat
 
   // Map ELIT categories to our taxonomy
   const mapping = mapElitToCategory(elitCategory, elitSubcategory);
-  const categoryId = mapping?.category_id ?? "uncategorized";
+  const categoryId = mapping?.category_id ?? "Sin categoría";
   const subcategoryName = mapping?.subcategory_name ?? elitSubcategory;
 
   return {

@@ -14,7 +14,7 @@ export function calculateSellingPrice(
   currency: string = "USD",
   ivaPct: number = 10.5,
   internalTaxPct: number = 0,
-  markupPct: number = 30,
+  markupPct: number = 15,
   dollarRate: number = 1200,
 ): PricingResult {
   let priceArs: number;
@@ -51,7 +51,7 @@ export function calculatePriceFromElit(
   const currency = monedaCode === 2 ? "USD" : "ARS";
   const iva = Number(product.iva ?? 10.5);
   const impInterno = Number(product.impuesto_interno ?? 0);
-  const markup = markupPct ?? 30;
+  const markup = markupPct ?? 15;
 
   return calculateSellingPrice(
     precio,

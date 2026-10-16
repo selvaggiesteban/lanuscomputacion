@@ -1,0 +1,11 @@
+name = "email-digest"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[triggers]
+crons = ["0 12,20 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lanus-db"
+database_id = "YOUR_D1_DATABASE_ID"

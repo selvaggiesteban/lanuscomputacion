@@ -1,0 +1,98 @@
+---
+export interface Props {
+  title?: string;
+  linkText?: string;
+  linkHref?: string;
+}
+
+const { title = 'Más Vendidos', linkText = 'Ver más', linkHref = '/categoria/todas' } = Astro.props;
+---
+
+<section class="ml-container py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-semibold text-ml-text">{title}</h2>
+    <a href={linkHref} class="text-sm ml-link font-medium">{linkText} →</a>
+  </div>
+
+  <div class="relative group">
+    <div
+      id="bs-track"
+      class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide transition-transform duration-500 ease-out"
+      style="scroll-behavior: smooth;"
+    >
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div class="flex-shrink-0 w-1/2 md:w-1/4 lg:w-1/6 snap-start">
+          <div class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
+            <div class="aspect-square bg-ml-bg rounded mb-3 flex items-center justify-center text-ml-text-muted text-xs">
+              Producto {i + 1}
+            </div>
+            <div class="flex-1">
+              <div class="h-4 bg-gray-100 rounded mb-2 w-3/4"></div>
+              <div class="h-3 bg-gray-50 rounded mb-3 w-1/2"></div>
+            </div>
+            <div class="mt-auto pt-2 border-t flex justify-between items-center">
+              <div class="h-5 bg-ml-yellow rounded w-12"></div>
+              <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Controls -->
+    <button id="bs-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white border border-ml-border shadow-card flex items-center justify-center text-ml-text opacity-0 group-hover:opacity-100 transition-opacity z-10">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button id="bs-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white border border-ml-border shadow-card flex items-center justify-center text-ml-text opacity-0 group-hover:opacity-100 transition-opacity z-10">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script>
+  const track = document.getElementById('bs-track');
+  const prev = document.getElementById('bs-prev');
+  const next = document.getElementById('bs-next');
+
+  if (track && prev && next) {
+    const getScrollAmount = () => {
+      const item = track.firstElementChild as HTMLElement;
+      return item ? item.offsetWidth + 16 : 0;
+    };
+
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Autoplay
+    let interval = setInterval(() => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+      }
+    }, 5000);
+
+    track.addEventListener('mouseenter', () => clearInterval(interval));
+    track.addEventListener('mouseleave', () => {
+      interval = setInterval(() => {
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        }
+      }, 5000);
+    });
+  }
+</script>
