@@ -71,7 +71,7 @@ export default function SearchBar({ className = "" }: SearchBarProps) {
 
   const goToResults = (term: string) => {
     const q = term.trim();
-    if (q) window.location.href = `/busqueda/${encodeURIComponent(q)}`;
+    if (q) window.location.href = `/busqueda?q=${encodeURIComponent(q)}`;
   };
 
   const openProduct = (slug: string) => {
