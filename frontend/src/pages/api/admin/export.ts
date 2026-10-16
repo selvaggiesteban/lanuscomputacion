@@ -50,7 +50,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
 
     const header = "ID,Cliente,Email,Teléfono,Total,Estado,Método Pago,MP Payment ID,Fecha Creación,Última Actualización\n";
     const rows = (results || []).map((o: any) =>
-      `${o.id},"${(o.customer_name || "").replace(/"/g, '""')}",${o.customer_email || ""},${o.customer_phone || ""},${o.total},${o.status},${o.payment_method || ""},${o.mp_payment_id || ""},${o.created_at},${o.updated_at || ""}`
+      `${o.id},"${(o.customer_name || "").replace(/"/g, '""')}",${o.customer_email || ""},${o.customer_phone || ""},${o.total_price},${o.status},${o.payment_method || ""},${o.mp_payment_id || ""},${o.created_at},${o.updated_at || ""}`
     ).join("\n");
 
     return new Response(header + rows, {

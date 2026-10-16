@@ -80,7 +80,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     if (gmailReady) {
       const order = await db.prepare(
         "SELECT * FROM orders WHERE id = ?"
-      ).bind(orderId).first<{ customer_name: string; customer_email: string; total: number }>();
+      ).bind(orderId).first<{ customer_name: string; customer_email: string; total_price: number }>();
 
       const orderItems = await db.prepare(
         "SELECT product_title, quantity, unit_price FROM order_items WHERE order_id = ?"
@@ -90,7 +90,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
         const html = orderConfirmationEmail({
           orderId: orderId as unknown as number,
           items: orderItems.map(i => ({ title: i.product_title, quantity: i.quantity, price: i.unit_price })),
-          total: order.total,
+          total: order.total_price,
           customerName: order.customer_name,
         });
         await sendEmail(emailEnv, {

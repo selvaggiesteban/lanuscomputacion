@@ -199,7 +199,7 @@ try {
                     <p class="text-xs text-ml-text-muted">{order.customer_email}</p>
                   </div>
                   <div class="text-right">
-                    <p class="text-sm font-medium text-ml-text">${order.total?.toLocaleString('es-AR')}</p>
+                    <p class="text-sm font-medium text-ml-text">${order.total_price?.toLocaleString('es-AR')}</p>
                     <span class={`text-xs ${order.status === 'paid' ? 'text-green-600' : order.status === 'pending' ? 'text-yellow-600' : 'text-red-600'}`}>
                       {order.status}
                     </span>

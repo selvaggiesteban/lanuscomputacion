@@ -1,11 +1,11 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro';
-import { getNfcCardBySlug, getAllNfcCards } from '../../../lib/d1';
+import { getNfcCardById, getAllNfcCards } from '../../../lib/d1';
 
 const { id } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
 
-const card = await getNfcCardBySlug(db, id);
+const card = await getNfcCardById(db, id);
 const allCards = await getAllNfcCards(db);
 
 if (!card) {

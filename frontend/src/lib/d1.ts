@@ -579,6 +579,13 @@ export async function getNfcCardBySlug(db: D1Database, slug: string): Promise<Nf
   return result ?? null;
 }
 
+export async function getNfcCardById(db: D1Database, id: string): Promise<NfcCard | null> {
+  const result = await db.prepare(
+    `SELECT * FROM nfc_cards WHERE id = ?`
+  ).bind(id).first<NfcCard>();
+  return result ?? null;
+}
+
 export async function getNfcCardByNumber(db: D1Database, cardNumber: number): Promise<NfcCard | null> {
   const result = await db.prepare(
     `SELECT * FROM nfc_cards WHERE card_number = ?`
@@ -644,7 +651,7 @@ export async function getNfcScanStats(db: D1Database, days = 30): Promise<{ tota
 
   return {
     total_scans: total?.count ?? 0,
-    scans_by_card: byCard ?? []
+    scans_by_card: byCard?.results ?? []
   };
 }
 

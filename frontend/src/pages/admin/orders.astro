@@ -36,6 +36,35 @@ if (status) {
 
 const totalPages = Math.ceil(total / limit);
 
+let productTitles: Record<string, string> = {};
+if (orders.length > 0) {
+  try {
+    const ids = orders.map((o: any) => o.id);
+    const placeholders = ids.map(() => '?').join(',');
+    const items = await DB.prepare(
+      `SELECT order_id, product_title, quantity FROM order_items WHERE order_id IN (${placeholders})`
+    ).bind(...ids).all<{ order_id: string; product_title: string; quantity: number }>();
+    for (const it of items.results || []) {
+      const label = `${it.product_title}${it.quantity > 1 ? ` x${it.quantity}` : ''}`;
+      productTitles[it.order_id] = productTitles[it.order_id] ? `${productTitles[it.order_id]}, ${label}` : label;
+    }
+    const legacy = orders.filter((o: any) => o.product_id && !productTitles[o.id]);
+    if (legacy.length > 0) {
+      const pids = legacy.map((o: any) => o.product_id);
+      const ph2 = pids.map(() => '?').join(',');
+      const prods = await DB.prepare(
+        `SELECT id, title FROM products WHERE id IN (${ph2})`
+      ).bind(...pids).all<{ id: string; title: string }>();
+      const byId: Record<string, string> = Object.fromEntries((prods.results || []).map((p) => [p.id, p.title]));
+      for (const o of legacy) {
+        productTitles[o.id] = byId[o.product_id] || '—';
+      }
+    }
+  } catch (e) {
+    console.error("Error fetching order items:", e);
+  }
+}
+
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente', paid: 'Pagado', processing: 'Procesando',
   shipped: 'Enviado', delivered: 'Entregado', cancelled: 'Cancelado',
@@ -70,6 +99,7 @@ const statusColors: Record<string, string> = {
             <tr>
               <th class="text-left p-3 font-medium text-ml-text">Pedido</th>
               <th class="text-left p-3 font-medium text-ml-text">Cliente</th>
+              <th class="text-left p-3 font-medium text-ml-text">Producto</th>
               <th class="text-right p-3 font-medium text-ml-text">Total</th>
               <th class="text-center p-3 font-medium text-ml-text">Estado</th>
               <th class="text-left p-3 font-medium text-ml-text">Fecha</th>
@@ -84,7 +114,10 @@ const statusColors: Record<string, string> = {
                   <p class="text-ml-text">{o.customer_name}</p>
                   <p class="text-xs text-ml-text-muted">{o.customer_email}</p>
                 </td>
-                <td class="p-3 text-right font-medium text-ml-text">${o.total?.toLocaleString('es-AR')}</td>
+                <td class="p-3 text-ml-text-muted text-xs max-w-xs">
+                  <span class="line-clamp-2">{productTitles[o.id] || '—'}</span>
+                </td>
+                <td class="p-3 text-right font-medium text-ml-text">${o.total_price?.toLocaleString('es-AR')}</td>
                 <td class="p-3 text-center">
                   <select class={`status-select text-xs font-medium rounded px-2 py-1 border-0 ${statusColors[o.status] || 'bg-gray-100'}`} data-id={o.id}>
                     {Object.entries(statusLabels).map(([key, label]) => (

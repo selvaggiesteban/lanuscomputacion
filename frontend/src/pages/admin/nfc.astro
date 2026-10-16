@@ -133,9 +133,9 @@ const scanStats = await getNfcScanStats(db, 30);
                   <td class="p-3 text-right text-sm text-ml-text-secondary">{cardScans}</td>
                   <td class="p-3 text-right">
                     <div class="flex items-center justify-end gap-2">
-                      <a href={`/admin/nfc/editar/${card.id}`} class="text-xs text-ml-blue hover:underline">Editar</a>
+                      <a href={`/admin/nfc/${card.id}`} class="text-xs text-ml-blue hover:underline">Editar</a>
                       <span class="text-xs text-ml-text-muted">|</span>
-                      <button onclick="deleteNfcCard('{card.id}')" class="text-xs text-red-600 hover:underline">Eliminar</button>
+                      <button data-delete-id={card.id} class="text-xs text-red-600 hover:underline">Eliminar</button>
                     </div>
                   </td>
                 </tr>
@@ -188,5 +188,9 @@ const scanStats = await getNfcScanStats(db, 30);
         alert('Error de conexión');
       }
     }
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-delete-id]');
+      if (btn) deleteNfcCard(btn.getAttribute('data-delete-id'));
+    });
   </script>
 </AdminLayout>
