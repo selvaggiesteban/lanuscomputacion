@@ -1,17 +1,17 @@
 """B2B pricing rules configuration."""
 
 B2B_RULES = {
-    "default": {"discount": 0.10, "min_qty": 6},
-    "Celulares y Smartphones": {"discount": 0.08, "min_qty": 3},
+    "default": {"discount": 0.15, "min_qty": 6},
+    "Celulares y Smartphones": {"discount": 0.15, "min_qty": 3},
     "Componentes de PC": {"discount": 0.15, "min_qty": 10},
-    "Almacenamiento": {"discount": 0.12, "min_qty": 5},
-    "Notebooks": {"discount": 0.08, "min_qty": 3},
-    "Monitores": {"discount": 0.10, "min_qty": 5},
-    "Impresión": {"discount": 0.10, "min_qty": 5},
-    "Audio": {"discount": 0.12, "min_qty": 6},
-    "Consolas": {"discount": 0.05, "min_qty": 3},
-    "Videojuegos": {"discount": 0.10, "min_qty": 3},
-    "Periféricos de PC": {"discount": 0.12, "min_qty": 10},
+    "Almacenamiento": {"discount": 0.15, "min_qty": 5},
+    "Notebooks": {"discount": 0.15, "min_qty": 3},
+    "Monitores": {"discount": 0.15, "min_qty": 5},
+    "Impresión": {"discount": 0.15, "min_qty": 5},
+    "Audio": {"discount": 0.15, "min_qty": 6},
+    "Consolas": {"discount": 0.15, "min_qty": 3},
+    "Videojuegos": {"discount": 0.15, "min_qty": 3},
+    "Periféricos de PC": {"discount": 0.15, "min_qty": 10},
     "Accesorios para Celulares": {"discount": 0.15, "min_qty": 12},
 }
 

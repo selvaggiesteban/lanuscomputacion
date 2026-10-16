@@ -57,32 +57,29 @@ import { getProducts } from '../lib/d1';
       return item ? item.offsetWidth + 16 : 0;
     };
 
-    next.addEventListener('click', () => {
-      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
-
-    prev.addEventListener('click', () => {
-      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
-
-    // Autoplay
-    let interval = setInterval(() => {
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+    const scrollNext = () => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 1) {
         track.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
       }
-    }, 5000);
+    };
+
+    const scrollPrev = () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    };
+
+    next.addEventListener('click', scrollNext);
+    prev.addEventListener('click', scrollPrev);
+
+    // Autoplay
+    let interval = setInterval(scrollNext, 5000);
 
     track.addEventListener('mouseenter', () => clearInterval(interval));
     track.addEventListener('mouseleave', () => {
-      interval = setInterval(() => {
-        if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
-          track.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-        }
-      }, 5000);
+      interval = setInterval(scrollNext, 5000);
     });
+
+    // Support for dragging/swiping via native scroll (snap-x is already in HTML)
   }
 </script>

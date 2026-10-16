@@ -115,27 +115,29 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
   </section>
 
   <!-- Best Sellers -->
-  <BestSellersCarousel>
-    {bestSellers.map(p => (
-      <div class="flex-shrink-0 w-1/2 md:w-1/4 lg:w-1/6 snap-start">
-        <a href={`/producto/${p.slug}`} class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
-          <div class="aspect-square bg-ml-bg rounded mb-3 flex items-center justify-center overflow-hidden">
-            <img src={p.thumbnail} alt={p.title} class="w-full h-full object-contain" loading="lazy" />
-          </div>
-          <div class="flex-1">
-            <div class="text-sm font-medium text-ml-text truncate mb-1">{p.title}</div>
-            <div class="text-xs text-ml-text-muted truncate mb-3">{p.brand}</div>
-          </div>
-          <div class="mt-auto pt-2 border-t flex justify-between items-center">
-            <div class="text-sm font-bold text-ml-text">$ {p.price.toLocaleString('es-AR')}</div>
-            <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  <div class="ml-container py-8">
+    <BestSellersCarousel>
+      {bestSellers.slice(0, 20).map(p => (
+        <div class="flex-shrink-0 w-1/2 md:w-1/4 lg:w-1/6 snap-start">
+          <a href={`/producto/${p.slug}`} class="ml-card p-3 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
+            <div class="aspect-square bg-ml-bg rounded mb-3 flex items-center justify-center overflow-hidden">
+              <img src={p.thumbnail} alt={p.title} class="w-full h-full object-contain" loading="lazy" />
             </div>
-          </div>
-        </a>
-      </div>
-    ))}
-  </BestSellersCarousel>
+            <div class="flex-1">
+              <div class="text-sm font-medium text-ml-text truncate mb-1">{p.title}</div>
+              <div class="text-xs text-ml-text-muted truncate mb-3">{p.brand}</div>
+            </div>
+            <div class="mt-auto pt-2 border-t flex justify-between items-center">
+              <div class="text-sm font-bold text-ml-text">$ {p.price.toLocaleString('es-AR')}</div>
+              <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </BestSellersCarousel>
+  </div>
 
   <!-- Categorías -->
   <section class="ml-container py-8">
