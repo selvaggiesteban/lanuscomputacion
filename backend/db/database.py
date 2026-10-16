@@ -237,13 +237,20 @@ class CatalogDB:
     # ── Orders ──
 
     def insert_order(self, order: dict):
+        from backend.config.settings import SHIPPING_FLAT_RATE
+
+        # Apply shipping fee if not already included in total_price
+        # We assume total_price in the order dict is the product subtotal
+        shipping_fee = SHIPPING_FLAT_RATE
+        final_total = order.get("total_price", 0) + shipping_fee
+
         self.conn.execute("""
             INSERT INTO orders (id, customer_id, product_id, quantity, unit_price, total_price,
                 payment_method, customer_name, customer_email, customer_phone, notes)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             order["id"], order.get("customer_id"), order["product_id"],
-            order.get("quantity", 1), order["unit_price"], order["total_price"],
+            order.get("quantity", 1), order["unit_price"], final_total,
             order["payment_method"], order.get("customer_name"), order.get("customer_email"),
             order.get("customer_phone"), order.get("notes")
         ))
@@ -322,6 +329,12 @@ class CatalogDB:
         return dict(row) if row else None
 
     def insert_product(self, product: dict):
+        from backend.config.category_mapping import map_elit_category
+
+        # Apply category mapping for ELIT provider
+        if product.get("provider") == "elit":
+            product["category_name"] = map_elit_category(product.get("category_name"))
+
         self.conn.execute("""
             INSERT INTO products (
                 id, external_id, title, slug, description, category_id, category_name,
@@ -354,12 +367,22 @@ class CatalogDB:
         self.conn.commit()
 
     def update_product(self, product_id: str, data: dict):
+        from backend.config.category_mapping import map_elit_category
+
+        # Update category name if provider is elit and category_name is provided
+        if data.get("provider") == "elit" and "category_name" in data:
+            data["category_name"] = map_elit_category(data["category_name"])
+        elif "category_name" in data:
+            # For non-elit providers, we might want to check if they should also be mapped
+            # but for now the requirement specifically mentioned elit-sync
+            pass
+
         fields = []
         values = []
         for key in ["title", "slug", "description", "price", "cost_price", "currency",
                      "dollar_rate", "iva_pct", "internal_tax_pct", "markup_pct",
                      "available_qty", "stock_level", "thumbnail", "supplier_link",
-                     "status", "last_api_update"]:
+                     "category_name", "status", "last_api_update"]:
             if key in data:
                 fields.append(f"{key} = ?")
                 values.append(data[key])
@@ -434,12 +457,13 @@ class CatalogDB:
             r = dict(row)
             cat_name = r.get("category_name") or ""
             subcat_name = r.get("subcategory_name") or ""
-            price = r.get("price") or 0
+            price = r.get("price") if r["status"] != "archived" else None
             result.append({
                 "id": r["id"],
                 "title": r["title"],
                 "price": price,
-                "originalPrice": r.get("cost_price"),
+                "priceText": "Consultar precio" if r["status"] == "archived" else None,
+                "originalPrice": r.get("cost_price") if r["status"] != "archived" else None,
                 "discount": None,
                 "image": r.get("thumbnail") or "https://via.placeholder.com/200",
                 "slug": r["slug"],

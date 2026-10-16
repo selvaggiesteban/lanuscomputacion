@@ -27,15 +27,18 @@ R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY", "")
 R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME", "lanus-images")
 R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://images.lanuscomputacion.com")
 
-# MercadoPago (reserved for future)
-MP_ACCESS_TOKEN = os.getenv("MP_ACCESS_TOKEN", "")
-MP_PUBLIC_KEY = os.getenv("MP_PUBLIC_KEY", "")
-MP_TEST_MODE = os.getenv("MP_TEST_MODE", "true").lower() == "true"
+# Shipping Configuration
+SHIPPING_FLAT_RATE = 17000
+SHIPPING_METHOD_NAME = "A convenir"
 
-# Bank Details
-BANK_CBU = os.getenv("BANK_CBU", "0720039788000001113604")
-BANK_ALIAS = os.getenv("BANK_ALIAS", "")
-BANK_HOLDER = os.getenv("BANK_HOLDER", "Esteban Selvaggi")
+# NVIDIA NIM Configuration
+NVIDIA_NIM_API_KEY = os.getenv("NVIDIA_NIM_API_KEY", "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")
+NVIDIA_NIM_MODEL = "deepseek-ai/deepseek-v4.1-flash"
+NVIDIA_NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+
+# Reporting Configuration
+REPORT_RECIPIENT = "selvaggi.esteban@gmail.com"
+REPORT_SCHEDULE = ["09:00", "17:00"]
 
 # Scraper Limits
 MAX_PRODUCTS_PER_CATEGORY = 500

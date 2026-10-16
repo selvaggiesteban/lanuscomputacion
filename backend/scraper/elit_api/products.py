@@ -4,6 +4,7 @@ Product fetcher: obtiene productos de ELIT y los normaliza al schema de StarTech
 from slugify import slugify
 from backend.scraper.elit_api.client import ElitClient
 from backend.scraper.price_engine import calculate_price_from_elit
+from backend.config.category_mapping import map_elit_category
 
 
 def normalize_elit_product(elit_product: dict) -> dict:
@@ -35,6 +36,7 @@ def normalize_elit_product(elit_product: dict) -> dict:
     nivel_stock = elit_product.get("nivel_stock", "bajo")
     stock_total = int(elit_product.get("stock_total", 0))
 
+    status = "published" if stock_total > 0 else "archived"
     return {
         "id": f"elit_{elit_product.get('id', '')}",
         "external_id": str(elit_product.get("id", "")),
@@ -43,7 +45,7 @@ def normalize_elit_product(elit_product: dict) -> dict:
         "title": title,
         "slug": slug,
         "description": f"{title} - {elit_product.get('garantia', '')}",
-        "category_name": elit_product.get("categoria", ""),
+        "category_name": map_elit_category(elit_product.get("categoria", "")),
         "subcategory_name": elit_product.get("sub_categoria", ""),
         "brand": elit_product.get("marca", ""),
         "price": pricing["final_price"],
