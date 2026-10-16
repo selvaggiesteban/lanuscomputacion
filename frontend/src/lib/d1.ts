@@ -36,6 +36,66 @@ export type Category = {
   total_items: number;
 };
 
+export type Order = {
+  id: string;
+  customer_name: string;
+  total: number;
+  status: string;
+  created_at: string;
+  [key: string]: any;
+};
+
+export type Promotion = {
+  id: string;
+  code: string;
+  discount_pct: number;
+  active: boolean;
+  [key: string]: any;
+};
+
+export type NfcCard = {
+  id: string;
+  slug: string;
+  title: string;
+  scans: number;
+  [key: string]: any;
+};
+
+export type MessagingChannel = {
+  id: string;
+  name: string;
+  type: string;
+  config: any;
+};
+
+export type Contact = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+};
+
+export type MessageTemplate = {
+  id: string;
+  name: string;
+  content: string;
+};
+
+export type B2bRule = {
+  id: string;
+  customer_id: string;
+  discount_pct: number;
+  active: boolean;
+};
+
+export type Coupon = {
+  id: string;
+  code: string;
+  discount_value: number;
+  usage_count: number;
+  max_usage: number;
+};
+
 export async function getProducts(db: D1Database, options?: {
   limit?: number;
   offset?: number;
@@ -260,4 +320,185 @@ export async function getBrandsByCategory(db: D1Database, categoryId?: string, s
 
   const { results } = await db.prepare(sql).bind(...binds).all<{ brand: string; count: number }>();
   return results ?? [];
+}
+
+export async function getAllCategoriesWithChildren(db: D1Database): Promise<any[]> {
+  return await getAllCategoriesTree(db);
+}
+
+export async function getOrderById(db: D1Database, id: string): Promise<Order | null> {
+  if (!db) return null;
+  const result = await db.prepare("SELECT * FROM orders WHERE id = ?").bind(id).first<Order>();
+  return result ?? null;
+}
+
+export async function getOrders(db: D1Database, options?: { limit?: number; offset?: number }): Promise<Order[]> {
+  if (!db) return [];
+  let sql = "SELECT * FROM orders ORDER BY created_at DESC";
+  const binds: any[] = [];
+  if (options?.limit) {
+    sql += " LIMIT ?";
+    binds.push(options.limit);
+  }
+  if (options?.offset) {
+    sql += " OFFSET ?";
+    binds.push(options.offset);
+  }
+  const { results } = await db.prepare(sql).bind(...binds).all<Order>();
+  return results ?? [];
+}
+
+export async function getActivePromotions(db: D1Database): Promise<Promotion[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM promotions WHERE active = 1").all<Promotion>();
+  return results ?? [];
+}
+
+export async function computePromoDiscount(db: D1Database, productId: string, userId?: string): Promise<number> {
+  if (!db) return 0;
+  const promo = await db.prepare("SELECT discount_pct FROM promotions WHERE active = 1 AND product_id = ? LIMIT 1").bind(productId).first<Promotion>();
+  return promo?.discount_pct ?? 0;
+}
+
+export async function getActiveB2bRules(db: D1Database, userId?: string): Promise<B2bRule[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM b2b_rules WHERE active = 1 AND (customer_id = ? OR customer_id = 'all')").bind(userId || 'all').all<B2bRule>();
+  return results ?? [];
+}
+
+export async function getStoreConfig(db: D1Database): Promise<any> {
+  if (!db) return { name: "Lanus Computacion", currency: "ARS" };
+  const result = await db.prepare("SELECT * FROM store_config LIMIT 1").first<any>();
+  return result ?? { name: "Lanus Computacion", currency: "ARS" };
+}
+
+export async function incrementCouponUsage(db: D1Database, couponId: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("UPDATE coupons SET usage_count = usage_count + 1 WHERE id = ?").bind(couponId).run();
+}
+
+export async function validateCoupon(db: D1Database, code: string): Promise<boolean> {
+  if (!db) return false;
+  const result = await db.prepare("SELECT id FROM coupons WHERE code = ? AND usage_count < max_usage").bind(code).first<any>();
+  return !!result;
+}
+
+export async function applyCouponDiscount(db: D1Database, code: string): Promise<number> {
+  if (!db) return 0;
+  const result = await db.prepare("SELECT discount_value FROM coupons WHERE code = ?").bind(code).first<any>();
+  return result?.discount_value ?? 0;
+}
+
+export async function getB2bRules(db: D1Database): Promise<B2bRule[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM b2b_rules").all<B2bRule>();
+  return results ?? [];
+}
+
+export async function upsertB2bRule(db: D1Database, rule: B2bRule): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO b2b_rules (id, customer_id, discount_pct, active) VALUES (?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET customer_id=excluded.customer_id, discount_pct=excluded.discount_pct, active=excluded.active").bind(rule.id, rule.customer_id, rule.discount_pct, rule.active ? 1 : 0).run();
+}
+
+export async function deleteB2bRule(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM b2b_rules WHERE id = ?").bind(id).run();
+}
+
+export async function getAllCoupons(db: D1Database): Promise<Coupon[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM coupons").all<Coupon>();
+  return results ?? [];
+}
+
+export async function upsertCoupon(db: D1Database, coupon: Coupon): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO coupons (id, code, discount_value, usage_count, max_usage) VALUES (?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET code=excluded.code, discount_value=excluded.discount_value, usage_count=excluded.usage_count, max_usage=excluded.max_usage").bind(coupon.id, coupon.code, coupon.discount_value, coupon.usage_count, coupon.max_usage).run();
+}
+
+export async function deleteCoupon(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM coupons WHERE id = ?").bind(id).run();
+}
+
+export async function getAllNfcCards(db: D1Database): Promise<NfcCard[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM nfc_cards").all<NfcCard>();
+  return results ?? [];
+}
+
+export async function getNfcCardBySlug(db: D1Database, slug: string): Promise<NfcCard | null> {
+  if (!db) return null;
+  const result = await db.prepare("SELECT * FROM nfc_cards WHERE slug = ?").bind(slug).first<NfcCard>();
+  return result ?? null;
+}
+
+export async function upsertNfcCard(db: D1Database, card: NfcCard): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO nfc_cards (id, slug, title, scans) VALUES (?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET slug=excluded.slug, title=excluded.title, scans=excluded.scans").bind(card.id, card.slug, card.title, card.scans).run();
+}
+
+export async function deleteNfcCard(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM nfc_cards WHERE id = ?").bind(id).run();
+}
+
+export async function incrementNfcScanCount(db: D1Database, slug: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("UPDATE nfc_cards SET scans = scans + 1 WHERE slug = ?").bind(slug).run();
+}
+
+export async function getNfcScanStats(db: D1Database): Promise<any> {
+  if (!db) return { total_scans: 0, top_cards: [] };
+  const total = await db.prepare("SELECT SUM(scans) as total FROM nfc_cards").first<{ total: number }>();
+  const top = await db.prepare("SELECT title, scans FROM nfc_cards ORDER BY scans DESC LIMIT 5").all<any>();
+  return { total_scans: total?.total ?? 0, top_cards: top.results ?? [] };
+}
+
+export async function getAllMessagingChannels(db: D1Database): Promise<MessagingChannel[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM messaging_channels").all<MessagingChannel>();
+  return results ?? [];
+}
+
+export async function upsertMessagingChannel(db: D1Database, channel: MessagingChannel): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO messaging_channels (id, name, type, config) VALUES (?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET name=excluded.name, type=excluded.type, config=excluded.config").bind(channel.id, channel.name, channel.type, JSON.stringify(channel.config)).run();
+}
+
+export async function deleteMessagingChannel(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM messaging_channels WHERE id = ?").bind(id).run();
+}
+
+export async function getContacts(db: D1Database): Promise<Contact[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM contacts").all<Contact>();
+  return results ?? [];
+}
+
+export async function upsertContact(db: D1Database, contact: Contact): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO contacts (id, name, email, phone) VALUES (?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET name=excluded.name, email=excluded.email, phone=excluded.phone").bind(contact.id, contact.name, contact.email, contact.phone).run();
+}
+
+export async function deleteContact(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM contacts WHERE id = ?").bind(id).run();
+}
+
+export async function getMessageTemplates(db: D1Database): Promise<MessageTemplate[]> {
+  if (!db) return [];
+  const { results } = await db.prepare("SELECT * FROM message_templates").all<MessageTemplate>();
+  return results ?? [];
+}
+
+export async function upsertMessageTemplate(db: D1Database, template: MessageTemplate): Promise<void> {
+  if (!db) return;
+  await db.prepare("INSERT INTO message_templates (id, name, content) VALUES (?, ?, ?) ON CONFLICT(id) DO UPDATE SET name=excluded.name, content=excluded.content").bind(template.id, template.name, template.content).run();
+}
+
+export async function deleteMessageTemplate(db: D1Database, id: string): Promise<void> {
+  if (!db) return;
+  await db.prepare("DELETE FROM message_templates WHERE id = ?").bind(id).run();
 }
