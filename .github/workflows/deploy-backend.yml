@@ -10,9 +10,10 @@ on:
       - '.github/workflows/deploy-backend.yml'
 
 jobs:
-  deploy:
+  deploy_production:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v4
 
