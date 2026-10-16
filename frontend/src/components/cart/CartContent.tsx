@@ -10,6 +10,21 @@ const TRANSFER = {
   cuit: "20-43310259-3",
 };
 
+const ACID_KEY = "lanuscom-acid";
+
+function getAcid(): string {
+  try {
+    let a = localStorage.getItem(ACID_KEY);
+    if (!a) {
+      a = crypto.randomUUID();
+      localStorage.setItem(ACID_KEY, a);
+    }
+    return a;
+  } catch {
+    return "";
+  }
+}
+
 export default function CartContent() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
@@ -29,6 +44,54 @@ export default function CartContent() {
     window.addEventListener("cart-update", refresh);
     return () => window.removeEventListener("cart-update", refresh);
   }, [refresh]);
+
+  const sendAbandoned = useCallback(
+    (orderId?: string) => {
+      try {
+        const cart = getCart();
+        if (!orderId && cart.length === 0) return;
+        const payload = {
+          session_id: getAcid(),
+          items: cart.map((i) => ({
+            product_id: i.product_id,
+            title: i.title,
+            quantity: i.quantity,
+            price: i.promo_price ?? i.price,
+          })),
+          customer: {
+            name: customer.name,
+            email: customer.email,
+            phone: customer.phone,
+            address: customer.address,
+          },
+          page: window.location.pathname,
+          order_id: orderId ?? null,
+        };
+        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+        if (typeof navigator.sendBeacon === "function" && navigator.sendBeacon("/api/track/abandoned", blob)) {
+          return;
+        }
+        void fetch("/api/track/abandoned", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          keepalive: true,
+        });
+      } catch {
+        // El tracking de carritos nunca debe romper el checkout.
+      }
+    },
+    [customer]
+  );
+
+  useEffect(() => {
+    const hasData =
+      items.length > 0 ||
+      Boolean(customer.name || customer.email || customer.phone || customer.address);
+    if (!hasData) return;
+    const t = setTimeout(() => sendAbandoned(), 4000);
+    return () => clearTimeout(t);
+  }, [items, customer, sendAbandoned]);
 
   const handleRemove = (id: string) => {
     removeFromCart(id);
@@ -104,11 +167,13 @@ export default function CartContent() {
           customer,
           payment_method: method,
           coupon_id: couponDiscount?.couponId ?? null,
+          abandoned_session_id: getAcid(),
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al procesar");
 
+      sendAbandoned(data.order_id);
       const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
       const msg = method === "transferencia"
         ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`

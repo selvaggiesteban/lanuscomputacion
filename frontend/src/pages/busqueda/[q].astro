@@ -59,6 +59,7 @@ const totalPages = Math.ceil(total / limit);
       dollarRate: p.dollar_rate,
       ivaPct: p.iva_pct,
       internalTaxPct: p.internal_tax_pct,
+      availableQty: p.available_qty,
     }))} columns={4} />
 
     <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />

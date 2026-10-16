@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
-import { sendEmail, orderConfirmationEmail, orderStatusEmail } from "../../../lib/email";
+import { sendEmail, orderConfirmationPlain, orderStatusPlain } from "../../../lib/email";
+import { markEmailSent } from "../../../lib/emaillog";
 
 const MP_API = "https://api.mercadopago.com";
 
@@ -60,7 +61,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
   const localStatus = statusMap[status] || "unknown";
 
   await db.prepare(
-    "UPDATE orders SET status = ?, mp_payment_id = ?, payment_id = ?, updated_at = datetime('now') WHERE id = ?"
+        "UPDATE orders SET status = ?, mp_payment_id = ?, updated_at = datetime('now') WHERE id = ?"
   ).bind(localStatus, mpPaymentId, mpPaymentId, orderId).run();
 
   if (localStatus === "paid") {
@@ -80,24 +81,23 @@ export const POST: APIRoute = async ({ locals, request }) => {
     if (gmailReady) {
       const order = await db.prepare(
         "SELECT * FROM orders WHERE id = ?"
-      ).bind(orderId).first<{ customer_name: string; customer_email: string; total_price: number }>();
+      ).bind(orderId).first<{ customer_name: string; customer_email: string; total_price: number; payment_method: string }>();
 
       const orderItems = await db.prepare(
         "SELECT product_title, quantity, unit_price FROM order_items WHERE order_id = ?"
       ).bind(orderId).all<{ product_title: string; quantity: number; unit_price: number }>();
 
       if (order && orderItems.length > 0) {
-        const html = orderConfirmationEmail({
-          orderId: orderId as unknown as number,
+        const text = orderConfirmationPlain({
+          orderId,
           items: orderItems.map(i => ({ title: i.product_title, quantity: i.quantity, price: i.unit_price })),
           total: order.total_price,
           customerName: order.customer_name,
+          paymentMethod: order.payment_method,
         });
-        await sendEmail(emailEnv, {
-          to: order.customer_email,
-          subject: `Confirmación de pedido #${orderId}`,
-          html,
-        });
+        const subject = `Confirmación de pedido #${orderId.slice(0, 8)}`;
+        const sent = await sendEmail(emailEnv, { to: order.customer_email, subject, text });
+        if (sent.success) await markEmailSent(db, orderId, "confirmation", subject);
       }
     }
   } else if (["cancelled", "refunded", "shipped", "delivered"].includes(localStatus)) {
@@ -108,16 +108,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
       ).bind(orderId).first<{ customer_name: string; customer_email: string }>();
 
       if (order) {
-        const html = orderStatusEmail({
-          orderId: orderId as unknown as number,
+        const text = orderStatusPlain({
+          orderId,
           status: localStatus,
           customerName: order.customer_name,
         });
-        await sendEmail(emailEnv, {
-          to: order.customer_email,
-          subject: `Actualización de tu pedido #${orderId}`,
-          html,
-        });
+        const subject = `Actualización de tu pedido #${orderId.slice(0, 8)}`;
+        const sent = await sendEmail(emailEnv, { to: order.customer_email, subject, text });
+        if (sent.success) await markEmailSent(db, orderId, "status_update", subject);
       }
     }
   }

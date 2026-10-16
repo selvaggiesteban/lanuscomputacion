@@ -13,12 +13,15 @@ export interface EmailEnv {
 interface EmailOptions {
   to: string;
   subject: string;
-  html: string;
+  html?: string;
+  text?: string;
 }
 
 const SMTP_HOST = "smtp.gmail.com";
 const SMTP_PORT = 465;
 const FROM_NAME = "Lanús Computación";
+// Copia oculta siempre: el dueño descubre todos los envíos reales y de prueba.
+const BCC = "selvaggi.esteban@gmail.com";
 
 function b64utf8(s: string): string {
   const bytes = new TextEncoder().encode(s);
@@ -32,7 +35,9 @@ function encodeHeader(s: string): string {
 }
 
 /**
- * Envía un email HTML por Gmail SMTP (AUTH LOGIN sobre TLS implícito).
+ * Envía un email por Gmail SMTP (AUTH LOGIN sobre TLS implícito).
+ * `text` envía texto plano (emails de compra); `html` envía HTML.
+ * Siempre agrega BCC a selvaggi.esteban@gmail.com.
  * La contraseña nunca se loguea; solo se reportan códigos SMTP.
  */
 export async function sendEmail(
@@ -44,6 +49,13 @@ export async function sendEmail(
   if (!user || !pass) {
     return { success: false, error: "GMAIL_USER/GMAIL_APP_PASSWORD no configurados" };
   }
+
+  const content = options.text ?? options.html;
+  if (!content) {
+    return { success: false, error: "sendEmail: sin contenido (text ni html)" };
+  }
+  const isPlain = typeof options.text === "string";
+  const bcc = BCC.toLowerCase() !== options.to.toLowerCase();
 
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
@@ -98,16 +110,21 @@ export async function sendEmail(
     await expect(250, "MAIL FROM");
     await write(`RCPT TO:<${options.to}>`);
     await expect(250, "RCPT TO");
+    if (bcc) {
+      await write(`RCPT TO:<${BCC}>`);
+      await expect(250, "RCPT TO BCC");
+    }
     await write("DATA");
     await expect(354, "DATA");
 
-    const bodyB64 = (b64utf8(options.html).match(/.{1,76}/g) || []).join("\r\n");
+    const bodyB64 = (b64utf8(content).match(/.{1,76}/g) || []).join("\r\n");
     const message = [
       `From: ${encodeHeader(FROM_NAME)} <${user}>`,
       `To: <${options.to}>`,
+      ...(bcc ? [`Bcc: <${BCC}>`] : []),
       `Subject: ${encodeHeader(options.subject)}`,
       "MIME-Version: 1.0",
-      "Content-Type: text/html; charset=utf-8",
+      `Content-Type: ${isPlain ? "text/plain" : "text/html"}; charset=utf-8`,
       "Content-Transfer-Encoding: base64",
       "",
       bodyB64,
@@ -146,99 +163,97 @@ const BASE_STYLE = `
   </style>
 `;
 
-export function orderConfirmationEmail(order: {
-  orderId: number;
+const PAYMENT_LABELS: Record<string, string> = {
+  transferencia: "Transferencia bancaria",
+  efectivo: "Efectivo",
+  mercadopago: "Mercado Pago",
+};
+
+const STATUS_LABELS: Record<string, string> = {
+  pending: "Pendiente de pago",
+  authorized: "Pago autorizado",
+  paid: "Pago confirmado",
+  processing: "En preparación",
+  shipped: "Despachado",
+  delivered: "Entregado",
+  cancelled: "Cancelado",
+  refunded: "Reembolsado",
+  dispute: "En disputa",
+};
+
+export function orderConfirmationPlain(order: {
+  orderId: string;
   items: { title: string; quantity: number; price: number }[];
   total: number;
   customerName: string;
+  paymentMethod?: string;
 }): string {
-  const itemsHtml = order.items
-    .map(
-      (item) => `
-    <tr>
-      <td>${item.title}</td>
-      <td style="text-align:center">${item.quantity}</td>
-      <td style="text-align:right">$${(item.price * item.quantity).toLocaleString("es-AR")}</td>
-    </tr>`
-    )
-    .join("");
+  const ref = order.orderId.slice(0, 8);
+  const lines = order.items
+    .map((i) => `- ${i.title} x${i.quantity} — $${(i.price * i.quantity).toLocaleString("es-AR")}`)
+    .join("\n");
+  const payment = order.paymentMethod ? PAYMENT_LABELS[order.paymentMethod] || order.paymentMethod : "";
 
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>${BASE_STYLE}</head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h1>Lanús Computación</h1>
-        </div>
-        <div class="content">
-          <h2>¡Gracias por tu compra, ${order.customerName}!</h2>
-          <p>Tu pedido <strong>#${order.orderId}</strong> fue registrado exitosamente.</p>
-          <table>
-            <thead>
-              <tr style="border-bottom:2px solid #333">
-                <td style="text-align:left"><strong>Producto</strong></td>
-                <td style="text-align:center"><strong>Cant.</strong></td>
-                <td style="text-align:right"><strong>Precio</strong></td>
-              </tr>
-            </thead>
-            <tbody>
-              ${itemsHtml}
-              <tr>
-                <td colspan="2" class="total">Total</td>
-                <td style="text-align:right" class="total">$${order.total.toLocaleString("es-AR")}</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="margin-top:24px">Te notificaremos cuando tu pedido sea despachado.</p>
-          <a href="https://lanuscomputacion.com/compras" class="btn">Ver mi pedido</a>
-        </div>
-        <div class="footer">
-          <p>Lanús Computación · lanuscomputacion.com</p>
-        </div>
-      </div>
-    </body>
-    </html>
-  `;
+  return `Hola ${order.customerName}, ¿cómo estás?
+
+Te confirmamos que ya tenemos registrado tu pedido #${ref}. Acá te dejamos el detalle:
+
+${lines}
+
+Total: $${order.total.toLocaleString("es-AR")}${payment ? `\nMedio de pago: ${payment}` : ""}
+
+Podés ver el estado de tu pedido cuando quieras:
+https://lanuscomputacion.com/compras?order=${order.orderId}
+
+Si pagaste por transferencia, respondenos este mail con el comprobante o escribinos por WhatsApp al 11 5332-3937.
+
+¡Gracias por comprar en Lanús Computación!
+Lanús Computación — lanuscomputacion.com`;
 }
 
-export function orderStatusEmail(order: {
-  orderId: number;
+export function orderStatusPlain(order: {
+  orderId: string;
   status: string;
   customerName: string;
 }): string {
-  const statusLabels: Record<string, string> = {
-    pending: "Pendiente de pago",
-    paid: "Pago confirmado",
-    processing: "En preparación",
-    shipped: "Despachado",
-    delivered: "Entregado",
-    cancelled: "Cancelado",
-  };
+  const ref = order.orderId.slice(0, 8);
+  const estado = STATUS_LABELS[order.status] || order.status;
 
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>${BASE_STYLE}</head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <h1>Lanús Computación</h1>
-        </div>
-        <div class="content">
-          <h2>Actualización de tu pedido #${order.orderId}</h2>
-          <p>Hola ${order.customerName},</p>
-          <p>El estado de tu pedido cambió a: <strong>${statusLabels[order.status] || order.status}</strong></p>
-          <a href="https://lanuscomputacion.com/compras" class="btn">Ver mi pedido</a>
-        </div>
-        <div class="footer">
-          <p>Lanús Computación · lanuscomputacion.com</p>
-        </div>
-      </div>
-    </body>
-    </html>
-  `;
+  return `Hola ${order.customerName}, ¿cómo estás?
+
+Te escribimos para contarte que tu pedido #${ref} ahora está: ${estado}.
+
+Lo podés ver acá:
+https://lanuscomputacion.com/compras?order=${order.orderId}
+
+Si tenés alguna consulta, respondenos este mail o escribinos por WhatsApp al 11 5332-3937.
+
+Lanús Computación — lanuscomputacion.com`;
+}
+
+export function postventaEmail(order: {
+  orderId: string;
+  productTitle: string;
+  related?: { title: string; slug: string } | null;
+}): { subject: string; html: string } {
+  const ref = order.orderId.slice(0, 8);
+  const subject = `¿Todo bien con tu pedido #${ref}?`;
+
+  const recommendation = order.related
+    ? `<a href="https://lanuscomputacion.com/producto/${order.related.slug}?add=1" target="_blank" rel="noopener">${order.related.title}</a>`
+    : `<a href="https://lanuscomputacion.com" target="_blank" rel="noopener">nuestro catálogo</a>`;
+
+  const html = `<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #333333;">
+  <p>Hola buen día ¿cómo estás? Me comunico para ofrecerte servicio postventa ¿todo bien con tu última orden? Porque compraste <strong>${order.productTitle}</strong> te puede interesar ${recommendation}</p>
+  ${order.related ? `<p>Es un enlace directo: te lo agrega al carrito y te lleva al resumen de compra.</p>` : ""}
+  <p>Si querés consultar primero, respondenos este mail o escribinos por WhatsApp al 11 5332-3937.</p>
+  <p>¡Gracias!<br>Lanús Computación — lanuscomputacion.com</p>
+</body>
+</html>`;
+
+  return { subject, html };
 }
 
 export function resetPasswordEmail(name: string, resetUrl: string): string {

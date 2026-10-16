@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { getActivePromotions, computePromoDiscount, incrementCouponUsage, getStoreConfig, getActiveB2bRules } from "../../lib/d1";
 import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
 import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
+import { ensurePostventaRecord } from "../../lib/postventa";
 
 const MP_API = "https://api.mercadopago.com";
 
@@ -30,6 +31,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     items?: { product_id: string; quantity: number; promo_price?: number }[];
     customer?: { name: string; email: string; phone?: string; address?: string };
     coupon_id?: string | null;
+    abandoned_session_id?: string | null;
   };
   try {
     body = await request.json();
@@ -48,7 +50,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     let products = [];
     try {
       const { results } = await DB.prepare(
-        `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
+        `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status IN ('published', 'archived')`
       ).bind(...ids).all<{ id: string; title: string; price: number; category_id: string; category_name: string; available_qty: number; thumbnail: string; slug: string }>();
       products = results;
     } catch (e) {
@@ -87,9 +89,6 @@ export const POST: APIRoute = async ({ locals, request }) => {
       const product = productMap.get(String(item.product_id));
       if (!product) {
         return new Response(JSON.stringify({ error: `Producto no encontrado: ${item.product_id}` }), { status: 400, headers: { "Content-Type": "application/json" } });
-      }
-      if (product.available_qty < item.quantity) {
-        return new Response(JSON.stringify({ error: `Stock insuficiente: ${product.title}` }), { status: 400, headers: { "Content-Type": "application/json" } });
       }
 
       // Prices come from the database only — the client never dictates what it pays.
@@ -197,8 +196,8 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
     const batchStatements = [
       DB.prepare(
-        "INSERT INTO orders (id, product_id, unit_price, customer_name, customer_email, customer_phone, total_price, status, mp_preference_id, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, 'mercadopago')"
-      ).bind(orderId, firstProduct.id, firstProduct.price, body.customer.name, body.customer.email, body.customer.phone || null, total, mpData.id),
+        "INSERT INTO orders (id, product_id, unit_price, customer_name, customer_email, customer_phone, address, total_price, status, mp_preference_id, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 'mercadopago')"
+      ).bind(orderId, firstProduct.id, firstProduct.price, body.customer.name, body.customer.email, body.customer.phone || null, body.customer.address || null, total, mpData.id),
     ];
 
     for (const item of orderItemsData) {
@@ -216,6 +215,18 @@ export const POST: APIRoute = async ({ locals, request }) => {
     }
 
     await DB.batch(batchStatements);
+
+    await ensurePostventaRecord(DB, orderId);
+
+    if (body.abandoned_session_id) {
+      try {
+        await DB.prepare(
+          "UPDATE abandoned_carts SET order_id = ?, last_seen_at = datetime('now') WHERE session_id = ? AND order_id IS NULL"
+        ).bind(orderId, body.abandoned_session_id).run();
+      } catch (e) {
+        console.error("abandoned_carts convert error:", e);
+      }
+    }
 
     return new Response(JSON.stringify({
       order_id: orderId,

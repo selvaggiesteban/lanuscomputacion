@@ -152,9 +152,11 @@ CREATE TABLE IF NOT EXISTS orders (
     customer_name TEXT,
     customer_email TEXT,
     customer_phone TEXT,
+    address TEXT,
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     paid_at TIMESTAMP,
+    updated_at TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES customers(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
@@ -208,4 +210,47 @@ CREATE TABLE IF NOT EXISTS app_config (
     key TEXT PRIMARY KEY,
     value TEXT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS postventa_emails (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id TEXT NOT NULL UNIQUE,
+    product_id TEXT,
+    product_title TEXT,
+    related_id TEXT,
+    related_title TEXT,
+    related_slug TEXT,
+    subject TEXT NOT NULL,
+    body TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','sent')),
+    sent_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS abandoned_carts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id TEXT NOT NULL,
+    items TEXT,
+    item_count INTEGER DEFAULT 0,
+    total REAL DEFAULT 0,
+    customer_name TEXT,
+    customer_email TEXT,
+    customer_phone TEXT,
+    customer_address TEXT,
+    page TEXT,
+    order_id TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_abandoned_carts_session ON abandoned_carts(session_id);
+
+CREATE TABLE IF NOT EXISTS transactional_emails (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id TEXT NOT NULL,
+    template TEXT NOT NULL,
+    subject TEXT,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(order_id, template)
 );

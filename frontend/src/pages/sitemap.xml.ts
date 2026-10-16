@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ locals }) => {
   let products: { slug: string; last_api_update: string }[] = [];
   try {
     const { results } = await DB.prepare(
-      "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
+      "SELECT slug, last_api_update FROM products WHERE status IN ('published','archived') ORDER BY last_api_update DESC"
     ).all<{ slug: string; last_api_update: string }>();
     products = results || [];
   } catch (e) {

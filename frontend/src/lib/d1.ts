@@ -103,7 +103,7 @@ export async function getProducts(db: D1Database, options?: {
 
 export async function getProductBySlug(db: D1Database, slug: string): Promise<Product | null> {
   const result = await db.prepare(
-    "SELECT * FROM products WHERE slug = ? AND status = 'published'",
+    "SELECT * FROM products WHERE slug = ? AND status IN ('published','archived')",
   ).bind(slug).first<Product>();
   return result ?? null;
 }
@@ -220,8 +220,8 @@ export type Order = {
   customer_name: string;
   customer_email: string;
   customer_phone: string | null;
-  customer_address: string | null;
-  total: number;
+  address: string | null;
+  total_price: number;
   status: string;
   mp_preference_id: string | null;
   mp_payment_id: string | null;

@@ -41,6 +41,12 @@ if (orderId) {
             <span class="text-ml-text-secondary">Total</span>
             <span class="font-medium text-ml-text">${order.total_price?.toLocaleString('es-AR')}</span>
           </div>
+          {order.address && (
+            <div class="flex justify-between text-sm mt-2">
+              <span class="text-ml-text-secondary">Dirección de entrega</span>
+              <span class="text-ml-text">{order.address}</span>
+            </div>
+          )}
         </div>
       </div>
     ) : (
