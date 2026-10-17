@@ -187,6 +187,7 @@ export function orderConfirmationPlain(order: {
   total: number;
   customerName: string;
   paymentMethod?: string;
+  shippingCost?: number;
 }): string {
   const ref = order.orderId.slice(0, 8);
   const lines = order.items
@@ -200,7 +201,7 @@ Te confirmamos que ya tenemos registrado tu pedido #${ref}. Acá te dejamos el d
 
 ${lines}
 
-Total: $${order.total.toLocaleString("es-AR")}${payment ? `\nMedio de pago: ${payment}` : ""}
+${order.shippingCost ? `Envío (a convenir): $${order.shippingCost.toLocaleString("es-AR")}\n` : ""}Total: $${order.total.toLocaleString("es-AR")}${payment ? `\nMedio de pago: ${payment}` : ""}
 
 Podés ver el estado de tu pedido cuando quieras:
 https://lanuscomputacion.com/compras?order=${order.orderId}

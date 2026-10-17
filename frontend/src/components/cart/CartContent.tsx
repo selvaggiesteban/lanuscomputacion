@@ -36,6 +36,7 @@ export default function CartContent() {
   const [applyingCoupon, setApplyingCoupon] = useState(false);
   const [payStep, setPayStep] = useState<"form" | "methods" | "done">("form");
   const [orderResult, setOrderResult] = useState<{ orderId: string; method: string; waUrl: string } | null>(null);
+  const [shippingCost, setShippingCost] = useState(17000);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -44,6 +45,12 @@ export default function CartContent() {
     window.addEventListener("cart-update", refresh);
     return () => window.removeEventListener("cart-update", refresh);
   }, [refresh]);
+
+  useEffect(() => {
+    fetch("/api/config").then(r => r.json()).then(d => {
+      if (typeof d?.shipping_cost === "number") setShippingCost(d.shipping_cost);
+    }).catch(() => {});
+  }, []);
 
   const sendAbandoned = useCallback(
     (orderId?: string) => {
@@ -105,7 +112,7 @@ export default function CartContent() {
 
   const subtotal = items.reduce((s, i) => (i.promo_price ?? i.price) * i.quantity + s, 0);
   const discount = couponDiscount?.totalDiscount ?? 0;
-  const total = subtotal - discount;
+  const total = subtotal - discount + shippingCost;
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return;
@@ -262,6 +269,10 @@ export default function CartContent() {
                 <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
               </div>
             )}
+            <div class="flex justify-between">
+              <span class="text-ml-text-muted">Envío (a convenir)</span>
+              <span class="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            </div>
             <div class="flex justify-between border-t pt-2">
               <span class="font-semibold text-ml-text">Total</span>
               <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>

@@ -157,7 +157,10 @@ const templateLabels = (o: any): { tpl: string; label: string }[] => [
                 <td class="p-3 text-ml-text-muted text-xs max-w-xs">
                   <span class="line-clamp-2">{productTitles[o.id] || '—'}</span>
                 </td>
-                <td class="p-3 text-right font-medium text-ml-text">${o.total_price?.toLocaleString('es-AR')}</td>
+                <td class="p-3 text-right font-medium text-ml-text">
+            ${o.total_price?.toLocaleString('es-AR')}
+            {o.shipping_cost > 0 && <span class="block text-xs text-ml-text-muted font-normal">incl. envío ${o.shipping_cost.toLocaleString('es-AR')}</span>}
+          </td>
                 <td class="p-3 text-center">
                   <select class={`status-select text-xs font-medium rounded px-2 py-1 border-0 ${statusColors[o.status] || 'bg-gray-100'}`} data-id={o.id}>
                     {Object.entries(statusLabels).map(([key, label]) => (

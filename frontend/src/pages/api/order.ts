@@ -51,6 +51,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
     const promotions = await getActivePromotions(DB);
 
+    let shippingCost = 17000;
+    try {
+      const shipRow = await DB.prepare("SELECT value FROM app_config WHERE key = 'shipping_cost'").first<{ value: string }>();
+      if (shipRow?.value != null && shipRow.value !== "") shippingCost = Number(shipRow.value);
+    } catch (e) {
+      console.error("shipping_cost config error:", e);
+    }
+
     let sessionUser;
     let b2bApproved = false;
     let b2bRules: any[] = [];
@@ -110,13 +118,13 @@ export const POST: APIRoute = async ({ locals, request }) => {
       });
     }
 
-    total = Math.round(total * 100) / 100;
+    total = Math.round((total + shippingCost) * 100) / 100;
     const firstProduct = productMap.get(String(body.items[0].product_id))!;
 
     const batchStatements = [
       DB.prepare(
-        "INSERT INTO orders (id, product_id, quantity, unit_price, total_price, payment_method, status, customer_name, customer_email, customer_phone, address) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)"
-      ).bind(orderId, firstProduct.id, totalQty, orderItemsData[0].unit_price, total, paymentMethod, body.customer.name, body.customer.email, body.customer.phone || null, body.customer.address || null),
+        "INSERT INTO orders (id, product_id, quantity, unit_price, total_price, payment_method, status, customer_name, customer_email, customer_phone, address, shipping_cost) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, ?)"
+      ).bind(orderId, firstProduct.id, totalQty, orderItemsData[0].unit_price, total, paymentMethod, body.customer.name, body.customer.email, body.customer.phone || null, body.customer.address || null, shippingCost),
     ];
 
     for (const item of orderItemsData) {
@@ -172,6 +180,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
         orderId,
         items: orderItemsData.map((i) => ({ title: i.product_title, quantity: i.quantity, price: i.unit_price })),
         total,
+        shippingCost,
         customerName: body.customer.name,
         paymentMethod,
       });
@@ -191,7 +200,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
       else await mailPromise;
     }
 
-    return new Response(JSON.stringify({ order_id: orderId, payment_method: paymentMethod, total }), {
+    return new Response(JSON.stringify({ order_id: orderId, payment_method: paymentMethod, total, shipping_cost: shippingCost }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -213,7 +222,7 @@ export const GET: APIRoute = async ({ locals, url }) => {
     let order = null;
     try {
       order = await DB.prepare(
-        "SELECT id, customer_name, customer_email, customer_phone, address, total_price, status, mp_preference_id, mp_payment_id, payment_method, created_at FROM orders WHERE id = ?"
+        "SELECT id, customer_name, customer_email, customer_phone, address, total_price, shipping_cost, status, mp_preference_id, mp_payment_id, payment_method, created_at FROM orders WHERE id = ?"
       ).bind(id).first<any>();
     } catch (e) {
       console.error("D1 Error in frontend/src/pages/api/order.ts:", e);
