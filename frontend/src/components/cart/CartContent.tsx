@@ -296,6 +296,10 @@ export default function CartContent() {
             <input type="email" placeholder="Email *" value={customer.email} onChange={e => setCustomer(p => ({ ...p, email: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <input type="tel" placeholder="Teléfono" value={customer.phone} onChange={e => setCustomer(p => ({ ...p, phone: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <input type="text" placeholder="Dirección" value={customer.address} onChange={e => setCustomer(p => ({ ...p, address: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
+            <p class="text-xs text-ml-text-muted">
+              Envío a convenir: coordinamos el envío con vos por WhatsApp. Llega en 3 días hábiles una vez despachado.
+              <a href="/politicas-de-envios-y-devoluciones" class="ml-link ml-1">Ver políticas</a>
+            </p>
           </div>
 
           {error && <p class="text-xs text-red-500 mb-2">{error}</p>}
