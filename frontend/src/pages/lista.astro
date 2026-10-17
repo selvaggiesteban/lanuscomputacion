@@ -2,7 +2,7 @@
 // Ruta SSR de las piezas de campaña: /lista/{año}/ofertas-lanus-{fecha}-{día}.html
 // El HTML se renderiza con el snapshot de precios de KV (`snapshot:latest`),
 // actualizado por el worker lanus-flyers-updater a las 7:00 y 17:00 ART.
-import { flyer, partes, FECHA_INICIO, FECHA_FIN, type FlyerSnapshot } from '../../lib/flyers';
+import { flyer, partes, FECHA_INICIO, FECHA_FIN, type FlyerSnapshot } from '../lib/flyers';
 
 const archivo = (Astro.params.archivo || '').replace(/\.html$/, '');
 const m = archivo.match(/^(\d{4})\/ofertas-lanus-(\d{4}-\d{2}-\d{2})-(martes|viernes)$/);
