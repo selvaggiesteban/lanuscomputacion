@@ -1,0 +1,159 @@
+---
+import ProductCard from '../catalog/ProductCard.astro';
+import type { Product } from '../catalog/ProductCard.astro';
+
+export interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+---
+
+<section class="ml-container py-8" aria-label="Más vendidos">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-xl font-semibold text-ml-text">Más Vendidos</h2>
+    <a href="/categoria/todas" class="text-sm ml-link font-medium">Ver todas →</a>
+  </div>
+
+  <div class="relative" data-bs-carousel>
+    <div class="overflow-hidden" data-bs-viewport style="touch-action: pan-y;">
+      <div data-bs-track class="flex gap-4 transition-transform duration-500 ease-out">
+        {products.map((p) => (
+          <div class="best-card flex-shrink-0 w-[calc((100%-1rem)/2)] md:w-[calc((100%-3rem)/4)] lg:w-[calc((100%-5rem)/6)]">
+            <ProductCard product={p} />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <button data-bs-prev type="button" aria-label="Anterior" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 border border-ml-border shadow-card flex items-center justify-center text-ml-text hover:bg-gray-50 transition-colors z-10">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button data-bs-next type="button" aria-label="Siguiente" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/95 border border-ml-border shadow-card flex items-center justify-center text-ml-text hover:bg-gray-50 transition-colors z-10">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-bs-carousel]');
+  if (root) {
+    const viewport = root.querySelector<HTMLElement>('[data-bs-viewport]');
+    const track = root.querySelector<HTMLElement>('[data-bs-track]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-bs-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-bs-next]');
+    const cards = track ? Array.from(track.children) as HTMLElement[] : [];
+
+    if (viewport && track && cards.length > 0) {
+      const GAP = 16;
+      const AUTOPLAY_MS = 4000;
+      let ppv = 2;
+      let step = 0;
+      let idx = 0;
+      let maxIdx = 0;
+      let timer: number | undefined;
+      let dragging = false;
+      let startX = 0;
+      let dx = 0;
+      let baseX = 0;
+      let moved = false;
+
+      const apply = (animate: boolean) => {
+        track.style.transitionDuration = animate ? '' : '0ms';
+        track.style.transform = `translateX(${-idx * step}px)`;
+        if (prev && next) {
+          prev.style.visibility = maxIdx === 0 || idx === 0 ? 'hidden' : 'visible';
+          next.style.visibility = maxIdx === 0 || idx === maxIdx ? 'hidden' : 'visible';
+        }
+      };
+
+      const measure = () => {
+        ppv = window.innerWidth >= 1024 ? 6 : window.innerWidth >= 768 ? 4 : 2;
+        step = cards[0].offsetWidth + GAP;
+        maxIdx = Math.max(0, cards.length - ppv);
+        if (idx > maxIdx) idx = maxIdx;
+        apply(false);
+      };
+
+      const stop = () => {
+        if (timer !== undefined) {
+          window.clearInterval(timer);
+          timer = undefined;
+        }
+      };
+
+      const start = () => {
+        stop();
+        if (maxIdx > 0) {
+          timer = window.setInterval(() => {
+            idx = idx >= maxIdx ? 0 : idx + 1;
+            apply(true);
+          }, AUTOPLAY_MS);
+        }
+      };
+
+      prev?.addEventListener('click', () => {
+        if (idx > 0) {
+          idx--;
+          apply(true);
+          start();
+        }
+      });
+
+      next?.addEventListener('click', () => {
+        if (idx < maxIdx) {
+          idx++;
+          apply(true);
+          start();
+        }
+      });
+
+      viewport.addEventListener('pointerdown', (e) => {
+        if (maxIdx === 0) return;
+        dragging = true;
+        moved = false;
+        startX = e.clientX;
+        dx = 0;
+        baseX = -idx * step;
+        track.style.transitionDuration = '0ms';
+      });
+
+      viewport.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        dx = e.clientX - startX;
+        if (Math.abs(dx) > 8) moved = true;
+        track.style.transform = `translateX(${baseX + dx}px)`;
+      });
+
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transitionDuration = '';
+        if (dx < -40 && idx < maxIdx) idx++;
+        else if (dx > 40 && idx > 0) idx--;
+        dx = 0;
+        apply(true);
+        start();
+      };
+
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+      viewport.addEventListener('pointerleave', endDrag);
+
+      viewport.addEventListener('click', (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+
+      root.addEventListener('pointerenter', stop);
+      root.addEventListener('pointerleave', start);
+      window.addEventListener('resize', measure);
+
+      measure();
+      start();
+    }
+  }
+</script>

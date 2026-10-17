@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandsSection from '../components/home/BrandsSection.astro';
+import BestSellersCarousel from '../components/home/BestSellersCarousel.astro';
 import { getCategories } from '../lib/d1';
 
 const DB = Astro.locals.runtime.env.DB;
@@ -25,6 +26,34 @@ if (categoryIds.length > 0) {
   }
 }
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
+
+let bestSellers: any[] = [];
+try {
+  const { results } = await DB.prepare(`
+    SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+           dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+    FROM products
+    WHERE status = 'published' AND available_qty > 0 AND price > 0
+    ORDER BY sold_qty DESC, created_at DESC
+    LIMIT 20
+  `).all();
+  bestSellers = (results || []).map((p: any) => ({
+    id: p.id,
+    title: p.title,
+    price: p.price,
+    image: p.thumbnail,
+    slug: p.slug,
+    categoryName: p.category_name,
+    freeShipping: p.free_shipping === 1,
+    dollarRate: p.dollar_rate,
+    ivaPct: p.iva_pct,
+    internalTaxPct: p.internal_tax_pct,
+    availableQty: p.available_qty,
+  }));
+} catch (e) {
+  console.error("D1 Error bestSellers in index.astro:", e);
+  bestSellers = [];
+}
 
 const staticSlideImages: Record<string, { src: string; alt: string }> = {
   cat_celulares: {
@@ -111,6 +140,9 @@ const staticSlideImages: Record<string, { src: string; alt: string }> = {
       </div>
     </div>
   </section>
+
+  <!-- Más Vendidos -->
+  {bestSellers.length >= 2 && <BestSellersCarousel products={bestSellers} />}
 
   <!-- Categorías -->
   <section class="ml-container py-8">
