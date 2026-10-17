@@ -51,6 +51,9 @@ export async function sendEmail(
     let buf = "";
     const timeout = setTimeout(() => { try { socket.close(); } catch {} }, 20000);
 
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+
     const write = (line: string) => writer.write(encoder.encode(line + "\r\n"));
 
     // Acumula hasta consumir la respuesta final "NNN text" (las continuaciones
