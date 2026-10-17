@@ -1,0 +1,10 @@
+{
+  "name": "lanus-digest-trigger",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-14",
+  "compatibility_flags": ["nodejs_compat"],
+  // Cron: 9:00 y 17:00 America/Argentina/Buenos_Aires (UTC-3) = 12:00 y 20:00 UTC
+  "triggers": { "crons": ["0 12,20 * * *"] }
+  // DIGEST_TOKEN (mismo valor que el Pages secret del sitio):
+  //   wrangler secret put DIGEST_TOKEN
+}
