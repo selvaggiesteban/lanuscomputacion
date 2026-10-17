@@ -3,8 +3,6 @@
 // Requiere los Pages secrets GMAIL_USER y GMAIL_APP_PASSWORD (contraseña de
 // aplicación de Google, https://myaccount.google.com/apppasswords).
 
-import { connect } from "cloudflare:sockets";
-
 export interface EmailEnv {
   GMAIL_USER?: string;
   GMAIL_APP_PASSWORD?: string;
@@ -45,46 +43,45 @@ export async function sendEmail(
     return { success: false, error: "GMAIL_USER/GMAIL_APP_PASSWORD no configurados" };
   }
 
-  const encoder = new TextEncoder();
-  const decoder = new TextDecoder();
-  const socket = connect({ hostname: SMTP_HOST, port: SMTP_PORT }, { secureTransport: "on" });
-  const writer = socket.writable.getWriter();
-  const reader = socket.readable.getReader();
-  let buf = "";
-  const timeout = setTimeout(() => { try { socket.close(); } catch {} }, 20000);
-
-  const write = (line: string) => writer.write(encoder.encode(line + "\r\n"));
-
-  // Acumula hasta consumir la respuesta final "NNN text" (las continuaciones
-  // de una respuesta multilinea son "NNN-texto").
-  async function readReply(): Promise<number> {
-    for (;;) {
-      let scan = 0;
-      let pos = buf.indexOf("\r\n", scan);
-      let last: string | null = null;
-      while (pos !== -1) {
-        last = buf.slice(scan, pos);
-        scan = pos + 2;
-        pos = buf.indexOf("\r\n", scan);
-      }
-      if (last !== null && /^\d{3} [^-]/.test(last)) {
-        buf = buf.slice(scan);
-        return parseInt(last.slice(0, 3), 10);
-      }
-      const { done, value } = await reader.read();
-      if (done) throw new Error("SMTP: conexión cerrada inesperadamente");
-      if (value) buf += decoder.decode(value, { stream: true });
-    }
-  }
-
-  async function expect(expected: number, step: string) {
-    const code = await readReply();
-    if (code !== expected) {
-      throw new Error(`SMTP ${step}: esperaba ${expected}, recibió ${code}`);
-    }
-  }
-
   try {
+    const { connect } = await import("cloudflare:sockets");
+    const socket = connect({ hostname: SMTP_HOST, port: SMTP_PORT }, { secureTransport: "on" });
+    const writer = socket.writable.getWriter();
+    const reader = socket.readable.getReader();
+    let buf = "";
+    const timeout = setTimeout(() => { try { socket.close(); } catch {} }, 20000);
+
+    const write = (line: string) => writer.write(encoder.encode(line + "\r\n"));
+
+    // Acumula hasta consumir la respuesta final "NNN text" (las continuaciones
+    // de una respuesta multilinea son "NNN-texto").
+    async function readReply(): Promise<number> {
+      for (;;) {
+        let scan = 0;
+        let pos = buf.indexOf("\r\n", scan);
+        let last: string | null = null;
+        while (pos !== -1) {
+          last = buf.slice(scan, pos);
+          scan = pos + 2;
+          pos = buf.indexOf("\r\n", scan);
+        }
+        if (last !== null && /^\d{3} [^-]/.test(last)) {
+          buf = buf.slice(scan);
+          return parseInt(last.slice(0, 3), 10);
+        }
+        const { done, value } = await reader.read();
+        if (done) throw new Error("SMTP: conexión cerrada inesperadamente");
+        if (value) buf += decoder.decode(value, { stream: true });
+      }
+    }
+
+    async function expect(expected: number, step: string) {
+      const code = await readReply();
+      if (code !== expected) {
+        throw new Error(`SMTP ${step}: esperaba ${expected}, recibió ${code}`);
+      }
+    }
+
     await expect(220, "saludo");
     await write(`EHLO lanuscomputacion.com`);
     await expect(250, "EHLO");
