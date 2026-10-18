@@ -152,6 +152,9 @@ const SUBCATEGORY_MAP: Record<string, CategoryMapping> = {
   // --- Empty ELIT category (products with subcategory only) ---
   "|Cartuchos de Tiinta":                  { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_IMPRESION },
   "|Toners":                               { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_IMPRESION },
+  "|Lampara":                              { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "|Varios":                               { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
+  "|Software":                             { category_id: CAT.COMPUTACION, subcategory_name: SUB.COMP_TABLETS },
 };
 
 // ============================================================
