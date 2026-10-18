@@ -29,15 +29,7 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
 
 let bestSellers: any[] = [];
 try {
-  const { results } = await DB.prepare(`
-    SELECT id, title, price, thumbnail, slug, category_name, available_qty,
-           dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
-    FROM products
-    WHERE status = 'published' AND available_qty > 0 AND price > 0
-    ORDER BY sold_qty DESC, created_at DESC
-    LIMIT 20
-  `).all();
-  bestSellers = (results || []).map((p: any) => ({
+  const toCard = (p: any) => ({
     id: p.id,
     title: p.title,
     price: p.price,
@@ -49,7 +41,45 @@ try {
     ivaPct: p.iva_pct,
     internalTaxPct: p.internal_tax_pct,
     availableQty: p.available_qty,
-  }));
+  });
+
+  // Carrusel "Más vendidos": 5 cámaras de seguridad, 5 monitores, 5
+  // notebooks y 5 routers WiFi (por sold_qty); si un grupo no alcanza,
+  // se rellena con los más vendidos generales que falten.
+  const groups: { where: string }[] = [
+    { where: "category_name = 'Seguridad'" },
+    { where: "title LIKE '%Monitor%'" },
+    { where: "title LIKE '%Notebook%'" },
+    { where: "title LIKE '%Router%'" },
+  ];
+  const selected = new Map<string, any>();
+  for (const g of groups) {
+    const { results } = await DB.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+        AND (${g.where})
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 5
+    `).all();
+    for (const p of results || []) selected.set(String(p.id), p);
+  }
+  if (selected.size < 20) {
+    const { results } = await DB.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 60
+    `).all();
+    for (const p of results || []) {
+      if (selected.size >= 20) break;
+      if (!selected.has(String(p.id))) selected.set(String(p.id), p);
+    }
+  }
+  bestSellers = [...selected.values()].map(toCard);
 } catch (e) {
   console.error("D1 Error bestSellers in index.astro:", e);
   bestSellers = [];
