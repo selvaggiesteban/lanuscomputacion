@@ -60,18 +60,18 @@ body{margin:0;background:#EDEDED;font-family:'Proxima Nova',-apple-system,BlinkM
 .fl-btn:hover{background:#20ba5a}
 .fl-valid{font-size:11px;color:#999999;margin:10px 0 0}
 .fl-section{margin-top:28px}
-.fl-section h2{font-size:16px;font-weight:700;text-transform:uppercase;color:#333333;margin:0 0 4px;display:flex;align-items:center;gap:8px}
-.fl-count{background:#FEE2E2;color:#DC2626;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:none;letter-spacing:0}
-.fl-desc{font-size:13px;color:#666666;margin:0 0 12px}
-.fl-card{display:flex;gap:16px;border:1px solid #E0E0E0;border-radius:8px;padding:12px;margin-bottom:10px;background:#FFFFFF}
-.fl-img{width:128px;height:128px;flex:0 0 128px;display:flex;align-items:center;justify-content:center;background:#FFFFFF}
-.fl-img img{max-width:128px;max-height:128px;object-fit:contain;display:block}
-.fl-info{flex:1;min-width:0}
-.fl-title{font-size:14px;font-weight:600;color:#333333;margin:0 0 2px;line-height:1.35}
-.fl-brand{font-size:12px;color:#999999;margin:0 0 8px}
-.fl-price{font-size:22px;font-weight:700;color:#333333;line-height:1.15;margin:2px 0}
-.fl-sinimp{font-size:14px;font-weight:400;color:#666666;margin:2px 0 10px}
-.fl-buy{display:inline-block;background:#3483FA;color:#FFFFFF;font-size:12px;font-weight:700;text-decoration:none;padding:8px 16px;border-radius:6px}
+.fl-section h2{font-size:16px;font-weight:700;text-transform:uppercase;color:#333333;margin:0 0 4px}
+.fl-desc{font-size:13px;color:#666666;margin:0 0 4px}
+.fl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.fl-card{display:flex;flex-direction:column;border:1px solid #E0E0E0;border-radius:8px;padding:12px;background:#FFFFFF;text-align:center}
+.fl-img{width:100%;height:132px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;margin-bottom:8px}
+.fl-img img{max-width:100%;max-height:132px;object-fit:contain;display:block}
+.fl-info{flex:1;display:flex;flex-direction:column;min-width:0}
+.fl-title{font-size:12.5px;font-weight:600;color:#333333;margin:0 0 2px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em}
+.fl-brand{font-size:11px;color:#999999;margin:0 0 6px}
+.fl-price{font-size:18px;font-weight:700;color:#333333;line-height:1.15;margin:2px 0}
+.fl-sinimp{font-size:11px;font-weight:400;color:#666666;margin:2px 0 10px}
+.fl-buy{display:inline-block;align-self:center;background:#3483FA;color:#FFFFFF;font-size:12px;font-weight:700;text-decoration:none;padding:8px 16px;border-radius:6px;margin-top:auto}
 .fl-buy:hover{background:#2968c8}
 .fl-closing{font-size:13px;color:#666666;line-height:1.65;margin:28px 0 0;padding:16px;background:#F5F5F5;border-radius:8px}
 .fl-closing a{color:#3483FA}
@@ -80,8 +80,13 @@ body{margin:0;background:#EDEDED;font-family:'Proxima Nova',-apple-system,BlinkM
 .fl-footer a{color:#3483FA;text-decoration:none}
 @media (max-width:480px){
   .fl-badges{grid-template-columns:1fr}
-  .fl-card{flex-direction:column;align-items:center;text-align:center}
-  .fl-info{width:100%}
+  .fl-body{padding:16px}
+  .fl-grid{gap:8px}
+  .fl-card{padding:10px}
+  .fl-img{height:100px}
+  .fl-img img{max-height:100px}
+  .fl-title{font-size:12px}
+  .fl-price{font-size:16px}
 }`;
 
 export const FECHA_INICIO = Date.UTC(2026, 9, 9);
@@ -138,9 +143,11 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
     .map(
       (s) => `
     <div class="fl-section">
-      <h2>${esc(s.title)} <span class="fl-count">${s.productos.length} EQUIPOS EN OFERTA</span></h2>
+      <h2>${esc(s.title)}</h2>
       <p class="fl-desc">${esc(s.desc)}</p>
-      ${s.productos.map(productoCard).join('\n')}
+      <div class="fl-grid">
+        ${s.productos.map(productoCard).join('\n')}
+      </div>
     </div>`
     )
     .join('\n');
@@ -160,7 +167,7 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
     <div class="fl-body">
       <h1 class="fl-h1">Ofertas de tecnología</h1>
       <div class="fl-badges">
-        <div class="fl-badge"><b>Stock disponible</b><span>listo para despachar</span></div>
+        <div class="fl-badge"><b>Entrega inmediata</b><span>listo para despachar</span></div>
         <div class="fl-badge"><b>Precios mayoristas</b><span>para cuentas aprobadas</span></div>
         <div class="fl-badge"><b>Garantía oficial</b><span>directa de marca</span></div>
         <div class="fl-badge"><b>Envío 24/48h</b><span>a todo el país</span></div>
