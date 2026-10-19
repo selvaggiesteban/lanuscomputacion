@@ -15,25 +15,36 @@ export interface Env {
   UPDATE_SECRET?: string;
 }
 
-// Reglas B2B vigentes en prod (tabla b2b_rules, is_active=1) — igual que lib/b2b.ts
-const B2B_RULES: Record<string, { disc: number; min: number }> = {
-  'accesorios para celulares': { disc: 0.15, min: 12 },
-  'almacenamiento': { disc: 0.12, min: 5 },
-  'audio': { disc: 0.12, min: 6 },
-  'celulares y smartphones': { disc: 0.08, min: 3 },
-  'componentes de pc': { disc: 0.15, min: 10 },
-  'consolas': { disc: 0.05, min: 3 },
-  'impresión': { disc: 0.1, min: 5 },
-  'monitores': { disc: 0.1, min: 5 },
-  'notebooks': { disc: 0.08, min: 3 },
-  'periféricos de pc': { disc: 0.12, min: 10 },
-  'videojuegos': { disc: 0.1, min: 3 },
+// Reglas B2B leídas de la tabla b2b_rules (is_active=1) — igual que lib/b2b.ts
+type B2bRuleMap = {
+  map: Record<string, { disc: number; min: number }>;
+  def: { disc: number; min: number };
 };
-const DEFAULT_RULE = { disc: 0.1, min: 6 }; // 'Default'
 
-function b2bFor(categoryName: string) {
+async function loadB2bRules(db: D1Database): Promise<B2bRuleMap> {
+  const { results } = await db
+    .prepare(
+      "SELECT category_name, discount_pct, min_quantity FROM b2b_rules WHERE is_active = 1"
+    )
+    .all<{ category_name: string; discount_pct: number; min_quantity: number }>();
+  const map: Record<string, { disc: number; min: number }> = {};
+  const def = { disc: 0.15, min: 6 };
+  for (const r of results ?? []) {
+    const key = (r.category_name || '').trim().toLowerCase();
+    const entry = { disc: Number(r.discount_pct) || 0, min: Number(r.min_quantity) || 1 };
+    if (key === 'default') {
+      def.disc = entry.disc;
+      def.min = entry.min;
+    } else {
+      map[key] = entry;
+    }
+  }
+  return { map, def };
+}
+
+function b2bFor(rules: B2bRuleMap, categoryName: string) {
   const key = (categoryName || '').trim().toLowerCase();
-  return B2B_RULES[key] || DEFAULT_RULE;
+  return rules.map[key] || rules.def;
 }
 
 type ProductRow = {
@@ -63,34 +74,55 @@ async function search(db: D1Database, q: string, limit = 50): Promise<ProductRow
   return results ?? [];
 }
 
-// Mismas secciones, queries y cantidades que la plantilla (datos/fetch-productos.mjs)
-const SECTIONS = [
-  { key: 'nas', title: 'NAS', desc: 'Almacenamiento centralizado y backup para tu negocio o tu hogar.', queries: ['nas'], count: 5 },
+type SectionDef = {
+  key: string;
+  title: string;
+  desc: string;
+  queries: string[];
+  count: number;
+  categoryAny?: string[];
+  categoryIs?: string;
+};
+
+// Secciones de la campaña vigente (flyer viernes): cámaras de seguridad,
+// monitores, notebooks, PCs de escritorio, discos y redes.
+const SECTIONS: SectionDef[] = [
+  { key: 'camaras', title: 'CÁMARAS DE SEGURIDAD', desc: 'Cámaras IP, WiFi y accesorios para vigilar tu casa o tu negocio.', queries: [], count: 5, categoryIs: 'Seguridad' },
+  { key: 'monitores', title: 'MONITORES', desc: 'Pantallas para oficina, gaming y home office.', queries: ['monitor'], count: 4, categoryAny: ['imagen'] },
   { key: 'notebooks', title: 'NOTEBOOKS', desc: 'Equipos para trabajar y estudiar, con stock inmediato.', queries: ['notebook'], count: 8, categoryAny: ['computadoras'] },
-  { key: 'pcs', title: 'PCs', desc: 'Computadoras de escritorio y mini PCs listas para usar.', queries: ['mini pc'], count: 3 },
-  { key: 'monitores', title: 'MONITORES', desc: 'Pantallas para oficina y home office.', queries: ['monitor'], count: 4 },
-  { key: 'redes', title: 'REDES', desc: 'Routers, switches y equipamiento para armar tu red.', queries: ['router', 'switch', 'mikrotik', 'tp-link', 'wifi', 'antena', 'access point', 'modem', 'huawei', 'd-link', 'repetidor'], count: 8, categoryAny: ['conectividad', 'cables'] },
-  { key: 'ups', title: 'UPS', desc: 'Fuentes de alimentación ininterrumpida para proteger tus equipos.', queries: ['ups', 'estabilizador'], count: 3 },
+  { key: 'pcs', title: 'PCs DE ESCRITORIO', desc: 'Computadoras de escritorio y mini PCs listas para usar.', queries: ['mini pc', 'computadora de escritorio', 'pc de escritorio', 'computadora'], count: 3 },
   { key: 'discos', title: 'DISCOS', desc: 'SSD y discos rígidos para ampliar tu almacenamiento.', queries: ['ssd', 'disco'], count: 3 },
+  { key: 'redes', title: 'REDES', desc: 'Routers, switches y equipamiento para armar tu red.', queries: ['router', 'switch', 'mikrotik', 'tp-link', 'wifi', 'antena', 'access point', 'modem', 'huawei', 'd-link', 'repetidor'], count: 8, categoryAny: ['conectividad', 'cables'] },
 ];
 
 async function updateSnapshot(env: Env) {
   const seenIds = new Set<string>();
   const secciones = [];
+  const b2b = await loadB2bRules(env.DB);
 
   for (const section of SECTIONS) {
     let candidates: ProductRow[] = [];
-    for (const q of section.queries) {
-      candidates = candidates.concat(await search(env.DB, q));
+    if (section.categoryIs) {
+      const { results } = await env.DB
+        .prepare(
+          "SELECT * FROM products WHERE status = 'published' AND category_name = ? ORDER BY available_qty DESC, title ASC LIMIT 100"
+        )
+        .bind(section.categoryIs)
+        .all<ProductRow>();
+      candidates = results ?? [];
+    } else {
+      for (const q of section.queries) {
+        candidates = candidates.concat(await search(env.DB, q));
+      }
     }
     const byId = new Map<string, ProductRow>();
     for (const p of candidates) {
       if (!p || seenIds.has(p.id)) continue;
       if (!(p.available_qty > 0) || !(p.price > 0)) continue;
       if (!p.thumbnail || !p.thumbnail.startsWith('http')) continue;
-      if ((section as { categoryAny?: string[] }).categoryAny) {
+      if (section.categoryAny) {
         const cat = (p.category_name || '').trim().toLowerCase();
-        if (!(section as { categoryAny?: string[] }).categoryAny!.includes(cat)) continue;
+        if (!section.categoryAny.includes(cat)) continue;
       }
       if (!byId.has(p.id)) byId.set(p.id, p);
     }
@@ -98,7 +130,7 @@ async function updateSnapshot(env: Env) {
       .sort((a, b) => b.available_qty - a.available_qty)
       .slice(0, section.count)
       .map((p) => {
-        const rule = b2bFor(p.category_name || '');
+        const rule = b2bFor(b2b, p.category_name || '');
         return {
           id: p.id,
           title: p.title,
