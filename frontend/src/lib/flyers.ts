@@ -123,14 +123,14 @@ export function productoCard(p: FlyerProduct): string {
   const sinNacionales = Math.round(p.price / (1 + (iva + interno) / 100));
   const buy = `${SITE}/producto/${encodeURIComponent(p.slug)}?add=1`;
   return `
-        <div class="fl-card">
-          <div class="fl-img"><img src="${esc(p.thumbnail)}" alt="${esc(p.title)}" width="128" height="128" loading="lazy"></div>
+        <div class="fl-card" itemscope itemtype="https://schema.org/Product">
+          <div class="fl-img"><img src="${esc(p.thumbnail)}" alt="${esc(p.title)}" title="${esc(p.title)}" width="128" height="128" loading="lazy" itemprop="image"></div>
           <div class="fl-info">
-            <p class="fl-title">${esc(p.title)}</p>
-            ${p.brand ? `<p class="fl-brand">${esc(p.brand)}</p>` : '<p class="fl-brand">&nbsp;</p>'}
-            <p class="fl-price">$${nf.format(Math.round(p.price))}</p>
+            <p class="fl-title" itemprop="name">${esc(p.title)}</p>
+            ${p.brand ? `<p class="fl-brand" itemprop="brand">${esc(p.brand)}</p>` : '<p class="fl-brand">&nbsp;</p>'}
+            <p class="fl-price">$${nf.format(Math.round(p.price))}<span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="price" content="${p.price}"><meta itemprop="priceCurrency" content="ARS"><link itemprop="availability" href="https://schema.org/InStock"></span></p>
             <p class="fl-sinimp">Precio sin impuestos nacionales $${nf.format(sinNacionales)}</p>
-            <a class="fl-buy" href="${esc(buy)}" target="_blank" rel="noopener">Comprar</a>
+            <a class="fl-buy" href="${esc(buy)}" target="_blank" rel="noopener" itemprop="url">Comprar</a>
           </div>
         </div>`;
 }
@@ -139,6 +139,10 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
   const { dia, fecha } = partes(d);
   const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
   const waCta = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar las ofertas mayoristas del ${dia} ${fecha}`)}`;
+  const canonical = `${SITE}${flyerHref(d)}`;
+  const cats = snapshot.secciones.map((s) => s.title.toLowerCase()).join(', ');
+  const description = `Ofertas del ${dia} ${fecha} en Lanús Computación: ${cats} con entrega inmediata.`;
+  const keywords = `ofertas tecnología, Lanús Computación, ${cats}, stock inmediato, envío a todo el país, mayoristas`;
   const secciones = snapshot.secciones
     .map(
       (s) => `
@@ -157,13 +161,33 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ofertas de tecnología - ${diaCap} ${fecha}</title>
+<title>Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación</title>
+<meta name="description" content="${esc(description)}">
+<meta name="keywords" content="${esc(keywords)}">
+<meta name="author" content="Lanús Computación">
+<meta name="publisher" content="Lanús Computación">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="${esc(canonical)}">
+<meta name="image" content="${esc(HEADER_IMG)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lanús Computación">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="${esc(`Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación`)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${esc(canonical)}">
+<meta property="og:image" content="${esc(HEADER_IMG)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(`Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación`)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${esc(HEADER_IMG)}">
 <style>${cssSitio}</style>
 <style>${flyerCss}</style>
 </head>
 <body>
-  <div class="fl-wrap">
-    <img class="fl-logo" src="${HEADER_IMG}" alt="Lanús Computación">
+  <div class="fl-wrap" itemscope itemtype="https://schema.org/CollectionPage">
+    <meta itemprop="name" content="${esc(`Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación`)}">
+    <meta itemprop="description" content="${esc(description)}">
+    <img class="fl-logo" src="${HEADER_IMG}" alt="Lanús Computación" title="Lanús Computación">
     <div class="fl-body">
       <h1 class="fl-h1">Ofertas de tecnología</h1>
       <div class="fl-badges">
