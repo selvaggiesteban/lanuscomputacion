@@ -168,7 +168,7 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
       <h1 class="fl-h1">Ofertas de tecnología</h1>
       <div class="fl-badges">
         <div class="fl-badge"><b>Entrega inmediata</b><span>listo para despachar</span></div>
-        <div class="fl-badge"><b>Servicio postventa</b><span>Servicio técnico</span></div>
+        <div class="fl-badge"><b>Atención postventa</b><span>Servicio técnico</span></div>
         <div class="fl-badge"><b>Garantía oficial</b><span>directa de marca</span></div>
         <div class="fl-badge"><b>Envío a todo el país</b><span>Tarifa plana</span></div>
       </div>
