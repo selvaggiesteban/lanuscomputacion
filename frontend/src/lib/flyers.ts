@@ -215,3 +215,112 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
 </body>
 </html>`;
 }
+
+// ===== Versión para imprimir: /print/{año}/ofertas-lanus-{fecha}-{día}.html =====
+// Todo el contenido de la campaña acomodado en una hoja A4 vertical
+// (@page size:A4 portrait): header compacto, secciones en grilla de 4
+// columnas y cards sin botón de compra.
+const printCss = `
+@page{size:A4 portrait;margin:8mm}
+*{box-sizing:border-box}
+body{margin:0;background:#EDEDED;font-family:'Proxima Nova',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333333}
+.pr-sheet{width:210mm;min-height:297mm;margin:12px auto;background:#FFFFFF;padding:8mm;box-shadow:0 2px 14px rgba(0,0,0,.25)}
+.pr-logo{display:block;width:auto;height:14mm;margin:0 auto 2mm}
+.pr-h1{font-size:12pt;font-weight:700;margin:0 0 1.5mm;text-align:center}
+.pr-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5mm;margin:0 0 1mm}
+.pr-chip{background:#F5F5F5;border:1px solid #E0E0E0;border-radius:2mm;padding:.6mm 2mm;font-size:5.5pt;color:#666666}
+.pr-chip b{color:#333333;text-transform:uppercase;letter-spacing:.02em}
+.pr-sec{margin-top:3.5mm}
+.pr-sec h2{font-size:8.5pt;font-weight:700;text-transform:uppercase;margin:0;border-bottom:.4mm solid #333333;padding-bottom:.6mm;line-height:1.3}
+.pr-sec h2 span{font-size:5.5pt;font-weight:400;text-transform:none;color:#777777;letter-spacing:0}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2mm;margin-top:1.5mm}
+.pr-card{border:.3mm solid #E0E0E0;border-radius:1.5mm;padding:1.2mm;display:flex;gap:1.2mm;align-items:flex-start;background:#FFFFFF}
+.pr-img{width:12mm;height:12mm;flex:0 0 12mm;object-fit:contain}
+.pr-info{flex:1;min-width:0}
+.pr-title{font-size:5.5pt;font-weight:600;line-height:1.25;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pr-brand{font-size:5pt;color:#999999;margin:.5mm 0 0}
+.pr-price{font-size:8pt;font-weight:700;margin:.5mm 0 0;line-height:1.1}
+.pr-sin{font-size:4.5pt;color:#777777;margin:.4mm 0 0;line-height:1.2}
+.pr-close{font-size:5.5pt;line-height:1.5;margin:4mm 0 0;padding:2mm;background:#F5F5F5;border-radius:1.5mm}
+.pr-close a{color:#3483FA}
+.pr-cta{margin-top:2mm;text-align:center;font-size:5.5pt;color:#666666}
+.pr-cta a{color:#3483FA;font-weight:700}
+.pr-foot{margin-top:3mm;border-top:.3mm solid #E0E0E0;padding-top:1.5mm;text-align:center;font-size:5pt;color:#999999;line-height:1.6}
+.pr-foot b{color:#333333}
+.pr-foot a{color:#3483FA;text-decoration:none}
+@media print{
+  body{background:#FFFFFF}
+  .pr-sheet{box-shadow:none;margin:0;width:auto;min-height:0;padding:0}
+}`;
+
+function productoCardPrint(p: FlyerProduct): string {
+  const iva = Number(p.iva_pct) > 0 ? Number(p.iva_pct) : 21;
+  const interno = Number(p.internal_tax_pct) >= 0 ? Number(p.internal_tax_pct) : 0;
+  const sinNacionales = Math.round(p.price / (1 + (iva + interno) / 100));
+  return `
+        <div class="pr-card">
+          <img class="pr-img" src="${esc(p.thumbnail)}" alt="${esc(p.title)}" title="${esc(p.title)}" loading="lazy">
+          <div class="pr-info">
+            <p class="pr-title">${esc(p.title)}</p>
+            ${p.brand ? `<p class="pr-brand">${esc(p.brand)}</p>` : '<p class="pr-brand">&nbsp;</p>'}
+            <p class="pr-price">$${nf.format(Math.round(p.price))}</p>
+            <p class="pr-sin">Precio sin impuestos nacionales $${nf.format(sinNacionales)}</p>
+          </div>
+        </div>`;
+}
+
+export function flyerPrint(d: Date, snapshot: FlyerSnapshot): string {
+  const { dia, fecha } = partes(d);
+  const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
+  const canonical = `${SITE}${flyerHref(d)}`;
+  const description = `Versión imprimible de las ofertas de tecnología del ${dia} ${fecha} en Lanús Computación.`;
+  const waCta = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar las ofertas mayoristas del ${dia} ${fecha}`)}`;
+  const secciones = snapshot.secciones
+    .map(
+      (s) => `
+    <section class="pr-sec">
+      <h2>${esc(s.title)} <span>— ${esc(s.desc)}</span></h2>
+      <div class="pr-grid">
+        ${s.productos.map(productoCardPrint).join('\n')}
+      </div>
+    </section>`
+    )
+    .join('\n');
+
+  return `<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación (imprimible)</title>
+<meta name="description" content="${esc(description)}">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="${esc(canonical)}">
+<style>${printCss}</style>
+</head>
+<body>
+  <div class="pr-sheet">
+    <img class="pr-logo" src="${HEADER_IMG}" alt="Lanús Computación" title="Lanús Computación">
+    <h1 class="pr-h1">Ofertas de tecnología — ${diaCap} ${fecha}</h1>
+    <div class="pr-chips">
+      <span class="pr-chip"><b>Entrega inmediata</b> · listo para despachar</span>
+      <span class="pr-chip"><b>Atención postventa</b> · Servicio técnico</span>
+      <span class="pr-chip"><b>Garantía oficial</b> · directa de marca</span>
+      <span class="pr-chip"><b>Envío a todo el país</b> · Tarifa plana</span>
+    </div>
+    ${secciones}
+    <p class="pr-close">¿No encontrás lo que buscás? Consultanos igual: te cotizamos cualquier equipo y te lo hacemos llegar lo más rápido posible. Si comprás para tu negocio o revendés tecnología, <a href="${SITE}/b2b" target="_blank" rel="noopener">registrá tu cuenta mayorista</a> y accedé a precios especiales automáticamente.</p>
+    <div class="pr-cta">
+      <a href="${waCta}" target="_blank" rel="noopener">Pedir por WhatsApp</a> · Precios válidos para consultas del ${dia} ${fecha}. Sujetos a stock.
+    </div>
+    <div class="pr-foot">
+      <b>Lanús Computación</b> · Tecnología en oferta ·
+      <a href="${SITE}" target="_blank" rel="noopener">lanuscomputacion.com</a> ·
+      <a href="${SITE}/b2b" target="_blank" rel="noopener">Mayoristas</a> ·
+      WhatsApp <b>11 5332-3937</b><br>
+      Imágenes ilustrativas. Precios sujetos a cambios sin previo aviso.
+    </div>
+  </div>
+</body>
+</html>`;
+}
