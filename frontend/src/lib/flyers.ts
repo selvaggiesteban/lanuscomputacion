@@ -168,9 +168,9 @@ export function flyer(d: Date, snapshot: FlyerSnapshot): string {
       <h1 class="fl-h1">Ofertas de tecnología</h1>
       <div class="fl-badges">
         <div class="fl-badge"><b>Entrega inmediata</b><span>listo para despachar</span></div>
-        <div class="fl-badge"><b>Precios mayoristas</b><span>para cuentas aprobadas</span></div>
+        <div class="fl-badge"><b>Servicio postventa</b><span>Servicio técnico</span></div>
         <div class="fl-badge"><b>Garantía oficial</b><span>directa de marca</span></div>
-        <div class="fl-badge"><b>Envío 24/48h</b><span>a todo el país</span></div>
+        <div class="fl-badge"><b>Envío a todo el país</b><span>Tarifa plana</span></div>
       </div>
       ${secciones}
       <p class="fl-closing">¿No encontrás lo que buscás? Consultanos igual: te cotizamos cualquier equipo y te lo hacemos llegar lo más rápido posible. Si comprás para tu negocio o revendés tecnología, <a href="${SITE}/b2b" target="_blank" rel="noopener">registrá tu cuenta mayorista</a> y accedé a precios especiales automáticamente.</p>
