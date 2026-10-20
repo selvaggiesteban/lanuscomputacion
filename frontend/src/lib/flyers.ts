@@ -135,11 +135,11 @@ export function productoCard(p: FlyerProduct): string {
         </div>`;
 }
 
-export function flyer(d: Date, snapshot: FlyerSnapshot): string {
+export function flyer(d: Date, snapshot: FlyerSnapshot, opts?: { canonical?: string }): string {
   const { dia, fecha } = partes(d);
   const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
   const waCta = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, quiero consultar las ofertas mayoristas del ${dia} ${fecha}`)}`;
-  const canonical = `${SITE}${flyerHref(d)}`;
+  const canonical = opts?.canonical || `${SITE}${flyerHref(d)}`;
   const cats = snapshot.secciones.map((s) => s.title.toLowerCase()).join(', ');
   const description = `Ofertas del ${dia} ${fecha} en Lanús Computación: ${cats} con entrega inmediata.`;
   const keywords = `ofertas tecnología, Lanús Computación, ${cats}, stock inmediato, envío a todo el país, mayoristas`;
