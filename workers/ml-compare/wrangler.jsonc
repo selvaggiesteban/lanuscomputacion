@@ -1,0 +1,10 @@
+{
+  "name": "lanus-ml-compare",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": { "crons": ["0 13 * * *"] },
+  "kv_namespaces": [
+    { "binding": "FLYERS", "id": "62cb8b101cf74606bfb6f86ba12c6ba9" }
+  ]
+}
