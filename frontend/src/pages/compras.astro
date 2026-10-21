@@ -13,19 +13,25 @@ try {
   console.error('[compras] auth error:', e);
 }
 
-// Gmail ignora los puntos en el local part: una cuenta user@gmail.com debe
-// ver también los pedidos cargados como u.s.er@gmail.com (mismo buzón).
+// Gmail ignora los puntos en el local part: user@gmail.com y u.s.er@gmail.com
+// son el mismo buzón, así que las cuentas gmail matchean también por email
+// sin puntos (en cualquier dirección, no solo la propia).
 const matchEmails: string[] = [];
+let gmailDotless = '';
 if (user) {
   matchEmails.push(user.email.toLowerCase());
   if (user.email.toLowerCase().endsWith('@gmail.com')) {
-    const dotless = user.email.toLowerCase().replace(/\./g, '');
-    if (!matchEmails.includes(dotless)) matchEmails.push(dotless);
+    gmailDotless = user.email.toLowerCase().replace(/\./g, '');
   }
 }
 
-const owns = (o: { customer_email?: string | null } | null) =>
-  !!o && !!user && matchEmails.includes((o.customer_email ?? '').toLowerCase());
+const owns = (o: { customer_email?: string | null } | null) => {
+  if (!o || !user) return false;
+  const em = (o.customer_email ?? '').toLowerCase();
+  if (matchEmails.includes(em)) return true;
+  if (gmailDotless && em.replace(/\./g, '') === gmailDotless) return true;
+  return false;
+};
 
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente', paid: 'Pagado', processing: 'Procesando',
@@ -58,9 +64,16 @@ let orders: Order[] = [];
 if (user && !order) {
   try {
     const placeholders = matchEmails.map(() => '?').join(', ');
-    const { results } = await db.prepare(
-      `SELECT * FROM orders WHERE LOWER(customer_email) IN (${placeholders}) ORDER BY created_at DESC LIMIT 50`
-    ).bind(...matchEmails).all<Order>();
+    const sql = gmailDotless
+      ? `SELECT * FROM orders WHERE LOWER(customer_email) IN (${placeholders})
+           OR REPLACE(LOWER(customer_email),'.','') = ?
+         ORDER BY created_at DESC LIMIT 50`
+      : `SELECT * FROM orders WHERE LOWER(customer_email) IN (${placeholders})
+         ORDER BY created_at DESC LIMIT 50`;
+    const { results } = await db
+      .prepare(sql)
+      .bind(...matchEmails, ...(gmailDotless ? [gmailDotless] : []))
+      .all<Order>();
     orders = results ?? [];
   } catch (e) {
     console.error('[compras] orders list error:', e);
