@@ -147,6 +147,12 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>${baseUrl}/servicios/suite-de-ofimatica</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>${baseUrl}/servicios/gestion-de-google-ads</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
@@ -181,6 +187,42 @@ export const GET: APIRoute = async ({ locals }) => {
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/b2b</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politica-de-devoluciones</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-privacidad</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-cookies</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-envios-y-devoluciones</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/nfc/guia</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>${baseUrl}/olvidaste-contrasena</loc>
