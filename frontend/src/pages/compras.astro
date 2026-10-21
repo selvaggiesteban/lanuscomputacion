@@ -72,15 +72,7 @@ if (user && !order) {
   <div class="ml-container py-6">
     <h1 class="text-xl font-semibold text-ml-text mb-6">Mis compras</h1>
 
-    {!user ? (
-      <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
-        <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus compras</p>
-        <p class="text-sm mb-6">Tus pedidos aparecerán acá una vez que realices tu primer compra</p>
-        <a href="/login" class="ml-btn-primary inline-block">
-          Iniciar sesión
-        </a>
-      </div>
-    ) : order ? (
+    {order ? (
       <div>
         <a href="/compras" class="ml-link text-sm">← Volver a mis compras</a>
         <div class="bg-white rounded shadow-card p-6 mt-3">
@@ -122,6 +114,14 @@ if (user && !order) {
             )}
           </div>
         </div>
+      </div>
+    ) : !user ? (
+      <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+        <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus compras</p>
+        <p class="text-sm mb-6">Tus pedidos aparecerán acá una vez que realices tu primer compra</p>
+        <a href="/login" class="ml-btn-primary inline-block">
+          Iniciar sesión
+        </a>
       </div>
     ) : (
       <div>
