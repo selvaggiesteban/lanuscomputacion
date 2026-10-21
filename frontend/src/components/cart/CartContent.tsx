@@ -285,7 +285,7 @@ export default function CartContent() {
               </div>
             )}
             <div class="flex justify-between">
-              <span class="text-ml-text-muted">Envío (a convenir)</span>
+              <span class="text-ml-text-muted">Envío</span>
               <span class="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
             <div class="flex justify-between border-t pt-2">
@@ -323,7 +323,7 @@ export default function CartContent() {
             <input type="tel" placeholder="Teléfono" value={customer.phone} onChange={e => setCustomer(p => ({ ...p, phone: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <input type="text" placeholder="Dirección" value={customer.address} onChange={e => setCustomer(p => ({ ...p, address: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <p class="text-xs text-ml-text-muted">
-              Envío a convenir: coordinamos el envío con vos por WhatsApp. Llega en 3 días hábiles una vez despachado.
+              Envío: coordinamos el envío con vos por WhatsApp. Llega en 3 días hábiles una vez despachado.
               <a href="/politicas-de-envios-y-devoluciones" class="ml-link ml-1">Ver políticas</a>
             </p>
           </div>
