@@ -31,9 +31,10 @@ const products = await getProducts(DB, {
   offset,
   minPrice: minPrice || undefined,
   maxPrice: maxPrice || undefined,
+  includeArchived: true,
 });
-const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined);
-const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter);
+const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined, true);
+const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter, true);
 
 const totalPages = Math.ceil(total / limit);
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
@@ -190,6 +191,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         ivaPct: p.iva_pct,
         internalTaxPct: p.internal_tax_pct,
         availableQty: p.available_qty,
+        status: p.status,
       })) || []} columns={4} />
 
       <Pagination current={page} total={totalPages} baseUrl={`${filterBaseUrl}${brand ? `?brand=${encodeURIComponent(brand)}` : ''}${minPrice ? `${brand ? '&' : '?'}min_price=${minPrice}` : ''}${maxPrice ? `${brand || minPrice ? '&' : '?'}max_price=${maxPrice}` : ''}`} />

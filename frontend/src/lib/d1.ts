@@ -47,8 +47,9 @@ export async function getProducts(db: D1Database, options?: {
   minPrice?: number;
   maxPrice?: number;
   sort?: string;
+  includeArchived?: boolean;
 }): Promise<Product[]> {
-  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct FROM products WHERE status = 'published'";
+  let sql = `SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct, status FROM products WHERE ${options?.includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {
@@ -175,8 +176,8 @@ export async function getCategoryBySlug(db: D1Database, slug: string): Promise<C
   return result ?? null;
 }
 
-export async function getProductCount(db: D1Database, category?: string, subcategory?: string, brand?: string): Promise<number> {
-  let sql = "SELECT COUNT(*) as count FROM products WHERE status = 'published'";
+export async function getProductCount(db: D1Database, category?: string, subcategory?: string, brand?: string, includeArchived?: boolean): Promise<number> {
+  let sql = `SELECT COUNT(*) as count FROM products WHERE ${includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
   const binds: any[] = [];
 
   if (category && category !== 'todas') {
@@ -196,8 +197,8 @@ export async function getProductCount(db: D1Database, category?: string, subcate
   return result?.count ?? 0;
 }
 
-export async function getBrandsByCategory(db: D1Database, categoryId?: string, subcategory?: string): Promise<{ brand: string; count: number }[]> {
-  let sql = "SELECT brand, COUNT(*) as count FROM products WHERE status = 'published' AND brand IS NOT NULL AND brand != ''";
+export async function getBrandsByCategory(db: D1Database, categoryId?: string, subcategory?: string, includeArchived?: boolean): Promise<{ brand: string; count: number }[]> {
+  let sql = `SELECT brand, COUNT(*) as count FROM products WHERE ${includeArchived ? "status IN ('published','archived')" : "status = 'published'"} AND brand IS NOT NULL AND brand != ''`;
   const binds: any[] = [];
 
   if (categoryId && categoryId !== 'todas') {

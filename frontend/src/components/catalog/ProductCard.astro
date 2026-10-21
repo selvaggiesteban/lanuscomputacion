@@ -25,6 +25,7 @@ export interface Product {
   ivaPct?: number | null;
   internalTaxPct?: number | null;
   availableQty?: number;
+  status?: string;
 }
 
 export interface Props {
@@ -32,7 +33,9 @@ export interface Props {
 }
 
 const { product } = Astro.props;
-const consult = typeof product.availableQty === 'number' && product.availableQty <= 0;
+const consult =
+  (typeof product.availableQty === 'number' && product.availableQty <= 0) ||
+  product.status === 'archived';
 ---
 
 <article class="ml-card p-3 flex flex-col relative" data-product-card data-dollar-rate={product.dollarRate || 0}>

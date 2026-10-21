@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
   try {
     const { results } = await DB.prepare(`
       SELECT f.product_id, f.created_at,
-             p.title, p.slug, p.price, p.thumbnail, p.available_qty
+             p.title, p.slug, p.price, p.thumbnail, p.available_qty, p.status
       FROM favorites f
       JOIN products p ON p.id = f.product_id
       WHERE f.customer_id = ?
