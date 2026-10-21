@@ -56,7 +56,9 @@ const qs = (p: number) => {
 const totalPages = Math.ceil(total / limit);
 let categories: any[] = [];
 try {
-    const { results } = await DB.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NULL ORDER BY name").all();
+  const { results } = await DB.prepare(
+    "SELECT id, name, parent_id, level FROM categories WHERE is_active = 1 ORDER BY COALESCE(parent_id, id), level, name"
+  ).all();
   categories = results || [];
 } catch (e) {
   console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
@@ -133,7 +135,11 @@ try {
                 </td>
                 <td class="p-3 text-center">
                   <button class="edit-product text-ml-blue text-xs hover:underline mr-2" data-id={p.id}>Editar</button>
-                  <button class="delete-product text-red-500 text-xs hover:underline" data-id={p.id}>Archivar</button>
+                  {p.status === 'archived' ? (
+                    <button class="restore-product text-green-600 text-xs hover:underline" data-id={p.id}>Desarchivar</button>
+                  ) : (
+                    <button class="delete-product text-red-500 text-xs hover:underline" data-id={p.id}>Archivar</button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -184,7 +190,9 @@ try {
           <label class="block text-xs text-ml-text-muted mb-1">Categoría</label>
           <select name="category_id" id="form-category" class="ml-input w-full">
             <option value="uncategorized">Sin categoría</option>
-            {categories.map((c: any) => <option value={c.id}>{c.name}</option>)}
+            {categories.map((c: any) => (
+              <option value={c.id}>{c.parent_id ? '— ' : ''}{c.name}</option>
+            ))}
           </select>
         </div>
         <div>
@@ -250,6 +258,19 @@ try {
     });
   });
 
+  document.querySelectorAll('.restore-product').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('¿Desarchivar este producto? Volverá a publicarse.')) return;
+      const id = (btn as HTMLElement).dataset.id;
+      await fetch('/api/admin/products', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: 'published' }),
+      });
+      location.reload();
+    });
+  });
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -259,9 +280,10 @@ try {
       price: Number(formData.get('price')),
       available_qty: Number(formData.get('available_qty')),
       brand: formData.get('brand'),
-      category_id: formData.get('category_id'),
       description: formData.get('description'),
     };
+    const categoryVal = formData.get('category_id');
+    if (categoryVal) body.category_id = categoryVal;
 
     if (id) {
       body.id = id;

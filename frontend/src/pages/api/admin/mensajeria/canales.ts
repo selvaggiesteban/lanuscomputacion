@@ -1,44 +1,51 @@
 import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
+import { requireAdmin, unauthorized } from '../../../../lib/admin-auth';
 
-export async function GET({ locals }) {
-  const db = locals.runtime.env.DB;
+export async function GET({ locals, request }) {
+  const auth = await requireAdmin(locals, request);
+  if (!auth) return unauthorized();
   try {
-    const channels = await getAllMessagingChannels(db);
+    const channels = await getAllMessagingChannels(auth.DB);
     return new Response(JSON.stringify(channels));
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
 
 export async function POST({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const auth = await requireAdmin(locals, request);
+  if (!auth) return unauthorized();
   try {
     const data = await request.json();
-    await upsertMessagingChannel(db, data);
+    if (data.is_active !== undefined) data.is_active = data.is_active ? 1 : 0;
+    await upsertMessagingChannel(auth.DB, data);
     return new Response(JSON.stringify({ success: true }));
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
 
 export async function PUT({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const auth = await requireAdmin(locals, request);
+  if (!auth) return unauthorized();
   try {
     const data = await request.json();
-    await upsertMessagingChannel(db, data);
+    if (data.is_active !== undefined) data.is_active = data.is_active ? 1 : 0;
+    await upsertMessagingChannel(auth.DB, data);
     return new Response(JSON.stringify({ success: true }));
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
 
 export async function DELETE({ request, locals }) {
-  const db = locals.runtime.env.DB;
+  const auth = await requireAdmin(locals, request);
+  if (!auth) return unauthorized();
   try {
     const data = await request.json();
-    await deleteMessagingChannel(db, data.id);
+    await deleteMessagingChannel(auth.DB, data.id);
     return new Response(JSON.stringify({ success: true }));
-  } catch (err) {
+  } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }

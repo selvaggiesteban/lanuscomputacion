@@ -48,7 +48,7 @@ const totalPages = Math.ceil(totalContacts.length / limit);
             {contacts.map(contact => (
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="p-3">
-                  <p class="text-sm font-medium text-ml-text">{contact.name}</th>
+                  <p class="text-sm font-medium text-ml-text">{contact.name}</p>
                 </td>
                 <td class="p-3 text-sm text-ml-text-secondary">{contact.email || '—'}</td>
                 <td class="p-3 text-sm text-ml-text-secondary">

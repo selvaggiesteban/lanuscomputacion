@@ -5,11 +5,19 @@ const DB = Astro.locals.runtime.env.DB;
 
 let rows: any[] = [];
 let total = 0;
+let abandonedCount = 0;
+let convertedCount = 0;
 try {
   const r = await DB.prepare("SELECT * FROM abandoned_carts ORDER BY last_seen_at DESC LIMIT 200").all();
   rows = r.results || [];
-  const c = await DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts").first<{ count: number }>();
+  const [c, a, cv] = await Promise.all([
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts").first<{ count: number }>(),
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts WHERE order_id IS NULL").first<{ count: number }>(),
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts WHERE order_id IS NOT NULL").first<{ count: number }>(),
+  ]);
   total = c?.count ?? 0;
+  abandonedCount = a?.count ?? 0;
+  convertedCount = cv?.count ?? 0;
 } catch (e) {
   console.error("Error fetching abandoned carts:", e);
 }
@@ -22,9 +30,6 @@ const carts = rows.map((r) => {
   const label = items.map((i) => `${i.title || "—"}${(i.quantity || 1) > 1 ? ` x${i.quantity}` : ""}`).join(", ");
   return { ...r, itemsLabel: label || "—" };
 });
-
-const active = carts.filter((c) => !c.order_id).length;
-const converted = carts.length - active;
 ---
 
 <AdminLayout title="Carritos abandonados | Admin - Lanús Computación">
@@ -41,11 +46,11 @@ const converted = carts.length - active;
       </div>
       <div class="bg-white rounded shadow-card p-4">
         <p class="text-xs text-ml-text-muted">Abandonadas (sin comprar)</p>
-        <p class="text-2xl font-semibold text-yellow-600">{active}</p>
+        <p class="text-2xl font-semibold text-yellow-600">{abandonedCount}</p>
       </div>
       <div class="bg-white rounded shadow-card p-4">
         <p class="text-xs text-ml-text-muted">Convertidas en pedido</p>
-        <p class="text-2xl font-semibold text-green-600">{converted}</p>
+        <p class="text-2xl font-semibold text-green-600">{convertedCount}</p>
       </div>
     </div>
 
@@ -96,6 +101,11 @@ const converted = carts.length - active;
                     </a>
                   ) : (
                     <span class="inline-block text-[10px] font-medium text-yellow-800 bg-yellow-100 rounded px-2 py-1">Abandonado</span>
+                  )}
+                  {c.recovery_sent_at && (
+                    <span class="block mt-1 text-[10px] text-ml-text-muted">
+                      Recuperación: {new Date(c.recovery_sent_at.replace(' ', 'T') + 'Z').toLocaleString('es-AR')}
+                    </span>
                   )}
                 </td>
               </tr>
