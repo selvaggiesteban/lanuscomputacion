@@ -15,10 +15,13 @@ try {
 
 // Gmail ignora los puntos en el local part: una cuenta user@gmail.com debe
 // ver también los pedidos cargados como u.s.er@gmail.com (mismo buzón).
-const matchEmails = [user.email.toLowerCase()];
-if (user.email.toLowerCase().endsWith('@gmail.com')) {
-  const dotless = user.email.toLowerCase().replace(/\./g, '');
-  if (!matchEmails.includes(dotless)) matchEmails.push(dotless);
+const matchEmails: string[] = [];
+if (user) {
+  matchEmails.push(user.email.toLowerCase());
+  if (user.email.toLowerCase().endsWith('@gmail.com')) {
+    const dotless = user.email.toLowerCase().replace(/\./g, '');
+    if (!matchEmails.includes(dotless)) matchEmails.push(dotless);
+  }
 }
 
 const owns = (o: { customer_email?: string | null } | null) =>
