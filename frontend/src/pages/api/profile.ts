@@ -37,6 +37,10 @@ export const POST: APIRoute = async ({ locals, request }) => {
     await DB.prepare(`UPDATE customers SET ${updates.join(", ")} WHERE id = ?`).bind(...binds).run();
   } catch (e) {
     console.error("D1 Error in frontend/src/pages/api/profile.ts:", e);
+    return new Response(JSON.stringify({ error: "No se pudo guardar el perfil" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   return new Response(JSON.stringify({ success: true }), {

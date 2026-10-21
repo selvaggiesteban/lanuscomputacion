@@ -67,6 +67,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     if (data.user) {
       (document.getElementById('profile-name') as HTMLInputElement).value = data.user.name || '';
       (document.getElementById('profile-email') as HTMLInputElement).value = data.user.email || '';
+      (document.getElementById('profile-phone') as HTMLInputElement).value = data.user.phone || '';
+      (document.getElementById('profile-address') as HTMLInputElement).value = data.user.address || '';
     }
   }
 
