@@ -45,6 +45,18 @@ export default function CartDrawer({ open, onClose }: Props) {
   }, []);
 
   useEffect(() => {
+    fetch("/api/auth/me")
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (d?.user?.email) {
+          setEmail(v => v || d.user.email);
+          setName(v => v || d.user.name || "");
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
@@ -293,7 +305,7 @@ export default function CartDrawer({ open, onClose }: Props) {
                 </div>
               )}
               <div class="flex justify-between">
-                <span class="text-ml-text-muted">Envío (a convenir)</span>
+                <span class="text-ml-text-muted">Envío</span>
                 <span class="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
               </div>
               <div class="flex justify-between border-t pt-1">

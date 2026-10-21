@@ -52,6 +52,21 @@ export default function CartContent() {
     }).catch(() => {});
   }, []);
 
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (d?.user?.email) {
+          setCustomer(c => ({
+            ...c,
+            email: c.email || d.user.email,
+            name: c.name || d.user.name || "",
+          }));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const sendAbandoned = useCallback(
     (orderId?: string) => {
       try {
