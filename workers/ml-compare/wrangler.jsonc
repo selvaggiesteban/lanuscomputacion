@@ -6,5 +6,6 @@
   "triggers": { "crons": ["0 13 * * *"] },
   "kv_namespaces": [
     { "binding": "FLYERS", "id": "62cb8b101cf74606bfb6f86ba12c6ba9" }
-  ]
+  ],
+  "browser": { "binding": "BROWSER" }
 }
