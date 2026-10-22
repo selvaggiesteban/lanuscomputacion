@@ -1,0 +1,4 @@
+fix(texto): "Envio (a convenir)" -> "Envio" en todo el sitio
+
+Carrito /carrito, email de confirmacion, politicas de envios y ayuda
+de configuracion admin.

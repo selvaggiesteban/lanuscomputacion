@@ -1,0 +1,68 @@
+---
+import Layout from "../../../layouts/AdminLayout.astro";
+
+const status = Astro.url.searchParams.get("status");
+---
+
+<Layout title="Integración Mercado Libre">
+  <div class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Conexión con Mercado Libre</h1>
+    
+    {status === 'success' && (
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+        Cuenta conectada exitosamente.
+      </div>
+    )}
+
+    <div class="bg-white shadow rounded-lg p-6 mb-6">
+      <p class="mb-4 text-gray-600">
+        Conecta tu cuenta de Mercado Libre para habilitar la sincronización automática de stock y precios.
+      </p>
+      
+      <a 
+        href={`https://auth.mercadolibre.com.ar/authorization?app_id=${import.meta.env.ML_CLIENT_ID}&redirect_uri=https://lanuscomputacion.com/api/auth/ml-callback`}
+        class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+      >
+        Conectar Cuenta de Mercado Libre
+      </a>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Sincronización de Catálogo</h2>
+      <p class="mb-4 text-gray-600">
+        Publica todos tus productos publicados en la tienda hacia Mercado Libre.
+      </p>
+      <button 
+        id="sync-all" 
+        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+      >
+        Sincronizar Todo el Catálogo
+      </button>
+      <div id="sync-results" class="mt-4 text-sm text-gray-600"></div>
+    </div>
+
+    <script>
+      const btn = document.getElementById('sync-all');
+      const resDiv = document.getElementById('sync-results');
+
+      btn?.addEventListener('click', async () => {
+        if (!btn) return;
+        btn.disabled = true;
+        btn.innerText = 'Sincronizando...';
+        resDiv!.innerText = 'Procesando productos, esto puede tardar unos minutos...';
+
+        try {
+          const res = await fetch('/api/meli/sync');
+          const data = await res.json();
+          resDiv!.innerText = `Sincronización completada: ${data.created} creados, ${data.updated} actualizados, ${data.failed} fallidos.`;
+        } catch (e) {
+          resDiv!.innerText = 'Error al sincronizar: ' + e;
+        } finally {
+          btn.disabled = false;
+          btn.innerText = 'Sincronizar Todo el Catálogo';
+        }
+      });
+    </script>
+  </div>
+</Layout>
+---
