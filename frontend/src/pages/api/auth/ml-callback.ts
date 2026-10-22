@@ -1,5 +1,5 @@
 import type { PagesRequest, PagesResponse } from "@cloudflare/workers-types";
-import { getDB } from "../../../lib/d1"; // Assuming getDB exists or is available in env
+
 
 export const onRequest: PagesFunction = async (context) => {
   const { request, env } = context;
