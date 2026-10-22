@@ -29,11 +29,11 @@ Lo describo así: si querés jugar en el sillón o viajando sin cargar una noteb
 
 El precio del Legion Go se mueve con el dólar y el stock, así que no publicamos cifras que se desactualizan en días: consultá el precio actualizado antes de transferir. Preguntá siempre por medios de pago, porque suele haber cuotas sin interés.
 
-Compará el precio final con IVA incluido en nuestras [ofertas de gaming](/ofertas){target="_blank"}. Pedinos el desglose de cuotas por WhatsApp.
+Compará el precio final con IVA incluido en nuestras <a href="/ofertas" target="_blank">ofertas de gaming</a>. Pedinos el desglose de cuotas por WhatsApp.
 
 ## Características principales del Legion Go
 
-La ficha técnica del Legion Go se resume en cuatro puntos: pantalla de 8,4 pulgadas táctil, controles desmontables, procesador AMD Ryzen Z1 Extreme y SSD ampliable. La especificación completa está en el [sitio oficial de Lenovo Legion](https://www.lenovo.com/){target="_blank" rel="nofollow noopener"}.
+La ficha técnica del Legion Go se resume en cuatro puntos: pantalla de 8,4 pulgadas táctil, controles desmontables, procesador AMD Ryzen Z1 Extreme y SSD ampliable. La especificación completa está en el <a href="https://www.lenovo.com/" target="_blank" rel="nofollow noopener">sitio oficial de Lenovo Legion</a>.
 
 ![Tabla comparativa de las características principales del Lenovo Legion Go: pantalla de 8,4 pulgadas WQXGA táctil, controles desmontables tipo Joy-Con, procesador AMD Ryzen Z1 Extreme y almacenamiento SSD ampliable](/blog/lenovo-legion-go/tabla-comparativa.webp)
 
@@ -57,7 +57,7 @@ Antes de comprar, hacete tres preguntas en orden. Definí dónde vas a jugar: si
 
 ## Accesorios y complementos para el Legion Go
 
-Un estuche rígido, un soporte o dock y unos auriculares cómodos son los tres accesorios que más suman. Para completar el setup gamer, el [joystick Redragon DarkFlame G820](/blog/joystick-redragon-darkflame-g820){target="_blank"} sirve para jugar en el televisor, y si querés potencia de escritorio, [la placa de video RX 9070 XT](/blog/placa-de-video-rx-9070-xt){target="_blank"} es otro camino.
+Un estuche rígido, un soporte o dock y unos auriculares cómodos son los tres accesorios que más suman. Para completar el setup gamer, el <a href="/blog/joystick-redragon-darkflame-g820" target="_blank">joystick Redragon DarkFlame G820</a> sirve para jugar en el televisor, y si querés potencia de escritorio, <a href="/blog/placa-de-video-rx-9070-xt" target="_blank">la placa de video RX 9070 XT</a> es otro camino.
 
 Evaluá también un soporte ventilado para sesiones largas. En Lanús Computación te ayudamos a armar el combo según dónde jugás.
 
@@ -73,7 +73,7 @@ Evaluá los accesorios de soporte: funda y cargador de repuesto suman poco al pr
 
 El Lenovo Legion Go es una opción sólida si buscás una portátil gaming tipo handheld para el viaje, el living o como reemplazo de una notebook gamer. Sus características —pantalla de 8,4 pulgadas, controles desmontables, Ryzen Z1 Extreme y SSD ampliable— lo distinguen.
 
-Te dejo tres consejos finales: definí primero dónde vas a jugar, compará el precio final en cuotas con garantía local, y preguntá por stock antes de transferir. Si querés asesoramiento o revisar el modelo en exhibición, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [contactanos desde el sitio](/contacto){target="_blank"}.
+Te dejo tres consejos finales: definí primero dónde vas a jugar, compará el precio final en cuotas con garantía local, y preguntá por stock antes de transferir. Si querés asesoramiento o revisar el modelo en exhibición, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">contactanos desde el sitio</a>.
 
 ![Contacto de Lanús Computación: ¿Querés comprar el Lenovo Legion Go? WhatsApp 11 5332-3937 y asesoramiento personalizado](/blog/lenovo-legion-go/contacto.webp)
 

@@ -31,7 +31,7 @@ Cuando buscás computación en Lanús, fijate en tres ejes: garantía escrita, d
 
 Tenés esencialmente tres caminos: el local de tu barrio, las grandes tiendas online y los vendedores de marketplaces. Cada uno tiene ventajas distintas. El local te permite ver el equipo, hacer preguntas y llevártelo el mismo día; las tiendas online suelen tener más variedad y cuotas; los marketplaces compiten en precio pero varía mucho la reputación del vendedor.
 
-Mi recomendación es simple: comprá donde puedas hacer una pregunta técnica y te respondan antes de la venta. Si el vendedor no sabe qué procesador lleva el equipo que está mostrando, imaginate el soporte después de la compra. En [nuestra sección de ofertas](/ofertas){target="_blank"} publicamos modelos con stock confirmado y precio actualizado.
+Mi recomendación es simple: comprá donde puedas hacer una pregunta técnica y te respondan antes de la venta. Si el vendedor no sabe qué procesador lleva el equipo que está mostrando, imaginate el soporte después de la compra. En <a href="/ofertas" target="_blank">nuestra sección de ofertas</a> publicamos modelos con stock confirmado y precio actualizado.
 
 ## Cómo elegir tu equipo según el uso
 
@@ -55,7 +55,7 @@ Elegí un tope de gasto y descartá lo que se pasa antes de empezar a enamorarte
 
 Toda máquina falla en algún momento: lento al encender, pantalla con rayas, batería que no dura, ventilador ruidoso. La diferencia entre un problema chico y uno grave es el tiempo de reacción. Ante los primeros síntomas, hacé revisar el equipo; la mayoría de las reparaciones se resuelven rápido y salen más baratas que un reemplazo.
 
-En [nuestro servicio técnico de PC](/servicios/servicio-tecnico-de-pc){target="_blank"} hacemos diagnóstico con presupuesto previo, y si preferís ver el proceso completo, [la página de reparación de computadoras](/servicios/reparacion-de-computadoras){target="_blank"} explica qué incluye cada intervención. También preparamos equipos con SSD para darles una vida nueva a máquinas que parecen obsoletas.
+En <a href="/servicios/servicio-tecnico-de-pc" target="_blank">nuestro servicio técnico de PC</a> hacemos diagnóstico con presupuesto previo, y si preferís ver el proceso completo, <a href="/servicios/reparacion-de-computadoras" target="_blank">la página de reparación de computadoras</a> explica qué incluye cada intervención. También preparamos equipos con SSD para darles una vida nueva a máquinas que parecen obsoletas.
 
 ![Cinco consejos para ahorrar dinero en tu próxima compra de computación en Lanús](/blog/computacion-en-lanus/consejos.webp)
 
@@ -69,6 +69,6 @@ Otro consejo que doy seguido: verificá la compatibilidad de los accesorios ante
 
 Comprar o reparar computación en Lanús no tiene por qué ser una apuesta. Definí tu uso y presupuesto, compará especificaciones reales y elegí vendedores que respondan antes y después de la venta. Con esa base, cualquier decisión que tomes va a ser buena.
 
-Te dejo tres consejos finales: pedí siempre factura, guardá el comprobante y no te saltees el diagnóstico cuando el equipo falle. Si querés asesoramiento personalizado o revisar stock actualizado, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [contactanos desde el sitio](/contacto){target="_blank"}. En Lanús Computación te respondemos con presupuesto claro.
+Te dejo tres consejos finales: pedí siempre factura, guardá el comprobante y no te saltees el diagnóstico cuando el equipo falle. Si querés asesoramiento personalizado o revisar stock actualizado, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">contactanos desde el sitio</a>. En Lanús Computación te respondemos con presupuesto claro.
 
 ![Contacto de Lanús Computación: WhatsApp 11 5332-3937 y asesoramiento personalizado](/blog/computacion-en-lanus/contacto.webp)

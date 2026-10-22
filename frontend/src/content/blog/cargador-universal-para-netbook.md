@@ -47,7 +47,7 @@ El segundo grupo de incompatibilidades es el conector. Las netbooks usan puntas 
 
 ## Errores comunes al comprar un cargador universal para netbook
 
-Los veo en el mostrador: elegir por precio sin mirar la etiqueta, comprar menos amperaje "porque igual carga" e ignorar la garantía. Un cargador sin marca, sin certificación y sin factura es una lotería eléctrica. Tenés [derechos del consumidor al comprar accesorios en Argentina](https://www.argentina.gob.ar/produccion/defensaconsumidor){target="_blank" rel="nofollow noopener"}, y el principal es exigir factura con garantía. Si renovás la máquina, leé antes nuestra [guía de compras de PC en Lanús](/blog/comprar-pc-en-lanus){target="_blank"}.
+Los veo en el mostrador: elegir por precio sin mirar la etiqueta, comprar menos amperaje "porque igual carga" e ignorar la garantía. Un cargador sin marca, sin certificación y sin factura es una lotería eléctrica. Tenés <a href="https://www.argentina.gob.ar/produccion/defensaconsumidor" target="_blank" rel="nofollow noopener">derechos del consumidor al comprar accesorios en Argentina</a>, y el principal es exigir factura con garantía. Si renovás la máquina, leé antes nuestra <a href="/blog/comprar-pc-en-lanus" target="_blank">guía de compras de PC en Lanús</a>.
 
 ## Cuidados del cargador y de la batería
 
@@ -55,16 +55,16 @@ Un cargador bien cuidado dura años. No enrolles el cable en espiral apretada: e
 
 ![Consejos para cuidar el cargador de netbook: no enrolles el cable, evitá calor y humedad, desenchufalo sin uso y usá protección contra picos](/blog/cargador-universal-para-netbook/consejos.webp)
 
-Sobre la batería: cargala entre el 20% y el 80% para que dure más ciclos. Si hincha el touchpad o no retiene carga, revisala en [nuestro servicio técnico de PC en Lanús](/blog/servicio-tecnico-de-pc-en-lanus){target="_blank"}: a veces el problema no es el cargador, es la celda.
+Sobre la batería: cargala entre el 20% y el 80% para que dure más ciclos. Si hincha el touchpad o no retiene carga, revisala en <a href="/blog/servicio-tecnico-de-pc-en-lanus" target="_blank">nuestro servicio técnico de PC en Lanús</a>: a veces el problema no es el cargador, es la celda.
 
 ## Garantía y factura: no negociables
 
-Exigí siempre factura con descripción y datos del vendedor. La garantía es tu red de seguridad: en Lanús Computación trabajamos con marcas que la respaldan. Si querés comparar, revisá nuestras [ofertas actualizadas](/ofertas){target="_blank"}.
+Exigí siempre factura con descripción y datos del vendedor. La garantía es tu red de seguridad: en Lanús Computación trabajamos con marcas que la respaldan. Si querés comparar, revisá nuestras <a href="/ofertas" target="_blank">ofertas actualizadas</a>.
 
 ## Conclusión sobre el cargador universal para netbook
 
 Elegir un cargador universal para netbook no es complicado si seguís la lógica eléctrica: voltaje exacto, amperaje igual o mayor, watts suficientes y conector de medida exacta. Lo difícil es deshacer los daños de uno inadecuado: invertí minutos en elegir bien.
 
-Tres consejos finales: leé la etiqueta antes de comprar, priorizá marcas con certificación y factura, y cuidá el cable. Si no sabés cuál necesitás, mandanos una foto de la etiqueta. Escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [contactanos desde el sitio](/contacto){target="_blank"}. En Lanús Computación te ayudamos a elegir el cargador correcto.
+Tres consejos finales: leé la etiqueta antes de comprar, priorizá marcas con certificación y factura, y cuidá el cable. Si no sabés cuál necesitás, mandanos una foto de la etiqueta. Escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">contactanos desde el sitio</a>. En Lanús Computación te ayudamos a elegir el cargador correcto.
 
 ![Contacto de Lanús Computación: WhatsApp 11 5332-3937 para consultar por cargadores universales para netbook](/blog/cargador-universal-para-netbook/contacto.webp)

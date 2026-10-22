@@ -34,11 +34,11 @@ La HP DeskJet 2540 usa la familia de cartuchos HP 662 y 663, disponibles en vers
 
 ### Cartucho HP 4530: compatibilidad exacta
 
-La HP OfficeJet 4530 pertenece a la familia HP 62, con versiones XL de mayor rendimiento. Es una multifunción de oficina, así que el consumo de tinta suele ser mayor: si imprimís muchos documentos, el XL termina saliendo más barato por página. La lista de compatibilidad está en la [página de soporte de HP](https://support.hp.com/){target="_blank" rel="nofollow noopener"} con el modelo exacto.
+La HP OfficeJet 4530 pertenece a la familia HP 62, con versiones XL de mayor rendimiento. Es una multifunción de oficina, así que el consumo de tinta suele ser mayor: si imprimís muchos documentos, el XL termina saliendo más barato por página. La lista de compatibilidad está en la <a href="https://support.hp.com/" target="_blank" rel="nofollow noopener">página de soporte de HP</a> con el modelo exacto.
 
 ### Tinta Epson 554BK: para qué impresoras sirve
 
-La Epson 554BK es una botella de tinta negra para las líneas EcoTank de Epson (L3150, L3250, L4150 y similares). A diferencia del cartucho tradicional, se vierte directo en el depósito y rinde muchísimas páginas. Para confirmar la compatibilidad con tu equipo, la referencia oficial está en [Epson Argentina](https://www.epson.com.ar/){target="_blank" rel="nofollow noopener"}.
+La Epson 554BK es una botella de tinta negra para las líneas EcoTank de Epson (L3150, L3250, L4150 y similares). A diferencia del cartucho tradicional, se vierte directo en el depósito y rinde muchísimas páginas. Para confirmar la compatibilidad con tu equipo, la referencia oficial está en <a href="https://www.epson.com.ar/" target="_blank" rel="nofollow noopener">Epson Argentina</a>.
 
 ![Tabla de cartuchos y tinta más buscados: HP 2540, HP 4530 y Epson 554BK](/blog/cartuchos-de-tinta-hp-y-epson/tabla-comparativa.webp)
 
@@ -48,7 +48,7 @@ Primero, encendé la impresora y abrí la compuerta o el acceso al cartucho: el 
 
 ![Guía en tres pasos para cambiar el cartucho de tinta de tu impresora](/blog/cartuchos-de-tinta-hp-y-epson/pasos.webp)
 
-Si preferís ayuda presencial, [consultanos por el stock en Lanús Computación](/blog/casa-de-computacion-en-lanus){target="_blank"} o pasá por la sección de [ofertas de productos](/ofertas){target="_blank"}; identificamos tu modelo en el momento y te llevás el indicado.
+Si preferís ayuda presencial, <a href="/blog/casa-de-computacion-en-lanus" target="_blank">consultanos por el stock en Lanús Computación</a> o pasá por la sección de <a href="/ofertas" target="_blank">ofertas de productos</a>; identificamos tu modelo en el momento y te llevás el indicado.
 
 ## Consejos para que la tinta dure más
 
@@ -62,6 +62,6 @@ Con las tintas de botella como la 554BK, además, el costo por página baja much
 
 Identificar el cartucho correcto es la mitad del camino: HP 662/663 para la DeskJet 2540, HP 62 para la OfficeJet 4530 y tinta 554BK para las EcoTank de Epson. Con esa referencia en mano, comprás a la primera y evitás el gasto de la devolución.
 
-Tres consejos finales: pedí factura, verificá el número del cartucho contra el manual de tu equipo y compará precio por página rendida. Si querés que te lo confirmemos, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} con la foto de tu impresora o [dejanos la consulta acá](/contacto){target="_blank"}. En Lanús Computación tenemos stock y te asesoramos con el modelo exacto.
+Tres consejos finales: pedí factura, verificá el número del cartucho contra el manual de tu equipo y compará precio por página rendida. Si querés que te lo confirmemos, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> con la foto de tu impresora o <a href="/contacto" target="_blank">dejanos la consulta acá</a>. En Lanús Computación tenemos stock y te asesoramos con el modelo exacto.
 
 ![Contacto de Lanús Computación: cartuchos de tinta HP y Epson en stock](/blog/cartuchos-de-tinta-hp-y-epson/contacto.webp)

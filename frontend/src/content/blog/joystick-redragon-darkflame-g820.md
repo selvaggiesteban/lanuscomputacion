@@ -60,7 +60,7 @@ Para tener todo junto, estas son las especificaciones que más importan del mode
 - **Autonomía**: hasta 10 horas por carga con batería recargable.
 - **Extras**: vibración dual, gatillos duales, botón turbo y modo espejo.
 
-En el sitio oficial de Redragon podés [ver la ficha completa del Darkflame G820](https://redragon.com/){target="_blank" rel="nofollow noopener"}. Si estás armando tu setup, aprovechá para [ver ofertas de gaming](/ofertas){target="_blank"} en Lanús Computación.
+En el sitio oficial de Redragon podés <a href="https://redragon.com/" target="_blank" rel="nofollow noopener">ver la ficha completa del Darkflame G820</a>. Si estás armando tu setup, aprovechá para <a href="/ofertas" target="_blank">ver ofertas de gaming</a> en Lanús Computación.
 
 ## Consejos para cuidar tu joystick
 
@@ -73,17 +73,17 @@ Un joystick bien cuidado dura años. Estos son los hábitos que recomendamos:
 - **Limpiá los sticks**: pasá un paño seco y un hisopo con alcohol isopropílico en los bordes para evitar drift.
 - **Guardalo sin sol ni humedad**: el calor deprime los plásticos y la humedad afecta los contactos.
 
-Si un stick se desplaza solo o un gatillo no responde, traelo a revisión antes de que el problema crezca. En [nuestro blog](/blog/placa-de-video-rx-9070-xt){target="_blank"} publicamos guías de hardware para armar o actualizar tu PC gamer.
+Si un stick se desplaza solo o un gatillo no responde, traelo a revisión antes de que el problema crezca. En <a href="/blog/placa-de-video-rx-9070-xt" target="_blank">nuestro blog</a> publicamos guías de hardware para armar o actualizar tu PC gamer.
 
 ## Dónde comprar el Redragon Darkflame G820 en Lanús
 
 En Lanús Computación tenemos el Redragon G820 en stock, con garantía y la posibilidad de verlo en persona antes de comprar. Probalo en el mostrador, preguntá por compatibilidad y llevátelo funcionando el mismo día. Consultanos por WhatsApp para confirmar unidades.
 
-También podés combinarlo con otros accesorios de gaming o con una [PC armada para gaming](/blog/comprar-pc-en-lanus){target="_blank"} hecha a medida.
+También podés combinarlo con otros accesorios de gaming o con una <a href="/blog/comprar-pc-en-lanus" target="_blank">PC armada para gaming</a> hecha a medida.
 ## Conclusión sobre el Redragon Darkflame G820
 
 El joystick inalámbrico Redragon Darkflame G820 es una opción sólida para quien quiere un mando versátil, sin cables y a buen precio. Su conexión 2,4 GHz con alternativa por cable, compatibilidad con PC, PlayStation y Android, hasta 10 horas de autonomía y extras como vibración dual, turbo y modo espejo lo hacen un gran compañero de juego.
 
-Te dejo tres consejos finales: cargalo antes de la primera partida, usá cable cuando juegues en serio y limpiá los sticks para evitar drift. Si querés verlo o consultarnos por stock, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [contactanos desde el sitio](/contacto){target="_blank"}. En Lanús Computación te asesoramos y te lo dejamos listo para jugar.
+Te dejo tres consejos finales: cargalo antes de la primera partida, usá cable cuando juegues en serio y limpiá los sticks para evitar drift. Si querés verlo o consultarnos por stock, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">contactanos desde el sitio</a>. En Lanús Computación te asesoramos y te lo dejamos listo para jugar.
 
 ![Contacto de Lanús Computación para comprar el Redragon G820: WhatsApp 11 5332-3937](/blog/joystick-redragon-darkflame-g820/contacto.webp)

@@ -20,7 +20,7 @@ AutoCAD sigue siendo el estándar en arquitectura, ingeniería y diseño mecáni
 
 ## AutoCAD 2022 requisitos del sistema: la lista completa
 
-Según la documentación oficial de [Autodesk](https://www.autodesk.com/products/autocad/overview){target="_blank" rel="nofollow noopener"}, como base necesitás un procesador de al menos 2,5 GHz, 8 GB de RAM, 10 GB de espacio libre en disco y una placa de video con 1 GB de VRAM. Con eso el programa instala y abre; ahora, la experiencia real depende de lo que hagas adentro.
+Según la documentación oficial de <a href="https://www.autodesk.com/products/autocad/overview" target="_blank" rel="nofollow noopener">Autodesk</a>, como base necesitás un procesador de al menos 2,5 GHz, 8 GB de RAM, 10 GB de espacio libre en disco y una placa de video con 1 GB de VRAM. Con eso el programa instala y abre; ahora, la experiencia real depende de lo que hagas adentro.
 
 Si trabajás con planos simples, esa base alcanza. Si abrís juegos de planos grandes, referencias externas y modelos 3D, necesitás el lado recomendado de la tabla. La diferencia entre ambas configuraciones es lo que separa "funciona" de "trabaja cómodo".
 
@@ -50,7 +50,7 @@ Primero, creá tu cuenta en el sitio oficial de Autodesk y elegí la licencia qu
 
 ![Pasos para instalar AutoCAD 2022: cuenta Autodesk, instalador oficial y activación](/blog/autocad-2022-requisitos-del-sistema/pasos.webp)
 
-Antes de instalar, confirmá que tu equipo cumpla los requisitos mínimos. Si no es así, en [nuestro catálogo de ofertas](/ofertas){target="_blank"} publicamos equipos con SSD y placas dedicadas preparados para CAD, y en la [guía para comprar PC en Lanús](/blog/comprar-pc-en-lanus){target="_blank"} explico cómo leer las especificaciones sin equivocarte.
+Antes de instalar, confirmá que tu equipo cumpla los requisitos mínimos. Si no es así, en <a href="/ofertas" target="_blank">nuestro catálogo de ofertas</a> publicamos equipos con SSD y placas dedicadas preparados para CAD, y en la <a href="/blog/comprar-pc-en-lanus" target="_blank">guía para comprar PC en Lanús</a> explico cómo leer las especificaciones sin equivocarte.
 
 ## Consejos para que AutoCAD corra bien
 
@@ -64,6 +64,6 @@ Otro hábito útil: guardá versiones numeradas de tus planos. No reemplaza el s
 
 Los requisitos de AutoCAD 2022 no son negociables, pero tampoco son imposibles: 8 GB de RAM, SSD y un procesador de 2,5 GHz son la puerta de entrada, y 16 GB o más son la diferencia para trabajar cómodo. Antes de instalar, compará tu equipo con la lista y actuá en consecuencia.
 
-Mis consejos finales: SSD sí, RAM ampliable sí, y siempre el instalador oficial de Autodesk. Si no sabés si tu PC cumple, traénosla y te la revisamos; o escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} con tu modelo exacto. En Lanús Computación te decimos la verdad sobre tu equipo antes de que compres.
+Mis consejos finales: SSD sí, RAM ampliable sí, y siempre el instalador oficial de Autodesk. Si no sabés si tu PC cumple, traénosla y te la revisamos; o escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> con tu modelo exacto. En Lanús Computación te decimos la verdad sobre tu equipo antes de que compres.
 
 ![Contacto de Lanús Computación: asesoramiento sobre AutoCAD y equipos para CAD](/blog/autocad-2022-requisitos-del-sistema/contacto.webp)

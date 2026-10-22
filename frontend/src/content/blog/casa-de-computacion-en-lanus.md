@@ -36,7 +36,7 @@ Otra señal fuerte es la coherencia: si el local vende computación, debería po
 
 ### Reseñas reales y reputación
 
-Las reseñas de [Google Maps](https://www.google.com/maps){target="_blank" rel="nofollow noopener"} sirven para descartar rápidamente: mirá las de una y dos estrellas, ahí se ven los problemas reales de atención y postventa. Desconfiá de perfiles con solo cinco estrellas y una sola reseña; lo natural es una mezcla con algún comentario crítico al que la empresa respondió.
+Las reseñas de <a href="https://www.google.com/maps" target="_blank" rel="nofollow noopener">Google Maps</a> sirven para descartar rápidamente: mirá las de una y dos estrellas, ahí se ven los problemas reales de atención y postventa. Desconfiá de perfiles con solo cinco estrellas y una sola reseña; lo natural es una mezcla con algún comentario crítico al que la empresa respondió.
 
 ### Garantía y soporte postventa
 
@@ -48,7 +48,7 @@ El proceso que sigo es simple y te lo dejo armado para que lo repitas. Primero, 
 
 ![Guía en tres pasos para elegir casa de computación: filtrar, comparar y validar soporte](/blog/casa-de-computacion-en-lanus/pasos.webp)
 
-Si querés ver cómo trabajamos nosotros, [podés revisar nuestros servicios](/servicios){target="_blank"} o pasar directo por la sección de [ofertas con stock actualizado](/ofertas){target="_blank"}. La idea es que puedas comparar con información en mano.
+Si querés ver cómo trabajamos nosotros, <a href="/servicios" target="_blank">podés revisar nuestros servicios</a> o pasar directo por la sección de <a href="/ofertas" target="_blank">ofertas con stock actualizado</a>. La idea es que puedas comparar con información en mano.
 
 ## Consejos finales para comprar seguro
 
@@ -64,6 +64,6 @@ Y recordá que la compra es solo el principio: la relación con el vendedor empi
 
 Elegir casa de computación en Lanús se resume en tres palabras: información, garantía y soporte. Si los tres están en orden, el precio se vuelve un detalle que se negocia; si faltan, ningún descuento compensa el riesgo.
 
-Mi consejo final: visitá, preguntá, compará y comprá con factura. Si querés una recomendación concreta para tu caso o verificar stock de un modelo, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [dejanos tu consulta desde el formulario](/contacto){target="_blank"}. En Lanús Computación te atendemos con presupuesto claro.
+Mi consejo final: visitá, preguntá, compará y comprá con factura. Si querés una recomendación concreta para tu caso o verificar stock de un modelo, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">dejanos tu consulta desde el formulario</a>. En Lanús Computación te atendemos con presupuesto claro.
 
 ![Contacto de Lanús Computación para consultar por casa de computación en Lanús](/blog/casa-de-computacion-en-lanus/contacto.webp)

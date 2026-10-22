@@ -49,7 +49,7 @@ Primero, escribí en una línea para qué lo vas a usar: estudiar, trabajar, jug
 
 ![Guía en tres pasos para elegir tu PC: uso, comparación y prueba antes de pagar](/blog/comprar-pc-en-lanus/pasos.webp)
 
-Si preferís que te lo simplifiquemos, [mirá las PC y notebooks con stock en ofertas](/ofertas){target="_blank"} o leé nuestra [guía de computación en Lanús](/blog/computacion-en-lanus){target="_blank"}, donde explico en detalle cómo decidir entre desktop y notebook.
+Si preferís que te lo simplifiquemos, <a href="/ofertas" target="_blank">mirá las PC y notebooks con stock en ofertas</a> o leé nuestra <a href="/blog/computacion-en-lanus" target="_blank">guía de computación en Lanús</a>, donde explico en detalle cómo decidir entre desktop y notebook.
 
 ## Consejos para ahorrar en tu compra
 
@@ -63,6 +63,6 @@ Y el consejo más importante: compará precio por prestación. Dos equipos al mi
 
 Comprar PC en Lanús se vuelve simple cuando seguís un orden: uso, especificaciones, comparación y garantía. Con esa receta, el presupuesto rinde más y el equipo te dura más. Evitá las compras por impulso y las fichas técnicas a medias.
 
-Tres consejos finales: pedí factura, verificá que el SSD sea real (hay anuncios truchos) y guardá la caja por si necesitás la garantía. Si querés que revise tu caso concreto, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [pedinos presupuesto desde el sitio](/contacto){target="_blank"}. En Lanús Computación te ayudamos a elegir sin presión de venta.
+Tres consejos finales: pedí factura, verificá que el SSD sea real (hay anuncios truchos) y guardá la caja por si necesitás la garantía. Si querés que revise tu caso concreto, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">pedinos presupuesto desde el sitio</a>. En Lanús Computación te ayudamos a elegir sin presión de venta.
 
 ![Contacto de Lanús Computación para comprar PC en Lanús con asesoramiento](/blog/comprar-pc-en-lanus/contacto.webp)

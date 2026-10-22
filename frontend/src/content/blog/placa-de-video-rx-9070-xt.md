@@ -34,7 +34,7 @@ En el día a día se traduce en juegos estables: competitivos a más de 100 FPS 
 
 AMD diseña el chip, pero cada fabricante arma su propia placa. La RX 9070 XT ASUS TUF es una de las más elegidas: disipador grande, tres ventiladores y un firmware que prioriza temperaturas bajas por sobre el ruido. Es una versión pensada para uso intensivo.
 
-Además de ASUS hay alternativas de Sapphire, PowerColor y MSI. La diferencia entre versiones casi nunca es el rendimiento, sino el tamaño, el ruido y la garantía local. Para la ficha completa, revisá el sitio [oficial de AMD con la información técnica de la RX 9070 XT](https://www.amd.com/){target="_blank" rel="nofollow noopener"}.
+Además de ASUS hay alternativas de Sapphire, PowerColor y MSI. La diferencia entre versiones casi nunca es el rendimiento, sino el tamaño, el ruido y la garantía local. Para la ficha completa, revisá el sitio <a href="https://www.amd.com/" target="_blank" rel="nofollow noopener">oficial de AMD con la información técnica de la RX 9070 XT</a>.
 
 ## Cómo elegir tu placa de video en 3 pasos
 
@@ -42,7 +42,7 @@ Además de ASUS hay alternativas de Sapphire, PowerColor y MSI. La diferencia en
 
 El primer paso es definir a qué resolución vas a jugar y qué títulos te interesan. Con monitor 1080p probablemente estés sobredimensionado; con 1440p o 4K, la RX 9070 XT entra perfecto. El segundo paso es verificar la fuente de poder y el gabinete: esta placa pide alimentación firme y espacio real.
 
-El tercer paso es comparar versiones de fabricantes y precios finales. Antes de decidir, revisá nuestras [ofertas de componentes gaming](/ofertas){target="_blank"}, con stock confirmado, y si armás el equipo completo, [nuestra guía para comprar PC en Lanús](/blog/comprar-pc-en-lanus){target="_blank"} te sirve para balancear placa, procesador y memoria.
+El tercer paso es comparar versiones de fabricantes y precios finales. Antes de decidir, revisá nuestras <a href="/ofertas" target="_blank">ofertas de componentes gaming</a>, con stock confirmado, y si armás el equipo completo, <a href="/blog/comprar-pc-en-lanus" target="_blank">nuestra guía para comprar PC en Lanús</a> te sirve para balancear placa, procesador y memoria.
 
 ## Rendimiento de la RX 9070 XT según resolución y uso
 
@@ -50,7 +50,7 @@ El tercer paso es comparar versiones de fabricantes y precios finales. Antes de 
 
 En 1440p la RX 9070 XT está en su zona ideal: detalles ultra, texturas altas y una fluidez que no se cae en escenas con mucha acción. Es donde más vas a notar la inversión, porque aprovechás los 16 GB sin forzar la placa.
 
-En 4K sigue en pie: juegos AAA con tasas altas y ray tracing, aunque en los más pesados conviene bajar efectos. Para render, edición y realidad virtual también rinde. Si te interesan los periféricos, mirá mi análisis del [joystick Redragon DarkFlame G820](/blog/joystick-redragon-darkflame-g820){target="_blank"}.
+En 4K sigue en pie: juegos AAA con tasas altas y ray tracing, aunque en los más pesados conviene bajar efectos. Para render, edición y realidad virtual también rinde. Si te interesan los periféricos, mirá mi análisis del <a href="/blog/joystick-redragon-darkflame-g820" target="_blank">joystick Redragon DarkFlame G820</a>.
 
 ## Qué verificar antes de instalar tu placa de video
 
@@ -66,7 +66,7 @@ Por último, conectá el monitor por DisplayPort para aprovechar alta frecuencia
 
 La placa de video RX 9070 XT 16 GB es de las mejores opciones para jugar en 1440p y mirar el 4K sin renunciar a nada: memoria amplia, arquitectura RDNA eficiente y PCIe x16. Sirve para gaming, render, edición y VR, y versiones como la ASUS TUF suman refrigeración.
 
-Te dejo tres consejos finales: verificá la fuente antes de comprar, medí el gabinete con la placa en la mano y compará versiones antes de pagar. Si querés stock o asesoramiento, escribinos por [WhatsApp](https://wa.me/5491153323937){target="_blank" rel="nofollow noopener"} o [contactanos desde el sitio](/contacto){target="_blank"}.
+Te dejo tres consejos finales: verificá la fuente antes de comprar, medí el gabinete con la placa en la mano y compará versiones antes de pagar. Si querés stock o asesoramiento, escribinos por <a href="https://wa.me/5491153323937" target="_blank" rel="nofollow noopener">WhatsApp</a> o <a href="/contacto" target="_blank">contactanos desde el sitio</a>.
 
 ![Contacto de Lanús Computación: ¿Te interesa la placa RX 9070 XT? WhatsApp 11 5332-3937](/blog/placa-de-video-rx-9070-xt/contacto.webp)
 
