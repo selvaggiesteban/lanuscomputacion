@@ -1,10 +1,10 @@
----
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/ui/Breadcrumb.astro';
-import ProductGrid from '../../components/catalog/ProductGrid.astro';
-import Pagination from '../../components/catalog/Pagination.astro';
-import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import ProductGrid from '../components/catalog/ProductGrid.astro';
+import Pagination from '../components/catalog/Pagination.astro';
+import SortSelector from '../components/catalog/SortSelector.tsx';
+import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../lib/d1';
 
 const { slug } = Astro.params;
 const DB = Astro.locals.runtime.env.DB;
@@ -36,15 +36,15 @@ const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand
 const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter);
 
 const totalPages = Math.ceil(total / limit);
-const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
+const categoryName = slug === 'todas' ? 'Todas las categorÃ­as' : (category?.name || slug);
 
 // All categories for the sidebar filter
 const allCategories = await getAllCategoriesWithChildren(DB);
 
-// Build base URL for filters — always use current page slug
+// Build base URL for filters â€” always use current page slug
 const filterBaseUrl = `/categoria/${slug}`;
 
-// Get price range — fix for "todas" (no category filter)
+// Get price range â€” fix for "todas" (no category filter)
 let priceRange;
 if (categoryFilter) {
   try {
@@ -73,11 +73,11 @@ const isCategoryActive = (catSlug: string) => slug === catSlug;
 const isSubcategoryActive = (subSlug: string) => slug === subSlug;
 ---
 
-<BaseLayout title={`${categoryName} | Lanús Computación`}>
+<BaseLayout title={`${categoryName} | LanÃºs ComputaciÃ³n`}>
   <div class="ml-container">
     <Breadcrumb items={[
       { label: 'Inicio', href: '/' },
-      ...(category?.parent_id ? [{ label: 'Categorías', href: '/categoria/todas' }] : []),
+      ...(category?.parent_id ? [{ label: 'CategorÃ­as', href: '/categoria/todas' }] : []),
       { label: categoryName },
     ]} />
   </div>
@@ -89,14 +89,14 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         <p class="text-xs text-ml-text-muted mt-1">{total} resultados</p>
       </div>
 
-      <!-- Category filter — always visible -->
+      <!-- Category filter â€” always visible -->
       <div class="bg-white rounded shadow-card p-4">
-        <h3 class="text-sm font-semibold text-ml-text mb-3">Categorías</h3>
+        <h3 class="text-sm font-semibold text-ml-text mb-3">CategorÃ­as</h3>
         <ul class="space-y-1">
           <li>
             <a href="/categoria/todas"
                class={`text-sm block py-1 transition-colors ${slug === 'todas' ? 'text-ml-blue font-medium' : 'text-ml-text-secondary hover:text-ml-blue'}`}>
-              Todas las categorías
+              Todas las categorÃ­as
             </a>
           </li>
           {allCategories.map((cat) => (
@@ -146,10 +146,10 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
         <h3 class="text-sm font-semibold text-ml-text mb-3">Precio</h3>
         <form id="price-filter-form" class="space-y-3">
           <div class="flex gap-2 items-center">
-            <input type="number" name="min_price" placeholder="Mínimo" value={minPrice || ''}
+            <input type="number" name="min_price" placeholder="MÃ­nimo" value={minPrice || ''}
                    class="ml-input w-full text-sm" min="0" />
             <span class="text-ml-text-muted">-</span>
-            <input type="number" name="max_price" placeholder="Máximo" value={maxPrice || ''}
+            <input type="number" name="max_price" placeholder="MÃ¡ximo" value={maxPrice || ''}
                    class="ml-input w-full text-sm" min="0" />
           </div>
           <button type="submit" class="ml-btn-primary w-full text-sm py-2">Filtrar</button>
@@ -171,7 +171,7 @@ const isSubcategoryActive = (subSlug: string) => slug === subSlug;
           {total} resultados en <span class="font-medium text-ml-text">{categoryName}</span>
           {(minPrice > 0 || maxPrice > 0) && (
             <span class="text-ml-text-muted">
-              | ${minPrice || 0} - ${maxPrice || '∞'}
+              | ${minPrice || 0} - ${maxPrice || 'âˆž'}
             </span>
           )}
         </p>
