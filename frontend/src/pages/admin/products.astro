@@ -1,46 +1,64 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const search = Astro.url.searchParams.get('q') || '';
+const statusFilter = Astro.url.searchParams.get('status') || '';
+const categoryFilter = Astro.url.searchParams.get('category') || '';
 const limit = 20;
 const offset = (page - 1) * limit;
 
+const conditions: string[] = [];
+const binds: any[] = [];
+if (search) {
+  conditions.push("(title LIKE ? OR brand LIKE ? OR ean LIKE ?)");
+  binds.push(`%${search}%`, `%${search}%`, `%${search}%`);
+}
+if (statusFilter === 'published' || statusFilter === 'archived') {
+  conditions.push("status = ?");
+  binds.push(statusFilter);
+}
+if (categoryFilter) {
+  conditions.push("category_id = ?");
+  binds.push(categoryFilter);
+}
+const whereSql = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
 let products: any[] = [];
 let total = 0;
-
-if (search) {
-  try {
-    const { results } = await DB.prepare(
-      "SELECT * FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"
-    ).bind(`%${search}%`, `%${search}%`, `%${search}%`, limit, offset).all();
-    products = results || [];
-    const countResult = await DB.prepare("SELECT COUNT(*) as count FROM products WHERE (title LIKE ? OR brand LIKE ? OR ean LIKE ?)").bind(`%${search}%`, `%${search}%`, `%${search}%`).first<{ count: number }>();
-    total = countResult?.count ?? 0;
-  } catch (e) {
-    console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
-    products = [];
-    total = 0;
-  }
-} else {
-  try {
-    const { results } = await DB.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?").bind(limit, offset).all();
-    products = results || [];
-    const countResult = await DB.prepare("SELECT COUNT(*) as count FROM products").first<{ count: number }>();
-    total = countResult?.count ?? 0;
-  } catch (e) {
-    console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
-    products = [];
-    total = 0;
-  }
+try {
+  const { results } = await DB.prepare(
+    `SELECT * FROM products ${whereSql} ORDER BY created_at DESC LIMIT ? OFFSET ?`
+  ).bind(...binds, limit, offset).all();
+  products = results || [];
+  const countResult = await DB.prepare(
+    `SELECT COUNT(*) as count FROM products ${whereSql}`
+  ).bind(...binds).first<{ count: number }>();
+  total = countResult?.count ?? 0;
+} catch (e) {
+  console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
+  products = [];
+  total = 0;
 }
+
+const qs = (p: number) => {
+  const params = new URLSearchParams();
+  if (search) params.set('q', search);
+  if (statusFilter) params.set('status', statusFilter);
+  if (categoryFilter) params.set('category', categoryFilter);
+  if (p > 1) params.set('page', String(p));
+  const s = params.toString();
+  return s ? `?${s}` : '';
+};
 
 
 const totalPages = Math.ceil(total / limit);
 let categories: any[] = [];
 try {
-  const { results } = await DB.prepare("SELECT id, name FROM categories WHERE is_active = 1 AND parent_id IS NOT NULL ORDER BY name").all();
+  const { results } = await DB.prepare(
+    "SELECT id, name, parent_id, level FROM categories WHERE is_active = 1 ORDER BY COALESCE(parent_id, id), level, name"
+  ).all();
   categories = results || [];
 } catch (e) {
   console.error("D1 Error in frontend/src/pages/admin/products.astro:", e);
@@ -48,7 +66,7 @@ try {
 }
 ---
 
-<BaseLayout title="Productos | Admin - Lanús Computación">
+<AdminLayout title="Productos | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Productos</h1>
@@ -59,11 +77,23 @@ try {
     </div>
 
     <div class="bg-white rounded shadow-card p-4 mb-6">
-      <form method="GET" class="flex gap-3">
-        <input type="text" name="q" value={search} placeholder="Buscar por título, marca o EAN..." class="ml-input flex-1" />
-        <button type="submit" class="ml-btn-primary px-6">Buscar</button>
-        {search && <a href="/admin/products" class="ml-btn-secondary px-4">Limpiar</a>}
+      <form method="GET" class="flex flex-wrap gap-3">
+        <input type="text" name="q" value={search} placeholder="Buscar por título, marca o EAN..." class="ml-input flex-1 min-w-[200px]" />
+        <select name="status" class="ml-input">
+          <option value="" selected={!statusFilter}>Todos los estados</option>
+          <option value="published" selected={statusFilter === 'published'}>Publicados</option>
+          <option value="archived" selected={statusFilter === 'archived'}>Archivados</option>
+        </select>
+        <select name="category" class="ml-input">
+          <option value="" selected={!categoryFilter}>Todas las categorías</option>
+          {categories.map((c: any) => (
+            <option value={c.id} selected={categoryFilter === c.id}>{c.name}</option>
+          ))}
+        </select>
+        <button type="submit" class="ml-btn-primary px-6">Filtrar</button>
+        {(search || statusFilter || categoryFilter) && <a href="/admin/products" class="ml-btn-secondary px-4">Limpiar</a>}
       </form>
+      <p class="text-xs text-ml-text-muted mt-2">{total.toLocaleString('es-AR')} producto{total === 1 ? '' : 's'} con estos filtros</p>
     </div>
 
     <div class="bg-white rounded shadow-card overflow-hidden">
@@ -105,7 +135,11 @@ try {
                 </td>
                 <td class="p-3 text-center">
                   <button class="edit-product text-ml-blue text-xs hover:underline mr-2" data-id={p.id}>Editar</button>
-                  <button class="delete-product text-red-500 text-xs hover:underline" data-id={p.id}>Archivar</button>
+                  {p.status === 'archived' ? (
+                    <button class="restore-product text-green-600 text-xs hover:underline" data-id={p.id}>Desarchivar</button>
+                  ) : (
+                    <button class="delete-product text-red-500 text-xs hover:underline" data-id={p.id}>Archivar</button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -117,8 +151,8 @@ try {
         <div class="p-4 border-t flex items-center justify-between">
           <p class="text-sm text-ml-text-muted">Mostrando {offset + 1}-{Math.min(offset + limit, total)} de {total}</p>
           <div class="flex gap-2">
-            {page > 1 && <a href={`/admin/products?page=${page - 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Anterior</a>}
-            {page < totalPages && <a href={`/admin/products?page=${page + 1}${search ? `&q=${search}` : ''}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Siguiente</a>}
+            {page > 1 && <a href={`/admin/products${qs(page - 1)}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Anterior</a>}
+            {page < totalPages && <a href={`/admin/products${qs(page + 1)}`} class="px-3 py-1 border rounded text-sm hover:bg-gray-50">Siguiente</a>}
           </div>
         </div>
       )}
@@ -156,7 +190,9 @@ try {
           <label class="block text-xs text-ml-text-muted mb-1">Categoría</label>
           <select name="category_id" id="form-category" class="ml-input w-full">
             <option value="uncategorized">Sin categoría</option>
-            {categories.map((c: any) => <option value={c.id}>{c.name}</option>)}
+            {categories.map((c: any) => (
+              <option value={c.id}>{c.parent_id ? '— ' : ''}{c.name}</option>
+            ))}
           </select>
         </div>
         <div>
@@ -170,7 +206,7 @@ try {
       </form>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>
 
 <script>
   const overlay = document.getElementById('modal-overlay')!;
@@ -222,6 +258,19 @@ try {
     });
   });
 
+  document.querySelectorAll('.restore-product').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('¿Desarchivar este producto? Volverá a publicarse.')) return;
+      const id = (btn as HTMLElement).dataset.id;
+      await fetch('/api/admin/products', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: 'published' }),
+      });
+      location.reload();
+    });
+  });
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -231,9 +280,10 @@ try {
       price: Number(formData.get('price')),
       available_qty: Number(formData.get('available_qty')),
       brand: formData.get('brand'),
-      category_id: formData.get('category_id'),
       description: formData.get('description'),
     };
+    const categoryVal = formData.get('category_id');
+    if (categoryVal) body.category_id = categoryVal;
 
     if (id) {
       body.id = id;

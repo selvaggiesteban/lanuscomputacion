@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getContacts } from '../../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -14,7 +14,7 @@ const totalContacts = await getContacts(db, { search: search || undefined });
 const totalPages = Math.ceil(totalContacts.length / limit);
 ---
 
-<BaseLayout title="Contactos | Lanús Computación">
+<AdminLayout title="Contactos | Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Contactos</h1>
@@ -24,7 +24,7 @@ const totalPages = Math.ceil(totalContacts.length / limit);
     <!-- Search -->
     <form class="mb-6" method="GET">
       <div class="flex gap-2">
-        <input type="text" name="search" value="{search}" placeholder="Buscar por nombre, email, teléfono..." class="ml-input flex-1" />
+        <input type="text" name="search" value={search} placeholder="Buscar por nombre, email, teléfono..." class="ml-input flex-1" />
         <button type="submit" class="ml-btn-primary">Buscar</button>
         {search && <a href="/admin/mensajeria/contactos" class="ml-btn-outline">Limpiar</a>}
       </div>
@@ -48,7 +48,7 @@ const totalPages = Math.ceil(totalContacts.length / limit);
             {contacts.map(contact => (
               <tr class="hover:bg-gray-50 transition-colors">
                 <td class="p-3">
-                  <p class="text-sm font-medium text-ml-text">{contact.name}</th>
+                  <p class="text-sm font-medium text-ml-text">{contact.name}</p>
                 </td>
                 <td class="p-3 text-sm text-ml-text-secondary">{contact.email || '—'}</td>
                 <td class="p-3 text-sm text-ml-text-secondary">
@@ -89,4 +89,4 @@ const totalPages = Math.ceil(totalContacts.length / limit);
       </div>
     )}
   </div>
-</BaseLayout>
+</AdminLayout>

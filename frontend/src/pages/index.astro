@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandsSection from '../components/home/BrandsSection.astro';
+import BestSellersCarousel from '../components/home/BestSellersCarousel.astro';
 import { getCategories } from '../lib/d1';
 
 const DB = Astro.locals.runtime.env.DB;
@@ -25,6 +26,71 @@ if (categoryIds.length > 0) {
   }
 }
 const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbnail]));
+
+let bestSellers: any[] = [];
+try {
+  const toCard = (p: any) => ({
+    id: p.id,
+    title: p.title,
+    price: p.price,
+    image: p.thumbnail,
+    slug: p.slug,
+    categoryName: p.category_name,
+    freeShipping: p.free_shipping === 1,
+    dollarRate: p.dollar_rate,
+    ivaPct: p.iva_pct,
+    internalTaxPct: p.internal_tax_pct,
+    availableQty: p.available_qty,
+  });
+
+  // Carrusel "Más vendidos": 5 cámaras de seguridad, 5 monitores, 5
+  // notebooks y 5 routers WiFi (por sold_qty); si un grupo no alcanza,
+  // se rellena con los más vendidos generales que falten.
+  const groups: { where: string }[] = [
+    { where: "category_name = 'Seguridad'" },
+    { where: "title LIKE '%Monitor%'" },
+    { where: "title LIKE '%Notebook%'" },
+    { where: "title LIKE '%Router%'" },
+  ];
+  const selected = new Map<string, any>();
+  for (const g of groups) {
+    const { results } = await DB.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+        AND (${g.where})
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 5
+    `).all();
+    for (const p of results || []) selected.set(String(p.id), p);
+  }
+  if (selected.size < 20) {
+    const { results } = await DB.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 60
+    `).all();
+    for (const p of results || []) {
+      if (selected.size >= 20) break;
+      if (!selected.has(String(p.id))) selected.set(String(p.id), p);
+    }
+  }
+  bestSellers = [...selected.values()].map(toCard);
+} catch (e) {
+  console.error("D1 Error bestSellers in index.astro:", e);
+  bestSellers = [];
+}
+
+const staticSlideImages: Record<string, { src: string; alt: string }> = {
+  cat_celulares: {
+    src: '/2601_image_41341.webp',
+    alt: 'Celulares y teléfonos: smartphones, accesorios y repuestos en Lanús Computación',
+  },
+};
 ---
 
 <BaseLayout title="Lanús Computación - Tecnología en oferta">
@@ -105,6 +171,9 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
     </div>
   </section>
 
+  <!-- Más Vendidos -->
+  {bestSellers.length >= 2 && <BestSellersCarousel products={bestSellers} />}
+
   <!-- Categorías -->
   <section class="ml-container py-8">
     <div class="flex items-center justify-between mb-6">
@@ -115,15 +184,19 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
     <div class="relative">
       <div class="overflow-hidden rounded-lg border border-ml-border bg-white shadow-card">
         <div id="cat-track" class="flex transition-transform duration-500 ease-out">
-          {categories.slice(0, 8).map((cat) => (
+          {categories.slice(0, 8).map((cat) => {
+            const slideImage = staticSlideImages[cat.id];
+            const imgSrc = slideImage?.src ?? imageMap[cat.id];
+            const imgAlt = slideImage?.alt ?? cat.name;
+            return (
             <a href={`/categoria/${cat.slug}`} class="min-w-full">
               <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 p-6 md:p-10 md:pl-14 text-center md:text-left">
                   <h2 class="text-xl md:text-3xl font-bold text-ml-text">{cat.name}</h2>
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-8 flex items-center justify-center">
-                  {imageMap[cat.id] ? (
-                    <img src={imageMap[cat.id]} alt={cat.name} class="h-40 md:h-56 object-contain" loading="lazy" />
+                  {imgSrc ? (
+                    <img src={imgSrc} alt={imgAlt} class="h-40 md:h-56 object-contain" loading="lazy" />
                   ) : (
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-32 h-32 text-gray-300">
                       <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -134,7 +207,8 @@ const imageMap = Object.fromEntries(catImages.map(r => [r.category_id, r.thumbna
                 </div>
               </div>
             </a>
-          ))}
+            );
+          })}
         </div>
       </div>
 

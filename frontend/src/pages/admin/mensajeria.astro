@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getAllMessagingChannels, getContacts, getMessageTemplates } from '../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -9,7 +9,7 @@ const contacts = await getContacts(db, { limit: 20 });
 const templates = await getMessageTemplates(db);
 ---
 
-<BaseLayout title="Mensajería | Lanús Computación">
+<AdminLayout title="Mensajería | Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Centro de Mensajería</h1>
@@ -108,4 +108,4 @@ const templates = await getMessageTemplates(db);
       </div>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>

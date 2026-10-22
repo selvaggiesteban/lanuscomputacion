@@ -1,7 +1,5 @@
 ---
-export const getStaticPaths = () => [];
-
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../../layouts/AdminLayout.astro';
 import { getAllMessagingChannels, upsertMessagingChannel, deleteMessagingChannel } from '../../../../lib/d1';
 
 const { id } = Astro.params;
@@ -17,7 +15,7 @@ if (!channel) {
 const config = JSON.parse(channel.config || '{}');
 ---
 
-<BaseLayout title={`Canal: ${channel.name} | Lanús Computación`}>
+<AdminLayout title={`Canal: ${channel.name} | Lanús Computación`}>
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -29,23 +27,23 @@ const config = JSON.parse(channel.config || '{}');
       </div>
 
       <form id="channel-form" class="bg-white rounded shadow-card p-6 space-y-6">
-        <input type="hidden" name="id" value="{channel.id}" />
+        <input type="hidden" name="id" value={channel.id} />
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Nombre</label>
-            <input type="text" name="name" value="{channel.name}" class="ml-input w-full" required />
+            <input type="text" name="name" value={channel.name} class="ml-input w-full" required />
           </div>
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Icono (emoji)</label>
-            <input type="text" name="icon" value="{channel.icon || ''}" class="ml-input w-full" maxlength="2" placeholder="💬" />
+            <input type="text" name="icon" value={channel.icon || ''} class="ml-input w-full" maxlength="2" placeholder="💬" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Orden de visualización</label>
-            <input type="number" name="display_order" value="{channel.display_order}" class="ml-input w-full" min="0" />
+            <input type="number" name="display_order" value={channel.display_order} class="ml-input w-full" min="0" />
           </div>
           <div class="flex items-end">
             <label class="flex items-center gap-2 cursor-pointer">
@@ -68,7 +66,7 @@ const config = JSON.parse(channel.config || '{}');
       </form>
 
       <div class="mt-4 text-center">
-        <button onclick="deleteChannel('{channel.id}')" class="text-red-600 hover:underline text-sm">Eliminar canal</button>
+        <button type="button" data-del={channel.id} class="text-red-600 hover:underline text-sm">Eliminar canal</button>
       </div>
     </div>
   </div>
@@ -121,5 +119,10 @@ const config = JSON.parse(channel.config || '{}');
         alert('Error de conexión');
       }
     }
+
+    document.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('[data-del]');
+      if (b) deleteChannel(b.getAttribute('data-del')!);
+    });
   </script>
-</BaseLayout>
+</AdminLayout>

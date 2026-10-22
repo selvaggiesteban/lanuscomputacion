@@ -47,8 +47,9 @@ export async function getProducts(db: D1Database, options?: {
   minPrice?: number;
   maxPrice?: number;
   sort?: string;
+  includeArchived?: boolean;
 }): Promise<Product[]> {
-  let sql = "SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct FROM products WHERE status = 'published'";
+  let sql = `SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct, status FROM products WHERE ${options?.includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {
@@ -103,7 +104,7 @@ export async function getProducts(db: D1Database, options?: {
 
 export async function getProductBySlug(db: D1Database, slug: string): Promise<Product | null> {
   const result = await db.prepare(
-    "SELECT * FROM products WHERE slug = ? AND status = 'published'",
+    "SELECT * FROM products WHERE slug = ? AND status IN ('published','archived')",
   ).bind(slug).first<Product>();
   return result ?? null;
 }
@@ -175,8 +176,8 @@ export async function getCategoryBySlug(db: D1Database, slug: string): Promise<C
   return result ?? null;
 }
 
-export async function getProductCount(db: D1Database, category?: string, subcategory?: string, brand?: string): Promise<number> {
-  let sql = "SELECT COUNT(*) as count FROM products WHERE status = 'published'";
+export async function getProductCount(db: D1Database, category?: string, subcategory?: string, brand?: string, includeArchived?: boolean): Promise<number> {
+  let sql = `SELECT COUNT(*) as count FROM products WHERE ${includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
   const binds: any[] = [];
 
   if (category && category !== 'todas') {
@@ -196,8 +197,8 @@ export async function getProductCount(db: D1Database, category?: string, subcate
   return result?.count ?? 0;
 }
 
-export async function getBrandsByCategory(db: D1Database, categoryId?: string, subcategory?: string): Promise<{ brand: string; count: number }[]> {
-  let sql = "SELECT brand, COUNT(*) as count FROM products WHERE status = 'published' AND brand IS NOT NULL AND brand != ''";
+export async function getBrandsByCategory(db: D1Database, categoryId?: string, subcategory?: string, includeArchived?: boolean): Promise<{ brand: string; count: number }[]> {
+  let sql = `SELECT brand, COUNT(*) as count FROM products WHERE ${includeArchived ? "status IN ('published','archived')" : "status = 'published'"} AND brand IS NOT NULL AND brand != ''`;
   const binds: any[] = [];
 
   if (categoryId && categoryId !== 'todas') {
@@ -220,8 +221,8 @@ export type Order = {
   customer_name: string;
   customer_email: string;
   customer_phone: string | null;
-  customer_address: string | null;
-  total: number;
+  address: string | null;
+  total_price: number;
   status: string;
   mp_preference_id: string | null;
   mp_payment_id: string | null;
@@ -579,6 +580,13 @@ export async function getNfcCardBySlug(db: D1Database, slug: string): Promise<Nf
   return result ?? null;
 }
 
+export async function getNfcCardById(db: D1Database, id: string): Promise<NfcCard | null> {
+  const result = await db.prepare(
+    `SELECT * FROM nfc_cards WHERE id = ?`
+  ).bind(id).first<NfcCard>();
+  return result ?? null;
+}
+
 export async function getNfcCardByNumber(db: D1Database, cardNumber: number): Promise<NfcCard | null> {
   const result = await db.prepare(
     `SELECT * FROM nfc_cards WHERE card_number = ?`
@@ -644,7 +652,7 @@ export async function getNfcScanStats(db: D1Database, days = 30): Promise<{ tota
 
   return {
     total_scans: total?.count ?? 0,
-    scans_by_card: byCard ?? []
+    scans_by_card: byCard?.results ?? []
   };
 }
 
@@ -716,6 +724,11 @@ export async function getActiveMessagingChannels(db: D1Database): Promise<Messag
   return results ?? [];
 }
 
+const toDbText = (v: unknown, fallback: string | null = null): string | null => {
+  if (v === undefined || v === null) return fallback;
+  return typeof v === 'string' ? v : JSON.stringify(v);
+};
+
 export async function upsertMessagingChannel(db: D1Database, channel: {
   id: string;
   name: string;
@@ -732,7 +745,7 @@ export async function upsertMessagingChannel(db: D1Database, channel: {
       config=excluded.config, display_order=excluded.display_order, updated_at=datetime('now')
   `).bind(
     channel.id, channel.name, channel.icon ?? null, channel.is_active ?? 1,
-    channel.config ?? '{}', channel.display_order ?? 0
+    toDbText(channel.config, '{}'), channel.display_order ?? 0
   ).run();
 }
 
@@ -789,7 +802,7 @@ export async function upsertContact(db: D1Database, contact: {
     `).bind(
       contact.name, contact.email ?? null, contact.phone ?? null,
       contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
-      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1, contact.id
+      toDbText(contact.tags), contact.notes ?? null, contact.is_subscribed ?? 1, contact.id
     ).run();
     return contact.id;
   } else {
@@ -799,7 +812,7 @@ export async function upsertContact(db: D1Database, contact: {
     `).bind(
       contact.name, contact.email ?? null, contact.phone ?? null,
       contact.whatsapp ?? null, contact.telegram ?? null, contact.messenger_id ?? null,
-      contact.tags ?? null, contact.notes ?? null, contact.is_subscribed ?? 1
+      toDbText(contact.tags), contact.notes ?? null, contact.is_subscribed ?? 1
     ).run();
     return result.meta.last_row_id;
   }
@@ -831,7 +844,7 @@ export async function upsertMessageTemplate(db: D1Database, template: {
       content=excluded.content, variables=excluded.variables, is_active=excluded.is_active, updated_at=datetime('now')
   `).bind(
     template.id, template.name, template.channel_id, template.subject ?? null,
-    template.content, template.variables ?? null, template.is_active ?? 1
+    template.content, toDbText(template.variables), template.is_active ?? 1
   ).run();
 }
 

@@ -64,6 +64,37 @@ export function normalizeElitProduct(elitProduct: Record<string, any>, dollarRat
   const categoryId = mapping?.category_id ?? "uncategorized";
   const subcategoryName = mapping?.subcategory_name ?? elitSubcategory;
 
+  // Rubro de display cuando ELIT no envía categoría: se deriva de nuestra
+  // subcategoría mapeada para que el producto no quede "Sin categoría".
+  const SUBCATEGORY_RUBRO: Record<string, string> = {
+    sub_computacion_componentes: "Hardware",
+    sub_computacion_impresion: "Insumos",
+    sub_computacion_tablets: "Accesorios",
+    sub_computacion_pc: "Computadoras",
+    sub_computacion_conectividad: "Conectividad",
+    sub_computacion_monitores: "Imagen",
+    sub_computacion_almacenamiento: "Almacenamiento",
+    sub_computacion_memorias: "Memorias",
+    sub_computacion_cables: "Cables",
+    sub_computacion_energia: "Unidad de Energia",
+    sub_celulares_smartphones: "Celulares y Smartphones",
+    sub_celulares_accesorios: "Accesorios",
+    sub_celulares_repuestos: "Repuestos",
+    sub_camaras_digitales: "Seguridad",
+    sub_camaras_accesorios: "Accesorios",
+    sub_camaras_filmadoras: "Filmadoras",
+    sub_consolas_videojuegos: "Video Juegos",
+    sub_electronica_audio: "Audio",
+    sub_electronica_accesorios_audio: "Audio",
+    sub_electronica_componentes: "Componentes Electrónicos",
+    sub_electronica_drones: "Drones",
+    sub_electronica_audio_vehiculos: "Audio",
+    sub_electronica_televisores: "Imagen",
+  };
+  const displayCategory =
+    elitCategory ||
+    (mapping ? SUBCATEGORY_RUBRO[mapping.subcategory_name] ?? "Accesorios" : "Accesorios");
+
   return {
     id: `elit_${elitProduct.id ?? ""}`,
     external_id: String(elitProduct.id ?? ""),
@@ -73,7 +104,7 @@ export function normalizeElitProduct(elitProduct: Record<string, any>, dollarRat
     slug,
     description: `${title} - ${elitProduct.garantia ?? ""}`,
     category_id: categoryId,
-    category_name: elitCategory,
+    category_name: displayCategory,
     subcategory_name: subcategoryName,
     brand: String(elitProduct.marca ?? ""),
     price: pricing.final_price,

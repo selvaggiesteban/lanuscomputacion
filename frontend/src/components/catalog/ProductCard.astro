@@ -24,6 +24,8 @@ export interface Product {
   b2bMinQty?: number;
   ivaPct?: number | null;
   internalTaxPct?: number | null;
+  availableQty?: number;
+  status?: string;
 }
 
 export interface Props {
@@ -31,6 +33,9 @@ export interface Props {
 }
 
 const { product } = Astro.props;
+const consult =
+  (typeof product.availableQty === 'number' && product.availableQty <= 0) ||
+  product.status === 'archived';
 ---
 
 <article class="ml-card p-3 flex flex-col relative" data-product-card data-dollar-rate={product.dollarRate || 0}>
@@ -59,9 +64,10 @@ const { product } = Astro.props;
       dollarRate={product.dollarRate}
       ivaPct={product.ivaPct}
       internalTaxPct={product.internalTaxPct}
+      consultar={consult}
     />
 
-    {product.b2bPrice && (
+    {product.b2bPrice && !consult && (
       <div class="mt-1 text-xs font-bold text-[#ff0000] flex items-center justify-between gap-2">
         <span class="uppercase tracking-wide">
           Mayorista{product.b2bMinQty && product.b2bMinQty > 1 ? ` · mín. ${product.b2bMinQty} u.` : ''}

@@ -2,6 +2,9 @@ import type { APIRoute } from "astro";
 import { getActivePromotions, computePromoDiscount, getActiveB2bRules } from "../../lib/d1";
 import { getUserFromRequest, getJwtSecret } from "../../lib/auth";
 import { getB2bPrice, isApprovedB2bUser } from "../../lib/b2b";
+import { ensurePostventaRecord } from "../../lib/postventa";
+import { sendEmail, orderConfirmationPlain } from "../../lib/email";
+import { markEmailSent } from "../../lib/emaillog";
 
 // POST /api/order — crea un pedido con pago por transferencia bancaria o
 // efectivo (sin Mercado Pago). Mismas reglas de precio que /api/checkout
@@ -14,6 +17,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     customer?: { name: string; email: string; phone?: string; address?: string };
     payment_method?: string;
     coupon_id?: string | null;
+    abandoned_session_id?: string | null;
   };
   try {
     body = await request.json();
@@ -37,7 +41,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     let products: any[] = [];
     try {
       const { results } = await DB.prepare(
-        `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status = 'published'`
+        `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status IN ('published', 'archived')`
       ).bind(...ids).all();
       products = results;
     } catch (e) {
@@ -46,6 +50,14 @@ export const POST: APIRoute = async ({ locals, request }) => {
     const productMap = new Map((products || []).map(p => [String(p.id), p]));
 
     const promotions = await getActivePromotions(DB);
+
+    let shippingCost = 17000;
+    try {
+      const shipRow = await DB.prepare("SELECT value FROM app_config WHERE key = 'shipping_cost'").first<{ value: string }>();
+      if (shipRow?.value != null && shipRow.value !== "") shippingCost = Number(shipRow.value);
+    } catch (e) {
+      console.error("shipping_cost config error:", e);
+    }
 
     let sessionUser;
     let b2bApproved = false;
@@ -70,9 +82,6 @@ export const POST: APIRoute = async ({ locals, request }) => {
       const product = productMap.get(String(item.product_id));
       if (!product) {
         return new Response(JSON.stringify({ error: `Producto no encontrado: ${item.product_id}` }), { status: 400, headers: { "Content-Type": "application/json" } });
-      }
-      if (product.available_qty < item.quantity) {
-        return new Response(JSON.stringify({ error: `Stock insuficiente: ${product.title}` }), { status: 400, headers: { "Content-Type": "application/json" } });
       }
 
       let unitPrice = product.price;
@@ -109,13 +118,13 @@ export const POST: APIRoute = async ({ locals, request }) => {
       });
     }
 
-    total = Math.round(total * 100) / 100;
+    total = Math.round((total + shippingCost) * 100) / 100;
     const firstProduct = productMap.get(String(body.items[0].product_id))!;
 
     const batchStatements = [
       DB.prepare(
-        "INSERT INTO orders (id, product_id, quantity, unit_price, total_price, payment_method, status, customer_name, customer_email, customer_phone) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)"
-      ).bind(orderId, firstProduct.id, totalQty, orderItemsData[0].unit_price, total, paymentMethod, body.customer.name, body.customer.email, body.customer.phone || null),
+        "INSERT INTO orders (id, product_id, quantity, unit_price, total_price, payment_method, status, customer_name, customer_email, customer_phone, address, shipping_cost) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?, ?)"
+      ).bind(orderId, firstProduct.id, totalQty, orderItemsData[0].unit_price, total, paymentMethod, body.customer.name, body.customer.email, body.customer.phone || null, body.customer.address || null, shippingCost),
     ];
 
     for (const item of orderItemsData) {
@@ -134,7 +143,64 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
     await DB.batch(batchStatements);
 
-    return new Response(JSON.stringify({ order_id: orderId, payment_method: paymentMethod, total }), {
+    await ensurePostventaRecord(DB, orderId);
+
+    if (body.abandoned_session_id) {
+      try {
+        const conv = await DB.prepare(
+          "UPDATE abandoned_carts SET order_id = ?, last_seen_at = datetime('now') WHERE session_id = ? AND order_id IS NULL"
+        ).bind(orderId, body.abandoned_session_id).run();
+        if (!conv.meta?.changes) {
+          await DB.prepare(
+            `INSERT INTO abandoned_carts
+               (session_id, items, item_count, total, customer_name, customer_email, customer_phone, customer_address, page, order_id, last_seen_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))`
+          ).bind(
+            body.abandoned_session_id,
+            JSON.stringify(orderItemsData.map((i) => ({ product_id: i.product_id, title: i.product_title, quantity: i.quantity, price: i.unit_price }))),
+            totalQty,
+            total,
+            body.customer.name,
+            body.customer.email,
+            body.customer.phone || null,
+            body.customer.address || null,
+            "/carrito",
+            orderId
+          ).run();
+        }
+      } catch (e) {
+        console.error("abandoned_carts convert error:", e);
+      }
+    }
+
+    const emailEnv = (locals.runtime as any).env as { GMAIL_USER?: string; GMAIL_APP_PASSWORD?: string };
+    if (emailEnv.GMAIL_USER && emailEnv.GMAIL_APP_PASSWORD) {
+      const confirmationSubject = `Confirmación de pedido #${orderId.slice(0, 8)}`;
+      const confirmation = orderConfirmationPlain({
+        orderId,
+        items: orderItemsData.map((i) => ({ title: i.product_title, quantity: i.quantity, price: i.unit_price })),
+        total,
+        shippingCost,
+        customerName: body.customer.name,
+        paymentMethod,
+      });
+      const mailPromise = sendEmail(emailEnv, {
+        to: body.customer.email,
+        subject: confirmationSubject,
+        text: confirmation,
+      }).then(async (r) => {
+        if (!r.success) {
+          console.error("[email] confirmación falló:", r.error);
+        } else {
+          await markEmailSent(DB, orderId, "confirmation", confirmationSubject);
+        }
+      });
+      const ctx = (locals.runtime as any).ctx;
+      if (typeof ctx?.waitUntil === "function") ctx.waitUntil(mailPromise);
+      else await mailPromise;
+    }
+
+    return new Response(JSON.stringify({ order_id: orderId, payment_method: paymentMethod, total, shipping_cost: shippingCost }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -156,7 +222,7 @@ export const GET: APIRoute = async ({ locals, url }) => {
     let order = null;
     try {
       order = await DB.prepare(
-        "SELECT id, customer_name, customer_email, total, status, mp_preference_id, mp_payment_id, payment_method, created_at FROM orders WHERE id = ?"
+        "SELECT id, customer_name, customer_email, customer_phone, address, total_price, shipping_cost, status, mp_preference_id, mp_payment_id, payment_method, created_at FROM orders WHERE id = ?"
       ).bind(id).first<any>();
     } catch (e) {
       console.error("D1 Error in frontend/src/pages/api/order.ts:", e);

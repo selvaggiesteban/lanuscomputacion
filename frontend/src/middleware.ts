@@ -14,7 +14,7 @@ const CACHE_RULES: { test: RegExp; sMaxAge: number }[] = [
   { test: /^\/busqueda\/[^/]+$/, sMaxAge: 120 },
   { test: /^\/servicios(\/[^/]+)?$/, sMaxAge: 3600 },
   {
-    test: /^\/(como-comprar|contacto|preguntas-frecuentes|politicas-de-privacidad|politicas-de-cookies|politica-de-devoluciones|b2b)$/,
+    test: /^\/(como-comprar|contacto|preguntas-frecuentes|politicas-de-privacidad|politicas-de-cookies|politicas-de-envios-y-devoluciones|politica-de-devoluciones|b2b)$/,
     sMaxAge: 3600,
   },
   { test: /^\/sitemap\.xml$/, sMaxAge: 3600 },

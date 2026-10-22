@@ -1,6 +1,4 @@
 ---
-export const getStaticPaths = () => [];
-
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
@@ -17,19 +15,19 @@ const term = `%${q}%`;
 let products: {
   id: string; title: string; price: number; thumbnail: string;
   slug: string; dollar_rate: number; category_name: string; total_count: number;
-  iva_pct: number; internal_tax_pct: number;
+  iva_pct: number; internal_tax_pct: number; available_qty: number; status: string;
 }[] = [];
 try {
   const { results } = await DB.prepare(`
-    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, iva_pct, internal_tax_pct, COUNT(*) OVER() AS total_count
+    SELECT id, title, price, thumbnail, slug, dollar_rate, category_name, iva_pct, internal_tax_pct, available_qty, status, COUNT(*) OVER() AS total_count
     FROM products
-    WHERE status = 'published' AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
+    WHERE status IN ('published','archived') AND (title LIKE ? OR brand LIKE ? OR ean LIKE ?)
     ORDER BY available_qty DESC, created_at DESC
     LIMIT ? OFFSET ?
   `).bind(term, term, term, limit, offset).all<{
     id: string; title: string; price: number; thumbnail: string;
     slug: string; dollar_rate: number; category_name: string; total_count: number;
-    iva_pct: number; internal_tax_pct: number;
+    iva_pct: number; internal_tax_pct: number; available_qty: number; status: string;
   }>();
   products = results || [];
 } catch (e) {
@@ -61,6 +59,8 @@ const totalPages = Math.ceil(total / limit);
       dollarRate: p.dollar_rate,
       ivaPct: p.iva_pct,
       internalTaxPct: p.internal_tax_pct,
+      availableQty: p.available_qty,
+      status: p.status,
     }))} columns={4} />
 
     <Pagination current={page} total={totalPages} baseUrl={`/busqueda/${q}`} />

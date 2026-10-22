@@ -41,16 +41,16 @@ export const GET: APIRoute = async ({ locals, request }) => {
     let results = [];
     try {
       const { results: dbResults } = await DB.prepare(
-        "SELECT id, customer_name, customer_email, customer_phone, total, status, payment_method, mp_payment_id, created_at, updated_at FROM orders ORDER BY created_at DESC"
+        "SELECT id, customer_name, customer_email, customer_phone, address, total_price, status, payment_method, mp_payment_id, created_at, updated_at FROM orders ORDER BY created_at DESC"
       ).all();
       results = dbResults;
     } catch (e) {
       console.error("D1 Error in frontend/src/pages/api/admin/export.ts:", e);
     }
 
-    const header = "ID,Cliente,Email,Teléfono,Total,Estado,Método Pago,MP Payment ID,Fecha Creación,Última Actualización\n";
+    const header = "ID,Cliente,Email,Teléfono,Dirección,Total,Estado,Método Pago,MP Payment ID,Fecha Creación,Última Actualización\n";
     const rows = (results || []).map((o: any) =>
-      `${o.id},"${(o.customer_name || "").replace(/"/g, '""')}",${o.customer_email || ""},${o.customer_phone || ""},${o.total},${o.status},${o.payment_method || ""},${o.mp_payment_id || ""},${o.created_at},${o.updated_at || ""}`
+      `${o.id},"${(o.customer_name || "").replace(/"/g, '""')}",${o.customer_email || ""},${o.customer_phone || ""},"${(o.address || "").replace(/"/g, '""')}",${o.total_price},${o.status},${o.payment_method || ""},${o.mp_payment_id || ""},${o.created_at},${o.updated_at || ""}`
     ).join("\n");
 
     return new Response(header + rows, {

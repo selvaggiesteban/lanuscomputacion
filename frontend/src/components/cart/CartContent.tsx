@@ -10,6 +10,21 @@ const TRANSFER = {
   cuit: "20-43310259-3",
 };
 
+const ACID_KEY = "lanuscom-acid";
+
+function getAcid(): string {
+  try {
+    let a = localStorage.getItem(ACID_KEY);
+    if (!a) {
+      a = crypto.randomUUID();
+      localStorage.setItem(ACID_KEY, a);
+    }
+    return a;
+  } catch {
+    return "";
+  }
+}
+
 export default function CartContent() {
   const [items, setItems] = useState<CartItem[]>([]);
   const [checkingOut, setCheckingOut] = useState(false);
@@ -21,6 +36,7 @@ export default function CartContent() {
   const [applyingCoupon, setApplyingCoupon] = useState(false);
   const [payStep, setPayStep] = useState<"form" | "methods" | "done">("form");
   const [orderResult, setOrderResult] = useState<{ orderId: string; method: string; waUrl: string } | null>(null);
+  const [shippingCost, setShippingCost] = useState(17000);
 
   const refresh = useCallback(() => setItems([...getCart()]), []);
 
@@ -29,6 +45,75 @@ export default function CartContent() {
     window.addEventListener("cart-update", refresh);
     return () => window.removeEventListener("cart-update", refresh);
   }, [refresh]);
+
+  useEffect(() => {
+    fetch("/api/config").then(r => r.json()).then(d => {
+      if (typeof d?.shipping_cost === "number") setShippingCost(d.shipping_cost);
+    }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (d?.user?.email) {
+          setCustomer(c => ({
+            ...c,
+            email: c.email || d.user.email,
+            name: c.name || d.user.name || "",
+          }));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const sendAbandoned = useCallback(
+    (orderId?: string) => {
+      try {
+        const cart = getCart();
+        if (!orderId && cart.length === 0) return;
+        const payload = {
+          session_id: getAcid(),
+          items: cart.map((i) => ({
+            product_id: i.product_id,
+            title: i.title,
+            quantity: i.quantity,
+            price: i.promo_price ?? i.price,
+          })),
+          customer: {
+            name: customer.name,
+            email: customer.email,
+            phone: customer.phone,
+            address: customer.address,
+          },
+          page: window.location.pathname,
+          order_id: orderId ?? null,
+        };
+        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+        if (typeof navigator.sendBeacon === "function" && navigator.sendBeacon("/api/track/abandoned", blob)) {
+          return;
+        }
+        void fetch("/api/track/abandoned", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          keepalive: true,
+        });
+      } catch {
+        // El tracking de carritos nunca debe romper el checkout.
+      }
+    },
+    [customer]
+  );
+
+  useEffect(() => {
+    const hasData =
+      items.length > 0 ||
+      Boolean(customer.name || customer.email || customer.phone || customer.address);
+    if (!hasData) return;
+    const t = setTimeout(() => sendAbandoned(), 4000);
+    return () => clearTimeout(t);
+  }, [items, customer, sendAbandoned]);
 
   const handleRemove = (id: string) => {
     removeFromCart(id);
@@ -42,7 +127,7 @@ export default function CartContent() {
 
   const subtotal = items.reduce((s, i) => (i.promo_price ?? i.price) * i.quantity + s, 0);
   const discount = couponDiscount?.totalDiscount ?? 0;
-  const total = subtotal - discount;
+  const total = subtotal - discount + shippingCost;
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return;
@@ -104,11 +189,13 @@ export default function CartContent() {
           customer,
           payment_method: method,
           coupon_id: couponDiscount?.couponId ?? null,
+          abandoned_session_id: getAcid(),
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al procesar");
 
+      sendAbandoned(data.order_id);
       const resumen = items.map(i => `${i.title} x${i.quantity}`).join(", ");
       const msg = method === "transferencia"
         ? `Hola! Registré el pedido #${data.order_id.slice(0, 8)} por TRANSFERENCIA. Productos: ${resumen}. Total: $${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}. Ya te envío el comprobante.`
@@ -197,6 +284,10 @@ export default function CartContent() {
                 <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
               </div>
             )}
+            <div class="flex justify-between">
+              <span class="text-ml-text-muted">Envío</span>
+              <span class="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            </div>
             <div class="flex justify-between border-t pt-2">
               <span class="font-semibold text-ml-text">Total</span>
               <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
@@ -231,6 +322,10 @@ export default function CartContent() {
             <input type="email" placeholder="Email *" value={customer.email} onChange={e => setCustomer(p => ({ ...p, email: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <input type="tel" placeholder="Teléfono" value={customer.phone} onChange={e => setCustomer(p => ({ ...p, phone: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
             <input type="text" placeholder="Dirección" value={customer.address} onChange={e => setCustomer(p => ({ ...p, address: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
+            <p class="text-xs text-ml-text-muted">
+              Envío: coordinamos el envío con vos por WhatsApp. Llega en 3 días hábiles una vez despachado.
+              <a href="/politicas-de-envios-y-devoluciones" class="ml-link ml-1">Ver políticas</a>
+            </p>
           </div>
 
           {error && <p class="text-xs text-red-500 mb-2">{error}</p>}

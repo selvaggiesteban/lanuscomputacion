@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     const offset = (page - 1) * limit;
 
     let sql =
-      "SELECT *, COUNT(*) OVER() AS total_count FROM products WHERE status = 'published'";
+      "SELECT *, COUNT(*) OVER() AS total_count FROM products WHERE status IN ('published','archived')";
     const binds: any[] = [];
 
     if (q) {

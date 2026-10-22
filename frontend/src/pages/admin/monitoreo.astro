@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 
@@ -42,18 +42,30 @@ try {
   console.error('Error fetching price change stats:', e);
 }
 
-// Margin stats
-let marginStats = null;
+// Márgenes configurados: markup minorista (app_config) y descuento B2B
+// mayorista (b2b_rules). El margen por producto no se calcula con cost_price
+// porque el costo está en USD y el precio en ARS (diferencia de moneda).
+let markupPct = 30;
 try {
-  marginStats = await DB.prepare(`
-    SELECT
-      AVG(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as avg_margin,
-      MIN(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as min_margin,
-      MAX(CASE WHEN cost_price > 0 THEN ((price - cost_price) / cost_price * 100) END) as max_margin
-    FROM products WHERE status = 'published' AND cost_price > 0
-  `).first();
+  const row = await DB.prepare(
+    "SELECT value FROM app_config WHERE key = 'global_markup_pct'"
+  ).first<{ value: string }>();
+  if (row?.value != null && row.value !== "") markupPct = Number(row.value);
 } catch (e) {
-  console.error('Error fetching margin stats:', e);
+  console.error('Error fetching global markup:', e);
+}
+
+let b2bRules: { category_name: string; discount_pct: number; min_quantity: number }[] = [];
+let b2bPct = 15;
+try {
+  const { results } = await DB.prepare(
+    "SELECT category_name, discount_pct, min_quantity FROM b2b_rules ORDER BY category_name"
+  ).all<{ category_name: string; discount_pct: number; min_quantity: number }>();
+  b2bRules = results ?? [];
+  const def = b2bRules.find((r) => (r.category_name ?? '').toLowerCase() === 'default');
+  if (def) b2bPct = Math.round(def.discount_pct * 100);
+} catch (e) {
+  console.error('Error fetching b2b rules:', e);
 }
 
 // Inventory value
@@ -99,38 +111,6 @@ try {
   lowStockCount = { count: 0 };
 }
 
-// Top margin products
-let topMargin = [];
-try {
-  const { results } = await DB.prepare(`
-    SELECT title, brand, price, cost_price,
-      ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
-    FROM products
-    WHERE status = 'published' AND cost_price > 0
-    ORDER BY margin_pct DESC LIMIT 5
-  `).all();
-  topMargin = results;
-} catch (e) {
-  console.error('Error fetching top margin products:', e);
-  topMargin = [];
-}
-
-// Bottom margin products
-let bottomMargin = [];
-try {
-  const { results } = await DB.prepare(`
-    SELECT title, brand, price, cost_price,
-      ROUND((price - cost_price) / cost_price * 100, 1) as margin_pct
-    FROM products
-    WHERE status = 'published' AND cost_price > 0 AND available_qty > 0
-    ORDER BY margin_pct ASC LIMIT 5
-  `).all();
-  bottomMargin = results;
-} catch (e) {
-  console.error('Error fetching bottom margin products:', e);
-  bottomMargin = [];
-}
-
 // Recent price changes
 let recentChanges = [];
 try {
@@ -147,7 +127,7 @@ try {
 }
 ---
 
-<BaseLayout title="Monitoreo | Admin - Lanús Computación">
+<AdminLayout title="Monitoreo | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Monitoreo de Catálogo</h1>
@@ -170,10 +150,11 @@ try {
         </p>
       </div>
 
-      <!-- Avg Margin -->
+      <!-- Configured Margins -->
       <div class="bg-white rounded shadow-card p-4">
-        <p class="text-xs text-ml-text-muted mb-1">Margen Promedio</p>
-        <p class="text-2xl font-bold text-ml-text">{marginStats?.avg_margin ? `${marginStats.avg_margin.toFixed(1)}%` : '—'}</p>
+        <p class="text-xs text-ml-text-muted mb-1">Margen Configurado</p>
+        <p class="text-lg font-bold text-ml-text">{markupPct}% <span class="text-xs font-normal text-ml-text-muted">minorista</span></p>
+        <p class="text-lg font-bold text-ml-text">{b2bPct}% <span class="text-xs font-normal text-ml-text-muted">mayorista</span></p>
       </div>
 
       <!-- Inventory Value -->
@@ -236,26 +217,22 @@ try {
           <h2 class="font-medium text-ml-text">Análisis de Márgenes</h2>
         </div>
         <div class="p-4">
-          <div class="grid grid-cols-3 gap-3 mb-4">
+          <div class="grid grid-cols-2 gap-3 mb-4">
             <div class="bg-gray-50 rounded p-3 text-center">
-              <p class="text-lg font-bold text-green-600">{marginStats?.max_margin ? `${marginStats.max_margin.toFixed(0)}%` : '—'}</p>
-              <p class="text-xs text-ml-text-muted">Máximo</p>
+              <p class="text-lg font-bold text-ml-text">{markupPct}%</p>
+              <p class="text-xs text-ml-text-muted">Minorista (markup)</p>
             </div>
             <div class="bg-gray-50 rounded p-3 text-center">
-              <p class="text-lg font-bold text-ml-text">{marginStats?.avg_margin ? `${marginStats.avg_margin.toFixed(0)}%` : '—'}</p>
-              <p class="text-xs text-ml-text-muted">Promedio</p>
-            </div>
-            <div class="bg-gray-50 rounded p-3 text-center">
-              <p class="text-lg font-bold text-red-600">{marginStats?.min_margin ? `${marginStats.min_margin.toFixed(0)}%` : '—'}</p>
-              <p class="text-xs text-ml-text-muted">Mínimo</p>
+              <p class="text-lg font-bold text-ml-text">{b2bPct}%</p>
+              <p class="text-xs text-ml-text-muted">Mayorista (desc. B2B)</p>
             </div>
           </div>
           <div class="text-sm">
-            <p class="font-medium text-ml-text mb-2">Top 5 Mayor Margen</p>
-            { (topMargin || []).map((p: any) => (
+            <p class="font-medium text-ml-text mb-2">Descuentos mayoristas por categoría</p>
+            {b2bRules.map((r) => (
               <div class="flex justify-between py-1 border-b border-gray-100 last:border-0">
-                <span class="text-ml-text-secondary truncate max-w-[200px]">{p.title}</span>
-                <span class="font-medium text-green-600">{p.margin_pct}%</span>
+                <span class="text-ml-text-secondary truncate max-w-[200px]">{r.category_name}</span>
+                <span class="font-medium text-ml-text whitespace-nowrap">-{Math.round(r.discount_pct * 100)}% · mín. {r.min_quantity}</span>
               </div>
             ))}
           </div>
@@ -345,4 +322,4 @@ try {
       </div>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>

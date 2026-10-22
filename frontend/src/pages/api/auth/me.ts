@@ -19,6 +19,8 @@ export const GET: APIRoute = async ({ locals, request }) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      phone: user.phone ?? null,
+      address: user.address ?? null,
       isAdmin: user.is_admin === 1,
       isB2b: user.is_b2b === 1,
     },

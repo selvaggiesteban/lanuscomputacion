@@ -2,19 +2,15 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 
 export const GET: APIRoute = async ({ locals }) => {
-  // D1 solo existe en runtime (SSR); en build estático queda vacío y el sitemap
-  // se genera con URLs estáticas + artículos del blog.
-  const DB = locals?.runtime?.env?.DB as D1Database | undefined;
+  const DB = locals.runtime.env.DB as D1Database;
 
   // Get all published products
   let products: { slug: string; last_api_update: string }[] = [];
   try {
-    if (DB) {
-      const { results } = await DB.prepare(
-        "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
-      ).all<{ slug: string; last_api_update: string }>();
-      products = results || [];
-    }
+    const { results } = await DB.prepare(
+      "SELECT slug, last_api_update FROM products WHERE status IN ('published','archived') ORDER BY last_api_update DESC"
+    ).all<{ slug: string; last_api_update: string }>();
+    products = results || [];
   } catch (e) {
     console.error("D1 Error in sitemap.xml.ts:", e);
     products = [];
@@ -23,12 +19,10 @@ export const GET: APIRoute = async ({ locals }) => {
   // Get all categories
   let categories: { slug: string }[] = [];
   try {
-    if (DB) {
-      const { results } = await DB.prepare(
-        "SELECT slug FROM categories WHERE is_active = 1"
-      ).all<{ slug: string }>();
-      categories = results || [];
-    }
+    const { results } = await DB.prepare(
+      "SELECT slug FROM categories WHERE is_active = 1"
+    ).all<{ slug: string }>();
+    categories = results || [];
   } catch (e) {
     console.error("D1 Error in sitemap.xml.ts:", e);
     categories = [];
@@ -154,6 +148,12 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>${baseUrl}/servicios/suite-de-ofimatica</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>${baseUrl}/servicios/gestion-de-google-ads</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
@@ -190,10 +190,40 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>${baseUrl}/blog</loc>
+    <loc>${baseUrl}/b2b</loc>
     <lastmod>${now}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politica-de-devoluciones</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-privacidad</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-cookies</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politicas-de-envios-y-devoluciones</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/nfc/guia</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>${baseUrl}/olvidaste-contrasena</loc>
@@ -206,6 +236,12 @@ export const GET: APIRoute = async ({ locals }) => {
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/blog</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 `;
 

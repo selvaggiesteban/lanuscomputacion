@@ -97,64 +97,63 @@
   .ml-breadcrumb a {
     @apply text-ml-blue hover:text-ml-blue-hover;
   }
-}
 
-/* Article body (blog) */
-.blog-prose {
-  @apply text-base text-ml-text leading-relaxed;
-}
+  /* Blog article prose */
+  .blog-prose {
+    @apply text-base text-ml-text leading-relaxed;
+  }
 
-.blog-prose h2 {
-  @apply text-2xl font-bold text-ml-text mt-10 mb-4;
-}
+  .blog-prose h2 {
+    @apply text-2xl font-bold text-ml-text mt-10 mb-4;
+  }
 
-.blog-prose h3 {
-  @apply text-xl font-semibold text-ml-text mt-8 mb-3;
-}
+  .blog-prose h3 {
+    @apply text-xl font-semibold text-ml-text mt-8 mb-3;
+  }
 
-.blog-prose h4 {
-  @apply text-lg font-semibold text-ml-text mt-6 mb-2;
-}
+  .blog-prose h4 {
+    @apply text-lg font-semibold text-ml-text mt-6 mb-2;
+  }
 
-.blog-prose p {
-  @apply mb-4;
-}
+  .blog-prose p {
+    @apply mb-4;
+  }
 
-.blog-prose ul,
-.blog-prose ol {
-  @apply mb-4 pl-6 space-y-2;
-}
+  .blog-prose ul,
+  .blog-prose ol {
+    @apply mb-4 pl-6 space-y-2;
+  }
 
-.blog-prose ul {
-  @apply list-disc;
-}
+  .blog-prose ul {
+    @apply list-disc;
+  }
 
-.blog-prose ol {
-  @apply list-decimal;
-}
+  .blog-prose ol {
+    @apply list-decimal;
+  }
 
-.blog-prose a {
-  @apply text-ml-blue underline hover:text-ml-blue-hover;
-}
+  .blog-prose a {
+    @apply text-ml-blue underline hover:text-ml-blue-hover;
+  }
 
-.blog-prose a[target="_blank"]::after {
-  content: ' ↗';
-  font-size: 0.8em;
-}
+  .blog-prose a[target="_blank"]::after {
+    content: ' ↗';
+    font-size: 0.8em;
+  }
 
-.blog-prose img {
-  @apply w-full h-auto rounded-lg shadow-card my-6;
-}
+  .blog-prose img {
+    @apply w-full h-auto rounded-lg shadow-card my-6;
+  }
 
-.blog-prose strong {
-  @apply font-semibold;
-}
+  .blog-prose strong {
+    @apply font-semibold;
+  }
 
-.blog-prose blockquote {
-  @apply border-l-4 border-ml-yellow pl-4 my-6 italic text-ml-text-secondary;
-}
+  .blog-prose blockquote {
+    @apply border-l-4 border-ml-yellow pl-4 my-6 italic text-ml-text-secondary;
+  }
 
-.blog-prose hr {
-  @apply my-8 border-ml-border;
+  .blog-prose hr {
+    @apply my-8 border-ml-border;
+  }
 }
-

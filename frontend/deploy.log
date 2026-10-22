@@ -1,0 +1,350 @@
+npm warn using --force Recommended protections disabled.
+
+> startech-frontend@1.0.0 deploy
+> astro build && wrangler pages deploy dist/ --project-name lanuscomputacion
+
+[2m02:03:41[22m [34m[@astrojs/cloudflare][39m Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+[2m02:03:41[22m [34m[@astrojs/cloudflare][39m If you see the error "Invalid binding `SESSION`" in your build output, you need to add the binding to your wrangler config file.
+[33m[1m02:03:41[22m [WARN] [adapter][39m Cloudflare does not support sharp at runtime. However, you can configure `imageService: "compile"` to optimize images with sharp on prerendered pages during build time.
+[2m02:03:41[22m [34m[content][39m Syncing content
+[2m02:03:41[22m [34m[content][39m Synced content
+[2m02:03:41[22m [34m[types][39m Generated [2m131ms[22m
+[2m02:03:41[22m [34m[build][39m output: [34m"server"[39m
+[2m02:03:41[22m [34m[build][39m mode: [34m"server"[39m
+[2m02:03:41[22m [34m[build][39m directory: [34mC:\Users\Esteban Selvaggi\.local\share\opencode\worktree\55a4ad332f8ee36b1d920be8458b62fdde6ebd72\happy-forest\lanuscomputacion-repo\frontend\dist\[39m
+[2m02:03:41[22m [34m[build][39m adapter: [32m@astrojs/cloudflare[39m
+[2m02:03:41[22m [34m[build][39m Collecting build info...
+[2m02:03:41[22m [34m[build][39m [32m✓ Completed in 528ms.[39m
+[2m02:03:42[22m [34m[build][39m Building server entrypoints...
+[2m02:03:51[22m [34m[vite][39m [32m✓ built in 9.19s[39m
+[2m02:03:51[22m [34m[build][39m [32m✓ Completed in 9.25s.[39m
+
+[42m[30m building client (vite) [39m[49m
+[2m02:03:51[22m [34m[vite][39m transforming...
+[2m02:03:52[22m [34m[vite][39m [32m✓[39m 74 modules transformed.
+[2m02:03:52[22m [34m[vite][39m rendering chunks...
+[2m02:03:52[22m [34m[vite][39m computing gzip size...
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/_slug_.astro_astro_type_script_index_0_lang.BoNwPwHL.js  [39m[1m[2m  0.26 kB[22m[1m[22m[2m │ gzip:  0.22 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/jsx-runtime.D_zvdyIk.js                                  [39m[1m[2m  0.73 kB[22m[1m[22m[2m │ gzip:  0.46 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/cart.D3ZiRXKd.js                                         [39m[1m[2m  0.79 kB[22m[1m[22m[2m │ gzip:  0.40 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/SortSelector.kmLaJaLl.js                                 [39m[1m[2m  1.74 kB[22m[1m[22m[2m │ gzip:  0.87 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/AddToCartButton.Bg628RaN.js                              [39m[1m[2m  2.19 kB[22m[1m[22m[2m │ gzip:  1.03 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/SearchBar.CO8YNFqX.js                                    [39m[1m[2m  3.55 kB[22m[1m[22m[2m │ gzip:  1.68 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/index.DBy5LfQW.js                                        [39m[1m[2m  7.85 kB[22m[1m[22m[2m │ gzip:  3.05 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/CartContent.CqCYltBb.js                                  [39m[1m[2m 11.25 kB[22m[1m[22m[2m │ gzip:  3.68 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/CartIcon.gPbeJIRU.js                                     [39m[1m[2m 12.24 kB[22m[1m[22m[2m │ gzip:  3.80 kB[22m
+[2m02:03:53[22m [34m[vite][39m [2mdist/[22m[36m_astro/client.nFz3bvDj.js                                       [39m[1m[2m186.62 kB[22m[1m[22m[2m │ gzip: 58.54 kB[22m
+[2m02:03:53[22m [34m[vite][39m [32m✓ built in 1.71s[39m
+
+[42m[30m prerendering static routes [39m[49m
+[2m02:03:53[22m [32m✓ Completed in 90ms.
+[39m
+[2m02:03:53[22m [34m[build][39m Rearranging server assets...
+[2m02:03:53[22m [34m[build][39m Server built in [1m11.75s[22m
+[2m02:03:53[22m [34m[build][39m [1mComplete![22m
+
+ ⛅️ wrangler 4.59.2 (update available 4.151.1)
+──────────────────────────────────────────────
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mWarning: Your working directory is a git repo and has uncommitted changes[0m
+
+  To silence this warning, pass in --commit-dirty=true
+
+
+Uploading... (38/38)
+✨ Success! Uploaded 0 files (38 already uploaded) (0.57 sec)
+
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────┬──────┬─────────────┐
+│ Name                                                      │ Type │ Size        │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AdminLayout_BS7dabU7.mjs                           │ esm  │ 9.79 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/astro/server_B3LaWqT_.mjs                          │ esm  │ 247.91 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/astro-designed-error-pages_0LACkADv.mjs            │ esm  │ 46.11 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/auth_DMEVHLdi.mjs                                  │ esm  │ 5.06 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/b2b_B7rAyW8M.mjs                                   │ esm  │ 0.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/BaseLayout_ColkfzU5.mjs                            │ esm  │ 49.36 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/Breadcrumb_DVX4baRN.mjs                            │ esm  │ 1.90 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/cloudflare-kv-binding_DMly_2Gl.mjs                 │ esm  │ 2.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/d1_HDG0LaZu.mjs                                    │ esm  │ 17.53 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/emaillog_B_m1etLC.mjs                              │ esm  │ 1.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/email_Dz71ZmJo.mjs                                 │ esm  │ 9.03 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/flyers_CXB-n_zg.mjs                                │ esm  │ 44.40 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-endpoint_n-hNptWg.mjs                        │ esm  │ 68.15 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/noop-middleware_DsIku-Vy.mjs                       │ esm  │ 0.33 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/Pagination_BzGc3jYf.mjs                            │ esm  │ 2.45 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/path_CH3auf61.mjs                                  │ esm  │ 3.01 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/postventa_DX51yPZo.mjs                             │ esm  │ 3.26 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ProductGrid_BonpW-dB.mjs                           │ esm  │ 10.71 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/rate-limit_BlJH6-_a.mjs                            │ esm  │ 1.03 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/remote_CVXTZJrr.mjs                                │ esm  │ 2.28 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/render-context_DPoMLObS.mjs                        │ esm  │ 119.87 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ServicePage_CYKp8He8.mjs                           │ esm  │ 6.39 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sharp_C4zgbr29.mjs                                 │ esm  │ 3.09 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_@astro-renderers_1KINICn5.mjs                     │ esm  │ 545.23 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_@astrojs-ssr-adapter_Ckyi1rC8.mjs                 │ esm  │ 39.29 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ manifest_C6GubMqP.mjs                                     │ esm  │ 156.81 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ noop-entrypoint.mjs                                       │ esm  │ 0.09 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/404.astro.mjs                                       │ esm  │ 1.92 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/b2b-rules.astro.mjs                           │ esm  │ 5.55 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/b2b.astro.mjs                                 │ esm  │ 6.11 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/carritos.astro.mjs                            │ esm  │ 5.41 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/categories.astro.mjs                          │ esm  │ 5.62 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/configuracion.astro.mjs                       │ esm  │ 6.65 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/cupones.astro.mjs                             │ esm  │ 9.25 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/canales/nuevo.astro.mjs            │ esm  │ 4.14 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/canales/_id_.astro.mjs             │ esm  │ 4.47 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/contactos/nuevo.astro.mjs          │ esm  │ 3.88 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/contactos/_id_.astro.mjs           │ esm  │ 5.24 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/contactos.astro.mjs                │ esm  │ 4.83 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/plantillas/nueva.astro.mjs         │ esm  │ 3.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/plantillas/_id_.astro.mjs          │ esm  │ 5.52 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria/plantillas.astro.mjs               │ esm  │ 3.55 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/mensajeria.astro.mjs                          │ esm  │ 5.62 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/monitoreo.astro.mjs                           │ esm  │ 13.03 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/nfc/nueva.astro.mjs                           │ esm  │ 5.09 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/nfc/_id_.astro.mjs                            │ esm  │ 5.63 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/nfc.astro.mjs                                 │ esm  │ 7.66 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/orders.astro.mjs                              │ esm  │ 10.38 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/products.astro.mjs                            │ esm  │ 8.70 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/promociones.astro.mjs                         │ esm  │ 9.01 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin/sync.astro.mjs                                │ esm  │ 5.25 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/admin.astro.mjs                                     │ esm  │ 10.39 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/b2b-rules.astro.mjs                       │ esm  │ 1.40 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/b2b.astro.mjs                             │ esm  │ 2.69 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/categories.astro.mjs                      │ esm  │ 4.69 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/configuracion.astro.mjs                   │ esm  │ 2.71 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/coupons.astro.mjs                         │ esm  │ 1.52 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/emails.astro.mjs                          │ esm  │ 5.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/export.astro.mjs                          │ esm  │ 3.28 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/mensajeria/canales.astro.mjs              │ esm  │ 1.76 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/mensajeria/contactos.astro.mjs            │ esm  │ 1.71 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/mensajeria/plantillas.astro.mjs           │ esm  │ 1.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/monitoreo.astro.mjs                       │ esm  │ 4.42 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/nfc.astro.mjs                             │ esm  │ 2.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/orders.astro.mjs                          │ esm  │ 2.32 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/postventa.astro.mjs                       │ esm  │ 4.41 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/products.astro.mjs                        │ esm  │ 5.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/admin/promociones.astro.mjs                     │ esm  │ 5.96 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/forgot-password.astro.mjs                  │ esm  │ 2.79 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/google.astro.mjs                           │ esm  │ 4.61 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/login.astro.mjs                            │ esm  │ 2.47 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/logout.astro.mjs                           │ esm  │ 0.83 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/me.astro.mjs                               │ esm  │ 1.04 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/register.astro.mjs                         │ esm  │ 3.21 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/auth/reset-password.astro.mjs                   │ esm  │ 2.50 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/b2b/register.astro.mjs                          │ esm  │ 1.65 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/checkout.astro.mjs                              │ esm  │ 9.05 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/coupons/validate.astro.mjs                      │ esm  │ 1.49 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/favorites.astro.mjs                             │ esm  │ 3.45 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/notifications.astro.mjs                         │ esm  │ 1.50 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/order.astro.mjs                                 │ esm  │ 9.39 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/profile.astro.mjs                               │ esm  │ 1.79 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/reviews.astro.mjs                               │ esm  │ 3.90 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/search.astro.mjs                                │ esm  │ 2.22 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/servicios-contacto.astro.mjs                    │ esm  │ 1.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/track/abandoned.astro.mjs                       │ esm  │ 3.50 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/api/webhook/mp.astro.mjs                            │ esm  │ 4.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/b2b.astro.mjs                                       │ esm  │ 4.08 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/busqueda/_q_.astro.mjs                              │ esm  │ 3.16 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/carrito.astro.mjs                                   │ esm  │ 21.57 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/categoria/_slug_.astro.mjs                          │ esm  │ 11.79 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/checkout/failure.astro.mjs                          │ esm  │ 2.56 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/checkout/pending.astro.mjs                          │ esm  │ 2.63 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/checkout/success.astro.mjs                          │ esm  │ 2.61 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/como-comprar.astro.mjs                              │ esm  │ 4.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/compras.astro.mjs                                   │ esm  │ 3.29 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/contacto.astro.mjs                                  │ esm  │ 7.24 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/favoritos.astro.mjs                                 │ esm  │ 2.40 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/index.astro.mjs                                     │ esm  │ 12.04 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/lista/_---archivo_.astro.mjs                        │ esm  │ 2.40 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/lista.astro.mjs                                     │ esm  │ 3.78 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/login.astro.mjs                                     │ esm  │ 6.17 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/nfc/guia.astro.mjs                                  │ esm  │ 8.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/notificaciones.astro.mjs                            │ esm  │ 2.32 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/ofertas.astro.mjs                                   │ esm  │ 4.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/olvidaste-contrasena.astro.mjs                      │ esm  │ 2.53 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/p/_slug_.astro.mjs                                  │ esm  │ 5.26 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/perfil.astro.mjs                                    │ esm  │ 3.45 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/politica-de-devoluciones.astro.mjs                  │ esm  │ 3.55 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/politicas-de-cookies.astro.mjs                      │ esm  │ 2.79 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/politicas-de-privacidad.astro.mjs                   │ esm  │ 3.58 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/preguntas-frecuentes.astro.mjs                      │ esm  │ 6.35 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/producto/_slug_.astro.mjs                           │ esm  │ 12.46 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/register.astro.mjs                                  │ esm  │ 3.23 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/restablecer-contrasena.astro.mjs                    │ esm  │ 2.91 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/agencia-marketing-digital-amba.astro.mjs  │ esm  │ 5.15 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/agencia-marketing-digital-lanús.astro.mjs │ esm  │ 5.19 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/automatizaciones-ia.astro.mjs             │ esm  │ 5.80 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/contacto.astro.mjs                        │ esm  │ 5.50 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/desarrollo-de-aplicaciones.astro.mjs      │ esm  │ 4.63 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/desarrollo-de-sitios-webs.astro.mjs       │ esm  │ 4.68 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/desarrollo-web.astro.mjs                  │ esm  │ 4.67 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/diseno-web.astro.mjs                      │ esm  │ 4.68 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/e-commerce.astro.mjs                      │ esm  │ 4.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/gestion-de-google-ads.astro.mjs           │ esm  │ 4.91 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/gestion-de-meta-ads.astro.mjs             │ esm  │ 4.91 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/mantenimiento-web.astro.mjs               │ esm  │ 4.62 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/posicionamiento-web.astro.mjs             │ esm  │ 4.66 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/productos-de-tecnologia.astro.mjs         │ esm  │ 4.98 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/programacion.astro.mjs                    │ esm  │ 4.93 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/reparacion-de-computadoras.astro.mjs      │ esm  │ 4.86 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/servicio-tecnico-de-pc.astro.mjs          │ esm  │ 4.86 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios/suite-de-ofimatica.astro.mjs              │ esm  │ 5.35 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/servicios.astro.mjs                                 │ esm  │ 9.28 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/sitemap.xml.astro.mjs                               │ esm  │ 6.21 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ pages/_image.astro.mjs                                    │ esm  │ 0.20 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ renderers.mjs                                             │ esm  │ 0.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _@astrojs-ssr-adapter.mjs                                 │ esm  │ 0.14 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ _astro-internal_middleware.mjs                            │ esm  │ 6.09 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ Total (139 modules)                                       │      │ 1930.70 KiB │
+└───────────────────────────────────────────────────────────┴──────┴─────────────┘
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mCannot find base config file "astro/tsconfigs/strict"[0m [tsconfig.json]
+
+    ../../../tsconfig.json:2:13:
+[37m      2 │   "extends": [32m"astro/tsconfigs/strict"[37m,
+        ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+✨ Uploading Worker bundle
+✨ Uploading _routes.json
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://3992c515.lanuscomputacion.pages.dev

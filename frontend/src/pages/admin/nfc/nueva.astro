@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getAllNfcCards } from '../../../lib/d1';
 
 const db = Astro.locals.runtime.env.DB;
@@ -7,7 +7,7 @@ const cards = await getAllNfcCards(db);
 const nextNumber = Math.max(0, ...cards.map(c => c.card_number)) + 1;
 ---
 
-<BaseLayout title="Nueva Tarjeta NFC | Lanús Computación">
+<AdminLayout title="Nueva Tarjeta NFC | Lanús Computación">
   <div class="ml-container py-6">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-between mb-6">
@@ -22,11 +22,11 @@ const nextNumber = Math.max(0, ...cards.map(c => c.card_number)) + 1;
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Número de tarjeta (1-20)</label>
-            <input type="number" name="card_number" min="1" max="20" value="{nextNumber}" class="ml-input w-full" required />
+            <input type="number" name="card_number" min="1" max="20" value={nextNumber} class="ml-input w-full" required />
           </div>
           <div>
             <label class="block text-xs text-ml-text-muted mb-1">Slug (p/XX)</label>
-            <input type="text" name="slug" value="p/{nextNumber.toString().padStart(2, '0')}" class="ml-input w-full" required pattern="p/\d{2}" />
+            <input type="text" name="slug" value={`p/${nextNumber.toString().padStart(2, '0')}`} class="ml-input w-full" required pattern="p/[0-9]{2}" />
           </div>
         </div>
 
@@ -119,4 +119,4 @@ const nextNumber = Math.max(0, ...cards.map(c => c.card_number)) + 1;
       }
     });
   </script>
-</BaseLayout>
+</AdminLayout>

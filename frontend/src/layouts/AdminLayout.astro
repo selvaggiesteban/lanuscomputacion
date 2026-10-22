@@ -1,0 +1,309 @@
+---
+import '../styles.css';
+
+export interface Props {
+  title?: string;
+}
+
+const { title = 'Admin | Lanús Computación' } = Astro.props;
+const path = Astro.url.pathname;
+const heading = title.split('|')[0].trim();
+
+const menu = [
+  {
+    group: 'General',
+    items: [{ href: '/admin', label: 'Dashboard', icon: 'grid' }],
+  },
+  {
+    group: 'Catálogo',
+    items: [
+      { href: '/admin/products', label: 'Productos', icon: 'box' },
+      { href: '/admin/categories', label: 'Categorías', icon: 'folder' },
+      { href: '/admin/promociones', label: 'Promociones', icon: 'tag' },
+      { href: '/admin/cupones', label: 'Cupones', icon: 'ticket' },
+    ],
+  },
+  {
+    group: 'Ventas',
+    items: [
+      { href: '/admin/orders', label: 'Órdenes', icon: 'cart' },
+      { href: '/admin/carritos', label: 'Carritos abandonados', icon: 'hourglass' },
+      { href: '/admin/b2b', label: 'Clientes B2B', icon: 'users' },
+      { href: '/admin/b2b-rules', label: 'Reglas B2B', icon: 'sliders' },
+    ],
+  },
+  {
+    group: 'Mensajería',
+    items: [
+      { href: '/admin/mensajeria', label: 'Resumen', icon: 'message' },
+      { href: '/admin/mensajeria/contactos', label: 'Contactos', icon: 'user' },
+      { href: '/admin/mensajeria/plantillas', label: 'Plantillas', icon: 'file' },
+    ],
+  },
+  {
+    group: 'Operación',
+    items: [
+      { href: '/admin/monitoreo', label: 'Monitoreo', icon: 'activity' },
+      { href: '/admin/nfc', label: 'Tarjetas NFC', icon: 'card' },
+      { href: '/admin/sync', label: 'Sincronización', icon: 'refresh' },
+      { href: '/admin/configuracion', label: 'Configuración', icon: 'settings' },
+    ],
+  },
+];
+
+const icons: Record<string, string> = {
+  grid: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  box: '<path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',
+  folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>',
+  tag: '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.83z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
+  ticket: '<path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 6 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-6z"/><line x1="13" y1="7" x2="13" y2="17" stroke-dasharray="2 2"/>',
+  cart: '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
+  users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  sliders: '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>',
+  message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+  activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+  card: '<rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/><path d="M6 14v4" stroke-width="1.5"/>',
+  hourglass: '<path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 5 6 6 6 10 0-4 6-5 6-10"/><path d="M6 22c0-5 6-6 6-10 0 4 6 5 6 10"/>',
+  refresh: '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
+  settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+};
+
+const allHrefs = menu.flatMap((section) => section.items.map((item) => item.href));
+const activeHref = allHrefs
+  .filter((href) => path === href || path.startsWith(href + '/'))
+  .sort((a, b) => b.length - a.length)[0];
+
+function isActive(href: string) {
+  return href === activeHref;
+}
+---
+
+<!DOCTYPE html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <style is:global>
+      /* ===== Admin monocromo: blanco/negro, observación en #f1f1f1 ===== */
+
+      /* Texto coloreado → negro */
+      .admin-mono [class*="text-red"],
+      .admin-mono [class*="text-green"],
+      .admin-mono [class*="text-yellow"],
+      .admin-mono [class*="text-blue"],
+      .admin-mono [class*="text-purple"],
+      .admin-mono [class*="text-orange"],
+      .admin-mono [class*="text-ml-blue"],
+      .admin-mono [class*="text-ml-yellow"],
+      .admin-mono [class*="text-b2b"] {
+        color: #000 !important;
+      }
+
+      /* Fondos tintados (badges, headers de sección, thead, tabs inactivos) → #f1f1f1 */
+      .admin-mono .bg-red-50, .admin-mono .bg-red-100,
+      .admin-mono .bg-green-50, .admin-mono .bg-green-100,
+      .admin-mono .bg-yellow-50, .admin-mono .bg-yellow-100,
+      .admin-mono .bg-blue-50, .admin-mono .bg-blue-100,
+      .admin-mono .bg-purple-50, .admin-mono .bg-purple-100,
+      .admin-mono .bg-gray-50, .admin-mono .bg-gray-100, .admin-mono .bg-gray-200 {
+        background-color: #f1f1f1 !important;
+      }
+
+      /* Fondos sólidos (acciones) → negro con texto blanco */
+      .admin-mono .bg-blue-600,
+      .admin-mono .bg-green-500, .admin-mono .bg-green-600,
+      .admin-mono .bg-red-600,
+      .admin-mono .bg-ml-blue {
+        background-color: #000 !important;
+        color: #fff !important;
+      }
+      .admin-mono .bg-blue-600:hover,
+      .admin-mono .bg-green-500:hover, .admin-mono .bg-green-600:hover,
+      .admin-mono .bg-red-600:hover {
+        background-color: #f1f1f1 !important;
+        color: #000 !important;
+      }
+
+      /* Todo hover con fondo → #f1f1f1 y texto negro */
+      .admin-mono .hover\:bg-blue-700:hover,
+      .admin-mono .hover\:bg-gray-50:hover,
+      .admin-mono .hover\:bg-gray-200:hover,
+      .admin-mono .hover\:bg-green-700:hover,
+      .admin-mono .hover\:bg-red-700:hover,
+      .admin-mono .hover\:bg-red-50:hover,
+      .admin-mono .hover\:bg-gray-100:hover {
+        background-color: #f1f1f1 !important;
+        color: #000 !important;
+      }
+      .admin-mono [class*="hover:text-"]:hover {
+        color: #000 !important;
+      }
+
+      /* Controles de formulario: hover/focus → #f1f1f1, foco con borde negro */
+      .admin-mono select:hover {
+        background-color: #f1f1f1 !important;
+      }
+      .admin-mono select:focus,
+      .admin-mono input:focus,
+      .admin-mono textarea:focus {
+        background-color: #f1f1f1 !important;
+        border-color: #000 !important;
+        box-shadow: none !important;
+        outline: none;
+      }
+      .admin-mono input[type="checkbox"],
+      .admin-mono input[type="radio"] {
+        accent-color: #000;
+      }
+
+      /* Íconos SVG con color hardcodeado → negro */
+      .admin-mono [stroke^="#"] {
+        stroke: #000 !important;
+      }
+
+      /* Componentes ml-* (definidos en styles.css) */
+      .admin-mono .ml-btn-primary {
+        background-color: #000 !important;
+        color: #fff !important;
+      }
+      .admin-mono .ml-btn-primary:hover {
+        background-color: #f1f1f1 !important;
+        color: #000 !important;
+      }
+      .admin-mono .ml-btn-secondary {
+        background-color: #fff !important;
+        color: #000 !important;
+        border: 1px solid #000;
+      }
+      .admin-mono .ml-btn-secondary:hover {
+        background-color: #f1f1f1 !important;
+        color: #000 !important;
+      }
+      .admin-mono .ml-btn-outline:hover {
+        border-color: #000 !important;
+        color: #000 !important;
+        background-color: #f1f1f1 !important;
+      }
+      .admin-mono .ml-link {
+        color: #000 !important;
+      }
+      .admin-mono .ml-badge-off,
+      .admin-mono .ml-badge-shipping,
+      .admin-mono .ml-badge-b2b,
+      .admin-mono .ml-badge-new {
+        background-color: #f1f1f1 !important;
+        color: #000 !important;
+      }
+      .admin-mono .ml-installments,
+      .admin-mono .ml-breadcrumb a {
+        color: #000 !important;
+      }
+      .admin-mono .ml-input::placeholder {
+        color: #6b7280 !important;
+      }
+    </style>
+  </head>
+  <body class="admin-mono min-h-dvh bg-white text-ml-text antialiased">
+    <div class="flex min-h-dvh">
+      <!-- Sidebar -->
+      <aside
+        id="admin-sidebar"
+        class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-ml-border flex flex-col -translate-x-full lg:translate-x-0 lg:static transition-transform duration-200"
+      >
+        <a href="/admin" class="flex items-center gap-2.5 h-14 px-5 border-b border-ml-border shrink-0">
+          <span class="bg-gray-100 border border-ml-border rounded-lg p-1">
+            <img src="/logo.png" alt="" class="w-6 h-6 object-contain" />
+          </span>
+          <span class="text-ml-text text-sm font-bold leading-tight">Lanús Computación</span>
+          <span class="ml-auto bg-black text-white text-[10px] font-bold px-1.5 py-0.5 rounded">ADMIN</span>
+        </a>
+
+        <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+          {menu.map((section) => (
+            <div>
+              <p class="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-ml-text-muted">{section.group}</p>
+              <div class="space-y-0.5">
+                {section.items.map((item) => (
+                  <a
+                    href={item.href}
+                    class:list={[
+                      'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors',
+                      isActive(item.href)
+                        ? 'bg-[#f1f1f1] text-ml-text font-semibold'
+                        : 'text-ml-text-secondary hover:bg-gray-100 hover:text-ml-text',
+                    ]}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </nav>
+
+        <div class="border-t border-ml-border p-3 space-y-0.5 shrink-0">
+          <a href="/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-ml-text-secondary hover:bg-gray-100 hover:text-ml-text transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Ver tienda
+          </a>
+          <button id="admin-logout" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-ml-text-secondary hover:bg-red-50 hover:text-red-600 transition-colors cursor-pointer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      <!-- Mobile overlay -->
+      <div id="admin-overlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"></div>
+
+      <!-- Content -->
+      <div class="flex-1 min-w-0 flex flex-col">
+        <header class="sticky top-0 z-20 h-14 bg-white border-b border-ml-border flex items-center gap-3 px-4 sm:px-6">
+          <button id="admin-menu-btn" type="button" aria-label="Abrir menú" class="lg:hidden p-1.5 -ml-1.5 rounded hover:bg-gray-100 transition-colors cursor-pointer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <span class="text-sm font-semibold text-ml-text truncate">{heading}</span>
+          <div class="ml-auto flex items-center gap-4">
+            <a href="/" class="hidden sm:inline text-sm text-ml-blue hover:underline whitespace-nowrap">Ver tienda ↗</a>
+          </div>
+        </header>
+
+        <main class="flex-1">
+          <slot />
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const sidebar = document.getElementById('admin-sidebar')!;
+      const overlay = document.getElementById('admin-overlay')!;
+      const menuBtn = document.getElementById('admin-menu-btn')!;
+
+      function setSidebarOpen(open: boolean) {
+        sidebar.classList.toggle('translate-x-0', open);
+        sidebar.classList.toggle('-translate-x-full', !open);
+        overlay.classList.toggle('hidden', !open);
+        document.body.classList.toggle('overflow-hidden', open);
+      }
+
+      menuBtn?.addEventListener('click', () => {
+        setSidebarOpen(!sidebar.classList.contains('translate-x-0'));
+      });
+      overlay?.addEventListener('click', () => setSidebarOpen(false));
+      sidebar?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setSidebarOpen(false)));
+
+      document.getElementById('admin-logout')?.addEventListener('click', async () => {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        window.location.href = '/login';
+      });
+    </script>
+  </body>
+</html>

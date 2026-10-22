@@ -12,6 +12,8 @@ export type User = {
   is_b2b: number;
   b2b_status: string | null;
   created_at: string;
+  phone?: string | null;
+  address?: string | null;
 };
 
 // Hash password using Web Crypto API (available in Workers)

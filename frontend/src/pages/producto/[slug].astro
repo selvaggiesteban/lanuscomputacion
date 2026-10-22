@@ -1,12 +1,12 @@
-﻿---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumb from '../components/ui/Breadcrumb.astro';
-import Price from '../components/ui/Price.astro';
-import Badge from '../components/ui/Badge.astro';
-import AddToCartButton from '../components/cart/AddToCartButton.tsx';
-import ProductGrid from '../components/catalog/ProductGrid.astro';
-import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount, getActiveB2bRules } from '../lib/d1';
-import { getB2bPrice } from '../lib/b2b';
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import Price from '../../components/ui/Price.astro';
+import Badge from '../../components/ui/Badge.astro';
+import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
+import ProductGrid from '../../components/catalog/ProductGrid.astro';
+import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount, getActiveB2bRules } from '../../lib/d1';
+import { getB2bPrice } from '../../lib/b2b';
 
 const { slug } = Astro.params;
 const db = Astro.locals.runtime.env.DB;
@@ -26,6 +26,8 @@ const promoPrice = promoResult?.promoPrice ?? product.price;
 const b2bRules = await getActiveB2bRules(db);
 const b2bInfo = getB2bPrice(b2bRules, product.category_name, product.price, promoPrice);
 
+const consult = product.available_qty <= 0 || product.status === 'archived';
+
 const relatedProducts = (await getProducts(db, {
   category: product.category_id,
   limit: 5,
@@ -42,7 +44,7 @@ const ogImage = product.thumbnail
   : undefined;
 ---
 
-<BaseLayout title={`${product.title} | LanÃºs ComputaciÃ³n`} image={ogImage}>
+<BaseLayout title={`${product.title} | Lanús Computación`} image={ogImage}>
   <!-- Schema.org Product -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -60,7 +62,7 @@ const ogImage = product.thumbnail
       availability: product.available_qty > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       seller: {
         "@type": "Organization",
-        name: "LanÃºs ComputaciÃ³n"
+        name: "Lanús Computación"
       }
     }
   })} />
@@ -108,18 +110,19 @@ const ogImage = product.thumbnail
               dollarRate={product.dollar_rate}
               ivaPct={product.iva_pct}
               internalTaxPct={product.internal_tax_pct}
+              consultar={consult}
             />
-            {product.dollar_rate > 0 && (
+            {!consult && product.dollar_rate > 0 && (
               <p class="text-xs text-ml-text-muted mt-1">
-                CotizaciÃ³n USD: ${product.dollar_rate.toFixed(2)}
+                Cotización USD: ${product.dollar_rate.toFixed(2)}
               </p>
             )}
-            {b2bInfo && (
+            {b2bInfo && !consult && (
               <div class="mt-3 flex flex-col text-[#ff0000]">
                 <span class="text-[11px] font-semibold uppercase tracking-widest">Precio mayorista</span>
                 <span class="text-xl font-bold leading-tight">${b2bInfo.price.toLocaleString('es-AR')}</span>
                 <span class="text-[11px]">
-                  {b2bInfo.minQuantity > 1 ? `Desde ${b2bInfo.minQuantity} unidades Â· ` : ''}solo cuentas mayoristas aprobadas
+                  {b2bInfo.minQuantity > 1 ? `Desde ${b2bInfo.minQuantity} unidades · ` : ''}solo cuentas mayoristas aprobadas
                 </span>
               </div>
             )}
@@ -153,7 +156,7 @@ const ogImage = product.thumbnail
             })}
           />
           <script>
-            import { addToCart } from '../lib/cart';
+            import { addToCart } from '../../lib/cart';
             if (new URLSearchParams(window.location.search).get('add') === '1') {
               const el = document.getElementById('buy-now-payload');
               const payload = el?.getAttribute('data-payload');
@@ -171,7 +174,7 @@ const ogImage = product.thumbnail
 
       {product.description && (
         <div class="border-t mt-8 pt-6">
-          <h2 class="text-lg font-medium text-ml-text mb-3">DescripciÃ³n</h2>
+          <h2 class="text-lg font-medium text-ml-text mb-3">Descripción</h2>
           <p class="text-sm text-ml-text-secondary leading-relaxed max-w-2xl">
             {product.description}
           </p>
@@ -179,12 +182,12 @@ const ogImage = product.thumbnail
       )}
 
       <div class="border-t mt-8 pt-6">
-        <h2 class="text-lg font-medium text-ml-text mb-3">CaracterÃ­sticas</h2>
+        <h2 class="text-lg font-medium text-ml-text mb-3">Características</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl">
           {[
             { label: 'Marca', value: product.brand || '-' },
             { label: 'EAN', value: product.ean || '-' },
-            { label: 'Stock', value: `${product.available_qty} unidades` },
+            { label: 'Stock', value: product.available_qty > 0 ? `${product.available_qty} unidades` : 'Sin stock' },
             { label: 'Tipo', value: product.provider_store === 'mayorista' ? 'Mayorista' : 'Minorista' },
           ].filter(a => a.value !== '-').map(attr => (
             <div class="flex items-center border-b pb-2">
@@ -211,6 +214,7 @@ const ogImage = product.thumbnail
         dollarRate: p.dollar_rate,
         ivaPct: p.iva_pct,
         internalTaxPct: p.internal_tax_pct,
+        availableQty: p.available_qty,
       }))} columns={5} />
     </section>
   </div>

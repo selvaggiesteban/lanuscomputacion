@@ -25,7 +25,11 @@ export const GET: APIRoute = async ({ locals, request }) => {
 
   let products = [];
   try {
-    const { results } = await DB.prepare("SELECT * FROM products ORDER BY created_at DESC LIMIT 100").all();
+    const limit = Math.min(Math.max(Number(url.searchParams.get("limit")) || 100, 1), 500);
+    const offset = Math.max(Number(url.searchParams.get("offset")) || 0, 0);
+    const { results } = await DB.prepare(
+      "SELECT * FROM products ORDER BY created_at DESC LIMIT ? OFFSET ?"
+    ).bind(limit, offset).all();
     products = results;
   } catch (e) {
     console.error("D1 Error in frontend/src/pages/api/admin/products.ts:", e);

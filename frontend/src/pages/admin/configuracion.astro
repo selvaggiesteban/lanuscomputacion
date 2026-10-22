@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
 const DB = Astro.locals.runtime.env.DB;
 
@@ -21,6 +21,7 @@ const dollarThreshold = config.dollar_change_threshold || "2";
 const lowStockThreshold = config.low_stock_threshold || "5";
 const autoRecalc = config.auto_recalc_prices !== "false";
 const mpEnabled = config.mp_enabled !== "false";
+const shippingCost = config.shipping_cost || "17000";
 
 // Categories for markup overrides
 let categories = [];
@@ -35,7 +36,7 @@ try {
 }
 ---
 
-<BaseLayout title="Configuración | Admin - Lanús Computación">
+<AdminLayout title="Configuración | Admin - Lanús Computación">
   <div class="ml-container py-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-xl font-semibold text-ml-text">Configuración de Reglas de Negocio</h1>
@@ -91,6 +92,19 @@ try {
       </div>
     </div>
 
+    <!-- Costo de envío -->
+    <div class="bg-white rounded shadow-card p-6 mb-6">
+      <h2 class="font-medium text-ml-text mb-4">Costo de Envío</h2>
+      <p class="text-sm text-ml-text-secondary mb-4">
+        Monto fijo agregado al total de cada pedido (envío). Se muestra en el carrito y en la confirmación.
+      </p>
+      <div class="flex items-center gap-4">
+        <input type="number" id="shipping-cost" value={shippingCost} min="0" step="100" class="ml-input w-40" />
+        <button id="save-shipping" class="ml-btn-primary px-4">Guardar</button>
+        <span id="shipping-saved" class="hidden text-sm text-green-600">Guardado</span>
+      </div>
+    </div>
+
     <!-- Medios de pago -->
     <div class="bg-white rounded shadow-card p-6 mb-6">
       <h2 class="font-medium text-ml-text mb-4">Medios de Pago</h2>
@@ -123,7 +137,7 @@ try {
       </div>
     </div>
   </div>
-</BaseLayout>
+</AdminLayout>
 
 <script>
   document.getElementById('save-markup')?.addEventListener('click', async () => {
@@ -166,6 +180,18 @@ try {
       }),
     });
     const saved = document.getElementById('thresholds-saved')!;
+    saved.classList.remove('hidden');
+    setTimeout(() => saved.classList.add('hidden'), 2000);
+  });
+
+  document.getElementById('save-shipping')?.addEventListener('click', async () => {
+    const shippingCost = (document.getElementById('shipping-cost') as HTMLInputElement).value;
+    await fetch('/api/admin/configuracion', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ shipping_cost: shippingCost }),
+    });
+    const saved = document.getElementById('shipping-saved')!;
     saved.classList.remove('hidden');
     setTimeout(() => saved.classList.add('hidden'), 2000);
   });

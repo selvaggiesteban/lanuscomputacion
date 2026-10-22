@@ -1,0 +1,49 @@
+---
+// Ruta SSR de la versión para imprimir: /print/{año}/ofertas-lanus-{fecha}-{día}.html
+// Mismo snapshot de KV que /lista/ (`snapshot:latest`) renderizado con
+// flyerPrint() — todo el contenido en una hoja A4 vertical (@page A4).
+import { flyerPrint, partes, FECHA_INICIO, FECHA_FIN, type FlyerSnapshot } from '../../lib/flyers';
+
+const archivo = (Astro.params.archivo || '').replace(/\.html$/, '');
+const m = archivo.match(/^(\d{4})\/ofertas-lanus-(\d{4}-\d{2}-\d{2})-(martes|viernes)$/);
+
+if (!m) {
+  return new Response('Página no encontrada', { status: 404 });
+}
+
+const year = m[1];
+const iso = m[2];
+const dia = m[3];
+
+const [y, mo, da] = iso.split('-').map(Number);
+const d = new Date(Date.UTC(y, mo - 1, da));
+if (
+  d.getUTCFullYear() !== y ||
+  d.getUTCMonth() !== mo - 1 ||
+  d.getUTCDate() !== da ||
+  d < new Date(FECHA_INICIO) ||
+  d > new Date(FECHA_FIN) ||
+  String(y) !== year ||
+  partes(d).dia !== dia
+) {
+  return new Response('Página no encontrada', { status: 404 });
+}
+
+const env = (Astro.locals as any)?.runtime?.env;
+const snapshot = (await env?.FLYERS?.get('snapshot:latest', 'json')) as FlyerSnapshot | null;
+
+if (!snapshot || !Array.isArray(snapshot.secciones)) {
+  return new Response('Ofertas no disponibles por el momento. Intentá más tarde.', {
+    status: 503,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Retry-After': '3600' },
+  });
+}
+
+return new Response(flyerPrint(d, snapshot), {
+  status: 200,
+  headers: {
+    'Content-Type': 'text/html; charset=utf-8',
+    'Cache-Control': 'public, max-age=1800',
+  },
+});
+---

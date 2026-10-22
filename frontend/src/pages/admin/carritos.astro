@@ -1,0 +1,118 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+
+const DB = Astro.locals.runtime.env.DB;
+
+let rows: any[] = [];
+let total = 0;
+let abandonedCount = 0;
+let convertedCount = 0;
+try {
+  const r = await DB.prepare("SELECT * FROM abandoned_carts ORDER BY last_seen_at DESC LIMIT 200").all();
+  rows = r.results || [];
+  const [c, a, cv] = await Promise.all([
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts").first<{ count: number }>(),
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts WHERE order_id IS NULL").first<{ count: number }>(),
+    DB.prepare("SELECT COUNT(*) as count FROM abandoned_carts WHERE order_id IS NOT NULL").first<{ count: number }>(),
+  ]);
+  total = c?.count ?? 0;
+  abandonedCount = a?.count ?? 0;
+  convertedCount = cv?.count ?? 0;
+} catch (e) {
+  console.error("Error fetching abandoned carts:", e);
+}
+
+const carts = rows.map((r) => {
+  let items: { title?: string; quantity?: number }[] = [];
+  try {
+    items = JSON.parse(r.items || "[]");
+  } catch {}
+  const label = items.map((i) => `${i.title || "—"}${(i.quantity || 1) > 1 ? ` x${i.quantity}` : ""}`).join(", ");
+  return { ...r, itemsLabel: label || "—" };
+});
+---
+
+<AdminLayout title="Carritos abandonados | Admin - Lanús Computación">
+  <div class="ml-container py-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold text-ml-text">Carritos abandonados</h1>
+      <a href="/admin" class="text-sm text-ml-blue hover:underline">← Volver</a>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted">Sesiones registradas</p>
+        <p class="text-2xl font-semibold text-ml-text">{total}</p>
+      </div>
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted">Abandonadas (sin comprar)</p>
+        <p class="text-2xl font-semibold text-yellow-600">{abandonedCount}</p>
+      </div>
+      <div class="bg-white rounded shadow-card p-4">
+        <p class="text-xs text-ml-text-muted">Convertidas en pedido</p>
+        <p class="text-2xl font-semibold text-green-600">{convertedCount}</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded shadow-card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b">
+            <tr>
+              <th class="text-left p-3 font-medium text-ml-text">Última actividad</th>
+              <th class="text-left p-3 font-medium text-ml-text">Productos</th>
+              <th class="text-right p-3 font-medium text-ml-text">Total</th>
+              <th class="text-left p-3 font-medium text-ml-text">Contacto</th>
+              <th class="text-center p-3 font-medium text-ml-text">Estado</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            {carts.length === 0 && (
+              <tr>
+                <td colspan="5" class="p-8 text-center text-ml-text-muted">
+                  Todavía no hay carritos registrados. Se registran solos cuando alguien deja productos en el carrito.
+                </td>
+              </tr>
+            )}
+            {carts.map((c) => (
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 text-ml-text-muted text-xs whitespace-nowrap">
+                  {c.last_seen_at ? new Date(c.last_seen_at.replace(' ', 'T') + 'Z').toLocaleString('es-AR') : '—'}
+                  <span class="block text-ml-text-muted">{c.page || ''}</span>
+                </td>
+                <td class="p-3 text-xs max-w-xs">
+                  <span class="line-clamp-2 text-ml-text-secondary">{c.itemsLabel}</span>
+                  <span class="text-ml-text-muted">{c.item_count} u.</span>
+                </td>
+                <td class="p-3 text-right font-medium text-ml-text">${Number(c.total || 0).toLocaleString('es-AR')}</td>
+                <td class="p-3 text-xs">
+                  {c.customer_name && <p class="text-ml-text">{c.customer_name}</p>}
+                  {c.customer_email && <p class="text-ml-text-muted">{c.customer_email}</p>}
+                  {c.customer_phone && <p class="text-ml-text-muted">{c.customer_phone}</p>}
+                  {c.customer_address && <p class="text-ml-text-muted">{c.customer_address}</p>}
+                  {!c.customer_name && !c.customer_email && !c.customer_phone && (
+                    <span class="text-ml-text-muted">Sin datos de contacto</span>
+                  )}
+                </td>
+                <td class="p-3 text-center text-xs">
+                  {c.order_id ? (
+                    <a href={`/compras?order=${c.order_id}`} class="inline-block text-[10px] font-medium text-green-700 bg-green-100 rounded px-2 py-1 hover:underline">
+                      Convertido · #{String(c.order_id).slice(0, 8)}
+                    </a>
+                  ) : (
+                    <span class="inline-block text-[10px] font-medium text-yellow-800 bg-yellow-100 rounded px-2 py-1">Abandonado</span>
+                  )}
+                  {c.recovery_sent_at && (
+                    <span class="block mt-1 text-[10px] text-ml-text-muted">
+                      Recuperación: {new Date(c.recovery_sent_at.replace(' ', 'T') + 'Z').toLocaleString('es-AR')}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

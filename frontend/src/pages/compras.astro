@@ -1,13 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getOrderById } from '../lib/d1';
+import { getOrderById, getOrderItems, type Order } from '../lib/d1';
+import { getUserFromRequest, getJwtSecret } from '../lib/auth';
 
 const db = Astro.locals.runtime.env.DB;
 const orderId = Astro.url.searchParams.get('order');
 
-let order = null;
+let user = null;
+try {
+  user = await getUserFromRequest(Astro.request, db, getJwtSecret((Astro.locals.runtime as any).env ?? {}));
+} catch (e) {
+  console.error('[compras] auth error:', e);
+}
+
+// Gmail ignora los puntos en el local part: user@gmail.com y u.s.er@gmail.com
+// son el mismo buzón, así que las cuentas gmail matchean también por email
+// sin puntos (en cualquier dirección, no solo la propia).
+const matchEmails: string[] = [];
+let gmailDotless = '';
+if (user) {
+  matchEmails.push(user.email.toLowerCase());
+  if (user.email.toLowerCase().endsWith('@gmail.com')) {
+    gmailDotless = user.email.toLowerCase().replace(/\./g, '');
+  }
+}
+
+const owns = (o: { customer_email?: string | null } | null) => {
+  if (!o || !user) return false;
+  const em = (o.customer_email ?? '').toLowerCase();
+  if (matchEmails.includes(em)) return true;
+  if (gmailDotless && em.replace(/\./g, '') === gmailDotless) return true;
+  return false;
+};
+
+const statusLabels: Record<string, string> = {
+  pending: 'Pendiente', paid: 'Pagado', processing: 'Procesando',
+  shipped: 'Enviado', delivered: 'Entregado', cancelled: 'Cancelado',
+};
+const statusClass = (s: string) =>
+  s === 'paid' || s === 'delivered' ? 'bg-green-100 text-green-800' :
+  s === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+  s === 'cancelled' ? 'bg-red-100 text-red-800' :
+  'bg-gray-100 text-gray-800';
+const statusLabel = (s: string) => statusLabels[s] ?? s;
+
+// Detalle: accesible con link (?order=) para invitados (emails de confirmación),
+// solo si es propio cuando hay sesión, y siempre para admins.
+let order: Order | null = null;
+let orderItems: any[] = [];
 if (orderId) {
-  order = await getOrderById(db, orderId);
+  try {
+    const found = await getOrderById(db, orderId);
+    if (found && (!user || owns(found) || user.is_admin === 1)) {
+      order = found;
+      orderItems = await getOrderItems(db, order.id);
+    }
+  } catch (e) {
+    console.error('[compras] order fetch error:', e);
+  }
+}
+
+let orders: Order[] = [];
+if (user && !order) {
+  try {
+    const placeholders = matchEmails.map(() => '?').join(', ');
+    const sql = gmailDotless
+      ? `SELECT * FROM orders WHERE LOWER(customer_email) IN (${placeholders})
+           OR REPLACE(LOWER(customer_email),'.','') = ?
+         ORDER BY created_at DESC LIMIT 50`
+      : `SELECT * FROM orders WHERE LOWER(customer_email) IN (${placeholders})
+         ORDER BY created_at DESC LIMIT 50`;
+    const { results } = await db
+      .prepare(sql)
+      .bind(...matchEmails, ...(gmailDotless ? [gmailDotless] : []))
+      .all<Order>();
+    orders = results ?? [];
+  } catch (e) {
+    console.error('[compras] orders list error:', e);
+  }
 }
 ---
 
@@ -16,40 +86,81 @@ if (orderId) {
     <h1 class="text-xl font-semibold text-ml-text mb-6">Mis compras</h1>
 
     {order ? (
-      <div class="bg-white rounded shadow-card p-6">
-        <div class="flex items-center justify-between mb-4">
-          <div>
-            <h2 class="text-lg font-medium text-ml-text">Pedido #{order.id}</h2>
-            <p class="text-xs text-ml-text-muted">
-              {new Date(order.created_at).toLocaleDateString('es-AR')}
-            </p>
+      <div>
+        <a href="/compras" class="ml-link text-sm">← Volver a mis compras</a>
+        <div class="bg-white rounded shadow-card p-6 mt-3">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-medium text-ml-text">Pedido #{order.id}</h2>
+              <p class="text-xs text-ml-text-muted">
+                {new Date(order.created_at).toLocaleDateString('es-AR')}
+              </p>
+            </div>
+            <span class={`px-3 py-1 rounded text-xs font-medium ${statusClass(order.status)}`}>
+              {statusLabel(order.status)}
+            </span>
           </div>
-          <span class={`px-3 py-1 rounded text-xs font-medium ${
-            order.status === 'paid' ? 'bg-green-100 text-green-800' :
-            order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-            order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
-            'bg-gray-100 text-gray-800'
-          }`}>
-            {order.status === 'paid' ? 'Pagado' :
-             order.status === 'pending' ? 'Pendiente' :
-             order.status === 'cancelled' ? 'Cancelado' : order.status}
-          </span>
-        </div>
 
-        <div class="border-t pt-4">
-          <div class="flex justify-between text-sm">
-            <span class="text-ml-text-secondary">Total</span>
-            <span class="font-medium text-ml-text">${order.total?.toLocaleString('es-AR')}</span>
+          {orderItems.length > 0 && (
+            <div class="border-t pt-4 mb-4 space-y-2 text-sm">
+              {orderItems.map((it: any) => (
+                <div class="flex justify-between gap-4">
+                  <span class="text-ml-text-secondary">
+                    {it.quantity}× {it.product_title}
+                  </span>
+                  <span class="font-medium text-ml-text whitespace-nowrap">${it.subtotal?.toLocaleString('es-AR')}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div class="border-t pt-4">
+            <div class="flex justify-between text-sm">
+              <span class="text-ml-text-secondary">Total</span>
+              <span class="font-medium text-ml-text">${order.total_price?.toLocaleString('es-AR')}</span>
+            </div>
+            {order.address && (
+              <div class="flex justify-between text-sm mt-2">
+                <span class="text-ml-text-secondary">Dirección de entrega</span>
+                <span class="text-ml-text">{order.address}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    ) : (
+    ) : !user ? (
       <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
         <p class="text-lg font-medium text-ml-text mb-2">Iniciá sesión para ver tus compras</p>
         <p class="text-sm mb-6">Tus pedidos aparecerán acá una vez que realices tu primer compra</p>
         <a href="/login" class="ml-btn-primary inline-block">
           Iniciar sesión
         </a>
+      </div>
+    ) : (
+      <div>
+        <p class="text-xs text-ml-text-muted mb-4">Pedidos de {user.email}</p>
+        {orders.length > 0 ? (
+          <div class="space-y-3">
+            {orders.map((o: Order) => (
+              <a href={`/compras?order=${o.id}`} class="bg-white rounded shadow-card p-5 flex flex-wrap items-center justify-between gap-3 hover:shadow-card-hover transition-shadow">
+                <div>
+                  <p class="font-medium text-ml-text">Pedido #{o.id.slice(0, 8)}</p>
+                  <p class="text-xs text-ml-text-muted">{new Date(o.created_at).toLocaleString('es-AR')}</p>
+                </div>
+                <span class={`px-3 py-1 rounded text-xs font-medium ${statusClass(o.status)}`}>
+                  {statusLabel(o.status)}
+                </span>
+                <p class="font-medium text-ml-text text-right min-w-[120px]">${o.total_price?.toLocaleString('es-AR')}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+            <p class="text-lg font-medium text-ml-text mb-2">Todavía no tenés pedidos</p>
+            <p class="text-sm mb-6">Tus pedidos aparecerán acá una vez que realices tu primer compra</p>
+            <a href="/categoria/todas" class="ml-btn-primary inline-block">Seguir comprando</a>
+          </div>
+        )}
       </div>
     )}
   </div>

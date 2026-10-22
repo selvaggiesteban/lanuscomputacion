@@ -17,10 +17,10 @@ export const GET: APIRoute = async ({ locals, request }) => {
   try {
     const { results } = await DB.prepare(`
       SELECT f.product_id, f.created_at,
-             p.title, p.slug, p.price, p.thumbnail, p.available_qty
+             p.title, p.slug, p.price, p.thumbnail, p.available_qty, p.status
       FROM favorites f
       JOIN products p ON p.id = f.product_id
-      WHERE f.user_id = ?
+      WHERE f.customer_id = ?
       ORDER BY f.created_at DESC
     `).bind(user.id).all();
     favorites = results || [];
@@ -60,7 +60,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
 
   try {
     await DB.prepare(
-      "INSERT OR IGNORE INTO favorites (user_id, product_id, created_at) VALUES (?, ?, datetime('now'))"
+      "INSERT OR IGNORE INTO favorites (customer_id, product_id, created_at) VALUES (?, ?, datetime('now'))"
     ).bind(user.id, body.product_id).run();
   } catch (e) {
     console.error("D1 Error in frontend/src/pages/api/favorites.ts:", e);
@@ -97,7 +97,7 @@ export const DELETE: APIRoute = async ({ locals, request }) => {
 
   try {
     await DB.prepare(
-      "DELETE FROM favorites WHERE user_id = ? AND product_id = ?"
+      "DELETE FROM favorites WHERE customer_id = ? AND product_id = ?"
     ).bind(user.id, body.product_id).run();
   } catch (e) {
     console.error("D1 Error in frontend/src/pages/api/favorites.ts:", e);

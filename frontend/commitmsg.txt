@@ -1,0 +1,4 @@
+feat(compras): match gmail insensible a puntos en ambos sentidos
+
+Cualquier cuenta gmail ve todos sus pedidos aunque el checkout haya
+tipeado el email con puntos en otra posicion (gmail ignora los puntos).

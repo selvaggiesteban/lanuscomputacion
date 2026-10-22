@@ -1,81 +1,125 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import AuthLayout from '../layouts/AuthLayout.astro';
 ---
 
-<BaseLayout title="Iniciar sesión | Lanús Computación">
-  <div class="ml-container py-8">
-    <div class="max-w-md mx-auto">
-      <div class="bg-white rounded shadow-card p-8">
-        <div class="text-center mb-6">
-          <h1 class="text-xl font-semibold text-ml-text">¡Hola!</h1>
-          <p class="text-sm text-ml-text-secondary mt-1">Ingresá tu email y contraseña</p>
-        </div>
+<AuthLayout title="Iniciar sesión | Lanús Computación">
+  <div class="min-h-dvh lg:grid lg:grid-cols-2">
+    <!-- Brand panel (desktop) -->
+    <aside class="hidden lg:flex flex-col justify-between bg-[#0f172a] p-10 xl:p-14 text-white">
+      <a href="/" class="inline-flex items-center gap-3 group">
+        <span class="bg-white rounded-xl p-2 shadow-lg">
+          <img src="/logo.png" alt="" width="40" height="40" class="w-10 h-10 object-contain" />
+        </span>
+        <span class="text-lg font-bold tracking-tight group-hover:opacity-90">Lanús Computación</span>
+      </a>
 
-        <div id="success-message" class="hidden mb-4 p-3 bg-green-50 border border-green-200 rounded text-sm text-green-700"></div>
-        <div id="error-message" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded text-sm text-red-700"></div>
-
-        <form id="login-form" class="space-y-4">
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-              class="ml-input w-full h-12"
-              required
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              class="ml-input w-full h-12"
-              required
-            />
-          </div>
-
-          <button type="submit" class="ml-btn-primary w-full h-12 text-base">
-            Continuar
-          </button>
-        </form>
-
-        <p class="text-center mt-3 text-xs">
-          <a href="/olvidaste-contrasena" class="ml-link">¿Olvidaste tu contraseña?</a>
+      <div class="max-w-md">
+        <span class="inline-block bg-ml-yellow text-[#0f172a] text-xs font-bold px-2.5 py-1 rounded-full mb-6">
+          Mayorista &amp; Minorista
+        </span>
+        <h2 class="text-3xl xl:text-4xl font-bold leading-tight mb-4">
+          Tecnología para tu casa, tu negocio y tu estudio
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Ingresá para ver tus precios, hacer seguimiento de tus compras y acceder a las mejores
+          ofertas del día.
         </p>
+        <ul class="mt-8 space-y-3 text-sm text-slate-300">
+          <li class="flex items-center gap-2.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-ml-yellow"></span> Envíos 24/48 hs a todo el país
+          </li>
+          <li class="flex items-center gap-2.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-ml-yellow"></span> Garantía oficial y soporte experto
+          </li>
+          <li class="flex items-center gap-2.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-ml-yellow"></span> Hasta 12 cuotas sin interés
+          </li>
+        </ul>
+      </div>
 
-        <div class="my-6 flex items-center gap-3 text-sm text-ml-text-muted">
-          <div class="flex-1 h-px bg-ml-border" />
-          <span>o</span>
-          <div class="flex-1 h-px bg-ml-border" />
+      <p class="text-xs text-slate-500">lanuscomputacion.com</p>
+    </aside>
+
+    <!-- Form side -->
+    <main class="flex min-h-dvh items-center justify-center px-5 py-10 sm:px-8">
+      <div class="w-full max-w-md">
+        <a href="/" class="lg:hidden mb-8 flex justify-center">
+          <span class="bg-white rounded-xl p-3 shadow-card border border-ml-border">
+            <img src="/logo.png" alt="Lanús Computación" width="56" height="56" class="w-14 h-14 object-contain" />
+          </span>
+        </a>
+
+        <div class="bg-white rounded-2xl shadow-card border border-ml-border p-7 sm:p-9">
+          <div class="text-center mb-6">
+            <h1 class="text-xl font-semibold text-ml-text">¡Hola!</h1>
+            <p class="text-sm text-ml-text-secondary mt-1">Ingresá tu email y contraseña</p>
+          </div>
+
+          <div id="success-message" class="hidden mb-4 p-3 bg-green-50 border border-green-200 rounded text-sm text-green-700"></div>
+          <div id="error-message" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded text-sm text-red-700"></div>
+
+          <form id="login-form" class="space-y-4">
+            <div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Correo electrónico"
+                class="ml-input w-full h-12"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                class="ml-input w-full h-12"
+                required
+              />
+            </div>
+
+            <button type="submit" class="ml-btn-primary w-full h-12 text-base">
+              Continuar
+            </button>
+          </form>
+
+          <p class="text-center mt-3 text-xs">
+            <a href="/olvidaste-contrasena" class="ml-link">¿Olvidaste tu contraseña?</a>
+          </p>
+
+          <div class="my-6 flex items-center gap-3 text-sm text-ml-text-muted">
+            <div class="flex-1 h-px bg-ml-border" />
+            <span>o</span>
+            <div class="flex-1 h-px bg-ml-border" />
+          </div>
+
+          <!-- Social Login -->
+          <div class="space-y-3">
+            <button id="google-login" class="w-full h-12 flex items-center justify-center gap-3 border border-ml-border rounded hover:bg-gray-50 transition-colors text-sm font-medium">
+              <img src="/google-favicon-2025.svg" alt="" width="20" height="20" class="w-5 h-5" />
+              Continuar con Google
+            </button>
+          </div>
+
+          <p class="text-center mt-6 text-xs text-ml-text-muted">
+            ¿No tenés cuenta?
+            <a href="/register" class="ml-link"> Registrate</a>
+          </p>
+
+          <p class="text-center mt-2 text-xs text-ml-text-muted">
+            Al continuar, aceptás los
+            <a href="#" class="ml-link"> Términos y Condiciones</a> y la
+            <a href="#" class="ml-link"> Política de Privacidad</a>
+          </p>
         </div>
 
-        <!-- Social Login -->
-        <div class="space-y-3">
-          <button id="google-login" class="w-full h-12 flex items-center justify-center gap-3 border border-ml-border rounded hover:bg-gray-50 transition-colors text-sm font-medium">
-            <svg width="20" height="20" viewBox="0 0 48 48">
-              <path fill="#4285F4" d="M23.49 12.3c3.68 0 6.45 1.6 7.93 2.97l5.85-5.83C33.78 5.7 29.25 4 23.49 4 15.3 4 8.27 8.82 5 15.78l6.72 5.24c1.9-4.15 5.9-6.72 11.77-6.72z"/>
-              <path fill="#34A853" d="M4 24c0 1.82.27 3.58.78 5.24L11.27 24c-.32-1.03-.5-2.13-.5-3.3s.18-2.27.5-3.3L4.78 12.3C4.27 13.96 4 15.82 4 24z"/>
-              <path fill="#FBBC05" d="M23.49 36.3c-5.87 0-9.87-2.57-11.77-6.72L5.27 34.7C8.27 41.18 15.3 46 23.49 46c5.7 0 11.44-2.2 15.5-6.36l-6.7-5.3c-2.16 1.66-5.08 2.96-8.8 2.96z"/>
-              <path fill="#EA4335" d="M46 24c0-1.84-.3-3.62-.88-5.28H23.5v9.56h12.87c-.55 2.98-2.17 5.42-4.58 7.02l6.7 5.3C43.05 38.6 46 32 46 24z"/>
-            </svg>
-            Continuar con Google
-          </button>
-        </div>
-
-        <p class="text-center mt-6 text-xs text-ml-text-muted">
-          ¿No tenés cuenta?
-          <a href="/register" class="ml-link"> Registrate</a>
-        </p>
-
-        <p class="text-center mt-2 text-xs text-ml-text-muted">
-          Al continuar, aceptás los
-          <a href="#" class="ml-link"> Términos y Condiciones</a> y la
-          <a href="#" class="ml-link"> Política de Privacidad</a>
+        <p class="text-center mt-6 text-sm">
+          <a href="/" class="ml-link">← Volver a la tienda</a>
         </p>
       </div>
-    </div>
+    </main>
   </div>
-</BaseLayout>
+</AuthLayout>
 
 <script>
   const form = document.getElementById('login-form') as HTMLFormElement;

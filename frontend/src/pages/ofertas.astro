@@ -1,87 +1,76 @@
 ---
+// Página /ofertas con la UI de la tienda (BaseLayout + ProductGrid) y los
+// productos seleccionados de la campaña vigente (snapshot KV `snapshot:latest`,
+// el mismo documento que el flyer /lista/...). Muestra la próxima fecha de
+// campaña (martes/viernes) a partir de hoy.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/catalog/ProductGrid.astro';
-import { getActivePromotions, computePromoDiscount } from '../lib/d1';
+import { fechas, partes, SITE, type FlyerSnapshot, type FlyerProduct } from '../lib/flyers';
 
-const DB = Astro.locals.runtime.env.DB;
+const now = new Date();
+const hoy = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+const d = fechas().find((f) => f.getTime() >= hoy.getTime()) ?? hoy;
+const { dia, fecha } = partes(d);
+const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
 
-// Get active promotions
-const promotions = await getActivePromotions(DB);
+const env = (Astro.locals as any)?.runtime?.env;
+const snapshot = (await env?.FLYERS?.get('snapshot:latest', 'json')) as FlyerSnapshot | null;
+const secciones = Array.isArray(snapshot?.secciones) ? snapshot.secciones : [];
+const total = secciones.reduce((n, s) => n + s.productos.length, 0);
 
-// Only scan products that can match an active promotion (D1 quota protection).
-// Without active promos the products query is skipped entirely (0 rows read).
-const promoWindow = `
-  pr.is_active = 1
-  AND (pr.start_date IS NULL OR pr.start_date <= datetime('now'))
-  AND (pr.end_date IS NULL OR pr.end_date >= datetime('now'))`;
-let allProducts: any[] = [];
-if (promotions.length > 0) {
-  try {
-    const { results } = await DB.prepare(`
-      SELECT id, title, price, thumbnail, slug, category_id, category_name, available_qty, dollar_rate, free_shipping, iva_pct, internal_tax_pct
-      FROM products
-      WHERE status = 'published' AND available_qty > 0 AND price > 0
-        AND (
-          EXISTS (SELECT 1 FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'all')
-          OR category_id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'category')
-          OR id IN (SELECT pr.target_id FROM promotions pr WHERE ${promoWindow} AND pr.applies_to = 'product')
-        )
-      ORDER BY created_at DESC
-      LIMIT 500
-    `).all();
-    allProducts = results || [];
-  } catch (e) {
-    console.error("D1 Error in ofertas.astro:", e);
-    allProducts = [];
-  }
-}
+const cats = secciones.map((s) => s.title.toLowerCase()).join(', ');
+const description = secciones.length
+  ? `Ofertas de tecnología del ${dia} ${fecha} en Lanús Computación: ${cats} con entrega inmediata.`
+  : 'Ofertas y promociones en tecnología en Lanús Computación. Entrega inmediata y envío a todo el país.';
 
-// Apply promotions to products
-const offerProducts: any[] = [];
-for (const product of allProducts) {
-  const promo = computePromoDiscount(promotions, product.id, product.category_id, product.price);
-  if (promo) {
-    offerProducts.push({
-      id: product.id,
-      title: product.title,
-      price: promo.promoPrice,
-      originalPrice: product.price,
-      discount: promo.discount,
-      categoryName: product.category_name,
-      image: product.thumbnail,
-      slug: product.slug,
-      freeShipping: product.free_shipping === 1,
-      promoName: promo.promoName,
-      dollar_rate: product.dollar_rate,
-      ivaPct: product.iva_pct,
-      internalTaxPct: product.internal_tax_pct,
-    });
-  }
-}
-
-// Sort by discount percentage (highest first)
-offerProducts.sort((a, b) => b.discount - a.discount);
+const toCard = (p: FlyerProduct) => ({
+  id: p.id,
+  title: p.title,
+  price: p.price,
+  image: p.thumbnail,
+  slug: p.slug,
+  categoryName: p.category_name,
+  ivaPct: p.iva_pct,
+  internalTaxPct: p.internal_tax_pct,
+  availableQty: p.stock,
+});
 ---
 
-<BaseLayout title="Ofertas | Lanús Computación">
+<BaseLayout
+  title={`Ofertas de tecnología ${diaCap} ${fecha} | Lanús Computación`}
+  description={description}
+  image={secciones[0]?.productos[0]?.thumbnail}
+>
+  <meta slot="head" name="robots" content="index, follow, max-image-preview:large" />
+  <link slot="head" rel="canonical" href={`${SITE}/ofertas`} />
+  <meta slot="head" property="og:url" content={`${SITE}/ofertas`} />
+
   <div class="ml-container py-4">
     <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6 mb-6">
-      <h1 class="text-2xl font-bold text-ml-text mb-1">Ofertas</h1>
-      <p class="text-sm text-ml-text-secondary">Los mejores descuentos en tecnología</p>
-      {promotions.length > 0 && (
-        <p class="text-xs text-ml-text-muted mt-2">{promotions.length} promoción(es) activa(s)</p>
-      )}
+      <h1 class="text-2xl font-bold text-ml-text mb-1">Ofertas de tecnología</h1>
+      <p class="text-sm text-ml-text-secondary">
+        Campaña {diaCap} {fecha} · {total} equipos en oferta con entrega inmediata
+      </p>
+      <div class="flex flex-wrap gap-2 mt-3">
+        <span class="text-xs bg-white border border-red-200 rounded-full px-3 py-1"><b>Entrega inmediata</b> · listo para despachar</span>
+        <span class="text-xs bg-white border border-red-200 rounded-full px-3 py-1"><b>Atención postventa</b> · Servicio técnico</span>
+        <span class="text-xs bg-white border border-red-200 rounded-full px-3 py-1"><b>Garantía oficial</b> · directa de marca</span>
+        <span class="text-xs bg-white border border-red-200 rounded-full px-3 py-1"><b>Envío a todo el país</b> · Tarifa plana</span>
+      </div>
     </div>
 
-    {offerProducts.length > 0 ? (
-      <ProductGrid products={offerProducts.map(p => ({
-        ...p,
-        dollarRate: p.dollar_rate,
-      }))} columns={5} />
+    {secciones.length > 0 ? (
+      secciones.map((s) => (
+        <section class="mb-8">
+          <h2 class="text-lg font-bold uppercase text-ml-text mb-1">{s.title}</h2>
+          <p class="text-sm text-ml-text-secondary mb-3">{s.desc}</p>
+          <ProductGrid products={s.productos.map(toCard)} columns={4} />
+        </section>
+      ))
     ) : (
       <div class="text-center py-16 text-ml-text-muted">
         <p class="text-lg">No hay ofertas disponibles</p>
-        <p class="text-sm mt-1">Creá promociones en el admin para que aparezcan aquí</p>
+        <p class="text-sm mt-1">Volvé más tarde, estamos actualizando la campaña.</p>
       </div>
     )}
   </div>
