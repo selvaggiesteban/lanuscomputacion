@@ -1,7 +1,7 @@
 import type { PagesRequest, PagesResponse } from "@cloudflare/workers-types";
-import { MeliClient } from "../../lib/meli";
-import { MeliSyncService } from "../../lib/meli-sync-service";
-import { getProducts } from "../../lib/d1";
+import { MeliClient } from "../../../lib/meli";
+import { MeliSyncService } from "../../../../lib/meli-sync-service";
+import { getProducts } from "../../../lib/d1";
 
 export const onRequest: PagesFunction = async (context) => {
   const { request, env } = context;
