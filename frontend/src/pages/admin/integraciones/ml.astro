@@ -5,64 +5,210 @@ const status = Astro.url.searchParams.get("status");
 ---
 
 <Layout title="Integración Mercado Libre">
-  <div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Conexión con Mercado Libre</h1>
-    
+  <div class="p-6 max-w-6xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">Mercado Libre</h1>
+        <p class="text-gray-500">Gestión de canal de ventas y sincronización de catálogo</p>
+      </div>
+      <div class="flex gap-3">
+        <button id="sync-all" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-2 shadow-sm">
+          <span class="sync-icon">🔄</span> Forzar Sincronización Total
+        </button>
+      </div>
+    </div>
+
     {status === 'success' && (
-      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-        Cuenta conectada exitosamente.
+      <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded mb-6 shadow-sm">
+        <p class="font-bold">Cuenta conectada exitosamente</p>
+        <p>Tu tienda ahora está vinculada con tu cuenta de vendedor de Mercado Libre.</p>
       </div>
     )}
 
-    <div class="bg-white shadow rounded-lg p-6 mb-6">
-      <p class="mb-4 text-gray-600">
-        Conecta tu cuenta de Mercado Libre para habilitar la sincronización automática de stock y precios.
-      </p>
-      
-      <a 
-        href={`https://auth.mercadolibre.com.ar/authorization?app_id=${import.meta.env.ML_CLIENT_ID}&redirect_uri=https://lanuscomputacion.com/api/auth/ml-callback`}
-        class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-      >
-        Conectar Cuenta de Mercado Libre
-      </a>
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-sm text-gray-500 uppercase font-semibold">Productos Totales</p>
+        <p id="stat-total-products" class="text-3xl font-bold text-gray-800">--</p>
+        <p class="text-xs text-gray-400 mt-1">En base de datos D1</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-sm text-gray-500 uppercase font-semibold">Sincronizados</p>
+        <p id="stat-synced-products" class="text-3xl font-bold text-indigo-600">--</p>
+        <p id="stat-sync-pct" class="text-xs text-gray-400 mt-1">0% del catálogo</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-sm text-gray-500 uppercase font-semibold">Ventas (12h)</p>
+        <p id="stat-sales-12h" class="text-3xl font-bold text-green-600">--</p>
+        <p class="text-xs text-gray-400 mt-1">Registradas en meli_events</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-sm text-gray-500 uppercase font-semibold">Estado Conexión</p>
+        <p id="stat-connection" class="text-lg font-bold text-gray-800 mt-2">Verificando...</p>
+        <div id="connection-dot" class="w-3 h-3 rounded-full bg-gray-300 inline-block align-middle mr-2"></div>
+      </div>
     </div>
 
-    <div class="bg-white shadow rounded-lg p-6">
-      <h2 class="text-xl font-semibold mb-4">Sincronización de Catálogo</h2>
-      <p class="mb-4 text-gray-600">
-        Publica todos tus productos publicados en la tienda hacia Mercado Libre.
-      </p>
-      <button 
-        id="sync-all" 
-        class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
-      >
-        Sincronizar Todo el Catálogo
-      </button>
-      <div id="sync-results" class="mt-4 text-sm text-gray-600"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Control Panel -->
+      <div class="lg:col-span-1 space-y-6">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
+            <span>⚙️</span> Configuración de Cuenta
+          </h2>
+          <div class="space-y-4">
+            <p class="text-sm text-gray-600">
+              Utiliza este panel para gestionar el vínculo con tu cuenta de vendedor.
+            </p>
+            <a 
+              href={`https://auth.mercadolibre.com.ar/authorization?app_id=${import.meta.env.ML_CLIENT_ID}&redirect_uri=https://lanuscomputacion.com/api/auth/ml-callback`}
+              class="block text-center bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-sm"
+            >
+              Re-conectar Cuenta ML
+            </a>
+            <div class="pt-4 border-t border-gray-100">
+              <p class="text-xs text-gray-400 text-center italic">
+                Sincronización automática activa cada 60 min.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
+            <span>🔔</span> Notificaciones
+          </h2>
+          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg mb-2">
+            <span class="text-sm text-gray-700">Reportes Email (9am / 5pm)</span>
+            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-bold">ACTIVO</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <span class="text-sm text-gray-700">Webhook de Ventas</span>
+            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-bold">ACTIVO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events Log -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+            <h2 class="text-lg font-semibold flex items-center gap-2">
+              <span>📜</span> Actividad Reciente
+            </h2>
+            <button id="refresh-logs" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Actualizar</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-gray-50 text-gray-500 uppercase text-xs font-semibold">
+                <tr>
+                  <th class="px-6 py-3">Fecha</th>
+                  <th class="px-6 py-3">Evento</th>
+                  <th class="px-6 py-3">Item/ID</th>
+                  <th class="px-6 py-3">Detalle</th>
+                </tr>
+              </thead>
+              <tbody id="events-tbody" class="divide-y divide-gray-100">
+                <!-- Rows injected by JS -->
+                <tr>
+                  <td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">Cargando eventos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <script>
-      const btn = document.getElementById('sync-all');
-      const resDiv = document.getElementById('sync-results');
-
-      btn?.addEventListener('click', async () => {
-        if (!btn) return;
-        btn.disabled = true;
-        btn.innerText = 'Sincronizando...';
-        resDiv!.innerText = 'Procesando productos, esto puede tardar unos minutos...';
-
-        try {
-          const res = await fetch('/api/meli/sync');
-          const data = await res.json();
-          resDiv!.innerText = `Sincronización completada: ${data.created} creados, ${data.updated} actualizados, ${data.failed} fallidos.`;
-        } catch (e) {
-          resDiv!.innerText = 'Error al sincronizar: ' + e;
-        } finally {
-          btn.disabled = false;
-          btn.innerText = 'Sincronizar Todo el Catálogo';
-        }
-      });
-    </script>
   </div>
+
+  <script>
+    async function updateStats() {
+      try {
+        // 1. Get total and synced products
+        const prodRes = await fetch('/api/meli/stats');
+        const stats = await prodRes.json();
+        
+        document.getElementById('stat-total-products')!.innerText = stats.total;
+        document.getElementById('stat-synced-products')!.innerText = stats.synced;
+        const pct = Math.round((stats.synced / stats.total) * 100) || 0;
+        document.getElementById('stat-sync-pct')!.innerText = `${pct}% del catálogo`;
+        
+        // 2. Connection Status
+        const connRes = await fetch('/api/meli/connection');
+        const conn = await connRes.json();
+        const dot = document.getElementById('connection-dot')!;
+        const text = document.getElementById('stat-connection')!;
+        
+        if (conn.connected) {
+          dot.className = 'w-3 h-3 rounded-full bg-green-500 inline-block align-middle mr-2';
+          text.innerText = 'Conectado';
+          text.className = 'text-lg font-bold text-green-600 mt-2';
+        } else {
+          dot.className = 'w-3 h-3 rounded-full bg-red-500 inline-block align-middle mr-2';
+          text.innerText = 'Desconectado';
+          text.className = 'text-lg font-bold text-red-600 mt-2';
+        }
+      } catch (e) {
+        console.error("Stats error:", e);
+      }
+    }
+
+    async function loadEvents() {
+      const tbody = document.getElementById('events-tbody')!;
+      try {
+        const res = await fetch('/api/meli/events');
+        const events = await res.json();
+        
+        if (events.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">No hay eventos recientes.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = events.map(e => `
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">${new Date(e.created_at).toLocaleString()}</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 rounded-full text-xs font-bold ${
+                e.event_type === 'sale' ? 'bg-green-100 text-green-700' : 
+                e.event_type === 'error' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
+              }">
+                ${e.event_type.toUpperCase()}
+              </span>
+            </td>
+            <td class="px-6 py-4 font-mono text-xs">${e.item_id || 'N/A'}</td>
+            <td class="px-6 py-4 text-gray-600">${e.payload}</td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-red-500">Error al cargar eventos.</td></tr>';
+      }
+    }
+
+    // Sync All
+    const syncBtn = document.getElementById('sync-all');
+    syncBtn?.addEventListener('click', async () => {
+      if (!syncBtn) return;
+      syncBtn.disabled = true;
+      syncBtn.innerText = 'Sincronizando...';
+      
+      try {
+        const res = await fetch('/api/meli/sync');
+        const data = await res.json();
+        alert(`Sincronización completada: ${data.created} creados, ${data.updated} actualizados, ${data.failed} fallidos.`);
+        updateStats();
+      } catch (e) {
+        alert('Error al sincronizar');
+      } finally {
+        syncBtn.disabled = false;
+        syncBtn.innerText = '🔄 Forzar Sincronización Total';
+      }
+    });
+
+    document.getElementById('refresh-logs')?.addEventListener('click', loadEvents);
+
+    // Init
+    updateStats();
+    loadEvents();
+  </script>
 </Layout>
 ---
