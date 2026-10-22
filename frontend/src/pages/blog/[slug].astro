@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const canonical = `https://lanuscomputacion.com/blog/${post.id}`;
+const pubDateISO = post.data.pubDate.toISOString();
+const updatedISO = post.data.updatedDate?.toISOString();
+
+const related = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id && p.data.category === post.data.category)
+  .slice(0, 3);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.heroImage} type="article">
+  <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
+    <meta property="article:published_time" content={pubDateISO} />
+    {updatedISO && <meta property="article:modified_time" content={updatedISO} />}
+    {post.data.keywords.length > 0 && <meta name="keywords" content={post.data.keywords.join(', ')} />}
+  </Fragment>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "datePublished": pubDateISO,
+    ...(updatedISO ? { dateModified: updatedISO } : {}),
+    "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
+    "image": [`https://lanuscomputacion.com${post.data.heroImage}`],
+    "author": { "@type": "Organization", "name": "Lanús Computación" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lanús Computación",
+      "logo": { "@type": "ImageObject", "url": "https://lanuscomputacion.com/logo.png" }
+    }
+  })} />
+
+  <Breadcrumb
+    items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Blog', href: '/blog/' },
+      { label: post.data.title },
+    ]}
+  />
+
+  <article class="ml-container py-8 max-w-4xl">
+    <header>
+      <span class="text-xs font-semibold text-ml-blue uppercase tracking-wide">
+        {post.data.category}
+      </span>
+      <h1 class="text-3xl md:text-4xl font-bold text-ml-text mt-2 mb-3">
+        {post.data.title}
+      </h1>
+      <time class="text-sm text-ml-text-secondary" datetime={pubDateISO}>
+        {post.data.pubDate.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+      <img
+        src={post.data.heroImage}
+        alt={post.data.title}
+        width="1200"
+        height="675"
+        class="w-full rounded-lg shadow-card mt-6"
+      />
+    </header>
+
+    <div class="blog-prose mt-8">
+      <Content />
+    </div>
+
+    {related.length > 0 && (
+      <aside class="mt-12 border-t pt-8">
+        <h2 class="text-xl font-semibold text-ml-text mb-4">Artículos relacionados</h2>
+        <div class="grid gap-4 sm:grid-cols-3">
+          {related.map((p) => (
+            <a href={`/blog/${p.id}`} class="ml-card p-4 block group">
+              <h3 class="text-sm font-semibold text-ml-text group-hover:text-ml-blue transition-colors">
+                {p.data.title}
+              </h3>
+              <p class="text-xs text-ml-text-secondary mt-1">{p.data.category}</p>
+            </a>
+          ))}
+        </div>
+      </aside>
+    )}
+  </article>
+</BaseLayout>

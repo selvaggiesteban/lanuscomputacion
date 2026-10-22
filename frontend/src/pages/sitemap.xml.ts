@@ -1,15 +1,20 @@
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
 export const GET: APIRoute = async ({ locals }) => {
-  const DB = locals.runtime.env.DB as D1Database;
+  // D1 solo existe en runtime (SSR); en build estático queda vacío y el sitemap
+  // se genera con URLs estáticas + artículos del blog.
+  const DB = locals?.runtime?.env?.DB as D1Database | undefined;
 
   // Get all published products
   let products: { slug: string; last_api_update: string }[] = [];
   try {
-    const { results } = await DB.prepare(
-      "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
-    ).all<{ slug: string; last_api_update: string }>();
-    products = results || [];
+    if (DB) {
+      const { results } = await DB.prepare(
+        "SELECT slug, last_api_update FROM products WHERE status = 'published' ORDER BY last_api_update DESC"
+      ).all<{ slug: string; last_api_update: string }>();
+      products = results || [];
+    }
   } catch (e) {
     console.error("D1 Error in sitemap.xml.ts:", e);
     products = [];
@@ -18,10 +23,12 @@ export const GET: APIRoute = async ({ locals }) => {
   // Get all categories
   let categories: { slug: string }[] = [];
   try {
-    const { results } = await DB.prepare(
-      "SELECT slug FROM categories WHERE is_active = 1"
-    ).all<{ slug: string }>();
-    categories = results || [];
+    if (DB) {
+      const { results } = await DB.prepare(
+        "SELECT slug FROM categories WHERE is_active = 1"
+      ).all<{ slug: string }>();
+      categories = results || [];
+    }
   } catch (e) {
     console.error("D1 Error in sitemap.xml.ts:", e);
     categories = [];
@@ -183,6 +190,12 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>${baseUrl}/blog</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>${baseUrl}/olvidaste-contrasena</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
@@ -195,6 +208,23 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.3</priority>
   </url>
 `;
+
+  // Add blog articles
+  try {
+    const blogPosts = await getCollection("blog");
+    for (const post of blogPosts) {
+      const lastmod = (post.data.updatedDate || post.data.pubDate).toISOString();
+      sitemap += `  <url>
+    <loc>${baseUrl}/blog/${post.id}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`;
+    }
+  } catch (e) {
+    console.error("Blog collection error in sitemap.xml.ts:", e);
+  }
 
   // Add categories
   for (const cat of categories) {

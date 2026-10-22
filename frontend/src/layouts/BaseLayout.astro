@@ -8,9 +8,10 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: string;
 }
 
-const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Catálogo de tecnología con precios mayoristas y minoristas en Lanús', image } = Astro.props;
+const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Catálogo de tecnología con precios mayoristas y minoristas en Lanús', image, type = 'website' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {image && <meta property="og:image" content={image} />}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:locale" content="es_AR" />
     <meta name="twitter:card" content="summary_large_image" />
     {image && <meta name="twitter:image" content={image} />}
