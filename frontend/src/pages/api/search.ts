@@ -36,7 +36,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
     binds.push(limit, offset);
 
     // Single pass: rows + total via window count (halves D1 rows read per search)
-    let rows = [];
+    let rows: (Product & { total_count: number })[] = [];
     try {
       const { results } = await DB
         .prepare(sql)

@@ -66,7 +66,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
       return new Response(null, { status: 302, headers: { Location: "/login?error=google_token_failed" } });
     }
 
-    const tokenData = await tokenRes.json<{ id_token: string }>();
+    const tokenData = (await tokenRes.json()) as { id_token: string };
 
     const base64Url = tokenData.id_token.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");

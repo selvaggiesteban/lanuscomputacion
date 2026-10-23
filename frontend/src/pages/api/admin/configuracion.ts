@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ locals, request }) => {
   if (!auth) return new Response(JSON.stringify({ error: "No autorizado" }), { status: 403 });
   const { DB } = auth;
 
-  let configRows = [];
+  let configRows: { key: string; value: string }[] = [];
   try {
     const { results } = await DB.prepare("SELECT key, value FROM app_config").all<{ key: string; value: string }>();
     configRows = results;

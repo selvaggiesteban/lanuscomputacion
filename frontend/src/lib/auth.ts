@@ -1,6 +1,8 @@
 // auth.ts
 // Authentication helpers for Cloudflare Pages + D1
 
+declare const process: { env: Record<string, string | undefined> };
+
 export type User = {
   id: number;
   email: string;

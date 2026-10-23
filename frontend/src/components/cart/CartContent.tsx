@@ -215,55 +215,55 @@ export default function CartContent() {
 
   if (items.length === 0 && payStep !== "done") {
     return (
-      <div class="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 opacity-30">
+      <div className="bg-white rounded shadow-card p-8 text-center text-ml-text-muted">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" className="mx-auto mb-4 opacity-30">
           <circle cx="9" cy="21" r="1" />
           <circle cx="20" cy="21" r="1" />
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
-        <p class="text-lg font-medium text-ml-text mb-2">Tu carrito está vacío</p>
-        <p class="text-sm mb-6">Agregá productos para empezar a comprar</p>
-        <a href="/" class="ml-btn-primary inline-block">Ver productos</a>
+        <p className="text-lg font-medium text-ml-text mb-2">Tu carrito está vacío</p>
+        <p className="text-sm mb-6">Agregá productos para empezar a comprar</p>
+        <a href="/" className="ml-btn-primary inline-block">Ver productos</a>
       </div>
     );
   }
 
   return (
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2">
-        <div class="bg-white rounded shadow-card">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="lg:col-span-2">
+        <div className="bg-white rounded shadow-card">
           {items.map((item, i) => (
-            <div class={`flex gap-4 p-4 ${i < items.length - 1 ? "border-b" : ""}`}>
-              <a href={`/producto/${item.slug}`} class="w-20 h-20 flex-shrink-0 bg-ml-bg rounded overflow-hidden">
+            <div className={`flex gap-4 p-4 ${i < items.length - 1 ? "border-b" : ""}`}>
+              <a href={`/producto/${item.slug}`} className="w-20 h-20 flex-shrink-0 bg-ml-bg rounded overflow-hidden">
                 {item.thumbnail ? (
-                  <img src={item.thumbnail} alt={item.title} class="w-full h-full object-contain" />
+                  <img src={item.thumbnail} alt={item.title} className="w-full h-full object-contain" />
                 ) : (
-                  <div class="w-full h-full flex items-center justify-center text-ml-text-muted text-xs">Sin img</div>
+                  <div className="w-full h-full flex items-center justify-center text-ml-text-muted text-xs">Sin img</div>
                 )}
               </a>
-              <div class="flex-1 min-w-0">
-                <a href={`/producto/${item.slug}`} class="text-sm text-ml-text hover:text-ml-blue line-clamp-2 mb-1">{item.title}</a>
-                <div class="flex items-center gap-2">
+              <div className="flex-1 min-w-0">
+                <a href={`/producto/${item.slug}`} className="text-sm text-ml-text hover:text-ml-blue line-clamp-2 mb-1">{item.title}</a>
+                <div className="flex items-center gap-2">
                   {item.promo_price && item.promo_price < item.price && (
-                    <span class="text-xs text-ml-text-muted line-through">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                    <span className="text-xs text-ml-text-muted line-through">${item.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
                   )}
-                  <p class={`text-base font-semibold ${item.promo_price && item.promo_price < item.price ? 'text-red-600' : 'text-ml-text'}`}>
+                  <p className={`text-base font-semibold ${item.promo_price && item.promo_price < item.price ? 'text-red-600' : 'text-ml-text'}`}>
                     ${(item.promo_price ?? item.price).toLocaleString("es-AR", { minimumFractionDigits: 2 })}
                   </p>
                 </div>
-                <div class="flex items-center gap-3 mt-2">
-                  <div class="flex items-center border rounded text-sm">
-                    <button onClick={() => handleQty(item.product_id, item.quantity - 1)} class="px-2 py-1 hover:bg-ml-bg" disabled={item.quantity <= 1}>-</button>
-                    <span class="px-3 py-1 border-x font-medium">{item.quantity}</span>
-                    <button onClick={() => handleQty(item.product_id, item.quantity + 1)} class="px-2 py-1 hover:bg-ml-bg">+</button>
+                <div className="flex items-center gap-3 mt-2">
+                  <div className="flex items-center border rounded text-sm">
+                    <button onClick={() => handleQty(item.product_id, item.quantity - 1)} className="px-2 py-1 hover:bg-ml-bg" disabled={item.quantity <= 1}>-</button>
+                    <span className="px-3 py-1 border-x font-medium">{item.quantity}</span>
+                    <button onClick={() => handleQty(item.product_id, item.quantity + 1)} className="px-2 py-1 hover:bg-ml-bg">+</button>
                   </div>
-                  <button onClick={() => handleRemove(item.product_id)} class="text-xs text-ml-text-muted hover:text-red-500 transition-colors">
+                  <button onClick={() => handleRemove(item.product_id)} className="text-xs text-ml-text-muted hover:text-red-500 transition-colors">
                     Eliminar
                   </button>
                 </div>
               </div>
-              <div class="text-right flex-shrink-0">
-                <p class="text-sm font-semibold text-ml-text">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+              <div className="text-right flex-shrink-0">
+                <p className="text-sm font-semibold text-ml-text">${((item.promo_price ?? item.price) * item.quantity).toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
               </div>
             </div>
           ))}
@@ -271,114 +271,114 @@ export default function CartContent() {
       </div>
 
       <div>
-        <div class="bg-white rounded shadow-card p-4 sticky top-20">
-          <h3 class="text-sm font-medium text-ml-text mb-3">Resumen</h3>
-          <div class="space-y-2 text-sm mb-4">
-            <div class="flex justify-between">
-              <span class="text-ml-text-muted">Productos ({items.reduce((s, i) => s + i.quantity, 0)})</span>
-              <span class="font-medium">${subtotal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+        <div className="bg-white rounded shadow-card p-4 sticky top-20">
+          <h3 className="text-sm font-medium text-ml-text mb-3">Resumen</h3>
+          <div className="space-y-2 text-sm mb-4">
+            <div className="flex justify-between">
+              <span className="text-ml-text-muted">Productos ({items.reduce((s, i) => s + i.quantity, 0)})</span>
+              <span className="font-medium">${subtotal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
             {discount > 0 && (
-              <div class="flex justify-between text-green-600">
+              <div className="flex justify-between text-green-600">
                 <span>Descuento ({couponDiscount?.code})</span>
-                <span class="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+                <span className="font-medium">-${discount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
               </div>
             )}
-            <div class="flex justify-between">
-              <span class="text-ml-text-muted">Envío</span>
-              <span class="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            <div className="flex justify-between">
+              <span className="text-ml-text-muted">Envío</span>
+              <span className="font-medium">${shippingCost.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
-            <div class="flex justify-between border-t pt-2">
-              <span class="font-semibold text-ml-text">Total</span>
-              <span class="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            <div className="flex justify-between border-t pt-2">
+              <span className="font-semibold text-ml-text">Total</span>
+              <span className="font-bold text-lg text-ml-text">${total.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
             </div>
           </div>
 
-          <div class="mb-4">
-            <label class="block text-xs text-ml-text-muted mb-1">Cupón de descuento</label>
-            <div class="flex gap-2">
+          <div className="mb-4">
+            <label className="block text-xs text-ml-text-muted mb-1">Cupón de descuento</label>
+            <div className="flex gap-2">
               <input
                 type="text"
                 placeholder="Código"
                 value={couponCode}
                 onChange={e => setCouponCode((e.target as HTMLInputElement).value.toUpperCase())}
-                class="ml-input flex-1 text-sm font-mono uppercase"
+                className="ml-input flex-1 text-sm font-mono uppercase"
               />
-              <button onClick={handleApplyCoupon} disabled={applyingCoupon} class="ml-btn-secondary text-sm px-3">
+              <button onClick={handleApplyCoupon} disabled={applyingCoupon} className="ml-btn-secondary text-sm px-3">
                 {applyingCoupon ? "..." : "Aplicar"}
               </button>
             </div>
-            {couponError && <p class="text-xs text-red-500 mt-1">{couponError}</p>}
+            {couponError && <p className="text-xs text-red-500 mt-1">{couponError}</p>}
             {couponDiscount && (
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs text-green-600 font-medium">✓ Cupón {couponDiscount.code} aplicado</span>
-                <button onClick={() => { setCouponDiscount(null); setCouponCode(""); }} class="text-xs text-ml-text-muted hover:text-red-500">Quitar</button>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-xs text-green-600 font-medium">✓ Cupón {couponDiscount.code} aplicado</span>
+                <button onClick={() => { setCouponDiscount(null); setCouponCode(""); }} className="text-xs text-ml-text-muted hover:text-red-500">Quitar</button>
               </div>
             )}
           </div>
 
-          <div class="space-y-2 mb-4">
-            <input type="text" placeholder="Nombre completo *" value={customer.name} onChange={e => setCustomer(p => ({ ...p, name: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
-            <input type="email" placeholder="Email *" value={customer.email} onChange={e => setCustomer(p => ({ ...p, email: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
-            <input type="tel" placeholder="Teléfono" value={customer.phone} onChange={e => setCustomer(p => ({ ...p, phone: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
-            <input type="text" placeholder="Dirección" value={customer.address} onChange={e => setCustomer(p => ({ ...p, address: (e.target as HTMLInputElement).value }))} class="ml-input w-full text-sm" />
-            <p class="text-xs text-ml-text-muted">
+          <div className="space-y-2 mb-4">
+            <input type="text" placeholder="Nombre completo *" value={customer.name} onChange={e => setCustomer(p => ({ ...p, name: (e.target as HTMLInputElement).value }))} className="ml-input w-full text-sm" />
+            <input type="email" placeholder="Email *" value={customer.email} onChange={e => setCustomer(p => ({ ...p, email: (e.target as HTMLInputElement).value }))} className="ml-input w-full text-sm" />
+            <input type="tel" placeholder="Teléfono" value={customer.phone} onChange={e => setCustomer(p => ({ ...p, phone: (e.target as HTMLInputElement).value }))} className="ml-input w-full text-sm" />
+            <input type="text" placeholder="Dirección" value={customer.address} onChange={e => setCustomer(p => ({ ...p, address: (e.target as HTMLInputElement).value }))} className="ml-input w-full text-sm" />
+            <p className="text-xs text-ml-text-muted">
               Envío: coordinamos el envío con vos por WhatsApp. Llega en 3 días hábiles una vez despachado.
-              <a href="/politicas-de-envios-y-devoluciones" class="ml-link ml-1">Ver políticas</a>
+              <a href="/politicas-de-envios-y-devoluciones" className="ml-link ml-1">Ver políticas</a>
             </p>
           </div>
 
-          {error && <p class="text-xs text-red-500 mb-2">{error}</p>}
+          {error && <p className="text-xs text-red-500 mb-2">{error}</p>}
 
           {payStep === "form" && (
-            <button onClick={handleContinue} class="ml-btn-primary w-full text-sm py-3">
+            <button onClick={handleContinue} className="ml-btn-primary w-full text-sm py-3">
               Pagar
             </button>
           )}
 
           {payStep === "methods" && (
-            <div class="space-y-2">
-              <p class="text-xs text-ml-text-muted">Elegí cómo querés pagar:</p>
-              <button onClick={() => handleOrder("transferencia")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
-                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Transferencia bancaria"}</p>
-                <p class="text-xs text-ml-text-muted">Transferís y nos mandás el comprobante por WhatsApp</p>
+            <div className="space-y-2">
+              <p className="text-xs text-ml-text-muted">Elegí cómo querés pagar:</p>
+              <button onClick={() => handleOrder("transferencia")} disabled={checkingOut} className="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p className="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Transferencia bancaria"}</p>
+                <p className="text-xs text-ml-text-muted">Transferís y nos mandás el comprobante por WhatsApp</p>
               </button>
-              <button onClick={() => handleOrder("efectivo")} disabled={checkingOut} class="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
-                <p class="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
-                <p class="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
+              <button onClick={() => handleOrder("efectivo")} disabled={checkingOut} className="w-full text-left border rounded p-3 hover:border-ml-blue transition-colors">
+                <p className="text-sm font-medium text-ml-text">{checkingOut ? "Procesando..." : "Efectivo"}</p>
+                <p className="text-xs text-ml-text-muted">Pagás en efectivo al recibir el producto</p>
               </button>
-              <button onClick={() => setPayStep("form")} class="text-xs text-ml-blue hover:underline">← Volver</button>
+              <button onClick={() => setPayStep("form")} className="text-xs text-ml-blue hover:underline">← Volver</button>
             </div>
           )}
 
           {payStep === "done" && orderResult && (
-            <div class="border rounded p-4 space-y-3">
-              <p class="text-sm font-medium text-green-600">✓ Pedido registrado</p>
-              <p class="text-xs text-ml-text-muted">Pedido #{orderResult.orderId.slice(0, 8)}</p>
+            <div className="border rounded p-4 space-y-3">
+              <p className="text-sm font-medium text-green-600">✓ Pedido registrado</p>
+              <p className="text-xs text-ml-text-muted">Pedido #{orderResult.orderId.slice(0, 8)}</p>
               {orderResult.method === "transferencia" ? (
-                <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
+                <div className="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1">
                   <p><strong>Titular:</strong> {TRANSFER.titular}</p>
                   <p><strong>CVU:</strong> {TRANSFER.cvu}</p>
                   <p><strong>Alias:</strong> {TRANSFER.alias}</p>
                   <p><strong>CUIT:</strong> {TRANSFER.cuit}</p>
                 </div>
               ) : (
-                <p class="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>
+                <p className="text-xs text-ml-text-secondary">Nos comunicamos para coordinar la entrega y el pago en efectivo.</p>
               )}
-              <a href={orderResult.waUrl} target="_blank" rel="noopener" class="block text-center bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
+              <a href={orderResult.waUrl} target="_blank" rel="noopener" className="block text-center bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors">
                 {orderResult.method === "transferencia" ? "Enviar comprobante por WhatsApp" : "Coordinar por WhatsApp"}
               </a>
             </div>
           )}
 
           {payStep !== "done" && (
-            <div class="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
-              <p class="font-medium text-ml-text">O transferencia bancaria</p>
+            <div className="bg-ml-bg rounded p-3 text-xs text-ml-text-secondary space-y-1 mt-3">
+              <p className="font-medium text-ml-text">O transferencia bancaria</p>
               <p><strong>Titular:</strong> Esteban Selvaggi</p>
               <p><strong>CVU:</strong> 0000077200132500365889</p>
               <p><strong>Alias:</strong> SELVAGGIESTEAAG.PF</p>
               <p><strong>CUIT:</strong> 20-43310259-3</p>
-              <p class="text-ml-text-muted">Enviá el comprobante por WhatsApp</p>
+              <p className="text-ml-text-muted">Enviá el comprobante por WhatsApp</p>
             </div>
           )}
         </div>

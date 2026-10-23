@@ -32,14 +32,14 @@ export default function ProductCardActions({ productId, title, price, image, slu
   return (
     <>
       <button
-        class="ml-btn-outline text-xs px-3 py-1.5"
+        className="ml-btn-outline text-xs px-3 py-1.5"
         onClick={addToCart}
         aria-label="Agregar al carrito"
       >
         Agregar al carrito
       </button>
       <button
-        class={`p-1.5 transition-colors ${isFav ? 'text-red-500' : 'text-ml-text-muted hover:text-red-500'}`}
+        className={`p-1.5 transition-colors ${isFav ? 'text-red-500' : 'text-ml-text-muted hover:text-red-500'}`}
         onClick={toggleFav}
         aria-label={isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'}
       >
@@ -49,7 +49,7 @@ export default function ProductCardActions({ productId, title, price, image, slu
       </button>
 
       {showToast && (
-        <div class="fixed bottom-4 right-4 bg-ml-green text-white text-sm font-medium px-4 py-3 rounded shadow-lg animate-fade-in z-50">
+        <div className="fixed bottom-4 right-4 bg-ml-green text-white text-sm font-medium px-4 py-3 rounded shadow-lg animate-fade-in z-50">
           Agregado al carrito
         </div>
       )}

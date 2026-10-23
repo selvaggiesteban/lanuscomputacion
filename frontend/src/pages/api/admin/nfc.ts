@@ -1,7 +1,8 @@
+import type { APIContext } from 'astro';
 import { getAllNfcCards, getNfcCardBySlug, upsertNfcCard, deleteNfcCard } from '../../../lib/d1';
 import { requireAdmin, unauthorized } from '../../../lib/admin-auth';
 
-export async function GET({ request, locals }) {
+export async function GET({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   const db = auth.DB;
@@ -27,7 +28,7 @@ export async function GET({ request, locals }) {
   }
 }
 
-export async function POST({ request, locals }) {
+export async function POST({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {
@@ -41,7 +42,7 @@ export async function POST({ request, locals }) {
   }
 }
 
-export async function PUT({ request, locals }) {
+export async function PUT({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {
@@ -55,7 +56,7 @@ export async function PUT({ request, locals }) {
   }
 }
 
-export async function DELETE({ request, locals }) {
+export async function DELETE({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {

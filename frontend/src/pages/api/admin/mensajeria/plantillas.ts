@@ -1,7 +1,8 @@
+import type { APIContext } from 'astro';
 import { getMessageTemplates, upsertMessageTemplate, deleteMessageTemplate } from '../../../../lib/d1';
 import { requireAdmin, unauthorized } from '../../../../lib/admin-auth';
 
-export async function GET({ locals, request }) {
+export async function GET({ locals, request }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {
@@ -12,7 +13,7 @@ export async function GET({ locals, request }) {
   }
 }
 
-export async function POST({ request, locals }) {
+export async function POST({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {
@@ -25,7 +26,7 @@ export async function POST({ request, locals }) {
   }
 }
 
-export async function PUT({ request, locals }) {
+export async function PUT({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {
@@ -38,7 +39,7 @@ export async function PUT({ request, locals }) {
   }
 }
 
-export async function DELETE({ request, locals }) {
+export async function DELETE({ request, locals }: APIContext) {
   const auth = await requireAdmin(locals, request);
   if (!auth) return unauthorized();
   try {

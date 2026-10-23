@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { validateCoupon, applyCouponDiscount } from '../../../lib/d1';
 
 export const POST: APIRoute = async ({ request, locals }) => {
-  const { env } = locals as { env: { DB: D1Database } };
+  const env = locals.runtime.env;
   const body = await request.json();
   const { code, cartTotal, items } = body as {
     code: string;

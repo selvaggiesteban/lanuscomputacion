@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     const ids = body.items.map(i => i.product_id);
     const placeholders = ids.map(() => "?").join(",");
 
-    let products = [];
+    let products: { id: string; title: string; price: number; category_id: string; category_name: string; available_qty: number; thumbnail: string; slug: string }[] = [];
     try {
       const { results } = await DB.prepare(
         `SELECT id, title, price, category_id, category_name, available_qty, thumbnail, slug FROM products WHERE id IN (${placeholders}) AND status IN ('published', 'archived')`
@@ -66,7 +66,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     // are charged the wholesale price. Displayed prices are informational only.
     let sessionUser;
     let b2bApproved = false;
-    let b2bRules = [];
+    let b2bRules: Awaited<ReturnType<typeof getActiveB2bRules>> = [];
     try {
       sessionUser = await getUserFromRequest(request, DB, getJwtSecret((locals.runtime as any).env ?? {}));
       b2bApproved = isApprovedB2bUser(sessionUser as any);

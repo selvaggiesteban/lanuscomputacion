@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
   const user = await db.prepare(
     "SELECT * FROM customers WHERE email = ?"
   ).bind(body.email).first<{
-    id: string;
+    id: number;
     email: string;
     name: string;
     password_hash: string;
