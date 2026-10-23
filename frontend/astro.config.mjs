@@ -11,6 +11,12 @@ export default defineConfig({
     }),
   ],
   output: 'server',
+  security: {
+    // Los endpoints externos (cron con Bearer, webhook de ML) no envian
+    // Sec-Fetch-Site y Astro los rechazaria con 403. La proteccion CSRF de
+    // rutas admin se hace en lib/admin-auth.ts (validacion de Origin).
+    checkOrigin: false,
+  },
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
