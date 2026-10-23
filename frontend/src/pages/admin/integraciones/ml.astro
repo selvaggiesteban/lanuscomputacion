@@ -161,7 +161,7 @@ function eventBadgeClass(statusValue: string | null | undefined): string {
               id="register-hook"
               class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-3 rounded-lg hover:bg-gray-50 transition font-medium shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Registrar webhook
+              Copiar URL del webhook
             </button>
             <p class="text-xs text-gray-400 text-center">
               Conectar te redirige al login oficial de Mercado Libre; al autorizar, la cuenta queda vinculada.
@@ -176,7 +176,7 @@ function eventBadgeClass(statusValue: string | null | undefined): string {
           <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
             <li>Hacé click en <strong>Conectar cuenta Mercado Libre</strong> y autorizá la app en el sitio de ML.</li>
             <li>Al volver, el estado debería mostrar <strong>Conectado</strong> con tu nickname de vendedor.</li>
-            <li>Registra el webhook con el botón <strong>Registrar webhook</strong> para recibir las notificaciones de ventas.</li>
+            <li>Configurá el webhook con el botón <strong>Copiar URL del webhook</strong>: pegala en <strong>Mis Aplicaciones → Callback URL Notifications</strong> de Mercado Libre y activá el topic <strong>orders_v2</strong>.</li>
             <li>Usá <strong>Sincronizar ahora</strong> para publicar o actualizar el catálogo en ML.</li>
           </ol>
           <p class="text-xs text-gray-500 mt-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
@@ -248,26 +248,51 @@ function eventBadgeClass(statusValue: string | null | undefined): string {
       el.className = `p-3 rounded-lg text-sm mb-6 shadow-sm ${colors}`;
     }
 
-    // Registrar webhook
+    function showStatusHtml(html: string, kind: "ok" | "error" | "info") {
+      const el = document.getElementById("ml-action-status");
+      if (!el) return;
+      el.innerHTML = html;
+      const colors =
+        kind === "ok"
+          ? "bg-green-50 text-green-700 border-l-4 border-green-500"
+          : kind === "error"
+            ? "bg-red-50 text-red-700 border-l-4 border-red-500"
+            : "bg-gray-100 text-gray-700 border-l-4 border-gray-400";
+      el.className = `p-3 rounded-lg text-sm mb-6 shadow-sm ${colors}`;
+    }
+    // Configurar webhook: el endpoint devuelve la URL de callback (el alta por
+    // API no está disponible para apps no certificadas); la copiamos al
+    // portapapeles y quedan indicadas las instrucciones para pegarla en ML.
     const hookBtn = document.getElementById("register-hook") as HTMLButtonElement | null;
     hookBtn?.addEventListener("click", async () => {
       if (!hookBtn) return;
       hookBtn.disabled = true;
-      showStatus("Registrando webhook…", "info");
+      showStatus("Obteniendo URL del webhook…", "info");
       try {
         const res = await fetch("/api/meli/hooks", { method: "POST", credentials: "same-origin" });
         let data: any = null;
         try {
           data = await res.json();
         } catch {}
-        if (res.ok && data?.registered) {
-          showStatus("Webhook registrado correctamente.", "ok");
+        if (res.ok && data?.callback) {
+          let copied = false;
+          try {
+            await navigator.clipboard.writeText(data.callback);
+            copied = true;
+          } catch {}
+          showStatusHtml(
+            `${copied ? "URL copiada al portapapeles. " : ""}Pegala en <a href="${data.appUrl}" target="_blank" rel="noopener" class="font-semibold underline">Mis Aplicaciones de Mercado Libre</a> → <strong>Callback URL Notifications</strong> y activá el topic <strong>${data.topic}</strong>.` +
+              (copied
+                ? ""
+                : `<br><code class="block mt-2 text-xs break-all bg-white border border-gray-200 rounded p-2">${data.callback}</code>`),
+            "ok"
+          );
         } else {
           const detail = data?.error ? `: ${data.error}` : ` (HTTP ${res.status})`;
-          showStatus(`No se pudo registrar el webhook${detail}`, "error");
+          showStatus(`No se pudo obtener la URL del webhook${detail}`, "error");
         }
       } catch {
-        showStatus("Error de red al registrar el webhook.", "error");
+        showStatus("Error de red al obtener la URL del webhook.", "error");
       } finally {
         hookBtn.disabled = false;
       }
