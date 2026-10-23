@@ -24,6 +24,11 @@ export type Product = {
   sku: string;
   iva_pct: number;
   internal_tax_pct: number;
+  // Ítem publicado en Mercado Libre (migración 021). Opcional: columnas nuevas
+  // y queries antiguas (SELECT *) pueden no traerlas.
+  ml_item_id?: string | null;
+  // Categoría MLA asignada / override manual (migración 021).
+  ml_category_id?: string | null;
 };
 
 export type Category = {
@@ -49,7 +54,7 @@ export async function getProducts(db: D1Database, options?: {
   sort?: string;
   includeArchived?: boolean;
 }): Promise<Product[]> {
-  let sql = `SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct, status FROM products WHERE ${options?.includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
+  let sql = `SELECT id, title, slug, price, cost_price, thumbnail, category_id, category_name, subcategory_name, available_qty, dollar_rate, brand, free_shipping, provider_store, iva_pct, internal_tax_pct, status, ml_item_id, ml_category_id FROM products WHERE ${options?.includeArchived ? "status IN ('published','archived')" : "status = 'published'"}`;
   const binds: any[] = [];
 
   if (options?.category && options.category !== 'todas') {
@@ -98,8 +103,19 @@ export async function getProducts(db: D1Database, options?: {
     binds.push(options.offset);
   }
 
-  const { results } = await db.prepare(sql).bind(...binds).all<Product>();
-  return results ?? [];
+  let results: Product[] = [];
+  try {
+    const res = await db.prepare(sql).bind(...binds).all<Product>();
+    results = res.results ?? [];
+  } catch (err) {
+    // Degradación puntual: si la migración 021 (columnas ml_*) todavía no se
+    // aplicó, seguimos sirviendo el catálogo sin ellas en vez de romper la página.
+    if (!String(err).includes("ml_item_id")) throw err;
+    const legacySql = sql.replace(", ml_item_id, ml_category_id FROM", " FROM");
+    const res = await db.prepare(legacySql).bind(...binds).all<Product>();
+    results = res.results ?? [];
+  }
+  return results;
 }
 
 export async function getProductBySlug(db: D1Database, slug: string): Promise<Product | null> {
@@ -227,6 +243,9 @@ export type Order = {
   mp_preference_id: string | null;
   mp_payment_id: string | null;
   payment_method: string;
+  // Origen del pedido e ID externo (migración 024): 'web' | 'mercadolibre', etc.
+  source?: string | null;
+  external_id?: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -879,4 +898,42 @@ export async function updateMessageStatus(db: D1Database, id: number, status: st
   sql += " WHERE id = ?";
   binds.push(id);
   await db.prepare(sql).bind(...binds).run();
+}
+
+// ─── Mercado Libre Events ─────────────────────────────────────────────────────
+
+// Registra un evento de la integración Mercado Libre en meli_events (migración
+// 023). Nunca lanza: los eventos son best-effort y no deben cortar el flujo
+// principal (webhooks, sincronizaciones, OAuth).
+export async function logMeliEvent(
+  db: D1Database,
+  e: {
+    eventType: string;
+    entity?: string;
+    entityId?: string | number;
+    status?: string;
+    message?: string;
+    payload?: unknown;
+  },
+): Promise<void> {
+  try {
+    let payload: string | null = null;
+    if (e.payload !== undefined && e.payload !== null) {
+      payload = typeof e.payload === "string" ? e.payload : JSON.stringify(e.payload);
+    }
+
+    await db.prepare(`
+      INSERT INTO meli_events (event_type, entity, entity_id, status, message, payload)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).bind(
+      e.eventType,
+      e.entity ?? null,
+      e.entityId === undefined || e.entityId === null ? null : String(e.entityId),
+      e.status ?? "ok",
+      e.message ?? null,
+      payload,
+    ).run();
+  } catch (err) {
+    console.error("logMeliEvent failed:", err);
+  }
 }

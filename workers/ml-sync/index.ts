@@ -12,7 +12,7 @@ export default {
     try {
       const products = await getProducts(env.DB, { includeArchived: false });
       // Default category for global sync, should be mapped per product in next iteration
-      const results = await syncService.syncAllProducts(products, "MLA1234", env.DB);
+      const results = await syncService.syncAllProducts(products, null, env.DB);
       
       console.log(`Sync completed: ${results.created} created, ${results.updated} updated, ${results.failed} failed.`);
     } catch (e) {
