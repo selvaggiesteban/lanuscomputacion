@@ -1,17 +1,26 @@
-import type { PagesRequest, PagesResponse } from "@cloudflare/workers-types";
+import type { APIRoute } from "astro";
+import { requireAdmin, unauthorized } from "../../../lib/admin-auth";
 
-export const onRequest: PagesFunction = async (context) => {
-  const { env } = context;
-  
+// GET /api/meli/events — últimos eventos de la integración ML.
+export const GET: APIRoute = async ({ locals, request }) => {
+  const auth = await requireAdmin(locals, request);
+  if (!auth) return unauthorized();
+
   try {
-    const events = await env.DB.prepare(
-      "SELECT * FROM meli_events ORDER BY created_at DESC LIMIT 50"
+    const events = await auth.DB.prepare(
+      `SELECT id, event_type, entity, entity_id, status, message, payload, created_at
+         FROM meli_events ORDER BY created_at DESC LIMIT 50`
     ).all();
-    
-    return new Response(JSON.stringify(events.results), { 
-      headers: { "Content-Type": "application/json" } 
+
+    return new Response(JSON.stringify(events.results || []), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
   } catch (e) {
-    return new Response(JSON.stringify({ error: "Database error" }), { status: 500 });
+    // Tabla meli_events aún inexistente (migración pendiente)
+    return new Response(JSON.stringify([]), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
