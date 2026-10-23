@@ -1,4 +1,4 @@
-﻿import puppeteer from '@cloudflare/puppeteer';
+import puppeteer from '@cloudflare/puppeteer';
 
 // lanus-ml-compare — Worker con cron diario (13:00 UTC / 10:00 ART) que
 // contrasta los precios de los productos de la campaña (KV `snapshot:latest`,

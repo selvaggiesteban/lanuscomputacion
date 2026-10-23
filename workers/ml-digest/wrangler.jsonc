@@ -5,7 +5,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "lanuscomputacion-db",
+      "database_name": "lanus-catalog",
       "database_id": "c0a53831-2932-4dc5-94d9-b37be72e8219"
     }
   ],

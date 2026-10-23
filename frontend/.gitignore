@@ -1,0 +1,10 @@
+# Build output y caches de Astro
+dist/
+.astro/
+
+# Secrets locales (nunca commitear)
+.env
+.env.*
+
+# Logs de build/deploy
+*.log

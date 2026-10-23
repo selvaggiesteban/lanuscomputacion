@@ -10,10 +10,16 @@ __pycache__/
 venv/
 .env
 .env.local
+.env.*
+!.env.example
 APIS/
 *.db
 images/
 logo lanus computacion.PNG
-.env
-.env.local
 venv/
+commitmsg.txt
+*.log
+build-*.log
+deploy.log
+*.tsbuildinfo
+.astro/
