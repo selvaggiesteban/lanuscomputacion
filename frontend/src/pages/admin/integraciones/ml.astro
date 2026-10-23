@@ -1,10 +1,79 @@
 ---
 import Layout from "../../../layouts/AdminLayout.astro";
 
+const env = Astro.locals.runtime.env;
 const status = Astro.url.searchParams.get("status");
+
+function formatTs(value: string | null | undefined): string | null {
+  if (!value) return null;
+  try {
+    const raw = String(value);
+    const iso = raw.includes("T") ? raw : raw.replace(" ", "T") + "Z";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return raw;
+    return d.toLocaleString("es-AR", { dateStyle: "medium", timeStyle: "short" });
+  } catch {
+    return String(value);
+  }
+}
+
+// Token de conexión (tabla puede no existir aún → estado "no configurado")
+let tokenRow: any = null;
+try {
+  tokenRow = await env.DB.prepare("SELECT * FROM meli_tokens WHERE id=1").first();
+} catch (e) {
+  console.error("D1 Error (meli_tokens) en admin/integraciones/ml:", e);
+  tokenRow = null;
+}
+
+const connected = !!(tokenRow && tokenRow.access_token);
+const nickname: string | null = tokenRow?.nickname || null;
+const tokenExpires = formatTs(tokenRow?.expires_at);
+const lastSync = formatTs(tokenRow?.last_sync_at);
+
+// Stats del catálogo
+let totalProducts = 0;
+try {
+  const r = await env.DB.prepare("SELECT COUNT(*) AS c FROM products").first<{ c: number }>();
+  totalProducts = r?.c ?? 0;
+} catch (e) {
+  console.error("D1 Error (products count) en admin/integraciones/ml:", e);
+}
+
+let syncedProducts = 0;
+try {
+  const r = await env.DB.prepare(
+    "SELECT COUNT(*) AS c FROM products WHERE ml_item_id IS NOT NULL"
+  ).first<{ c: number }>();
+  syncedProducts = r?.c ?? 0;
+} catch (e) {
+  console.error("D1 Error (products ml_item_id count) en admin/integraciones/ml:", e);
+}
+
+const unsyncedProducts = Math.max(totalProducts - syncedProducts, 0);
+const syncPct = totalProducts > 0 ? Math.round((syncedProducts / totalProducts) * 100) : 0;
+
+// Eventos recientes (tabla puede no existir aún)
+let events: any[] = [];
+try {
+  const { results } = await env.DB.prepare(
+    "SELECT * FROM meli_events ORDER BY created_at DESC LIMIT 10"
+  ).all();
+  events = results || [];
+} catch (e) {
+  console.error("D1 Error (meli_events) en admin/integraciones/ml:", e);
+  events = [];
+}
+
+function eventBadgeClass(statusValue: string | null | undefined): string {
+  const s = String(statusValue || "").toLowerCase();
+  if (s.includes("error") || s.includes("fail")) return "bg-red-100 text-red-700";
+  if (s.includes("pend")) return "bg-yellow-100 text-yellow-700";
+  return "bg-green-100 text-green-700";
+}
 ---
 
-<Layout title="Integración Mercado Libre">
+<Layout title="Integración Mercado Libre | Admin - Lanús Computación">
   <div class="p-6 max-w-6xl mx-auto">
     <div class="flex justify-between items-center mb-8">
       <div>
@@ -12,8 +81,8 @@ const status = Astro.url.searchParams.get("status");
         <p class="text-gray-500">Gestión de canal de ventas y sincronización de catálogo</p>
       </div>
       <div class="flex gap-3">
-        <button id="sync-all" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-2 shadow-sm">
-          <span class="sync-icon">🔄</span> Forzar Sincronización Total
+        <button id="sync-all" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center gap-2 shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+          <span>🔄</span> Sincronizar ahora
         </button>
       </div>
     </div>
@@ -25,27 +94,34 @@ const status = Astro.url.searchParams.get("status");
       </div>
     )}
 
+    <div id="ml-action-status" class="hidden p-3 rounded-lg text-sm mb-6 shadow-sm"></div>
+
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
         <p class="text-sm text-gray-500 uppercase font-semibold">Productos Totales</p>
-        <p id="stat-total-products" class="text-3xl font-bold text-gray-800">--</p>
+        <p class="text-3xl font-bold text-gray-800">{totalProducts}</p>
         <p class="text-xs text-gray-400 mt-1">En base de datos D1</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
         <p class="text-sm text-gray-500 uppercase font-semibold">Sincronizados</p>
-        <p id="stat-synced-products" class="text-3xl font-bold text-indigo-600">--</p>
-        <p id="stat-sync-pct" class="text-xs text-gray-400 mt-1">0% del catálogo</p>
+        <p class="text-3xl font-bold text-indigo-600">{syncedProducts}</p>
+        <p class="text-xs text-gray-400 mt-1">{syncPct}% del catálogo</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-        <p class="text-sm text-gray-500 uppercase font-semibold">Ventas (12h)</p>
-        <p id="stat-sales-12h" class="text-3xl font-bold text-green-600">--</p>
-        <p class="text-xs text-gray-400 mt-1">Registradas en meli_events</p>
+        <p class="text-sm text-gray-500 uppercase font-semibold">Sin Publicar</p>
+        <p class="text-3xl font-bold text-yellow-600">{unsyncedProducts}</p>
+        <p class="text-xs text-gray-400 mt-1">Sin ID de Mercado Libre</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
         <p class="text-sm text-gray-500 uppercase font-semibold">Estado Conexión</p>
-        <p id="stat-connection" class="text-lg font-bold text-gray-800 mt-2">Verificando...</p>
-        <div id="connection-dot" class="w-3 h-3 rounded-full bg-gray-300 inline-block align-middle mr-2"></div>
+        <p id="stat-connection" class="text-lg font-bold text-gray-800 mt-2 flex items-center gap-2">
+          <span class={`w-3 h-3 rounded-full inline-block ${connected ? "bg-green-500" : "bg-red-500"}`}></span>
+          {connected ? (nickname ? `Conectado — ${nickname}` : "Conectado") : "No conectado"}
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+          {totalProducts} productos · {syncedProducts} sincronizados · {unsyncedProducts} sin publicar
+        </p>
       </div>
     </div>
 
@@ -56,36 +132,56 @@ const status = Astro.url.searchParams.get("status");
           <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
             <span>⚙️</span> Configuración de Cuenta
           </h2>
-          <div class="space-y-4">
-            <p class="text-sm text-gray-600">
-              Utiliza este panel para gestionar el vínculo con tu cuenta de vendedor.
-            </p>
-            <a 
-              href={`https://auth.mercadolibre.com.ar/authorization?app_id=${import.meta.env.ML_CLIENT_ID}&redirect_uri=https://lanuscomputacion.com/api/auth/ml-callback`}
+          <div class="space-y-3 mb-5">
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <span class="text-sm text-gray-700">Conexión</span>
+              <span class={`text-xs px-2 py-1 rounded-full font-bold ${connected ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}>
+                {connected ? (nickname ? `Conectado — ${nickname}` : "Conectado") : "No conectado"}
+              </span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <span class="text-sm text-gray-700">Última sincronización</span>
+              <span class="text-xs font-bold text-gray-700">{lastSync ?? "Nunca"}</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <span class="text-sm text-gray-700">Token de acceso</span>
+              <span class="text-xs font-bold text-gray-700">
+                {connected ? (tokenExpires ? `Vence ${tokenExpires}` : "—") : "—"}
+              </span>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <a
+              href="/api/meli/connect"
               class="block text-center bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-sm"
             >
-              Re-conectar Cuenta ML
+              Conectar cuenta Mercado Libre
             </a>
-            <div class="pt-4 border-t border-gray-100">
-              <p class="text-xs text-gray-400 text-center italic">
-                Sincronización automática activa cada 60 min.
-              </p>
-            </div>
+            <button
+              id="register-hook"
+              class="w-full bg-white border border-gray-300 text-gray-800 px-4 py-3 rounded-lg hover:bg-gray-50 transition font-medium shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Registrar webhook
+            </button>
+            <p class="text-xs text-gray-400 text-center">
+              Conectar te redirige al login oficial de Mercado Libre; al autorizar, la cuenta queda vinculada.
+            </p>
           </div>
         </div>
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
-            <span>🔔</span> Notificaciones
+            <span>💡</span> Cómo configurar la integración
           </h2>
-          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg mb-2">
-            <span class="text-sm text-gray-700">Reportes Email (9am / 5pm)</span>
-            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-bold">ACTIVO</span>
-          </div>
-          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <span class="text-sm text-gray-700">Webhook de Ventas</span>
-            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-bold">ACTIVO</span>
-          </div>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+            <li>Hacé click en <strong>Conectar cuenta Mercado Libre</strong> y autorizá la app en el sitio de ML.</li>
+            <li>Al volver, el estado debería mostrar <strong>Conectado</strong> con tu nickname de vendedor.</li>
+            <li>Registra el webhook con el botón <strong>Registrar webhook</strong> para recibir las notificaciones de ventas.</li>
+            <li>Usá <strong>Sincronizar ahora</strong> para publicar o actualizar el catálogo en ML.</li>
+          </ol>
+          <p class="text-xs text-gray-500 mt-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+            Los secretos de la aplicación (Client ID y Client Secret) se configuran como variables de entorno en Cloudflare Pages; nunca se guardan en el código ni en esta pantalla.
+          </p>
         </div>
       </div>
 
@@ -96,23 +192,40 @@ const status = Astro.url.searchParams.get("status");
             <h2 class="text-lg font-semibold flex items-center gap-2">
               <span>📜</span> Actividad Reciente
             </h2>
-            <button id="refresh-logs" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Actualizar</button>
+            <button id="refresh-logs" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer">Actualizar</button>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-sm">
               <thead class="bg-gray-50 text-gray-500 uppercase text-xs font-semibold">
                 <tr>
                   <th class="px-6 py-3">Fecha</th>
-                  <th class="px-6 py-3">Evento</th>
-                  <th class="px-6 py-3">Item/ID</th>
-                  <th class="px-6 py-3">Detalle</th>
+                  <th class="px-6 py-3">Tipo</th>
+                  <th class="px-6 py-3">Estado</th>
+                  <th class="px-6 py-3">Mensaje</th>
                 </tr>
               </thead>
-              <tbody id="events-tbody" class="divide-y divide-gray-100">
-                <!-- Rows injected by JS -->
-                <tr>
-                  <td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">Cargando eventos...</td>
-                </tr>
+              <tbody class="divide-y divide-gray-100">
+                {events.length === 0 && (
+                  <tr>
+                    <td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">Sin eventos todavía</td>
+                  </tr>
+                )}
+                {events.map((e) => (
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="px-6 py-4 text-gray-500 whitespace-nowrap">{formatTs(e.created_at) ?? "—"}</td>
+                    <td class="px-6 py-4">
+                      <span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
+                        {(e.event_type || "—").toUpperCase()}
+                      </span>
+                    </td>
+                    <td class="px-6 py-4">
+                      <span class={`px-2 py-1 rounded-full text-xs font-bold ${eventBadgeClass(e.status)}`}>
+                        {e.status || "—"}
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">{e.message || "—"}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -122,93 +235,75 @@ const status = Astro.url.searchParams.get("status");
   </div>
 
   <script>
-    async function updateStats() {
+    function showStatus(text: string, kind: "ok" | "error" | "info") {
+      const el = document.getElementById("ml-action-status");
+      if (!el) return;
+      el.textContent = text;
+      const colors =
+        kind === "ok"
+          ? "bg-green-50 text-green-700 border-l-4 border-green-500"
+          : kind === "error"
+            ? "bg-red-50 text-red-700 border-l-4 border-red-500"
+            : "bg-gray-100 text-gray-700 border-l-4 border-gray-400";
+      el.className = `p-3 rounded-lg text-sm mb-6 shadow-sm ${colors}`;
+    }
+
+    // Registrar webhook
+    const hookBtn = document.getElementById("register-hook") as HTMLButtonElement | null;
+    hookBtn?.addEventListener("click", async () => {
+      if (!hookBtn) return;
+      hookBtn.disabled = true;
+      showStatus("Registrando webhook…", "info");
       try {
-        // 1. Get total and synced products
-        const prodRes = await fetch('/api/meli/stats');
-        const stats = await prodRes.json();
-        
-        document.getElementById('stat-total-products')!.innerText = stats.total;
-        document.getElementById('stat-synced-products')!.innerText = stats.synced;
-        const pct = Math.round((stats.synced / stats.total) * 100) || 0;
-        document.getElementById('stat-sync-pct')!.innerText = `${pct}% del catálogo`;
-        
-        // 2. Connection Status
-        const connRes = await fetch('/api/meli/connection');
-        const conn = await connRes.json();
-        const dot = document.getElementById('connection-dot')!;
-        const text = document.getElementById('stat-connection')!;
-        
-        if (conn.connected) {
-          dot.className = 'w-3 h-3 rounded-full bg-green-500 inline-block align-middle mr-2';
-          text.innerText = 'Conectado';
-          text.className = 'text-lg font-bold text-green-600 mt-2';
+        const res = await fetch("/api/meli/hooks", { method: "POST", credentials: "same-origin" });
+        let data: any = null;
+        try {
+          data = await res.json();
+        } catch {}
+        if (res.ok && data?.registered) {
+          showStatus("Webhook registrado correctamente.", "ok");
         } else {
-          dot.className = 'w-3 h-3 rounded-full bg-red-500 inline-block align-middle mr-2';
-          text.innerText = 'Desconectado';
-          text.className = 'text-lg font-bold text-red-600 mt-2';
+          const detail = data?.error ? `: ${data.error}` : ` (HTTP ${res.status})`;
+          showStatus(`No se pudo registrar el webhook${detail}`, "error");
         }
-      } catch (e) {
-        console.error("Stats error:", e);
-      }
-    }
-
-    async function loadEvents() {
-      const tbody = document.getElementById('events-tbody')!;
-      try {
-        const res = await fetch('/api/meli/events');
-        const events = await res.json();
-        
-        if (events.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">No hay eventos recientes.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = events.map(e => `
-          <tr class="hover:bg-gray-50 transition">
-            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">${new Date(e.created_at).toLocaleString()}</td>
-            <td class="px-6 py-4">
-              <span class="px-2 py-1 rounded-full text-xs font-bold ${
-                e.event_type === 'sale' ? 'bg-green-100 text-green-700' : 
-                e.event_type === 'error' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
-              }">
-                ${e.event_type.toUpperCase()}
-              </span>
-            </td>
-            <td class="px-6 py-4 font-mono text-xs">${e.item_id || 'N/A'}</td>
-            <td class="px-6 py-4 text-gray-600">${e.payload}</td>
-          </tr>
-        `).join('');
-      } catch (e) {
-        tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-red-500">Error al cargar eventos.</td></tr>';
-      }
-    }
-
-    // Sync All
-    const syncBtn = document.getElementById('sync-all');
-    syncBtn?.addEventListener('click', async () => {
-      if (!syncBtn) return;
-      syncBtn.disabled = true;
-      syncBtn.innerText = 'Sincronizando...';
-      
-      try {
-        const res = await fetch('/api/meli/sync');
-        const data = await res.json();
-        alert(`Sincronización completada: ${data.created} creados, ${data.updated} actualizados, ${data.failed} fallidos.`);
-        updateStats();
-      } catch (e) {
-        alert('Error al sincronizar');
+      } catch {
+        showStatus("Error de red al registrar el webhook.", "error");
       } finally {
-        syncBtn.disabled = false;
-        syncBtn.innerText = '🔄 Forzar Sincronización Total';
+        hookBtn.disabled = false;
       }
     });
 
-    document.getElementById('refresh-logs')?.addEventListener('click', loadEvents);
+    // Sincronizar ahora
+    const syncBtn = document.getElementById("sync-all") as HTMLButtonElement | null;
+    syncBtn?.addEventListener("click", async () => {
+      if (!syncBtn) return;
+      syncBtn.disabled = true;
+      showStatus("Sincronizando catálogo…", "info");
+      try {
+        const res = await fetch("/api/meli/sync", { method: "POST", credentials: "same-origin" });
+        let data: any = null;
+        try {
+          data = await res.json();
+        } catch {}
+        if (res.ok) {
+          const created = data?.created ?? 0;
+          const updated = data?.updated ?? 0;
+          const failed = data?.failed ?? 0;
+          const skipped = data?.skipped ?? 0;
+          showStatus(`Sincronización finalizada: ${created} creados, ${updated} actualizados, ${skipped} sin cambios, ${failed} fallidos.`, failed > 0 ? "error" : "ok");
+        } else {
+          const detail = data?.error ? `: ${data.error}` : ` (HTTP ${res.status})`;
+          showStatus(`La sincronización falló${detail}`, "error");
+        }
+      } catch {
+        showStatus("Error de red al sincronizar.", "error");
+      } finally {
+        syncBtn.disabled = false;
+      }
+    });
 
-    // Init
-    updateStats();
-    loadEvents();
+    document.getElementById("refresh-logs")?.addEventListener("click", () => {
+      window.location.reload();
+    });
   </script>
 </Layout>
----
