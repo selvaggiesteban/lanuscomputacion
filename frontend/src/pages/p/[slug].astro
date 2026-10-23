@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getNfcCardBySlug, incrementNfcScanCount } from '../../lib/d1';
 
@@ -29,7 +29,7 @@ const redirectUrl = card.target_url.startsWith('http')
   : `https://lanuscomputacion.com${card.target_url.startsWith('/') ? '' : '/'}${card.target_url}`;
 ---
 
-<BaseLayout title={`${card.title} | LanÃºs ComputaciÃ³n`}>
+<BaseLayout title={`${card.title} | Lanús Computación`}>
   <div class="min-h-screen flex items-center justify-center bg-gray-50">
     <div class="w-full max-w-md mx-4">
       <!-- NFC Card Visual -->
@@ -56,7 +56,7 @@ const redirectUrl = card.target_url.startsWith('http')
               target="_blank"
               rel="noopener noreferrer"
             >
-              Abrir en nueva pestaÃ±a
+              Abrir en nueva pestaña
             </a>
           </div>
         </div>
@@ -64,28 +64,28 @@ const redirectUrl = card.target_url.startsWith('http')
         <div class="px-8 pb-8">
           <div class="bg-white/10 rounded-lg p-4 text-center">
             <p class="text-sm opacity-70 mb-2">Escaneado {card.scan_count} veces</p>
-            <p class="text-xs opacity-50">Tarjeta #{card.card_number.toString().padStart(2, '0')} Â· NTAG213</p>
+            <p class="text-xs opacity-50">Tarjeta #{card.card_number.toString().padStart(2, '0')} · NTAG213</p>
           </div>
         </div>
       </div>
 
       <!-- QR Code fallback -->
       <div class="mt-6 bg-white rounded-xl shadow p-6 text-center">
-        <h3 class="font-medium text-ml-text mb-3">Â¿No tienes NFC? Escanea el cÃ³digo QR</h3>
+        <h3 class="font-medium text-ml-text mb-3">¿No tienes NFC? Escanea el código QR</h3>
         <div id="qrcode" class="mx-auto"></div>
         <p class="text-xs text-ml-text-muted mt-2">{redirectUrl}</p>
       </div>
 
       <!-- Instructions -->
       <div class="mt-6 bg-white rounded-xl shadow p-6">
-        <h3 class="font-medium text-ml-text mb-3">CÃ³mo usar tu tarjeta NFC</h3>
+        <h3 class="font-medium text-ml-text mb-3">Cómo usar tu tarjeta NFC</h3>
         <ol class="space-y-2 text-sm text-ml-text-secondary">
-          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">1</span>Acerca tu telÃ©fono a la tarjeta NFC</li>
-          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">2</span>Toca la notificaciÃ³n que aparece</li>
+          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">1</span>Acerca tu teléfono a la tarjeta NFC</li>
+          <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">2</span>Toca la notificación que aparece</li>
           <li class="flex items-center gap-2"><span class="w-6 h-6 bg-ml-yellow text-ml-text rounded-full flex items-center justify-center text-xs font-bold">3</span>Accede directo a {card.title}</li>
         </ol>
         <p class="mt-4 text-xs text-ml-text-muted">
-          * Requiere NFC activado. En iOS: ConfiguraciÃ³n > General > NFC. En Android: ConfiguraciÃ³n > Dispositivos conectados > NFC.
+          * Requiere NFC activado. En iOS: Configuración > General > NFC. En Android: Configuración > Dispositivos conectados > NFC.
         </p>
       </div>
     </div>
