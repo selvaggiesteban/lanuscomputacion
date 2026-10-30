@@ -6,12 +6,16 @@ import { verifyToken, getJwtSecret } from './lib/auth';
 // visits and crawlers never execute D1 queries (free tier: 5M rows_read/day).
 // Never cached: /admin*, /api*, /p/* (NFC writes a scan row per visit),
 // account/cart/checkout pages, non-200 responses and Set-Cookie responses.
+// Los TTL están alineados con el sync horario de Mercado Libre: con15-60 min
+// de frescura como máximo y un corte de consumo de D1 de ~90% por visita
+// repetida. Cada render frío escanea products completa; con5 min de TTL y
+// tráfico de crawlers la cuota free tier se agotaba en horas.
 const CACHE_RULES: { test: RegExp; sMaxAge: number }[] = [
-  { test: /^\/$/, sMaxAge: 300 }, // home
-  { test: /^\/ofertas$/, sMaxAge: 300 },
-  { test: /^\/categoria\/[^/]+$/, sMaxAge: 300 },
-  { test: /^\/producto\/[^/]+$/, sMaxAge: 300 },
-  { test: /^\/busqueda\/[^/]+$/, sMaxAge: 120 },
+  { test: /^\/$/, sMaxAge: 900 }, // home
+  { test: /^\/ofertas$/, sMaxAge: 900 },
+  { test: /^\/categoria\/[^/]+$/, sMaxAge: 3600 },
+  { test: /^\/producto\/[^/]+$/, sMaxAge: 3600 },
+  { test: /^\/busqueda\/[^/]+$/, sMaxAge: 600 },
   { test: /^\/servicios(\/[^/]+)?$/, sMaxAge: 3600 },
   {
     test: /^\/(como-comprar|contacto|preguntas-frecuentes|politicas-de-privacidad|politicas-de-cookies|politicas-de-envios-y-devoluciones|politica-de-devoluciones|b2b)$/,

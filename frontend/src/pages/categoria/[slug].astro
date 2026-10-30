@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
 import Pagination from '../../components/catalog/Pagination.astro';
 import SortSelector from '../../components/catalog/SortSelector.tsx';
-import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren } from '../../lib/d1';
+import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, getAllCategoriesWithChildren, cachedFacet } from '../../lib/d1';
 
 const { slug } = Astro.params;
 const DB = Astro.locals.runtime.env.DB;
@@ -33,41 +33,39 @@ const products = await getProducts(DB, {
   maxPrice: maxPrice || undefined,
   includeArchived: true,
 });
-const total = await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined, true);
-const brands = await getBrandsByCategory(DB, categoryFilter, subcategoryFilter, true);
+// Facetas del sidebar (conteo, marcas, categorías y rango de precios): se
+// cachean en el edge 15 min. Cada una escanea products completa (≈ 2.000
+// filas leídas) y ejecutarlas 4 veces por render agotaba la cuota free tier
+// de D1 (5M filas leídas/día) en pocas horas.
+const facetCacheKey = `/categoria/${slug}?cat=${categoryFilter ?? ''}&sub=${subcategoryFilter ?? ''}&brand=${brand ?? ''}`;
+const { total, brands, allCategories, priceRange } = await cachedFacet(facetCacheKey, 900, async () => {
+  let range: { min_price: number; max_price: number } | null = null;
+  try {
+    const priceSql = categoryFilter
+      ? `SELECT MIN(price) as min_price, MAX(price) as max_price
+         FROM products WHERE status = 'published' AND category_id = ?`
+      : `SELECT MIN(price) as min_price, MAX(price) as max_price
+         FROM products WHERE status = 'published'`;
+    range = categoryFilter
+      ? await DB.prepare(priceSql).bind(categoryFilter).first<{ min_price: number; max_price: number }>()
+      : await DB.prepare(priceSql).first<{ min_price: number; max_price: number }>();
+  } catch (e) {
+    console.error("D1 Error in [slug].astro:", e);
+  }
+
+  return {
+    total: await getProductCount(DB, categoryFilter, subcategoryFilter, brand || undefined, true),
+    brands: await getBrandsByCategory(DB, categoryFilter, subcategoryFilter, true),
+    allCategories: await getAllCategoriesWithChildren(DB),
+    priceRange: range,
+  };
+});
 
 const totalPages = Math.ceil(total / limit);
 const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.name || slug);
 
-// All categories for the sidebar filter
-const allCategories = await getAllCategoriesWithChildren(DB);
-
 // Build base URL for filters — always use current page slug
 const filterBaseUrl = `/categoria/${slug}`;
-
-// Get price range — fix for "todas" (no category filter)
-let priceRange;
-if (categoryFilter) {
-  try {
-    priceRange = await DB.prepare(`
-      SELECT MIN(price) as min_price, MAX(price) as max_price
-      FROM products WHERE status = 'published' AND category_id = ?
-    `).bind(categoryFilter).first<{ min_price: number; max_price: number }>();
-  } catch (e) {
-    console.error("D1 Error in [slug].astro:", e);
-    priceRange = null;
-  }
-} else {
-  try {
-    priceRange = await DB.prepare(`
-      SELECT MIN(price) as min_price, MAX(price) as max_price
-      FROM products WHERE status = 'published'
-    `).first<{ min_price: number; max_price: number }>();
-  } catch (e) {
-    console.error("D1 Error in [slug].astro:", e);
-    priceRange = null;
-  }
-}
 
 // Helper: is a category or subcategory currently active?
 const isCategoryActive = (catSlug: string) => slug === catSlug;

@@ -41,6 +41,40 @@ export type Category = {
   total_items: number;
 };
 
+// ── Edge cache para facetas del catálogo (protección de cuota D1) ──────────
+// Conteo de productos, facet de marcas, árbol de categorías y rango de precios
+// cambian como máximo con cada sync horario de Mercado Libre, así que se
+// guardan en el Cache API del edge y no se re-ejecutan contra D1 en cada
+// render (cada uno escanea products completa ≈ 2.000 filas leídas).
+export async function cachedFacet<T>(cacheKey: string, ttlSeconds: number, compute: () => Promise<T>): Promise<T> {
+  const cache = (globalThis as any).caches?.default;
+  if (!cache) return compute();
+
+  const req = new Request(new URL(`/__facet${cacheKey}`, 'https://lanuscomputacion.com'));
+  try {
+    const hit = await cache.match(req);
+    if (hit) return (await hit.json()) as T;
+  } catch {
+    // Caché no disponible → calcular de todos modos
+  }
+
+  const value = await compute();
+  try {
+    await cache.put(
+      req,
+      new Response(JSON.stringify(value), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': `public, s-maxage=${ttlSeconds}, max-age=0`,
+        },
+      }),
+    );
+  } catch {
+    // Si el put falla igual devolvemos el valor calculado
+  }
+  return value;
+};
+
 export async function getProducts(db: D1Database, options?: {
   limit?: number;
   offset?: number;
