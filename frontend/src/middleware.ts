@@ -189,25 +189,29 @@ export const onRequest = defineMiddleware(async (context, next) => {
         statusText: response.statusText,
         headers,
       });
-      const putPrimary = cache.put(context.request, outgoing.clone());
+
+      // Cache primary and stale entries sequentially to avoid body consumption issues
+      try {
+        await cache.put(context.request, outgoing.clone());
+      } catch (e) {
+        console.error('[cache] primary put failed:', e?.message || e);
+      }
 
       const staleHeaders = new Headers(headers);
       staleHeaders.set('Cache-Control', `public, s-maxage=${STALE_TTL}, max-age=0`);
-      const putStale = cache.put(
-        staleKeyFor(new URL(context.request.url)),
-        new Response(outgoing.clone().body, {
-          status: outgoing.status,
-          statusText: outgoing.statusText,
-          headers: staleHeaders,
-        })
-      );
-
-      const puts = Promise.allSettled([putPrimary, putStale]);
-      if (typeof runtime?.ctx?.waitUntil === 'function') {
-        runtime.ctx.waitUntil(puts);
-      } else {
-        await puts;
+      try {
+        await cache.put(
+          staleKeyFor(new URL(context.request.url)),
+          new Response(outgoing.clone().body, {
+            status: outgoing.status,
+            statusText: outgoing.statusText,
+            headers: staleHeaders,
+          })
+        );
+      } catch (e) {
+        console.error('[cache] stale put failed:', e?.message || e);
       }
+
       return outgoing;
     } catch {
       return response;
