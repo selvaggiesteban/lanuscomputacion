@@ -5,7 +5,7 @@ import Price from '../../components/ui/Price.astro';
 import Badge from '../../components/ui/Badge.astro';
 import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import ProductGrid from '../../components/catalog/ProductGrid.astro';
-import { getProductBySlug, getProducts, getActivePromotions, computePromoDiscount, getActiveB2bRules } from '../../lib/d1';
+import { getProductBySlug, getProducts, getCachedActivePromotions, computePromoDiscount, getCachedActiveB2bRules } from '../../lib/d1';
 import { getB2bPrice } from '../../lib/b2b';
 
 const { slug } = Astro.params;
@@ -17,13 +17,13 @@ if (!product) {
   return Astro.redirect('/404');
 }
 
-const promotions = await getActivePromotions(db);
+const promotions = await getCachedActivePromotions(db);
 const promoResult = computePromoDiscount(promotions, product.id, product.category_id, product.price);
 const promoPrice = promoResult?.promoPrice ?? product.price;
 
 // Public wholesale price (informational). The purchase gate is server-side
 // in /api/checkout: only approved B2B accounts pay this price.
-const b2bRules = await getActiveB2bRules(db);
+const b2bRules = await getCachedActiveB2bRules(db);
 const b2bInfo = getB2bPrice(b2bRules, product.category_name, product.price, promoPrice);
 
 const consult = product.available_qty <= 0 || product.status === 'archived';

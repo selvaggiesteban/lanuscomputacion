@@ -1,7 +1,7 @@
 ---
 import ProductCard from './ProductCard.astro';
 import type { Product } from './ProductCard.astro';
-import { getActiveB2bRules } from '../../lib/d1';
+import { getCachedActiveB2bRules } from '../../lib/d1';
 import { getB2bPrice } from '../../lib/b2b';
 
 export interface Props {
@@ -19,7 +19,7 @@ if (products.length > 0) {
   try {
     const db = (Astro.locals as any)?.runtime?.env?.DB;
     if (db) {
-      const rules = await getActiveB2bRules(db);
+      const rules = await getCachedActiveB2bRules(db);
       if (rules.length > 0) {
         items = products.map((p) => {
           const info = getB2bPrice(

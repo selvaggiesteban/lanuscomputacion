@@ -1,12 +1,12 @@
 ---
-import { getAllCategoriesTree } from '../../lib/d1';
+import { getCachedCategoriesTree } from '../../lib/d1';
 
 const db = (Astro.locals as any).runtime?.env?.DB;
 let categories: any[] = [];
 
 if (db) {
   try {
-    categories = await getAllCategoriesTree(db);
+    categories = await getCachedCategoriesTree(db);
   } catch (e) {
     console.error('[MegaMenu] Error loading categories:', e);
   }

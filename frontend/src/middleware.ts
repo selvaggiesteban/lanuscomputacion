@@ -16,6 +16,7 @@ const CACHE_RULES: { test: RegExp; sMaxAge: number }[] = [
   { test: /^\/categoria\/[^/]+$/, sMaxAge: 3600 },
   { test: /^\/producto\/[^/]+$/, sMaxAge: 3600 },
   { test: /^\/busqueda\/[^/]+$/, sMaxAge: 600 },
+  { test: /^\/api\/search$/, sMaxAge: 300 }, // autocomplete/search API - 5 min
   { test: /^\/servicios(\/[^/]+)?$/, sMaxAge: 3600 },
   {
     test: /^\/(como-comprar|contacto|preguntas-frecuentes|politicas-de-privacidad|politicas-de-cookies|politicas-de-envios-y-devoluciones|politica-de-devoluciones|b2b)$/,

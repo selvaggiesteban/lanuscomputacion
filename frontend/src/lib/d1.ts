@@ -77,6 +77,44 @@ export async function cachedFacet<T>(cacheKey: string, ttlSeconds: number, compu
   return value;
 };
 
+// ── Cached categories tree (evita doble query en Header + MegaMenu) ─────────
+// El árbol de categorías cambia solo con sync horario de ML → cache 1 hora en edge.
+export async function getCachedCategoriesTree(db: D1Database): Promise<CategoryTree[]> {
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
+  const cacheKey = '/__categories/tree';
+  const ttlSeconds = 3600; // 1 hora
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      const hit = await cache.match(req);
+      if (hit) return (await hit.json()) as CategoryTree[];
+    } catch {
+      // Cache unavailable → fallback to DB
+    }
+  }
+
+  const value = await getAllCategoriesTree(db);
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      await cache.put(
+        req,
+        new Response(JSON.stringify(value), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': `public, s-maxage=${ttlSeconds}, max-age=0`,
+          },
+        }),
+      );
+    } catch {
+      // Cache put failed → return value anyway
+    }
+  }
+  return value;
+};
+
 export async function getProducts(db: D1Database, options?: {
   limit?: number;
   offset?: number;
@@ -364,6 +402,44 @@ export async function getActivePromotions(db: D1Database): Promise<Promotion[]> 
   return results ?? [];
 }
 
+// ── Cached active promotions (evita query en cada página de producto) ────────
+// Las promociones cambian con sync horario → cache 1 hora en edge.
+export async function getCachedActivePromotions(db: D1Database): Promise<Promotion[]> {
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
+  const cacheKey = '/__promotions/active';
+  const ttlSeconds = 3600; // 1 hora
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      const hit = await cache.match(req);
+      if (hit) return (await hit.json()) as Promotion[];
+    } catch {
+      // Cache unavailable → fallback to DB
+    }
+  }
+
+  const value = await getActivePromotions(db);
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      await cache.put(
+        req,
+        new Response(JSON.stringify(value), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': `public, s-maxage=${ttlSeconds}, max-age=0`,
+          },
+        }),
+      );
+    } catch {
+      // Cache put failed → return value anyway
+    }
+  }
+  return value;
+};
+
 export function computePromoDiscount(
   promotions: Promotion[],
   productId: string,
@@ -527,6 +603,44 @@ export async function getActiveB2bRules(db: D1Database): Promise<B2bRule[]> {
   const { results } = await db.prepare("SELECT * FROM b2b_rules WHERE is_active = 1 ORDER BY category_name").all<B2bRule>();
   return results ?? [];
 }
+
+// ── Cached active B2B rules (evita query en cada ProductGrid) ────────────────
+// Las reglas B2B cambian raramente → cache 1 hora en edge.
+export async function getCachedActiveB2bRules(db: D1Database): Promise<B2bRule[]> {
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
+  const cacheKey = '/__b2b/rules/active';
+  const ttlSeconds = 3600; // 1 hora
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      const hit = await cache.match(req);
+      if (hit) return (await hit.json()) as B2bRule[];
+    } catch {
+      // Cache unavailable → fallback to DB
+    }
+  }
+
+  const value = await getActiveB2bRules(db);
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      await cache.put(
+        req,
+        new Response(JSON.stringify(value), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': `public, s-maxage=${ttlSeconds}, max-age=0`,
+          },
+        }),
+      );
+    } catch {
+      // Cache put failed → return value anyway
+    }
+  }
+  return value;
+};
 
 export async function getB2bRuleForCategory(db: D1Database, categoryName: string): Promise<B2bRule> {
   const match = await db.prepare(
@@ -972,4 +1086,92 @@ export async function logMeliEvent(
   } catch (err) {
     console.error("logMeliEvent failed:", err);
   }
+}
+
+// ── Cached best sellers para home page (evita queries pesadas en index) ───────
+// Los "más vendidos" cambian con sync horario → cache 1 hora en edge.
+export async function getCachedBestSellers(db: D1Database): Promise<any[]> {
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
+  const cacheKey = '/__bestsellers/home';
+  const ttlSeconds = 3600; // 1 hora
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      const hit = await cache.match(req);
+      if (hit) return (await hit.json()) as any[];
+    } catch {
+      // Cache unavailable → fallback to DB
+    }
+  }
+
+  // Replica la lógica de index.astro
+  const toCard = (p: any) => ({
+    id: p.id,
+    title: p.title,
+    price: p.price,
+    image: p.thumbnail,
+    slug: p.slug,
+    categoryName: p.category_name,
+    freeShipping: p.free_shipping === 1,
+    dollarRate: p.dollar_rate,
+    ivaPct: p.iva_pct,
+    internalTaxPct: p.internal_tax_pct,
+    availableQty: p.available_qty,
+  });
+
+  const groups: { where: string }[] = [
+    { where: "category_name = 'Seguridad'" },
+    { where: "title LIKE '%Monitor%'" },
+    { where: "title LIKE '%Notebook%'" },
+    { where: "title LIKE '%Router%'" },
+  ];
+  const selected = new Map<string, any>();
+
+  for (const g of groups) {
+    const { results } = await db.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+        AND (${g.where})
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 5
+    `).all();
+    for (const p of results || []) selected.set(String(p.id), p);
+  }
+  if (selected.size < 20) {
+    const { results } = await db.prepare(`
+      SELECT id, title, price, thumbnail, slug, category_name, available_qty,
+             dollar_rate, free_shipping, iva_pct, internal_tax_pct, sold_qty
+      FROM products
+      WHERE status = 'published' AND available_qty > 0 AND price > 0
+      ORDER BY sold_qty DESC, created_at DESC
+      LIMIT 60
+    `).all();
+    for (const p of results || []) {
+      if (selected.size >= 20) break;
+      if (!selected.has(String(p.id))) selected.set(String(p.id), p);
+    }
+  }
+
+  const value = [...selected.values()].map(toCard);
+
+  if (cache) {
+    try {
+      const req = new Request(new URL(cacheKey, 'https://lanuscomputacion.com'));
+      await cache.put(
+        req,
+        new Response(JSON.stringify(value), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': `public, s-maxage=${3600}, max-age=0`,
+          },
+        }),
+      );
+    } catch {
+      // Cache put failed → return value anyway
+    }
+  }
+  return value;
 }

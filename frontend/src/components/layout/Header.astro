@@ -3,14 +3,14 @@ import Logo from '../../components/ui/Logo.astro';
 import MegaMenu from './MegaMenu.astro';
 import CartIcon from '../../components/cart/CartIcon.tsx';
 import SearchBar from '../../components/search/SearchBar.tsx';
-import { getAllCategoriesTree } from '../../lib/d1';
+import { getCachedCategoriesTree } from '../../lib/d1';
 
 const db = (Astro.locals as any).runtime?.env?.DB;
 let mobileCategories: any[] = [];
 
 if (db) {
   try {
-    mobileCategories = await getAllCategoriesTree(db);
+    mobileCategories = await getCachedCategoriesTree(db);
   } catch (e) {
     console.error('[Header] Error loading categories:', e);
   }
