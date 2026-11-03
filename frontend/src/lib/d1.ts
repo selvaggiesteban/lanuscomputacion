@@ -47,7 +47,9 @@ export type Category = {
 // guardan en el Cache API del edge y no se re-ejecutan contra D1 en cada
 // render (cada uno escanea products completa ≈ 2.000 filas leídas).
 export async function cachedFacet<T>(cacheKey: string, ttlSeconds: number, compute: () => Promise<T>): Promise<T> {
-  const cache = (globalThis as any).caches?.default;
+  // En Cloudflare Pages/Workers, caches.default es global nativo
+  // Durante prerendering (build time) caches no existe → desactivar caché.
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
   if (!cache) return compute();
 
   const req = new Request(new URL(`/__facet${cacheKey}`, 'https://lanuscomputacion.com'));

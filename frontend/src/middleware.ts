@@ -125,8 +125,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   const rule =
     !isAdmin && context.request.method === 'GET' ? matchCacheRule(pathname) : null;
-  const runtime = context.locals.runtime as any;
-  const cache = runtime?.caches?.default ?? (globalThis as any).caches?.default;
+
+  // En Cloudflare Pages/Workers, caches.default está disponible como global nativo
+  // (no a través de runtime.caches). El adaptador Astro no lo expone en locals.
+  // Durante prerendering (build time) caches no existe → desactivar caché.
+  const cache = typeof caches !== 'undefined' ? caches.default : (globalThis as any).caches?.default;
 
   // 1) Edge cache HIT → respond without running Astro (0 D1 rows read)
   if (rule && cache) {
