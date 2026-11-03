@@ -10,6 +10,6 @@
     }
   ],
   "triggers": {
-    "crons": ["0 * * * *"]
+    "crons": []  // deshabilitado temporalmente
   }
 }
