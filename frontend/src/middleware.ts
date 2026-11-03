@@ -28,8 +28,11 @@ const CACHE_RULES: { test: RegExp; sMaxAge: number }[] = [
 const STALE_TTL = 604800; // 7 days
 
 function matchCacheRule(pathname: string) {
+  // Match against path only (without query string) so /categoria/todas?page=2
+  // uses the same cache rule as /categoria/todas
+  const pathOnly = pathname.split('?')[0];
   for (const rule of CACHE_RULES) {
-    if (rule.test.test(pathname)) return rule;
+    if (rule.test.test(pathOnly)) return rule;
   }
   return null;
 }
