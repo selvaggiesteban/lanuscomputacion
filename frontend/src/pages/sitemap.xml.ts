@@ -1,18 +1,18 @@
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
+import type { D1Database } from "@cloudflare/workers-types";
 
 export const GET: APIRoute = async ({ locals }) => {
   const DB = locals.runtime.env.DB as D1Database;
 
   // Get all published products
-  let products: { slug: string; last_api_update: string }[] = [];
+  let products: { slug: string; last_api_update: string | null }[] = [];
   try {
     const { results } = await DB.prepare(
       "SELECT slug, last_api_update FROM products WHERE status IN ('published','archived') ORDER BY last_api_update DESC"
-    ).all<{ slug: string; last_api_update: string }>();
+    ).all<{ slug: string; last_api_update: string | null }>();
     products = results || [];
   } catch (e) {
-    console.error("D1 Error in sitemap.xml.ts:", e);
+    console.error("D1 Error in sitemap.xml.ts (products):", e);
     products = [];
   }
 
@@ -24,7 +24,7 @@ export const GET: APIRoute = async ({ locals }) => {
     ).all<{ slug: string }>();
     categories = results || [];
   } catch (e) {
-    console.error("D1 Error in sitemap.xml.ts:", e);
+    console.error("D1 Error in sitemap.xml.ts (categories):", e);
     categories = [];
   }
 
@@ -244,23 +244,6 @@ export const GET: APIRoute = async ({ locals }) => {
     <priority>0.8</priority>
   </url>
 `;
-
-  // Add blog articles
-  try {
-    const blogPosts = await getCollection("blog");
-    for (const post of blogPosts) {
-      const lastmod = (post.data.updatedDate || post.data.pubDate).toISOString();
-      sitemap += `  <url>
-    <loc>${baseUrl}/blog/${post.id}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-`;
-    }
-  } catch (e) {
-    console.error("Blog collection error in sitemap.xml.ts:", e);
-  }
 
   // Add categories
   for (const cat of categories) {

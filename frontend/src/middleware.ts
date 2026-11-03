@@ -21,7 +21,6 @@ const CACHE_RULES: { test: RegExp; sMaxAge: number }[] = [
     test: /^\/(como-comprar|contacto|preguntas-frecuentes|politicas-de-privacidad|politicas-de-cookies|politicas-de-envios-y-devoluciones|politica-de-devoluciones|b2b)$/,
     sMaxAge: 3600,
   },
-  { test: /^\/sitemap\.xml$/, sMaxAge: 3600 },
 ];
 
 // Long-lived backup copy: served only when the origin render fails (e.g. D1
