@@ -38,8 +38,35 @@ function matchCacheRule(pathname: string) {
   return null;
 }
 
+// Create a cache key that ignores query strings for catalog routes
+// so /categoria/todas?page=2&brand=ASUS uses the same cache entry as /categoria/todas
+function cacheKeyFor(url: URL): Request {
+  const pathOnly = url.pathname;
+  const isCatalogRoute = 
+    pathOnly.startsWith('/categoria/') ||
+    pathOnly.startsWith('/producto/') ||
+    pathOnly.startsWith('/busqueda/');
+  
+  const normalizedUrl = new URL(url);
+  if (isCatalogRoute) {
+    normalizedUrl.search = '';
+  }
+  return new Request(normalizedUrl);
+}
+
 function staleKeyFor(url: URL) {
-  return new Request(new URL(`/__stale${url.pathname}${url.search}`, url));
+  // Stale key also ignores query strings for catalog routes
+  const pathOnly = url.pathname;
+  const isCatalogRoute = 
+    pathOnly.startsWith('/categoria/') ||
+    pathOnly.startsWith('/producto/') ||
+    pathOnly.startsWith('/busqueda/');
+  
+  const normalizedUrl = new URL(url);
+  if (isCatalogRoute) {
+    normalizedUrl.search = '';
+  }
+  return new Request(new URL(`/__stale${normalizedUrl.pathname}`, normalizedUrl));
 }
 
 function unavailableResponse(pathname: string, retryAfter = '300'): Response {
@@ -137,7 +164,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // 1) Edge cache HIT → respond without running Astro (0 D1 rows read)
   if (rule && cache) {
     try {
-      const hit = await cache.match(context.request);
+      const hit = await cache.match(cacheKeyFor(new URL(context.request.url)));
       if (hit) {
         const headers = new Headers(hit.headers);
         headers.set('X-Cache', 'HIT');
@@ -196,7 +223,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
       // Cache primary and stale entries sequentially to avoid body consumption issues
       try {
-        await cache.put(context.request, outgoing.clone());
+        await cache.put(cacheKeyFor(new URL(context.request.url)), outgoing.clone());
       } catch (e) {
         console.error('[cache] primary put failed:', e?.message || e);
       }
