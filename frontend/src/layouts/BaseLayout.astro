@@ -9,9 +9,15 @@ export interface Props {
   description?: string;
   image?: string;
   type?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
 }
 
-const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Catálogo de tecnología con precios mayoristas y minoristas en Lanús', image, type = 'website' } = Astro.props;
+const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Catálogo de tecnología con precios mayoristas y minoristas en Lanús', image, type = 'website', canonicalUrl, noindex = false } = Astro.props;
+
+// Default canonical: current URL on non-www domain
+const defaultCanonical = `https://lanuscomputacion.com${Astro.url.pathname}${Astro.url.search}`;
+const finalCanonical = canonicalUrl || defaultCanonical;
 ---
 
 <!DOCTYPE html>
@@ -33,7 +39,12 @@ const { title = 'Lanús Computación - Tecnología B2B y B2C', description = 'Ca
     <meta name="twitter:card" content="summary_large_image" />
     {image && <meta name="twitter:image" content={image} />}
 
-    <!-- Per-page head injection (canonical, extra meta, etc.) -->
+    <!-- Canonical URL - CRÍTICO PARA SEO -->
+    <link rel="canonical" href={finalCanonical} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Per-page head injection (extra meta, etc.) -->
     <slot name="head" />
 
     <!-- Schema.org WebSite -->

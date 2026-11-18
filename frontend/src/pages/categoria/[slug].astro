@@ -9,6 +9,23 @@ import { getProducts, getProductCount, getCategoryBySlug, getBrandsByCategory, g
 const { slug } = Astro.params;
 const DB = Astro.locals.runtime.env.DB;
 
+// Valid category slugs (from sitemap/menu) - ghost categories return 404
+const VALID_CATEGORY_SLUGS = new Set([
+  'todas',
+  // Main categories
+  'celulares-telefonos', 'accesorios-celulares', 'repuestos-celulares',
+  'camaras-digitales', 'camaras-accesorios', 'filmadoras-camaras-accion',
+  'consolas-videojuegos', 'videojuegos', 'accesorios-consolas',
+  'computacion', 'componentes-pc', 'impresion', 'tablets', 'pc-escritorio',
+  'conectividad-redes', 'monitores-accesorios', 'electronica-audio-video',
+  'audio', 'accesorios-audio-video', 'componentes-electronicos',
+  'drones-accesorios', 'televisores', 'audio-vehiculos',
+]);
+
+if (!VALID_CATEGORY_SLUGS.has(slug)) {
+  return new Response(null, { status: 404 });
+}
+
 const page = Number(Astro.url.searchParams.get('page') || 1);
 const minPrice = Number(Astro.url.searchParams.get('min_price') || 0);
 const maxPrice = Number(Astro.url.searchParams.get('max_price') || 0);
@@ -67,12 +84,15 @@ const categoryName = slug === 'todas' ? 'Todas las categorías' : (category?.nam
 // Build base URL for filters — always use current page slug
 const filterBaseUrl = `/categoria/${slug}`;
 
+// Canonical URL: category base without filters (brand, sort, min/max price), only pagination if page > 1
+const canonicalUrl = `https://lanuscomputacion.com/categoria/${slug}${page > 1 ? `?page=${page}` : ''}`;
+
 // Helper: is a category or subcategory currently active?
 const isCategoryActive = (catSlug: string) => slug === catSlug;
 const isSubcategoryActive = (subSlug: string) => slug === subSlug;
 ---
 
-<BaseLayout title={`${categoryName} | Lanús Computación`}>
+<BaseLayout title={`${categoryName} | Lanús Computación`} canonicalUrl={canonicalUrl}>
   <div class="ml-container">
     <Breadcrumb items={[
       { label: 'Inicio', href: '/' },

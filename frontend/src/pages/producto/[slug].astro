@@ -42,9 +42,12 @@ const relatedWithPromos = relatedProducts.map(p => {
 const ogImage = product.thumbnail
   ? (product.thumbnail.startsWith('http') ? product.thumbnail : `https://lanuscomputacion.com${product.thumbnail}`)
   : undefined;
+
+// Canonical URL: clean product URL without query params
+const canonicalUrl = `https://lanuscomputacion.com/producto/${product.slug}`;
 ---
 
-<BaseLayout title={`${product.title} | Lanús Computación`} image={ogImage}>
+<BaseLayout title={`${product.title} | Lanús Computación`} image={ogImage} canonicalUrl={canonicalUrl}>
   <!-- Schema.org Product -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

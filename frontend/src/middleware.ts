@@ -1,6 +1,17 @@
 import { defineMiddleware } from 'astro:middleware';
 import { verifyToken, getJwtSecret } from './lib/auth';
 
+// ── Redirect www → non-www (SEO: consolidate domain) ────────────────────────
+// Must run before cache logic to avoid caching both www and non-www versions
+function redirectWwwToNonWww(request: Request): Response | null {
+  const url = new URL(request.url);
+  if (url.hostname === 'www.lanuscomputacion.com') {
+    url.hostname = 'lanuscomputacion.com';
+    return Response.redirect(url.toString(), 301);
+  }
+  return null;
+}
+
 // ── Edge cache for public catalog pages (D1 quota protection) ──────────────
 // Rendered HTML is stored at the Cloudflare edge via the Cache API so repeat
 // visits and crawlers never execute D1 queries (free tier: 5M rows_read/day).
@@ -126,6 +137,10 @@ function unavailableResponse(pathname: string, retryAfter = '300'): Response {
 
 // Protect admin routes + serve public pages from the edge cache
 export const onRequest = defineMiddleware(async (context, next) => {
+  // 0) Redirect www → non-www immediately (before cache/admin logic)
+  const wwwRedirect = redirectWwwToNonWww(context.request);
+  if (wwwRedirect) return wwwRedirect;
+
   const { pathname } = new URL(context.request.url);
 
   // Only protect /admin routes
